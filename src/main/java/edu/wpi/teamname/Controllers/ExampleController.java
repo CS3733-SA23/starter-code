@@ -40,7 +40,8 @@ public class ExampleController {
     try {
       // create Connection
       this.connection =
-          DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "Password1");
+          DriverManager.getConnection(
+              "jdbc:derby://localhost:1527/testDB;create=true", "impact", "derbypass");
       if (this.connection != null) {
         System.out.println("Connected to the database!");
       } else {
