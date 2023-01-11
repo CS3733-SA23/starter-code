@@ -46,7 +46,7 @@ public class ExampleController {
       return false;
     }
     try {
-      // create Connection
+      // create Connection at specified URL
       this.connection =
           DriverManager.getConnection(
               "jdbc:derby://localhost:1527/testDB;create=true", "app", "derbypass");
