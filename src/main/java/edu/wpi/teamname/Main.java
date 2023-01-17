@@ -7,7 +7,7 @@ public class Main {
     App.launch(App.class, args);
   }
 
-  public static void printIan() {
+  public static void printIanBranch() {
     System.out.println("Branch - Ian");
   }
 }
