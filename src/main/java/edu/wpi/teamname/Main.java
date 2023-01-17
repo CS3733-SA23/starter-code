@@ -6,4 +6,8 @@ public class Main {
     System.out.println("Ian");
     App.launch(App.class, args);
   }
+
+  public static void printIan() {
+    System.out.println("Branch - Ian");
+  }
 }
