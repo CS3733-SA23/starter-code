@@ -22,4 +22,6 @@ public class Main {
   public static void printOwenBranch() {
     System.out.println("Branch - Owen");
   }
+
+  public static void printJonathanBranch(){ System.out.println("Branch - Jonathan"); }
 }
