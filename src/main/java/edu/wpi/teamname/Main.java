@@ -19,9 +19,15 @@ public class Main {
     System.out.println("Branch - Audrey");
   }
 
+
+  public static void printConnorBranch() {
+    System.out.println("Branch - Connor");
+  }
+  
   public static void printOwenBranch() {
     System.out.println("Branch - Owen");
   }
 
   public static void printJonathanBranch(){ System.out.println("Branch - Jonathan"); }
+
 }
