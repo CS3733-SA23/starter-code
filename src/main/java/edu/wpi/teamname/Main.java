@@ -11,6 +11,6 @@ public class Main {
     System.out.println("Hey guys this is Harrison");
     System.out.println("Hi it's Hazel");
     System.out.println("Chris");
-    System.out.println("Jay");
+    System.out.println("Jay ");
   }
 }
