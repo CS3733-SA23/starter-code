@@ -7,6 +7,7 @@ public class Main {
     System.out.println("Ian");
     System.out.println("Audrey");
     System.out.println("Owen");
+    System.out.println("Joseph");
     App.launch(App.class, args);
   }
 
@@ -20,5 +21,9 @@ public class Main {
 
   public static void printOwenBranch() {
     System.out.println("Branch - Owen");
+  }
+
+  public static void printJosephBranch() {
+    System.out.println("Branch - Joseph");
   }
 }
