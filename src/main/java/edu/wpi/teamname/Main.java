@@ -3,7 +3,9 @@ package edu.wpi.teamname;
 public class Main {
 
   public static void main(String[] args) {
+
     System.out.println("Steve");
+    System.out.println("IZZY");
     System.out.println("Isabella");
     System.out.println("Andrei");
     System.out.println("Audrey :)");
