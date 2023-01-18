@@ -12,4 +12,8 @@ public class Main {
   public static void printIanBranch() {
     System.out.println("Branch - Ian");
   }
+
+  public static void printAudreyBranch() {
+    System.out.println("Branch - Audrey");
+  }
 }
