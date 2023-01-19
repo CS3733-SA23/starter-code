@@ -41,4 +41,6 @@ public class Main {
 
   public static void printJonathanBranch(){ System.out.println("Branch - Jonathan"); }
 
+  public static void printLindseyBranch() { System.out.println("Branch — Lindsey"); }
+
 }
