@@ -34,6 +34,9 @@ public class Main {
   public static void printJosephBranch() {
     System.out.println("Branch - Joseph");
 }
+  public static void printEmreBranch() {
+    System.out.println("Branch - Emre");
+  }
 
   public static void printJonathanBranch(){ System.out.println("Branch - Jonathan"); }
 
