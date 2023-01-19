@@ -10,6 +10,7 @@ public class Main {
     System.out.println("Emre");
     System.out.println("Joseph");
     System.out.println("Jonathan");
+    System.out.println("Lindsey");
     App.launch(App.class, args);
   }
 
