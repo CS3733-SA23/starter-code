@@ -6,4 +6,9 @@ public class Main {
     App.launch(App.class, args);
     System.out.println("Can Guven");
   }
+
+  void branchName(){
+    System.out.println("Branch - Can");
+  }
+
 }
