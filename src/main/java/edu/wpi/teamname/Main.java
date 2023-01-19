@@ -7,4 +7,9 @@ public class Main {
     System.out.println("Alex Marrinan");
     System.out.println("Timothy Stecko");
   }
+
+  void timMethod()
+  {
+    System.out.println("Branch - Tim Stecko");
+  }
 }
