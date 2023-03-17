@@ -7,7 +7,10 @@ public class Main {
     System.out.println("Megan Aloise");
     System.out.println("Alessandro Brianti");
     System.out.println("Albert");
+    System.out.println("Edward Dang");
   }
+
+
   // shortcut: psvm
 
 }
