@@ -1,4 +1,5 @@
 reviewers:
   # The default reviewers
   defaults:
-    - team:default-reviewers # GitHub team
+    - xyven1
+    - Nightbeat101
