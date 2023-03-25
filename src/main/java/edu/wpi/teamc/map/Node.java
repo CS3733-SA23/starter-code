@@ -11,7 +11,6 @@ class Node {
   private String nodeType;
   private String longName;
   private String shortName;
-  List<String> connectedNodes;
 
   /**
    * Constructor for Node
@@ -24,7 +23,6 @@ class Node {
    * @param nodeType - type of the node ex: HALL
    * @param longName - long name of the node ex: Outpatient Fluoroscopy Floor L1
    * @param shortName - short name of the node ex: Lab C001L1
-   * @param connectedNodes - list of nodes connected to this node ex: [C001L1, C002L1, C003L1]
    */
   public Node(
       String nodeID,
@@ -34,8 +32,7 @@ class Node {
       String building,
       String nodeType,
       String longName,
-      String shortName,
-      List<String> connectedNodes) {
+      String shortName) {
     this.nodeID = nodeID;
     this.xCoord = xCoord;
     this.yCoord = yCoord;
@@ -44,7 +41,6 @@ class Node {
     this.nodeType = nodeType;
     this.longName = longName;
     this.shortName = shortName;
-    this.connectedNodes = connectedNodes;
   }
   // getters
   public String getNodeID() {
@@ -79,9 +75,6 @@ class Node {
     return shortName;
   }
 
-  public List<String> getConnectedNodes() {
-    return connectedNodes;
-  }
 
   // setters
   void setNodeID(String nodeID) {
@@ -116,31 +109,4 @@ class Node {
     this.shortName = shortName;
   }
 
-  /**
-   * Adds a node to the list of connected nodes
-   *
-   * @param nodeID - ID of the node to be added
-   */
-  void addConnectedNode(String nodeID) {
-    if (connectedNodes.contains(nodeID)) {
-      System.out.println("Node already connected");
-      return;
-    } else {
-      connectedNodes.add(nodeID);
-    }
-  }
-
-  /**
-   * Removes a node from the list of connected nodes
-   *
-   * @param nodeID - ID of the node to be removed
-   */
-  void removeConnectedNode(String nodeID) {
-    if (!connectedNodes.contains(nodeID)) {
-      System.out.println("Node not connected");
-      return;
-    } else {
-      connectedNodes.remove(nodeID);
-    }
-  }
 }

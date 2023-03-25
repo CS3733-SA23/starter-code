@@ -7,6 +7,8 @@ import java.util.List;
 public class Map {
   HashMap<String, Node> nodes = new HashMap<>();
 
+
+
   /** Empty Constructor for Map */
   Map() {}
 
@@ -47,9 +49,8 @@ public class Map {
     } else {
       nodes.remove(nodeID);
     }
-    for (Node node : nodes.values()) {
-      node.removeConnectedNode(nodeID);
-    }
+
+    //TODO  remove node from connected nodes or edge list
   }
 
   /**
@@ -58,39 +59,9 @@ public class Map {
    * @param nodeID - ID of the node to be added
    */
   public void addConnectedNode(String nodeID, String connectedNodeID) {
-    // check if node exists
-    if (!nodes.containsKey(nodeID)) {
-      System.out.println("Node does not exist");
-      return;
-    } else {
-      if (nodes.get(nodeID).getConnectedNodes().contains(connectedNodeID)) {
-        System.out.println("Node already connected");
-        return;
-      } else {
-        nodes.get(nodeID).addConnectedNode(connectedNodeID);
-      }
-    }
+// TODO
   }
 
-  /**
-   * Removes a node from the list of connected nodes
-   *
-   * @param nodeID - ID of the node to be removed
-   */
-  public void removeConnectedNode(String nodeID, String connectedNodeID) {
-    // check if node exists
-    if (!nodes.containsKey(nodeID)) {
-      System.out.println("Node does not exist");
-      return;
-    } else {
-      if (!nodes.get(nodeID).getConnectedNodes().contains(connectedNodeID)) {
-        System.out.println("Node not connected");
-        return;
-      } else {
-        nodes.get(nodeID).removeConnectedNode(connectedNodeID);
-      }
-    }
-  }
 
   /**
    * Returns the node with the given ID
@@ -126,42 +97,8 @@ public class Map {
    * @return number of edges in the map
    */
   public int getNumEdges() {
-    int numEdges = 0;
-    for (Node node : nodes.values()) {
-      numEdges += node.getConnectedNodes().size();
-    }
-    return numEdges;
+return 0; // TODO
   }
 
-  /**
-   * Find the shortest path between two nodes using A*
-   *
-   * @param startNodeID - ID of the starting node
-   * @param endNodeID - ID of the ending node
-   * @return List of node IDs in the shortest path
-   */
-  public List<String> findShortestPath(String startNodeID, String endNodeID) {
-    List<String> returnList = new LinkedList<>();
-    // check if nodes exist
-    if (!nodes.containsKey(startNodeID) || !nodes.containsKey(endNodeID)) {
-      System.out.println("Node does not exist");
-      return null;
-    }
-    // check if nodes are the same
-    if (startNodeID.equals(endNodeID)) {
-      System.out.println("Start and end nodes are the same");
-      return null;
-    }
-    // check if nodes are connected
-    if (!nodes.get(startNodeID).getConnectedNodes().contains(endNodeID)) {
-      System.out.println("Nodes are not connected");
-      return null;
-    }
-    // add start node to return list
-    returnList.add(startNodeID);
 
-    // .. to do ...
-
-    return returnList;
-  }
 }
