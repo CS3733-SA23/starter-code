@@ -92,10 +92,6 @@ class Node {
     void setShortName(String shortName){
         this.shortName = shortName;
     }
-    void setConnectedNodes(List<String> connectedNodes){
-        this.connectedNodes = connectedNodes;
-    }
-
 
     /**
      * Adds a node to the list of connected nodes
