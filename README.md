@@ -1,3 +1,22 @@
+# Team C - CS3733 - Software Engineering - D 2023
+## Team Charismatic Cerberus
+
+Team Coach: Ian Wright
+
+Team Members:
+- Randy
+- Nick 
+- Brandon 
+- Aaron
+- Taya 
+- Sebastian
+- Edward 
+- Chao 
+- Chase
+- Joey 
+
+
+
 To assemble a jar file for your project, run the "jar" gradle task, either through IntelliJ or by doing
 `gradle jar` on a terminal. Gradle will automatically download all dependencies needed to compile your jar file,
 which will be stored in the build/libs folder.
@@ -23,7 +42,7 @@ This is the gradle configuration file. Modify this file to add dependencies to y
   modification you will need to make when you begin the project
   
   - `mainClassName`
-    - Modifiy this variable to point to your main class. By default it is `edu.wpi.teamname.Main
+    - Modifiy this variable to point to your main class. By default it is `edu.wpi.teamc.Main
     `, but once you update your teamname package to your team letter you will need to update this
      path.
      
