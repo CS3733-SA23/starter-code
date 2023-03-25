@@ -13,7 +13,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class App extends Application {
+public class CApp extends Application {
 
   @Setter @Getter private static Stage primaryStage;
   @Setter @Getter private static BorderPane rootPane;
@@ -26,12 +26,12 @@ public class App extends Application {
   @Override
   public void start(Stage primaryStage) throws IOException {
     /* primaryStage is generally only used if one of your components require the stage to display */
-    App.primaryStage = primaryStage;
+    CApp.primaryStage = primaryStage;
 
-    final FXMLLoader loader = new FXMLLoader(App.class.getResource("views/Root.fxml"));
+    final FXMLLoader loader = new FXMLLoader(CApp.class.getResource("views/Root.fxml"));
     final BorderPane root = loader.load();
 
-    App.rootPane = root;
+    CApp.rootPane = root;
 
     final Scene scene = new Scene(root);
     primaryStage.setScene(scene);
