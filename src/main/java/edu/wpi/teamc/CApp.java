@@ -1,7 +1,7 @@
-package edu.wpi.teamname;
+package edu.wpi.teamc;
 
-import edu.wpi.teamname.navigation.Navigation;
-import edu.wpi.teamname.navigation.Screen;
+import edu.wpi.teamc.navigation.Navigation;
+import edu.wpi.teamc.navigation.Screen;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
