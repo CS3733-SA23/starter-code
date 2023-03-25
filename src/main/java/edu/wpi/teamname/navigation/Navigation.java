@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 
 public class Navigation {
 
+
   public static void navigate(final Screen screen) {
     final String filename = screen.getFilename();
 
