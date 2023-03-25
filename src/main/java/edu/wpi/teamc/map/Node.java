@@ -1,4 +1,4 @@
-package edu.wpi.teamc.navigation;
+package edu.wpi.teamc.map;
 
 import java.util.List;
 
