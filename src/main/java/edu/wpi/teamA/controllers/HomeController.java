@@ -7,10 +7,16 @@ import javafx.fxml.FXML;
 
 public class HomeController {
 
-  @FXML MFXButton navigateButton;
+  @FXML MFXButton serviceRequestButton;
+  @FXML MFXButton officeMoveButton;
+  @FXML MFXButton mapButton;
+  @FXML MFXButton signageButton;
 
   @FXML
   public void initialize() {
-    navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
+    serviceRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
+    officeMoveButton.setOnMouseClicked(event -> Navigation.navigate(Screen.OFFICE_MOVE));
+    mapButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
+    signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE));
   }
 }
