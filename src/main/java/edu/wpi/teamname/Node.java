@@ -11,6 +11,7 @@ public class Node {
     private String nodeType;
     private String shortName;
     private String longName;
+    private int locID;
 
     Node(String nodeID, int xCoord, int yCoord, String floor, String building, String nodeType, String shortName, String longName){
         this.nodeID = nodeID;
@@ -21,6 +22,11 @@ public class Node {
         this.nodeType = nodeType;
         this.shortName = shortName;
         this.longName = longName;
+
+        String x = Integer.toString(xCoord);
+        String y = Integer.toString(yCoord);
+        String xy = x + y;
+        this.locID = Integer.parseInt(xy);
     }
 
     public String getNodeID() {
@@ -53,5 +59,9 @@ public class Node {
 
     public String getLongName() {
         return longName;
+    }
+
+    public int getLocID(){
+        return locID;
     }
 }
