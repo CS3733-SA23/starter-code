@@ -22,19 +22,52 @@ public class Cdb {
 
       Scanner scanner = new Scanner(System.in);
       boolean continueProg = true;
+
+      Statement stmtNode = connection.createStatement();
+      Statement stmtEdge = connection.createStatement();
+
+      // table names
+      String node = "\"hospitalNode\".node";
+      String edge = "\"hospitalNode\".edge";
+      // queries
+      String queryDisplayNodes = "SELECT * FROM " + node;
+      String queryDisplayEdges = "SELECT * FROM " + edge;
+
+      ResultSet rsNodes = stmtNode.executeQuery(queryDisplayNodes);
+      ResultSet rsEdges = stmtEdge.executeQuery(queryDisplayEdges);
+
       while (continueProg) {
         System.out.println(
-            "Display node and edge information\n"
+            "===========================================\n"
+                + "Display node and edge information\n"
                 + "Update node coordinates\n"
                 + "Update name of location node\n"
                 + "Export node table into a CSV file\n"
                 + "Import from a CSV file into the node table\n"
-                + "Display Help on how to use your database program\n"
-                + "Exit the program\n");
+                + "Help\n"
+                + "Exit\n"
+                + "===========================================\n");
         String command = scanner.nextLine();
         switch (command) {
-          case "Display node and edge information\n":
-            //
+          case "Display node and edge information":
+            try {
+              System.out.println("Node information: \n");
+              while (rsNodes.next()) {
+                for (int i = 1; i <= rsNodes.getMetaData().getColumnCount(); i++) {
+                  System.out.print(rsNodes.getString(i) + "\t");
+                }
+                System.out.println("\n");
+              }
+              System.out.println("Edge information: \n");
+              while (rsEdges.next()) {
+                for (int i = 1; i <= rsEdges.getMetaData().getColumnCount(); i++) {
+                  System.out.print(rsEdges.getString(i) + "\t");
+                }
+                System.out.println("\n");
+              }
+            } catch (Exception e) {
+              e.printStackTrace();
+            }
             break;
           case "Update node coordinates":
             //
@@ -48,10 +81,10 @@ public class Cdb {
           case "Import from a CSV file into the node table\n":
             //
             break;
-          case "Display Help on how to use your database program":
+          case "Help":
             //
             break;
-          case "Exit the program":
+          case "Exit":
             continueProg = false;
             break;
           default:
