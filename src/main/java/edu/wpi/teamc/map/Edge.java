@@ -2,26 +2,26 @@ package edu.wpi.teamc.map;
 
 public class Edge {
 private String id;
-    private String startNode;
-    private String endNode;
+    private Node endNode;
+private int weight;
 
-
-    public Edge(String id, String startNode, String endNode, String type, String length, String direction, String floor, String building, String teamAssigned) {
+    public Edge(String id, Node endNode, int weight) {
         this.id = id;
-        this.startNode = startNode;
         this.endNode = endNode;
+        this.weight = weight;
     }
 
+    //getters
     public String getId() {
         return id;
     }
 
-    public String getStartNode() {
-        return startNode;
+    public Node getEndNode() {
+        return endNode;
     }
 
-    public String getEndNode() {
-        return endNode;
+    public int getWeight() {
+        return weight;
     }
 
 }
