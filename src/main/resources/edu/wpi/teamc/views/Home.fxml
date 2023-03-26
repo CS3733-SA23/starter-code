@@ -12,5 +12,12 @@
          </font>
       </MFXButton>
    </children>
+   <children>
+      <MFXButton fx:id="signageButton" text="Signage">
+         <font>
+            <Font name="Nunito Sans Regular" size="16.0" />
+         </font>
+      </MFXButton>
+   </children>
 </StackPane>
 
