@@ -5,19 +5,19 @@ import java.util.*;
 public class Pathfinder {
     public class Node {
         private List<Node> neighbors;
-        private HashMap<Node, Integer> costMap;
+        private HashMap<Node, Integer> edgeCosts;
         public Node() {
             this.neighbors = new LinkedList<Node>();
-            costMap = new HashMap<Node, Integer>();
+            edgeCosts = new HashMap<Node, Integer>();
         }
         public Node addNeighbor(Node neighbor) {
             neighbors.add(neighbor);
-            costMap.put(neighbor, 1);
+            edgeCosts.put(neighbor, 1);
             return this;
         }
         public Node addNeighbor(Node neighbor, int cost) {
             neighbors.add(neighbor);
-            costMap.put(neighbor, cost);
+            edgeCosts.put(neighbor, cost);
             return this;
         }
         public List<Node> getNeighbors() {
@@ -78,11 +78,19 @@ public class Pathfinder {
         return path;
     }
 
+    /***
+     * Finds the least cost path from the starting node to the target node using the A-star algorithm
+     * @param from the starting Node
+     * @param to the target Node
+     * @return a list of coordinates representing the least cost path from the starting node to the target node
+     */
     public List<Node> findLeastCostPath(Node from, Node to) {
+        HashMap<Node, Integer> costMap = new HashMap<Node, Integer>();
+        costMap = calculateFullCostMap(to, from);
         PriorityQueue<Node> queue = new PriorityQueue<Node>(new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
-                return o1.costMap.get(o2) - o2.costMap.get(o1);
+                return o1.edgeCosts.get(o2) - o2.edgeCosts.get(o1);
             }
         });
         HashSet<Node> visited = new HashSet<Node>();
@@ -109,5 +117,30 @@ public class Pathfinder {
         }
 
         return null;
+    }
+
+    private HashMap<Node, Integer> calculateFullCostMap(Node from, Node to) {
+        HashMap<Node, Integer> costMap = new HashMap<Node, Integer>();
+        LinkedList<Node> queue = new LinkedList<Node>();
+        HashSet<Node> visited = new HashSet<Node>();
+        queue.add(from);
+        costMap.put(from, 0);
+
+        while (!queue.isEmpty()) {
+            Node current = queue.remove();
+            if (visited.contains(current)) {
+                continue;
+            } else {
+                visited.add(current);
+            }
+            for (Node neighbor : current.getNeighbors()) {
+                int neighborCost = costMap.get(current) + current.edgeCosts.get(neighbor);
+                if (!costMap.containsKey(neighbor) || neighborCost < costMap.get(neighbor)) {
+                    queue.add(neighbor);
+                    costMap.put(neighbor, costMap.get(current) + current.edgeCosts.get(neighbor));
+                }
+            }
+        }
+        return costMap;
     }
 }
