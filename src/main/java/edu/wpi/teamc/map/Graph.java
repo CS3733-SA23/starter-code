@@ -20,6 +20,10 @@ public class Graph {
     this.nodes = nodes;
   }
 
+
+  public void init() {
+
+  }
   /**
    * Adds a node to the map
    *
