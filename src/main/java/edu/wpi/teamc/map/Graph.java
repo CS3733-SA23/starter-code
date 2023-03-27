@@ -1,7 +1,8 @@
 package edu.wpi.teamc.map;
 
+import static java.lang.Long.parseLong;
+
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -9,13 +10,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import static java.lang.Long.parseLong;
-
 public class Graph {
   private Map<String, Node> nodes = new HashMap<>();
 
   /** Empty Constructor for Graph */
-  Graph() {}
+  public Graph() {}
 
   /**
    * Constructor for graph
@@ -26,16 +25,24 @@ public class Graph {
     this.nodes = nodes;
   }
 
-
   public void init() throws IOException {
     BufferedReader reader = new BufferedReader(new FileReader("L1Nodes.csv"));
     String line = "", delim = ",";
     line = reader.readLine();
 
-    //add all nodes to graph
+    // add all nodes to graph
     while (line != null) {
       String[] node = line.split(delim);
-      Node temp = new Node(node[0], parseLong(node[1]), parseLong(node[2]), node[3], node[4], node[5], node[6], node[7]);
+      Node temp =
+          new Node(
+              node[0],
+              parseLong(node[1]),
+              parseLong(node[2]),
+              node[3],
+              node[4],
+              node[5],
+              node[6],
+              node[7]);
       addNode(temp);
       line = reader.readLine();
     }
@@ -44,6 +51,11 @@ public class Graph {
     line = reader.readLine();
 
     while (line != null) {
+      String[] edge = line.split(delim);
+      Edge temp = new Edge(edge[0], nodes.get(edge[2]));
+      Node node = nodes.get(edge[1]);
+
+      node.getEdges().add(temp);
 
       line = reader.readLine();
     }
@@ -162,6 +174,5 @@ public class Graph {
       }
     }
     return null;
-
   }
 }
