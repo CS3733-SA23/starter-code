@@ -1,9 +1,8 @@
 package edu.wpi.teamc.map;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -32,8 +31,15 @@ class Node {
    * @param edges - list of edges connected to the node
    */
   public Node(
-      String nodeID, long xCoord, long yCoord, String floor, String building,
-      String nodeType, String longName, String shortName, List<Edge> edges) {
+      String nodeID,
+      long xCoord,
+      long yCoord,
+      String floor,
+      String building,
+      String nodeType,
+      String longName,
+      String shortName,
+      List<Edge> edges) {
     this.nodeID = nodeID;
     this.xCoord = xCoord;
     this.yCoord = yCoord;
@@ -47,18 +53,25 @@ class Node {
 
   /**
    * Constructor for Node
+   *
    * @param nodeID - ID of the node ex: CCONF001L1
    * @param xCoord - x coordinate of the node ex: 2255
    * @param yCoord - y coordinate of the node ex: 849
    * @param floor - floor of the node ex: L1
-   * @param building  - building of the node ex: CCONF
+   * @param building - building of the node ex: CCONF
    * @param nodeType - type of the node ex: HALL
-   * @param longName  - long name of the node ex: Outpatient Fluoroscopy Floor L1
+   * @param longName - long name of the node ex: Outpatient Fluoroscopy Floor L1
    * @param shortName - short name of the node ex: Lab C001L1
    */
   public Node(
-          String nodeID, long xCoord, long yCoord, String floor,
-          String building, String nodeType, String longName, String shortName) {
+      String nodeID,
+      long xCoord,
+      long yCoord,
+      String floor,
+      String building,
+      String nodeType,
+      String longName,
+      String shortName) {
     this.nodeID = nodeID;
     this.xCoord = xCoord;
     this.yCoord = yCoord;

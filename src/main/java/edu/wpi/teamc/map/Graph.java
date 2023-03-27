@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Graph {
- private Map<String, Node> nodes = new HashMap<>();
+  private Map<String, Node> nodes = new HashMap<>();
 
   /** Empty Constructor for Graph */
   Graph() {}
@@ -16,7 +16,7 @@ public class Graph {
    *
    * @param nodes - HashMap of nodes
    */
-  Graph( Map<String, Node> nodes) {
+  Graph(Map<String, Node> nodes) {
     this.nodes = nodes;
   }
 
@@ -38,7 +38,7 @@ public class Graph {
   /**
    * Removes a node from the graph
    *
-   * @param node -   the node to be removed
+   * @param node - the node to be removed
    */
   public void removeNode(Node node) {
     // check if node exists
@@ -48,7 +48,7 @@ public class Graph {
     } else {
       nodes.remove(node.getNodeID());
     }
-    //TODO  remove node from connected nodes or edge list
+    // TODO  remove node from connected nodes or edge list
 
   }
 
@@ -100,33 +100,29 @@ public class Graph {
    * @return list of neighbors
    */
   public List<Node> getNeighbors(Node node) {
-      List<Node> neighbors = null;
-      int i = 0;
-      for (Edge edge : node.getEdges()) {
-          neighbors.set(i, edge.getEndNode());
-          i++;
-      }
+    LinkedList<Node> neighbors = new LinkedList<>();
 
-      return neighbors;
+    for (Edge edge : node.getEdges()) {
+      neighbors.add(edge.getEndNode());
+    }
+
+    return neighbors;
   }
 
-
-    /**
-     * Returns a list of directions from start to end
-     *
-     * @param start - start node
-     * @param end - end node
-     * @return list of directions
-     */
+  /**
+   * Returns a list of directions from start to end
+   *
+   * @param start - start node
+   * @param end - end node
+   * @return list of directions
+   */
   public List<String> getDirections(Node start, Node end) {
-      //TODO A* algorithm
-      List<String> directions = new LinkedList<>();
-      List<Node> closedSet = new LinkedList<>();
-      List<Node> openSet = new LinkedList<>();
-        openSet.add(start);
+    // TODO A* algorithm
+    List<String> directions = new LinkedList<>();
+    List<Node> closedSet = new LinkedList<>();
+    List<Node> openSet = new LinkedList<>();
+    openSet.add(start);
 
-
-      return directions;
+    return directions;
   }
-
 }
