@@ -19,25 +19,31 @@ public class AStarPathfinder implements IPathfinder {
               @Override
               public int compare(HospitalNode o1, HospitalNode o2) {
                 // Based on heuristic distance to target
-                return 1;
+                return 0;//(costMap.get(o1)+heuristicDistance(o1, end)) - (costMap.get(o2)+heuristicDistance(o2,end));
               }
             });
+    HashMap<HospitalNode, Integer> costMap = new HashMap<>();
     HashSet<HospitalNode> visited = new HashSet<HospitalNode>();
     HashMap<HospitalNode, HospitalNode> parentMap = new HashMap<HospitalNode, HospitalNode>();
     queue.add(from);
     parentMap.put(from, null);
+    costMap.put(from, 0);
 
     while (!queue.isEmpty()) {
       HospitalNode current = queue.remove();
       if (visited.contains(current)) {
+        // If we've already visited this node, skip it
         continue;
       } else {
+        // Otherwise, mark node as visited
         visited.add(current);
       }
       if (current.equals(to)) {
+        // If this is the end node, reconstruct the path based on the parent map and return it
         return reconstructPath(parentMap, current);
       }
       for (HospitalNode neighbor : current.getNeighbors()) {
+        // If we've already explored the children of this node, don't add it to the queue
         if (!parentMap.containsKey(neighbor)) {
           queue.add(neighbor);
           parentMap.put(neighbor, current);
@@ -48,8 +54,8 @@ public class AStarPathfinder implements IPathfinder {
     return null;
   }
 
-  private int heuristicDistance(HospitalNode from, HospitalNode to) {
-    return 0;
+  private static int heuristicDistance(HospitalNode from, HospitalNode to) {
+    return (int) Math.sqrt(Math.pow(from.xCoord-to.xCoord,2) + Math.pow(from.yCoord-to.yCoord,2));
   }
 
   /**

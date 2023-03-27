@@ -11,12 +11,12 @@ public class HospitalNode {
 
     private String nodeID;
 
-    private int xcood;
-    private int ycoord;
+    int xCoord;
+    int yCoord;
     private String floor;
     private String building;
 
-    private String nodetype;
+    private String nodeType;
 
     private String longName;
     private String shortName;
