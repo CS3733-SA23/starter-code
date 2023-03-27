@@ -173,7 +173,7 @@ public class Graph {
         }
       }
     }
-    return null;
+    return visited;
   }
   /**
    * Returns a list of directions from start to end

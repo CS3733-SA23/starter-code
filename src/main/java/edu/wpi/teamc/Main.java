@@ -20,5 +20,7 @@ public class Main {
     Node node = graph.getNode("test");
     node.addEdge("difjifj", new Node("test2", 0, 0, "test", "test", "test", "test", "test"));
     graph.printGraph();
+
+    graph.printDirections("test", "test2");
   }
 }
