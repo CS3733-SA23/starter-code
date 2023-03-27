@@ -16,7 +16,7 @@ public class Node {
   private String nodeType;
   private String longName;
   private String shortName;
-  private List<Edge> edges = new LinkedList<>();
+  private List<Edge> edges;
 
   /**
    * Constructor for Node
@@ -81,6 +81,7 @@ public class Node {
     this.nodeType = nodeType;
     this.longName = longName;
     this.shortName = shortName;
+    this.edges = new LinkedList<>();
   }
 
   public void addEdge(String edgeID, Node endNode) {
