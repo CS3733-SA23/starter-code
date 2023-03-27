@@ -9,6 +9,19 @@ public class HospitalNode {
     private HashMap<HospitalNode, Integer> edgeCosts;
     private int cost;
 
+    private String nodeID;
+
+    private int xcood;
+    private int ycoord;
+    private String floor;
+    private String building;
+
+    private String nodetype;
+
+    private String longName;
+    private String shortName;
+
+
     public HospitalNode() {
         this.neighbors = new LinkedList<HospitalNode>();
         edgeCosts = new HashMap<HospitalNode, Integer>();
@@ -34,4 +47,8 @@ public class HospitalNode {
         node1.neighbors.add(node2);
         node2.neighbors.add(node1);
     }
+
+
+
+
 }
