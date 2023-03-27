@@ -4,13 +4,15 @@ import lombok.Getter;
 
 @Getter
 public class Edge {
-    private String id;
-    private String startNode;
-    private String endNode;
 
-    public Edge(String id, String startNode, String endNode) {
+private String id;
+    private Node endNode;
+private int weight;
+
+    public Edge(String id, Node endNode, int weight) {
+
         this.id = id;
-        this.startNode = startNode;
         this.endNode = endNode;
+        this.weight = weight;
     }
 }
