@@ -26,23 +26,6 @@ public class HospitalNode {
     String longName;
     String shortName;
 
-    @Override
-    public String toString(){
-        return "Node "+nodeID;
-    }
-
-    @Override
-    public int hashCode(){
-        return hash(nodeID);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if(other instanceof HospitalNode) {
-            return nodeID.equals(((HospitalNode) other).nodeID);
-        }
-        return false;
-    }
 
     public HospitalNode() {
         this.neighbors = new LinkedList<HospitalNode>();
@@ -50,6 +33,13 @@ public class HospitalNode {
     }
 
     public HospitalNode(String id) {
+        this.neighbors = new LinkedList<HospitalNode>();
+        edgeCosts = new HashMap<HospitalNode, Integer>();
+        nodeID = id;
+        allNodes.put(id,this);
+    }
+
+    public HospitalNode(String id, int xCoord, int yCoord) {
         this.neighbors = new LinkedList<HospitalNode>();
         edgeCosts = new HashMap<HospitalNode, Integer>();
         nodeID = id;
@@ -77,7 +67,21 @@ public class HospitalNode {
         node2.neighbors.add(node1);
     }
 
+    @Override
+    public String toString(){
+        return "Node "+nodeID;
+    }
 
+    @Override
+    public int hashCode(){
+        return hash(nodeID);
+    }
 
-
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof HospitalNode) {
+            return nodeID.equals(((HospitalNode) other).nodeID);
+        }
+        return false;
+    }
 }
