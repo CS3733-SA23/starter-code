@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.controllers.SignageController">
+    <children>
+        <MFXButton fx:id="backButton" layoutX="7.0" layoutY="6.0" text="Back">
+            <font>
+                <Font name="Nunito Sans Regular" size="16.0" />
+            </font>
+        </MFXButton>
+        <Label alignment="CENTER" layoutX="228.0" layoutY="14.0" prefHeight="50.0" prefWidth="145.0" text="Signage Text" textFill="#e10707">
+            <font>
+                <Font size="23.0" />
+            </font>
+        </Label>
+        <Label layoutX="204.0" layoutY="77.0" prefHeight="25.0" prefWidth="183.0" text="-&gt; Information" />
+        <Label layoutX="204.0" layoutY="102.0" prefHeight="25.0" prefWidth="183.0" text="-&gt; Shapiro Admitting" />
+        <Label layoutX="204.0" layoutY="127.0" prefHeight="25.0" prefWidth="183.0" text="-&gt; Shapiro Procedural Check-in" />
+        <Label layoutX="204.0" layoutY="163.0" prefHeight="25.0" prefWidth="212.0" text="&lt;- Watkins Clinics A &amp; B (this floor)" />
+        <Label layoutX="204.0" layoutY="188.0" prefHeight="25.0" prefWidth="212.0" text="&lt;- Watkins Clinics C (up to 3rd floor)" />
+        <Label layoutX="204.0" layoutY="213.0" prefHeight="25.0" prefWidth="258.0" text="&lt;- Rehabilitation Services (down to 1st floor)" />
+        <Label layoutX="25.0" layoutY="52.0" prefHeight="25.0" prefWidth="160.0" text="(Screen 1 - MAY23)" />
+    </children>
+</AnchorPane>
