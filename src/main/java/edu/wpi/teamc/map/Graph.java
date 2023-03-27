@@ -116,13 +116,24 @@ public class Graph {
    * @param end - end node
    * @return list of directions
    */
-  public List<String> getDirections(Node start, Node end) {
-    // TODO A* algorithm
-    List<String> directions = new LinkedList<>();
-    List<Node> closedSet = new LinkedList<>();
-    List<Node> openSet = new LinkedList<>();
-    openSet.add(start);
+  public List<Node> getDirections(Node start, Node end) {
+    LinkedList queue = new LinkedList();
+    LinkedList<Node> visited = new LinkedList<>();
+    queue.add(start);
+    visited.add(start);
+    while (!queue.isEmpty()) {
+      Node current = (Node) queue.remove();
+      if (current.equals(end)) {
+        return visited;
+      }
+      for (Node neighbor : getNeighbors(current)) {
+        if (!visited.contains(neighbor)) {
+          visited.add(neighbor);
+          queue.add(neighbor);
+        }
+      }
+    }
+    return null;
 
-    return directions;
   }
 }
