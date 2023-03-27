@@ -47,7 +47,7 @@ public class Graph {
       line = reader.readLine();
     }
 
-    reader = new BufferedReader(new FileReader("L1Nodes.csv"));
+    reader = new BufferedReader(new FileReader("L1Edges.csv"));
     line = reader.readLine();
 
     while (line != null) {
