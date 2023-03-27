@@ -44,6 +44,8 @@ public class HospitalNode {
         edgeCosts = new HashMap<HospitalNode, Integer>();
         nodeID = id;
         allNodes.put(id,this);
+        this.xCoord = xCoord;
+        this.yCoord = yCoord;
     }
 
     public HospitalNode addNeighbor(HospitalNode neighbor) {
