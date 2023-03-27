@@ -131,7 +131,7 @@ public class DatabaseController {
     while (doneUpdating) {
 
       Scanner s1 = new Scanner(System.in);
-      System.out.println("Which table would you like to update (Nodes, Edges): ");
+      System.out.println("Which table would you like to update (Nodes, Edges, Help Screen): ");
       String tabletoUpdate = s1.nextLine().toLowerCase();
 
       try {
@@ -259,7 +259,7 @@ public class DatabaseController {
               System.out.println("Please enter a valid attribute to edit");
           }
 
-        } else {
+        } else if (tabletoUpdate.equals("edges")){
           System.out.println("Please type the Edge ID you would like to update: ");
           String edgetoUpdate = s1.nextLine();
 
@@ -315,6 +315,10 @@ public class DatabaseController {
             default:
               System.out.println("Please enter a valid attribute to edit");
           }
+        }
+        else if (tabletoUpdate.equals("Help Screen"))
+        {
+          this.help();
         }
       } catch (Exception e) {
         System.err.println(e.getClass().getName() + ": " + e.getMessage());
