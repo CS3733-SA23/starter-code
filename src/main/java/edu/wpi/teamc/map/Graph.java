@@ -12,6 +12,8 @@ import java.util.Map;
 
 public class Graph {
   private Map<String, Node> nodes = new HashMap<>();
+  private final String NODE_FILE = "src/main/resources/edu/wpi/teamc/csvs/L1Nodes.csv";
+  private final String EDGE_FILE = "src/main/resources/edu/wpi/teamc/csvs/L1Edges.csv";
 
   /** Empty Constructor for Graph */
   public Graph() {}
@@ -25,10 +27,16 @@ public class Graph {
     this.nodes = nodes;
   }
 
+  /**
+   * Initializes the graph with L1 Floor Nodes & Edges
+   *
+   * @throws IOException
+   */
   public void init() throws IOException {
-    BufferedReader reader =
-        new BufferedReader(new FileReader("src/main/resources/edu/wpi/teamc/csvs/L1Nodes.csv"));
+    BufferedReader reader = new BufferedReader(new FileReader(NODE_FILE));
     String line = "", delim = ",";
+
+    // ignore first line
     reader.readLine();
     line = reader.readLine();
 
@@ -49,23 +57,27 @@ public class Graph {
       line = reader.readLine();
     }
 
-    reader =
-        new BufferedReader(new FileReader("src/main/resources/edu/wpi/teamc/csvs/L1Edges.csv"));
+    reader = new BufferedReader(new FileReader(EDGE_FILE));
+
+    // ignore first line
     reader.readLine();
     line = reader.readLine();
 
+    // add all edges
     while (line != null) {
       String[] edge = line.split(delim);
 
       Edge orig = new Edge(edge[0], nodes.get(edge[2]));
+
+      // reverse the edgeID for an edge going in the other direction
       String[] nodeID = edge[0].split("_");
       String reverse = nodeID[0] + "_" + nodeID[1];
-
       Edge otherDirection = new Edge(reverse, nodes.get(edge[1]));
 
       Node start = nodes.get(edge[1]);
       Node end = nodes.get(edge[2]);
 
+      // add the edges to each Node's edge list
       start.getEdges().add(orig);
       end.getEdges().add(otherDirection);
 
