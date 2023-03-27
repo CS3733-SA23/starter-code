@@ -8,7 +8,7 @@ public class Edge {
     private String startNode;
     private String endNode;
 
-    public Edge(String id, String startNode, String endNode, String type, String length, String direction, String floor, String building, String teamAssigned) {
+    public Edge(String id, String startNode, String endNode) {
         this.id = id;
         this.startNode = startNode;
         this.endNode = endNode;
