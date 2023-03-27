@@ -56,8 +56,11 @@ public class AStarPathfinder implements IPathfinder {
   }
 
   private static int heuristicDistance(HospitalNode from, HospitalNode to) {
-    return (int)
-        Math.sqrt(Math.pow(from.xCoord - to.xCoord, 2) + Math.pow(from.yCoord - to.yCoord, 2));
+    return 0; // delete this after database testing
+    // return (int) //uncomment
+    // Math.sqrt(Math.pow(from.xCoord - to.xCoord, 2) + Math.pow(from.yCoord - to.yCoord, 2));
+    // //uncomment
+    // //uncomment
   }
 
   /**
