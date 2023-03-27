@@ -1,7 +1,6 @@
 package edu.wpi.teamc;
 
 import edu.wpi.teamc.map.Graph;
-import edu.wpi.teamc.map.Node;
 import java.io.IOException;
 
 public class Main {
@@ -12,15 +11,16 @@ public class Main {
     try {
       graph.init();
     } catch (IOException e) {
-
+      System.out.println("Exception!");
     }
-    System.out.println("hi");
 
-    graph.addNode(new Node("test", 0, 0, "test", "test", "test", "test", "test"));
+    graph.printDirections("CCONF001L1", "CHALL010L1");
+
+    /*graph.addNode(new Node("test", 0, 0, "test", "test", "test", "test", "test"));
     Node node = graph.getNode("test");
     node.addEdge("difjifj", new Node("test2", 0, 0, "test", "test", "test", "test", "test"));
     graph.printGraph();
 
-    graph.printDirections("test", "test2");
+    graph.printDirections("test", "test2"); */
   }
 }

@@ -26,8 +26,10 @@ public class Graph {
   }
 
   public void init() throws IOException {
-    BufferedReader reader = new BufferedReader(new FileReader("L1Nodes.csv"));
+    BufferedReader reader =
+        new BufferedReader(new FileReader("src/main/resources/edu/wpi/teamc/csvs/L1Nodes.csv"));
     String line = "", delim = ",";
+    reader.readLine();
     line = reader.readLine();
 
     // add all nodes to graph
@@ -47,15 +49,25 @@ public class Graph {
       line = reader.readLine();
     }
 
-    reader = new BufferedReader(new FileReader("L1Edges.csv"));
+    reader =
+        new BufferedReader(new FileReader("src/main/resources/edu/wpi/teamc/csvs/L1Edges.csv"));
+    reader.readLine();
     line = reader.readLine();
 
     while (line != null) {
       String[] edge = line.split(delim);
-      Edge temp = new Edge(edge[0], nodes.get(edge[2]));
-      Node node = nodes.get(edge[1]);
 
-      node.getEdges().add(temp);
+      Edge orig = new Edge(edge[0], nodes.get(edge[2]));
+      String[] nodeID = edge[0].split("_");
+      String reverse = nodeID[0] + "_" + nodeID[1];
+
+      Edge otherDirection = new Edge(reverse, nodes.get(edge[1]));
+
+      Node start = nodes.get(edge[1]);
+      Node end = nodes.get(edge[2]);
+
+      start.getEdges().add(orig);
+      end.getEdges().add(otherDirection);
 
       line = reader.readLine();
     }
