@@ -6,6 +6,7 @@ import java.util.List;
 
 public class HospitalNode {
 
+    public static HashMap<String, HospitalNode> allNodes = new HashMap<>();
     private List<HospitalNode> neighbors;
     private HashMap<HospitalNode, Integer> edgeCosts;
 
