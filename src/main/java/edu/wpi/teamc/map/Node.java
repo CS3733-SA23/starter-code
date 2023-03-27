@@ -1,7 +1,12 @@
 package edu.wpi.teamc.map;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+@Getter
+@Setter
 class Node {
   private String nodeID;
   private long xCoord;
@@ -63,87 +68,5 @@ class Node {
     this.longName = longName;
     this.shortName = shortName;
   }
-  // getters
-  public String getNodeID() {
-    return nodeID;
-  }
-
-  public long getXCoord() {
-    return xCoord;
-  }
-
-  public long getYCoord() {
-    return yCoord;
-  }
-
-  public String getFloor() {
-    return floor;
-  }
-
-  public String getBuilding() {
-    return building;
-  }
-
-  public String getNodeType() {
-    return nodeType;
-  }
-
-  public String getLongName() {
-    return longName;
-  }
-
-  public String getShortName() {
-    return shortName;
-  }
-
-  public List<Edge> getEdges() { return edges;}
-
-
-  // setters
-  void setNodeID(String nodeID) {
-    this.nodeID = nodeID;
-  }
-
-  void setXCoord(long xCoord) {
-    this.xCoord = xCoord;
-  }
-
-  void setYCoord(long yCoord) {
-    this.yCoord = yCoord;
-  }
-
-  void setFloor(String floor) {
-    this.floor = floor;
-  }
-
-  void setBuilding(String building) {
-    this.building = building;
-  }
-
-  void setNodeType(String nodeType) {
-    this.nodeType = nodeType;
-  }
-
-  void setLongName(String longName) {
-    this.longName = longName;
-  }
-
-  void setShortName(String shortName) {
-    this.shortName = shortName;
-  }
-
-  void addEdge(Edge edge) {
-    edges.add(edge);
-  }
-  void removeEdge(Edge edge) {
-    edges.remove(edge);
-  }
-  void addEdges(List<Edge> edges) {
-    this.edges.addAll(edges);
-  }
-    void removeEdges(List<Edge> edges) {
-        this.edges.removeAll(edges);
-    }
-
 
 }
