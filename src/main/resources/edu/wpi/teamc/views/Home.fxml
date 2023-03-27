@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.HomeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.HomeController">
    <children>
-      <MFXButton fx:id="navigateButton" text="Navigate">
+      <MFXButton fx:id="navigateButton" layoutX="230.0" layoutY="184.0" text="Service Request">
          <font>
             <Font name="Nunito Sans Regular" size="16.0" />
          </font>
       </MFXButton>
+      <Label layoutX="263.0" layoutY="49.0" text="HOME">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
-</StackPane>
+</AnchorPane>

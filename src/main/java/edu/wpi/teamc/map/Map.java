@@ -1,13 +1,9 @@
 package edu.wpi.teamc.map;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Map {
   HashMap<String, Node> nodes = new HashMap<>();
-
-
 
   /** Empty Constructor for Map */
   Map() {}
@@ -50,7 +46,7 @@ public class Map {
       nodes.remove(nodeID);
     }
 
-    //TODO  remove node from connected nodes or edge list
+    // TODO  remove node from connected nodes or edge list
   }
 
   /**
@@ -59,9 +55,8 @@ public class Map {
    * @param nodeID - ID of the node to be added
    */
   public void addConnectedNode(String nodeID, String connectedNodeID) {
-// TODO
+    // TODO
   }
-
 
   /**
    * Returns the node with the given ID
@@ -97,8 +92,6 @@ public class Map {
    * @return number of edges in the map
    */
   public int getNumEdges() {
-return 0; // TODO
+    return 0; // TODO
   }
-
-
 }
