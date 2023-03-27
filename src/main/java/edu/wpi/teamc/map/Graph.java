@@ -39,6 +39,14 @@ public class Graph {
       addNode(temp);
       line = reader.readLine();
     }
+
+    reader = new BufferedReader(new FileReader("L1Nodes.csv"));
+    line = reader.readLine();
+
+    while (line != null) {
+
+      line = reader.readLine();
+    }
   }
   /**
    * Adds a node to the map
