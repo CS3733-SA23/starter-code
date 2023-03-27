@@ -18,8 +18,12 @@ public class Cdb {
       connection = DriverManager.getConnection(url, user, password);
 
       Scanner scanner = new Scanner(System.in);
-      //////////////
-
+      // variables
+      String nodeID;
+      int xCoordinate;
+      int yCoordinate;
+      String locationNameLong;
+      String locationNameShort;
       boolean continueProg = true;
       while (continueProg) {
         displayInstructions();
@@ -31,16 +35,23 @@ public class Cdb {
             break;
           case "update node coordinates":
             System.out.println("please type the nodeID of the node you would like to update:");
-            String nodeID = scanner.nextLine();
+            nodeID = scanner.nextLine();
             System.out.println("Enter new x coordinate:");
-            int xCoordinate = scanner.nextInt();
+            xCoordinate = scanner.nextInt();
             System.out.println("Enter new y coordinate:");
-            int yCoordinate = scanner.nextInt();
+            yCoordinate = scanner.nextInt();
             // update the coordinates with given nodeID and values
             updateCoordinates(connection, xCoordinate, yCoordinate, nodeID);
             break;
           case "update name of location node":
-            //
+            System.out.println("please type the nodeID of the node you would like to update:");
+            nodeID = scanner.nextLine();
+            System.out.println("Enter new location name in full:");
+            locationNameLong = scanner.nextLine();
+            System.out.println("Enter the shortened version of the new location name:");
+            locationNameShort = scanner.nextLine();
+            // update the location name of the given nodeID
+            updateLocationName(connection, locationNameLong, locationNameShort, nodeID);
             break;
           case "export node table into a csv file":
             //
@@ -136,6 +147,30 @@ public class Cdb {
       stmtUpdateCoord.setString(3, nodeID);
 
       int rowsUpdated = stmtUpdateCoord.executeUpdate();
+      if (rowsUpdated > 0) {
+        System.out.println("update successful!");
+      } else {
+        System.out.println("Node not found: Invalid nodeID");
+      }
+    } catch (SQLException e) {
+      System.out.println("SQL exception occurred: " + e.getMessage());
+    }
+  }
+
+  static void updateLocationName(
+      Connection connection, String locationNameLong, String locationNameShort, String nodeID) {
+    try {
+      PreparedStatement stmtUpdateNodeName =
+          connection.prepareStatement(
+              "UPDATE \"hospitalNode\".node\n"
+                  + "SET \"longName\" = ?, \"shortName\" = ?\n"
+                  + "WHERE \"nodeID\" = ?;");
+      // set parameters for prepared statement
+      stmtUpdateNodeName.setString(1, locationNameLong);
+      stmtUpdateNodeName.setString(2, locationNameShort);
+      stmtUpdateNodeName.setString(3, nodeID);
+
+      int rowsUpdated = stmtUpdateNodeName.executeUpdate();
       if (rowsUpdated > 0) {
         System.out.println("update successful!");
       } else {
