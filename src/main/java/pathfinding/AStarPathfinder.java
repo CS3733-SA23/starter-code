@@ -1,3 +1,4 @@
+
 package pathfinding;
 
 import java.util.*;
@@ -13,34 +14,37 @@ public class AStarPathfinder implements IPathfinder {
    *     target HospitalNode
    */
   public List<HospitalNode> findPath(HospitalNode from, HospitalNode to) {
-    HashMap<HospitalNode, Integer> costToEndMap = new HashMap<HospitalNode, Integer>();
-    costToEndMap = calculateFullCostMap(to, from);
     PriorityQueue<HospitalNode> queue =
         new PriorityQueue<HospitalNode>(
             new Comparator<HospitalNode>() {
               @Override
               public int compare(HospitalNode o1, HospitalNode o2) {
-                // The value of a HospitalNode is based on it's cost from start + cost from end
-                // (costToEndMap.get(o2) + o2.cost) - (costToEndMap.get(o1) + o1.cost)
-                return o1.edgeCosts.get(o2) - o2.edgeCosts.get(o1);
+                // Based on heuristic distance to target
+                return 0;//(costMap.get(o1)+heuristicDistance(o1, end)) - (costMap.get(o2)+heuristicDistance(o2,end));
               }
             });
+    HashMap<HospitalNode, Integer> costMap = new HashMap<>();
     HashSet<HospitalNode> visited = new HashSet<HospitalNode>();
     HashMap<HospitalNode, HospitalNode> parentMap = new HashMap<HospitalNode, HospitalNode>();
     queue.add(from);
     parentMap.put(from, null);
+    costMap.put(from, 0);
 
     while (!queue.isEmpty()) {
       HospitalNode current = queue.remove();
       if (visited.contains(current)) {
+        // If we've already visited this node, skip it
         continue;
       } else {
+        // Otherwise, mark node as visited
         visited.add(current);
       }
       if (current.equals(to)) {
+        // If this is the end node, reconstruct the path based on the parent map and return it
         return reconstructPath(parentMap, current);
       }
       for (HospitalNode neighbor : current.getNeighbors()) {
+        // If we've already explored the children of this node, don't add it to the queue
         if (!parentMap.containsKey(neighbor)) {
           queue.add(neighbor);
           parentMap.put(neighbor, current);
@@ -51,28 +55,24 @@ public class AStarPathfinder implements IPathfinder {
     return null;
   }
 
-  private HashMap<HospitalNode, Integer> calculateFullCostMap(HospitalNode from, HospitalNode to) {
-    HashMap<HospitalNode, Integer> costMap = new HashMap<HospitalNode, Integer>();
-    LinkedList<HospitalNode> queue = new LinkedList<HospitalNode>();
-    HashSet<HospitalNode> visited = new HashSet<HospitalNode>();
-    queue.add(from);
-    costMap.put(from, 0);
+  private static int heuristicDistance(HospitalNode from, HospitalNode to) {
+    return (int) Math.sqrt(Math.pow(from.xCoord-to.xCoord,2) + Math.pow(from.yCoord-to.yCoord,2));
+  }
 
-    while (!queue.isEmpty()) {
-      HospitalNode current = queue.remove();
-      if (visited.contains(current)) {
-        continue;
-      } else {
-        visited.add(current);
-      }
-      for (HospitalNode neighbor : current.getNeighbors()) {
-        int neighborCost = costMap.get(current) + current.edgeCosts.get(neighbor);
-        if (!costMap.containsKey(neighbor) || neighborCost < costMap.get(neighbor)) {
-          queue.add(neighbor);
-          costMap.put(neighbor, costMap.get(current) + current.edgeCosts.get(neighbor));
-        }
-      }
+  /**
+   * * Reconstructs the path from the starting coordinate to the target coordinate
+   *
+   * @param parentMap a map of coordinates to their parent coordinates
+   * @param current the target coordinate
+   * @return a list of coordinates representing the shortest path from the starting coordinate to
+   *     the target coordinate
+   */
+  private List<HospitalNode> reconstructPath(HashMap<HospitalNode, HospitalNode> parentMap, HospitalNode current) {
+    LinkedList<HospitalNode> path = new LinkedList<HospitalNode>();
+    while (current != null) {
+      path.addFirst(current);
+      current = parentMap.get(current);
     }
-    return costMap;
+    return path;
   }
 }
