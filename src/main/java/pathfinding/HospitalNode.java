@@ -103,9 +103,14 @@ public class HospitalNode {
         node2.neighbors.add(node1);
     }
 
+    public static void addEdge(HospitalNode node1, HospitalNode node2, int edgeWeight) {
+        node1.addNeighbor(node2, edgeWeight);
+        node2.addNeighbor(node1, edgeWeight);
+    }
+
     public static void processEdgeList(List<HospitalEdge> edgeList){
         for(HospitalEdge edge : edgeList){
-            addEdge(allNodes.get(edge.nodeOneID),allNodes.get(edge.nodeTwoID));
+            addEdge(allNodes.get(edge.nodeOneID),allNodes.get(edge.nodeTwoID), edge.edgeWeight);
         }
     }
 }
