@@ -5,9 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class HospitalNode {
+
     private List<HospitalNode> neighbors;
     private HashMap<HospitalNode, Integer> edgeCosts;
-    private int cost;
 
     public HospitalNode() {
         this.neighbors = new LinkedList<HospitalNode>();
