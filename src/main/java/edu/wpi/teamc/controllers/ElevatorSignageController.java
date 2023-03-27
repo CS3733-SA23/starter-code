@@ -6,14 +6,11 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 
 public class ElevatorSignageController {
-    @FXML
-    MFXButton backHome;
+  @FXML MFXButton backHome;
 
-    /**
-     * Method run when controller is initialized
-     */
-    @FXML
-    public void initialize() {
-        backHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    }
+  /** Method run when controller is initialized */
+  @FXML
+  public void initialize() {
+    backHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+  }
 }

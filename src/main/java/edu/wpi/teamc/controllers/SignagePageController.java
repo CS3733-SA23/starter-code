@@ -7,15 +7,11 @@ import javafx.fxml.FXML;
 
 /** */
 public class SignagePageController {
-  @FXML
-  MFXButton backHome;
+  @FXML MFXButton backHome;
 
-  /**
-   * Method run when controller is initialized
-   */
+  /** Method run when controller is initialized */
   @FXML
   public void initialize() {
     backHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 }
-

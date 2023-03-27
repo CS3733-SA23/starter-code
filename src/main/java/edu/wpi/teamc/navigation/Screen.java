@@ -5,7 +5,7 @@ public enum Screen {
   SERVICE_REQUEST("views/ServiceRequest.fxml"),
   SIGNAGE_PAGE("views/SignagePage.fxml"),
   ELEVATOR_SIGNAGE("views/ElevatorSignage.fxml"),
-  HOME("views/HomeUI.fxml");
+  HOME("views/Home.fxml");
 
   private final String filename;
 
