@@ -9,6 +9,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.Long.parseLong;
+
 public class Graph {
   private Map<String, Node> nodes = new HashMap<>();
 
@@ -30,11 +32,11 @@ public class Graph {
     String line = "", delim = ",";
     line = reader.readLine();
 
+    //add all nodes to graph
     while (line != null) {
       String[] node = line.split(delim);
-
-
-
+      Node temp = new Node(node[0], parseLong(node[1]), parseLong(node[2]), node[3], node[4], node[5], node[6], node[7]);
+      addNode(temp);
       line = reader.readLine();
     }
   }
