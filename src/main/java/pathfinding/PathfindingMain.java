@@ -1,33 +1,57 @@
 package pathfinding;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class PathfindingMain {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    while(true){
+    scannerHandler(scanner);
+  }
+
+  public static void scannerHandler(Scanner scanner) {
+    while (scanner.hasNextLine()) {
+      // Read the next line of command line input and use it to perform the next operation
       String input = scanner.nextLine();
-      if(input.startsWith("bfs")){
+
+      if(input == null)
+        // Just to make sure that we never get a NullPointerException within one of the helpers
+        continue;
+
+      // Can't use a switch case because we only want to look at the start of the string, not the
+      // full string
+      // Could be done with input.split(" ")[0], but I think that's a little less readable code-side
+      // Could also be done with a regex I think, but that seems way too complicated for a
+      // prototype-only feature
+
+      if (input.startsWith("bfs")) {
         // Run BFS between the two specified nodes
         bfsHandler(input);
-      } else if(input.startsWith("astar")){
+
+      } else if (input.startsWith("astar")) {
         // Run A* between the two specified nodes
-        astarHandler(input);
-      } else if(input.startsWith("add")){
-        if(input.contains("-node")){
+        aStarHandler(input);
+
+      } else if (input.startsWith("add")) {
+        // Two possible things to add: node or edge
+        if (input.contains("-node")) {
           // Add a node with the specified ID
           nodeAddHandler(input);
-        }else if(input.contains("-edge")){
+        } else if (input.contains("-edge")) {
           // Add an edge between the two specified nodes, with a specified weight (optional)
           edgeAddHandler(input);
         }
-      } else if(input.startsWith("load")){
+
+      } else if (input.startsWith("run")) {
         // Import a graph from a specified file
-        loadGraphFromFile(input);
-      } else if(input.startsWith("help")){
+        runFromFile(input);
+
+      } else if (input.startsWith("help")) {
         // Display a help menu
         helpDisplay();
-      } else if(input.startsWith("quit")){
+
+      } else if (input.startsWith("quit")) {
         // Quit the program
         System.out.println("Quitting Program");
         return;
@@ -35,28 +59,51 @@ public class PathfindingMain {
     }
   }
 
-  public static void bfsHandler(String input){
-
+  public static void bfsHandler(String input) {
+    String[] arguments = input.split(" ");
+    AbstractPathfinder pathfinder = new BFSPathfinder();
+    System.out.println(pathfinder.findPath(arguments[1], arguments[2]));
   }
 
-  public static void astarHandler(String input){
-
+  public static void aStarHandler(String input) {
+    String[] arguments = input.split(" ");
+    AbstractPathfinder pathfinder = new AStarPathfinder();
+    System.out.println(pathfinder.findPath(arguments[1], arguments[2]));
   }
 
-  public static void nodeAddHandler(String input){
-    
+  public static void nodeAddHandler(String input) {
+    String[] arguments = input.split(" ");
+    // No need to save the node, as it gets saved automatically in the allNodes collection
+    new HospitalNode(arguments[2]);
   }
 
-  public static void edgeAddHandler(String input){
-
+  public static void edgeAddHandler(String input) {
+    String[] arguments = input.split(" ");
+    HospitalNode.addEdge(arguments[2], arguments[3]);
   }
 
-  public static void loadGraphFromFile(String input){
-
+  public static void runFromFile(String input) {
+    // Runs the scanner handler on the contents of the file
+    String[] arguments = input.split(" ");
+    try {
+      Scanner fileScanner = new Scanner(new File(arguments[1]));
+      scannerHandler(fileScanner);
+    } catch (FileNotFoundException e) {
+      System.out.println("File not found");
+    }
   }
 
-  public static void helpDisplay(){
-
+  public static void helpDisplay() {
+    System.out.println("Usage:");
+    System.out.println("\tbfs [nodeID] [nodeID] - Runs BFS between the two specified nodes");
+    System.out.println("\tastar [nodeID] [nodeID] - Runs A* between the two specified nodes");
+    System.out.println(
+        "\tadd -node [newNodeID] - Creates a new node with the given ID and 0 edges");
+    System.out.println(
+        "\tadd -edge [nodeID] [nodeID] [edgeWeight (optional)] "
+            + "- Creates an edge between the two nodes with the specified weight");
+    System.out.println("\trun [fileName] - Runs a series of these commands stored in a text file");
+    System.out.println("\thelp - Displays this menu");
+    System.out.println("\tquit - Exits the program");
   }
-
 }
