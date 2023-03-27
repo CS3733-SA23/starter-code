@@ -33,7 +33,7 @@ public class DatabaseController {
     try {
       Statement stmt = null;
       Scanner s1 = new Scanner(System.in);
-      System.out.println("Which table would you like to delete from (Nodes, Edges): ");
+      System.out.println("Which table would you like to delete from (Nodes, Edges, Help Screen): ");
       String tabletoEdit = s1.nextLine().toLowerCase();
 
       if (tabletoEdit.equals("nodes")) {
@@ -45,7 +45,7 @@ public class DatabaseController {
         stmt.execute(sql);
         stmt.close();
 
-      } else {
+      } else if (tabletoEdit.equals("edges")){
         System.out.println("Please type the Edge ID you would like to delete: ");
         String edgetoDelete = s1.nextLine();
 
@@ -53,6 +53,10 @@ public class DatabaseController {
         String sql = "DELETE FROM teame.l1edges WHERE edgeid = '" + edgetoDelete + "'";
         stmt.execute(sql);
         stmt.close();
+      }
+      else
+      {
+        this.help();
       }
 
       System.out.println("Row Deleted successfully from " + tabletoEdit);
@@ -332,7 +336,6 @@ public class DatabaseController {
     System.out.println("Help Page:\n\n");
     boolean exit = false;
     Scanner s1 = new Scanner(System.in);
-
 
     while (!exit){
       //User Operations:
