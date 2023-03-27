@@ -6,8 +6,8 @@ public class ServiceRequestData {
         MEALDELIVERY,
         FLOWERDELIVERY,
     }
-    private JSONObject requestData;
-    private RequestType requestType;
+    JSONObject requestData;
+    RequestType requestType;
 
     public ServiceRequestData(RequestType requestType, JSONObject requestData) {
         this.requestData = requestData;
