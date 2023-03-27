@@ -11,10 +11,10 @@ public class HospitalNode {
 
     public static HashMap<String, HospitalNode> allNodes = new HashMap<>();
 
-    private List<HospitalNode> neighbors;
-    private HashMap<HospitalNode, Integer> edgeCosts;
+    List<HospitalNode> neighbors;
+    HashMap<HospitalNode, Integer> edgeCosts;
 
-    private String nodeID;
+    String nodeID;
 
     int xCoord;
     int yCoord;
@@ -34,6 +34,14 @@ public class HospitalNode {
     @Override
     public int hashCode(){
         return hash(nodeID);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof HospitalNode) {
+            return nodeID.equals(((HospitalNode) other).nodeID);
+        }
+        return false;
     }
 
     public HospitalNode() {

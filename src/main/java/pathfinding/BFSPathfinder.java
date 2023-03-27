@@ -15,6 +15,7 @@ public class BFSPathfinder implements IPathfinder {
    * @return a list of coordinates representing the shortest path from the starting HospitalNode to
    *     the target HospitalNode
    */
+  @Override
   public List<HospitalNode> findPath(HospitalNode from, HospitalNode to) {
     LinkedList<HospitalNode> queue = new LinkedList<HospitalNode>();
     HashSet<HospitalNode> visited = new HashSet<HospitalNode>();
