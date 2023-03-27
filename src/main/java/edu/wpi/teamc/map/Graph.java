@@ -1,5 +1,9 @@
 package edu.wpi.teamc.map;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,8 +25,18 @@ public class Graph {
   }
 
 
-  public void init() {
+  public void init() throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader("L1Nodes.csv"));
+    String line = "", delim = ",";
+    line = reader.readLine();
 
+    while (line != null) {
+      String[] node = line.split(delim);
+
+
+
+      line = reader.readLine();
+    }
   }
   /**
    * Adds a node to the map
@@ -120,7 +134,7 @@ public class Graph {
    * @param end - end node
    * @return list of directions
    */
-  public List<Node> getDirections(Node start, Node end) {
+  public List<Node> getDirections_BFS(Node start, Node end) {
     LinkedList queue = new LinkedList();
     LinkedList<Node> visited = new LinkedList<>();
     queue.add(start);
