@@ -14,18 +14,25 @@ public class HospitalNode {
 
     int xCoord;
     int yCoord;
-    private String floor;
-    private String building;
+    String floor;
+    String building;
 
-    private String nodeType;
+    String nodeType;
 
-    private String longName;
-    private String shortName;
+    String longName;
+    String shortName;
 
 
     public HospitalNode() {
         this.neighbors = new LinkedList<HospitalNode>();
         edgeCosts = new HashMap<HospitalNode, Integer>();
+    }
+
+    public HospitalNode(String id) {
+        this.neighbors = new LinkedList<HospitalNode>();
+        edgeCosts = new HashMap<HospitalNode, Integer>();
+        nodeID = id;
+        allNodes.put(id,this);
     }
 
     public HospitalNode addNeighbor(HospitalNode neighbor) {
