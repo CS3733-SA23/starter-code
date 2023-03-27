@@ -11,49 +11,49 @@
     <children>
         <Rectangle fill="TEAL" height="400.0" stroke="TEAL" strokeType="INSIDE" width="220.0" />
         <Rectangle fill="#bae3e0" height="400.0" layoutX="220.0" stroke="#bae3e0" strokeType="INSIDE" width="380.0" />
-        <Button layoutX="34.0" layoutY="40.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Room Reservation" textFill="#004646">
+        <Button fx:id="roomReservationPage" layoutX="34.0" layoutY="40.0" mnemonicParsing="false" onAction="#getRoomReservationPage" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Room Reservation" textFill="#004646">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
             <font>
                 <Font name="Verdana Bold" size="12.0" />
             </font></Button>
-        <Button layoutX="34.0" layoutY="80.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Meal Delivery" textFill="#004646">
+        <Button fx:id="mealDeliveryPage" layoutX="34.0" layoutY="80.0" mnemonicParsing="false" onAction="#getMealDeliveryPage" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Meal Delivery" textFill="#004646">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
             <font>
                 <Font name="Verdana Bold" size="12.0" />
             </font></Button>
-        <Button layoutX="34.0" layoutY="120.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Flower Delivery" textFill="#004646">
+        <Button fx:id="flowerDeliveryPage" layoutX="34.0" layoutY="120.0" mnemonicParsing="false" onAction="#getFlowerDeliveryPage" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Flower Delivery" textFill="#004646">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
             <font>
                 <Font name="Verdana Bold" size="12.0" />
             </font></Button>
-        <Button layoutX="34.0" layoutY="160.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Furniture Delivery" textFill="#004646">
+        <Button fx:id="furnitureDeliveryPage" layoutX="34.0" layoutY="160.0" mnemonicParsing="false" onAction="#getFurnitureDeliveryPage" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Furniture Delivery" textFill="#004646">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
             <font>
                 <Font name="Verdana Bold" size="12.0" />
             </font></Button>
-        <Button layoutX="34.0" layoutY="200.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Office Supplies" textFill="#004646">
+        <Button fx:id="officeSuppliesPage" layoutX="34.0" layoutY="200.0" mnemonicParsing="false" onAction="#getOfficeSuppliesPage" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Office Supplies" textFill="#004646">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
             <font>
                 <Font name="Verdana Bold" size="12.0" />
             </font></Button>
-        <Button layoutX="34.0" layoutY="240.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Signage" textFill="#004646">
+        <Button fx:id="signagePage" layoutX="34.0" layoutY="240.0" mnemonicParsing="false" onAction="#getSignagePage" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Signage" textFill="#004646">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
             <font>
                 <Font name="Verdana Bold" size="12.0" />
             </font></Button>
-        <Button layoutX="34.0" layoutY="308.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Help" textFill="#004646">
+        <Button fx:id="helpPage" layoutX="34.0" layoutY="308.0" mnemonicParsing="false" onAction="#getHelpPage" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Help" textFill="#004646">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>

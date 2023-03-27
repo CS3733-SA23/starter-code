@@ -1,20 +1,43 @@
 package edu.wpi.teamc.controllers;
 
-import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 public class HomeController {
 
-  @FXML MFXButton navigateButton;
-  @FXML MFXButton signageButton;
+  @FXML private Button flowerDeliveryPage;
+
+  @FXML private Button furnitureDeliveryPage;
+
+  @FXML private Button helpPage;
+
+  @FXML private Button mealDeliveryPage;
+
+  @FXML private Button officeSuppliesPage;
+
+  @FXML private Button roomReservationPage;
+
+  @FXML private Button signagePage;
 
   @FXML
-  public void initialize() {
-<<<<<<< HEAD
-    navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
-    signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-=======
-    // navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
->>>>>>> ae5af00f4b68ad609beb52daebe0bc6cd3652b18
-  }
+  void getFlowerDeliveryPage(ActionEvent event) {}
+
+  @FXML
+  void getFurnitureDeliveryPage(ActionEvent event) {}
+
+  @FXML
+  void getHelpPage(ActionEvent event) {}
+
+  @FXML
+  void getMealDeliveryPage(ActionEvent event) {}
+
+  @FXML
+  void getOfficeSuppliesPage(ActionEvent event) {}
+
+  @FXML
+  void getRoomReservationPage(ActionEvent event) {}
+
+  @FXML
+  void getSignagePage(ActionEvent event) {}
 }
