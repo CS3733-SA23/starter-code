@@ -207,10 +207,11 @@ public class Graph {
   /** Prints the graph */
   public void printGraph() {
     for (Node node : nodes.values()) {
-      System.out.println(node.getNodeID());
+      System.out.print(node.getNodeID() + ", Edges: ");
       for (Edge edge : node.getEdges()) {
-        System.out.println(edge.getEndNode().getNodeID());
+        System.out.print(edge.getEndNode().getNodeID() + " ");
       }
+      System.out.println();
     }
   }
 

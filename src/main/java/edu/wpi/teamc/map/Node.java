@@ -1,12 +1,13 @@
 package edu.wpi.teamc.map;
 
+import java.util.LinkedList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-class Node {
+public class Node {
   private String nodeID;
   private long xCoord;
   private long yCoord;
@@ -15,7 +16,7 @@ class Node {
   private String nodeType;
   private String longName;
   private String shortName;
-  private List<Edge> edges;
+  private List<Edge> edges = new LinkedList<>();
 
   /**
    * Constructor for Node
@@ -80,5 +81,10 @@ class Node {
     this.nodeType = nodeType;
     this.longName = longName;
     this.shortName = shortName;
+  }
+
+  public void addEdge(String edgeID, Node endNode) {
+    Edge temp = new Edge(edgeID, endNode);
+    edges.add(temp);
   }
 }
