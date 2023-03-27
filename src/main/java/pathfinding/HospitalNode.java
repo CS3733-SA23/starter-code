@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import static java.util.Objects.hash;
+
 public class HospitalNode {
 
     public static HashMap<String, HospitalNode> allNodes = new HashMap<>();
@@ -24,6 +26,15 @@ public class HospitalNode {
     String longName;
     String shortName;
 
+    @Override
+    public String toString(){
+        return "Node "+nodeID;
+    }
+
+    @Override
+    public int hashCode(){
+        return hash(nodeID);
+    }
 
     public HospitalNode() {
         this.neighbors = new LinkedList<HospitalNode>();
