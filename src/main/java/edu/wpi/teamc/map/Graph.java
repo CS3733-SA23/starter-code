@@ -175,4 +175,51 @@ public class Graph {
     }
     return null;
   }
+
+public List<Node> getDirections_Astar(Node start, Node end) {
+    // implement a* algorithm for pathfinding from start to end
+    LinkedList<Node> open = new LinkedList<>();
+    LinkedList<Node> closed = new LinkedList<>();
+    open.add(start);
+    while (!open.isEmpty()) {
+      Node current = open.remove();
+      if (current.equals(end)) {
+        return closed;
+      }
+      for (Node neighbor : getNeighbors(current)) {
+        if (!closed.contains(neighbor)) {
+          neighbor.setCost(current.getCost() + 1);
+          neighbor.setHeuristic(neighbor.getCost() + neighbor.getDistance(end));
+          open.add(neighbor);
+        }
+      }
+      closed.add(current);
+    }
+    return null;
+  }
+
+  /** Prints the graph
+   */
+  public void printGraph() {
+    for (Node node : nodes.values()) {
+      System.out.println(node.getNodeID());
+      for (Edge edge : node.getEdges()) {
+        System.out.println(edge.getEndNode().getNodeID());
+      }
+    }
+  }
+
+
+  /**
+   * Prints the directions from start to end
+   * @param start - start node
+   * @param end - end node
+   */
+    public void printDirections(Node start, Node end) {
+        List<Node> directions = getDirections_BFS(start, end);
+        for (Node node : directions) {
+        System.out.println(node.getNodeID());
+        }
+    }
+
 }
