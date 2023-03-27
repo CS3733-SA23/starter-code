@@ -27,7 +27,7 @@ public class Graph {
    */
   public void addNode(Node node) {
     // check if node already exists
-    if (nodes.containsKey(node)) {
+    if (nodes.containsKey(node.getNodeID())) {
       System.out.println("Node already exists");
       return;
     } else {
@@ -42,7 +42,7 @@ public class Graph {
    */
   public void removeNode(Node node) {
     // check if node exists
-    if (!nodes.containsKey(node)) {
+    if (!nodes.containsKey(node.getNodeID())) {
       System.out.println("Node does not exist");
       return;
     } else {
