@@ -48,6 +48,22 @@ public class HospitalNode {
         this.yCoord = yCoord;
     }
 
+    public HospitalNode(String id, int xCoord, int yCoord, String floor, String building,
+                        String nodeType, String longName, String shortName) {
+        this.neighbors = new LinkedList<HospitalNode>();
+        edgeCosts = new HashMap<HospitalNode, Integer>();
+        nodeID = id;
+        this.xCoord = xCoord;
+        this.yCoord = yCoord;
+        this.floor = floor;
+        this.building = building;
+        this.nodeType = nodeType;
+        this.longName = longName;
+        this.shortName = shortName;
+        // Add this node to the collection of all nodes
+        allNodes.put(nodeID,this);
+    }
+
     public HospitalNode addNeighbor(HospitalNode neighbor) {
         neighbors.add(neighbor);
         edgeCosts.put(neighbor, 1);
@@ -62,11 +78,6 @@ public class HospitalNode {
 
     public List<HospitalNode> getNeighbors() {
         return neighbors;
-    }
-
-    public static void addEdge(HospitalNode node1, HospitalNode node2) {
-        node1.neighbors.add(node2);
-        node2.neighbors.add(node1);
     }
 
     @Override
@@ -85,5 +96,16 @@ public class HospitalNode {
             return nodeID.equals(((HospitalNode) other).nodeID);
         }
         return false;
+    }
+
+    public static void addEdge(HospitalNode node1, HospitalNode node2) {
+        node1.neighbors.add(node2);
+        node2.neighbors.add(node1);
+    }
+
+    public static void processEdgeList(List<HospitalEdge> edgeList){
+        for(HospitalEdge edge : edgeList){
+            addEdge(allNodes.get(edge.nodeOneID),allNodes.get(edge.nodeTwoID));
+        }
     }
 }
