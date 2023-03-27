@@ -153,8 +153,13 @@ public class Graph {
     }
     return null;
   }
-
-public List<Node> getDirections_Astar(Node start, Node end) {
+/** Returns a list of directions from start to end
+   *
+   * @param start - start node
+   * @param end - end node
+   * @return list of directions
+   */
+/*public List<Node> getDirections_Astar(Node start, Node end) {
     // implement a* algorithm for pathfinding from start to end
     LinkedList<Node> open = new LinkedList<>();
     LinkedList<Node> closed = new LinkedList<>();
@@ -174,7 +179,7 @@ public List<Node> getDirections_Astar(Node start, Node end) {
       closed.add(current);
     }
     return null;
-  }
+  }*/
 
   /** Prints the graph
    */
