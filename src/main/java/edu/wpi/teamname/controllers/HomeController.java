@@ -9,8 +9,11 @@ public class HomeController {
 
   @FXML MFXButton navigateButton;
 
+  @FXML MFXButton flowersButton;
+
   @FXML
   public void initialize() {
     navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
+    flowersButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWER_REQUEST));
   }
 }
