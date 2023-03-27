@@ -9,7 +9,6 @@ public class Edge {
   private int weight;
 
   public Edge(String id, Node endNode, int weight) {
-
     this.id = id;
     this.endNode = endNode;
     this.weight = weight;
