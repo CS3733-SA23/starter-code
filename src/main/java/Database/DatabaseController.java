@@ -324,5 +324,159 @@ public class DatabaseController {
     }
   }
 
-  private void help() {}
+  private void help()
+  {
+    System.out.println("");
+    System.out.println("");
+
+    System.out.println("Help Page:\n\n");
+    boolean exit = false;
+    Scanner s1 = new Scanner(System.in);
+
+
+    while (!exit){
+      //User Operations:
+      System.out.println("\tUser Operations:\n");
+      System.out.println("\t\tUser inputs username to database.");
+      System.out.println("\t\tUser inputs password to database.");
+      System.out.println("\t\tUser inputs which operation they wish to use (delete, retreive, update, help)");
+
+      System.out.println("\t\t\tIf delete:");
+      System.out.println("\t\t\t\tUser inputs which tabel they wish to edit (nodes or edges).");
+      System.out.println("\t\t\t\t\tIf nodes:");
+      System.out.println("\t\t\t\t\t\tUser inputs the node ID they wish to delete.");
+      System.out.println("\t\t\t\t\tIf edges:");
+      System.out.println("\t\t\t\t\t\tUser inputs the edge ID they wish to delete.");
+
+      System.out.println("\t\t\tIf retreive:");
+      System.out.println("\t\t\t\tUser inputs which tabel they wish to edit (nodes or edges).");
+      System.out.println("\t\t\t\t\tIf nodes:");
+      System.out.println("\t\t\t\t\t\tUser inputs the node ID they wish to retreive.");
+      System.out.println("\t\t\t\t\tIf edges:");
+      System.out.println("\t\t\t\t\t\tUser inputs the edge ID they wish to retreive.");
+
+      System.out.println("\t\t\tIf update:");
+      System.out.println("\t\t\t\tUser inputs which tabel they wish to update (nodes or edges).");
+      System.out.println("\t\t\t\t\tIf nodes:");
+      System.out.println("\t\t\t\t\t\tUser inputs the attribute they wish to update (nodeid, xcoord, ycoord, floor, building, nodetype, longname, shortname).");
+      System.out.println("\t\t\t\t\t\t\tIf nodeid:");
+      System.out.println("\t\t\t\t\t\t\t\tUser inputs the new node ID.");
+      System.out.println("\t\t\t\t\t\t\tIf xcoord:");
+      System.out.println("\t\t\t\t\t\t\t\tUser inputs the new xcoord.");
+      System.out.println("\t\t\t\t\t\t\tIf ycoord:");
+      System.out.println("\t\t\t\t\t\t\t\tUser inputs the new ycoord.");
+      System.out.println("\t\t\t\t\t\t\tIf floor:");
+      System.out.println("\t\t\t\t\t\t\t\tUser inputs the new floor.");
+      System.out.println("\t\t\t\t\t\t\tIf building:");
+      System.out.println("\t\t\t\t\t\t\t\tUser inputs the new building.");
+      System.out.println("\t\t\t\t\t\t\tIf nodetype:");
+      System.out.println("\t\t\t\t\t\t\t\tUser inputs the new node type.");
+      System.out.println("\t\t\t\t\t\t\tIf longname:");
+      System.out.println("\t\t\t\t\t\t\t\tUser inputs the new long name.");
+      System.out.println("\t\t\t\t\t\t\tIf shortname:");
+      System.out.println("\t\t\t\t\t\t\t\tUser inputs the new short name.");
+      System.out.println("\t\t\t\t\tIf edges:");
+      System.out.println("\t\t\t\t\t\tUser inputs the attribute they wish to update (edgeID, startNode, endNode).");
+      System.out.println("\t\t\t\t\t\t\tIf edgeID:");
+      System.out.println("\t\t\t\t\t\t\t\tUser inputs the new edge ID.");
+      System.out.println("\t\t\t\t\t\t\tIf startNode:");
+      System.out.println("\t\t\t\t\t\t\t\tUser inputs the new start node.");
+      System.out.println("\t\t\t\t\t\t\tIf endNode:");
+      System.out.println("\t\t\t\t\t\t\t\tUser inputs the new end node.");
+
+      System.out.println("\t\t\tIf help:");
+      System.out.println("\t\t\t\tUser inputs exit when done looking at help screen (exit)");
+
+
+      //Functions:
+      System.out.println("\n\n\tFunctions:\n");
+
+      //connectToDatabase
+      System.out.println("\t\tconnectToDatabase(String username, String password)");
+      System.out.println("\t\t***Used to log into the database***");
+      System.out.println("\t\tParameters:");
+      System.out.println("\t\t\tString username: type in database username");
+      System.out.println("\t\t\tString password: type in database password");
+      System.out.println("\t\treturn: void\n\n");
+
+      //deleteFromTable
+      System.out.println("\t\tdeleteFromTable(Connection c)");
+      System.out.println("\t\t***Used to delete a specified row from a table***");
+      System.out.println("\t\tParameters:");
+      System.out.println("\t\t\tConnection c: connection from connectToDatabase (done automatically by the system)");
+      System.out.println("\t\tUser Inputs:");
+      System.out.println("\t\t\ttableToEdit: Input which table the user wishes to edit (nodes or edges)");
+      System.out.println("\t\t\t\tIf nodes:");
+      System.out.println("\t\t\t\t\tnodeToDelete: Input the Node ID that the user wishes to delete");
+      System.out.println("\t\t\t\tIf edges:");
+      System.out.println("\t\t\t\t\tedgeToDelete: Input the Edge ID that the user wishes to delete");
+      System.out.println("\t\treturn: void\n\n");
+
+      //retrieveFromTable
+      System.out.println("\t\tretreiveFromTable(Connection c)");
+      System.out.println("\t\t***Creates a HospitalNode and assigns the specified data from the table (unless it already exists)***");
+      System.out.println("\t\tParameters:");
+      System.out.println("\t\t\tConnection c: connection from connectToDatabase (done automatically by the system)");
+      System.out.println("\t\tUser Inputs:");
+      System.out.println("\t\t\ttableToEdit: Input which table the user wishes to edit (nodes or edges)");
+      System.out.println("\t\t\t\tIf nodes:");
+      System.out.println("\t\t\t\t\tnodeToRetreive: Input the Node ID that the user wishes to retreive");
+      System.out.println("\t\t\t\tIf edges:");
+      System.out.println("\t\t\t\t\tedgeToRetreive: Input the Edge ID that the user wishes to retreive");
+      System.out.println("\t\treturn: void\n\n");
+
+      //updateTable
+      System.out.println("\t\tupdateTable(Connection c)");
+      System.out.println("\t\t***Updates the specified field of the specified node or edge with the new value***");
+      System.out.println("\t\tParameters:");
+      System.out.println("\t\t\tConnection c: connection from connectToDatabase (done automatically by the system)");
+      System.out.println("\t\tUser Inputs:");
+      System.out.println("\t\t\ttableToEdit: Input which table the user wishes to edit (nodes or edges)");
+      System.out.println("\t\t\t\tIf nodes:");
+      System.out.println("\t\t\t\t\tattributeToUpdate: Input the attribute the user wishes to update (nodeid, xcoord, ycoord, floor, building, nodetype, longname, shortname)");
+      System.out.println("\t\t\t\t\t\tIf nodeid:");
+      System.out.println("\t\t\t\t\t\t\tnewval: Input the new node ID");
+      System.out.println("\t\t\t\t\t\tIf xcoord:");
+      System.out.println("\t\t\t\t\t\t\tnewval: Input the new xcoord");
+      System.out.println("\t\t\t\t\t\tIf ycoord:");
+      System.out.println("\t\t\t\t\t\t\tnewval: Input the new ycoord");
+      System.out.println("\t\t\t\t\t\tIf floor:");
+      System.out.println("\t\t\t\t\t\t\tnewval: Input the new floor");
+      System.out.println("\t\t\t\t\t\tIf building:");
+      System.out.println("\t\t\t\t\t\t\tnewval: Input the new building");
+      System.out.println("\t\t\t\t\t\tIf nodetype:");
+      System.out.println("\t\t\t\t\t\t\tnewval: Input the new nodetype");
+      System.out.println("\t\t\t\t\t\tIf longname:");
+      System.out.println("\t\t\t\t\t\t\tnewval: Input the new longname");
+      System.out.println("\t\t\t\t\t\tIf shortname:");
+      System.out.println("\t\t\t\t\t\t\tnewval: Input the new shortname");
+      System.out.println("\t\t\t\tIf edges:");
+      System.out.println("\t\t\t\t\tattributeToUpdate: Input the attribute the user wishes to update (edgeID, startNode, endNode)");
+      System.out.println("\t\t\t\t\t\tIf edgeID:");
+      System.out.println("\t\t\t\t\t\t\tnewval: Input the new edge ID");
+      System.out.println("\t\t\t\t\t\tIf startNode:");
+      System.out.println("\t\t\t\t\t\t\tnewval: Input the new start node");
+      System.out.println("\t\t\t\t\t\tIf endNode:");
+      System.out.println("\t\t\t\t\t\t\tnewval: Input the new end node");
+      System.out.println("\t\t\tdoneUpdating: Input if there are more attributes that the user wants to edit (y or n)");
+      System.out.println("\t\t\t\tIf y:");
+      System.out.println("\t\t\t\t\tContinue while loop (doneUpdating is true) - returns to top of User Input Section and starts over");
+      System.out.println("\t\t\t\tIf n:");
+      System.out.println("\t\t\t\t\tExit while loop (doneUpdating is false) - continues the rest of the program");
+      System.out.println("\t\treturn: void\n\n");
+
+      //help
+      System.out.println("\t\thelp()");
+      System.out.println("\t\t\t***Displays information about how each function works and what the user should do when using the program***");
+      System.out.println("\t\t\tParameters: None");
+      System.out.println("\t\t\tUser Inputs:");
+      System.out.println("\t\t\t\texit: Input exit when ready to leave help screen (exit)");
+      System.out.println("\t\t\treturn: void\n\n");
+      String response = s1.nextLine().toLowerCase();
+      if (response.equals("exit"))
+      {
+        exit = true;
+      }
+    }
+  }
 }
