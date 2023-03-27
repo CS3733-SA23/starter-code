@@ -1,17 +1,16 @@
-
 package pathfinding;
 
 import java.util.*;
 
 public class AStarPathfinder implements IPathfinder {
   /**
-   * * Finds the least cost path from the starting HospitalNode to the target HospitalNode using the A-star
-   * algorithm
+   * * Finds the least cost path from the starting HospitalNode to the target HospitalNode using the
+   * A-star algorithm
    *
    * @param from the starting HospitalNode
    * @param to the target HospitalNode
-   * @return a list of coordinates representing the least cost path from the starting HospitalNode to the
-   *     target HospitalNode
+   * @return a list of coordinates representing the least cost path from the starting HospitalNode
+   *     to the target HospitalNode
    */
   public List<HospitalNode> findPath(HospitalNode from, HospitalNode to) {
     PriorityQueue<HospitalNode> queue =
@@ -20,7 +19,8 @@ public class AStarPathfinder implements IPathfinder {
               @Override
               public int compare(HospitalNode o1, HospitalNode o2) {
                 // Based on heuristic distance to target
-                return 0;//(costMap.get(o1)+heuristicDistance(o1, end)) - (costMap.get(o2)+heuristicDistance(o2,end));
+                return 0; // (costMap.get(o1)+heuristicDistance(o1, end)) -
+                // (costMap.get(o2)+heuristicDistance(o2,end));
               }
             });
     HashMap<HospitalNode, Integer> costMap = new HashMap<>();
@@ -56,7 +56,8 @@ public class AStarPathfinder implements IPathfinder {
   }
 
   private static int heuristicDistance(HospitalNode from, HospitalNode to) {
-    return (int) Math.sqrt(Math.pow(from.xCoord-to.xCoord,2) + Math.pow(from.yCoord-to.yCoord,2));
+    return (int)
+        Math.sqrt(Math.pow(from.xCoord - to.xCoord, 2) + Math.pow(from.yCoord - to.yCoord, 2));
   }
 
   /**
@@ -67,7 +68,8 @@ public class AStarPathfinder implements IPathfinder {
    * @return a list of coordinates representing the shortest path from the starting coordinate to
    *     the target coordinate
    */
-  private List<HospitalNode> reconstructPath(HashMap<HospitalNode, HospitalNode> parentMap, HospitalNode current) {
+  private List<HospitalNode> reconstructPath(
+      HashMap<HospitalNode, HospitalNode> parentMap, HospitalNode current) {
     LinkedList<HospitalNode> path = new LinkedList<HospitalNode>();
     while (current != null) {
       path.addFirst(current);
