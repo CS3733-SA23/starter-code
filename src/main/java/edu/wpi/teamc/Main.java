@@ -13,5 +13,7 @@ public class Main {
     } catch (IOException e) {
 
     }
+    graph.printGraph();
+    graph.printDirections("A1", "A2");
   }
 }

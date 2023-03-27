@@ -175,13 +175,14 @@ public class Graph {
     }
     return null;
   }
-/** Returns a list of directions from start to end
+  /**
+   * Returns a list of directions from start to end
    *
    * @param start - start node
    * @param end - end node
    * @return list of directions
    */
-/*public List<Node> getDirections_Astar(Node start, Node end) {
+  /*public List<Node> getDirections_Astar(Node start, Node end) {
     // implement a* algorithm for pathfinding from start to end
     LinkedList<Node> open = new LinkedList<>();
     LinkedList<Node> closed = new LinkedList<>();
@@ -203,8 +204,7 @@ public class Graph {
     return null;
   }*/
 
-  /** Prints the graph
-   */
+  /** Prints the graph */
   public void printGraph() {
     for (Node node : nodes.values()) {
       System.out.println(node.getNodeID());
@@ -214,17 +214,18 @@ public class Graph {
     }
   }
 
-
   /**
    * Prints the directions from start to end
+   *
    * @param start - start node
    * @param end - end node
    */
-    public void printDirections(Node start, Node end) {
-        List<Node> directions = getDirections_BFS(start, end);
-        for (Node node : directions) {
-        System.out.println(node.getNodeID());
-        }
+  public void printDirections(String start, String end) {
+    Node startNode = nodes.get(start);
+    Node endNode = nodes.get(end);
+    List<Node> directions = getDirections_BFS(startNode, endNode);
+    for (Node node : directions) {
+      System.out.println(node.getNodeID());
     }
-
+  }
 }
