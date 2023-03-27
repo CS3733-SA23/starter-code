@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Graph {
- Map<String, Node> nodes = new HashMap<>();
-
+ private Map<String, Node> nodes = new HashMap<>();
 
   /** Empty Constructor for Graph */
   Graph() {}

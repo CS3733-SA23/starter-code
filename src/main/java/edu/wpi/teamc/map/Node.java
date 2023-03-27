@@ -16,7 +16,7 @@ class Node {
   private String nodeType;
   private String longName;
   private String shortName;
-    private List<Edge> edges;
+  private List<Edge> edges;
 
   /**
    * Constructor for Node
@@ -68,5 +68,4 @@ class Node {
     this.longName = longName;
     this.shortName = shortName;
   }
-
 }
