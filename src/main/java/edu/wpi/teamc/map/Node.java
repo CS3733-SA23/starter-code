@@ -1,7 +1,5 @@
 package edu.wpi.teamc.map;
 
-import java.util.List;
-
 class Node {
   private String nodeID;
   private long xCoord;
@@ -75,7 +73,6 @@ class Node {
     return shortName;
   }
 
-
   // setters
   void setNodeID(String nodeID) {
     this.nodeID = nodeID;
@@ -108,5 +105,4 @@ class Node {
   void setShortName(String shortName) {
     this.shortName = shortName;
   }
-
 }
