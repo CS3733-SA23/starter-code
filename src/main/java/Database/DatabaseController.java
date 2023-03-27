@@ -54,7 +54,7 @@ public class DatabaseController {
         stmt.execute(sql);
         stmt.close();
       }
-      else
+      else if (tabletoEdit.equals("Help Screen"))
       {
         this.help();
       }
@@ -68,7 +68,7 @@ public class DatabaseController {
 
   private void retrieveFromTable(Connection c) {
     Scanner scanner = new Scanner(System.in);
-    System.out.print("Which table would you like to retrieve from (Nodes or Edges): ");
+    System.out.print("Which table would you like to retrieve from (Nodes, Edges, Help Screen): ");
     String table = scanner.nextLine().toLowerCase().trim();
 
     if (table.equalsIgnoreCase("Nodes")) {
@@ -104,6 +104,8 @@ public class DatabaseController {
       } catch (SQLException e) {
         System.err.println("Error retrieving edge: " + e.getMessage());
       }
+    } else if(table.equalsIgnoreCase("Help Screen")){
+        this.help();
     } else {
       System.out.println("Invalid table name: " + table);
     }
