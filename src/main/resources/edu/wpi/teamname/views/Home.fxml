@@ -16,5 +16,6 @@
             <Font name="Nunito Sans Regular" size="16.0" />
          </font>
       </MFXButton>
+      <MFXButton fx:id="mealRequestButton" prefWidth="183.0" text="Meal Delivery Form" StackPane.alignment="CENTER_RIGHT" />
    </children>
 </StackPane>
