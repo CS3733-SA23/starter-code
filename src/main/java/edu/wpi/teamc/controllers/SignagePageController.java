@@ -1,3 +1,4 @@
+
 package edu.wpi.teamc.controllers;
 
 import edu.wpi.teamc.navigation.Navigation;
@@ -18,3 +19,4 @@ public class SignagePageController {
 
   public void backAction(ActionEvent actionEvent) {}
 }
+

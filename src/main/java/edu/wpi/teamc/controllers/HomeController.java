@@ -61,3 +61,4 @@ public class HomeController {
     signageButton2.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
   }
 }
+
