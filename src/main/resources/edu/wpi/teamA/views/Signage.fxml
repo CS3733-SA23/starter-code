@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.wpi.teamA.controllers.SignageController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.SignageController">
+   <children>
+      <MFXButton fx:id="backButton" layoutX="848.0" layoutY="902.0" prefHeight="79.0" prefWidth="330.0" text="Back">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </MFXButton>
+      <Text layoutX="909.0" layoutY="654.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Restrooms" wrappingWidth="174.6025629043579">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="909.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Infromation Desk" wrappingWidth="219.4701042175293">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="904.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Room" wrappingWidth="232.80341720581055">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="907.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ear, Nose, Throat Department" wrappingWidth="336.8034782409668" AnchorPane.topAnchor="442.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="908.0" layoutY="563.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ultrasound Labs" wrappingWidth="200.8034782409668">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <SVGPath content="M0.946249 9.93248C0.356671 10.5144 0.350504 11.4642 0.932474 12.0538L10.4162 21.6615C10.9982 22.2511 11.9479 22.2572 12.5375 21.6753C13.1271 21.0933 13.1332 20.1436 12.5513 19.554L4.12127 11.0138L12.6615 2.58377C13.2511 2.0018 13.2572 1.05207 12.6752 0.462496C12.0933 -0.127081 11.1436 -0.133248 10.554 0.448722L0.946249 9.93248ZM156.01 10.5L2.00974 9.50003L1.99026 12.5L155.99 13.5L156.01 10.5Z" layoutX="704.0" layoutY="215.0" />
+      <SVGPath content="M0.946249 9.93248C0.356671 10.5144 0.350504 11.4642 0.932474 12.0538L10.4162 21.6615C10.9982 22.2511 11.9479 22.2572 12.5375 21.6753C13.1271 21.0933 13.1332 20.1436 12.5513 19.554L4.12127 11.0138L12.6615 2.58377C13.2511 2.0018 13.2572 1.05207 12.6752 0.462496C12.0933 -0.127081 11.1436 -0.133248 10.554 0.448722L0.946249 9.93248ZM156.01 10.5L2.00974 9.50003L1.99026 12.5L155.99 13.5L156.01 10.5Z" layoutX="703.0" layoutY="328.0" />
+      <SVGPath content="M155.788 12.5897C156.374 12.0039 156.374 11.0541 155.788 10.4683L146.242 0.92239C145.657 0.336604 144.707 0.336604 144.121 0.92239C143.535 1.50818 143.535 2.45792 144.121 3.04371L152.606 11.529L144.121 20.0143C143.535 20.6001 143.535 21.5498 144.121 22.1356C144.707 22.7214 145.657 22.7214 146.242 22.1356L155.788 12.5897ZM0.7276 13.029H154.728V10.029H0.7276V13.029Z" layoutX="1316.0" layoutY="446.0" />
+      <SVGPath content="M155.788 12.5897C156.374 12.0039 156.374 11.0541 155.788 10.4683L146.242 0.92239C145.657 0.336604 144.707 0.336604 144.121 0.92239C143.535 1.50818 143.535 2.45792 144.121 3.04371L152.606 11.529L144.121 20.0143C143.535 20.6001 143.535 21.5498 144.121 22.1356C144.707 22.7214 145.657 22.7214 146.242 22.1356L155.788 12.5897ZM0.7276 13.029H154.728V10.029H0.7276V13.029Z" layoutX="1314.0" layoutY="554.0" />
+      <SVGPath content="M155.788 12.5897C156.374 12.0039 156.374 11.0541 155.788 10.4683L146.242 0.92239C145.657 0.336604 144.707 0.336604 144.121 0.92239C143.535 1.50818 143.535 2.45792 144.121 3.04371L152.606 11.529L144.121 20.0143C143.535 20.6001 143.535 21.5498 144.121 22.1356C144.707 22.7214 145.657 22.7214 146.242 22.1356L155.788 12.5897ZM0.7276 13.029H154.728V10.029H0.7276V13.029Z" layoutX="1314.0" layoutY="642.0" />
+   </children>
 </AnchorPane>
