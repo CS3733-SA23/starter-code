@@ -10,9 +10,9 @@ public class DatabaseController {
     Scanner s1 = new Scanner(System.in);
 
     System.out.println("Please enter your username (will default to \"teame\"): ");
-    String username = s1.nextLine(); //Unused in this Prototype
+    String username = s1.nextLine(); // Unused in this Prototype
     System.out.println("Please enter your password (will default to \"teame50\"): ");
-    String password = s1.nextLine(); //Unused in this Prototype
+    String password = s1.nextLine(); // Unused in this Prototype
 
     Connection c = DBC1.connectToDatabase("teame", "teame50");
 
@@ -20,9 +20,9 @@ public class DatabaseController {
     while (exit) {
       System.out.println("\nWhat would you like to do?");
       System.out.println("Choices: update, retrieve, delete, help, exit");
-      String function = s1.nextLine();
+      String function = s1.nextLine().toLowerCase().trim();
 
-      switch(function) {
+      switch (function) {
         case "update":
           DBC1.updateTable(c);
           break;
@@ -47,7 +47,6 @@ public class DatabaseController {
         default:
           System.out.println("Please enter a valid action");
       }
-
     }
   }
 
@@ -71,18 +70,22 @@ public class DatabaseController {
     try {
       Statement stmt = null;
       Scanner s1 = new Scanner(System.in);
-      System.out.println("Which table would you like to delete from (Nodes, Edges, Help Screen): ");
-      String tabletoEdit = s1.nextLine().toLowerCase();
+      System.out.println("Which table would you like to delete from (Nodes, Edges): ");
+      String tabletoEdit = s1.nextLine().toLowerCase().trim();
 
       if (tabletoEdit.equals("nodes")) {
         System.out.println("Please type the Node ID you would like to delete: ");
         String nodetoDelete = s1.nextLine();
 
-        stmt = c.createStatement();
-        String sql = "DELETE FROM teame.l1nodes WHERE nodeid = '" + nodetoDelete + "';";
-        stmt.execute(sql);
-        stmt.close();
-
+        try {
+          stmt = c.createStatement();
+          String sql = "DELETE FROM teame.l1nodes WHERE nodeid = '" + nodetoDelete + "';";
+          stmt.execute(sql);
+          stmt.close();
+          System.out.println("Row Deleted successfully from " + tabletoEdit);
+        } catch (Exception e) {
+          System.out.println("You've entered an invalid nodeid");
+        }
       } else if (tabletoEdit.equals("edges")) {
         System.out.println("Please type the Edge ID you would like to delete: ");
         String edgetoDelete = s1.nextLine();
@@ -91,11 +94,7 @@ public class DatabaseController {
         String sql = "DELETE FROM teame.l1edges WHERE edgeid = '" + edgetoDelete + "'";
         stmt.execute(sql);
         stmt.close();
-      } else if (tabletoEdit.equals("Help Screen")) {
-        this.help();
       }
-
-      System.out.println("Row Deleted successfully from " + tabletoEdit);
     } catch (Exception e) {
       System.err.println(e.getClass().getName() + ": " + e.getMessage());
       System.exit(0);
@@ -185,7 +184,6 @@ public class DatabaseController {
           String sql = "";
 
           switch (attributeToUpdate) {
-
             case "xcoord":
               System.out.println("Please enter the new xcoord: ");
               newInt = s1.nextInt();
@@ -195,7 +193,8 @@ public class DatabaseController {
                       + " WHERE nodeID = '"
                       + nodetoUpdate
                       + "';";
-              System.out.println("xcoord of " + nodetoUpdate + " successfully changed to " + newInt);
+              System.out.println(
+                  "xcoord of " + nodetoUpdate + " successfully changed to " + newInt);
               stmt.execute(sql);
               stmt.close();
               break;
@@ -209,7 +208,8 @@ public class DatabaseController {
                       + " WHERE nodeID = '"
                       + nodetoUpdate
                       + "';";
-              System.out.println("ycoord of " + nodetoUpdate + " successfully changed to " + newInt);
+              System.out.println(
+                  "ycoord of " + nodetoUpdate + " successfully changed to " + newInt);
               stmt.execute(sql);
               stmt.close();
               break;
@@ -223,7 +223,8 @@ public class DatabaseController {
                       + "' WHERE nodeID = '"
                       + nodetoUpdate
                       + "';";
-              System.out.println("longname of " + nodetoUpdate + " successfully changed to " + newval);
+              System.out.println(
+                  "longname of " + nodetoUpdate + " successfully changed to " + newval);
               stmt.executeUpdate(sql);
               stmt.close();
               break;
@@ -457,8 +458,7 @@ public class DatabaseController {
     try {
       c.close();
       System.out.println("Database Connection Closed");
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       System.err.println(e.getClass().getName() + ": " + e.getMessage());
       System.exit(0);
     }
