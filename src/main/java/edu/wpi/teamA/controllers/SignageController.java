@@ -10,7 +10,9 @@ public class SignageController {
   @FXML MFXButton backButton;
 
   @FXML
-  public void initialize() {
+  public void initialize() {}
+
+  public void goBack() {
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 }
