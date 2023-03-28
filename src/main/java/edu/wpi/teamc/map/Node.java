@@ -1,8 +1,9 @@
 package edu.wpi.teamc.map;
 
+import java.sql.*;
 import java.util.List;
 
-class Node {
+public class Node {
   private String nodeID;
   private int xCoord;
   private int yCoord;
@@ -141,6 +142,30 @@ class Node {
       return;
     } else {
       connectedNodes.remove(nodeID);
+    }
+  }
+
+  void updateNodeCoordintes(
+      Connection connection, String nodeID, int xCoordinate, int yCoordinate) {
+    try {
+      PreparedStatement stmtUpdateCoord =
+          connection.prepareStatement(
+              "UPDATE \"hospitalNode\".node\n"
+                  + "SET xcoord = ?, ycoord = ?\n"
+                  + "WHERE \"nodeID\" = ?;");
+      // set parameters for prepared statement
+      stmtUpdateCoord.setInt(1, xCoordinate);
+      stmtUpdateCoord.setInt(2, yCoordinate);
+      stmtUpdateCoord.setString(3, nodeID);
+
+      int rowsUpdated = stmtUpdateCoord.executeUpdate();
+      if (rowsUpdated > 0) {
+        System.out.println("update successful!");
+      } else {
+        System.out.println("Node not found: Invalid nodeID");
+      }
+    } catch (SQLException e) {
+      System.out.println("SQL exception occurred: " + e.getMessage());
     }
   }
 }

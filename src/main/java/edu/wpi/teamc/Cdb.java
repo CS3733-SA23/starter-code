@@ -1,12 +1,17 @@
 package edu.wpi.teamc;
 
+import edu.wpi.teamc.map.Edge;
+import edu.wpi.teamc.map.Node;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Cdb {
 
   public static void main(String[] args) {
     Connection connection = null;
+
     try {
       // Load the PostgreSQL JDBC driver
       Class.forName("org.postgresql.Driver");
@@ -19,6 +24,9 @@ public class Cdb {
 
       Scanner scanner = new Scanner(System.in);
       // variables
+      List<Node> databaseNodeList = new ArrayList<Node>();
+      List<Edge> databaseEdgeList = new ArrayList<Edge>();
+
       String nodeID;
       int xCoordinate;
       int yCoordinate;
@@ -28,6 +36,7 @@ public class Cdb {
       while (continueProg) {
         displayInstructions();
         String command = scanner.nextLine().toLowerCase();
+        loadDatabaseTables(connection, databaseNodeList, databaseEdgeList);
         switch (command) {
           case "display node and edge information":
             // displays all of the node and edge attributes
@@ -82,6 +91,46 @@ public class Cdb {
           e.printStackTrace();
         }
       }
+    }
+  }
+
+  static void loadDatabaseTables(
+      Connection connection, List<Node> databaseNodeList, List<Edge> databaseEdgeList) {
+    try {
+      Statement stmtNode = connection.createStatement();
+      Statement stmtEdge = connection.createStatement();
+      // table names
+      String node = "\"hospitalNode\".node";
+      String edge = "\"hospitalNode\".edge";
+      // queries
+      String queryDisplayNodes = "SELECT * FROM " + node;
+      String queryDisplayEdges = "SELECT * FROM " + edge;
+
+      ResultSet rsNodes = stmtNode.executeQuery(queryDisplayNodes);
+      ResultSet rsEdges = stmtEdge.executeQuery(queryDisplayEdges);
+      System.out.println("Node information: \n");
+      while (rsNodes.next()) {
+        String nodeID = rsNodes.getString("nodeID");
+        int xCoord = rsNodes.getInt("xcoord");
+        int yCoord = rsNodes.getInt("ycoord");
+        String floor = rsNodes.getString("floorNum");
+        String building = rsNodes.getString("building");
+        String nodeType = rsNodes.getString("nodeType");
+        String longName = rsNodes.getString("longName");
+        String shortName = rsNodes.getString("shortName");
+
+        databaseNodeList.add(
+            new Node(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName, null));
+      }
+      System.out.println("Edge information: \n");
+      while (rsEdges.next()) {
+        String edgeID = rsEdges.getString("edgeID");
+        String startNode = rsEdges.getString("startNode");
+        String endNode = rsEdges.getString("endNode");
+        databaseEdgeList.add(new Edge(edgeID, startNode, endNode));
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 
