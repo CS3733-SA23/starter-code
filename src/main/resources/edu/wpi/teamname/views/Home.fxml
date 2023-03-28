@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.controllers.HomeController">
-   <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <MFXButton fx:id="navigateButton" layoutX="300.0" layoutY="166.0" text="Navigate">
-               <font>
-                  <Font name="Nunito Sans Regular" size="16.0" />
-               </font>
-            </MFXButton>
-            <MFXButton fx:id="flowersButton" layoutX="192.0" layoutY="166.0" text="Flowers">
-               <font>
-                  <Font name="Nunito Sans Regular" size="16.0" />
-               </font>
-            </MFXButton>
-         </children>
-      </AnchorPane>
-   </children>
+<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.controllers.HomeController">
+    <children>
+        <VBox alignment="CENTER" maxHeight="600.0" maxWidth="400.0" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: WHITE; -fx-border-color: BLACK; -fx-border-width: 0;">
+            <children>
+                <MFXButton fx:id="mealButton" minHeight="0.0" minWidth="0.0" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: #192d5aff; -fx-alignment: center-left;" text="Meal Orders" textFill="WHITE">
+                    <font>
+                        <Font name="Nunito Sans Regular" size="16.0" />
+                    </font>
+                </MFXButton>
+                <MFXButton fx:id="flowersButton" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: #192d5aff; -fx-alignment: center-left;" text="Flower Delivery" textFill="WHITE">
+                    <font>
+                        <Font name="Nunito Sans Regular" size="16.0" />
+                    </font>
+                </MFXButton>
+                <MFXButton fx:id="signageButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: #192d5aff; -fx-alignment: center-left;" text="Signage" textFill="WHITE">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </MFXButton>
+            </children>
+        </VBox>
+    </children>
 </StackPane>
