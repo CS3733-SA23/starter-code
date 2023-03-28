@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 public class ServiceRequestController {
 
   @FXML MFXButton backButton;
-  @FXML MFXButton roomButton;
+  @FXML MFXButton confRoomButton;
   @FXML MFXButton flowerButton;
 
   @FXML
@@ -16,5 +16,9 @@ public class ServiceRequestController {
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     flowerButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWER_REQUEST));
+  }
+
+  public void openConferenceForm() {
+    Navigation.navigate(Screen.CONFERENCE_REQUEST);
   }
 }

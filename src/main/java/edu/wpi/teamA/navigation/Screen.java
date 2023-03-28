@@ -9,7 +9,8 @@ public enum Screen {
   SIGNAGE("views/Signage.fxml"),
   ABOUT("views/About.fxml"),
   HELP("views/Help.fxml"),
-  FLOWER_REQUEST("views/FlowerRequest.fxml");
+  FLOWER_REQUEST("views/FlowerRequest.fxml"),
+  CONFERENCE_REQUEST("views/ConferenceRequest.fxml");
 
   private final String filename;
 
