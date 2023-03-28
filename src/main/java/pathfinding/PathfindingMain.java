@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 public class PathfindingMain {
   public static void main(String[] args) {
-    System.out.println("----------------------------------------------------"
+    System.out.println(
+        "----------------------------------------------------"
             + "\nRunning Program, input commands:");
     Scanner scanner = new Scanner(System.in);
     scannerHandler(scanner);
@@ -40,6 +41,7 @@ public class PathfindingMain {
         if (input.contains("-node")) {
           // Add a node with the specified ID
           nodeAddHandler(input);
+
         } else if (input.contains("-edge")) {
           // Add an edge between the two specified nodes, with a specified weight (optional)
           edgeAddHandler(input);
@@ -108,7 +110,7 @@ public class PathfindingMain {
     System.out.println("\tastar [nodeID] [nodeID] - Runs A* between the two specified nodes");
     System.out.println(
         "\tadd -node [newNodeID] [xCoord (optional)] [yCoord (optional)] "
-                + "- Creates a new node with the given ID and 0 edges");
+            + "- Creates a new node with the given ID and 0 edges");
     System.out.println(
         "\tadd -edge [nodeID] [nodeID] [edgeWeight (optional)] "
             + "- Creates an edge between the two nodes with the specified weight");

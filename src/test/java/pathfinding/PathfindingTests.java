@@ -19,6 +19,17 @@ public class PathfindingTests {
   }
 
   @Test
+  public void heuristicTests() {
+    HospitalNode node1 = new HospitalNode("1", 0, 0);
+    HospitalNode node2 = new HospitalNode("2", 10, 0);
+    HospitalNode node3 = new HospitalNode("3", 5, 5);
+    AStarPathfinder pathfinder = new AStarPathfinder();
+    assertEquals(10, pathfinder.heuristicDistance(node1, node2));
+    assertEquals(7, pathfinder.heuristicDistance(node1, node3));
+    assertEquals(0, pathfinder.heuristicDistance(node1, node1));
+  }
+
+  @Test
   public void sampleTest() {
     createTestGraph();
     AbstractPathfinder pathfinder = new BFSPathfinder();
