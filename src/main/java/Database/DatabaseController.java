@@ -2,6 +2,7 @@ package Database;
 
 import java.sql.*;
 import java.util.Scanner;
+import pathfinding.HospitalEdge;
 import pathfinding.HospitalNode;
 
 public class DatabaseController {
@@ -13,6 +14,7 @@ public class DatabaseController {
     // DBC1.deleteFromTable(c);
     // DBC1.updateTable(c);
     // DBC1.help();
+    // DBC1.displayCSVInfo(c);
   }
 
   private Connection connectToDatabase(String username, String password) {
@@ -68,7 +70,7 @@ public class DatabaseController {
 
   private void retrieveFromTable(Connection c) {
     Scanner scanner = new Scanner(System.in);
-    System.out.print("Which table would you like to retrieve from (Nodes, Edges, Help Screen): ");
+    System.out.print("Which table would you like to retrieve from (Nodes, Edges): ");
     String table = scanner.nextLine().trim();
 
     if (table.equalsIgnoreCase("Nodes")) {
@@ -97,15 +99,76 @@ public class DatabaseController {
         ResultSet rs = pstmt.executeQuery();
 
         if (rs.next()) {
-          System.out.println("Edge retrieved successfully: " + rs.getString("edgeid"));
+          HospitalEdge edge = extractEdgeFromResultSet(rs);
+          System.out.println("Edge retrieved successfully: " + edge);
         } else {
           System.out.println("Edge not found with ID " + edgeId);
         }
       } catch (SQLException e) {
         System.err.println("Error retrieving edge: " + e.getMessage());
       }
-    } else if (table.equalsIgnoreCase("Help Screen")) {
-      this.help();
+    } else {
+      System.out.println("Invalid table name: " + table);
+    }
+  }
+
+  private void displayCSVInfo(Connection c) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("Which table would you like to see info from (Nodes, Edges): ");
+    String table = scanner.nextLine().trim();
+
+    if (table.equalsIgnoreCase("Nodes")) {
+      System.out.print("Please type the Node ID you would like to see the information from: ");
+      String nodeId = scanner.nextLine().trim();
+
+      try (PreparedStatement pstmt =
+          c.prepareStatement("SELECT * FROM teame.l1nodes WHERE nodeID = '" + nodeId + "'")) {
+        ResultSet rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+          String nodeID = rs.getString("nodeID");
+          int xCoord = rs.getInt("xcoord");
+          int yCoord = rs.getInt("ycoord");
+          String floor = rs.getString("floor");
+          String building = rs.getString("building");
+          String nodeType = rs.getString("nodeType");
+          String longName = rs.getString("longName");
+          String shortName = rs.getString("shortName");
+
+          System.out.println(
+              "Edge ("
+                  + nodeID
+                  + ") information (nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName): ");
+          System.out.println(
+              nodeID + ", " + xCoord + ", " + yCoord + ", " + floor + ", " + building + ", "
+                  + nodeType + ", " + longName + ", " + shortName);
+        } else {
+          System.out.println("Node not found with ID " + nodeId);
+        }
+      } catch (SQLException e) {
+        System.err.println("Error retrieving node: " + e.getMessage());
+      }
+    } else if (table.equalsIgnoreCase("Edges")) {
+      System.out.print("Please type the Edge ID you would like to see the information from: ");
+      String edgeId = scanner.nextLine().trim();
+
+      try (PreparedStatement pstmt =
+          c.prepareStatement("SELECT * FROM teame.l1edges WHERE edgeid = '" + edgeId + "'")) {
+        ResultSet rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+          String edgeID = rs.getString("edgeID");
+          String startNode = rs.getString("startNode");
+          String endNode = rs.getString("endNode");
+
+          System.out.println("Edge (" + edgeId + ") information (edgeID, startNode, endNode): ");
+          System.out.println(edgeID + ", " + startNode + ", " + endNode);
+        } else {
+          System.out.println("Edge not found with ID " + edgeId);
+        }
+      } catch (SQLException e) {
+        System.err.println("Error finding edge: " + e.getMessage());
+      }
     } else {
       System.out.println("Invalid table name: " + table);
     }
@@ -121,6 +184,14 @@ public class DatabaseController {
     String longName = rs.getString("longName");
     String shortName = rs.getString("shortName");
     return new HospitalNode(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName);
+  }
+
+  private HospitalEdge extractEdgeFromResultSet(ResultSet rs) throws SQLException {
+    String edgeID = rs.getString("edgeID");
+    String startNode = rs.getString("startNode");
+    String endNode = rs.getString("endNode");
+
+    return new HospitalEdge(edgeID, startNode, endNode);
   }
 
   private void updateTable(Connection c) {
