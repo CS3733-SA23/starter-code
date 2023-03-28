@@ -2,6 +2,9 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
@@ -12,11 +15,26 @@
     <children>
         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" spacing="10.0" style="-fx-background-color: WHITE; -fx-border-color: BLACK; -fx-border-width: 0;">
             <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
-               <font>
-                  <Font name="Open Sans Bold" size="24.0" />
-               </font>
-            </Text>
+            <ImageView fitHeight="76.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../teamlogo.jpg" />
+               </image>
+            </ImageView>
+            <HBox alignment="TOP_CENTER" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
+                     <font>
+                        <Font name="Open Sans Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="150.0" right="150.0" />
+               </VBox.margin>
+            </HBox>
                 <MFXButton fx:id="mealRequestButton" graphicTextGap="10.0" minHeight="8.0" minWidth="100.0" prefHeight="40.0" prefWidth="300.0" rippleAnimateBackground="false" rippleAnimationSpeed="0.0" rippleBackgroundOpacity="0.0" rippleRadius="0.0" rippleRadiusMultiplier="0.0" style="-fx-background-color: #192d5aff; -fx-alignment: center-left; -fx-background-position: center-right;" text="Meal Orders" textFill="WHITE">
                     <font>
                         <Font name="Open Sans Bold" size="16.0" />
