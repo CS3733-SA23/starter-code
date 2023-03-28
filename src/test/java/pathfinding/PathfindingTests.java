@@ -9,18 +9,18 @@ public class PathfindingTests {
 
   /** * Helper function to instantiate a basic graph */
   public void createTestGraph() {
-    HospitalNode node1 = new HospitalNode("1", 0, 0);
-    HospitalNode node2 = new HospitalNode("2", 2, 4);
-    HospitalNode node3 = new HospitalNode("3", 5, 5);
-    HospitalNode node4 = new HospitalNode("4", 7, 9);
-    HospitalNode node5 = new HospitalNode("5", 10, 10);
+    HospitalNode node1 = new HospitalNode("1",0,0);
+    HospitalNode node2 = new HospitalNode("2",2,4);
+    HospitalNode node3 = new HospitalNode("3",5,5);
+    HospitalNode node4 = new HospitalNode("4",7,9);
+    HospitalNode node5 = new HospitalNode("5",10,10);
     // Disconnected node
-    HospitalNode node6 = new HospitalNode("6", 12, 12);
-    HospitalNode.addEdge(node1, node2);
-    HospitalNode.addEdge(node2, node4);
-    HospitalNode.addEdge(node4, node5);
-    HospitalNode.addEdge(node1, node3);
-    HospitalNode.addEdge(node3, node5);
+    HospitalNode node6 = new HospitalNode("6",12,12);
+    HospitalNode.addEdge(node1, node2, 1);
+    HospitalNode.addEdge(node2, node4,3);
+    HospitalNode.addEdge(node4, node5,1);
+    HospitalNode.addEdge(node1, node3,5);
+    HospitalNode.addEdge(node3, node5,2);
   }
 
   /** Generic pathfinder tests */
@@ -79,13 +79,47 @@ public class PathfindingTests {
     assertEquals(0, pathfinder.heuristicDistance(node1, node1));
   }
 
-  public void test1() {
+  @Test
+  public void testAStarMiddleCase1() {
+    // Travels the path with more segments bc it is lighter weight
+    createTestGraph();
+    AbstractPathfinder pathfinder = new BFSPathfinder();
+    List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("1"), HospitalNode.allNodes.get("5"));
+    assertEquals(path.get(0), HospitalNode.allNodes.get("1"));
+    assertEquals(path.get(1), HospitalNode.allNodes.get("2"));
+    assertEquals(path.get(2), HospitalNode.allNodes.get("4"));
+    assertEquals(path.get(3), HospitalNode.allNodes.get("5"));
+  }
+
+  @Test
+  public void testAStarMiddleCase2() {
+    // Travels shorter path bc lighter weights
+    createTestGraph();
+    AbstractPathfinder pathfinder = new BFSPathfinder();
+    List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("4"), HospitalNode.allNodes.get("3"));
+    assertEquals(path.get(0), HospitalNode.allNodes.get("1"));
+    assertEquals(path.get(1), HospitalNode.allNodes.get("5"));
+    assertEquals(path.get(2), HospitalNode.allNodes.get("3"));
+  }
+
+  @Test
+  public void testAStarEdgeCase() {
+    // This is an edge case because both directions have an equal path weighting
+    // Goes the path that is shorter via heuristic distance
     createTestGraph();
     AbstractPathfinder pathfinder = new BFSPathfinder();
     List<HospitalNode> path =
-        pathfinder.findPath(HospitalNode.allNodes.get("2"), HospitalNode.allNodes.get("3"));
+            pathfinder.findPath(HospitalNode.allNodes.get("2"), HospitalNode.allNodes.get("3"));
     assertEquals(path.get(0), HospitalNode.allNodes.get("2"));
     assertEquals(path.get(1), HospitalNode.allNodes.get("1"));
     assertEquals(path.get(2), HospitalNode.allNodes.get("3"));
+  }
+
+  @Test
+  public void testAStarFailCase() {
+    createTestGraph();
+    AbstractPathfinder pathfinder = new BFSPathfinder();
+    List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("1"), HospitalNode.allNodes.get("6"));
+    assertNull(path);
   }
 }
