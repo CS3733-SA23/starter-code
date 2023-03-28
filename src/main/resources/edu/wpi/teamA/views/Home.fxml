@@ -2,6 +2,7 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -12,105 +13,66 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f1f1f1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.HomeController">
-   <top>
-      <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="1920.0" style="-fx-background-color: #012D5A;" BorderPane.alignment="CENTER">
-         <children>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="884.0" HBox.hgrow="ALWAYS">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
+<ScrollPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.HomeController">
+   <content>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1400.0" prefWidth="1920.0" style="-fx-background-color: #f1f1f1;">
+         <top>
+            <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="1920.0" style="-fx-background-color: #012D5A;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="136.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <image>
-                        <Image url="@../images/bwh-logo.png" />
-                     </image>
-                  </ImageView>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Brigham &amp; Women’s Hospital" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <font>
-                        <Font name="Comfortaa SemiBold" size="48.0" />
-                     </font>
-                  </Text>
+                  <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="947.0" HBox.hgrow="ALWAYS">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView fitHeight="136.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@../images/bwh-logo.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Brigham &amp; Women’s Hospital" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="Comfortaa SemiBold" size="48.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </GridPane>
                </children>
-            </GridPane>
-         </children></HBox>
-   </top>
-   <center>
-      <GridPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="1917.0" style="-fx-background-color: #f1f1f1;" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <MFXButton fx:id="serviceRequestButton" style="-fx-background-color: lightblue;" text="Service Requests" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
-               <font>
-                  <Font name="Comfortaa Medium" size="24.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets top="10.0" />
-               </GridPane.margin>
-            </MFXButton>
-            <MFXButton fx:id="mapButton" style="-fx-background-color: lightblue;" text="Map" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
-               <font>
-                  <Font name="Comfortaa Medium" size="24.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets top="10.0" />
-               </GridPane.margin>
-            </MFXButton>
-            <MFXButton fx:id="officeMoveButton" style="-fx-background-color: lightblue;" text="Office Move" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets top="10.0" />
-               </GridPane.margin>
-            </MFXButton>
-            <MFXButton fx:id="signageButton" style="-fx-background-color: lightblue;" text="Signage" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets top="10.0" />
-               </GridPane.margin>
-            </MFXButton>
-            <ImageView fitHeight="135.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
-               <image>
-                  <Image url="@../images/seth.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="157.0" fitWidth="191.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-               <image>
-                  <Image url="@../images/seth.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="143.0" fitWidth="146.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-               <image>
-                  <Image url="@../images/seth.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="166.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
-               <image>
-                  <Image url="@../images/bwh-outside.jpg" />
-               </image>
-            </ImageView>
-         </children>
-      </GridPane>
-   </center>
-   <bottom>
-      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="1920.0" style="-fx-background-color: #012D5A;" BorderPane.alignment="CENTER">
-         <children>
-            <GridPane prefHeight="168.0" prefWidth="1920.0" HBox.hgrow="ALWAYS">
+            </HBox>
+         </top>
+         <bottom>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="1920.0" style="-fx-background-color: #012D5A;" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane prefHeight="168.0" prefWidth="1920.0" HBox.hgrow="ALWAYS">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <MFXButton fx:id="helpButton" prefHeight="83.0" prefWidth="173.0" style="-fx-background-color: #f1f1f1;" text="Help" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                           <font>
+                              <Font name="Comfortaa Medium" size="24.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton fx:id="aboutButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="172.0" style="-fx-background-color: #f1f1f1;" text="About" GridPane.halignment="CENTER">
+                           <font>
+                              <Font name="Comfortaa Medium" size="24.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <GridPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" style="-fx-background-color: #f1f1f1;" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -118,21 +80,65 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <MFXButton fx:id="helpButton" prefHeight="83.0" prefWidth="173.0" style="-fx-background-color: #f1f1f1;" text="Help" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                  <MFXButton fx:id="serviceRequestButton" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: lightblue;" text="Service Requests" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                      <font>
                         <Font name="Comfortaa Medium" size="24.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin>
                   </MFXButton>
-                  <MFXButton fx:id="aboutButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="172.0" style="-fx-background-color: #f1f1f1;" text="About" GridPane.halignment="CENTER">
+                  <MFXButton fx:id="mapButton" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: lightblue;" text="Map" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                      <font>
                         <Font name="Comfortaa Medium" size="24.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin>
                   </MFXButton>
+                  <MFXButton fx:id="officeMoveButton" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: lightblue;" text="Office Move" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="signageButton" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: lightblue;" text="Signage" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin>
+                  </MFXButton>
+                  <ImageView fitHeight="209.0" fitWidth="233.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@../images/home-page/bwh-service-request.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="200.0" fitWidth="378.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@../images/home-page/bwh-office-moves.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="200.0" fitWidth="298.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@../images/home-page/bwh-signage.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="200.0" fitWidth="338.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <image>
+                        <Image url="@../images/home-page/bwh-outside.jpg" />
+                     </image>
+                  </ImageView>
                </children>
             </GridPane>
-         </children>
-      </HBox>
-   </bottom>
-</BorderPane>
+         </center>
+      </BorderPane>
+   </content>
+</ScrollPane>
