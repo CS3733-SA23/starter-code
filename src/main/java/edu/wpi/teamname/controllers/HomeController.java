@@ -6,6 +6,8 @@ import edu.wpi.teamname.navigation.Navigation;
 import edu.wpi.teamname.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
 public class HomeController {
@@ -17,8 +19,18 @@ public class HomeController {
 
   @FXML MFXButton mealRequestButton;
 
+  @FXML ImageView logoImage;
+
   @FXML
   public void initialize() {
+    logoImage.setOnMouseEntered(
+        event -> {
+          //change to wong.jpg
+        });
+    logoImage.setOnMouseExited(
+        event -> {
+          //change to teamlogo.jpg
+        });
 
     flowersButton.setOnMouseEntered(
         event -> {
