@@ -32,8 +32,8 @@ public class PathfindingTests {
     public void sampleTest2() {
       createTestGraph();
       AbstractPathfinder pathfinder = new BFSPathfinder();
-      List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("0"), HospitalNode.allNodes.get("4"));
-      assertEquals(path.get(0), HospitalNode.allNodes.get("1"));
+      List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("3"), HospitalNode.allNodes.get("4"));
+      assertEquals(path.get(3), HospitalNode.allNodes.get("1"));
       assertEquals(path.get(1), HospitalNode.allNodes.get("2"));
       assertEquals(path.get(2), HospitalNode.allNodes.get("4"));
   }
@@ -41,17 +41,15 @@ public class PathfindingTests {
   public void sampleTest3() {
     createTestGraph();
     AbstractPathfinder pathfinder = new BFSPathfinder();
-    List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("1"), HospitalNode.allNodes.get("4"));
-    assertEquals(path.get(0), HospitalNode.allNodes.get("1"));
-    assertEquals(path.get(1), HospitalNode.allNodes.get("2"));
-    assertEquals(path.get(2), HospitalNode.allNodes.get("4"));
+    List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("2"), HospitalNode.allNodes.get("3"));
+    assertEquals(path.get(2), HospitalNode.allNodes.get("1"));
+    assertEquals(path.get(1), HospitalNode.allNodes.get("3"));
   }
   @Test
   public void sampleTest4() {
     createTestGraph();
     AbstractPathfinder pathfinder = new BFSPathfinder();
-    List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("1"), HospitalNode.allNodes.get("4"));
-    assertEquals(path.get(0), HospitalNode.allNodes.get("1"));
-    assertEquals(path.get(1), HospitalNode.allNodes.get("2"));
-    assertEquals(path.get(2), HospitalNode.allNodes.get("4"));
+    List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("1"), HospitalNode.allNodes.get("5"));
+    assertNull(path);
+  }
 }
