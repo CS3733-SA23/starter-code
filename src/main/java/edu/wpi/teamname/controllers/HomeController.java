@@ -10,7 +10,7 @@ public class HomeController {
   // @FXML MFXButton navigateButton;
 
   @FXML MFXButton signageButton;
-  @FXML MFXButton flowerButton;
+  @FXML MFXButton flowersButton;
   @FXML MFXButton mealButton;
 
   @FXML
