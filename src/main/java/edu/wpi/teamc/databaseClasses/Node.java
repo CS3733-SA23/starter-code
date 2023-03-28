@@ -1,4 +1,4 @@
-package edu.wpi.teamc.map;
+package edu.wpi.teamc.databaseClasses;
 
 import java.sql.*;
 import java.util.List;

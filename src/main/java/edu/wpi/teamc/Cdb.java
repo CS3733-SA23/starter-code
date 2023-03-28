@@ -1,7 +1,7 @@
 package edu.wpi.teamc;
 
-import edu.wpi.teamc.map.Edge;
-import edu.wpi.teamc.map.Node;
+import edu.wpi.teamc.databaseClasses.Edge;
+import edu.wpi.teamc.databaseClasses.Node;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
