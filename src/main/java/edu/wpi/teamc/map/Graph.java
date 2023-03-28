@@ -1,6 +1,6 @@
 package edu.wpi.teamc.map;
 
-import static java.lang.Long.parseLong;
+import static java.lang.Integer.parseInt;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -46,8 +46,8 @@ public class Graph {
       Node temp =
           new Node(
               node[0],
-              parseLong(node[1]),
-              parseLong(node[2]),
+              parseInt(node[1]),
+              parseInt(node[2]),
               node[3],
               node[4],
               node[5],
