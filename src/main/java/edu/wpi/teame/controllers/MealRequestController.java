@@ -6,7 +6,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 
-public class MealRequestController {
+public class MealRequestController implements IRequestController {
   @FXML MFXButton backButton;
   @FXML MFXButton cancelButton;
   @FXML MFXButton submitButton;
@@ -22,4 +22,10 @@ public class MealRequestController {
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
+
+  public ServiceRequestData sendRequest() {
+    return null;
+  }
+
+  public void cancelRequest() {}
 }
