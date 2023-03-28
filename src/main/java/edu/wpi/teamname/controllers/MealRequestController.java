@@ -13,7 +13,7 @@ public class MealRequestController {
   @FXML MFXTextField deliveryTime;
   @FXML MFXTextField foodSelection;
   @FXML MFXTextField notes;
-  @FXML MFXTextField patientName;
+  @FXML MFXTextField receiverName;
   @FXML MFXTextField roomNumber;
   @FXML MFXTextField sideSelection;
 
