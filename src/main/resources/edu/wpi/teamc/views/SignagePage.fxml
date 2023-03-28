@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.font.MFXFontIcon?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.wpi.teamc.controllers.SignagePageController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #008080;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.SignagePageController">
+   <children>
+      <AnchorPane layoutY="13.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #008080; -fx-scale-shape: 1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text layoutX="206.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Information" AnchorPane.bottomAnchor="332.97265625" AnchorPane.leftAnchor="205.6296875" AnchorPane.rightAnchor="321.9703125" AnchorPane.topAnchor="29.78515625" />
+            <Text layoutX="206.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Shapiro Admitting" AnchorPane.bottomAnchor="277.97265625" AnchorPane.leftAnchor="205.6296875" AnchorPane.rightAnchor="322.340625" AnchorPane.topAnchor="84.78515625" />
+            <Text layoutX="208.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Shapiro Procedural" AnchorPane.bottomAnchor="222.97265625" AnchorPane.leftAnchor="208.0" AnchorPane.rightAnchor="132.04726562500002" AnchorPane.topAnchor="139.78515625" />
+            <Text layoutX="208.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Watkins Clinics A &amp; B (this floor)" AnchorPane.bottomAnchor="168.97265625" AnchorPane.leftAnchor="207.95273437499998" AnchorPane.rightAnchor="132.04726562500002" AnchorPane.topAnchor="193.42734375" />
+            <Text layoutX="206.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Watkins Clinic C (up to 3rd floor)" AnchorPane.bottomAnchor="114.97265625" AnchorPane.leftAnchor="207.95273437499998" AnchorPane.rightAnchor="132.09453125000005" AnchorPane.topAnchor="247.78515625" />
+            <Text layoutX="208.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Rehabilitation Services (down to 1st floor)" wrappingWidth="342.917236328125" AnchorPane.bottomAnchor="27.73046875" AnchorPane.leftAnchor="207.95273437499998" AnchorPane.rightAnchor="134.89453125" AnchorPane.topAnchor="297.78515625" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text layoutX="626.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text layoutX="626.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <ImageView fitHeight="37.0" fitWidth="51.0" layoutX="649.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="351.0" AnchorPane.leftAnchor="648.8" AnchorPane.rightAnchor="88.79999999999995" AnchorPane.topAnchor="12.0">
+               <image>
+                  <Image url="@../../../../../../../icone-de-cloche-grise%20(1).png" />
+               </image>
+            </ImageView>
+            <BorderPane layoutX="11.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="358.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="676.0" AnchorPane.topAnchor="17.0">
+               <center>
+                  <MFXButton fx:id="backButton" onAction="#backAction" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #A9F6ED; -fx-text-fill: #000000;" text="Back" />
+               </center>
+            </BorderPane>
+            <MFXFontIcon layoutX="70.0" layoutY="144.0" />
+            <MFXFontIcon layoutX="53.0" layoutY="117.0" strokeWidth="5.0" />
+            <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z" layoutX="136.0" layoutY="193.0" rotate="180.0" AnchorPane.leftAnchor="135.70002288818358" AnchorPane.rightAnchor="594.2999771118164" AnchorPane.topAnchor="193.59009754657745" />
+            <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z" layoutX="136.0" layoutY="88.0" AnchorPane.leftAnchor="135.70002288818358" AnchorPane.rightAnchor="594.2999771118164" AnchorPane.topAnchor="88.59009754657745" />
+            <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z" layoutX="136.0" layoutY="139.0" AnchorPane.leftAnchor="135.70002288818358" AnchorPane.rightAnchor="594.2999771118164" AnchorPane.topAnchor="139.59009754657745" />
+            <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z" layoutX="136.0" layoutY="31.0" AnchorPane.leftAnchor="135.70002288818358" AnchorPane.rightAnchor="594.5999542236327" />
+            <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z" layoutX="136.0" layoutY="247.0" rotate="180.0" AnchorPane.leftAnchor="135.70002288818358" AnchorPane.rightAnchor="594.1999542236329" AnchorPane.topAnchor="247.59009754657745" />
+            <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z" layoutX="136.0" layoutY="315.0" rotate="180.0" AnchorPane.leftAnchor="135.70002288818358" AnchorPane.rightAnchor="593.8999771118164" AnchorPane.topAnchor="315.59009754657745" />
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

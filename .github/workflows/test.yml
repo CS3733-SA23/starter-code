@@ -1,4 +1,4 @@
-on: [push, pull_request]
+GIon: [push, pull_request]
 jobs:
   # Set the job key. The key is displayed as the job name
   # when a job name is not provided
@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-java@v1
       with:
-        java-version: 8
+        java-version: 17
         java-package: jdk+fx
     - name: Run headless test
       uses: GabrielBB/xvfb-action@v1
