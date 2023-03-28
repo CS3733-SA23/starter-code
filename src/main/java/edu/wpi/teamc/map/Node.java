@@ -4,8 +4,8 @@ import java.util.List;
 
 class Node {
   private String nodeID;
-  private long xCoord;
-  private long yCoord;
+  private int xCoord;
+  private int yCoord;
   private String floor;
   private String building;
   private String nodeType;
@@ -88,11 +88,11 @@ class Node {
     this.nodeID = nodeID;
   }
 
-  void setXCoord(long xCoord) {
+  void setXCoord(int xCoord) {
     this.xCoord = xCoord;
   }
 
-  void setYCoord(long yCoord) {
+  void setYCoord(int yCoord) {
     this.yCoord = yCoord;
   }
 
