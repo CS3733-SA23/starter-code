@@ -2,46 +2,103 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.SignageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: F1F1F1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.SignageController">
    <children>
-      <SVGPath content="M0.946249 9.93248C0.356671 10.5144 0.350504 11.4642 0.932474 12.0538L10.4162 21.6615C10.9982 22.2511 11.9479 22.2572 12.5375 21.6753C13.1271 21.0933 13.1332 20.1436 12.5513 19.554L4.12127 11.0138L12.6615 2.58377C13.2511 2.0018 13.2572 1.05207 12.6752 0.462496C12.0933 -0.127081 11.1436 -0.133248 10.554 0.448722L0.946249 9.93248ZM156.01 10.5L2.00974 9.50003L1.99026 12.5L155.99 13.5L156.01 10.5Z" layoutX="88.0" layoutY="66.0" />
-      <SVGPath content="M155.788 12.5897C156.374 12.0039 156.374 11.0541 155.788 10.4683L146.242 0.92239C145.657 0.336604 144.707 0.336604 144.121 0.92239C143.535 1.50818 143.535 2.45792 144.121 3.04371L152.606 11.529L144.121 20.0143C143.535 20.6001 143.535 21.5498 144.121 22.1356C144.707 22.7214 145.657 22.7214 146.242 22.1356L155.788 12.5897ZM0.7276 13.029H154.728V10.029H0.7276V13.029Z" layoutX="395.0" layoutY="192.0" />
-      <SVGPath content="M0.946249 9.93248C0.356671 10.5144 0.350504 11.4642 0.932474 12.0538L10.4162 21.6615C10.9982 22.2511 11.9479 22.2572 12.5375 21.6753C13.1271 21.0933 13.1332 20.1436 12.5513 19.554L4.12127 11.0138L12.6615 2.58377C13.2511 2.0018 13.2572 1.05207 12.6752 0.462496C12.0933 -0.127081 11.1436 -0.133248 10.554 0.448722L0.946249 9.93248ZM156.01 10.5L2.00974 9.50003L1.99026 12.5L155.99 13.5L156.01 10.5Z" layoutX="89.0" layoutY="113.0" />
-      <SVGPath content="M155.788 12.5897C156.374 12.0039 156.374 11.0541 155.788 10.4683L146.242 0.92239C145.657 0.336604 144.707 0.336604 144.121 0.92239C143.535 1.50818 143.535 2.45792 144.121 3.04371L152.606 11.529L144.121 20.0143C143.535 20.6001 143.535 21.5498 144.121 22.1356C144.707 22.7214 145.657 22.7214 146.242 22.1356L155.788 12.5897ZM0.7276 13.029H154.728V10.029H0.7276V13.029Z" layoutX="395.0" layoutY="244.0" />
-      <SVGPath content="M155.788 12.5897C156.374 12.0039 156.374 11.0541 155.788 10.4683L146.242 0.92239C145.657 0.336604 144.707 0.336604 144.121 0.92239C143.535 1.50818 143.535 2.45792 144.121 3.04371L152.606 11.529L144.121 20.0143C143.535 20.6001 143.535 21.5498 144.121 22.1356C144.707 22.7214 145.657 22.7214 146.242 22.1356L155.788 12.5897ZM0.7276 13.029H154.728V10.029H0.7276V13.029Z" layoutX="394.0" layoutY="287.0" />
-      <Text layoutX="282.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Information Desk">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="282.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Room">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="146.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ear, Nose, and Throat Department">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="236.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ultrasound Lab">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="266.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Restroom">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <MFXButton fx:id="backButton" layoutX="273.0" layoutY="346.0" onAction="#goBack" rippleColor="#bdbdbd" style="-fx-background-color: lightblue;" text="Back">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </MFXButton>
+      <HBox layoutX="-2.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="1920.0" style="-fx-background-color: #012D5A;">
+         <children>
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="1920.0" style="-fx-background-color: #012D5A;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Signage" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Text>
+               </children>
+            </GridPane>
+         </children>
+      </HBox>
+      <HBox layoutY="912.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="1920.0" style="-fx-background-color: #012D5A;">
+         <children>
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="1920.0" style="-fx-background-color: #012D5Q;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <MFXButton fx:id="backButton" onAction="#goBack" rippleColor="#bdbdbd" style="-fx-background-color: lightblue;" text="Back" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </MFXButton>
+               </children>
+            </GridPane>
+         </children>
+      </HBox>
+      <GridPane layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="744.0" prefWidth="1920.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Restroom" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <SVGPath content="M155.788 12.5897C156.374 12.0039 156.374 11.0541 155.788 10.4683L146.242 0.92239C145.657 0.336604 144.707 0.336604 144.121 0.92239C143.535 1.50818 143.535 2.45792 144.121 3.04371L152.606 11.529L144.121 20.0143C143.535 20.6001 143.535 21.5498 144.121 22.1356C144.707 22.7214 145.657 22.7214 146.242 22.1356L155.788 12.5897ZM0.7276 13.029H154.728V10.029H0.7276V13.029Z" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <SVGPath content="M155.788 12.5897C156.374 12.0039 156.374 11.0541 155.788 10.4683L146.242 0.92239C145.657 0.336604 144.707 0.336604 144.121 0.92239C143.535 1.50818 143.535 2.45792 144.121 3.04371L152.606 11.529L144.121 20.0143C143.535 20.6001 143.535 21.5498 144.121 22.1356C144.707 22.7214 145.657 22.7214 146.242 22.1356L155.788 12.5897ZM0.7276 13.029H154.728V10.029H0.7276V13.029Z" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <SVGPath content="M0.946249 9.93248C0.356671 10.5144 0.350504 11.4642 0.932474 12.0538L10.4162 21.6615C10.9982 22.2511 11.9479 22.2572 12.5375 21.6753C13.1271 21.0933 13.1332 20.1436 12.5513 19.554L4.12127 11.0138L12.6615 2.58377C13.2511 2.0018 13.2572 1.05207 12.6752 0.462496C12.0933 -0.127081 11.1436 -0.133248 10.554 0.448722L0.946249 9.93248ZM156.01 10.5L2.00974 9.50003L1.99026 12.5L155.99 13.5L156.01 10.5Z" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <SVGPath content="M0.946249 9.93248C0.356671 10.5144 0.350504 11.4642 0.932474 12.0538L10.4162 21.6615C10.9982 22.2511 11.9479 22.2572 12.5375 21.6753C13.1271 21.0933 13.1332 20.1436 12.5513 19.554L4.12127 11.0138L12.6615 2.58377C13.2511 2.0018 13.2572 1.05207 12.6752 0.462496C12.0933 -0.127081 11.1436 -0.133248 10.554 0.448722L0.946249 9.93248ZM156.01 10.5L2.00974 9.50003L1.99026 12.5L155.99 13.5L156.01 10.5Z" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+            <SVGPath content="M155.788 12.5897C156.374 12.0039 156.374 11.0541 155.788 10.4683L146.242 0.92239C145.657 0.336604 144.707 0.336604 144.121 0.92239C143.535 1.50818 143.535 2.45792 144.121 3.04371L152.606 11.529L144.121 20.0143C143.535 20.6001 143.535 21.5498 144.121 22.1356C144.707 22.7214 145.657 22.7214 146.242 22.1356L155.788 12.5897ZM0.7276 13.029H154.728V10.029H0.7276V13.029Z" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ear, Nose, and Throat Department" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ultrasound Lab" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Room" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Information Desk" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>
