@@ -5,7 +5,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
-public class BFSPathfinder implements IPathfinder {
+public class BFSPathfinder extends AbstractPathfinder {
+
   /**
    * * Finds the shortest path from the starting HospitalNode to the target HospitalNode using
    * Breadth First Search

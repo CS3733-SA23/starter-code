@@ -2,7 +2,7 @@ package pathfinding;
 
 import java.util.*;
 
-public class AStarPathfinder implements IPathfinder {
+public class AStarPathfinder extends AbstractPathfinder {
   /**
    * * Finds the least cost path from the starting HospitalNode to the target HospitalNode using the
    * A-star algorithm

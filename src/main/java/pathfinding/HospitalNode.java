@@ -108,9 +108,22 @@ public class HospitalNode {
     node2.neighbors.add(node1);
   }
 
+  public static void addEdge(String nodeId1, String nodeId2) {
+    addEdge(allNodes.get(nodeId1), allNodes.get(nodeId2));
+  }
+
+  public static void addEdge(HospitalNode node1, HospitalNode node2, int edgeWeight) {
+    node1.addNeighbor(node2, edgeWeight);
+    node2.addNeighbor(node1, edgeWeight);
+  }
+
+  public static void addEdge(String nodeId1, String nodeId2, int edgeWeight) {
+    addEdge(allNodes.get(nodeId1), allNodes.get(nodeId2), edgeWeight);
+  }
+
   public static void processEdgeList(List<HospitalEdge> edgeList) {
     for (HospitalEdge edge : edgeList) {
-      addEdge(allNodes.get(edge.nodeOneID), allNodes.get(edge.nodeTwoID));
+      addEdge(allNodes.get(edge.nodeOneID), allNodes.get(edge.nodeTwoID), edge.edgeWeight);
     }
   }
 }
