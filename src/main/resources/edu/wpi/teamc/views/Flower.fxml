@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.FlowerController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bae3e0" height="400.0" layoutX="10.0" layoutY="10.0" stroke="#bae3e0" strokeType="INSIDE" width="600.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TEAL" height="378.0" layoutX="21.0" layoutY="21.0" stroke="TEAL" strokeType="INSIDE" width="578.0" />
+      <Label layoutX="45.0" layoutY="44.0" text="Flower Request" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="20.0" />
+         </font>
+      </Label>
+      <MFXButton fx:id="FLOW_backtohome" layoutX="44.0" layoutY="357.0" prefHeight="26.0" prefWidth="110.0" text="Cancel" textFill="#016161">
+         <font>
+            <Font name="Verdana Bold" size="13.0" />
+         </font>
+      </MFXButton>
+      <MFXButton fx:id="FLOW_submit" layoutX="460.0" layoutY="357.0" onAction="#SubmitRequest" prefHeight="26.0" prefWidth="110.0" text="SUBMIT" textFill="#016161">
+         <font>
+            <Font name="Verdana Bold" size="13.0" />
+         </font>
+      </MFXButton>
+      <MFXButton fx:id="FLOW_clear" layoutX="501.0" layoutY="296.0" prefHeight="23.0" prefWidth="69.0" text="Clear" textFill="#016161">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </MFXButton>
+      <Group layoutX="74.0" layoutY="112.0">
+         <children>
+            <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-14.0" prefHeight="30.0" prefWidth="425.0" textLimit="1000000" />
+            <Label layoutX="-29.0" layoutY="-10.0" text="Name:" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="74.0" layoutY="149.0">
+         <children>
+            <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-13.0" prefHeight="30.0" prefWidth="425.0" textLimit="1000000" />
+            <Label layoutX="-29.0" layoutY="-10.0" prefHeight="20.0" prefWidth="100.0" text="Room ID:" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="74.0" layoutY="193.0">
+         <children>
+            <Label layoutX="-29.0" layoutY="-8.0" prefHeight="20.0" prefWidth="100.0" text="Flower:" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="16.0" />
+               </font>
+            </Label>
+            <ChoiceBox layoutX="71.0" layoutY="-10.0" prefHeight="26.0" prefWidth="425.0" />
+         </children>
+      </Group>
+      <Group layoutX="74.0" layoutY="231.0">
+         <children>
+            <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-11.0" prefHeight="69.0" prefWidth="425.0" textLimit="1000000" />
+            <Label layoutX="-29.0" layoutY="-25.0" prefHeight="90.0" prefWidth="102.0" text="Special Requests:" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Label fx:id="FLOW_outputtext" layoutX="348.0" layoutY="352.0" prefHeight="36.0" prefWidth="100.0" textFill="#44d71f">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
