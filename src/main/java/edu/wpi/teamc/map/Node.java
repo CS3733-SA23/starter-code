@@ -106,4 +106,3 @@ class Node {
     this.shortName = shortName;
   }
 }
-

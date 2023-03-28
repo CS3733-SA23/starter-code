@@ -53,7 +53,7 @@ public class HomeController {
   /** Method run when controller is initialized */
   @FXML
   public void initialize() {
-    roomReservationPage.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
+    mealDeliveryPage.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL));
   }
 
   @FXML
@@ -61,4 +61,3 @@ public class HomeController {
     signageButton2.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
   }
 }
-

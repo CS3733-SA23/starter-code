@@ -8,14 +8,12 @@ import javafx.scene.control.Label;
 
 public class MealController {
   @FXML MFXButton MEAL_backtorequest;
-  @FXML MFXButton MEAL_backtohome;
   @FXML MFXButton MEAL_submitrequest;
   @FXML Label MEAL_outputtext;
 
   @FXML
   public void initialize() {
-    MEAL_backtorequest.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
-    MEAL_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    MEAL_backtorequest.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   @FXML
