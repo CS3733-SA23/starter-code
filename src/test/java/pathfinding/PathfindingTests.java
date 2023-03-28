@@ -11,14 +11,17 @@ public class PathfindingTests {
    * Helper function to instantiate a basic graph
    */
   public void createTestGraph() {
-    HospitalNode node1 = new HospitalNode("1");
-    HospitalNode node2 = new HospitalNode("2");
-    HospitalNode node3 = new HospitalNode("3");
-    HospitalNode node4 = new HospitalNode("4");
-    HospitalNode node5 = new HospitalNode("5");
+    HospitalNode node1 = new HospitalNode("1",0,0);
+    HospitalNode node2 = new HospitalNode("2",2,4);
+    HospitalNode node3 = new HospitalNode("3",5,5);
+    HospitalNode node4 = new HospitalNode("4",7,9);
+    HospitalNode node5 = new HospitalNode("5",10,10);
+    HospitalNode node6 = new HospitalNode("6",12,12);
     HospitalNode.addEdge(node1, node2);
-    HospitalNode.addEdge(node2, node3);
-    HospitalNode.addEdge(node3, node4);
+    HospitalNode.addEdge(node2, node4);
+    HospitalNode.addEdge(node4, node5);
+    HospitalNode.addEdge(node1, node3);
+    HospitalNode.addEdge(node3, node5);
   }
 
   /**
@@ -56,14 +59,14 @@ public class PathfindingTests {
     List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("2"), HospitalNode.allNodes.get("3"));
     assertEquals(path.get(0), HospitalNode.allNodes.get("2"));
     assertEquals(path.get(1), HospitalNode.allNodes.get("1"));
-    assertEquals(path.get(1), HospitalNode.allNodes.get("3"));
+    assertEquals(path.get(2), HospitalNode.allNodes.get("3"));
   }
 
   @Test
   public void testBFSFailCase() {
     createTestGraph();
     AbstractPathfinder pathfinder = new BFSPathfinder();
-    List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("1"), HospitalNode.allNodes.get("5"));
+    List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("1"), HospitalNode.allNodes.get("6"));
     assertNull(path);
   }
 
@@ -81,4 +84,13 @@ public class PathfindingTests {
     assertEquals(7, pathfinder.heuristicDistance(node1, node3));
     assertEquals(0, pathfinder.heuristicDistance(node1, node1));
   }
+  public void test1() {
+    createTestGraph();
+    AbstractPathfinder pathfinder = new BFSPathfinder();
+    List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("2"), HospitalNode.allNodes.get("3"));
+    assertEquals(path.get(0), HospitalNode.allNodes.get("2"));
+    assertEquals(path.get(1), HospitalNode.allNodes.get("1"));
+    assertEquals(path.get(2), HospitalNode.allNodes.get("3"));
+  }
+
 }
