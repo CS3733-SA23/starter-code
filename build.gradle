@@ -30,6 +30,8 @@ javafx {
 
 dependencies {
 
+    implementation "org.json:json:20141113"
+
     implementation(
             'io.github.palexdev:materialfx:11.13.8',
             'net.kurobako:gesturefx:0.7.1',

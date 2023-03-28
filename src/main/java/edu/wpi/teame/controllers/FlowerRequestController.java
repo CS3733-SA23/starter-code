@@ -8,7 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
-public class FlowerRequestController {
+public class FlowerRequestController implements IRequestController {
 
   ObservableList<String> flowerChoices =
       FXCollections.observableArrayList("Tiger Lilies", "Roses", "Tulips", "Daisies");
@@ -30,4 +30,10 @@ public class FlowerRequestController {
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     submitButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
+
+  public ServiceRequestData sendRequest() {
+    return null;
+  }
+
+  public void cancelRequest() {}
 }
