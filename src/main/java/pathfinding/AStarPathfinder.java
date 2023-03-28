@@ -50,9 +50,9 @@ public class AStarPathfinder extends AbstractPathfinder {
         int newCost = neighbor.edgeCosts.get(current) + costMap.get(current);
         // If we've already explored the children of this node, don't add it to the queue
         if (!parentMap.containsKey(neighbor) || costMap.get(neighbor) > newCost) {
+          costMap.put(neighbor, newCost);
           queue.add(neighbor);
           parentMap.put(neighbor, current);
-          costMap.put(neighbor, newCost);
         }
       }
     }
