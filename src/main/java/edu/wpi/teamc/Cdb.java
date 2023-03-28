@@ -23,17 +23,18 @@ public class Cdb {
       connection = DriverManager.getConnection(url, user, password);
 
       Scanner scanner = new Scanner(System.in);
-      // variables
+      //database tables turned into two arrayLists
       List<Node> databaseNodeList = new ArrayList<Node>();
       List<Edge> databaseEdgeList = new ArrayList<Edge>();
+      // load database into lists
+      loadDatabaseTables(connection, databaseNodeList, databaseEdgeList);
+      // variables
       String nodeID;
       int xCoordinate;
       int yCoordinate;
       String locationNameLong;
       String locationNameShort;
       boolean continueProg = true;
-      // load database into Java classes
-      loadDatabaseTables(connection, databaseNodeList, databaseEdgeList);
       // switch case for menu options
       while (continueProg) {
         displayInstructions();
