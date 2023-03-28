@@ -7,12 +7,12 @@ import pathfinding.HospitalNode;
 public class DatabaseController {
   public static void main(String[] args) {
     DatabaseController DBC1 = new DatabaseController();
-    // Connection c = DBC1.connectToDatabase("teame", "teame50");
+    Connection c = DBC1.connectToDatabase("teame", "teame50");
 
     // DBC1.retrieveFromTable(c);
     // DBC1.deleteFromTable(c);
     // DBC1.updateTable(c);
-    DBC1.help();
+    // DBC1.help();
   }
 
   private Connection connectToDatabase(String username, String password) {
@@ -69,11 +69,11 @@ public class DatabaseController {
   private void retrieveFromTable(Connection c) {
     Scanner scanner = new Scanner(System.in);
     System.out.print("Which table would you like to retrieve from (Nodes, Edges, Help Screen): ");
-    String table = scanner.nextLine().toLowerCase().trim();
+    String table = scanner.nextLine().trim();
 
     if (table.equalsIgnoreCase("Nodes")) {
       System.out.print("Please type the Node ID you would like to retrieve: ");
-      String nodeId = scanner.nextLine().toLowerCase().trim();
+      String nodeId = scanner.nextLine().trim();
 
       try (PreparedStatement pstmt =
           c.prepareStatement("SELECT * FROM teame.l1nodes WHERE nodeID = '" + nodeId + "'")) {
