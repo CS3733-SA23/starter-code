@@ -8,42 +8,47 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #008080;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.SignagePageController">
+
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.SignagePageController">
    <children>
-      <Text layoutX="206.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Information" />
-      <Text layoutX="206.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Shapiro Admitting" />
-      <Text layoutX="208.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Shapiro Procedural" />
-      <Text layoutX="208.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Watkins Clinics A &amp; B (this floor)" />
-      <Text layoutX="206.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Watkins Clinic C (up to 3rd floor)" />
-      <Text layoutX="208.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Rehabilitation Services (down to 1st floor)" wrappingWidth="342.917236328125" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text layoutX="626.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text layoutX="626.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Line endX="58.20002746582031" endY="7.62939453125E-6" layoutX="105.0" layoutY="53.0" startX="13.399978637695312" startY="1.1444091796875E-5" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
-      <Line endX="9.149795532226562" endY="3.000011444091797" layoutX="159.0" layoutY="50.0" startX="-17.999984741210938" startY="-10.769794464111328" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
-      <Line endX="63.14979553222656" endY="-22.999988555908203" layoutX="105.0" layoutY="76.0" startX="39.69288635253906" startY="-11.969779968261719" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
-      <Line endX="58.20002746582031" endY="7.62939453125E-6" layoutX="104.0" layoutY="107.0" startX="13.399978637695312" startY="1.1444091796875E-5" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
-      <Line endX="9.149795532226562" endY="3.000011444091797" layoutX="158.0" layoutY="104.0" startX="-17.999984741210938" startY="-10.769794464111328" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
-      <Line endX="63.14979553222656" endY="-22.999988555908203" layoutX="104.0" layoutY="130.0" startX="39.69288635253906" startY="-11.969779968261719" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
-      <Line endX="58.20002746582031" endY="7.62939453125E-6" layoutX="105.0" layoutY="163.0" startX="13.399978637695312" startY="1.1444091796875E-5" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
-      <Line endX="9.149795532226562" endY="3.000011444091797" layoutX="159.0" layoutY="160.0" startX="-17.999984741210938" startY="-10.769794464111328" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
-      <Line endX="63.14979553222656" endY="-22.999988555908203" layoutX="105.0" layoutY="186.0" startX="39.69288635253906" startY="-11.969779968261719" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
-      <Line endX="58.20002746582031" endY="7.62939453125E-6" layoutX="110.0" layoutY="212.0" startX="13.399978637695312" startY="1.1444091796875E-5" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
-      <Line endX="-21.000015258789062" endY="3.2302093505859375" layoutX="167.0" layoutY="196.0" startX="-46.600013732910156" startY="16.000015258789062" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
-      <Line endX="42.19999694824219" endY="-31.169784545898438" layoutX="105.0" layoutY="256.0" startX="15.399986267089844" startY="-43.99998474121094" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
-      <Line endX="58.20002746582031" endY="7.62939453125E-6" layoutX="111.0" layoutY="266.0" startX="13.399978637695312" startY="1.1444091796875E-5" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
-      <Line endX="-22.000015258789062" endY="4.4301910400390625" layoutX="168.0" layoutY="250.0" startX="-46.600013732910156" startY="16.000015258789062" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
-      <Line endX="42.40000915527344" endY="-31.56982421875" layoutX="106.0" layoutY="310.0" startX="15.399986267089844" startY="-43.99998474121094" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
-      <Line endX="58.20002746582031" endY="7.62939453125E-6" layoutX="113.0" layoutY="335.0" startX="13.399978637695312" startY="1.1444091796875E-5" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
-      <Line endX="-21.200027465820312" endY="3.03021240234375" layoutX="170.0" layoutY="319.0" startX="-46.600013732910156" startY="16.000015258789062" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
-      <Line endX="41.19999694824219" endY="-31.769775390625" layoutX="108.0" layoutY="379.0" startX="15.399986267089844" startY="-43.99998474121094" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
-      <ImageView fitHeight="37.0" fitWidth="51.0" layoutX="649.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../icone-de-cloche-grise%20(1).png" />
-         </image>
-      </ImageView>
-      <MFXButton layoutX="11.0" layoutY="17.0" style="-fx-background-color: #A9F6ED; -fx-text-fill: #008080;" text="Back" />
-      <MFXFontIcon layoutX="70.0" layoutY="144.0" />
-      <MFXFontIcon layoutX="53.0" layoutY="117.0" strokeWidth="5.0" />
+      <AnchorPane layoutY="13.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #008080;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text layoutX="206.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Information" />
+            <Text layoutX="206.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Shapiro Admitting" />
+            <Text layoutX="208.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Shapiro Procedural" />
+            <Text layoutX="208.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Watkins Clinics A &amp; B (this floor)" />
+            <Text layoutX="206.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Watkins Clinic C (up to 3rd floor)" />
+            <Text layoutX="208.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Rehabilitation Services (down to 1st floor)" wrappingWidth="342.917236328125" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text layoutX="626.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text layoutX="626.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Line endX="58.20002746582031" endY="7.62939453125E-6" layoutX="105.0" layoutY="53.0" startX="13.399978637695312" startY="1.1444091796875E-5" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
+            <Line endX="9.149795532226562" endY="3.000011444091797" layoutX="159.0" layoutY="50.0" startX="-17.999984741210938" startY="-10.769794464111328" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
+            <Line endX="63.14979553222656" endY="-22.999988555908203" layoutX="105.0" layoutY="76.0" startX="39.69288635253906" startY="-11.969779968261719" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
+            <Line endX="58.20002746582031" endY="7.62939453125E-6" layoutX="104.0" layoutY="107.0" startX="13.399978637695312" startY="1.1444091796875E-5" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
+            <Line endX="9.149795532226562" endY="3.000011444091797" layoutX="158.0" layoutY="104.0" startX="-17.999984741210938" startY="-10.769794464111328" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
+            <Line endX="63.14979553222656" endY="-22.999988555908203" layoutX="104.0" layoutY="130.0" startX="39.69288635253906" startY="-11.969779968261719" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
+            <Line endX="58.20002746582031" endY="7.62939453125E-6" layoutX="105.0" layoutY="163.0" startX="13.399978637695312" startY="1.1444091796875E-5" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
+            <Line endX="9.149795532226562" endY="3.000011444091797" layoutX="159.0" layoutY="160.0" startX="-17.999984741210938" startY="-10.769794464111328" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
+            <Line endX="63.14979553222656" endY="-22.999988555908203" layoutX="105.0" layoutY="186.0" startX="39.69288635253906" startY="-11.969779968261719" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
+            <Line endX="58.20002746582031" endY="7.62939453125E-6" layoutX="110.0" layoutY="212.0" startX="13.399978637695312" startY="1.1444091796875E-5" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
+            <Line endX="-21.000015258789062" endY="3.2302093505859375" layoutX="167.0" layoutY="196.0" startX="-46.600013732910156" startY="16.000015258789062" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
+            <Line endX="42.19999694824219" endY="-31.169784545898438" layoutX="105.0" layoutY="256.0" startX="15.399986267089844" startY="-43.99998474121094" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
+            <Line endX="58.20002746582031" endY="7.62939453125E-6" layoutX="111.0" layoutY="266.0" startX="13.399978637695312" startY="1.1444091796875E-5" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
+            <Line endX="-22.000015258789062" endY="4.4301910400390625" layoutX="168.0" layoutY="250.0" startX="-46.600013732910156" startY="16.000015258789062" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
+            <Line endX="42.40000915527344" endY="-31.56982421875" layoutX="106.0" layoutY="310.0" startX="15.399986267089844" startY="-43.99998474121094" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
+            <Line endX="58.20002746582031" endY="7.62939453125E-6" layoutX="113.0" layoutY="335.0" startX="13.399978637695312" startY="1.1444091796875E-5" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
+            <Line endX="-21.200027465820312" endY="3.03021240234375" layoutX="170.0" layoutY="319.0" startX="-46.600013732910156" startY="16.000015258789062" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
+            <Line endX="41.19999694824219" endY="-31.769775390625" layoutX="108.0" layoutY="379.0" startX="15.399986267089844" startY="-43.99998474121094" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="5.0" />
+            <ImageView fitHeight="37.0" fitWidth="51.0" layoutX="649.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../icone-de-cloche-grise%20(1).png" />
+               </image>
+            </ImageView>
+            <MFXButton fx:id="backButton" layoutX="11.0" layoutY="17.0" onAction="#backAction" style="-fx-background-color: #A9F6ED; -fx-text-fill: #008080;" text="Back" />
+            <MFXFontIcon layoutX="70.0" layoutY="144.0" />
+            <MFXFontIcon layoutX="53.0" layoutY="117.0" strokeWidth="5.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
