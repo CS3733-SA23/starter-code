@@ -107,7 +107,8 @@ public class PathfindingMain {
     System.out.println("\tbfs [nodeID] [nodeID] - Runs BFS between the two specified nodes");
     System.out.println("\tastar [nodeID] [nodeID] - Runs A* between the two specified nodes");
     System.out.println(
-        "\tadd -node [newNodeID] - Creates a new node with the given ID and 0 edges");
+        "\tadd -node [newNodeID] [xCoord (optional)] [yCoord (optional)] "
+                + "- Creates a new node with the given ID and 0 edges");
     System.out.println(
         "\tadd -edge [nodeID] [nodeID] [edgeWeight (optional)] "
             + "- Creates an edge between the two nodes with the specified weight");
