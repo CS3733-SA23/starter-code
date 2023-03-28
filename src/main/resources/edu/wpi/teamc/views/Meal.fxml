@@ -3,58 +3,76 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.Group?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.MealController">
    <children>
-      <MFXButton fx:id="MEAL_backtorequest" layoutX="466.0" layoutY="317.0" prefHeight="26.0" prefWidth="110.0" text="Back to Request" />
-      <MFXButton fx:id="MEAL_backtohome" layoutX="466.0" layoutY="353.0" prefHeight="26.0" prefWidth="110.0" text="Back to Home" />
-      <Label layoutX="221.0" layoutY="45.0" text="Meal Request">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bae3e0" height="400.0" stroke="#bae3e0" strokeType="INSIDE" width="600.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TEAL" height="378.0" layoutX="11.0" layoutY="11.0" stroke="TEAL" strokeType="INSIDE" width="578.0" />
+      <MFXButton fx:id="MEAL_backtorequest" layoutX="34.0" layoutY="347.0" prefHeight="26.0" prefWidth="110.0" text="Cancel" textFill="#016161">
          <font>
-            <Font size="24.0" />
+            <Font name="Verdana Bold" size="13.0" />
+         </font></MFXButton>
+      <MFXButton fx:id="MEAL_backtohome" layoutX="450.0" layoutY="347.0" prefHeight="26.0" prefWidth="110.0" text="SUBMIT" textFill="#016161">
+         <font>
+            <Font name="Verdana Bold" size="13.0" />
+         </font></MFXButton>
+      <Label layoutX="35.0" layoutY="34.0" text="Meal Request" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="20.0" />
          </font>
       </Label>
-      <Group layoutX="466.0" layoutY="222.0">
-         <children>
-            <Label fx:id="MEAL_outputtext" textFill="#4ed724">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <MFXButton fx:id="MEAL_submitrequest" layoutY="58.0" onAction="#SubmitRequest" prefHeight="26.0" prefWidth="110.0" text="Submit Request" />
-         </children>
-      </Group>
+      <Group layoutX="466.0" layoutY="222.0" />
       <Group layoutX="64.0" layoutY="102.0">
          <children>
-            <MFXTextField layoutX="133.0" prefHeight="49.0" prefWidth="207.0" />
-            <Label layoutY="13.0" text="Meal Type:">
+            <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-14.0" prefHeight="30.0" prefWidth="425.0" textLimit="1000000" />
+            <Label layoutX="-29.0" layoutY="-10.0" text="Name:" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Verdana Bold" size="16.0" />
                </font>
             </Label>
          </children>
       </Group>
-      <Group layoutX="64.0" layoutY="176.0">
+      <Group layoutX="64.0" layoutY="176.0" />
+      <Group layoutX="35.0" layoutY="211.0" />
+      <Group layoutX="64.0" layoutY="139.0">
          <children>
-            <MFXTextField layoutX="133.0" prefHeight="49.0" prefWidth="207.0" />
-            <Label layoutY="12.0" text="Room ID:">
+            <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-13.0" prefHeight="30.0" prefWidth="425.0" textLimit="1000000" />
+            <Label layoutX="-29.0" layoutY="-10.0" prefHeight="20.0" prefWidth="100.0" text="Room ID:" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Verdana Bold" size="16.0" />
                </font>
             </Label>
          </children>
       </Group>
-      <Group layoutX="64.0" layoutY="254.0">
+      <Group layoutX="64.0" layoutY="183.0">
          <children>
-            <MFXTextField alignment="TOP_LEFT" layoutX="133.0" prefHeight="120.0" prefWidth="207.0" />
-            <Label layoutY="13.0" text="Special Notes:">
+            <Label layoutX="-29.0" layoutY="-8.0" prefHeight="20.0" prefWidth="100.0" text="Meal:" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Verdana Bold" size="16.0" />
+               </font>
+            </Label>
+            <ChoiceBox layoutX="71.0" layoutY="-10.0" prefHeight="26.0" prefWidth="425.0" />
+         </children>
+      </Group>
+      <Group layoutX="64.0" layoutY="221.0">
+         <children>
+            <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-11.0" prefHeight="69.0" prefWidth="425.0" textLimit="1000000" />
+            <Label layoutX="-29.0" layoutY="-25.0" prefHeight="90.0" prefWidth="102.0" text="Special Requests:" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
                </font>
             </Label>
          </children>
       </Group>
+      <MFXButton fx:id="MEAL_backtohome1" layoutX="491.0" layoutY="286.0" prefHeight="23.0" prefWidth="69.0" text="Clear" textFill="#016161">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </MFXButton>
    </children>
 </AnchorPane>
