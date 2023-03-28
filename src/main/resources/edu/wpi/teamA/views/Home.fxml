@@ -124,7 +124,7 @@
                         <Font name="Comfortaa Medium" size="16.0" />
                      </font>
                   </MFXButton>
-                  <MFXButton style="-fx-background-color: lightgray;" text="About" GridPane.halignment="CENTER">
+                  <MFXButton fx:id="aboutButton" style="-fx-background-color: lightgray;" text="About" GridPane.halignment="CENTER">
                      <font>
                         <Font name="Comfortaa Medium" size="16.0" />
                      </font>

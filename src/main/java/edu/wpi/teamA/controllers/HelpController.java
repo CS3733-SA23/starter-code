@@ -5,7 +5,7 @@ import edu.wpi.teamA.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 
-public class AboutController {
+public class HelpController {
   @FXML MFXButton backButton;
 
   @FXML

@@ -11,6 +11,8 @@ public class HomeController {
   @FXML MFXButton officeMoveButton;
   @FXML MFXButton mapButton;
   @FXML MFXButton signageButton;
+  @FXML MFXButton aboutButton;
+  @FXML MFXButton helpButton;
 
   @FXML
   public void initialize() {
@@ -18,5 +20,7 @@ public class HomeController {
     officeMoveButton.setOnMouseClicked(event -> Navigation.navigate(Screen.OFFICE_MOVE));
     mapButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE));
+    aboutButton.setOnMouseClicked(event -> Navigation.navigate(Screen.ABOUT));
+    helpButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HELP));
   }
 }
