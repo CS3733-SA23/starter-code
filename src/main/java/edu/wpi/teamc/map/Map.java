@@ -1,8 +1,5 @@
 package edu.wpi.teamc.map;
 
-import edu.wpi.teamc.map.Node;
-import edu.wpi.teamc.map.Edge;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;

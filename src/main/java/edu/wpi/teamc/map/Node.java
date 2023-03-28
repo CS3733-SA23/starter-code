@@ -51,11 +51,11 @@ class Node {
     return nodeID;
   }
 
-  public long getXCoord() {
+  public int getXCoord() {
     return xCoord;
   }
 
-  public long getYCoord() {
+  public int getYCoord() {
     return yCoord;
   }
 
