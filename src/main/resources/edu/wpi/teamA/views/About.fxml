@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.AboutController">
+   <children>
+      <MFXButton fx:id="backButton" layoutX="279.0" layoutY="335.0" onAction="#goBack" style="-fx-background-color: lightblue;" text="Back" />
+      <Text layoutX="129.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brendan Byrne">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="129.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ryan Suarez">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="129.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ashleigh Perez">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="129.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seth Frank">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="129.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pooja Kawatkar">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="126.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ayden Duncan">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="126.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maryna Ilyanok">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="124.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alex Samra">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="124.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Xiao Xiao">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="124.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vincent Boothroyd">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="373.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor Wilson Wong">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
