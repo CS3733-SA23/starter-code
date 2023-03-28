@@ -1,7 +1,7 @@
-package edu.wpi.teamname.controllers;
+package edu.wpi.teame.controllers;
 
-import edu.wpi.teamname.navigation.Navigation;
-import edu.wpi.teamname.navigation.Screen;
+import edu.wpi.teame.navigation.Navigation;
+import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
@@ -13,7 +13,7 @@ public class MealRequestController {
   @FXML MFXTextField deliveryTime;
   @FXML MFXTextField foodSelection;
   @FXML MFXTextField notes;
-  @FXML MFXTextField patientName;
+  @FXML MFXTextField receiverName;
   @FXML MFXTextField roomNumber;
   @FXML MFXTextField sideSelection;
 

@@ -1,4 +1,4 @@
-package edu.wpi.teamname.controllers;
+package edu.wpi.teame.controllers;
 
 import java.io.IOException;
 import java.sql.*;
