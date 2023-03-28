@@ -1,4 +1,4 @@
-package edu.wpi.teamname;
+package edu.wpi.teamc;
 
 import java.sql.*;
 import java.util.Scanner;

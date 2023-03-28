@@ -1,4 +1,4 @@
-package edu.wpi.teamname.navigation;
+package edu.wpi.teamc.map;
 
 import java.util.List;
 
@@ -28,8 +28,8 @@ class Node {
    */
   public Node(
       String nodeID,
-      long xCoord,
-      long yCoord,
+      int xCoord,
+      int yCoord,
       String floor,
       String building,
       String nodeType,
