@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.FlowerController">
+    <children>
+        <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <left>
+                <GridPane prefHeight="345.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="75.5" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="422.99999237060547" minWidth="10.0" prefWidth="324.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="85.98307418823242">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Flowers" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Additional Comments" wrappingWidth="116.61978912353516" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <TextField GridPane.columnIndex="1" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField prefHeight="26.0" prefWidth="271.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField prefHeight="53.0" prefWidth="412.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+               </children>
+
+                </GridPane>
+            </left>
+         <top>
+            <GridPane prefHeight="63.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="288.0" minWidth="10.0" prefWidth="70.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="531.0" minWidth="10.0" prefWidth="530.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <MFXButton fx:id="backButton" text="Back">
+                     <GridPane.margin>
+                        <Insets bottom="30.0" />
+                     </GridPane.margin>
+                  </MFXButton>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Flower Delivery Service Form" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Text>
+               </children>
+            </GridPane>
+         </top>
+         <bottom>
+            <MFXButton fx:id="submitButton" text="SUBMIT" textFill="#69d35b" BorderPane.alignment="CENTER_RIGHT">
+               <BorderPane.margin>
+                  <Insets right="20.0" />
+               </BorderPane.margin>
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </MFXButton>
+         </bottom>
+         <right>
+            <MFXButton fx:id="clearButton" text="Clear" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets right="60.0" top="250.0" />
+               </BorderPane.margin>
+            </MFXButton>
+         </right>
+        </BorderPane>
+    </children>
+</StackPane>

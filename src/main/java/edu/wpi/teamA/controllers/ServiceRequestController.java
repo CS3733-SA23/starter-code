@@ -8,9 +8,13 @@ import javafx.fxml.FXML;
 public class ServiceRequestController {
 
   @FXML MFXButton backButton;
+  @FXML MFXButton roomButton;
+  @FXML MFXButton flowerButton;
 
   @FXML
   public void initialize() {
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    flowerButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWER_REQUEST));
   }
 }
