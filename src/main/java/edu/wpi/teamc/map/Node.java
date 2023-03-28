@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 public class Node {
   private String nodeID;
-  private long xCoord;
-  private long yCoord;
+  private int xCoord;
+  private int yCoord;
   private String floor;
   private String building;
   private String nodeType;

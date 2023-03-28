@@ -188,16 +188,16 @@ public class Graph {
     while (!queue.isEmpty()) {
       Node current = (Node) queue.remove();
       if (current.equals(end)) {
-        return visited;
+        return visited; // if we found the end node, return the list of visited nodes
       }
       for (Node neighbor : getNeighbors(current)) {
         if (!visited.contains(neighbor)) {
           visited.add(neighbor);
-          queue.add(neighbor);
+          queue.add(neighbor); // add the neighbor to the queue to be visited
         }
       }
     }
-    return visited;
+    return visited; // if we didn't find the end node, return the list of visited nodes
   }
   /**
    * Returns a list of directions from start to end
