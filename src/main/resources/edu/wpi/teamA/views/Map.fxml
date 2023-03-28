@@ -2,10 +2,13 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.MapController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f1f1f1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.MapController">
    <children>
-      <MFXButton fx:id="backButton" layoutX="272.0" layoutY="187.0" onAction="#goBack" text="Back" />
+      <MFXButton fx:id="backButton" layoutX="889.0" layoutY="504.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#goBack" style="-fx-background-color: lightblue;" text="Back">
+         <font>
+            <Font size="36.0" />
+         </font></MFXButton>
    </children>
 </AnchorPane>
