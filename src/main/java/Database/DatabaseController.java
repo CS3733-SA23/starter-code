@@ -7,12 +7,48 @@ import pathfinding.HospitalNode;
 public class DatabaseController {
   public static void main(String[] args) {
     DatabaseController DBC1 = new DatabaseController();
+    Scanner s1 = new Scanner(System.in);
+
+    System.out.println("Please enter your username (will default to \"teame\"): ");
+    String username = s1.nextLine(); //Unused in this Prototype
+    System.out.println("Please enter your password (will default to \"teame50\"): ");
+    String password = s1.nextLine(); //Unused in this Prototype
+
     Connection c = DBC1.connectToDatabase("teame", "teame50");
 
-    // DBC1.retrieveFromTable(c);
-    // DBC1.deleteFromTable(c);
-    // DBC1.updateTable(c);
-    // DBC1.help();
+    boolean exit = true;
+    while (exit) {
+      System.out.println("\nWhat would you like to do?");
+      System.out.println("Choices: update, retrieve, delete, help, exit");
+      String function = s1.nextLine();
+
+      switch(function) {
+        case "update":
+          DBC1.updateTable(c);
+          break;
+
+        case "delete":
+          DBC1.deleteFromTable(c);
+          break;
+
+        case "help":
+          DBC1.help();
+          break;
+
+        case "exit":
+          DBC1.exitDatabaseProgram(c);
+          exit = false;
+          break;
+
+        case "retrieve":
+          DBC1.retrieveFromTable(c);
+          break;
+
+        default:
+          System.out.println("Please enter a valid action");
+      }
+
+    }
   }
 
   private Connection connectToDatabase(String username, String password) {
@@ -131,7 +167,7 @@ public class DatabaseController {
     while (doneUpdating) {
 
       Scanner s1 = new Scanner(System.in);
-      System.out.println("Which table would you like to update (Nodes, Edges, Help Screen): ");
+      System.out.println("Which table would you like to update (Nodes, Edges): ");
       String tabletoUpdate = s1.nextLine().toLowerCase();
 
       try {
@@ -140,9 +176,7 @@ public class DatabaseController {
           System.out.println("Please type the Node ID you would like to update: ");
           String nodetoUpdate = s1.nextLine();
 
-          System.out.println(
-              "Which attribute would you like to update (nodeid, xcoord, ycoord, floor, building, "
-                  + "nodetype, longname, shortname)");
+          System.out.println("Which attribute would you like to update (xcoord, ycoord, longname)");
           String attributeToUpdate = s1.nextLine().toLowerCase();
           stmt = c.createStatement();
 
@@ -151,18 +185,6 @@ public class DatabaseController {
           String sql = "";
 
           switch (attributeToUpdate) {
-            case "nodeid":
-              System.out.println("Please enter the new nodeid: ");
-              newval = s1.nextLine();
-              sql =
-                  "UPDATE l1nodes SET nodeid = '"
-                      + newval
-                      + "' WHERE nodeID = '"
-                      + nodetoUpdate
-                      + "';";
-              stmt.executeUpdate(sql);
-              stmt.close();
-              break;
 
             case "xcoord":
               System.out.println("Please enter the new xcoord: ");
@@ -173,6 +195,7 @@ public class DatabaseController {
                       + " WHERE nodeID = '"
                       + nodetoUpdate
                       + "';";
+              System.out.println("xcoord of " + nodetoUpdate + " successfully changed to " + newInt);
               stmt.execute(sql);
               stmt.close();
               break;
@@ -186,46 +209,8 @@ public class DatabaseController {
                       + " WHERE nodeID = '"
                       + nodetoUpdate
                       + "';";
+              System.out.println("ycoord of " + nodetoUpdate + " successfully changed to " + newInt);
               stmt.execute(sql);
-              stmt.close();
-              break;
-
-            case "floor":
-              System.out.println("Please enter the new floor: ");
-              newval = s1.nextLine();
-              sql =
-                  "UPDATE l1nodes SET floor = '"
-                      + newval
-                      + "' WHERE nodeID = '"
-                      + nodetoUpdate
-                      + "';";
-              stmt.execute(sql);
-              stmt.close();
-              break;
-
-            case "building":
-              System.out.println("Please enter the new building: ");
-              newval = s1.nextLine();
-              sql =
-                  "UPDATE l1nodes SET building = '"
-                      + newval
-                      + "' WHERE nodeID = '"
-                      + nodetoUpdate
-                      + "';";
-              stmt.execute(sql);
-              stmt.close();
-              break;
-
-            case "nodetype":
-              System.out.println("Please enter the new nodetype: ");
-              newval = s1.nextLine();
-              sql =
-                  "UPDATE l1nodes SET nodetype = '"
-                      + newval
-                      + "' WHERE nodeID = '"
-                      + nodetoUpdate
-                      + "';";
-              stmt.executeUpdate(sql);
               stmt.close();
               break;
 
@@ -238,25 +223,13 @@ public class DatabaseController {
                       + "' WHERE nodeID = '"
                       + nodetoUpdate
                       + "';";
-              stmt.executeUpdate(sql);
-              stmt.close();
-              break;
-
-            case "shortname":
-              System.out.println("Please enter the new shortname: ");
-              newval = s1.nextLine();
-              sql =
-                  "UPDATE l1nodes SET shortname = '"
-                      + newval
-                      + "' WHERE nodeID = '"
-                      + nodetoUpdate
-                      + "';";
+              System.out.println("longname of " + nodetoUpdate + " successfully changed to " + newval);
               stmt.executeUpdate(sql);
               stmt.close();
               break;
 
             default:
-              System.out.println("Please enter a valid attribute to edit");
+              System.out.println("You selected an invalid attribute to edit");
           }
 
         } else if (tabletoUpdate.equals("edges")) {
@@ -315,8 +288,6 @@ public class DatabaseController {
             default:
               System.out.println("Please enter a valid attribute to edit");
           }
-        } else if (tabletoUpdate.equals("Help Screen")) {
-          this.help();
         }
       } catch (Exception e) {
         System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -345,43 +316,33 @@ public class DatabaseController {
     System.out.println("\t\tUser inputs username to database.");
     System.out.println("\t\tUser inputs password to database.");
     System.out.println(
-        "\t\tUser inputs which operation they wish to use (delete, retreive, update, help)");
+        "\t\tUser inputs which operation they wish to use (delete, retrieve, update, help)");
 
     System.out.println("\t\t\tIf delete:");
-    System.out.println("\t\t\t\tUser inputs which tabel they wish to edit (nodes or edges).");
+    System.out.println("\t\t\t\tUser inputs which table they wish to edit (nodes or edges).");
     System.out.println("\t\t\t\t\tIf nodes:");
     System.out.println("\t\t\t\t\t\tUser inputs the node ID they wish to delete.");
     System.out.println("\t\t\t\t\tIf edges:");
     System.out.println("\t\t\t\t\t\tUser inputs the edge ID they wish to delete.");
 
-    System.out.println("\t\t\tIf retreive:");
-    System.out.println("\t\t\t\tUser inputs which tabel they wish to edit (nodes or edges).");
+    System.out.println("\t\t\tIf retrieve:");
+    System.out.println("\t\t\t\tUser inputs which table they wish to edit (nodes or edges).");
     System.out.println("\t\t\t\t\tIf nodes:");
-    System.out.println("\t\t\t\t\t\tUser inputs the node ID they wish to retreive.");
+    System.out.println("\t\t\t\t\t\tUser inputs the node ID they wish to retrieve.");
     System.out.println("\t\t\t\t\tIf edges:");
-    System.out.println("\t\t\t\t\t\tUser inputs the edge ID they wish to retreive.");
+    System.out.println("\t\t\t\t\t\tUser inputs the edge ID they wish to retrieve.");
 
     System.out.println("\t\t\tIf update:");
-    System.out.println("\t\t\t\tUser inputs which tabel they wish to update (nodes or edges).");
+    System.out.println("\t\t\t\tUser inputs which table they wish to update (nodes or edges).");
     System.out.println("\t\t\t\t\tIf nodes:");
     System.out.println(
-        "\t\t\t\t\t\tUser inputs the attribute they wish to update (nodeid, xcoord, ycoord, floor, building, nodetype, longname, shortname).");
-    System.out.println("\t\t\t\t\t\t\tIf nodeid:");
-    System.out.println("\t\t\t\t\t\t\t\tUser inputs the new node ID.");
+        "\t\t\t\t\t\tUser inputs the attribute they wish to update (xcoord, ycoord, longname).");
     System.out.println("\t\t\t\t\t\t\tIf xcoord:");
     System.out.println("\t\t\t\t\t\t\t\tUser inputs the new xcoord.");
     System.out.println("\t\t\t\t\t\t\tIf ycoord:");
     System.out.println("\t\t\t\t\t\t\t\tUser inputs the new ycoord.");
-    System.out.println("\t\t\t\t\t\t\tIf floor:");
-    System.out.println("\t\t\t\t\t\t\t\tUser inputs the new floor.");
-    System.out.println("\t\t\t\t\t\t\tIf building:");
-    System.out.println("\t\t\t\t\t\t\t\tUser inputs the new building.");
-    System.out.println("\t\t\t\t\t\t\tIf nodetype:");
-    System.out.println("\t\t\t\t\t\t\t\tUser inputs the new node type.");
     System.out.println("\t\t\t\t\t\t\tIf longname:");
     System.out.println("\t\t\t\t\t\t\t\tUser inputs the new long name.");
-    System.out.println("\t\t\t\t\t\t\tIf shortname:");
-    System.out.println("\t\t\t\t\t\t\t\tUser inputs the new short name.");
     System.out.println("\t\t\t\t\tIf edges:");
     System.out.println(
         "\t\t\t\t\t\tUser inputs the attribute they wish to update (edgeID, startNode, endNode).");
@@ -391,9 +352,6 @@ public class DatabaseController {
     System.out.println("\t\t\t\t\t\t\t\tUser inputs the new start node.");
     System.out.println("\t\t\t\t\t\t\tIf endNode:");
     System.out.println("\t\t\t\t\t\t\t\tUser inputs the new end node.");
-
-    System.out.println("\t\t\tIf help:");
-    System.out.println("\t\t\t\tUser inputs exit when done looking at help screen (exit)");
 
     // Functions:
     System.out.println("\n\n\tFunctions:\n");
@@ -422,7 +380,7 @@ public class DatabaseController {
     System.out.println("\t\treturn: void\n\n");
 
     // retrieveFromTable
-    System.out.println("\t\tretreiveFromTable(Connection c)");
+    System.out.println("\t\tretrieveFromTable(Connection c)");
     System.out.println(
         "\t\t***Creates a HospitalNode and assigns the specified data from the table (unless it already exists)***");
     System.out.println("\t\tParameters:");
@@ -433,10 +391,10 @@ public class DatabaseController {
         "\t\t\ttableToEdit: Input which table the user wishes to edit (nodes or edges)");
     System.out.println("\t\t\t\tIf nodes:");
     System.out.println(
-        "\t\t\t\t\tnodeToRetreive: Input the Node ID that the user wishes to retreive");
+        "\t\t\t\t\tnodeToretrieve: Input the Node ID that the user wishes to retrieve");
     System.out.println("\t\t\t\tIf edges:");
     System.out.println(
-        "\t\t\t\t\tedgeToRetreive: Input the Edge ID that the user wishes to retreive");
+        "\t\t\t\t\tedgeToretrieve: Input the Edge ID that the user wishes to retrieve");
     System.out.println("\t\treturn: void\n\n");
 
     // updateTable
@@ -451,19 +409,11 @@ public class DatabaseController {
         "\t\t\ttableToEdit: Input which table the user wishes to edit (nodes or edges)");
     System.out.println("\t\t\t\tIf nodes:");
     System.out.println(
-        "\t\t\t\t\tattributeToUpdate: Input the attribute the user wishes to update (nodeid, xcoord, ycoord, floor, building, nodetype, longname, shortname)");
-    System.out.println("\t\t\t\t\t\tIf nodeid:");
-    System.out.println("\t\t\t\t\t\t\tnewval: Input the new node ID");
+        "\t\t\t\t\tattributeToUpdate: Input the attribute the user wishes to update (xcoord, ycoord, longname)");
     System.out.println("\t\t\t\t\t\tIf xcoord:");
     System.out.println("\t\t\t\t\t\t\tnewval: Input the new xcoord");
     System.out.println("\t\t\t\t\t\tIf ycoord:");
     System.out.println("\t\t\t\t\t\t\tnewval: Input the new ycoord");
-    System.out.println("\t\t\t\t\t\tIf floor:");
-    System.out.println("\t\t\t\t\t\t\tnewval: Input the new floor");
-    System.out.println("\t\t\t\t\t\tIf building:");
-    System.out.println("\t\t\t\t\t\t\tnewval: Input the new building");
-    System.out.println("\t\t\t\t\t\tIf nodetype:");
-    System.out.println("\t\t\t\t\t\t\tnewval: Input the new nodetype");
     System.out.println("\t\t\t\t\t\tIf longname:");
     System.out.println("\t\t\t\t\t\t\tnewval: Input the new longname");
     System.out.println("\t\t\t\t\t\tIf shortname:");
@@ -500,6 +450,17 @@ public class DatabaseController {
       if (response.equals("exit")) {
         exit = true;
       }
+    }
+  }
+
+  private void exitDatabaseProgram(Connection c) {
+    try {
+      c.close();
+      System.out.println("Database Connection Closed");
+    }
+    catch (Exception e) {
+      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      System.exit(0);
     }
   }
 }
