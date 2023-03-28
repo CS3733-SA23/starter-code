@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f1f1f1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.MapController">
-   <children>
-      <MFXButton fx:id="backButton" layoutX="889.0" layoutY="504.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#goBack" style="-fx-background-color: lightblue;" text="Back">
-         <font>
-            <Font size="36.0" />
-         </font></MFXButton>
-   </children>
-</AnchorPane>
+
+<ScrollPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.MapController">
+   <content>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f1f1f1;">
+         <children>
+            <MFXButton fx:id="backButton" layoutX="889.0" layoutY="504.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#goBack" style="-fx-background-color: lightblue;" text="Back">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </MFXButton>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>
