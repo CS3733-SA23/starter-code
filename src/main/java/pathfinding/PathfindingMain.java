@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class PathfindingMain {
   public static void main(String[] args) {
+    System.out.println("----------------------------------------------------"
+            + "\nRunning Program, input commands:");
     Scanner scanner = new Scanner(System.in);
     scannerHandler(scanner);
   }
@@ -73,20 +75,27 @@ public class PathfindingMain {
 
   public static void nodeAddHandler(String input) {
     String[] arguments = input.split(" ");
+    // add -node [nodeID] [xCoord] [yCoord]
     // No need to save the node, as it gets saved automatically in the allNodes collection
-    new HospitalNode(arguments[2]);
+    if (arguments.length >= 5)
+      new HospitalNode(
+          arguments[2], Integer.parseInt(arguments[3]), Integer.parseInt(arguments[4]));
+    else new HospitalNode(arguments[2]);
   }
 
   public static void edgeAddHandler(String input) {
     String[] arguments = input.split(" ");
-    HospitalNode.addEdge(arguments[2], arguments[3]);
+    // add -edge [nodeOneId] [nodeTwoId] [edgeWeight]
+    // If there are enough arguments, include an edge weight
+    HospitalNode.addEdge(
+        arguments[2], arguments[3], (arguments.length >= 5) ? Integer.parseInt(arguments[4]) : 1);
   }
 
   public static void runFromFile(String input) {
     // Runs the scanner handler on the contents of the file
-    String[] arguments = input.split(" ");
+    String filepath = input.substring(4);
     try {
-      Scanner fileScanner = new Scanner(new File(arguments[1]));
+      Scanner fileScanner = new Scanner(new File(filepath));
       scannerHandler(fileScanner);
     } catch (FileNotFoundException e) {
       System.out.println("File not found");
