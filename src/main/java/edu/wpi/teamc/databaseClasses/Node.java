@@ -35,8 +35,7 @@ public class Node {
       String building,
       String nodeType,
       String longName,
-      String shortName,
-      List<String> connectedNodes) {
+      String shortName) {
     this.nodeID = nodeID;
     this.xCoord = xCoord;
     this.yCoord = yCoord;
@@ -45,7 +44,6 @@ public class Node {
     this.nodeType = nodeType;
     this.longName = longName;
     this.shortName = shortName;
-    this.connectedNodes = connectedNodes;
   }
   // getters
   public String getNodeID() {

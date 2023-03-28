@@ -2,10 +2,13 @@ package edu.wpi.teamc;
 
 import edu.wpi.teamc.databaseClasses.Edge;
 import edu.wpi.teamc.databaseClasses.Node;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Cdb {
 
@@ -23,17 +26,19 @@ public class Cdb {
       connection = DriverManager.getConnection(url, user, password);
 
       Scanner scanner = new Scanner(System.in);
-      //database tables turned into two arrayLists
+      // database tables turned into two arrayLists
       List<Node> databaseNodeList = new ArrayList<Node>();
       List<Edge> databaseEdgeList = new ArrayList<Edge>();
       // load database into lists
       loadDatabaseTables(connection, databaseNodeList, databaseEdgeList);
       // variables
       String nodeID;
+      String edgeID;
       int xCoordinate;
       int yCoordinate;
       String locationNameLong;
       String locationNameShort;
+      String csvFileName;
       boolean continueProg = true;
       // switch case for menu options
       while (continueProg) {
@@ -61,13 +66,25 @@ public class Cdb {
             System.out.println("Enter the shortened version of the new location name:");
             locationNameShort = scanner.nextLine();
             // update the location name of the given nodeID
-            updateLocationName(connection, locationNameLong, locationNameShort, nodeID);
+            updateLocationName(databaseNodeList, locationNameLong, locationNameShort, nodeID);
             break;
           case "export node table into a csv file":
-            //
+            csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/exportedNodes.csv";
+            exportNodesToCSV(csvFileName, databaseNodeList);
             break;
-          case "import from a csv file into the node table\n":
-            //
+          case "import from a csv file into the node table":
+            csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/L1Nodes.csv";
+            importCSV(csvFileName, databaseNodeList);
+            break;
+          case "delete a node":
+            System.out.println("please enter the node ID of the node you would like to delete");
+            nodeID = scanner.nextLine();
+            deleteNode(databaseNodeList, nodeID);
+            break;
+          case "delete an edge":
+            System.out.println("please enter the edge ID of the edge you would like to delete");
+            edgeID = scanner.nextLine();
+            deleteEdge(databaseEdgeList, edgeID);
             break;
           case "help":
             System.out.println("");
@@ -120,7 +137,7 @@ public class Cdb {
         String shortName = rsNodes.getString("shortName");
 
         databaseNodeList.add(
-            new Node(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName, null));
+            new Node(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName));
       }
       while (rsEdges.next()) {
         String edgeID = rsEdges.getString("edgeID");
@@ -142,6 +159,8 @@ public class Cdb {
             + "Update name of location node\n"
             + "Export node table into a CSV file\n"
             + "Import from a CSV file into the node table\n"
+            + "Delete a node\n"
+            + "Delete an edge\n"
             + "Help\n"
             + "Exit\n"
             + "===========================================\n");
@@ -190,26 +209,99 @@ public class Cdb {
   }
 
   static void updateLocationName(
-      Connection connection, String locationNameLong, String locationNameShort, String nodeID) {
-    try {
-      PreparedStatement stmtUpdateNodeName =
-          connection.prepareStatement(
-              "UPDATE \"hospitalNode\".node\n"
-                  + "SET \"longName\" = ?, \"shortName\" = ?\n"
-                  + "WHERE \"nodeID\" = ?;");
-      // set parameters for prepared statement
-      stmtUpdateNodeName.setString(1, locationNameLong);
-      stmtUpdateNodeName.setString(2, locationNameShort);
-      stmtUpdateNodeName.setString(3, nodeID);
-
-      int rowsUpdated = stmtUpdateNodeName.executeUpdate();
-      if (rowsUpdated > 0) {
-        System.out.println("update successful!");
-      } else {
-        System.out.println("Node not found: Invalid nodeID");
+      List<Node> databaseNodeList,
+      String locationNameLong,
+      String locationNameShort,
+      String nodeID) {
+    for (Node node : databaseNodeList) {
+      if (node.getNodeID().equals(nodeID)) {
+        // update name of node
+        node.setLongName(locationNameLong);
+        node.setShortName(locationNameShort);
+        break;
       }
-    } catch (SQLException e) {
-      System.out.println("SQL exception occurred: " + e.getMessage());
     }
+  }
+
+  static void deleteNode(List<Node> databaseNodeList, String nodeID) {
+    int i = 0;
+    for (Node node : databaseNodeList) {
+      if (node.getNodeID().equals(nodeID)) {
+        databaseNodeList.remove(i);
+        System.out.println("node deletion successful!");
+        break;
+      }
+      i++;
+    }
+  }
+
+  static void deleteEdge(List<Edge> databaseEdgeList, String edgeID) {
+    int i = 0;
+    for (Edge edge : databaseEdgeList) {
+      if (edge.getId().equals(edgeID)) {
+        databaseEdgeList.remove(i);
+        System.out.println("edge deletion successful!");
+        break;
+      }
+      i++;
+    }
+  }
+
+  static void importCSV(String csvFile, List<Node> databaseNodeList) {
+    // Regular expression to match each row
+    String regex = "(.*),(\\d+),(\\d+),(.*),(.*),(.*),(.*),(.*)";
+    // Compile regular expression pattern
+    Pattern pattern = Pattern.compile(regex);
+    try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+      String line;
+      while ((line = br.readLine()) != null) {
+        // Match the regular expression to the current line
+        Matcher matcher = pattern.matcher(line);
+        if (matcher.matches()) {
+          String nodeID = matcher.group(1);
+          int xCoord = Integer.parseInt(matcher.group(2));
+          int yCoord = Integer.parseInt(matcher.group(3));
+          String floor = matcher.group(4);
+          String building = matcher.group(5);
+          String nodeType = matcher.group(6);
+          String longName = matcher.group(7);
+          String shortName = matcher.group(8);
+
+          Node node =
+              new Node(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName);
+          databaseNodeList.add(node);
+        }
+      }
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  static void exportNodesToCSV(String csvFile, List<Node> databaseNodeList) throws IOException {
+    BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
+    // Write the header row to the CSV file
+    writer.write("nodeID,xCoord,yCoord,floor,building,nodeType,longName,shortName\n");
+    // Write each Node into the CSV file
+    for (Node node : databaseNodeList) {
+      writer.write(
+          node.getNodeID()
+              + ","
+              + node.getXCoord()
+              + ","
+              + node.getYCoord()
+              + ","
+              + node.getFloor()
+              + ","
+              + node.getBuilding()
+              + ","
+              + node.getNodeType()
+              + ","
+              + node.getLongName()
+              + ","
+              + node.getShortName()
+              + "\n");
+    }
+
+    writer.close();
   }
 }
