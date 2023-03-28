@@ -85,35 +85,35 @@ public class Node {
   }
 
   // setters
-  void setNodeID(String nodeID) {
+  public void setNodeID(String nodeID) {
     this.nodeID = nodeID;
   }
 
-  void setXCoord(int xCoord) {
+  public void setXCoord(int xCoord) {
     this.xCoord = xCoord;
   }
 
-  void setYCoord(int yCoord) {
+  public void setYCoord(int yCoord) {
     this.yCoord = yCoord;
   }
 
-  void setFloor(String floor) {
+  public void setFloor(String floor) {
     this.floor = floor;
   }
 
-  void setBuilding(String building) {
+  public void setBuilding(String building) {
     this.building = building;
   }
 
-  void setNodeType(String nodeType) {
+  public void setNodeType(String nodeType) {
     this.nodeType = nodeType;
   }
 
-  void setLongName(String longName) {
+  public void setLongName(String longName) {
     this.longName = longName;
   }
 
-  void setShortName(String shortName) {
+  public void setShortName(String shortName) {
     this.shortName = shortName;
   }
 

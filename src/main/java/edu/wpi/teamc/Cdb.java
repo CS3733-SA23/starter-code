@@ -26,21 +26,21 @@ public class Cdb {
       // variables
       List<Node> databaseNodeList = new ArrayList<Node>();
       List<Edge> databaseEdgeList = new ArrayList<Edge>();
-
       String nodeID;
       int xCoordinate;
       int yCoordinate;
       String locationNameLong;
       String locationNameShort;
       boolean continueProg = true;
+      // load database into Java classes
+      loadDatabaseTables(connection, databaseNodeList, databaseEdgeList);
+      // switch case for menu options
       while (continueProg) {
         displayInstructions();
         String command = scanner.nextLine().toLowerCase();
-        loadDatabaseTables(connection, databaseNodeList, databaseEdgeList);
         switch (command) {
           case "display node and edge information":
-            // displays all of the node and edge attributes
-            displayNodeAndEdgeInfo(connection);
+            displayNodeAndEdgeInfo(databaseNodeList, databaseEdgeList);
             break;
           case "update node coordinates":
             System.out.println("please type the nodeID of the node you would like to update:");
@@ -50,7 +50,7 @@ public class Cdb {
             System.out.println("Enter new y coordinate:");
             yCoordinate = scanner.nextInt();
             // update the coordinates with given nodeID and values
-            updateCoordinates(connection, xCoordinate, yCoordinate, nodeID);
+            updateCoordinates(databaseNodeList, xCoordinate, yCoordinate, nodeID);
             break;
           case "update name of location node":
             System.out.println("please type the nodeID of the node you would like to update:");
@@ -148,61 +148,45 @@ public class Cdb {
             + "===========================================\n");
   }
 
-  static void displayNodeAndEdgeInfo(Connection connection) {
-    try {
-      Statement stmtNode = connection.createStatement();
-      Statement stmtEdge = connection.createStatement();
-      // table names
-      String node = "\"hospitalNode\".node";
-      String edge = "\"hospitalNode\".edge";
-      // queries
-      String queryDisplayNodes = "SELECT * FROM " + node;
-      String queryDisplayEdges = "SELECT * FROM " + edge;
-
-      ResultSet rsNodes = stmtNode.executeQuery(queryDisplayNodes);
-      ResultSet rsEdges = stmtEdge.executeQuery(queryDisplayEdges);
-      System.out.println("Node information: \n");
-      while (rsNodes.next()) {
-        for (int i = 1; i <= rsNodes.getMetaData().getColumnCount(); i++) {
-          System.out.print(rsNodes.getString(i) + "\t");
-        }
-        System.out.println("\n");
-      }
+  static void displayNodeAndEdgeInfo(List<Node> databaseNodeList, List<Edge> databaseEdgeList) {
+    System.out.println("Node information:\n");
+    for (Node node : databaseNodeList) {
       System.out.println(
-          "----------------------------------------------------------------------------------------------------------------------------");
-      System.out.println("Edge information: \n");
-      while (rsEdges.next()) {
-        for (int i = 1; i <= rsEdges.getMetaData().getColumnCount(); i++) {
-          System.out.print(rsEdges.getString(i) + "\t");
-        }
-        System.out.println("\n");
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
+          node.getNodeID()
+              + "\t"
+              + node.getXCoord()
+              + "\t"
+              + node.getYCoord()
+              + "\t"
+              + node.getXCoord()
+              + "\t"
+              + node.getFloor()
+              + "\t"
+              + node.getBuilding()
+              + "\t"
+              + node.getNodeType()
+              + "\t"
+              + node.getLongName()
+              + "\t"
+              + node.getShortName());
+    }
+    System.out.println(
+        "----------------------------------------------------------------------------------------------------------------------------");
+    System.out.println("Edge information: \n");
+    for (Edge edge : databaseEdgeList) {
+      System.out.println(edge.getId() + "\t" + edge.getStartNode() + "\t" + edge.getEndNode());
     }
   }
 
   static void updateCoordinates(
-      Connection connection, int xCoordinate, int yCoordinate, String nodeID) {
-    try {
-      PreparedStatement stmtUpdateCoord =
-          connection.prepareStatement(
-              "UPDATE \"hospitalNode\".node\n"
-                  + "SET xcoord = ?, ycoord = ?\n"
-                  + "WHERE \"nodeID\" = ?;");
-      // set parameters for prepared statement
-      stmtUpdateCoord.setInt(1, xCoordinate);
-      stmtUpdateCoord.setInt(2, yCoordinate);
-      stmtUpdateCoord.setString(3, nodeID);
-
-      int rowsUpdated = stmtUpdateCoord.executeUpdate();
-      if (rowsUpdated > 0) {
-        System.out.println("update successful!");
-      } else {
-        System.out.println("Node not found: Invalid nodeID");
+      List<Node> databaseNodeList, int xCoordinate, int yCoordinate, String nodeID) {
+    for (Node node : databaseNodeList) {
+      if (node.getNodeID().equals(nodeID)) {
+        // update coordinates in node
+        node.setXCoord(xCoordinate);
+        node.setYCoord(yCoordinate);
+        break;
       }
-    } catch (SQLException e) {
-      System.out.println("SQL exception occurred: " + e.getMessage());
     }
   }
 
