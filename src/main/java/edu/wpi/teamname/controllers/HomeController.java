@@ -11,7 +11,8 @@ public class HomeController {
 
   @FXML MFXButton signageButton;
   @FXML MFXButton flowersButton;
-  @FXML MFXButton mealButton;
+
+  @FXML MFXButton mealRequestButton;
 
   @FXML
   public void initialize() {
@@ -20,5 +21,6 @@ public class HomeController {
 
     // navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
+    mealRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
   }
 }
