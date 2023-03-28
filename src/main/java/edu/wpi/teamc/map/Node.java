@@ -33,8 +33,8 @@ public class Node {
    */
   public Node(
       String nodeID,
-      long xCoord,
-      long yCoord,
+      int xCoord,
+      int yCoord,
       String floor,
       String building,
       String nodeType,
@@ -66,8 +66,8 @@ public class Node {
    */
   public Node(
       String nodeID,
-      long xCoord,
-      long yCoord,
+      int xCoord,
+      int yCoord,
       String floor,
       String building,
       String nodeType,
