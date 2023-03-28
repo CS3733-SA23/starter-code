@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3b63a5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.FlowerRequestController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #e1e1e1;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.8980392217636108" green="0.7372549176216125" blue="0.23137255012989044" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Pane>
+      <VBox fillWidth="false" prefWidth="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <HBox fillHeight="false" prefHeight="50.0" prefWidth="450.0" spacing="98.0">
+               <children>
+                  <MFXButton fx:id="cancelButton" buttonType="RAISED" depthLevel="LEVEL1" prefHeight="30.0" prefWidth="70.0" rippleColor="#302525" style="-fx-background-color: #3B63A5; -fx-text-fill: #ffffff;" text="Cancel" textFill="WHITE" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Flower Delivery Form" wrappingWidth="259.71795654296875">
+                     <font>
+                        <Font name="Open Sans Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <ScrollPane prefHeight="500.0" prefWidth="450.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="485.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="45.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="50.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Recipient Name">
+                                       <VBox.margin>
+                                          <Insets left="150.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <MFXTextField fx:id="recipientName" alignment="CENTER" prefHeight="50.0" prefWidth="300.0">
+                                       <VBox.margin>
+                                          <Insets left="50.0" />
+                                       </VBox.margin>
+                                    </MFXTextField>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room Number">
+                                       <VBox.margin>
+                                          <Insets left="155.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <MFXTextField fx:id="roomNumber" alignment="CENTER" prefHeight="50.0" prefWidth="300.0">
+                                       <VBox.margin>
+                                          <Insets left="50.0" />
+                                       </VBox.margin>
+                                    </MFXTextField>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Flower Choice">
+                                       <VBox.margin>
+                                          <Insets left="155.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <MFXComboBox fx:id="flowerChoice" accessibleRole="COMBO_BOX" alignment="CENTER" editable="false" prefHeight="40.0" prefWidth="300.0" selectable="true">
+                                       <VBox.margin>
+                                          <Insets left="50.0" />
+                                       </VBox.margin>
+                                    </MFXComboBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Flowers" wrappingWidth="100.974609375">
+                                       <VBox.margin>
+                                          <Insets left="140.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <MFXComboBox fx:id="numOfFlowers" alignment="CENTER" prefHeight="45.0" prefWidth="300.0" selectable="true">
+                                       <VBox.margin>
+                                          <Insets left="50.0" />
+                                       </VBox.margin>
+                                    </MFXComboBox>
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Notes">
+                                       <VBox.margin>
+                                          <Insets left="175.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <MFXTextField fx:id="recipientName1" alignment="CENTER" prefHeight="50.0" prefWidth="300.0">
+                                       <VBox.margin>
+                                          <Insets left="50.0" />
+                                       </VBox.margin>
+                                    </MFXTextField>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+               <VBox.margin>
+                  <Insets left="75.0" right="50.0" />
+               </VBox.margin>
+            </ScrollPane>
+            <HBox prefHeight="100.0" prefWidth="600.0">
+               <children>
+                  <MFXButton fx:id="submitButton" buttonType="RAISED" depthLevel="LEVEL1" prefHeight="30.0" prefWidth="70.0" rippleColor="#302525" style="-fx-background-color: #3B63A5; -fx-text-fill: #ffffff;" text="Submit" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="510.0" top="20.0" />
+                     </HBox.margin>
+                  </MFXButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
