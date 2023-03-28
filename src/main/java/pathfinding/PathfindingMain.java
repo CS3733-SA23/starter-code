@@ -15,7 +15,7 @@ public class PathfindingMain {
       // Read the next line of command line input and use it to perform the next operation
       String input = scanner.nextLine();
 
-      if(input == null)
+      if (input == null)
         // Just to make sure that we never get a NullPointerException within one of the helpers
         continue;
 
