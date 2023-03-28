@@ -2,9 +2,9 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -17,35 +17,43 @@
                   <Font name="Open Sans Bold" size="24.0" />
                </font>
             </Text>
-                <MFXButton fx:id="mealRequestButton" minHeight="8.0" minWidth="100.0" prefHeight="40.0" prefWidth="300.0" rippleAnimateBackground="false" rippleAnimationSpeed="0.0" rippleBackgroundOpacity="0.0" rippleRadius="0.0" rippleRadiusMultiplier="0.0" style="-fx-background-color: #192d5aff; -fx-alignment: center-left;" text="Meal Orders" textFill="WHITE">
+                <MFXButton fx:id="mealRequestButton" graphicTextGap="10.0" minHeight="8.0" minWidth="100.0" prefHeight="40.0" prefWidth="300.0" rippleAnimateBackground="false" rippleAnimationSpeed="0.0" rippleBackgroundOpacity="0.0" rippleRadius="0.0" rippleRadiusMultiplier="0.0" style="-fx-background-color: #192d5aff; -fx-alignment: center-left; -fx-background-position: center-right;" text="Meal Orders" textFill="WHITE">
                     <font>
                         <Font name="Open Sans Bold" size="16.0" />
                     </font>
                <VBox.margin>
                   <Insets left="10.0" right="10.0" />
                </VBox.margin>
+               <graphic>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               </graphic>
                 </MFXButton>
-                <MFXButton fx:id="flowersButton" minHeight="8.0" minWidth="100.0" prefHeight="40.0" prefWidth="300.0" rippleAnimateBackground="false" rippleAnimationSpeed="0.0" rippleBackgroundOpacity="0.0" rippleRadius="0.0" rippleRadiusMultiplier="0.0" style="-fx-background-color: #192d5aff; -fx-alignment: center-left;" text="Flower Delivery" textFill="WHITE">
+                <MFXButton fx:id="flowersButton" graphicTextGap="10.0" minHeight="8.0" minWidth="100.0" prefHeight="40.0" prefWidth="300.0" rippleAnimateBackground="false" rippleAnimationSpeed="0.0" rippleBackgroundOpacity="0.0" rippleRadius="0.0" rippleRadiusMultiplier="0.0" style="-fx-background-color: #192d5aff; -fx-alignment: center-left;" text="Flower Delivery" textFill="WHITE">
                     <font>
                         <Font name="Open Sans Bold" size="16.0" />
                     </font>
                <VBox.margin>
                   <Insets left="10.0" right="10.0" />
                </VBox.margin>
+               <graphic>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               </graphic>
                 </MFXButton>
-                <MFXButton fx:id="signageButton" minHeight="8.0" minWidth="100.0" prefHeight="40.0" prefWidth="300.0" rippleAnimateBackground="false" rippleAnimationSpeed="0.0" rippleBackgroundOpacity="0.0" rippleRadius="0.0" rippleRadiusMultiplier="0.0" style="-fx-background-color: #192d5aff; -fx-alignment: center-left;" text="Signage" textFill="WHITE">
+                <MFXButton fx:id="signageButton" graphicTextGap="10.0" minHeight="8.0" minWidth="100.0" prefHeight="40.0" prefWidth="300.0" rippleAnimateBackground="false" rippleAnimationSpeed="0.0" rippleBackgroundOpacity="0.0" rippleRadius="0.0" rippleRadiusMultiplier="0.0" style="-fx-background-color: #192d5aff; -fx-alignment: center-left;" text="Signage" textFill="WHITE">
                     <font>
                         <Font name="Open Sans Bold" size="16.0" />
                     </font>
                <VBox.margin>
                   <Insets left="10.0" right="10.0" />
                </VBox.margin>
+               <graphic>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               </graphic>
                 </MFXButton>
             </children>
          <StackPane.margin>
             <Insets />
          </StackPane.margin>
         </VBox>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" />
     </children>
 </StackPane>
