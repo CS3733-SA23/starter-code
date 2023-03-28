@@ -9,18 +9,18 @@ public class PathfindingTests {
 
   /** * Helper function to instantiate a basic graph */
   public void createTestGraph() {
-    HospitalNode node1 = new HospitalNode("1",0,0);
-    HospitalNode node2 = new HospitalNode("2",2,4);
-    HospitalNode node3 = new HospitalNode("3",5,5);
-    HospitalNode node4 = new HospitalNode("4",7,9);
-    HospitalNode node5 = new HospitalNode("5",10,10);
+    HospitalNode node1 = new HospitalNode("1", 0, 0);
+    HospitalNode node2 = new HospitalNode("2", 2, 4);
+    HospitalNode node3 = new HospitalNode("3", 5, 5);
+    HospitalNode node4 = new HospitalNode("4", 7, 9);
+    HospitalNode node5 = new HospitalNode("5", 10, 10);
     // Disconnected node
-    HospitalNode node6 = new HospitalNode("6",12,12);
+    HospitalNode node6 = new HospitalNode("6", 12, 12);
     HospitalNode.addEdge(node1, node2, 1);
-    HospitalNode.addEdge(node2, node4,3);
-    HospitalNode.addEdge(node4, node5,1);
-    HospitalNode.addEdge(node1, node3,5);
-    HospitalNode.addEdge(node3, node5,2);
+    HospitalNode.addEdge(node2, node4, 3);
+    HospitalNode.addEdge(node4, node5, 1);
+    HospitalNode.addEdge(node1, node3, 5);
+    HospitalNode.addEdge(node3, node5, 2);
   }
 
   /** Generic pathfinder tests */
@@ -84,7 +84,8 @@ public class PathfindingTests {
     // Travels the path with more segments bc it is lighter weight
     createTestGraph();
     AbstractPathfinder pathfinder = new BFSPathfinder();
-    List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("1"), HospitalNode.allNodes.get("5"));
+    List<HospitalNode> path =
+        pathfinder.findPath(HospitalNode.allNodes.get("1"), HospitalNode.allNodes.get("5"));
     assertEquals(path.get(0), HospitalNode.allNodes.get("1"));
     assertEquals(path.get(1), HospitalNode.allNodes.get("2"));
     assertEquals(path.get(2), HospitalNode.allNodes.get("4"));
@@ -96,7 +97,8 @@ public class PathfindingTests {
     // Travels shorter path bc lighter weights
     createTestGraph();
     AbstractPathfinder pathfinder = new BFSPathfinder();
-    List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("4"), HospitalNode.allNodes.get("3"));
+    List<HospitalNode> path =
+        pathfinder.findPath(HospitalNode.allNodes.get("4"), HospitalNode.allNodes.get("3"));
     assertEquals(path.get(0), HospitalNode.allNodes.get("1"));
     assertEquals(path.get(1), HospitalNode.allNodes.get("5"));
     assertEquals(path.get(2), HospitalNode.allNodes.get("3"));
@@ -109,7 +111,7 @@ public class PathfindingTests {
     createTestGraph();
     AbstractPathfinder pathfinder = new BFSPathfinder();
     List<HospitalNode> path =
-            pathfinder.findPath(HospitalNode.allNodes.get("2"), HospitalNode.allNodes.get("3"));
+        pathfinder.findPath(HospitalNode.allNodes.get("2"), HospitalNode.allNodes.get("3"));
     assertEquals(path.get(0), HospitalNode.allNodes.get("2"));
     assertEquals(path.get(1), HospitalNode.allNodes.get("1"));
     assertEquals(path.get(2), HospitalNode.allNodes.get("3"));
@@ -119,7 +121,8 @@ public class PathfindingTests {
   public void testAStarFailCase() {
     createTestGraph();
     AbstractPathfinder pathfinder = new BFSPathfinder();
-    List<HospitalNode> path = pathfinder.findPath(HospitalNode.allNodes.get("1"), HospitalNode.allNodes.get("6"));
+    List<HospitalNode> path =
+        pathfinder.findPath(HospitalNode.allNodes.get("1"), HospitalNode.allNodes.get("6"));
     assertNull(path);
   }
 }

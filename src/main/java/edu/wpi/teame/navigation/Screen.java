@@ -1,4 +1,3 @@
-
 package edu.wpi.teame.navigation;
 
 public enum Screen {
