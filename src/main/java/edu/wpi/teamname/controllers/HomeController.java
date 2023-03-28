@@ -11,7 +11,6 @@ public class HomeController {
 
   @FXML MFXButton signageButton;
   @FXML MFXButton flowersButton;
-  @FXML MFXButton mealButton;
 
   @FXML MFXButton mealRequestButton;
 
