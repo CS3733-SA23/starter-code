@@ -249,8 +249,10 @@ public class Graph {
     Node startNode = nodes.get(start);
     Node endNode = nodes.get(end);
     List<Node> directions = getDirections_BFS(startNode, endNode);
+
+    System.out.println();
     for (Node node : directions) {
-      System.out.println(node.getNodeID());
+      System.out.print(" --> " + node.getNodeID());
     }
   }
 }
