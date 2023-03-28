@@ -16,11 +16,9 @@ public class HomeController {
   @FXML
   public void initialize() {
 
-
     flowersButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWER_REQUEST));
 
     // navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
-
   }
 }

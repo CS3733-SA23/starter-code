@@ -9,7 +9,6 @@ public enum Screen {
 
   SIGNAGE_TEXT("views/Signage.fxml");
 
-
   private final String filename;
 
   Screen(String filename) {
