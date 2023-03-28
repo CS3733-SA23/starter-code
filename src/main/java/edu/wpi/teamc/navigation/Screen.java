@@ -6,7 +6,8 @@ public enum Screen {
   SIGNAGE_PAGE("views/SignagePage.fxml"),
   ELEVATOR_SIGNAGE("views/ElevatorSignage.fxml"),
   HOME("views/Home.fxml"),
-  MEAL("views/Meal.fxml");
+  MEAL("views/Meal.fxml"),
+  CONFERENCE("views/Conference.fxml");
 
   private final String filename;
 

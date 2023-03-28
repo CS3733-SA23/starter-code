@@ -13,20 +13,24 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bae3e0" height="400.0" stroke="#bae3e0" strokeType="INSIDE" width="600.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TEAL" height="378.0" layoutX="11.0" layoutY="11.0" stroke="TEAL" strokeType="INSIDE" width="578.0" />
-      <MFXButton fx:id="MEAL_backtorequest" layoutX="34.0" layoutY="347.0" prefHeight="26.0" prefWidth="110.0" text="Cancel" textFill="#016161">
-         <font>
-            <Font name="Verdana Bold" size="13.0" />
-         </font></MFXButton>
-      <MFXButton fx:id="MEAL_backtohome" layoutX="450.0" layoutY="347.0" prefHeight="26.0" prefWidth="110.0" text="SUBMIT" textFill="#016161">
-         <font>
-            <Font name="Verdana Bold" size="13.0" />
-         </font></MFXButton>
       <Label layoutX="35.0" layoutY="34.0" text="Meal Request" textFill="WHITE">
          <font>
             <Font name="Verdana Bold" size="20.0" />
          </font>
       </Label>
-      <Group layoutX="466.0" layoutY="222.0" />
+      <MFXButton fx:id="MEAL_backtohome" layoutX="34.0" layoutY="347.0" prefHeight="26.0" prefWidth="110.0" text="Cancel" textFill="#016161">
+         <font>
+            <Font name="Verdana Bold" size="13.0" />
+         </font></MFXButton>
+      <MFXButton fx:id="MEAL_submit" layoutX="450.0" layoutY="347.0" onAction="#SubmitRequest" prefHeight="26.0" prefWidth="110.0" text="SUBMIT" textFill="#016161">
+         <font>
+            <Font name="Verdana Bold" size="13.0" />
+         </font></MFXButton>
+      <MFXButton fx:id="MEAL_clear" layoutX="491.0" layoutY="286.0" prefHeight="23.0" prefWidth="69.0" text="Clear" textFill="#016161">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </MFXButton>
       <Group layoutX="64.0" layoutY="102.0">
          <children>
             <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-14.0" prefHeight="30.0" prefWidth="425.0" textLimit="1000000" />
@@ -37,8 +41,6 @@
             </Label>
          </children>
       </Group>
-      <Group layoutX="64.0" layoutY="176.0" />
-      <Group layoutX="35.0" layoutY="211.0" />
       <Group layoutX="64.0" layoutY="139.0">
          <children>
             <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-13.0" prefHeight="30.0" prefWidth="425.0" textLimit="1000000" />
@@ -69,10 +71,10 @@
             </Label>
          </children>
       </Group>
-      <MFXButton fx:id="MEAL_backtohome1" layoutX="491.0" layoutY="286.0" prefHeight="23.0" prefWidth="69.0" text="Clear" textFill="#016161">
+      <Label fx:id="MEAL_outputtext" layoutX="338.0" layoutY="342.0" prefHeight="36.0" prefWidth="100.0" textFill="#44d71f">
          <font>
-            <Font size="11.0" />
+            <Font size="16.0" />
          </font>
-      </MFXButton>
+      </Label>
    </children>
 </AnchorPane>

@@ -40,7 +40,9 @@ public class HomeController {
   void getOfficeSuppliesPage(ActionEvent event) {}
 
   @FXML
-  void getRoomReservationPage(ActionEvent event) {}
+  void getRoomReservationPage(ActionEvent event) {
+    Navigation.navigate(Screen.CONFERENCE);
+  }
 
   @FXML
   void getSignagePage(ActionEvent event) {}

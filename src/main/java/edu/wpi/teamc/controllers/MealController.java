@@ -7,13 +7,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class MealController {
-  @FXML MFXButton MEAL_backtorequest;
-  @FXML MFXButton MEAL_submitrequest;
-  @FXML Label MEAL_outputtext;
+  @FXML private MFXButton MEAL_backtohome;
+  @FXML private MFXButton MEAL_submit;
+  @FXML private Label MEAL_outputtext;
 
   @FXML
   public void initialize() {
-    MEAL_backtorequest.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    MEAL_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   @FXML
