@@ -109,7 +109,6 @@ public class Cdb {
 
       ResultSet rsNodes = stmtNode.executeQuery(queryDisplayNodes);
       ResultSet rsEdges = stmtEdge.executeQuery(queryDisplayEdges);
-      System.out.println("Node information: \n");
       while (rsNodes.next()) {
         String nodeID = rsNodes.getString("nodeID");
         int xCoord = rsNodes.getInt("xcoord");
@@ -123,7 +122,6 @@ public class Cdb {
         databaseNodeList.add(
             new Node(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName, null));
       }
-      System.out.println("Edge information: \n");
       while (rsEdges.next()) {
         String edgeID = rsEdges.getString("edgeID");
         String startNode = rsEdges.getString("startNode");
