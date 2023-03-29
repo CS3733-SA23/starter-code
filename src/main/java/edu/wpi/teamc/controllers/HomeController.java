@@ -25,39 +25,39 @@ public class HomeController {
   @FXML private Button signagePage;
 
   @FXML
-  void getFlowerDeliveryPage(ActionEvent event) {}
+  void getFlowerDeliveryPage(ActionEvent event) {
+    Navigation.navigate(Screen.FLOWER);
+  }
 
   @FXML
-  void getFurnitureDeliveryPage(ActionEvent event) {}
+  void getFurnitureDeliveryPage(ActionEvent event) {
+    Navigation.navigate(Screen.FURNITURE);
+  }
 
   @FXML
   void getHelpPage(ActionEvent event) {}
 
   @FXML
-  void getMealDeliveryPage(ActionEvent event) {}
+  void getMealDeliveryPage(ActionEvent event) {
+    Navigation.navigate(Screen.MEAL);
+  }
 
   @FXML
-  void getOfficeSuppliesPage(ActionEvent event) {}
+  void getOfficeSuppliesPage(ActionEvent event) {
+    Navigation.navigate(Screen.OFFICE_SUPPLY);
+  }
 
   @FXML
-  void getRoomReservationPage(ActionEvent event) {}
+  void getRoomReservationPage(ActionEvent event) {
+    Navigation.navigate(Screen.CONFERENCE);
+  }
 
   @FXML
-  void getSignagePage(ActionEvent event) {}
-
-  @FXML
-  public void goToSignagePage() {
-    signagePage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
+  void getSignagePage(ActionEvent event) {
+    Navigation.navigate(Screen.SIGNAGE);
   }
 
   /** Method run when controller is initialized */
   @FXML
-  public void initialize() {
-    mealDeliveryPage.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL));
-  }
-
-  @FXML
-  public void goToSignagePage2() {
-    signageButton2.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_PAGE));
-  }
+  public void initialize() {}
 }

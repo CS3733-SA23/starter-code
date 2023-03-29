@@ -6,18 +6,18 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class MealController {
-  @FXML private MFXButton MEAL_backtohome;
-  @FXML private MFXButton MEAL_submit;
-  @FXML private Label MEAL_outputtext;
+public class OfficeSupplyController {
+  @FXML private MFXButton OFF_backtohome;
+  @FXML private MFXButton OFF_submit;
+  @FXML private Label OFF_outputtext;
 
   @FXML
   public void initialize() {
-    MEAL_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    OFF_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   @FXML
   void SubmitRequest() {
-    MEAL_outputtext.setText("Submitted");
+    OFF_outputtext.setText("Submitted");
   }
 }
