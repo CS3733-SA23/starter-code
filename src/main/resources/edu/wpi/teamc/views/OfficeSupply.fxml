@@ -15,7 +15,7 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bae3e0" height="400.0" stroke="#bae3e0" strokeType="INSIDE" width="600.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TEAL" height="378.0" layoutX="10.0" layoutY="10.0" stroke="TEAL" strokeType="INSIDE" width="578.0" />
-      <Label layoutX="32.0" layoutY="29.0" text="Office Supply Request" textFill="WHITE">
+      <Label layoutX="45.0" layoutY="44.0" text="Office Supply Request" textFill="WHITE">
          <font>
             <Font name="Verdana Bold" size="20.0" />
          </font>
@@ -53,15 +53,8 @@
       </Group>
       <Group layoutX="74.0" layoutY="137.0">
          <children>
-            <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-13.0" prefHeight="30.0" prefWidth="425.0" promptText="Enter Room ID" style="-fx-background-color: #BAE3E0;" textLimit="1000000">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font>
-               <textFill>
-                  <Color green="0.501960813999176" blue="0.501960813999176" opacity="0.8700000047683716" />
-               </textFill>
-            </MFXTextField>
-            <Label layoutX="-29.0" layoutY="-9.0" prefHeight="20.0" prefWidth="100.0" text="Room ID:" textFill="WHITE">
+            <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-12.0" prefHeight="30.0" prefWidth="425.0" textLimit="1000000" />
+            <Label layoutX="-29.0" layoutY="-10.0" prefHeight="20.0" prefWidth="100.0" text="Room ID:" textFill="WHITE">
                <font>
                   <Font name="Verdana Bold" size="16.0" />
                </font>
@@ -75,15 +68,6 @@
                   <Font name="Verdana Bold" size="16.0" />
                </font>
             </Label>
-            <MenuButton layoutX="71.0" layoutY="-10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="425.0" style="-fx-background-color: #BAE3E0;" text="--Select Office Supply Option--" textFill="TEAL">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="The Ian Special" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font>
-            </MenuButton>
          </children>
       </Group>
       <Group layoutX="74.0" layoutY="231.0">
@@ -104,5 +88,12 @@
             <Font size="16.0" />
          </font>
       </Label>
+      <MenuButton fx:id="OFF_Menu" layoutX="145.0" layoutY="180.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="425.0" text="-Please Select Office Supply-">
+        <items>
+            <MenuItem fx:id="OFF_Default" mnemonicParsing="false" onAction="#OFF_Choice0" text="-Please Select Office Supply-" />
+          <MenuItem fx:id="OFF_Pen" mnemonicParsing="false" onAction="#OFF_Choice1" text="Pen" />
+          <MenuItem fx:id="OFF_Notebook" mnemonicParsing="false" onAction="#OFF_Choice2" text="Notebook" />
+        </items>
+      </MenuButton>
    </children>
 </AnchorPane>
