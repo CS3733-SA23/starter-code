@@ -627,5 +627,21 @@ public class DatabaseController {
         fileWriter.append("\n");
       }
     }
+
+    //Writes in each row of data
+    while (rs.next())
+    {
+      for (int i = 1; i <= numOfCols; i++)
+      {
+        fileWriter.append(rs.getString(i));
+        if (i < numOfCols)
+        {
+          fileWriter.append(",");
+        } else
+        {
+          fileWriter.append("\n");
+        }
+      }
+    }
   }
 }
