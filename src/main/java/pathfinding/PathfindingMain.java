@@ -1,5 +1,6 @@
 package pathfinding;
 
+import Database.DatabaseController;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -43,6 +44,9 @@ public class PathfindingMain {
           edgeAddHandler(input);
         }
 
+      } else if (input.startsWith("import")) {
+        importDatabaseHandler(input);
+
       } else if (input.startsWith("run")) {
         // Import a graph from a specified file
         runFromFile(input);
@@ -82,6 +86,15 @@ public class PathfindingMain {
     HospitalNode.addEdge(arguments[2], arguments[3]);
   }
 
+  public static void importDatabaseHandler(String input) {
+    String[] arguments = input.split(" ");
+    DatabaseController db;
+    // import [username (optional)] [password (optional)]
+    if (arguments.length >= 3) db = new DatabaseController(arguments[1], arguments[2]);
+    else db = new DatabaseController("teame", "teame50");
+    HospitalNode.processEdgeList(db.getHospitalEdges());
+  }
+
   public static void runFromFile(String input) {
     // Runs the scanner handler on the contents of the file
     String[] arguments = input.split(" ");
@@ -102,6 +115,8 @@ public class PathfindingMain {
     System.out.println(
         "\tadd -edge [nodeID] [nodeID] [edgeWeight (optional)] "
             + "- Creates an edge between the two nodes with the specified weight");
+    System.out.println(
+        "\timport [username (optional)] [password (optional)] - Imports a graph from the database");
     System.out.println("\trun [fileName] - Runs a series of these commands stored in a text file");
     System.out.println("\thelp - Displays this menu");
     System.out.println("\tquit - Exits the program");

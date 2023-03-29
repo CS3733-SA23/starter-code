@@ -1,7 +1,6 @@
 package Database;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
@@ -626,16 +625,16 @@ public class DatabaseController {
     stmt = c.createStatement();
     ResultSet rs = stmt.executeQuery("SELECT * FROM " + name);
 
-    //Makes new file or finds existing one
+    // Makes new file or finds existing one
     File file = new File(filePath + File.separator + fileName);
 
-    //Initializes the FileWriter to edit the right file
+    // Initializes the FileWriter to edit the right file
     FileWriter fileWriter;
     if (file.exists()) {
       fileWriter = new FileWriter(file, true); // appends to file if it already exists
     } else {
       file.createNewFile();
-      fileWriter = new FileWriter(file); //adds to new file
+      fileWriter = new FileWriter(file); // adds to new file
     }
 
     // Writes the header row
@@ -661,7 +660,7 @@ public class DatabaseController {
       }
     }
 
-    //Closers
+    // Closers
     fileWriter.close();
     rs.close();
     stmt.close();
