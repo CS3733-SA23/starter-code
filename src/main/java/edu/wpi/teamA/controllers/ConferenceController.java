@@ -1,4 +1,4 @@
-package edu.wpi.teamA.controllers.ServiceRequests;
+package edu.wpi.teamA.controllers;
 
 import edu.wpi.teamA.navigation.Navigation;
 import edu.wpi.teamA.navigation.Screen;
