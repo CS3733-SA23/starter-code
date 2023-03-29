@@ -16,8 +16,13 @@ public class FurnitureController {
     FURN_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
-  @FXML
+  /*  @FXML
   void SubmitRequest() {
     FURN_outputtext.setText("Submitted");
+  }*/
+
+  @FXML
+  void SubmitRequest() {
+    FURN_submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
   }
 }

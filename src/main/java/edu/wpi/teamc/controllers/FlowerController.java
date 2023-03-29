@@ -16,8 +16,13 @@ public class FlowerController {
     FLOW_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
-  @FXML
+  /*@FXML
   void SubmitRequest() {
     FLOW_outputtext.setText("Submitted");
+  }*/
+
+  @FXML
+  void SubmitRequest() {
+    FLOW_submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
   }
 }
