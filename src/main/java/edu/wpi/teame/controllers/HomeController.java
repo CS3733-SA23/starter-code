@@ -10,12 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
 public class HomeController {
-
-  // @FXML MFXButton navigateButton;
-
   @FXML MFXButton signageButton;
   @FXML MFXButton flowersButton;
-
   @FXML MFXButton mealRequestButton;
 
   @FXML ImageView logoImage;
@@ -38,7 +34,6 @@ public class HomeController {
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
 
     mouseSetup(mealRequestButton);
-
     mealRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
   }
 
