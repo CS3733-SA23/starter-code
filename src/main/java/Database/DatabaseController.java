@@ -8,10 +8,11 @@ import pathfinding.HospitalEdge;
 import pathfinding.HospitalNode;
 
 public class DatabaseController {
+  private Connection c;
   private static List<HospitalNode> nodeList = new ArrayList<>();
   private static List<HospitalEdge> edgeList = new ArrayList<>();
+
   public static void main(String[] args) {
-    DatabaseController DBC1 = new DatabaseController();
     Scanner s1 = new Scanner(System.in);
 
     System.out.println("Please enter your username (will default to \"teame\"): ");
@@ -19,7 +20,7 @@ public class DatabaseController {
     System.out.println("Please enter your password (will default to \"teame50\"): ");
     String password = s1.nextLine(); // Unused in this Prototype
 
-    Connection c = DBC1.connectToDatabase("teame", "teame50");
+    DatabaseController DBC1 = new DatabaseController("teame", "teame50");
 
     boolean exit = true;
     while (exit) {
@@ -29,11 +30,11 @@ public class DatabaseController {
 
       switch (function) {
         case "update":
-          DBC1.updateTable(c);
+          DBC1.updateTable();
           break;
 
         case "delete":
-          DBC1.deleteFromTable(c);
+          DBC1.deleteFromTable();
           break;
 
         case "help":
@@ -41,18 +42,22 @@ public class DatabaseController {
           break;
 
         case "exit":
-          DBC1.exitDatabaseProgram(c);
+          DBC1.exitDatabaseProgram();
           exit = false;
           break;
 
         case "retrieve":
-          DBC1.retrieveFromTable(c);
+          DBC1.retrieveFromTable();
           break;
 
         default:
           System.out.println("Please enter a valid action");
       }
     }
+  }
+
+  public DatabaseController(String username, String password) {
+    c = this.connectToDatabase(username, password);
   }
 
   private Connection connectToDatabase(String username, String password) {
@@ -71,7 +76,7 @@ public class DatabaseController {
     return c;
   }
 
-  private void deleteFromTable(Connection c) {
+  private void deleteFromTable() {
     try {
       Statement stmt = null;
       Scanner s1 = new Scanner(System.in);
@@ -106,7 +111,7 @@ public class DatabaseController {
     }
   }
 
-  private void retrieveFromTable(Connection c) {
+  private void retrieveFromTable() {
 
     nodeList = new ArrayList<>();
     edgeList = new ArrayList<>();
@@ -136,7 +141,8 @@ public class DatabaseController {
         ResultSet rsEdges = stmt.executeQuery(queryCountEID);
         for (int i = 1; i <= edgeCount; i++) {
           if (rsEdges.next()) {
-            eList.add(rsEdges.getString("edgeID"));
+            String newid = rsEdges.getString("edgeid");
+            eList.add(newid);
           }
         }
       }
@@ -144,13 +150,13 @@ public class DatabaseController {
       throw new RuntimeException(e);
     }
 
-
     // Retrieve edges
     for (String edgeId : eList) {
-      String edgeQuery = "SELECT * FROM teame.l1edges WHERE edgeid = '" + edgeId + "'";
-      try (Statement stmt = c.createStatement()) {
+      String edgeQuery = "SELECT * FROM teame.l1edges WHERE edgeid = '" + edgeId + "';";
+      try {
+        Statement stmt = c.createStatement();
         ResultSet rs = stmt.executeQuery(edgeQuery);
-        System.out.println(rs.getString(edgeId));
+
         if (rs.next()) {
           edgeList.add(extractEdgeFromResultSet(rs));
         }
@@ -183,14 +189,15 @@ public class DatabaseController {
     }
   }
 
-  public List<HospitalNode> getHospitalNodes(){
+  public List<HospitalNode> getHospitalNodes() {
     return nodeList;
   }
-  public List<HospitalEdge> getHospitalEdges(){
+
+  public List<HospitalEdge> getHospitalEdges() {
     return edgeList;
   }
 
-  private void displayCSVInfo(Connection c) {
+  private void displayCSVInfo() {
     Scanner scanner = new Scanner(System.in);
     System.out.print("Which table would you like to see info from (Nodes, Edges): ");
     String table = scanner.nextLine().trim();
@@ -253,7 +260,7 @@ public class DatabaseController {
   }
 
   private HospitalNode extractNodeFromResultSet(ResultSet rs) throws SQLException {
-    String nodeID = rs.getString("nodeID");
+    String nodeID = rs.getString("nodeid");
     int xCoord = rs.getInt("xcoord");
     int yCoord = rs.getInt("ycoord");
     String floor = rs.getString("floor");
@@ -272,7 +279,7 @@ public class DatabaseController {
     return new HospitalEdge(edgeID, startNode, endNode);
   }
 
-  private void updateTable(Connection c) {
+  private void updateTable() {
 
     Statement stmt = null;
 
@@ -568,7 +575,7 @@ public class DatabaseController {
     }
   }
 
-  private void exitDatabaseProgram(Connection c) {
+  private void exitDatabaseProgram() {
     try {
       c.close();
       System.out.println("Database Connection Closed");
