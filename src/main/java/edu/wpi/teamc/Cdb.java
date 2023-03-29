@@ -68,6 +68,11 @@ public class Cdb {
             // update the location name of the given nodeID
             updateLocationName(databaseNodeList, locationNameLong, locationNameShort, nodeID);
             break;
+          case "get specific node":
+            System.out.println("please enter the node ID of the node you would like to get");
+            nodeID = scanner.nextLine();
+            getNode(databaseNodeList, nodeID);
+            break;
           case "export node table into a csv file":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/exportedNodes.csv";
             exportNodesToCSV(csvFileName, databaseNodeList);
@@ -157,6 +162,7 @@ public class Cdb {
             + "Display node and edge information\n"
             + "Update node coordinates\n"
             + "Update name of location node\n"
+            + "Get specific node\n"
             + "Export node table into a CSV file\n"
             + "Import from a CSV file into the node table\n"
             + "Delete a node\n"
@@ -218,6 +224,33 @@ public class Cdb {
         // update name of node
         node.setLongName(locationNameLong);
         node.setShortName(locationNameShort);
+        break;
+      }
+    }
+  }
+
+  static void getNode(List<Node> databaseNodeList, String nodeID) {
+    System.out.println("Node:\n");
+    for (Node node : databaseNodeList) {
+      if (node.getNodeID().equals(nodeID)) {
+        System.out.println(
+            node.getNodeID()
+                + "\t"
+                + node.getXCoord()
+                + "\t"
+                + node.getYCoord()
+                + "\t"
+                + node.getXCoord()
+                + "\t"
+                + node.getFloor()
+                + "\t"
+                + node.getBuilding()
+                + "\t"
+                + node.getNodeType()
+                + "\t"
+                + node.getLongName()
+                + "\t"
+                + node.getShortName());
         break;
       }
     }
