@@ -1,6 +1,8 @@
 package Database;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import pathfinding.HospitalEdge;
 import pathfinding.HospitalNode;
@@ -9,6 +11,13 @@ public class DatabaseController {
   public static void main(String[] args) {
     DatabaseController DBC1 = new DatabaseController();
     Scanner s1 = new Scanner(System.in);
+
+    List<String> edgeList = new ArrayList<>();
+    edgeList.add("CCONF002L1_WELEV00HL1");
+    edgeList.add("CCONF003L1_CHALL002L1");
+    List<String> nodeList = new ArrayList<>();
+    nodeList.add("CCONF001L1");
+    nodeList.add("CCONF002L1");
 
     System.out.println("Please enter your username (will default to \"teame\"): ");
     String username = s1.nextLine(); // Unused in this Prototype
@@ -42,7 +51,7 @@ public class DatabaseController {
           break;
 
         case "retrieve":
-          DBC1.retrieveFromTable(c);
+          DBC1.retrieveFromTable(c, edgeList, nodeList);
           break;
 
         default:
@@ -102,47 +111,46 @@ public class DatabaseController {
     }
   }
 
-  private void retrieveFromTable(Connection c) {
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("Which table would you like to retrieve from (Nodes, Edges): ");
-    String table = scanner.nextLine().trim();
+  private void retrieveFromTable(Connection c, List<String> edgeIDList, List<String> nodeIDList) {
 
-    if (table.equalsIgnoreCase("Nodes")) {
-      System.out.print("Please type the Node ID you would like to retrieve: ");
-      String nodeId = scanner.nextLine().trim();
+    List<HospitalEdge> lEdge = new ArrayList<>();
+    List<HospitalNode> lNode = new ArrayList<>();
 
-      try (PreparedStatement pstmt =
-          c.prepareStatement("SELECT * FROM teame.l1nodes WHERE nodeID = '" + nodeId + "'")) {
-        ResultSet rs = pstmt.executeQuery();
-
+    // Retrieve edges
+    for (String edgeId : edgeIDList) {
+      String edgeQuery = "SELECT * FROM teame.l1edges WHERE edgeid = '" + edgeId + "'";
+      try (Statement stmt = c.createStatement()) {
+        ResultSet rs = stmt.executeQuery(edgeQuery);
+        System.out.println(rs.getString(edgeId));
         if (rs.next()) {
-          HospitalNode node = extractNodeFromResultSet(rs);
-          System.out.println("Node retrieved successfully: " + node);
-        } else {
-          System.out.println("Node not found with ID " + nodeId);
+          lEdge.add(extractEdgeFromResultSet(rs));
         }
-      } catch (SQLException e) {
-        System.err.println("Error retrieving node: " + e.getMessage());
+      } catch (SQLException m) {
+        System.out.println(m.getMessage());
       }
-    } else if (table.equalsIgnoreCase("Edges")) {
-      System.out.print("Please type the Edge ID you would like to retrieve: ");
-      String edgeId = scanner.nextLine().trim();
-
-      try (PreparedStatement pstmt =
-          c.prepareStatement("SELECT * FROM teame.l1edges WHERE edgeid = '" + edgeId + "'")) {
-        ResultSet rs = pstmt.executeQuery();
-
-        if (rs.next()) {
-          HospitalEdge edge = extractEdgeFromResultSet(rs);
-          System.out.println("Edge retrieved successfully: " + edge);
-        } else {
-          System.out.println("Edge not found with ID " + edgeId);
-        }
-      } catch (SQLException e) {
-        System.err.println("Error retrieving edge: " + e.getMessage());
-      }
+    }
+    if (lEdge.isEmpty()) {
+      System.out.println("No edges retrieved for the given list of IDs.");
     } else {
-      System.out.println("Invalid table name: " + table);
+      System.out.println("Edges retrieved successfully.");
+    }
+
+    // Retrieve nodes
+    for (String nodeId : nodeIDList) {
+      String nodeQuery = "SELECT * FROM teame.l1nodes WHERE nodeid = '" + nodeId + "'";
+      try (Statement stmt = c.createStatement()) {
+        ResultSet rs = stmt.executeQuery(nodeQuery);
+        if (rs.next()) {
+          lNode.add(extractNodeFromResultSet(rs));
+        }
+      } catch (SQLException d) {
+        System.out.println(d.getMessage());
+      }
+    }
+    if (lNode.isEmpty()) {
+      System.out.println("No nodes retrieved for the given list of IDs");
+    } else {
+      System.out.println("Nodes retrieved successfully.");
     }
   }
 
