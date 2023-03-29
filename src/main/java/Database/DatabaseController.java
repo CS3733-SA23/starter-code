@@ -613,6 +613,19 @@ public class DatabaseController {
     ResultSet rs = stmt.executeQuery("SELECT * FROM " + name);
     FileWriter fileWriter = new FileWriter(filePath);
 
-
+    //Writes the header row
+    int numOfCols = rs.getMetaData().getColumnCount();
+    for (int i = 1; i <= numOfCols; i++)
+    {
+      fileWriter.append(rs.getMetaData().getColumnName(i));
+      if (i < numOfCols)
+      {
+        fileWriter.append(",");
+      }
+      else
+      {
+        fileWriter.append("\n");
+      }
+    }
   }
 }
