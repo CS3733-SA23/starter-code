@@ -18,6 +18,16 @@ public class OfficeSupplyController {
   @FXML private MenuItem OFF_Notebook;
 
   @FXML
+  public void initialize() {
+    OFF_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+  }
+
+  @FXML
+  void SubmitRequest() {
+    OFF_outputtext.setText("Submitted");
+  }
+
+  @FXML
   void OFF_Choice0() {
     OFF_Menu.setText("-Please Select Office Supply-");
   }
@@ -30,19 +40,5 @@ public class OfficeSupplyController {
   @FXML
   void OFF_Choice2() {
     OFF_Menu.setText("Notebook");
-
-  @FXML
-  public void goHome() {
-    OFF_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-  }
-
-  /*@FXML
-  void SubmitRequest() {
-    OFF_outputtext.setText("Submitted");
-  }*/
-
-  @FXML
-  void SubmitRequest() {
-    OFF_submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
   }
 }
