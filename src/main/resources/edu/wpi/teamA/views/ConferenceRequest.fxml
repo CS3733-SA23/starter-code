@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.ConferenceController">
-   <children>
-      <VBox layoutX="181.0" layoutY="75.0" prefHeight="287.0" prefWidth="190.0">
+<ScrollPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.ConferenceController">
+   <content>
+      <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-            <TextField />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
-            <TextField />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Start Time" />
-            <TextField />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="End Time" />
-            <TextField />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of People" />
-            <TextField />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Additional Requests" />
-            <TextField />
+            <VBox layoutX="181.0" layoutY="75.0" prefHeight="287.0" prefWidth="190.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+                  <TextField />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+                  <TextField />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Start Time" />
+                  <TextField />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="End Time" />
+                  <TextField />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of People" />
+                  <TextField />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Additional Requests" />
+                  <TextField />
+               </children>
+            </VBox>
+            <MFXButton fx:id="backButton" layoutX="120.0" layoutY="75.0" onAction="#goBack" text="Back" />
+            <MFXButton fx:id="submitButton" buttonType="RAISED" layoutX="378.0" layoutY="307.0" onAction="#submitForm" rippleColor="#bdbdbd" text="Submit" textFill="#219631" />
+            <MFXButton fx:id="clearButton" layoutX="381.0" layoutY="262.0" onAction="#clearForm" text="Clear" />
+            <Text layoutX="203.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Conference Room Service Request" />
          </children>
-      </VBox>
-      <MFXButton fx:id="backButton" layoutX="120.0" layoutY="75.0" onAction="#goBack" text="Back" />
-      <MFXButton fx:id="submitButton" buttonType="RAISED" layoutX="378.0" layoutY="307.0" onAction="#submitForm" rippleColor="#bdbdbd" text="Submit" textFill="#219631" />
-      <MFXButton fx:id="clearButton" layoutX="381.0" layoutY="262.0" onAction="#clearForm" text="Clear" />
-      <Text layoutX="203.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Conference Room Service Request" />
-   </children>
-</AnchorPane>
+      </AnchorPane>
+   </content>
+</ScrollPane>
