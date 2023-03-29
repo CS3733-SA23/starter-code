@@ -624,16 +624,17 @@ public class DatabaseController {
     stmt = c.createStatement();
     ResultSet rs = stmt.executeQuery("SELECT * FROM " + name);
 
+    //Makes new file or finds existing one
     File file = new File(filePath + File.separator + fileName);
+
+    //Initializes the FileWriter to edit the right file
     FileWriter fileWriter;
     if (file.exists()) {
-      fileWriter = new FileWriter(file, true); // if file exists append to file. Works fine.
+      fileWriter = new FileWriter(file, true); // appends to file if it already exists
     } else {
       file.createNewFile();
-      fileWriter = new FileWriter(file);
+      fileWriter = new FileWriter(file); //adds to new file
     }
-
-    // FileWriter fileWriter = new FileWriter(file);
 
     // Writes the header row
     int numOfCols = rs.getMetaData().getColumnCount();
@@ -657,8 +658,8 @@ public class DatabaseController {
         }
       }
     }
-    fileWriter.append("hi dude man");
 
+    //Closers
     fileWriter.close();
     rs.close();
     stmt.close();
