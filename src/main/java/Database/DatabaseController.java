@@ -1,7 +1,6 @@
 package Database;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
@@ -26,11 +25,15 @@ public class DatabaseController {
 
     DatabaseController DBC1 = new DatabaseController("teame", "teame50");
 
+    /*
+    //For Testing
     try {
-      DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop");
+      DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile.csv");
     } catch (FileNotFoundException e) {
       System.out.println("The file is being dum");
     }
+    */
+
     boolean exit = true;
     while (exit) {
       System.out.println("\nWhat would you like to do?");
@@ -613,20 +616,14 @@ public class DatabaseController {
     }
   }
 
-  private void exportToCSV(String name, String filePath) throws SQLException, IOException {
+  private void exportToCSV(String name, String filePath, String fileName)
+      throws SQLException, IOException {
 
     Statement stmt = null;
     stmt = c.createStatement();
     ResultSet rs = stmt.executeQuery("SELECT * FROM " + name);
-    /*
-       File newFile = new File("C:\\Users\\Aviro\\OneDrive\\Desktop" + File.separator + "csvtestfile");
-       newFile.mkdirs(); // If the directory containing the file and/or its parent(s) does not exist
-       newFile.createNewFile();
 
-    */
-
-    File file =
-        new File("C:\\Users\\Aviro\\OneDrive\\Desktop\\" + File.separator + "csvtestfile.csv");
+    File file = new File(filePath + File.separator + fileName);
     FileWriter fw;
     if (file.exists()) {
       fw = new FileWriter(file, true); // if file exists append to file. Works fine.
