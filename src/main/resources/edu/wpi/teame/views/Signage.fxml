@@ -2,8 +2,10 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -19,6 +21,13 @@
             </Text>
               <Label layoutX="17.0" layoutY="350.0" prefHeight="25.0" prefWidth="160.0" text="(Screen 1 - MAY23)" />
          </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.8980392217636108" green="0.7372549176216125" blue="0.23137255012989044" />
+               </color>
+            </DropShadow>
+         </effect>
       </Pane>
         <Label layoutX="204.0" layoutY="77.0" prefHeight="25.0" prefWidth="183.0" text="-&gt; Information" />
         <Label layoutX="204.0" layoutY="102.0" prefHeight="25.0" prefWidth="183.0" text="-&gt; Shapiro Admitting" />
