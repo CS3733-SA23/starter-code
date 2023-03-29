@@ -1,5 +1,7 @@
 package Database;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
@@ -24,7 +26,11 @@ public class DatabaseController {
 
     DatabaseController DBC1 = new DatabaseController("teame", "teame50");
 
-    DBC1.exportToCSV("l1edges", "\"C:\\Users\\Aviro\\OneDrive\\Desktop\\csvtestfile.csv\"");
+    try {
+      DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop");
+    } catch (FileNotFoundException e) {
+      System.out.println("The file is being dum");
+    }
 
     boolean exit = true;
     while (exit) {
@@ -609,10 +615,12 @@ public class DatabaseController {
   }
 
   private void exportToCSV(String name, String filePath) throws SQLException, IOException {
+
     Statement stmt = null;
     stmt = c.createStatement();
     ResultSet rs = stmt.executeQuery("SELECT * FROM " + name);
-    FileWriter fileWriter = new FileWriter(filePath);
+    File newFile = new File(filePath);
+    FileWriter fileWriter = new FileWriter(newFile);
 
     // Writes the header row
     int numOfCols = rs.getMetaData().getColumnCount();
