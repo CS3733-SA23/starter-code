@@ -14,7 +14,6 @@ public class ServiceRequestController {
   @FXML
   public void initialize() {
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     flowerButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWER_REQUEST));
   }
 
