@@ -31,7 +31,6 @@ public class DatabaseController {
     } catch (FileNotFoundException e) {
       System.out.println("The file is being dum");
     }
-
     boolean exit = true;
     while (exit) {
       System.out.println("\nWhat would you like to do?");
@@ -619,8 +618,24 @@ public class DatabaseController {
     Statement stmt = null;
     stmt = c.createStatement();
     ResultSet rs = stmt.executeQuery("SELECT * FROM " + name);
-    File newFile = new File(filePath);
-    FileWriter fileWriter = new FileWriter(newFile);
+    /*
+       File newFile = new File("C:\\Users\\Aviro\\OneDrive\\Desktop" + File.separator + "csvtestfile");
+       newFile.mkdirs(); // If the directory containing the file and/or its parent(s) does not exist
+       newFile.createNewFile();
+
+    */
+
+    File file =
+        new File("C:\\Users\\Aviro\\OneDrive\\Desktop\\" + File.separator + "csvtestfile.csv");
+    FileWriter fw;
+    if (file.exists()) {
+      fw = new FileWriter(file, true); // if file exists append to file. Works fine.
+    } else {
+      file.createNewFile();
+      fw = new FileWriter(file);
+    }
+
+    FileWriter fileWriter = new FileWriter(file);
 
     // Writes the header row
     int numOfCols = rs.getMetaData().getColumnCount();
