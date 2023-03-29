@@ -322,32 +322,33 @@ public class DatabaseController {
       System.out.println("Which table would you like to update (Nodes, Edges): ");
       String tabletoUpdate = s1.nextLine().toLowerCase();
 
-      try {
-        if (tabletoUpdate.equals("nodes")) {
+      String newval = "";
+      int newInt = 0;
+      String sql = "";
 
+      switch(tabletoUpdate) {
+
+        case "nodes":
           System.out.println("Please type the Node ID you would like to update: ");
           String nodetoUpdate = s1.nextLine();
 
           System.out.println("Which attribute would you like to update (xcoord, ycoord, longname)");
           String attributeToUpdate = s1.nextLine().toLowerCase();
-          stmt = c.createStatement();
-
-          String newval = "";
-          int newInt = 0;
-          String sql = "";
 
           switch (attributeToUpdate) {
+
             case "xcoord":
               System.out.println("Please enter the new xcoord: ");
               newInt = s1.nextInt();
+              stmt = c.createStatement();
               sql =
-                  "UPDATE l1nodes SET xcoord = "
-                      + newInt
-                      + " WHERE nodeID = '"
-                      + nodetoUpdate
-                      + "';";
+                      "UPDATE l1nodes SET xcoord = "
+                              + newInt
+                              + " WHERE nodeID = '"
+                              + nodetoUpdate
+                              + "';";
               System.out.println(
-                  "xcoord of " + nodetoUpdate + " successfully changed to " + newInt);
+                      "xcoord of " + nodetoUpdate + " successfully changed to " + newInt);
               stmt.execute(sql);
               stmt.close();
               break;
@@ -355,14 +356,15 @@ public class DatabaseController {
             case "ycoord":
               System.out.println("Please enter the new ycoord: ");
               newInt = s1.nextInt();
+              stmt = c.createStatement();
               sql =
-                  "UPDATE l1nodes SET ycoord = "
-                      + newInt
-                      + " WHERE nodeID = '"
-                      + nodetoUpdate
-                      + "';";
+                      "UPDATE l1nodes SET ycoord = "
+                              + newInt
+                              + " WHERE nodeID = '"
+                              + nodetoUpdate
+                              + "';";
               System.out.println(
-                  "ycoord of " + nodetoUpdate + " successfully changed to " + newInt);
+                      "ycoord of " + nodetoUpdate + " successfully changed to " + newInt);
               stmt.execute(sql);
               stmt.close();
               break;
@@ -370,14 +372,15 @@ public class DatabaseController {
             case "longname":
               System.out.println("Please enter the new longname: ");
               newval = s1.nextLine();
+              stmt = c.createStatement();
               sql =
-                  "UPDATE l1nodes SET longname = '"
-                      + newval
-                      + "' WHERE nodeID = '"
-                      + nodetoUpdate
-                      + "';";
+                      "UPDATE l1nodes SET longname = '"
+                              + newval
+                              + "' WHERE nodeID = '"
+                              + nodetoUpdate
+                              + "';";
               System.out.println(
-                  "longname of " + nodetoUpdate + " successfully changed to " + newval);
+                      "longname of " + nodetoUpdate + " successfully changed to " + newval);
               stmt.executeUpdate(sql);
               stmt.close();
               break;
@@ -386,29 +389,24 @@ public class DatabaseController {
               System.out.println("You selected an invalid attribute to edit");
           }
 
-        } else if (tabletoUpdate.equals("edges")) {
+        case "edges":
           System.out.println("Please type the Edge ID you would like to update: ");
           String edgetoUpdate = s1.nextLine();
 
-          System.out.println(
-              "Which attribute would you like to update (edgeid, startnode, endnode)");
+          System.out.println("Which attribute would you like to update (edgeid, startnode, endnode)");
           String attributeToUpdate = s1.nextLine().toLowerCase();
-          stmt = c.createStatement();
-
-          String newval = "";
-          int newInt = 0;
-          String sql = "";
 
           switch (attributeToUpdate) {
             case ("edgeid"):
               System.out.println("Please enter the new edgeid: ");
               newval = s1.nextLine();
+              stmt = c.createStatement();
               sql =
-                  "UPDATE l1edges SET edgeid = '"
-                      + newval
-                      + "' WHERE edgeid = '"
-                      + edgetoUpdate
-                      + "';";
+                      "UPDATE l1edges SET edgeid = '"
+                              + newval
+                              + "' WHERE edgeid = '"
+                              + edgetoUpdate
+                              + "';";
               stmt.executeUpdate(sql);
               stmt.close();
               break;
@@ -416,12 +414,13 @@ public class DatabaseController {
             case ("startnode"):
               System.out.println("Please enter the new startnode: ");
               newval = s1.nextLine();
+              stmt = c.createStatement();
               sql =
-                  "UPDATE l1edges SET startnode = '"
-                      + newval
-                      + "' WHERE edgeid = '"
-                      + edgetoUpdate
-                      + "';";
+                      "UPDATE l1edges SET startnode = '"
+                              + newval
+                              + "' WHERE edgeid = '"
+                              + edgetoUpdate
+                              + "';";
               stmt.executeUpdate(sql);
               stmt.close();
               break;
@@ -429,12 +428,13 @@ public class DatabaseController {
             case ("endnode"):
               System.out.println("Please enter the new endnode: ");
               newval = s1.nextLine();
+              stmt = c.createStatement();
               sql =
-                  "UPDATE l1edges SET endnode = '"
-                      + newval
-                      + "' WHERE edgeid = '"
-                      + edgetoUpdate
-                      + "';";
+                      "UPDATE l1edges SET endnode = '"
+                              + newval
+                              + "' WHERE edgeid = '"
+                              + edgetoUpdate
+                              + "';";
               stmt.executeUpdate(sql);
               stmt.close();
               break;
@@ -442,7 +442,9 @@ public class DatabaseController {
             default:
               System.out.println("Please enter a valid attribute to edit");
           }
-        }
+      }
+
+      try {
       } catch (Exception e) {
         System.err.println(e.getClass().getName() + ": " + e.getMessage());
         System.exit(0);
