@@ -15,6 +15,21 @@
     <children>
         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" spacing="10.0" style="-fx-background-color: WHITE; -fx-border-color: BLACK; -fx-border-width: 0;">
             <children>
+            <HBox alignment="BOTTOM_RIGHT" maxWidth="300.0" minHeight="0.0" minWidth="300.0" prefHeight="0.0" prefWidth="300.0">
+               <children>
+                  <MFXButton fx:id="exitButton" alignment="BOTTOM_RIGHT" contentDisplay="BOTTOM" graphicTextGap="0.0" style="-fx-background-color: #3b63a5;" text="Exit" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </MFXButton>
+               </children>
+               <opaqueInsets>
+                  <Insets right="10.0" />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="250.0" right="250.0" />
+               </VBox.margin>
+            </HBox>
             <ImageView fx:id="logoImage" fitHeight="76.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../logos/teamlogo.jpg" />
