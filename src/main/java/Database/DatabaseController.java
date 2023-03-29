@@ -26,12 +26,14 @@ public class DatabaseController {
 
     DatabaseController DBC1 = new DatabaseController("teame", "teame50");
 
+    /*
     // For Testing
     try {
       DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile1.csv");
     } catch (FileNotFoundException e) {
       System.out.println("The file is being dum");
     }
+    */
     // DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile.csv");
 
     boolean exit = true;
