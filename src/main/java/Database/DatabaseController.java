@@ -1,5 +1,9 @@
 package Database;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +16,7 @@ public class DatabaseController {
   private static List<HospitalNode> nodeList = new ArrayList<>();
   private static List<HospitalEdge> edgeList = new ArrayList<>();
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws SQLException, IOException {
     Scanner s1 = new Scanner(System.in);
 
     System.out.print("Please enter your username (will default to \"teame\"): ");
@@ -22,6 +26,16 @@ public class DatabaseController {
     System.out.println();
 
     DatabaseController DBC1 = new DatabaseController("teame", "teame50");
+
+    /*
+    // For Testing
+    try {
+      DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile1.csv");
+    } catch (FileNotFoundException e) {
+      System.out.println("The file is being dum");
+    }
+    */
+    // DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile.csv");
 
     boolean exit = true;
     while (exit) {
@@ -636,5 +650,54 @@ public class DatabaseController {
       System.err.println(e.getClass().getName() + ": " + e.getMessage());
       System.exit(0);
     }
+  }
+
+  private void exportToCSV(String name, String filePath, String fileName)
+      throws SQLException, IOException {
+
+    // Initialization
+    Statement stmt = null;
+    stmt = c.createStatement();
+    ResultSet rs = stmt.executeQuery("SELECT * FROM " + name);
+
+    //Makes new file or finds existing one
+    File file = new File(filePath + File.separator + fileName);
+
+    //Initializes the FileWriter to edit the right file
+    FileWriter fileWriter;
+    if (file.exists()) {
+      fileWriter = new FileWriter(file, true); // appends to file if it already exists
+    } else {
+      file.createNewFile();
+      fileWriter = new FileWriter(file); //adds to new file
+    }
+
+    // Writes the header row
+    int numOfCols = rs.getMetaData().getColumnCount();
+    for (int i = 1; i <= numOfCols; i++) {
+      fileWriter.append(rs.getMetaData().getColumnName(i));
+      if (i < numOfCols) {
+        fileWriter.append(",");
+      } else {
+        fileWriter.append("\n");
+      }
+    }
+
+    // Writes in each row of data
+    while (rs.next()) {
+      for (int i = 1; i <= numOfCols; i++) {
+        fileWriter.append(rs.getString(i));
+        if (i < numOfCols) {
+          fileWriter.append(",");
+        } else {
+          fileWriter.append("\n");
+        }
+      }
+    }
+
+    //Closers
+    fileWriter.close();
+    rs.close();
+    stmt.close();
   }
 }
