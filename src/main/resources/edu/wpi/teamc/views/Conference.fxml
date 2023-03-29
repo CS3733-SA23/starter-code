@@ -110,7 +110,7 @@
                     </fill>
                 </Text>
                 <Hyperlink layoutX="517.0" layoutY="288.0" style="-fx-font: Inter; -fx-font-weight: 700; -fx-font-size: 13;" text="Clear" textFill="WHITE" underline="true" />
-                <Button fx:id="CONF_backtohome" layoutX="18.0" layoutY="323.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #BAE3E0; -fx-font: Inter; -fx-font-weight: 700; -fx-font-size: 12;" text="Cancel" textFill="TEAL" />
+                <Button fx:id="CONF_backtohome" layoutX="18.0" layoutY="323.0" mnemonicParsing="false" onAction="#goHome" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #BAE3E0; -fx-font: Inter; -fx-font-weight: 700; -fx-font-size: 12;" text="Cancel" textFill="TEAL" />
                 <Button fx:id="CONF_submit" layoutX="455.0" layoutY="323.0" mnemonicParsing="false" onAction="#getSubmitButton" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #BAE3E0; -fx-font: Inter; -fx-font-weight: 700; -fx-font-size: 12;" text="Submit" textFill="TEAL" />
             <VBox layoutX="202.0" layoutY="60.0" prefHeight="218.0" prefWidth="335.0" spacing="13">
                <children>

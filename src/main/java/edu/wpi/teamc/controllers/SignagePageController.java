@@ -12,9 +12,10 @@ public class SignagePageController {
 
   /** Method run when controller is initialized */
   @FXML
-  public void initialize() {
+  public void goHome() {
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
-  public void backAction(ActionEvent actionEvent) {}
+//  public void backAction(ActionEvent actionEvent) {}
+//  // to use this way, have "backAction" under onAction in .fxml file
 }

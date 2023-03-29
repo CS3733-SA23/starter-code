@@ -24,7 +24,7 @@ public class FurnitureController {
   }
 
   @FXML
-  public void initialize() {
+  public void goHome() {
     FURN_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 

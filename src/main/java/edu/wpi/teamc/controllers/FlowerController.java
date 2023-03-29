@@ -12,7 +12,7 @@ public class FlowerController {
   @FXML private Label FLOW_outputtext;
 
   @FXML
-  public void initialize() {
+  public void goHome() {
     FLOW_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 

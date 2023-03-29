@@ -12,7 +12,7 @@ public class ConferenceController {
   @FXML private Label CONF_outputtext;
 
   @FXML
-  public void initialize() {
+  public void goHome() {
     CONF_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 

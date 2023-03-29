@@ -20,7 +20,7 @@
             <Font name="Verdana Bold" size="20.0" />
          </font>
       </Label>
-      <MFXButton fx:id="OFF_backtohome" layoutX="32.0" layoutY="344.0" prefHeight="26.0" prefWidth="82.0" text="Cancel" textFill="#016161">
+      <MFXButton fx:id="OFF_backtohome" layoutX="32.0" layoutY="344.0" onAction="#goHome" prefHeight="26.0" prefWidth="82.0" text="Cancel" textFill="#016161">
          <font>
             <Font name="Verdana Bold" size="13.0" />
          </font>

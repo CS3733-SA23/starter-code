@@ -12,7 +12,7 @@ public class OfficeSupplyController {
   @FXML private Label OFF_outputtext;
 
   @FXML
-  public void initialize() {
+  public void goHome() {
     OFF_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 

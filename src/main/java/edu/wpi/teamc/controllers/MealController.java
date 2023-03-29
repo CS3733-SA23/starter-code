@@ -12,7 +12,7 @@ public class MealController {
   @FXML private Label MEAL_outputtext;
 
   @FXML
-  public void initialize() {
+  public void goHome() {
     MEAL_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
