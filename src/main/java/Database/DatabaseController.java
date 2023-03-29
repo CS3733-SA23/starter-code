@@ -1,6 +1,7 @@
 package Database;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
@@ -25,14 +26,13 @@ public class DatabaseController {
 
     DatabaseController DBC1 = new DatabaseController("teame", "teame50");
 
-    /*
-    //For Testing
+    // For Testing
     try {
-      DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile.csv");
+      DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile1.csv");
     } catch (FileNotFoundException e) {
       System.out.println("The file is being dum");
     }
-    */
+    // DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile.csv");
 
     boolean exit = true;
     while (exit) {
@@ -619,20 +619,21 @@ public class DatabaseController {
   private void exportToCSV(String name, String filePath, String fileName)
       throws SQLException, IOException {
 
+    // Initialization
     Statement stmt = null;
     stmt = c.createStatement();
     ResultSet rs = stmt.executeQuery("SELECT * FROM " + name);
 
     File file = new File(filePath + File.separator + fileName);
-    FileWriter fw;
+    FileWriter fileWriter;
     if (file.exists()) {
-      fw = new FileWriter(file, true); // if file exists append to file. Works fine.
+      fileWriter = new FileWriter(file, true); // if file exists append to file. Works fine.
     } else {
       file.createNewFile();
-      fw = new FileWriter(file);
+      fileWriter = new FileWriter(file);
     }
 
-    FileWriter fileWriter = new FileWriter(file);
+    // FileWriter fileWriter = new FileWriter(file);
 
     // Writes the header row
     int numOfCols = rs.getMetaData().getColumnCount();
@@ -656,6 +657,7 @@ public class DatabaseController {
         }
       }
     }
+    fileWriter.append("hi dude man");
 
     fileWriter.close();
     rs.close();
