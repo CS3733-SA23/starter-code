@@ -10,6 +10,7 @@ import pathfinding.HospitalNode;
 public class DatabaseController {
   private static List<HospitalNode> nodeList = new ArrayList<>();
   private static List<HospitalEdge> edgeList = new ArrayList<>();
+
   public static void main(String[] args) {
     DatabaseController DBC1 = new DatabaseController();
     Scanner s1 = new Scanner(System.in);
@@ -144,7 +145,6 @@ public class DatabaseController {
       throw new RuntimeException(e);
     }
 
-
     // Retrieve edges
     for (String edgeId : eList) {
       String edgeQuery = "SELECT * FROM teame.l1edges WHERE edgeid = '" + edgeId + "'";
@@ -183,10 +183,11 @@ public class DatabaseController {
     }
   }
 
-  public List<HospitalNode> getHospitalNodes(){
+  public List<HospitalNode> getHospitalNodes() {
     return nodeList;
   }
-  public List<HospitalEdge> getHospitalEdges(){
+
+  public List<HospitalEdge> getHospitalEdges() {
     return edgeList;
   }
 
@@ -422,10 +423,32 @@ public class DatabaseController {
     System.out.println("");
     System.out.println("");
 
-    System.out.println("Help Page:\n\n");
+    System.out.println("Help Page:\n");
     boolean exit = false;
     Scanner s1 = new Scanner(System.in);
 
+    // User Operations:
+    // System.out.println("\tUser Operations:\n");
+    System.out.println("\tThe User inputs username to database.");
+    System.out.println("\tThe User inputs password to database.");
+    System.out.println(
+        "\tThe User inputs which operation they wish to use (delete, retrieve, update, help)");
+    System.out.println(
+        "\tThe user then inputs the id of what they want to modify in the database.");
+    System.out.println(
+        "\tThe User inputs all other necessary information for the specified editing operation.");
+    System.out.println(
+        "\tThe User then inputs whether or not they want to edit the database further.");
+    System.out.println("\nType \"exit\" to leave the help screen at any time:");
+
+    while (!exit) {
+      String response = s1.nextLine().toLowerCase();
+      if (response.equals("exit")) {
+        exit = true;
+      }
+    }
+
+    /*
     // User Operations:
     System.out.println("\tUser Operations:\n");
     System.out.println("\t\tUser inputs username to database.");
@@ -560,12 +583,9 @@ public class DatabaseController {
     System.out.println("\t\t\tUser Inputs:");
     System.out.println("\t\t\t\texit: Input exit when ready to leave help screen (exit)");
     System.out.println("\t\t\treturn: void\n\n");
-    while (!exit) {
-      String response = s1.nextLine().toLowerCase();
-      if (response.equals("exit")) {
-        exit = true;
-      }
-    }
+
+     */
+
   }
 
   private void exitDatabaseProgram(Connection c) {
