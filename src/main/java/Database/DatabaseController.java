@@ -15,17 +15,18 @@ public class DatabaseController {
   public static void main(String[] args) {
     Scanner s1 = new Scanner(System.in);
 
-    System.out.println("Please enter your username (will default to \"teame\"): ");
+    System.out.print("Please enter your username (will default to \"teame\"): ");
     String username = s1.nextLine(); // Unused in this Prototype
-    System.out.println("Please enter your password (will default to \"teame50\"): ");
+    System.out.print("Please enter your password (will default to \"teame50\"): ");
     String password = s1.nextLine(); // Unused in this Prototype
+    System.out.println();
 
     DatabaseController DBC1 = new DatabaseController("teame", "teame50");
 
     boolean exit = true;
     while (exit) {
       System.out.println("\nWhat would you like to do?");
-      System.out.println("Choices: update, retrieve, delete, help, exit");
+      System.out.println("Choices: update, retrieve, delete, help, exit, display info");
       String function = s1.nextLine().toLowerCase().trim();
 
       switch (function) {
@@ -48,6 +49,10 @@ public class DatabaseController {
 
         case "retrieve":
           DBC1.retrieveFromTable();
+          break;
+
+        case "display info":
+          DBC1.displayCSVInfo();
           break;
 
         default:
@@ -77,9 +82,12 @@ public class DatabaseController {
   }
 
   private void deleteFromTable() {
-    try {
-      Statement stmt = null;
-      Scanner s1 = new Scanner(System.in);
+    Statement stmt = null;
+    Scanner s1 = new Scanner(System.in);
+
+    boolean donedeleting = true;
+    while (donedeleting) {
+
       System.out.println("Which table would you like to delete from (Nodes, Edges): ");
       String tabletoEdit = s1.nextLine().toLowerCase().trim();
 
@@ -90,24 +98,48 @@ public class DatabaseController {
         try {
           stmt = c.createStatement();
           String sql = "DELETE FROM teame.l1nodes WHERE nodeid = '" + nodetoDelete + "';";
-          stmt.execute(sql);
+          int rs = stmt.executeUpdate(sql);
           stmt.close();
-          System.out.println("Row Deleted successfully from " + tabletoEdit);
-        } catch (Exception e) {
-          System.out.println("You've entered an invalid nodeid");
+          if (rs > 0) {
+            System.out.println("Row Deleted successfully from " + tabletoEdit);
+
+            System.out.println("Are you done deleting (y/n)?");
+            String ans = s1.nextLine().toLowerCase().trim();
+            if (ans.equals("y")) {
+              donedeleting = false;
+            }
+          } else {
+            System.out.println("Please enter a valid node id\n\n");
+          }
+        } catch (SQLException e) {
+          System.out.println();
         }
       } else if (tabletoEdit.equals("edges")) {
         System.out.println("Please type the Edge ID you would like to delete: ");
         String edgetoDelete = s1.nextLine();
+        try {
+          stmt = c.createStatement();
+          String sql = "DELETE FROM teame.l1edges WHERE edgeid = '" + edgetoDelete + "';";
+          int rs = stmt.executeUpdate(sql);
+          stmt.close();
+          if (rs > 0) {
+            System.out.println("Row Deleted successfully from " + tabletoEdit);
 
-        stmt = c.createStatement();
-        String sql = "DELETE FROM teame.l1edges WHERE edgeid = '" + edgetoDelete + "'";
-        stmt.execute(sql);
-        stmt.close();
+            System.out.println("Are you done deleting (y/n)?");
+            String ans = s1.nextLine().toLowerCase().trim();
+            if (ans.equals("y")) {
+              donedeleting = false;
+            }
+          } else {
+            System.out.println("Please enter a valid edge id\n\n");
+          }
+        } catch (SQLException e) {
+          System.out.println();
+        }
+
+      } else {
+        System.out.println("Please enter a valid table name (nodes, edges)");
       }
-    } catch (Exception e) {
-      System.err.println(e.getClass().getName() + ": " + e.getMessage());
-      System.exit(0);
     }
   }
 
@@ -221,7 +253,7 @@ public class DatabaseController {
           String shortName = rs.getString("shortName");
 
           System.out.println(
-              "Edge ("
+              "\nNode: ("
                   + nodeID
                   + ") information (nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName): ");
           System.out.println(
@@ -246,7 +278,7 @@ public class DatabaseController {
           String startNode = rs.getString("startNode");
           String endNode = rs.getString("endNode");
 
-          System.out.println("Edge (" + edgeId + ") information (edgeID, startNode, endNode): ");
+          System.out.println("\nEdge (" + edgeId + ") information (edgeID, startNode, endNode): ");
           System.out.println(edgeID + ", " + startNode + ", " + endNode);
         } else {
           System.out.println("Edge not found with ID " + edgeId);
