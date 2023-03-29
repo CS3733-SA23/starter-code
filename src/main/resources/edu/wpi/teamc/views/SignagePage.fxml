@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.font.MFXFontIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,89 +9,83 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.SignagePageController">
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #008080; -fx-scale-shape: 1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.SignagePageController">
    <children>
-      <AnchorPane layoutY="13.0" style="-fx-background-color: #008080; -fx-scale-shape: 1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutX="186.0" layoutY="22.0" prefWidth="373.0" AnchorPane.leftAnchor="186.0" AnchorPane.rightAnchor="40.80000000000001">
          <children>
-            <VBox layoutX="204.0" layoutY="15.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="204.0" AnchorPane.rightAnchor="72.71109999999999" AnchorPane.topAnchor="15.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Information">
-                     <VBox.margin>
-                        <Insets bottom="15.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Shapiro Admitting">
-                     <VBox.margin>
-                        <Insets bottom="15.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Shapiro Procedural">
-                     <VBox.margin>
-                        <Insets bottom="15.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Watkins Clinics A &amp; B (this floor)">
-                     <VBox.margin>
-                        <Insets bottom="15.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Watkins Clinic C (up to 3rd floor)">
-                     <VBox.margin>
-                        <Insets bottom="15.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Rehabilitation Services (down to 1st floor)" wrappingWidth="342.917236328125">
-                     <VBox.margin>
-                        <Insets bottom="15.0" />
-                     </VBox.margin>
-                  </Text>
-               </children>
-            </VBox>
-            <ImageView fitHeight="37.0" fitWidth="51.0" layoutX="649.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
-               <image>
-                  <Image url="@../../../../../../../icone-de-cloche-grise%20(1).png" />
-               </image>
-            </ImageView>
-            <MFXButton fx:id="backButton" onAction="#backAction" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #A9F6ED; -fx-text-fill: #000000;" text="Back" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
-            <MFXFontIcon layoutX="70.0" layoutY="144.0" />
-            <MFXFontIcon layoutX="53.0" layoutY="117.0" strokeWidth="5.0" />
-            <VBox layoutX="140.0" layoutY="35.0">
-               <children>
-                  <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z">
-                     <VBox.margin>
-                        <Insets bottom="16.0" />
-                     </VBox.margin>
-                  </SVGPath>
-                  <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z">
-                     <VBox.margin>
-                        <Insets bottom="16.0" />
-                     </VBox.margin>
-                  </SVGPath>
-                  <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z">
-                     <VBox.margin>
-                        <Insets bottom="16.0" />
-                     </VBox.margin>
-                  </SVGPath>
-                  <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z" rotate="180.0">
-                     <VBox.margin>
-                        <Insets bottom="16.0" />
-                     </VBox.margin>
-                  </SVGPath>
-                  <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z" rotate="180.0">
-                     <VBox.margin>
-                        <Insets bottom="32.0" />
-                     </VBox.margin>
-                  </SVGPath>
-                  <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z" rotate="180.0">
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
-                  </SVGPath>
-               </children>
-            </VBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 24; -fx-font-weight: bold;" text="Information">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 24; -fx-font-weight: bold;" text="Shapiro Admitting">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 24; -fx-font-weight: bold;" text="Shapiro Procedural">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 24; -fx-font-weight: bold;" text="Watkins Clinics A &amp; B (this floor)">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 24; -fx-font-weight: bold;" text="Watkins Clinic C (up to 3rd floor)">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 24; -fx-font-weight: bold;" text="Rehabilitation Services (down to 1st floor)" wrappingWidth="342.917236328125">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </Text>
          </children>
-      </AnchorPane>
+      </VBox>
+      <ImageView fitHeight="37.0" fitWidth="51.0" layoutX="570.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
+         <image>
+            <Image url="@../../../../../../../icone-de-cloche-grise%20(1).png" />
+         </image>
+      </ImageView>
+      <MFXButton fx:id="backButton" onAction="#backAction" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #A9F6ED; -fx-text-fill: #000000;" text="Back" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <VBox layoutX="123.0" layoutY="35.0" prefWidth="53.0" AnchorPane.leftAnchor="122.99999999999999" AnchorPane.rightAnchor="423.8">
+         <children>
+            <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z">
+               <VBox.margin>
+                  <Insets bottom="16.0" />
+               </VBox.margin>
+            </SVGPath>
+            <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z">
+               <VBox.margin>
+                  <Insets bottom="16.0" />
+               </VBox.margin>
+            </SVGPath>
+            <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z">
+               <VBox.margin>
+                  <Insets bottom="16.0" />
+               </VBox.margin>
+            </SVGPath>
+            <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z" rotate="180.0">
+               <VBox.margin>
+                  <Insets bottom="16.0" />
+               </VBox.margin>
+            </SVGPath>
+            <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z" rotate="180.0">
+               <VBox.margin>
+                  <Insets bottom="32.0" />
+               </VBox.margin>
+            </SVGPath>
+            <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z" rotate="180.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </SVGPath>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
-
