@@ -1,5 +1,6 @@
 package Database;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -7,14 +8,13 @@ import java.util.List;
 import java.util.Scanner;
 import pathfinding.HospitalEdge;
 import pathfinding.HospitalNode;
-import java.io.FileWriter;
 
 public class DatabaseController {
   private Connection c;
   private static List<HospitalNode> nodeList = new ArrayList<>();
   private static List<HospitalEdge> edgeList = new ArrayList<>();
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws SQLException, IOException {
     Scanner s1 = new Scanner(System.in);
 
     System.out.println("Please enter your username (will default to \"teame\"): ");
@@ -24,7 +24,7 @@ public class DatabaseController {
 
     DatabaseController DBC1 = new DatabaseController("teame", "teame50");
 
-    DBC1.exportToCSV("l1edges", "C:\Users\Aviro\Downloads\New folder\csvtestfile.csv");
+    DBC1.exportToCSV("l1edges", "\"C:\\Users\\Aviro\\OneDrive\\Desktop\\csvtestfile.csv\"");
 
     boolean exit = true;
     while (exit) {
@@ -608,39 +608,30 @@ public class DatabaseController {
     }
   }
 
-  private void exportToCSV(String name, String filePath) throws SQLException, IOException
-  {
+  private void exportToCSV(String name, String filePath) throws SQLException, IOException {
     Statement stmt = null;
     stmt = c.createStatement();
     ResultSet rs = stmt.executeQuery("SELECT * FROM " + name);
     FileWriter fileWriter = new FileWriter(filePath);
 
-    //Writes the header row
+    // Writes the header row
     int numOfCols = rs.getMetaData().getColumnCount();
-    for (int i = 1; i <= numOfCols; i++)
-    {
+    for (int i = 1; i <= numOfCols; i++) {
       fileWriter.append(rs.getMetaData().getColumnName(i));
-      if (i < numOfCols)
-      {
+      if (i < numOfCols) {
         fileWriter.append(",");
-      }
-      else
-      {
+      } else {
         fileWriter.append("\n");
       }
     }
 
-    //Writes in each row of data
-    while (rs.next())
-    {
-      for (int i = 1; i <= numOfCols; i++)
-      {
+    // Writes in each row of data
+    while (rs.next()) {
+      for (int i = 1; i <= numOfCols; i++) {
         fileWriter.append(rs.getString(i));
-        if (i < numOfCols)
-        {
+        if (i < numOfCols) {
           fileWriter.append(",");
-        } else
-        {
+        } else {
           fileWriter.append("\n");
         }
       }
