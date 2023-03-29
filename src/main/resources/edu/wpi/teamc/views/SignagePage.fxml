@@ -12,32 +12,32 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #008080; -fx-scale-shape: 1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.SignagePageController">
    <children>
-      <VBox layoutX="186.0" layoutY="22.0" prefWidth="373.0" AnchorPane.leftAnchor="186.0" AnchorPane.rightAnchor="40.80000000000001">
+      <VBox layoutX="186.0" layoutY="19.0" prefWidth="373.0" AnchorPane.leftAnchor="186.0" AnchorPane.rightAnchor="40.80000000000001">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 24; -fx-font-weight: bold;" text="Information">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="21.0" />
                </VBox.margin>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 24; -fx-font-weight: bold;" text="Shapiro Admitting">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="21.0" />
                </VBox.margin>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 24; -fx-font-weight: bold;" text="Shapiro Procedural">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="21.0" />
                </VBox.margin>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 24; -fx-font-weight: bold;" text="Watkins Clinics A &amp; B (this floor)">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="21.0" />
                </VBox.margin>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 24; -fx-font-weight: bold;" text="Watkins Clinic C (up to 3rd floor)">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="23.0" />
                </VBox.margin>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 24; -fx-font-weight: bold;" text="Rehabilitation Services (down to 1st floor)" wrappingWidth="342.917236328125">
@@ -52,7 +52,7 @@
             <Image url="@../../../../../../../icone-de-cloche-grise%20(1).png" />
          </image>
       </ImageView>
-      <MFXButton fx:id="backButton" onAction="#backAction" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #A9F6ED; -fx-text-fill: #000000;" text="Back" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <MFXButton fx:id="backButton" onAction="#backAction" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #A9F6ED; -fx-text-fill: #000000; -fx-font-family: Intel;" text="Back" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <VBox layoutX="123.0" layoutY="35.0" prefWidth="53.0" AnchorPane.leftAnchor="122.99999999999999" AnchorPane.rightAnchor="423.8">
          <children>
             <SVGPath content="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5H42V16.5H0V21.5Z">
