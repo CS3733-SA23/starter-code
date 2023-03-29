@@ -1,11 +1,13 @@
 package Database;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import pathfinding.HospitalEdge;
 import pathfinding.HospitalNode;
+import java.io.FileWriter;
 
 public class DatabaseController {
   private Connection c;
@@ -604,8 +606,13 @@ public class DatabaseController {
     }
   }
 
-  private void exportAsCSV(String name, String FilePath) throws SQLException
+  private void exportAsCSV(String name, String filePath) throws SQLException, IOException
   {
+    Statement stmt = null;
+    stmt = c.createStatement();
+    ResultSet rs = stmt.executeQuery("SELECT * FROM " + name);
+    FileWriter fileWriter = new FileWriter(filePath);
+
 
   }
 }
