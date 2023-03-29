@@ -31,44 +31,28 @@ public class HomeController {
           // change to teamlogo.jpg
         });
 
-    flowersButton.setOnMouseEntered(
-        event -> {
-          flowersButton.setStyle(
-              "-fx-background-color: #ffffff; -fx-alignment: center-left; -fx-border-color: #192d5a; -fx-border-width: 2;");
-          flowersButton.setTextFill(Color.web("#192d5aff", 1.0));
-        });
-    flowersButton.setOnMouseExited(
-        event -> {
-          flowersButton.setStyle("-fx-background-color: #192d5aff; -fx-alignment: center-left;");
-          flowersButton.setTextFill(WHITE);
-        });
+    mouseSetup(flowersButton);
     flowersButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWER_REQUEST));
 
-    signageButton.setOnMouseEntered(
-        event -> {
-          signageButton.setStyle(
-              "-fx-background-color: #ffffff; -fx-alignment: center-left; -fx-border-color: #192d5a; -fx-border-width: 2;");
-          signageButton.setTextFill(Color.web("#192d5aff", 1.0));
-        });
-    signageButton.setOnMouseExited(
-        event -> {
-          signageButton.setStyle("-fx-background-color: #192d5aff; -fx-alignment: center-left;");
-          signageButton.setTextFill(WHITE);
-        });
+    mouseSetup(signageButton);
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
 
-    mealRequestButton.setOnMouseEntered(
-        event -> {
-          mealRequestButton.setStyle(
-              "-fx-background-color: #ffffff; -fx-alignment: center-left; -fx-border-color: #192d5a; -fx-border-width: 2;");
-          mealRequestButton.setTextFill(Color.web("#192d5aff", 1.0));
-        });
-    mealRequestButton.setOnMouseExited(
-        event -> {
-          mealRequestButton.setStyle(
-              "-fx-background-color: #192d5aff; -fx-alignment: center-left;");
-          mealRequestButton.setTextFill(WHITE);
-        });
+    mouseSetup(mealRequestButton);
+
     mealRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
+  }
+
+  private void mouseSetup(MFXButton btn) {
+    btn.setOnMouseEntered(
+        event -> {
+          btn.setStyle(
+              "-fx-background-color: #ffffff; -fx-alignment: center-left; -fx-border-color: #192d5a; -fx-border-width: 2;");
+          btn.setTextFill(Color.web("#192d5aff", 1.0));
+        });
+    btn.setOnMouseExited(
+        event -> {
+          btn.setStyle("-fx-background-color: #192d5aff; -fx-alignment: center-left;");
+          btn.setTextFill(WHITE);
+        });
   }
 }
