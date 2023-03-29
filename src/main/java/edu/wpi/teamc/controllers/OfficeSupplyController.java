@@ -30,6 +30,7 @@ public class OfficeSupplyController {
   @FXML
   void OFF_Choice2() {
     OFF_Menu.setText("Notebook");
+  }
 
   @FXML
   public void goHome() {

@@ -30,6 +30,7 @@ public class MealController {
   @FXML
   void MEAL_Choice2() {
     MEAL_Menu.setText("Vegan");
+  }
 
   @FXML
   public void goHome() {
