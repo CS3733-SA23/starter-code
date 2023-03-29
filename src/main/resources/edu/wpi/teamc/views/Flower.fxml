@@ -20,7 +20,7 @@
             <Font name="Verdana Bold" size="20.0" />
          </font>
       </Label>
-      <MFXButton fx:id="FLOW_backtohome" layoutX="32.0" layoutY="344.0" onAction= "#goHome" prefHeight="26.0" prefWidth="82.0" text="Cancel" textFill="#016161">
+      <MFXButton fx:id="FLOW_backtohome" layoutX="32.0" layoutY="344.0" onAction="#goHome" prefHeight="26.0" prefWidth="82.0" text="Cancel" textFill="#016161">
          <font>
             <Font name="Verdana Bold" size="13.0" />
          </font>
@@ -68,24 +68,6 @@
             </Label>
          </children>
       </Group>
-      <Group layoutX="74.0" layoutY="183.0">
-         <children>
-            <Label layoutX="-29.0" layoutY="-8.0" prefHeight="20.0" prefWidth="100.0" text="Flower:" textFill="WHITE">
-               <font>
-                  <Font name="Verdana Bold" size="16.0" />
-               </font>
-            </Label>
-            <MenuButton layoutX="71.0" layoutY="-10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="425.0" style="-fx-background-color: #BAE3E0;" text="--Select Bouquet Option--" textFill="TEAL">
-              <items>
-                <MenuItem mnemonicParsing="false" text="The Ian Special" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font>
-            </MenuButton>
-         </children>
-      </Group>
       <Group layoutX="74.0" layoutY="231.0">
          <children>
             <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-11.0" prefHeight="69.0" prefWidth="425.0" style="-fx-background-color: #BAE3E0;" textLimit="1000000">
@@ -97,6 +79,27 @@
                   <Font name="Verdana Bold" size="15.0" />
                </font>
             </Label>
+         </children>
+      </Group>
+      <Group layoutX="74.0" layoutY="183.0">
+         <children>
+            <Label layoutX="-29.0" layoutY="-8.0" prefHeight="20.0" prefWidth="100.0" text="Flower:" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="16.0" />
+               </font>
+            </Label>
+            <MenuButton fx:id="menuButton" layoutX="71.0" layoutY="-10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="425.0" style="-fx-background-color: #BAE3E0;" text="--Select Bouquet Option--" textFill="TEAL">
+              <items>
+                <MenuItem fx:id="chocie0" mnemonicParsing="false" onAction="#getChoice0" text="--Select Bouquet Option--" />
+                  <MenuItem fx:id="chocie1" mnemonicParsing="false" onAction="#getChoice1" text="Roses" />
+                  <MenuItem fx:id="chocie2" mnemonicParsing="false" onAction="#getChoice2" text="White Roses" />
+                  <MenuItem fx:id="chocie3" mnemonicParsing="false" onAction="#getChoice3" text="Random Bouquet" />
+                <MenuItem fx:id="choice4" mnemonicParsing="false" onAction="#getChoice4" text="Ian's Holiday Special" />
+              </items>
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </MenuButton>
          </children>
       </Group>
       <Label fx:id="FLOW_outputtext" layoutX="348.0" layoutY="352.0" prefHeight="36.0" prefWidth="100.0" textFill="#44d71f">
