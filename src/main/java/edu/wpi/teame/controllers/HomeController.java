@@ -5,6 +5,7 @@ import static javafx.scene.paint.Color.*;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -13,6 +14,7 @@ public class HomeController {
   @FXML MFXButton signageButton;
   @FXML MFXButton flowersButton;
   @FXML MFXButton mealRequestButton;
+  @FXML MFXButton exitButton;
 
   @FXML ImageView logoImage;
 
@@ -26,6 +28,8 @@ public class HomeController {
         event -> {
           // change to teamlogo.jpg
         });
+
+    exitButton.setOnMouseClicked(event -> Platform.exit());
 
     mouseSetup(flowersButton);
     flowersButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWER_REQUEST));
