@@ -39,7 +39,7 @@
          <children>
             <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-14.0" prefHeight="29.0" prefWidth="425.0" promptText="Enter Name" style="-fx-background-color: #BAE3E0;" textLimit="1000000">
                <font>
-                  <Font name="Arial Bold" size="16.0" />
+                  <Font name="Arial Bold" size="12.0" />
                </font>
                <textFill>
                   <Color green="0.501960813999176" blue="0.501960813999176" opacity="0.8700000047683716" />
@@ -58,7 +58,7 @@
                   <Color green="0.501960813999176" blue="0.501960813999176" opacity="0.8700000047683716" />
                </textFill>
                <font>
-                  <Font name="Arial" size="16.0" />
+                  <Font name="Arial" size="12.0" />
                </font></MFXTextField>
             <Label layoutX="-29.0" layoutY="-10.0" prefHeight="20.0" prefWidth="100.0" text="Room ID:" textFill="WHITE">
                <font>
@@ -91,9 +91,9 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <MenuButton layoutX="145.0" layoutY="182.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="425.0" style="-fx-background-color: #BAE3E0; -fx-font-weight: 700;" text="--Please Select Furniture--" textAlignment="CENTER" textFill="TEAL">
+      <MenuButton fx:id="furnSelect" layoutX="145.0" layoutY="182.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="425.0" style="-fx-background-color: #BAE3E0; -fx-font-weight: 700;" text="--Please Select Furniture--" textAlignment="CENTER" textFill="TEAL">
         <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem fx:id="furnSelect1" mnemonicParsing="false" onAction="#optionOneSelected" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
          <font>

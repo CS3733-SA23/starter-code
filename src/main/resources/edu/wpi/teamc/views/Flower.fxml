@@ -42,7 +42,7 @@
                   <Color green="0.501960813999176" blue="0.501960813999176" opacity="0.8700000047683716" />
                </textFill>
                <font>
-                  <Font name="Arial Bold" size="16.0" />
+                  <Font name="Arial Bold" size="12.0" />
                </font></MFXTextField>
             <Label layoutX="-29.0" layoutY="-10.0" text="Name:" textFill="WHITE">
                <font>
@@ -53,9 +53,9 @@
       </Group>
       <Group layoutX="74.0" layoutY="149.0">
          <children>
-            <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-13.0" prefHeight="30.0" prefWidth="425.0" promptText="Enter Room #" style="-fx-background-color: #BAE3E0;" textLimit="1000000">
+            <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-13.0" prefHeight="30.0" prefWidth="425.0" promptText="Enter Room ID" style="-fx-background-color: #BAE3E0;" textLimit="1000000">
                <font>
-                  <Font name="Arial Bold" size="16.0" />
+                  <Font name="Arial Bold" size="12.0" />
                </font>
                <textFill>
                   <Color green="0.501960813999176" blue="0.501960813999176" opacity="0.8700000047683716" />
