@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Main {
 
   public static void main(String[] args) {
+
     Scanner scanner = new Scanner(System.in);
 
     Graph graph = new Graph();
@@ -16,13 +17,12 @@ public class Main {
       System.out.println("Exception!");
     }
 
-    System.out.println("What node would you like to start from?: ");
-    String startNode = scanner.nextLine();
-    System.out.println("What node would you like to end at?: ");
-    String endNode = scanner.nextLine();
+    String startNode = "CCONF001L1";
+    String endNode = "CHALL010L1";
 
     graph.printDirections(startNode, endNode);
 
+    CApp.launch(CApp.class, args);
     // graph.printDirections("CCONF001L1", "CHALL010L1");
   }
 }
