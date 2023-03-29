@@ -24,6 +24,8 @@ public class DatabaseController {
 
     DatabaseController DBC1 = new DatabaseController("teame", "teame50");
 
+    DBC1.exportToCSV("l1edges", "C:\Users\Aviro\Downloads\New folder\csvtestfile.csv");
+
     boolean exit = true;
     while (exit) {
       System.out.println("\nWhat would you like to do?");
@@ -606,7 +608,7 @@ public class DatabaseController {
     }
   }
 
-  private void exportAsCSV(String name, String filePath) throws SQLException, IOException
+  private void exportToCSV(String name, String filePath) throws SQLException, IOException
   {
     Statement stmt = null;
     stmt = c.createStatement();
