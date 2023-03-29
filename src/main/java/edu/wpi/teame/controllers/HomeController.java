@@ -29,6 +29,7 @@ public class HomeController {
           // change to teamlogo.jpg
         });
 
+    navMouseSetup(exitButton);
     exitButton.setOnMouseClicked(event -> Platform.exit());
 
     mouseSetup(flowersButton);
@@ -51,6 +52,20 @@ public class HomeController {
     btn.setOnMouseExited(
         event -> {
           btn.setStyle("-fx-background-color: #192d5aff; -fx-alignment: center-left;");
+          btn.setTextFill(WHITE);
+        });
+  }
+
+  private void navMouseSetup(MFXButton btn) { // for buttons such as exit, back, cancel, etc
+    btn.setOnMouseEntered(
+        event -> {
+          btn.setStyle(
+              "-fx-background-color: #ffffff; -fx-alignment: center; -fx-border-color: #3b63a5; -fx-border-width: 2;");
+          btn.setTextFill(Color.web("#3b63a5", 1.0));
+        });
+    btn.setOnMouseExited(
+        event -> {
+          btn.setStyle("-fx-background-color: #3b63a5; -fx-alignment: center;");
           btn.setTextFill(WHITE);
         });
   }

@@ -17,7 +17,7 @@
             <children>
             <HBox alignment="BOTTOM_RIGHT" maxWidth="300.0" minHeight="0.0" minWidth="300.0" prefHeight="0.0" prefWidth="300.0">
                <children>
-                  <MFXButton fx:id="exitButton" alignment="BOTTOM_RIGHT" contentDisplay="BOTTOM" style="-fx-background-color: #3b63a5;" text="Exit" textFill="WHITE">
+                  <MFXButton fx:id="exitButton" alignment="BOTTOM_RIGHT" contentDisplay="BOTTOM" graphicTextGap="0.0" style="-fx-background-color: #3b63a5;" text="Exit" textFill="WHITE">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
