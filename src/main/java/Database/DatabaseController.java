@@ -1,5 +1,8 @@
 package Database;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +23,18 @@ public class DatabaseController {
     System.out.println("Please enter your password (will default to \"teame50\"): ");
     String password = s1.nextLine(); // Unused in this Prototype
 
-    Connection c = DBC1.connectToDatabase("teame", "teame50");
+    DatabaseController DBC1 = new DatabaseController("teame", "teame50");
+
+    /*
+    >>>>>>> 9414eb772a4f029baaaf703dff7dad201ca66370
+        // For Testing
+        try {
+          DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile1.csv");
+        } catch (FileNotFoundException e) {
+          System.out.println("The file is being dum");
+        }
+        */
+    // DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile.csv");
 
     boolean exit = true;
     while (exit) {
@@ -150,7 +164,6 @@ public class DatabaseController {
       String edgeQuery = "SELECT * FROM teame.l1edges WHERE edgeid = '" + edgeId + "'";
       try (Statement stmt = c.createStatement()) {
         ResultSet rs = stmt.executeQuery(edgeQuery);
-        System.out.println(rs.getString(edgeId));
         if (rs.next()) {
           edgeList.add(extractEdgeFromResultSet(rs));
         }
@@ -168,9 +181,9 @@ public class DatabaseController {
     for (String nodeId : nList) {
       String nodeQuery = "SELECT * FROM teame.l1nodes WHERE nodeid = '" + nodeId + "'";
       try (Statement stmt = c.createStatement()) {
-        ResultSet rs = stmt.executeQuery(nodeQuery);
-        if (rs.next()) {
-          nodeList.add(extractNodeFromResultSet(rs));
+        ResultSet rs1 = stmt.executeQuery(nodeQuery);
+        if (rs1.next()) {
+          nodeList.add(extractNodeFromResultSet(rs1));
         }
       } catch (SQLException d) {
         System.out.println(d.getMessage());
@@ -423,32 +436,10 @@ public class DatabaseController {
     System.out.println("");
     System.out.println("");
 
-    System.out.println("Help Page:\n");
+    System.out.println("Help Page:\n\n");
     boolean exit = false;
     Scanner s1 = new Scanner(System.in);
 
-    // User Operations:
-    // System.out.println("\tUser Operations:\n");
-    System.out.println("\tThe User inputs username to database.");
-    System.out.println("\tThe User inputs password to database.");
-    System.out.println(
-        "\tThe User inputs which operation they wish to use (delete, retrieve, update, help)");
-    System.out.println(
-        "\tThe user then inputs the id of what they want to modify in the database.");
-    System.out.println(
-        "\tThe User inputs all other necessary information for the specified editing operation.");
-    System.out.println(
-        "\tThe User then inputs whether or not they want to edit the database further.");
-    System.out.println("\nType \"exit\" to leave the help screen at any time:");
-
-    while (!exit) {
-      String response = s1.nextLine().toLowerCase();
-      if (response.equals("exit")) {
-        exit = true;
-      }
-    }
-
-    /*
     // User Operations:
     System.out.println("\tUser Operations:\n");
     System.out.println("\t\tUser inputs username to database.");
@@ -583,9 +574,12 @@ public class DatabaseController {
     System.out.println("\t\t\tUser Inputs:");
     System.out.println("\t\t\t\texit: Input exit when ready to leave help screen (exit)");
     System.out.println("\t\t\treturn: void\n\n");
-
-     */
-
+    while (!exit) {
+      String response = s1.nextLine().toLowerCase();
+      if (response.equals("exit")) {
+        exit = true;
+      }
+    }
   }
 
   private void exitDatabaseProgram(Connection c) {
@@ -596,5 +590,54 @@ public class DatabaseController {
       System.err.println(e.getClass().getName() + ": " + e.getMessage());
       System.exit(0);
     }
+  }
+
+  private void exportToCSV(String name, String filePath, String fileName)
+      throws SQLException, IOException {
+
+    // Initialization
+    Statement stmt = null;
+    stmt = c.createStatement();
+    ResultSet rs = stmt.executeQuery("SELECT * FROM " + name);
+
+    // Makes new file or finds existing one
+    File file = new File(filePath + File.separator + fileName);
+
+    // Initializes the FileWriter to edit the right file
+    FileWriter fileWriter;
+    if (file.exists()) {
+      fileWriter = new FileWriter(file, true); // appends to file if it already exists
+    } else {
+      file.createNewFile();
+      fileWriter = new FileWriter(file); // adds to new file
+    }
+
+    // Writes the header row
+    int numOfCols = rs.getMetaData().getColumnCount();
+    for (int i = 1; i <= numOfCols; i++) {
+      fileWriter.append(rs.getMetaData().getColumnName(i));
+      if (i < numOfCols) {
+        fileWriter.append(",");
+      } else {
+        fileWriter.append("\n");
+      }
+    }
+
+    // Writes in each row of data
+    while (rs.next()) {
+      for (int i = 1; i <= numOfCols; i++) {
+        fileWriter.append(rs.getString(i));
+        if (i < numOfCols) {
+          fileWriter.append(",");
+        } else {
+          fileWriter.append("\n");
+        }
+      }
+    }
+
+    // Closers
+    fileWriter.close();
+    rs.close();
+    stmt.close();
   }
 }
