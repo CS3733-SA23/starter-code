@@ -13,4 +13,8 @@ public class Edge {
     this.startNode = startNode;
     this.endNode = endNode;
   }
+
+  public String getEdgeID() {
+    return this.id;
+  }
 }
