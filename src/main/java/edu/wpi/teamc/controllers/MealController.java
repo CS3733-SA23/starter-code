@@ -16,8 +16,13 @@ public class MealController {
     MEAL_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
-  @FXML
+  /*@FXML
   void SubmitRequest() {
     MEAL_outputtext.setText("Submitted");
+  }*/
+
+  @FXML
+  void SubmitRequest() {
+    MEAL_submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
   }
 }

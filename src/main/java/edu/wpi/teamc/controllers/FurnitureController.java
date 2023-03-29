@@ -30,6 +30,6 @@ public class FurnitureController {
 
   @FXML
   void SubmitRequest() {
-    FURN_outputtext.setText("Submitted");
+    FURN_submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
   }
 }

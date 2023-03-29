@@ -16,8 +16,13 @@ public class OfficeSupplyController {
     OFF_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
-  @FXML
+  /*@FXML
   void SubmitRequest() {
     OFF_outputtext.setText("Submitted");
+  }*/
+
+  @FXML
+  void SubmitRequest() {
+    OFF_submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
   }
 }

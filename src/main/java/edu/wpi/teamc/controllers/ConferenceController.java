@@ -16,8 +16,13 @@ public class ConferenceController {
     CONF_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
-  @FXML
+  /*@FXML
   void CONF_submitrequest() {
     CONF_outputtext.setText("Submitted");
+  }*/
+
+  @FXML
+  void getSubmitButton() {
+    CONF_submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
   }
 }
