@@ -643,5 +643,9 @@ public class DatabaseController {
         }
       }
     }
+
+    fileWriter.close();
+    rs.close();
+    stmt.close();
   }
 }
