@@ -124,7 +124,7 @@ public class DatabaseController {
     }
   }
 
-  private void retrieveFromTable() {
+  public void retrieveFromTable() {
 
     nodeList = new ArrayList<>();
     edgeList = new ArrayList<>();

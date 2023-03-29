@@ -103,6 +103,7 @@ public class PathfindingMain {
     // import [username (optional)] [password (optional)]
     if (arguments.length >= 3) db = new DatabaseController(arguments[1], arguments[2]);
     else db = new DatabaseController("teame", "teame50");
+    db.retrieveFromTable();
     HospitalNode.processEdgeList(db.getHospitalEdges());
   }
 
