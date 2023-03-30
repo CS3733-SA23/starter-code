@@ -1,8 +1,6 @@
 package Database;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +9,11 @@ import pathfinding.HospitalEdge;
 import pathfinding.HospitalNode;
 
 public class DatabaseController {
+  private Connection c;
   private static List<HospitalNode> nodeList = new ArrayList<>();
   private static List<HospitalEdge> edgeList = new ArrayList<>();
 
-  public static void main(String[] args) {
-    DatabaseController DBC1 = new DatabaseController();
+  public static void main(String[] args) throws SQLException, IOException {
     Scanner s1 = new Scanner(System.in);
 
     System.out.println("Please enter your username (will default to \"teame\"): ");
@@ -25,16 +23,7 @@ public class DatabaseController {
 
     DatabaseController DBC1 = new DatabaseController("teame", "teame50");
 
-    /*
-    >>>>>>> 9414eb772a4f029baaaf703dff7dad201ca66370
-        // For Testing
-        try {
-          DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile1.csv");
-        } catch (FileNotFoundException e) {
-          System.out.println("The file is being dum");
-        }
-        */
-    // DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile.csv");
+    //DBC1.importFromCSV("C:\\Users\\thesm\\OneDrive\\Desktop\\Test.csv", "l1nodes");
 
     boolean exit = true;
     while (exit) {
@@ -44,11 +33,11 @@ public class DatabaseController {
 
       switch (function) {
         case "update":
-          DBC1.updateTable(c);
+          DBC1.updateTable();
           break;
 
         case "delete":
-          DBC1.deleteFromTable(c);
+          DBC1.deleteFromTable();
           break;
 
         case "help":
@@ -56,18 +45,22 @@ public class DatabaseController {
           break;
 
         case "exit":
-          DBC1.exitDatabaseProgram(c);
+          DBC1.exitDatabaseProgram();
           exit = false;
           break;
 
         case "retrieve":
-          DBC1.retrieveFromTable(c);
+          DBC1.retrieveFromTable();
           break;
 
         default:
           System.out.println("Please enter a valid action");
       }
     }
+  }
+
+  public DatabaseController(String username, String password) {
+    c = this.connectToDatabase(username, password);
   }
 
   private Connection connectToDatabase(String username, String password) {
@@ -86,7 +79,7 @@ public class DatabaseController {
     return c;
   }
 
-  private void deleteFromTable(Connection c) {
+  private void deleteFromTable() {
     try {
       Statement stmt = null;
       Scanner s1 = new Scanner(System.in);
@@ -121,7 +114,7 @@ public class DatabaseController {
     }
   }
 
-  private void retrieveFromTable(Connection c) {
+  private void retrieveFromTable() {
 
     nodeList = new ArrayList<>();
     edgeList = new ArrayList<>();
@@ -151,7 +144,8 @@ public class DatabaseController {
         ResultSet rsEdges = stmt.executeQuery(queryCountEID);
         for (int i = 1; i <= edgeCount; i++) {
           if (rsEdges.next()) {
-            eList.add(rsEdges.getString("edgeID"));
+            String newid = rsEdges.getString("edgeid");
+            eList.add(newid);
           }
         }
       }
@@ -161,9 +155,11 @@ public class DatabaseController {
 
     // Retrieve edges
     for (String edgeId : eList) {
-      String edgeQuery = "SELECT * FROM teame.l1edges WHERE edgeid = '" + edgeId + "'";
-      try (Statement stmt = c.createStatement()) {
+      String edgeQuery = "SELECT * FROM teame.l1edges WHERE edgeid = '" + edgeId + "';";
+      try {
+        Statement stmt = c.createStatement();
         ResultSet rs = stmt.executeQuery(edgeQuery);
+
         if (rs.next()) {
           edgeList.add(extractEdgeFromResultSet(rs));
         }
@@ -181,9 +177,9 @@ public class DatabaseController {
     for (String nodeId : nList) {
       String nodeQuery = "SELECT * FROM teame.l1nodes WHERE nodeid = '" + nodeId + "'";
       try (Statement stmt = c.createStatement()) {
-        ResultSet rs1 = stmt.executeQuery(nodeQuery);
-        if (rs1.next()) {
-          nodeList.add(extractNodeFromResultSet(rs1));
+        ResultSet rs = stmt.executeQuery(nodeQuery);
+        if (rs.next()) {
+          nodeList.add(extractNodeFromResultSet(rs));
         }
       } catch (SQLException d) {
         System.out.println(d.getMessage());
@@ -204,7 +200,7 @@ public class DatabaseController {
     return edgeList;
   }
 
-  private void displayCSVInfo(Connection c) {
+  private void displayCSVInfo() {
     Scanner scanner = new Scanner(System.in);
     System.out.print("Which table would you like to see info from (Nodes, Edges): ");
     String table = scanner.nextLine().trim();
@@ -267,7 +263,7 @@ public class DatabaseController {
   }
 
   private HospitalNode extractNodeFromResultSet(ResultSet rs) throws SQLException {
-    String nodeID = rs.getString("nodeID");
+    String nodeID = rs.getString("nodeid");
     int xCoord = rs.getInt("xcoord");
     int yCoord = rs.getInt("ycoord");
     String floor = rs.getString("floor");
@@ -286,7 +282,7 @@ public class DatabaseController {
     return new HospitalEdge(edgeID, startNode, endNode);
   }
 
-  private void updateTable(Connection c) {
+  private void updateTable() {
 
     Statement stmt = null;
 
@@ -436,10 +432,32 @@ public class DatabaseController {
     System.out.println("");
     System.out.println("");
 
-    System.out.println("Help Page:\n\n");
+    System.out.println("Help Page:\n");
     boolean exit = false;
     Scanner s1 = new Scanner(System.in);
 
+    // User Operations:
+    // System.out.println("\tUser Operations:\n");
+    System.out.println("\tThe User inputs username to database.");
+    System.out.println("\tThe User inputs password to database.");
+    System.out.println(
+        "\tThe User inputs which operation they wish to use (delete, retrieve, update, help)");
+    System.out.println(
+        "\tThe user then inputs the id of what they want to modify in the database.");
+    System.out.println(
+        "\tThe User inputs all other necessary information for the specified editing operation.");
+    System.out.println(
+        "\tThe User then inputs whether or not they want to edit the database further.");
+    System.out.println("\nType \"exit\" to leave the help screen at any time:");
+
+    while (!exit) {
+      String response = s1.nextLine().toLowerCase();
+      if (response.equals("exit")) {
+        exit = true;
+      }
+    }
+
+    /*
     // User Operations:
     System.out.println("\tUser Operations:\n");
     System.out.println("\t\tUser inputs username to database.");
@@ -574,21 +592,72 @@ public class DatabaseController {
     System.out.println("\t\t\tUser Inputs:");
     System.out.println("\t\t\t\texit: Input exit when ready to leave help screen (exit)");
     System.out.println("\t\t\treturn: void\n\n");
-    while (!exit) {
-      String response = s1.nextLine().toLowerCase();
-      if (response.equals("exit")) {
-        exit = true;
-      }
-    }
+
+     */
+
   }
 
-  private void exitDatabaseProgram(Connection c) {
+  private void exitDatabaseProgram() {
     try {
       c.close();
       System.out.println("Database Connection Closed");
     } catch (Exception e) {
       System.err.println(e.getClass().getName() + ": " + e.getMessage());
       System.exit(0);
+    }
+  }
+
+  // nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName
+  public void importFromCSV(String filePath, String tableName) {
+    try {
+      // Load CSV file
+      BufferedReader reader = new BufferedReader(new FileReader(filePath));
+      String line;
+      List<String> rows = new ArrayList<>();
+      while ((line = reader.readLine()) != null) {
+        rows.add(line);
+      }
+      rows.remove(0);
+      reader.close();
+
+      Statement stmt = c.createStatement();
+      for (String l1 : rows) {
+        String[] splitL1 = l1.split(",");
+        System.out.println(l1);
+        String sql =
+            "INSERT INTO "
+                + tableName
+                + " VALUES ('"
+                + splitL1[0]
+                + "', "
+                + Integer.parseInt(splitL1[1])
+                + ", "
+                + Integer.parseInt(splitL1[2])
+                + ", '"
+                + splitL1[3]
+                + "', "
+                + " '"
+                + splitL1[4]
+                + "', "
+                + " '"
+                + splitL1[5]
+                + "', "
+                + " '"
+                + splitL1[6]
+                + "', "
+                + " '"
+                + splitL1[7]
+                + "'); ";
+        System.out.println(sql);
+        stmt.execute(sql);
+      }
+
+      System.out.println(
+          "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
+
+    } catch (IOException | SQLException e) {
+      System.err.println("Error importing from " + filePath + " to " + tableName);
+      e.printStackTrace();
     }
   }
 
