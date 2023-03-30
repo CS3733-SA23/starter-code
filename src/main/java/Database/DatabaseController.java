@@ -1,7 +1,6 @@
 package Database;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
@@ -16,7 +15,7 @@ public class DatabaseController {
   private static List<HospitalNode> nodeList = new ArrayList<>();
   private static List<HospitalEdge> edgeList = new ArrayList<>();
 
-  public static void main(String[] args) throws SQLException, IOException {
+  public static void main(String[] args) {
     Scanner s1 = new Scanner(System.in);
 
     System.out.print("Please enter your username (will default to \"teame\"): ");
@@ -27,20 +26,11 @@ public class DatabaseController {
 
     DatabaseController DBC1 = new DatabaseController("teame", "teame50");
 
-    /*
-    // For Testing
-    try {
-      DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile1.csv");
-    } catch (FileNotFoundException e) {
-      System.out.println("The file is being dum");
-    }
-    */
-    // DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile.csv");
-
     boolean exit = true;
     while (exit) {
       System.out.println("\nWhat would you like to do?");
-      System.out.println("Choices: update, retrieve, delete, help, exit, display info");
+      System.out.println(
+          "Choices: update, retrieve, delete, display info, export table, HELP, EXIT)");
       String function = s1.nextLine().toLowerCase().trim();
 
       switch (function) {
@@ -69,6 +59,10 @@ public class DatabaseController {
           DBC1.displayCSVInfo();
           break;
 
+        case "export table":
+          DBC1.userExportToCSV();
+          break;
+
         default:
           System.out.println("Please enter a valid action");
       }
@@ -77,6 +71,7 @@ public class DatabaseController {
 
   public DatabaseController(String username, String password) {
     c = this.connectToDatabase(username, password);
+    this.retrieveFromTable();
   }
 
   private Connection connectToDatabase(String username, String password) {
@@ -155,6 +150,8 @@ public class DatabaseController {
         System.out.println("Please enter a valid table name (nodes, edges)");
       }
     }
+
+    this.retrieveFromTable();
   }
 
   private void retrieveFromTable() {
@@ -327,8 +324,6 @@ public class DatabaseController {
 
   private void updateTable() {
 
-    Statement stmt = null;
-
     boolean doneUpdating = true;
     while (doneUpdating) {
 
@@ -336,140 +331,73 @@ public class DatabaseController {
       System.out.println("Which table would you like to update (Nodes, Edges): ");
       String tabletoUpdate = s1.nextLine().toLowerCase();
 
-      String newval = "";
-      int newInt = 0;
-      String sql = "";
+      if (tabletoUpdate.equals("nodes")) {
+        System.out.println("Please type the Node ID you would like to update: ");
+        String nodetoUpdate = s1.nextLine();
 
-      switch(tabletoUpdate) {
+        System.out.println("Which attribute would you like to update (xcoord, ycoord, longname)");
+        String attributeToUpdate = s1.nextLine().toLowerCase().trim();
 
-        case "nodes":
-          System.out.println("Please type the Node ID you would like to update: ");
-          String nodetoUpdate = s1.nextLine();
+        try {
+          this.updateAttribute("l1nodes", nodetoUpdate, attributeToUpdate, "nodeid");
+        } catch (RuntimeException e) {
+          System.out.println("Invalid Input");
+        }
+      } else if (tabletoUpdate.equals("edges")) {
+        System.out.println("Please type the Edge ID you would like to update: ");
+        String edgetoUpdate = s1.nextLine();
 
-          System.out.println("Which attribute would you like to update (xcoord, ycoord, longname)");
-          String attributeToUpdate = s1.nextLine().toLowerCase();
+        System.out.println("Which attribute would you like to update (edgeid, startnode, endnode)");
+        String attributeToUpdate = s1.nextLine().toLowerCase().trim();
 
-          switch (attributeToUpdate) {
-
-            case "xcoord":
-              System.out.println("Please enter the new xcoord: ");
-              newInt = s1.nextInt();
-              stmt = c.createStatement();
-              sql =
-                      "UPDATE l1nodes SET xcoord = "
-                              + newInt
-                              + " WHERE nodeID = '"
-                              + nodetoUpdate
-                              + "';";
-              System.out.println(
-                      "xcoord of " + nodetoUpdate + " successfully changed to " + newInt);
-              stmt.execute(sql);
-              stmt.close();
-              break;
-
-            case "ycoord":
-              System.out.println("Please enter the new ycoord: ");
-              newInt = s1.nextInt();
-              stmt = c.createStatement();
-              sql =
-                      "UPDATE l1nodes SET ycoord = "
-                              + newInt
-                              + " WHERE nodeID = '"
-                              + nodetoUpdate
-                              + "';";
-              System.out.println(
-                      "ycoord of " + nodetoUpdate + " successfully changed to " + newInt);
-              stmt.execute(sql);
-              stmt.close();
-              break;
-
-            case "longname":
-              System.out.println("Please enter the new longname: ");
-              newval = s1.nextLine();
-              stmt = c.createStatement();
-              sql =
-                      "UPDATE l1nodes SET longname = '"
-                              + newval
-                              + "' WHERE nodeID = '"
-                              + nodetoUpdate
-                              + "';";
-              System.out.println(
-                      "longname of " + nodetoUpdate + " successfully changed to " + newval);
-              stmt.executeUpdate(sql);
-              stmt.close();
-              break;
-
-            default:
-              System.out.println("You selected an invalid attribute to edit");
-          }
-
-        case "edges":
-          System.out.println("Please type the Edge ID you would like to update: ");
-          String edgetoUpdate = s1.nextLine();
-
-          System.out.println("Which attribute would you like to update (edgeid, startnode, endnode)");
-          String attributeToUpdate = s1.nextLine().toLowerCase();
-
-          switch (attributeToUpdate) {
-            case ("edgeid"):
-              System.out.println("Please enter the new edgeid: ");
-              newval = s1.nextLine();
-              stmt = c.createStatement();
-              sql =
-                      "UPDATE l1edges SET edgeid = '"
-                              + newval
-                              + "' WHERE edgeid = '"
-                              + edgetoUpdate
-                              + "';";
-              stmt.executeUpdate(sql);
-              stmt.close();
-              break;
-
-            case ("startnode"):
-              System.out.println("Please enter the new startnode: ");
-              newval = s1.nextLine();
-              stmt = c.createStatement();
-              sql =
-                      "UPDATE l1edges SET startnode = '"
-                              + newval
-                              + "' WHERE edgeid = '"
-                              + edgetoUpdate
-                              + "';";
-              stmt.executeUpdate(sql);
-              stmt.close();
-              break;
-
-            case ("endnode"):
-              System.out.println("Please enter the new endnode: ");
-              newval = s1.nextLine();
-              stmt = c.createStatement();
-              sql =
-                      "UPDATE l1edges SET endnode = '"
-                              + newval
-                              + "' WHERE edgeid = '"
-                              + edgetoUpdate
-                              + "';";
-              stmt.executeUpdate(sql);
-              stmt.close();
-              break;
-
-            default:
-              System.out.println("Please enter a valid attribute to edit");
-          }
+        try {
+          this.updateAttribute("l1edges", edgetoUpdate, attributeToUpdate, "edgeid");
+        } catch (RuntimeException e) {
+          System.out.println("Invalid Input");
+        }
+      } else {
+        System.out.println("Invalid Table Name");
       }
 
-      try {
-      } catch (Exception e) {
-        System.err.println(e.getClass().getName() + ": " + e.getMessage());
-        System.exit(0);
-      }
-
-      System.out.println("Are you done updating attributes (y/n)? ");
-      s1.nextLine();
+      System.out.print("\nAre you done updating (y/n)?: ");
       String ans = s1.nextLine();
-      if (ans.equals("y")) {
-        doneUpdating = false;
+      if (ans.equals("y")) doneUpdating = false;
+    }
+
+    this.retrieveFromTable();
+  }
+
+  public void updateAttribute(
+      String tabletoEdit, String idToUpdate, String attributeToEdit, String idType) {
+    Scanner s1 = new Scanner(System.in);
+    Statement stmt = null;
+    String sql;
+
+    System.out.println("Please enter the new " + attributeToEdit + ": ");
+    String newval = s1.nextLine();
+    try {
+      stmt = c.createStatement();
+      sql =
+          "UPDATE "
+              + tabletoEdit
+              + " SET "
+              + attributeToEdit
+              + " = '"
+              + newval
+              + "' WHERE "
+              + idType
+              + " = '"
+              + idToUpdate
+              + "';";
+      int rs = stmt.executeUpdate(sql);
+      stmt.close();
+      if (rs > 0) {
+        System.out.println("Successfully updated " + attributeToEdit + " for node " + idToUpdate);
+      } else {
+        System.out.println("Your entry is invalid please try again");
       }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
     }
   }
 
@@ -652,6 +580,26 @@ public class DatabaseController {
     }
   }
 
+  private void userExportToCSV() {
+    Scanner s1 = new Scanner(System.in);
+
+    System.out.println("What table do you want to export?");
+    String table = s1.nextLine();
+    System.out.println("What is the filepath you wish to store this file?");
+    String filepath = s1.nextLine();
+    System.out.println("What is the name of the file you wish to create?");
+    String fileName = s1.nextLine();
+
+    try {
+      this.exportToCSV(table, filepath, fileName);
+      System.out.println("File Successfully Exported to Desired Location");
+    } catch (SQLException e) {
+      System.out.println("Sorry your table name isn't valid");
+    } catch (IOException e) {
+      System.out.println("Sorry Something Went Wrong. Try Checking your file path and retrying");
+    }
+  }
+
   private void exportToCSV(String name, String filePath, String fileName)
       throws SQLException, IOException {
 
@@ -660,16 +608,16 @@ public class DatabaseController {
     stmt = c.createStatement();
     ResultSet rs = stmt.executeQuery("SELECT * FROM " + name);
 
-    //Makes new file or finds existing one
+    // Makes new file or finds existing one
     File file = new File(filePath + File.separator + fileName);
 
-    //Initializes the FileWriter to edit the right file
+    // Initializes the FileWriter to edit the right file
     FileWriter fileWriter;
     if (file.exists()) {
       fileWriter = new FileWriter(file, true); // appends to file if it already exists
     } else {
       file.createNewFile();
-      fileWriter = new FileWriter(file); //adds to new file
+      fileWriter = new FileWriter(file); // adds to new file
     }
 
     // Writes the header row
@@ -695,7 +643,7 @@ public class DatabaseController {
       }
     }
 
-    //Closers
+    // Closers
     fileWriter.close();
     rs.close();
     stmt.close();
