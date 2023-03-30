@@ -16,7 +16,7 @@ public abstract class AbstractPathfinder {
     HospitalNode from = HospitalNode.allNodes.get(fromId);
     HospitalNode to = HospitalNode.allNodes.get(toId);
     if (from == null || to == null) {
-      System.out.println("One or both nodes are null");
+      System.out.println("Pathfinder Error: One or both nodes are null");
       return null;
     }
     return findPath(from, to);
