@@ -1,7 +1,6 @@
 package Database;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
@@ -452,13 +451,17 @@ public class DatabaseController {
     System.out.println("\tThe User inputs username to database.");
     System.out.println("\tThe User inputs password to database.");
     System.out.println(
-        "\tThe User inputs which operation they wish to use (delete, retrieve, update, help)");
+        "\tThe User inputs which operation they wish to use: \n\t\t(update, retrieve, delete, display info, "
+            + "export table, import table, help, exit).");
     System.out.println(
         "\tThe user then inputs the id of what they want to modify in the database.");
     System.out.println(
         "\tThe User inputs all other necessary information for the specified editing operation.");
     System.out.println(
         "\tThe User then inputs whether or not they want to edit the database further.");
+    System.out.println(
+        "\tAlternatively, the user could have inputted the list and adress of the file they "
+            + "wanted to import or export.");
     System.out.println("\nType \"exit\" to leave the help screen at any time:");
 
     while (!exit) {
@@ -626,16 +629,16 @@ public class DatabaseController {
     stmt = c.createStatement();
     ResultSet rs = stmt.executeQuery("SELECT * FROM " + name);
 
-    //Makes new file or finds existing one
+    // Makes new file or finds existing one
     File file = new File(filePath + File.separator + fileName);
 
-    //Initializes the FileWriter to edit the right file
+    // Initializes the FileWriter to edit the right file
     FileWriter fileWriter;
     if (file.exists()) {
       fileWriter = new FileWriter(file, true); // appends to file if it already exists
     } else {
       file.createNewFile();
-      fileWriter = new FileWriter(file); //adds to new file
+      fileWriter = new FileWriter(file); // adds to new file
     }
 
     // Writes the header row
@@ -661,7 +664,7 @@ public class DatabaseController {
       }
     }
 
-    //Closers
+    // Closers
     fileWriter.close();
     rs.close();
     stmt.close();
