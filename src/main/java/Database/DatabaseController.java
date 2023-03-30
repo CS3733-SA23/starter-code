@@ -1,8 +1,6 @@
 package Database;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +23,8 @@ public class DatabaseController {
     System.out.println();
 
     DatabaseController DBC1 = new DatabaseController("teame", "teame50");
+
+    DBC1.importFromCSV("Test", "L1Nodes.csv");
 
     boolean exit = true;
     while (exit) {
@@ -651,5 +651,30 @@ public class DatabaseController {
     fileWriter.close();
     rs.close();
     stmt.close();
+  }
+
+  public void importFromCSV(String tableName, String filename) {
+    PreparedStatement preparedStatement = null;
+    BufferedReader bufferedReader = null;
+
+    try {
+      bufferedReader = new BufferedReader(new FileReader(filename));
+      String line;
+      while ((line = bufferedReader.readLine()) != null) {
+        String[] values = line.split(",");
+        int id = Integer.parseInt(values[0]);
+        String name = values[1];
+        preparedStatement.setInt(1, id);
+        preparedStatement.setString(2, name);
+        preparedStatement.executeUpdate();
+      }
+
+      System.out.println(
+          "CSV file " + filename + " imported successfully into table " + tableName + ".");
+    } catch (SQLException e) {
+      System.out.println("Connection failed.");
+    } catch (IOException e) {
+      System.out.println("File read failed.");
+    }
   }
 }
