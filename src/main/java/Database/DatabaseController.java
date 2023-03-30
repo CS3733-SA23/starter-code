@@ -414,13 +414,17 @@ public class DatabaseController {
     System.out.println("\tThe User inputs username to database.");
     System.out.println("\tThe User inputs password to database.");
     System.out.println(
-        "\tThe User inputs which operation they wish to use (delete, retrieve, update, help)");
+        "\tThe User inputs which operation they wish to use: \n\t\t(update, retrieve, delete, display info, "
+            + "export table, import table, help, exit).");
     System.out.println(
         "\tThe user then inputs the id of what they want to modify in the database.");
     System.out.println(
         "\tThe User inputs all other necessary information for the specified editing operation.");
     System.out.println(
         "\tThe User then inputs whether or not they want to edit the database further.");
+    System.out.println(
+        "\tAlternatively, the user could have inputted the list and adress of the file they "
+            + "wanted to import or export.");
     System.out.println("\nType \"exit\" to leave the help screen at any time:");
 
     while (!exit) {
