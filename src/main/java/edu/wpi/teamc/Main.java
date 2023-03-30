@@ -1,4 +1,3 @@
-
 package edu.wpi.teamc;
 
 import edu.wpi.teamc.map.Graph;
@@ -27,3 +26,4 @@ public class Main {
     // graph.printDirections("CCONF001L1", "CHALL010L1");
   }
 }
+
