@@ -1,8 +1,7 @@
+
 package edu.wpi.teamc.controllers;
 
-import javafx.fxml.FXML;
+public class SignagePageController {
 
-public class RootController {
-  @FXML
   public void initialize() {}
 }
