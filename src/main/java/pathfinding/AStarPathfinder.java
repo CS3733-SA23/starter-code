@@ -1,3 +1,4 @@
+
 package pathfinding;
 
 import java.util.*;
@@ -61,7 +62,6 @@ public class AStarPathfinder extends AbstractPathfinder {
   }
 
   int heuristicDistance(HospitalNode from, HospitalNode to) {
-
     // estimate the distance to the target based on the euclidean distance to the target
     return (int)
         Math.sqrt(Math.pow(from.xCoord - to.xCoord, 2) + Math.pow(from.yCoord - to.yCoord, 2));

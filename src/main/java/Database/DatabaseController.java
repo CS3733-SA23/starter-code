@@ -1,8 +1,7 @@
+
 package Database;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,30 +14,24 @@ public class DatabaseController {
   private static List<HospitalNode> nodeList = new ArrayList<>();
   private static List<HospitalEdge> edgeList = new ArrayList<>();
 
-  public static void main(String[] args) throws SQLException, IOException {
+  public static void main(String[] args) {
     Scanner s1 = new Scanner(System.in);
 
-    System.out.println("Please enter your username (will default to \"teame\"): ");
+    System.out.print("Please enter your username (will default to \"teame\"): ");
     String username = s1.nextLine(); // Unused in this Prototype
-    System.out.println("Please enter your password (will default to \"teame50\"): ");
+    System.out.print("Please enter your password (will default to \"teame50\"): ");
     String password = s1.nextLine(); // Unused in this Prototype
+    System.out.println();
 
     DatabaseController DBC1 = new DatabaseController("teame", "teame50");
 
-    /*
-    // For Testing
-    try {
-      DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile1.csv");
-    } catch (FileNotFoundException e) {
-      System.out.println("The file is being dum");
-    }
-    */
-    // DBC1.exportToCSV("l1edges", "C:\\Users\\Aviro\\OneDrive\\Desktop\\", "csvtestfile.csv");
+    // DBC1.importFromCSV("C:\\Users\\thesm\\OneDrive\\Desktop\\Test.csv", "l1nodes");
 
     boolean exit = true;
     while (exit) {
       System.out.println("\nWhat would you like to do?");
-      System.out.println("Choices: update, retrieve, delete, help, exit");
+      System.out.println(
+          "Choices: update, retrieve, delete, display info, export table, import table, HELP, EXIT)");
       String function = s1.nextLine().toLowerCase().trim();
 
       switch (function) {
@@ -63,6 +56,22 @@ public class DatabaseController {
           DBC1.retrieveFromTable();
           break;
 
+        case "display info":
+          DBC1.displayCSVInfo();
+          break;
+
+        case "export table":
+          DBC1.userExportToCSV();
+          break;
+
+        case "import table":
+          System.out.println("What's the filepath?");
+          String filepath = s1.nextLine();
+          try {
+            DBC1.importFromCSV(filepath, "l1nodes");
+          } catch (IOException e) {
+            System.out.println("Something went wrong");
+          }
         default:
           System.out.println("Please enter a valid action");
       }
@@ -71,6 +80,7 @@ public class DatabaseController {
 
   public DatabaseController(String username, String password) {
     c = this.connectToDatabase(username, password);
+    this.retrieveFromTable();
   }
 
   private Connection connectToDatabase(String username, String password) {
@@ -90,9 +100,12 @@ public class DatabaseController {
   }
 
   private void deleteFromTable() {
-    try {
-      Statement stmt = null;
-      Scanner s1 = new Scanner(System.in);
+    Statement stmt = null;
+    Scanner s1 = new Scanner(System.in);
+
+    boolean donedeleting = true;
+    while (donedeleting) {
+
       System.out.println("Which table would you like to delete from (Nodes, Edges): ");
       String tabletoEdit = s1.nextLine().toLowerCase().trim();
 
@@ -103,28 +116,54 @@ public class DatabaseController {
         try {
           stmt = c.createStatement();
           String sql = "DELETE FROM teame.l1nodes WHERE nodeid = '" + nodetoDelete + "';";
-          stmt.execute(sql);
+          int rs = stmt.executeUpdate(sql);
           stmt.close();
-          System.out.println("Row Deleted successfully from " + tabletoEdit);
-        } catch (Exception e) {
-          System.out.println("You've entered an invalid nodeid");
+          if (rs > 0) {
+            System.out.println("Row Deleted successfully from " + tabletoEdit);
+
+            System.out.println("Are you done deleting (y/n)?");
+            String ans = s1.nextLine().toLowerCase().trim();
+            if (ans.equals("y")) {
+              donedeleting = false;
+            }
+          } else {
+            System.out.println("Please enter a valid node id\n\n");
+          }
+        } catch (SQLException e) {
+          System.out.println();
         }
       } else if (tabletoEdit.equals("edges")) {
         System.out.println("Please type the Edge ID you would like to delete: ");
         String edgetoDelete = s1.nextLine();
+        try {
+          stmt = c.createStatement();
+          String sql = "DELETE FROM teame.l1edges WHERE edgeid = '" + edgetoDelete + "';";
+          int rs = stmt.executeUpdate(sql);
+          stmt.close();
+          if (rs > 0) {
+            System.out.println("Row Deleted successfully from " + tabletoEdit);
 
-        stmt = c.createStatement();
-        String sql = "DELETE FROM teame.l1edges WHERE edgeid = '" + edgetoDelete + "'";
-        stmt.execute(sql);
-        stmt.close();
+            System.out.println("Are you done deleting (y/n)?");
+            String ans = s1.nextLine().toLowerCase().trim();
+            if (ans.equals("y")) {
+              donedeleting = false;
+            }
+          } else {
+            System.out.println("Please enter a valid edge id\n\n");
+          }
+        } catch (SQLException e) {
+          System.out.println();
+        }
+
+      } else {
+        System.out.println("Please enter a valid table name (nodes, edges)");
       }
-    } catch (Exception e) {
-      System.err.println(e.getClass().getName() + ": " + e.getMessage());
-      System.exit(0);
     }
+
+    this.retrieveFromTable();
   }
 
-  public void retrieveFromTable() {
+  private void retrieveFromTable() {
 
     nodeList = new ArrayList<>();
     edgeList = new ArrayList<>();
@@ -234,7 +273,7 @@ public class DatabaseController {
           String shortName = rs.getString("shortName");
 
           System.out.println(
-              "Edge ("
+              "\nNode: ("
                   + nodeID
                   + ") information (nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName): ");
           System.out.println(
@@ -259,7 +298,7 @@ public class DatabaseController {
           String startNode = rs.getString("startNode");
           String endNode = rs.getString("endNode");
 
-          System.out.println("Edge (" + edgeId + ") information (edgeID, startNode, endNode): ");
+          System.out.println("\nEdge (" + edgeId + ") information (edgeID, startNode, endNode): ");
           System.out.println(edgeID + ", " + startNode + ", " + endNode);
         } else {
           System.out.println("Edge not found with ID " + edgeId);
@@ -294,8 +333,6 @@ public class DatabaseController {
 
   private void updateTable() {
 
-    Statement stmt = null;
-
     boolean doneUpdating = true;
     while (doneUpdating) {
 
@@ -303,138 +340,73 @@ public class DatabaseController {
       System.out.println("Which table would you like to update (Nodes, Edges): ");
       String tabletoUpdate = s1.nextLine().toLowerCase();
 
-      try {
-        if (tabletoUpdate.equals("nodes")) {
+      if (tabletoUpdate.equals("nodes")) {
+        System.out.println("Please type the Node ID you would like to update: ");
+        String nodetoUpdate = s1.nextLine();
 
-          System.out.println("Please type the Node ID you would like to update: ");
-          String nodetoUpdate = s1.nextLine();
+        System.out.println("Which attribute would you like to update (xcoord, ycoord, longname)");
+        String attributeToUpdate = s1.nextLine().toLowerCase().trim();
 
-          System.out.println("Which attribute would you like to update (xcoord, ycoord, longname)");
-          String attributeToUpdate = s1.nextLine().toLowerCase();
-          stmt = c.createStatement();
-
-          String newval = "";
-          int newInt = 0;
-          String sql = "";
-
-          switch (attributeToUpdate) {
-            case "xcoord":
-              System.out.println("Please enter the new xcoord: ");
-              newInt = s1.nextInt();
-              sql =
-                  "UPDATE l1nodes SET xcoord = "
-                      + newInt
-                      + " WHERE nodeID = '"
-                      + nodetoUpdate
-                      + "';";
-              System.out.println(
-                  "xcoord of " + nodetoUpdate + " successfully changed to " + newInt);
-              stmt.execute(sql);
-              stmt.close();
-              break;
-
-            case "ycoord":
-              System.out.println("Please enter the new ycoord: ");
-              newInt = s1.nextInt();
-              sql =
-                  "UPDATE l1nodes SET ycoord = "
-                      + newInt
-                      + " WHERE nodeID = '"
-                      + nodetoUpdate
-                      + "';";
-              System.out.println(
-                  "ycoord of " + nodetoUpdate + " successfully changed to " + newInt);
-              stmt.execute(sql);
-              stmt.close();
-              break;
-
-            case "longname":
-              System.out.println("Please enter the new longname: ");
-              newval = s1.nextLine();
-              sql =
-                  "UPDATE l1nodes SET longname = '"
-                      + newval
-                      + "' WHERE nodeID = '"
-                      + nodetoUpdate
-                      + "';";
-              System.out.println(
-                  "longname of " + nodetoUpdate + " successfully changed to " + newval);
-              stmt.executeUpdate(sql);
-              stmt.close();
-              break;
-
-            default:
-              System.out.println("You selected an invalid attribute to edit");
-          }
-
-        } else if (tabletoUpdate.equals("edges")) {
-          System.out.println("Please type the Edge ID you would like to update: ");
-          String edgetoUpdate = s1.nextLine();
-
-          System.out.println(
-              "Which attribute would you like to update (edgeid, startnode, endnode)");
-          String attributeToUpdate = s1.nextLine().toLowerCase();
-          stmt = c.createStatement();
-
-          String newval = "";
-          int newInt = 0;
-          String sql = "";
-
-          switch (attributeToUpdate) {
-            case ("edgeid"):
-              System.out.println("Please enter the new edgeid: ");
-              newval = s1.nextLine();
-              sql =
-                  "UPDATE l1edges SET edgeid = '"
-                      + newval
-                      + "' WHERE edgeid = '"
-                      + edgetoUpdate
-                      + "';";
-              stmt.executeUpdate(sql);
-              stmt.close();
-              break;
-
-            case ("startnode"):
-              System.out.println("Please enter the new startnode: ");
-              newval = s1.nextLine();
-              sql =
-                  "UPDATE l1edges SET startnode = '"
-                      + newval
-                      + "' WHERE edgeid = '"
-                      + edgetoUpdate
-                      + "';";
-              stmt.executeUpdate(sql);
-              stmt.close();
-              break;
-
-            case ("endnode"):
-              System.out.println("Please enter the new endnode: ");
-              newval = s1.nextLine();
-              sql =
-                  "UPDATE l1edges SET endnode = '"
-                      + newval
-                      + "' WHERE edgeid = '"
-                      + edgetoUpdate
-                      + "';";
-              stmt.executeUpdate(sql);
-              stmt.close();
-              break;
-
-            default:
-              System.out.println("Please enter a valid attribute to edit");
-          }
+        try {
+          this.updateAttribute("l1nodes", nodetoUpdate, attributeToUpdate, "nodeid");
+        } catch (RuntimeException e) {
+          System.out.println("Invalid Input");
         }
-      } catch (Exception e) {
-        System.err.println(e.getClass().getName() + ": " + e.getMessage());
-        System.exit(0);
+      } else if (tabletoUpdate.equals("edges")) {
+        System.out.println("Please type the Edge ID you would like to update: ");
+        String edgetoUpdate = s1.nextLine();
+
+        System.out.println("Which attribute would you like to update (edgeid, startnode, endnode)");
+        String attributeToUpdate = s1.nextLine().toLowerCase().trim();
+
+        try {
+          this.updateAttribute("l1edges", edgetoUpdate, attributeToUpdate, "edgeid");
+        } catch (RuntimeException e) {
+          System.out.println("Invalid Input");
+        }
+      } else {
+        System.out.println("Invalid Table Name");
       }
 
-      System.out.println("Are you done updating attributes (y/n)? ");
-      s1.nextLine();
+      System.out.print("\nAre you done updating (y/n)?: ");
       String ans = s1.nextLine();
-      if (ans.equals("y")) {
-        doneUpdating = false;
+      if (ans.equals("y")) doneUpdating = false;
+    }
+
+    this.retrieveFromTable();
+  }
+
+  public void updateAttribute(
+      String tabletoEdit, String idToUpdate, String attributeToEdit, String idType) {
+    Scanner s1 = new Scanner(System.in);
+    Statement stmt = null;
+    String sql;
+
+    System.out.println("Please enter the new " + attributeToEdit + ": ");
+    String newval = s1.nextLine();
+    try {
+      stmt = c.createStatement();
+      sql =
+          "UPDATE "
+              + tabletoEdit
+              + " SET "
+              + attributeToEdit
+              + " = '"
+              + newval
+              + "' WHERE "
+              + idType
+              + " = '"
+              + idToUpdate
+              + "';";
+      int rs = stmt.executeUpdate(sql);
+      stmt.close();
+      if (rs > 0) {
+        System.out.println("Successfully updated " + attributeToEdit + " for node " + idToUpdate);
+      } else {
+        System.out.println("Your entry is invalid please try again");
       }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
     }
   }
 
@@ -451,13 +423,17 @@ public class DatabaseController {
     System.out.println("\tThe User inputs username to database.");
     System.out.println("\tThe User inputs password to database.");
     System.out.println(
-        "\tThe User inputs which operation they wish to use (delete, retrieve, update, help)");
+        "\tThe User inputs which operation they wish to use: \n\t\t(update, retrieve, delete, display info, "
+            + "export table, import table, help, exit).");
     System.out.println(
         "\tThe user then inputs the id of what they want to modify in the database.");
     System.out.println(
         "\tThe User inputs all other necessary information for the specified editing operation.");
     System.out.println(
         "\tThe User then inputs whether or not they want to edit the database further.");
+    System.out.println(
+        "\tAlternatively, the user could have inputted the list and adress of the file they "
+            + "wanted to import or export.");
     System.out.println("\nType \"exit\" to leave the help screen at any time:");
 
     while (!exit) {
@@ -614,6 +590,80 @@ public class DatabaseController {
     } catch (Exception e) {
       System.err.println(e.getClass().getName() + ": " + e.getMessage());
       System.exit(0);
+    }
+  }
+
+  // nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName
+  public void importFromCSV(String filePath, String tableName) throws FileNotFoundException {
+    try {
+      // Load CSV file
+      BufferedReader reader = new BufferedReader(new FileReader(filePath));
+      String line;
+      List<String> rows = new ArrayList<>();
+      while ((line = reader.readLine()) != null) {
+        rows.add(line);
+      }
+      rows.remove(0);
+      reader.close();
+
+      Statement stmt = c.createStatement();
+      for (String l1 : rows) {
+        String[] splitL1 = l1.split(",");
+        System.out.println(l1);
+        String sql =
+            "INSERT INTO "
+                + tableName
+                + " VALUES ('"
+                + splitL1[0]
+                + "', "
+                + Integer.parseInt(splitL1[1])
+                + ", "
+                + Integer.parseInt(splitL1[2])
+                + ", '"
+                + splitL1[3]
+                + "', "
+                + " '"
+                + splitL1[4]
+                + "', "
+                + " '"
+                + splitL1[5]
+                + "', "
+                + " '"
+                + splitL1[6]
+                + "', "
+                + " '"
+                + splitL1[7]
+                + "'); ";
+        System.out.println(sql);
+        stmt.execute(sql);
+      }
+
+      System.out.println(
+          "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
+
+    } catch (IOException | SQLException e) {
+      System.err.println("Error importing from " + filePath + " to " + tableName);
+      e.printStackTrace();
+    }
+  }
+
+  private void userExportToCSV() {
+    Scanner s1 = new Scanner(System.in);
+
+    System.out.println("What table do you want to export?");
+    String table = s1.nextLine();
+    System.out.println("What is the filepath you wish to store this file?");
+    String filepath = s1.nextLine();
+    System.out.println("What is the name of the file you wish to create?");
+    String fileName = s1.nextLine();
+
+    try {
+      this.exportToCSV(table, filepath, fileName);
+      System.out.println("File Successfully Exported to Desired Location");
+    } catch (SQLException e) {
+      System.out.println("Sorry your table name isn't valid");
+    } catch (IOException e) {
+      System.out.println("Sorry Something Went Wrong. Try Checking your file path and retrying");
     }
   }
 
