@@ -1,15 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.HomeController">
-   <children>
-      <MFXButton fx:id="navigateButton" text="Navigate">
-         <font>
-            <Font name="Nunito Sans Regular" size="16.0" />
-         </font>
-      </MFXButton>
-   </children>
+<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.HomeController">
+    <children>
+        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" spacing="10.0" style="-fx-background-color: WHITE; -fx-border-color: BLACK; -fx-border-width: 0;">
+            <children>
+            <HBox alignment="BOTTOM_RIGHT" maxWidth="300.0" minHeight="0.0" minWidth="300.0" prefHeight="0.0" prefWidth="300.0">
+               <children>
+                  <MFXButton fx:id="exitButton" alignment="BOTTOM_RIGHT" contentDisplay="BOTTOM" graphicTextGap="0.0" style="-fx-background-color: #3b63a5;" text="Exit" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </MFXButton>
+               </children>
+               <opaqueInsets>
+                  <Insets right="10.0" />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="250.0" right="250.0" />
+               </VBox.margin>
+            </HBox>
+            <ImageView fx:id="logoImage" fitHeight="76.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../logos/teamlogo.jpg" />
+               </image>
+            </ImageView>
+            <HBox alignment="TOP_CENTER" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
+                     <font>
+                        <Font name="Open Sans Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="150.0" right="150.0" />
+               </VBox.margin>
+            </HBox>
+                <MFXButton fx:id="mealRequestButton" graphicTextGap="10.0" minHeight="8.0" minWidth="100.0" prefHeight="40.0" prefWidth="300.0" rippleAnimateBackground="false" rippleAnimationSpeed="0.0" rippleBackgroundOpacity="0.0" rippleRadius="0.0" rippleRadiusMultiplier="0.0" style="-fx-background-color: #192d5aff; -fx-alignment: center-left; -fx-background-position: center-right;" text="Meal Orders" textFill="WHITE">
+                    <font>
+                        <Font name="Open Sans Bold" size="16.0" />
+                    </font>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+               <graphic>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               </graphic>
+                </MFXButton>
+                <MFXButton fx:id="flowersButton" graphicTextGap="10.0" minHeight="8.0" minWidth="100.0" prefHeight="40.0" prefWidth="300.0" rippleAnimateBackground="false" rippleAnimationSpeed="0.0" rippleBackgroundOpacity="0.0" rippleRadius="0.0" rippleRadiusMultiplier="0.0" style="-fx-background-color: #192d5aff; -fx-alignment: center-left;" text="Flower Delivery" textFill="WHITE">
+                    <font>
+                        <Font name="Open Sans Bold" size="16.0" />
+                    </font>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+               <graphic>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               </graphic>
+                </MFXButton>
+                <MFXButton fx:id="signageButton" graphicTextGap="10.0" minHeight="8.0" minWidth="100.0" prefHeight="40.0" prefWidth="300.0" rippleAnimateBackground="false" rippleAnimationSpeed="0.0" rippleBackgroundOpacity="0.0" rippleRadius="0.0" rippleRadiusMultiplier="0.0" style="-fx-background-color: #192d5aff; -fx-alignment: center-left;" text="Signage" textFill="WHITE">
+                    <font>
+                        <Font name="Open Sans Bold" size="16.0" />
+                    </font>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+               <graphic>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               </graphic>
+                </MFXButton>
+            </children>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+        </VBox>
+    </children>
 </StackPane>
