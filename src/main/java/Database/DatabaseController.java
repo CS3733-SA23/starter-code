@@ -24,13 +24,13 @@ public class DatabaseController {
 
     DatabaseController DBC1 = new DatabaseController("teame", "teame50");
 
-    DBC1.importFromCSV("Test", "L1Nodes.csv");
+    // DBC1.importFromCSV("C:\\Users\\thesm\\OneDrive\\Desktop\\Test.csv", "l1nodes");
 
     boolean exit = true;
     while (exit) {
       System.out.println("\nWhat would you like to do?");
       System.out.println(
-          "Choices: update, retrieve, delete, display info, export table, HELP, EXIT)");
+          "Choices: update, retrieve, delete, display info, export table, import table, HELP, EXIT)");
       String function = s1.nextLine().toLowerCase().trim();
 
       switch (function) {
@@ -63,6 +63,14 @@ public class DatabaseController {
           DBC1.userExportToCSV();
           break;
 
+        case "import table":
+          System.out.println("What's the filepath?");
+          String filepath = s1.nextLine();
+          try {
+            DBC1.importFromCSV(filepath, "l1nodes");
+          } catch (IOException e) {
+            System.out.println("Something went wrong");
+          }
         default:
           System.out.println("Please enter a valid action");
       }
@@ -584,6 +592,60 @@ public class DatabaseController {
     }
   }
 
+  // nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName
+  public void importFromCSV(String filePath, String tableName) throws FileNotFoundException {
+    try {
+      // Load CSV file
+      BufferedReader reader = new BufferedReader(new FileReader(filePath));
+      String line;
+      List<String> rows = new ArrayList<>();
+      while ((line = reader.readLine()) != null) {
+        rows.add(line);
+      }
+      rows.remove(0);
+      reader.close();
+
+      Statement stmt = c.createStatement();
+      for (String l1 : rows) {
+        String[] splitL1 = l1.split(",");
+        System.out.println(l1);
+        String sql =
+            "INSERT INTO "
+                + tableName
+                + " VALUES ('"
+                + splitL1[0]
+                + "', "
+                + Integer.parseInt(splitL1[1])
+                + ", "
+                + Integer.parseInt(splitL1[2])
+                + ", '"
+                + splitL1[3]
+                + "', "
+                + " '"
+                + splitL1[4]
+                + "', "
+                + " '"
+                + splitL1[5]
+                + "', "
+                + " '"
+                + splitL1[6]
+                + "', "
+                + " '"
+                + splitL1[7]
+                + "'); ";
+        System.out.println(sql);
+        stmt.execute(sql);
+      }
+
+      System.out.println(
+          "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
+
+    } catch (IOException | SQLException e) {
+      System.err.println("Error importing from " + filePath + " to " + tableName);
+      e.printStackTrace();
+    }
+  }
+
   private void userExportToCSV() {
     Scanner s1 = new Scanner(System.in);
 
@@ -651,30 +713,5 @@ public class DatabaseController {
     fileWriter.close();
     rs.close();
     stmt.close();
-  }
-
-  public void importFromCSV(String tableName, String filename) {
-    PreparedStatement preparedStatement = null;
-    BufferedReader bufferedReader = null;
-
-    try {
-      bufferedReader = new BufferedReader(new FileReader(filename));
-      String line;
-      while ((line = bufferedReader.readLine()) != null) {
-        String[] values = line.split(",");
-        int id = Integer.parseInt(values[0]);
-        String name = values[1];
-        preparedStatement.setInt(1, id);
-        preparedStatement.setString(2, name);
-        preparedStatement.executeUpdate();
-      }
-
-      System.out.println(
-          "CSV file " + filename + " imported successfully into table " + tableName + ".");
-    } catch (SQLException e) {
-      System.out.println("Connection failed.");
-    } catch (IOException e) {
-      System.out.println("File read failed.");
-    }
   }
 }
