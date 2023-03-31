@@ -1,4 +1,3 @@
-
 package edu.wpi.teamc.map;
 
 import lombok.Getter;
@@ -15,3 +14,4 @@ public class Edge {
     this.weight = 0;
   }
 }
+
