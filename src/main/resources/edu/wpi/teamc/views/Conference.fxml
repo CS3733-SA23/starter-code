@@ -115,10 +115,10 @@
             <VBox layoutX="202.0" layoutY="60.0" prefHeight="218.0" prefWidth="335.0" spacing="13">
                <children>
                       <TextField prefHeight="26.0" prefWidth="372.0" style="-fx-background-color: #BAE3E0;" />
-                      <MenuButton mnemonicParsing="false" prefHeight="26.0" prefWidth="372.0" style="-fx-background-color: #BAE3E0; -fx-font: Inter; -fx-font-weight: 700; -fx-font-size: 12;" text="-- Please Select Conference Room --" textFill="TEAL">
+                      <MenuButton fx:id="RoomSelection" mnemonicParsing="false" onAction="#getRoomSelection" prefHeight="26.0" prefWidth="372.0" style="-fx-background-color: #BAE3E0; -fx-font: Inter; -fx-font-weight: 700; -fx-font-size: 12;" text="-- Please Select Conference Room --" textFill="TEAL">
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Sample 1" />
-                              <MenuItem mnemonicParsing="false" text="Sample 2" />
+                              <MenuItem fx:id="Option1" mnemonicParsing="false" onAction="#getOption1" text="option 1" />
+                              <MenuItem fx:id="Option2" mnemonicParsing="false" onAction="#getOption2" text="option 2" />
                           </items>
                       </MenuButton>
                       <MenuButton mnemonicParsing="false" prefHeight="26.0" prefWidth="372.0" style="-fx-background-color: #BAE3E0; -fx-font: Inter; -fx-font-weight: 700; -fx-font-size: 12;" text="-- Please Select a Start Date and Time --" textFill="TEAL">
