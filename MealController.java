@@ -18,6 +18,16 @@ public class MealController {
   @FXML private MenuItem MEAL_Vegan;
 
   @FXML
+  public void initialize() {
+    MEAL_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+  }
+
+  @FXML
+  void SubmitRequest() {
+    MEAL_outputtext.setText("Submitted");
+  }
+
+  @FXML
   void MEAL_Choice0() {
     MEAL_Menu.setText("-Please Select Meal-");
   }
@@ -30,20 +40,5 @@ public class MealController {
   @FXML
   void MEAL_Choice2() {
     MEAL_Menu.setText("Vegan");
-  }
-
-  @FXML
-  public void goHome() {
-    MEAL_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-  }
-
-  /*@FXML
-  void SubmitRequest() {
-    MEAL_outputtext.setText("Submitted");
-  }*/
-
-  @FXML
-  void SubmitRequest() {
-    MEAL_submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
   }
 }

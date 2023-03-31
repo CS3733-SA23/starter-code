@@ -1,6 +1,8 @@
-
 package edu.wpi.teamc.map;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import lombok.Getter;
@@ -85,8 +87,32 @@ public class Node {
     this.edges = new LinkedList<>();
   }
 
-  public void addEdge(String edgeID, Node endNode) {
-    Edge temp = new Edge(edgeID, endNode);
+  public void addEdge(String edgeID, Node startNode, Node endNode) {
+    Edge temp = new Edge(edgeID, startNode, endNode);
     edges.add(temp);
+  }
+
+  public void updateNodeCoordinates(
+      Connection connection, String nodeID, int xCoordinate, int yCoordinate) {
+    try {
+      PreparedStatement stmtUpdateCoord =
+          connection.prepareStatement(
+              "UPDATE \"hospitalNode\".node\n"
+                  + "SET xcoord = ?, ycoord = ?\n"
+                  + "WHERE \"nodeID\" = ?;");
+      // set parameters for prepared statement
+      stmtUpdateCoord.setInt(1, xCoordinate);
+      stmtUpdateCoord.setInt(2, yCoordinate);
+      stmtUpdateCoord.setString(3, nodeID);
+
+      int rowsUpdated = stmtUpdateCoord.executeUpdate();
+      if (rowsUpdated > 0) {
+        System.out.println("update successful!");
+      } else {
+        System.out.println("Node not found: Invalid nodeID");
+      }
+    } catch (SQLException e) {
+      System.out.println("SQL exception occurred: " + e.getMessage());
+    }
   }
 }

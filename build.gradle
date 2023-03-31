@@ -52,7 +52,7 @@ dependencies {
             'org.hibernate:hibernate-core:6.1.6.Final',
             'org.hibernate:hibernate-jcache:6.1.6.Final',
             'org.ehcache:ehcache:3.10.6',
-            'com.sun.xml.bind:jaxb-core:4.0.2',
+            //'com.sun.xml.bind:jaxb-core:4.0.2',
             'javax.xml.bind:jaxb-api:2.3.1',
             'org.glassfish.jaxb:jaxb-runtime:4.0.2',
             'org.postgresql:postgresql:42.5.1',
