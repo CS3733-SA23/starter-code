@@ -6,6 +6,8 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class HomeController {
   @FXML MFXButton signageButton2;
@@ -23,6 +25,11 @@ public class HomeController {
   @FXML private Button roomReservationPage;
 
   @FXML private Button signagePage;
+
+  // Exit Button FUNTION Required START
+  @FXML private Button HOME_Exit;
+  @FXML private AnchorPane homepage;
+  // Exit Button FUNTION Required END
 
   @FXML
   void getFlowerDeliveryPage(ActionEvent event) {
@@ -60,5 +67,14 @@ public class HomeController {
   /** Method run when controller is initialized */
   @FXML
   public void initialize() {}
-}
 
+  // Exit Button FUNTION Required START
+  Stage stage;
+
+  @FXML
+  void HOME_ExitApp(ActionEvent event) {
+    stage = (Stage) homepage.getScene().getWindow();
+    stage.close();
+  }
+  // Exit Button FUNTION Required END
+}
