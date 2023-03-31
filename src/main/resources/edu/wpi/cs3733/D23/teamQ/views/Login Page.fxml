@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.LoginController">
+   <children>
+      <StackPane prefHeight="438.0" prefWidth="576.0" HBox.hgrow="ALWAYS">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <children>
+            <AnchorPane opacity="0.5" prefHeight="493.0" prefWidth="588.0" style="-fx-background-color: #002d59;" />
+            <ImageView fitHeight="806.0" fitWidth="1031.0" opacity="0.27" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+               <image>
+                  <Image url="@../../../../../../../../../../../../Desktop/international-bwh-1428x1110.jpeg" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <VBox alignment="CENTER" minWidth="-Infinity" prefHeight="843.0" prefWidth="250.0" spacing="3.0" style="-fx-background-color: #B3BBC0;" HBox.hgrow="NEVER">
+         <children>
+            <TextField fx:id="usernameField" onKeyPressed="#usernameFieldEntered" promptText="Username" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets left="40.0" right="40.0" />
+               </VBox.margin>
+            </TextField>
+            <PasswordField fx:id="passwordField" onKeyPressed="#passwordFieldEntered" promptText="Password" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets left="40.0" right="40.0" />
+               </VBox.margin>
+            </PasswordField>
+            <HBox alignment="CENTER" prefHeight="20.0" prefWidth="120.0" spacing="70.0" />
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonClicked" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #002d59;" styleClass="button-login" stylesheets="@../../../../../../../../../../CS3733-D23-Team-Q-Prototype-1/src/main/resources/edu/wpi/teamname/views/styles/Home.css" text="Login" textFill="WHITE" VBox.vgrow="ALWAYS" />
+            <Button fx:id="CAButton" mnemonicParsing="false" onAction="#CreatAccountButtonClicked" styleClass="button-forgot" stylesheets="@../../../../../../../../../../CS3733-D23-Team-Q-Prototype-1/src/main/resources/edu/wpi/teamname/views/styles/Home.css" text="Create Account" underline="true">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
+            <Button fx:id="FPButton" mnemonicParsing="false" onAction="#FPButtonClicked" styleClass="button-forgot" stylesheets="@../../../../../../../../../../CS3733-D23-Team-Q-Prototype-1/src/main/resources/edu/wpi/teamname/views/styles/Home.css" text="Forgot Password?" underline="true">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</HBox>
