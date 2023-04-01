@@ -208,21 +208,27 @@ public class Graph {
     PriorityQueue<Edge> open = new PriorityQueue<>();
     LinkedList<Edge> closed = new LinkedList<>();
 
+    // set heuristic vals for all immediate edges
     for (Edge edge : start.getEdges()) {
       edge.setHeuristic(end);
     }
 
+    // add all immediate edges
     open.addAll(start.getEdges());
 
     while (!open.isEmpty()) {
+      // pick the best edge
       Edge current = open.peek();
 
+      // check if the current edge would reach the dest
       if (end.equals(current.getEndNode())) {
         closed.add(current);
         return closed;
       }
 
+      // check edges of endNode of current edge
       for (Edge neighbor : current.getEndNode().getEdges()) {
+        // if they haven't been added yet
         if (!closed.contains(neighbor) && !open.contains(neighbor)) {
           neighbor.setHeuristic(end);
           open.add(neighbor);
@@ -290,6 +296,7 @@ public class Graph {
       totalDist += edge.getWeight();
     }
 
+    // purely for comparison sake
     System.out.print(": Total dist: " + totalDist);
     System.out.println(
         ": Total dist est: "
