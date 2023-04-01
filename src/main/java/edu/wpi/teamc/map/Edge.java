@@ -1,34 +1,19 @@
 package edu.wpi.teamc.map;
 
+import lombok.Getter;
+
+@Getter
 public class Edge {
   private String id;
-  private String startNode;
-  private String endNode;
+  private Node startNode;
+  private Node endNode;
+  private int weight;
 
-  public Edge(
-      String id,
-      String startNode,
-      String endNode,
-      String type,
-      String length,
-      String direction,
-      String floor,
-      String building,
-      String teamAssigned) {
+  public Edge(String id, Node startNode, Node endNode) {
     this.id = id;
     this.startNode = startNode;
     this.endNode = endNode;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  public String getStartNode() {
-    return startNode;
-  }
-
-  public String getEndNode() {
-    return endNode;
+    this.weight = 0;
   }
 }
+
