@@ -1,13 +1,8 @@
-package edu.wpi.teamA.controllers.Home;
+package edu.wpi.teamA.controllers.Navigation;
 
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 
 public class HomeController {
-
-  // HeaderController headerController = new HeaderController();
-  @FXML Parent header;
-  @FXML Parent footer;
 
   @FXML
   public void initialize() {

@@ -1,4 +1,4 @@
-package edu.wpi.teamA.controllers;
+package edu.wpi.teamA.controllers.Navigation;
 
 import javafx.fxml.FXML;
 
