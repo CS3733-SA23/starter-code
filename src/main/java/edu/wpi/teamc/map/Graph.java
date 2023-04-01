@@ -5,10 +5,7 @@ import static java.lang.Integer.parseInt;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Graph {
   private Map<String, Node> nodes = new HashMap<>();
@@ -71,7 +68,7 @@ public class Graph {
 
       // reverse the edgeID for an edge going in the other direction
       String[] nodeID = edge[0].split("_");
-      String reverse = nodeID[0] + "_" + nodeID[1];
+      String reverse = nodeID[1] + "_" + nodeID[0];
       Edge otherDirection = new Edge(reverse, nodes.get(edge[2]), nodes.get(edge[1]));
 
       Node start = nodes.get(edge[1]);
@@ -206,27 +203,36 @@ public class Graph {
    * @param end - end node
    * @return list of directions
    */
-  /*public List<Node> getDirections_Astar(Node start, Node end) {
+  public List<Edge> getDirections_Astar(Node start, Node end) {
     // implement a* algorithm for pathfinding from start to end
-    LinkedList<Node> open = new LinkedList<>();
-    LinkedList<Node> closed = new LinkedList<>();
-    open.add(start);
+    PriorityQueue<Edge> open = new PriorityQueue<>();
+    LinkedList<Edge> closed = new LinkedList<>();
+
+    for (Edge edge : start.getEdges()) {
+      edge.setHeuristic(end);
+    }
+
+    open.addAll(start.getEdges());
+
     while (!open.isEmpty()) {
-      Node current = open.remove();
-      if (current.equals(end)) {
+      Edge current = open.peek();
+
+      if (end.equals(current.getEndNode())) {
+        closed.add(current);
         return closed;
       }
-      for (Node neighbor : getNeighbors(current)) {
-        if (!closed.contains(neighbor)) {
-          neighbor.setCost(current.getCost() + 1);
-          neighbor.setHeuristic(neighbor.getCost() + neighbor.getDistance(end));
+
+      for (Edge neighbor : current.getEndNode().getEdges()) {
+        if (!closed.contains(neighbor) && !open.contains(neighbor)) {
+          neighbor.setHeuristic(end);
           open.add(neighbor);
         }
       }
       closed.add(current);
+      open.remove(current);
     }
     return null;
-  }*/
+  }
 
   /** Prints the graph */
   public void printGraph() {
@@ -248,11 +254,46 @@ public class Graph {
   public void printDirections(String start, String end) {
     Node startNode = nodes.get(start);
     Node endNode = nodes.get(end);
+    Node saveTemp = null;
     List<Node> directions = getDirections_BFS(startNode, endNode);
+    double totalDist = 0;
 
     System.out.println();
     for (Node node : directions) {
+      if (saveTemp != null) {
+        totalDist +=
+            Math.hypot(
+                saveTemp.getXCoord() - node.getXCoord(), saveTemp.getYCoord() - node.getYCoord());
+      }
+
       System.out.print(" --> " + node.getNodeID());
+      saveTemp = node;
     }
+
+    System.out.print(": Total dist: " + totalDist);
+  }
+
+  public void printDirectionsAStar(String start, String end) {
+    Node startNode = nodes.get(start);
+    Node endNode = nodes.get(end);
+    List<Edge> directions = getDirections_Astar(startNode, endNode);
+    double totalDist = 0;
+
+    if (directions == null) {
+      System.out.println("No path exists!");
+      return;
+    }
+
+    System.out.print("\n" + directions.get(0).getStartNode().getNodeID());
+    for (Edge edge : directions) {
+      System.out.print(" --> " + edge.getEndNode().getNodeID());
+      totalDist += edge.getWeight();
+    }
+
+    System.out.print(": Total dist: " + totalDist);
+    System.out.println(
+        ": Total dist est: "
+            + (Math.abs(startNode.getXCoord() - endNode.getXCoord())
+                + Math.abs(startNode.getYCoord() - endNode.getYCoord())));
   }
 }
