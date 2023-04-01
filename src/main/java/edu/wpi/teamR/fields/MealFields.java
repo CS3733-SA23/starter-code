@@ -3,8 +3,8 @@ package edu.wpi.teamR.fields;
 public class MealFields extends FormFields {
   private String meal;
 
-  public MealFields(String name, String location, String notes, String meal) {
-    super(name, location, notes);
+  public MealFields(String name, String location, String staffMember, String notes, String meal) {
+    super(name, location, staffMember, notes);
     this.meal = meal;
   }
 
