@@ -1,16 +1,19 @@
 package edu.wpi.teamA.controllers.Home;
 
-import edu.wpi.teamA.navigation.Navigation;
-import edu.wpi.teamA.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 
 public class HomeController {
 
-  @FXML MFXButton navigateButton;
+  // HeaderController headerController = new HeaderController();
+  @FXML Parent header;
+  @FXML Parent footer;
 
   @FXML
   public void initialize() {
-    navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HEADER));
+    // System.out.println(headerController.getTitle());
+    // headerController.initialize();
+    // HeaderController.setPageTitle("Home");
+    // navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HEADER));
   }
 }
