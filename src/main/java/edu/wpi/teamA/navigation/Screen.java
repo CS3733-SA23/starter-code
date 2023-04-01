@@ -1,9 +1,10 @@
-package edu.wpi.teamname.navigation;
+package edu.wpi.teamA.navigation;
 
 public enum Screen {
   ROOT("views/Root.fxml"),
   HOME("views/Home.fxml"),
-  SERVICE_REQUEST("views/ServiceRequest.fxml");
+  SERVICE_REQUEST("views/ServiceRequest.fxml"),
+  HEADER("views/Header.fxml");
 
   private final String filename;
 
