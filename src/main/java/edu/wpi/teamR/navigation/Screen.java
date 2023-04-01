@@ -1,4 +1,4 @@
-package edu.wpi.romanticraijuu.navigation;
+package edu.wpi.teamR.navigation;
 
 public enum Screen {
   ROOT("views/Root.fxml"),
