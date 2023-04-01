@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.romanticraijuu.controllers.SignageController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" translateX="30.0">
+               <image>
+                  <Image url="@../images/left-arrow.png" />
+               </image>
+            </ImageView>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Information Desk" translateX="35.0">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutY="80.0" prefHeight="80.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" translateX="30.0">
+               <image>
+                  <Image url="@../images/left-arrow.png" />
+               </image>
+            </ImageView>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Room" translateX="35.0">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" layoutY="320.0" prefHeight="80.0" prefWidth="600.0">
+         <children>
+            <MFXButton fx:id="backButton" text="Back" translateX="-350.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Restrooms" translateX="-35.0">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0">
+               <image>
+                  <Image url="@../images/right-arrow.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" layoutY="240.0" prefHeight="80.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ultrasound Labs" translateX="-35.0">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0">
+               <image>
+                  <Image url="@../images/right-arrow.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" layoutY="160.0" prefHeight="80.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ear, Nose, and Throat Department" translateX="-35.0">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0">
+               <image>
+                  <Image url="@../images/right-arrow.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

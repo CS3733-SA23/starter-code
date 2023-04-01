@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.romanticraijuu.controllers.MealRequestController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="60.0" fitWidth="57.0" layoutX="542.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Brigham_and_Womens_Hospital_logo.svg.png" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="79.0" layoutX="-3.0" layoutY="-1.0" stroke="#003da6" strokeType="INSIDE" width="606.0" />
+            <Text fill="WHITE" layoutX="134.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Delivery Request" textAlignment="CENTER">
+               <font>
+                  <Font name="Times New Roman" size="36.0" />
+               </font>
+            </Text>
+            <MFXButton fx:id="cancelButton" layoutX="93.0" layoutY="325.0" text="Cancel">
+               <font>
+                  <Font name="Times New Roman" size="12.0" />
+               </font>
+            </MFXButton>
+            <MFXButton fx:id="clearButton" layoutX="273.0" layoutY="325.0" text="Clear">
+               <font>
+                  <Font name="Times New Roman" size="12.0" />
+               </font>
+            </MFXButton>
+            <MFXButton fx:id="submitButton" layoutX="427.0" layoutY="325.0" text="Submit">
+               <font>
+                  <Font name="Times New Roman" size="12.0" />
+               </font>
+            </MFXButton>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dbdbdb" height="45.0" layoutX="80.0" layoutY="99.0" stroke="#dbdbdb" strokeType="INSIDE" width="420.0" />
+            <Text layoutX="90.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+               <font>
+                  <Font name="Times New Roman" size="10.0" />
+               </font>
+            </Text>
+            <MFXTextField fx:id="nameField" layoutX="86.0" layoutY="115.0" maxHeight="20.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="410.0">
+               <font>
+                  <Font name="Times New Roman" size="10.0" />
+               </font>
+            </MFXTextField>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dbdbdb" height="45.0" layoutX="80.0" layoutY="166.0" stroke="#dbdbdb" strokeType="INSIDE" width="420.0" />
+            <Text layoutX="90.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location:">
+               <font>
+                  <Font name="Times New Roman" size="10.0" />
+               </font>
+            </Text>
+            <MFXTextField fx:id="locationField" layoutX="86.0" layoutY="182.0" maxHeight="20.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="410.0">
+               <font>
+                  <Font name="Times New Roman" size="10.0" />
+               </font>
+            </MFXTextField>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dbdbdb" height="45.0" layoutX="80.0" layoutY="270.0" stroke="#dbdbdb" strokeType="INSIDE" width="420.0" />
+            <Text layoutX="90.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Additional Notes:">
+               <font>
+                  <Font name="Times New Roman" size="10.0" />
+               </font>
+            </Text>
+            <MFXTextField fx:id="notesField" layoutX="86.0" layoutY="285.0" maxHeight="20.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="410.0">
+               <font>
+                  <Font name="Times New Roman" size="10.0" />
+               </font>
+            </MFXTextField>
+            <Text layoutX="90.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Type:">
+               <font>
+                  <Font name="Times New Roman" size="10.0" />
+               </font>
+            </Text>
+            <ChoiceBox fx:id="mealTypeBox" layoutX="86.0" layoutY="230.0" prefWidth="150.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
