@@ -1,4 +1,4 @@
-package edu.wpi.romanticraijuu.controllers;
+package edu.wpi.teamR.controllers;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;

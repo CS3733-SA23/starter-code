@@ -1,8 +1,8 @@
-package edu.wpi.romanticraijuu.controllers;
+package edu.wpi.teamR.controllers;
 
-import edu.wpi.romanticraijuu.fields.MealFields;
-import edu.wpi.romanticraijuu.navigation.Navigation;
-import edu.wpi.romanticraijuu.navigation.Screen;
+import edu.wpi.teamR.fields.MealFields;
+import edu.wpi.teamR.navigation.Navigation;
+import edu.wpi.teamR.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
