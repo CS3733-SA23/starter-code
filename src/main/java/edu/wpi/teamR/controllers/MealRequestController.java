@@ -17,6 +17,7 @@ public class MealRequestController {
   @FXML MFXButton submitButton;
   @FXML MFXTextField nameField;
   @FXML MFXTextField locationField;
+  @FXML MFXTextField staffMemberField;
   @FXML MFXTextField notesField;
   @FXML ChoiceBox mealTypeBox;
 
@@ -42,11 +43,17 @@ public class MealRequestController {
     }
     mealField =
         new MealFields(
-            nameField.getText(), locationField.getText(), notesField.getText(), mealType);
+            nameField.getText(),
+            locationField.getText(),
+            staffMemberField.getText(),
+            notesField.getText(),
+            mealType);
     System.out.println(
         mealField.getName()
             + " "
             + mealField.getLocation()
+            + " "
+            + mealField.getStaffMember()
             + " "
             + mealField.getNotes()
             + " "
@@ -58,6 +65,7 @@ public class MealRequestController {
   public void clear() {
     nameField.clear();
     locationField.clear();
+    staffMemberField.clear();
     notesField.clear();
     mealTypeBox.setValue("Select Meal");
   }

@@ -81,7 +81,7 @@
             </Text>
             <ChoiceBox fx:id="mealTypeBox" layoutX="86.0" layoutY="230.0" prefWidth="150.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dbdbdb" height="45.0" layoutX="281.0" layoutY="220.0" stroke="#dbdbdb" strokeType="INSIDE" width="219.0" />
-            <MFXTextField fx:id="locationField1" layoutX="286.0" layoutY="234.0" maxHeight="25.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="209.0">
+            <MFXTextField fx:id="staffMemberField" layoutX="286.0" layoutY="234.0" maxHeight="25.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="209.0">
                <font>
                   <Font name="Times New Roman" size="10.0" />
                </font>
