@@ -1,4 +1,3 @@
-
 package edu.wpi.teamc.map;
 
 import java.util.LinkedList;
@@ -14,9 +13,6 @@ public class Node {
   private int yCoord;
   private String floor;
   private String building;
-  private String nodeType;
-  private String longName;
-  private String shortName;
   private List<Edge> edges;
 
   /**
@@ -47,9 +43,6 @@ public class Node {
     this.yCoord = yCoord;
     this.floor = floor;
     this.building = building;
-    this.nodeType = nodeType;
-    this.longName = longName;
-    this.shortName = shortName;
     this.edges = edges;
   }
 
@@ -61,9 +54,6 @@ public class Node {
    * @param yCoord - y coordinate of the node ex: 849
    * @param floor - floor of the node ex: L1
    * @param building - building of the node ex: CCONF
-   * @param nodeType - type of the node ex: HALL
-   * @param longName - long name of the node ex: Outpatient Fluoroscopy Floor L1
-   * @param shortName - short name of the node ex: Lab C001L1
    */
   public Node(
       String nodeID,
@@ -79,9 +69,6 @@ public class Node {
     this.yCoord = yCoord;
     this.floor = floor;
     this.building = building;
-    this.nodeType = nodeType;
-    this.longName = longName;
-    this.shortName = shortName;
     this.edges = new LinkedList<>();
   }
 
