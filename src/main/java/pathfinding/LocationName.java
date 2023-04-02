@@ -2,7 +2,12 @@ package pathfinding;
 
 import lombok.Getter;
 
+import java.util.HashMap;
+
 public class LocationName {
+
+    public static HashMap<String, LocationName> allLocations = new HashMap<>();
+
     public enum NodeType{
         HALL,
         CONF,
@@ -26,5 +31,7 @@ public class LocationName {
         this.longName = longName;
         this.shortName = shortName;
         this.nodeType = nodeType;
+
+        allLocations.put(this.longName, this);
     }
 }

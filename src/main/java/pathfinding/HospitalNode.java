@@ -1,60 +1,34 @@
 package pathfinding;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import static java.util.Objects.hash;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class HospitalNode {
-
   public static HashMap<String, HospitalNode> allNodes = new HashMap<>();
 
-  List<HospitalNode> neighbors;
+  @Getter List<HospitalNode> neighbors;
   HashMap<HospitalNode, Integer> edgeCosts;
 
-  String nodeID;
+  @Getter String nodeID;
 
-  int xCoord;
-  int yCoord;
-  String floor;
-  String building;
+  @Getter int xCoord;
+  @Getter int yCoord;
+  @Getter Floor floor;
+  @Getter String building;
 
-  String nodeType;
-
-  String longName;
-  String shortName;
-
-  public HospitalNode() {
-    this.neighbors = new LinkedList<HospitalNode>();
-    edgeCosts = new HashMap<HospitalNode, Integer>();
-  }
-
-  public HospitalNode(String id) {
-    this.neighbors = new LinkedList<HospitalNode>();
-    edgeCosts = new HashMap<HospitalNode, Integer>();
-    nodeID = id;
-    allNodes.put(id, this);
-  }
-
-  public HospitalNode(String id, int xCoord, int yCoord) {
-    this.neighbors = new LinkedList<HospitalNode>();
-    edgeCosts = new HashMap<HospitalNode, Integer>();
-    nodeID = id;
-    allNodes.put(id, this);
-    this.xCoord = xCoord;
-    this.yCoord = yCoord;
-  }
+  @Getter @Setter
+  LocationName name;
 
   public HospitalNode(
       String id,
       int xCoord,
       int yCoord,
-      String floor,
-      String building,
-      String nodeType,
-      String longName,
-      String shortName) {
+      Floor floor,
+      String building) {
     this.neighbors = new LinkedList<HospitalNode>();
     edgeCosts = new HashMap<HospitalNode, Integer>();
     nodeID = id;
@@ -62,27 +36,28 @@ public class HospitalNode {
     this.yCoord = yCoord;
     this.floor = floor;
     this.building = building;
-    this.nodeType = nodeType;
-    this.longName = longName;
-    this.shortName = shortName;
     // Add this node to the collection of all nodes
     allNodes.put(nodeID, this);
   }
 
-  public HospitalNode addNeighbor(HospitalNode neighbor) {
-    neighbors.add(neighbor);
-    edgeCosts.put(neighbor, 1);
-    return this;
+  public HospitalNode() {
+    this(allNodes.size()+"",0,0,Floor.LOWER_ONE,"Unknown");
   }
 
-  public HospitalNode addNeighbor(HospitalNode neighbor, int cost) {
-    neighbors.add(neighbor);
-    edgeCosts.put(neighbor, cost);
-    return this;
+  public HospitalNode(String id) {
+    this(id,0,0,Floor.LOWER_ONE,"Unknown");
   }
 
-  public List<HospitalNode> getNeighbors() {
-    return neighbors;
+  public HospitalNode(String id, int xCoord, int yCoord) {
+    this(id,xCoord,yCoord,Floor.LOWER_ONE,"Unknown");
+  }
+
+  public HospitalNode(NodeInitializer nodeInitializer){
+    this(nodeInitializer.nodeID,
+            nodeInitializer.xCoord,
+            nodeInitializer.yCoord,
+            nodeInitializer.floor,
+            nodeInitializer.building);
   }
 
   @Override
@@ -101,6 +76,18 @@ public class HospitalNode {
       return nodeID.equals(((HospitalNode) other).nodeID);
     }
     return false;
+  }
+
+  public HospitalNode addNeighbor(HospitalNode neighbor) {
+    neighbors.add(neighbor);
+    edgeCosts.put(neighbor, 1);
+    return this;
+  }
+
+  public HospitalNode addNeighbor(HospitalNode neighbor, int cost) {
+    neighbors.add(neighbor);
+    edgeCosts.put(neighbor, cost);
+    return this;
   }
 
   public static void addEdge(HospitalNode node1, HospitalNode node2) {
