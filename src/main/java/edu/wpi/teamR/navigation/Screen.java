@@ -7,6 +7,7 @@ public enum Screen {
   SIGNAGE("views/Signage.fxml"),
   FURNITURE_REQUEST("views/FurnitureRequest.fxml"),
   HELP("views/Help.fxml"),
+  SORT("views/sortOrders.fxml"),
   UPDATE_NODES("views/UpdateNodes.fxml");
 
   private final String filename;
