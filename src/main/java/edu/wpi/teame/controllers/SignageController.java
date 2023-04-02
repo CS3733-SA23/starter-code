@@ -6,10 +6,10 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 
 public class SignageController {
-  @FXML MFXButton backButton;
+  @FXML MFXButton returnButtonSignage;
 
   @FXML
   public void initialize() {
-    backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    returnButtonSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
   }
 }

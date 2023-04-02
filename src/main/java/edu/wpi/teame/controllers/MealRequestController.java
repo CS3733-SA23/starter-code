@@ -20,7 +20,7 @@ public class MealRequestController implements IRequestController {
 
   @FXML
   public void initialize() {
-    backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     cancelButton.setOnMouseClicked(event -> cancelRequest());
     submitButton.setOnMouseClicked(event -> sendRequest());
   }

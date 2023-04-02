@@ -12,7 +12,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.SignageController">
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="600.0">
@@ -96,18 +95,33 @@
                   <Font name="Times New Roman" size="20.0" />
                </font>
             </Text>
-            <ImageView fitHeight="50.0" fitWidth="63.0" layoutX="527.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="92.0" fitWidth="82.0" layoutX="530.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/Back%20Arrow.png" />
+                  <Image url="@../images/Arrow.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="63.0" layoutX="477.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="92.0" fitWidth="82.0" layoutX="486.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/Back%20Arrow.png" />
+                  <Image url="@../images/Arrow.png" />
                </image>
             </ImageView>
+            <MFXButton fx:id="returnButtonSignage" contentDisplay="GRAPHIC_ONLY" layoutX="152.0" layoutY="49.0" style="-fx-background-color: #192d5a;">
+               <graphic>
+                  <ImageView fx:id="returnButtonService" fitHeight="100.0" fitWidth="50.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Back%20Arrow.png" />
+                     </image>
+                     <effect>
+                        <DropShadow spread="0.61">
+                           <color>
+                              <Color red="0.8980392217636108" green="0.7372549176216125" blue="0.23137255012989044" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </ImageView>
+               </graphic>
+            </MFXButton>
          </children>
       </AnchorPane>
    </center>
 </BorderPane>
-

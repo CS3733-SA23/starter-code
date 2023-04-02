@@ -29,7 +29,7 @@ public class FlowerRequestController implements IRequestController {
   public void initialize() {
     flowerChoice.setItems(flowerChoices);
     numOfFlowers.setItems(flowerNum);
-    cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     submitButton.setOnMouseClicked(event -> sendRequest());
   }
 
