@@ -28,11 +28,9 @@ public class DatabaseViewController {
 
   @FXML MFXButton exportButton;
 
-  @FXML
-  TableView<MoveAttribute> dataTable;
+  @FXML TableView<MoveAttribute> dataTable;
 
-  @FXML
-  TableColumn<MoveAttribute, String> nodeIDCol;
+  @FXML TableColumn<MoveAttribute, String> nodeIDCol;
 
   @FXML TableColumn<MoveAttribute, String> nameCol;
 
@@ -57,7 +55,7 @@ public class DatabaseViewController {
 
     List itemList = new ArrayList<>(); // REPLACE WITH THE METHOD CALL
 
-    //dataTable.setItems();
+    // dataTable.setItems();
 
     dataTable.setEditable(true);
   }

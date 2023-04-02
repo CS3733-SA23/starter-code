@@ -5,6 +5,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import pathfinding.Floor;
 import pathfinding.HospitalEdge;
 import pathfinding.HospitalNode;
 
@@ -122,18 +124,18 @@ public class DatabaseController {
     this.retrieveFromTable();
   }
 
-  private void addToTable(String moveAttribute){
+  private void addToTable(String moveAttribute) {
     Statement stmt;
-    //String nodeId= .moveAttribute;
-    //String longName = .moveAttribute;
-    //String date = .moveAttribute;
+    // String nodeId= .moveAttribute;
+    // String longName = .moveAttribute;
+    // String date = .moveAttribute;
 
-    try{
+    try {
       stmt = c.createStatement();
-      String insertTable = "INSERT INTO \"Move\" VALUES("+ moveAttribute +");";
+      String insertTable = "INSERT INTO \"Move\" VALUES(" + moveAttribute + ");";
       ResultSet rs = stmt.executeQuery(insertTable);
 
-    } catch(SQLException e){
+    } catch (SQLException e) {
       System.out.println();
     }
   }
@@ -315,7 +317,7 @@ public class DatabaseController {
     String nodeType = rs.getString("nodeType");
     String longName = rs.getString("longName");
     String shortName = rs.getString("shortName");
-    return new HospitalNode(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName);
+    return new HospitalNode(nodeID, xCoord, yCoord, Floor.stringToFloor(floor), building);
   }
 
   /**
