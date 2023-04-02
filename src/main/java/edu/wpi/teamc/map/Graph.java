@@ -299,7 +299,7 @@ public class Graph {
     // purely for comparison sake
     System.out.print(": Total dist: " + totalDist);
     System.out.println(
-        ": Total dist est: "
+        "\nTotal dist estimated by straight line: "
             + (Math.abs(startNode.getXCoord() - endNode.getXCoord())
                 + Math.abs(startNode.getYCoord() - endNode.getYCoord())));
   }
