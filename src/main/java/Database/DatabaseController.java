@@ -234,10 +234,9 @@ public class DatabaseController {
     return edgeList;
   }
 
-  public List<MoveAttribute> getMoveList(){
+  public List<MoveAttribute> getMoveList() {
     return new ArrayList<>();
   }
-
 
   /**
    * It populates the "nodeList" and "edgeList" ArrayLists with node and edge objects, respectively,
