@@ -9,19 +9,48 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
 public class HomePageController {
-  @FXML MFXButton serviceRequestButton;
-  @FXML MFXButton signageButton;
+  @FXML MFXButton menuButton;
+  @FXML MFXButton bottomB;
+  @FXML MFXButton topB;
 
   private BooleanProperty hovered = new SimpleBooleanProperty(true);
   // private boolean b = false;
 
   public void initialize() {
 
-    // signageButton.setVisible(true);
-    serviceRequestButton.setOnMouseEntered(event -> signageButton.setVisible(true));
-    serviceRequestButton.setOnMouseExited(event -> signageButton.setVisible(false));
+    topB.setVisible(false);
+    bottomB.setVisible(false);
 
-    signageButton.setOnMouseEntered(event -> signageButton.setVisible(true));
-    signageButton.setOnMouseExited(event -> signageButton.setVisible(false));
+    menuButton.setOnMouseEntered(
+        event -> {
+          topB.setVisible(true);
+          bottomB.setVisible(true);
+        });
+    menuButton.setOnMouseExited(
+        event -> {
+          topB.setVisible(false);
+          bottomB.setVisible(false);
+        });
+    topB.setOnMouseEntered(
+        event -> {
+          topB.setVisible(true);
+          bottomB.setVisible(true);
+        });
+    topB.setOnMouseExited(
+        event -> {
+          topB.setVisible(false);
+          bottomB.setVisible(false);
+        });
+
+    bottomB.setOnMouseEntered(
+        event -> {
+          topB.setVisible(true);
+          bottomB.setVisible(true);
+        });
+    bottomB.setOnMouseExited(
+        event -> {
+          topB.setVisible(false);
+          bottomB.setVisible(false);
+        });
   }
 }
