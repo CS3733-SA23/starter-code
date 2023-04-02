@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.controllers.SignageController">
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.SignageController">
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -110,3 +110,4 @@
       </AnchorPane>
    </center>
 </BorderPane>
+
