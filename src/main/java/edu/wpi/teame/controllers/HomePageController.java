@@ -20,5 +20,8 @@ public class HomePageController {
     // signageButton.setVisible(true);
     serviceRequestButton.setOnMouseEntered(event -> signageButton.setVisible(true));
     serviceRequestButton.setOnMouseExited(event -> signageButton.setVisible(false));
+
+    signageButton.setOnMouseEntered(event -> signageButton.setVisible(true));
+    signageButton.setOnMouseExited(event -> signageButton.setVisible(false));
   }
 }
