@@ -3,7 +3,9 @@ package edu.wpi.teame.navigation;
 public enum Screen {
   ROOT("views/Root.fxml"),
   HOME("views/HomePage.fxml"),
-  SERVICE_REQUEST("views/ServiceRequest.fxml"),
+
+  SERVICE_REQUESTS("views/ServiceRequestPage.fxml"),
+
   SIGNAGE_TEXT("views/Signage.fxml"),
   MEAL_REQUEST("views/MealRequest.fxml"),
   FLOWER_REQUEST("views/FlowerRequest.fxml");

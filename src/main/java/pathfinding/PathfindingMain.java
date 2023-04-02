@@ -1,5 +1,6 @@
 package pathfinding;
 
+import Database.DatabaseController;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -47,6 +48,9 @@ public class PathfindingMain {
           edgeAddHandler(input);
         }
 
+      } else if (input.startsWith("import")) {
+        importDatabaseHandler(input);
+
       } else if (input.startsWith("run")) {
         // Import a graph from a specified file
         runFromFile(input);
@@ -91,6 +95,16 @@ public class PathfindingMain {
     // If there are enough arguments, include an edge weight
     HospitalNode.addEdge(
         arguments[2], arguments[3], (arguments.length >= 5) ? Integer.parseInt(arguments[4]) : 1);
+  }
+
+  public static void importDatabaseHandler(String input) {
+    String[] arguments = input.split(" ");
+    DatabaseController db;
+    // import [username (optional)] [password (optional)]
+    if (arguments.length >= 3) db = new DatabaseController(arguments[1], arguments[2]);
+    else db = new DatabaseController("teame", "teame50");
+    db.retrieveFromTable();
+    HospitalNode.processEdgeList(db.getHospitalEdges());
   }
 
   public static void runFromFile(String input) {
