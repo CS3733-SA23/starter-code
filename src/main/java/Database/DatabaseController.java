@@ -5,7 +5,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import pathfinding.Floor;
 import pathfinding.HospitalEdge;
 import pathfinding.HospitalNode;
@@ -328,11 +327,10 @@ public class DatabaseController {
    * @throws SQLException if an error occurs while accessing the ResultSet.
    */
   private HospitalEdge extractEdgeFromResultSet(ResultSet rs) throws SQLException {
-    String edgeID = rs.getString("edgeID");
     String startNode = rs.getString("startNode");
     String endNode = rs.getString("endNode");
 
-    return new HospitalEdge(edgeID, startNode, endNode);
+    return new HospitalEdge(startNode, endNode);
   }
 
   /**
