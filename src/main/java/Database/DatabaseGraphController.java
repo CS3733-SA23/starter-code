@@ -5,9 +5,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import pathfinding.HospitalEdge;
 import pathfinding.HospitalNode;
+import pathfinding.NodeInitializer;
 
 public class DatabaseGraphController {
   DatabaseController DBC;
@@ -110,18 +110,15 @@ public class DatabaseGraphController {
     int yCoord = rs.getInt("ycoord");
     String floor = rs.getString("floor");
     String building = rs.getString("building");
-    String nodeType = rs.getString("nodeType");
-    String longName = rs.getString("longName");
-    String shortName = rs.getString("shortName");
-    return new HospitalNode(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName);
+
+    return new HospitalNode(new NodeInitializer(nodeID, xCoord, yCoord, floor, building));
   }
 
   private HospitalEdge extractEdgeFromResultSet(ResultSet rs) throws SQLException {
-    String edgeID = rs.getString("edgeID");
     String startNode = rs.getString("startNode");
     String endNode = rs.getString("endNode");
 
-    return new HospitalEdge(edgeID, startNode, endNode);
+    return new HospitalEdge(startNode, endNode);
   }
 
   public int getNodeIDFromName(String longname) throws RuntimeException {
