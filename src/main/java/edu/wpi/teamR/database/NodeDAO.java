@@ -53,24 +53,24 @@ public class NodeDAO {
                 sqlDelete += "nodeID = " + nodeID;
             }
             if(xCoord != null){
-                count++;
                 if(count == 0){
                     sqlDelete += " AND ";
                 }
+                count++;
                     sqlDelete += "xCoord = " + xCoord;
             }
             if(yCoord != null){
-                count++;
                 if(count == 0){
                     sqlDelete += " AND ";
                 }
+                count++;
                 sqlDelete += "yCoord = " + yCoord;
             }
             if(floorNum != null){
-                count++;
                 if(count == 0){
                     sqlDelete += " AND ";
                 }
+                count++;
                 sqlDelete += "floorNum = " + "\'" + floorNum+ "\'";
             }
             if(building != null){
@@ -97,7 +97,7 @@ public class NodeDAO {
     public void modifyNodeByID(Integer nodeID, Integer xCoord, Integer yCoord, String floorNum, String building) throws SQLException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
-        String sqlUpdate = "UPDATE FROM " + schemaName + "." + tableName + " SET xCoord = " + xCoord;
+        String sqlUpdate = "UPDATE " + schemaName + "." + tableName + " SET xCoord = " + xCoord;
         sqlUpdate += ", yCoord = " + yCoord + ", floorNum = \'" + floorNum+ "\' , building = \'" + building + "\' WHERE nodeID = " + nodeID;
         statement.executeUpdate(sqlUpdate);
         closeConnection(connection);
