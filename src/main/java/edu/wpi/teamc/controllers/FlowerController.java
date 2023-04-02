@@ -4,14 +4,12 @@ import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 
 public class FlowerController {
-  @FXML private MFXButton FLOW_backtohome;
-  @FXML private MFXButton FLOW_submit;
-  @FXML private Label FLOW_outputtext;
+  @FXML private MFXButton goHome;
+  @FXML private MFXButton submit;
 
   @FXML private MenuItem chocie0;
 
@@ -51,17 +49,15 @@ public class FlowerController {
   }
 
   @FXML
-  public void goHome() {
-    FLOW_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+  public void getGoHome() {
+    goHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
-  /*@FXML
-  void SubmitRequest() {
-    FLOW_outputtext.setText("Submitted");
-  }*/
+  @FXML
+  void getClear() {}
 
   @FXML
-  void SubmitRequest() {
-    FLOW_submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
+  void getSubmit() {
+    submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
   }
 }

@@ -16,4 +16,3 @@ public class Edge {
     this.weight = 0;
   }
 }
-
