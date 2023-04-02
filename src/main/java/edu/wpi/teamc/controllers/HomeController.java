@@ -31,6 +31,8 @@ public class HomeController {
   @FXML private AnchorPane homepage;
   // Exit Button FUNTION Required END
 
+  @FXML private Button CSV_EditPage;
+
   @FXML
   void getFlowerDeliveryPage(ActionEvent event) {
     Navigation.navigate(Screen.FLOWER);
@@ -64,6 +66,11 @@ public class HomeController {
     Navigation.navigate(Screen.SIGNAGE);
   }
 
+  @FXML
+    void getCSV_EditPage(ActionEvent event) {
+        Navigation.navigate(Screen.CSV_EDIT);
+    }
+
   /** Method run when controller is initialized */
   @FXML
   public void initialize() {}
@@ -77,4 +84,6 @@ public class HomeController {
     stage.close();
   }
   // Exit Button FUNTION Required END
+
+
 }

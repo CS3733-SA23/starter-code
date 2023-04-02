@@ -90,6 +90,7 @@
             </Button>
          </children>
       </VBox>
-      <Button fx:id="HOME_Exit" layoutX="516.0" layoutY="79.0" mnemonicParsing="false" onAction="#HOME_ExitApp" text="EXIT" />
+      <Button fx:id="HOME_Exit" layoutX="496.0" layoutY="78.0" mnemonicParsing="false" onAction="#HOME_ExitApp" text="EXIT" />
+      <Button fx:id="CSV_EditPage" layoutX="468.0" layoutY="139.0" mnemonicParsing="false" onAction="#getCSV_EditPage" text="CSV Edit Page" />
     </children>
 </AnchorPane>
