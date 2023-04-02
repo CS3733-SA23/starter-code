@@ -15,9 +15,7 @@ public class HomePageController {
   @FXML MFXButton menuBarHome;
   @FXML MFXButton menuBarMap;
   @FXML MFXButton menuBarExit;
-
-  private BooleanProperty hovered = new SimpleBooleanProperty(true);
-  // private boolean b = false;
+  
 
   public void initialize() {
     menuDropDownVisibilty(false);
@@ -31,6 +29,7 @@ public class HomePageController {
           menuDropDownVisibilty(false);
         });
 
+
     menuBarSignage.setOnMouseEntered(
         event -> {
           menuDropDownVisibilty(true);
@@ -39,6 +38,7 @@ public class HomePageController {
         event -> {
           menuDropDownVisibilty(false);
         });
+
 
     menuBarServices.setOnMouseEntered(
         event -> {
@@ -49,6 +49,7 @@ public class HomePageController {
           menuDropDownVisibilty(false);
         });
 
+
     menuBarHome.setOnMouseEntered(
         event -> {
           menuDropDownVisibilty(true);
@@ -57,6 +58,7 @@ public class HomePageController {
         event -> {
           menuDropDownVisibilty(false);
         });
+
 
     menuBarMap.setOnMouseEntered(
         event -> {
@@ -67,6 +69,7 @@ public class HomePageController {
           menuDropDownVisibilty(false);
         });
 
+
     menuBarExit.setOnMouseEntered(
         event -> {
           menuDropDownVisibilty(true);
@@ -75,6 +78,8 @@ public class HomePageController {
         event -> {
           menuDropDownVisibilty(false);
         });
+
+
   }
 
   public void menuDropDownVisibilty(boolean bool) {
