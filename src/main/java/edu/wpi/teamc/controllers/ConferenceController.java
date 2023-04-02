@@ -2,48 +2,64 @@ package edu.wpi.teamc.controllers;
 
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
-import javafx.event.ActionEvent;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 
 public class ConferenceController {
-  @FXML private Button CONF_submit;
-  @FXML private Button CONF_backtohome;
-  @FXML private Label CONF_outputtext;
-  @FXML private MenuButton RoomSelection;
+  @FXML private MFXButton goHome;
+  @FXML private MFXButton submit;
 
-  @FXML
-  public void goHome() {
-    CONF_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-  }
+  @FXML private MenuItem chocie0;
 
-  /*@FXML
-  void CONF_submitrequest() {
-    CONF_outputtext.setText("Submitted");
-  }*/
+  @FXML private MenuItem chocie1;
 
-  @FXML
-  void getRoomSelection(ActionEvent event) {}
+  @FXML private MenuItem chocie2;
 
-  @FXML private MenuItem Option1;
+  @FXML private MenuItem chocie3;
 
-  @FXML private MenuItem Option2;
+  @FXML private MenuItem choice4;
 
-  @FXML
-  void getSubmitButton() {
-    CONF_submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
+  @FXML private MenuButton menuButton;
+
+  public void getGoHome() {
+    goHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   @FXML
-  void getOption1(ActionEvent event) {
-    RoomSelection.setText("Option 1");
+  void getChoice0() {
+    menuButton.setText("--Please Conference Room--");
   }
 
   @FXML
-  void getOption2(ActionEvent event) {
-    RoomSelection.setText("Option 2");
+  void getChoice1() {
+    menuButton.setText("Conference A1");
   }
+
+  @FXML
+  void getChoice2() {
+    menuButton.setText("Conference B2");
+  }
+
+  @FXML
+  void getChoice3() {
+    menuButton.setText("Conference C3");
+  }
+
+  @FXML
+  void getChoice4() {
+    menuButton.setText("Ian's Conference Room");
+  }
+
+  @FXML
+  void getSubmit() {
+    submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
+  }
+
+  @FXML
+  void getClear() {}
+
+  @FXML
+  void getMenuButton() {}
 }
