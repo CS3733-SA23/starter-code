@@ -34,7 +34,7 @@
                     </effect>
                 </ImageView>
                 <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#7e7e7e" height="462.0" layoutX="137.0" layoutY="41.0" opacity="0.64" stroke="TRANSPARENT" strokeType="INSIDE" width="537.0" />
-                <MFXButton fx:id="menuButton" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="1.0" layoutX="5.0" layoutY="65.0" prefHeight="50.0" prefWidth="50.0" rippleColor="#e1e1e1" style="-fx-background-color: #e1e1e1;" />
+                <MFXButton fx:id="menuButton" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="1.0" layoutX="5.0" layoutY="64.0" prefHeight="50.0" prefWidth="50.0" rippleColor="#e1e1e1" style="-fx-background-color: #e1e1e1;" />
                 <VBox alignment="TOP_CENTER" layoutX="255.0" layoutY="153.0" prefHeight="238.0" prefWidth="300.0" spacing="20.0">
                     <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="60.0" stroke="TRANSPARENT" strokeType="INSIDE" width="299.0" />
