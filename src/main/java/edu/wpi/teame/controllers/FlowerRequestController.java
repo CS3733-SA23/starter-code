@@ -56,9 +56,9 @@ public class FlowerRequestController implements IRequestController {
     Navigation.navigate(Screen.HOME);
     System.out.print(
         "\nDelivery Type: "
-            + flowerRequestData.requestType
+            + flowerRequestData.getRequestType()
             + "\nRequest Data: "
-            + flowerRequestData.requestData);
+            + flowerRequestData.getRequestData());
     return flowerRequestData;
   }
 

@@ -15,10 +15,10 @@ public class ServiceRequestData {
     FLOWERDELIVERY,
   }
 
-  @Getter @Setter JSONObject requestData;
-  @Getter @Setter RequestType requestType;
-  @Getter @Setter Status requestStatus;
-  @Getter @Setter String assignedStaff;
+  @Getter @Setter private JSONObject requestData;
+  @Getter @Setter private RequestType requestType;
+  @Getter @Setter private Status requestStatus;
+  @Getter @Setter private String assignedStaff;
 
   public ServiceRequestData(RequestType requestType, JSONObject requestData) {
     this.requestData = requestData;
