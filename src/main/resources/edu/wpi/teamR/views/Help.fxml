@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="helpWindow" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamR.controllers.HomeController">
+<AnchorPane fx:id="helpWindow" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamR.controllers.HelpController">
    <children>
       <TextArea layoutX="123.0" layoutY="51.0" prefHeight="335.0" prefWidth="382.0" text="Directions: Shows the signage page with &#10;directions of how to get to other departments &#10;in the hospital from this hallway.&#10;&#10;Meal Delivery Service Request: Request a meal &#10;tobe delivered to your room at a set time.&#10;&#10;Furniture Delivery Service Request: Request for&#10;furniture to be delivered to your room at a set &#10;time.&#10;&#10;Exit: Close the application.">
          <font>

@@ -1,0 +1,10 @@
+#borderPane{
+    -fx-background-image: url("../images/home_background.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.MFXButton{
+    -fx-background-color: transparent;
+}
