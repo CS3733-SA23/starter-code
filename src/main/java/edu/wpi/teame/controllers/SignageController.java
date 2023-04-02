@@ -10,6 +10,6 @@ public class SignageController {
 
   @FXML
   public void initialize() {
-    returnButtonSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
+    returnButtonSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 }
