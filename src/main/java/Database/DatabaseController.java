@@ -25,7 +25,7 @@ public class DatabaseController {
     System.out.println();
 
     DatabaseController DBC1 = new DatabaseController("teame", "teame50");
-    MoveAttribute mA = new MoveAttribute("17827", "Long Hall 123", "1/20/2023");
+    MoveAttribute mA = new MoveAttribute("1200", "Hall 3 Level 1", "1/1/2023");
 
     // DBC1.importFromCSV("C:\\Users\\thesm\\OneDrive\\Desktop\\Test.csv", "l1nodes");
 
@@ -33,7 +33,7 @@ public class DatabaseController {
     while (exit) {
       System.out.println("\nWhat would you like to do?");
       System.out.println(
-          "Choices: update, retrieve, delete, display info, export table, import table, HELP, EXIT)");
+          "Choices: update, retrieve, delete, display info, export table, import table, HELP, EXIT, add to table move)");
       String function = s1.nextLine().toLowerCase().trim();
 
       switch (function) {
@@ -53,6 +53,8 @@ public class DatabaseController {
           DBC1.exitDatabaseProgram();
           exit = false;
           break;
+        case "add to table move":
+          DBC1.addToTable(mA);
 
         case "retrieve":
           DBC1.retrieveFromTable();
@@ -125,19 +127,20 @@ public class DatabaseController {
     this.retrieveFromTable();
   }
 
-  private void addToTable(String moveAttribute) {
+  private void addToTable(MoveAttribute moveAttribute) {
     Statement stmt;
-    // String nodeId= .moveAttribute;
-    // String longName = .moveAttribute;
-    // String date = .moveAttribute;
+    String nodeId = moveAttribute.nodeID;
+    String longName = moveAttribute.longName;
+    String date = moveAttribute.date;
 
     try {
       stmt = c.createStatement();
-      String insertTable = "INSERT INTO \"Move\" VALUES(" + moveAttribute + ");";
-      ResultSet rs = stmt.executeQuery(insertTable);
-
+      String insertTable =
+          "INSERT INTO \"Move\" VALUES(" + nodeId + ",'" + longName + "' , '" + date + "');";
+      int update = stmt.executeUpdate(insertTable);
+      System.out.println(update);
     } catch (SQLException e) {
-      System.out.println();
+      throw new RuntimeException(e);
     }
   }
 
@@ -234,10 +237,9 @@ public class DatabaseController {
     return edgeList;
   }
 
-  public List<MoveAttribute> getMoveList(){
+  public List<MoveAttribute> getMoveList() {
     return new ArrayList<>();
   }
-
 
   /**
    * It populates the "nodeList" and "edgeList" ArrayLists with node and edge objects, respectively,
