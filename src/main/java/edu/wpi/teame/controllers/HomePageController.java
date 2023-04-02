@@ -10,47 +10,123 @@ import javafx.scene.layout.*;
 
 public class HomePageController {
   @FXML MFXButton menuButton;
-  @FXML MFXButton bottomB;
-  @FXML MFXButton topB;
+  @FXML MFXButton menuBarSignage;
+  @FXML MFXButton menuBarServices;
+  @FXML MFXButton menuBarHome;
+  @FXML MFXButton menuBarMap;
+  @FXML MFXButton menuBarExit;
 
   private BooleanProperty hovered = new SimpleBooleanProperty(true);
   // private boolean b = false;
 
   public void initialize() {
 
-    topB.setVisible(false);
-    bottomB.setVisible(false);
+    menuBarSignage.setVisible(false);
+    menuBarServices.setVisible(false);
+    menuBarHome.setVisible(false);
+    menuBarMap.setVisible(false);
+    menuBarExit.setVisible(false);
 
     menuButton.setOnMouseEntered(
         event -> {
-          topB.setVisible(true);
-          bottomB.setVisible(true);
+          menuBarSignage.setVisible(true);
+          menuBarServices.setVisible(true);
+          menuBarHome.setVisible(true);
+          menuBarMap.setVisible(true);
+          menuBarExit.setVisible(true);
         });
     menuButton.setOnMouseExited(
         event -> {
-          topB.setVisible(false);
-          bottomB.setVisible(false);
-        });
-    topB.setOnMouseEntered(
-        event -> {
-          topB.setVisible(true);
-          bottomB.setVisible(true);
-        });
-    topB.setOnMouseExited(
-        event -> {
-          topB.setVisible(false);
-          bottomB.setVisible(false);
+          menuBarSignage.setVisible(false);
+          menuBarServices.setVisible(false);
+          menuBarHome.setVisible(false);
+          menuBarMap.setVisible(false);
+          menuBarExit.setVisible(false);
         });
 
-    bottomB.setOnMouseEntered(
+    menuBarSignage.setOnMouseEntered(
         event -> {
-          topB.setVisible(true);
-          bottomB.setVisible(true);
+          menuBarSignage.setVisible(true);
+          menuBarServices.setVisible(true);
+          menuBarHome.setVisible(true);
+          menuBarMap.setVisible(true);
+          menuBarExit.setVisible(true);
         });
-    bottomB.setOnMouseExited(
+    menuBarSignage.setOnMouseExited(
         event -> {
-          topB.setVisible(false);
-          bottomB.setVisible(false);
+          menuBarSignage.setVisible(false);
+          menuBarServices.setVisible(false);
+          menuBarHome.setVisible(false);
+          menuBarMap.setVisible(false);
+          menuBarExit.setVisible(false);
+        });
+
+    menuBarServices.setOnMouseEntered(
+        event -> {
+          menuBarSignage.setVisible(true);
+          menuBarServices.setVisible(true);
+          menuBarHome.setVisible(true);
+          menuBarMap.setVisible(true);
+          menuBarExit.setVisible(true);
+        });
+    menuBarServices.setOnMouseExited(
+        event -> {
+          menuBarSignage.setVisible(false);
+          menuBarServices.setVisible(false);
+          menuBarHome.setVisible(false);
+          menuBarMap.setVisible(false);
+          menuBarExit.setVisible(false);
+        });
+
+    menuBarHome.setOnMouseEntered(
+        event -> {
+          menuBarSignage.setVisible(true);
+          menuBarServices.setVisible(true);
+          menuBarHome.setVisible(true);
+          menuBarMap.setVisible(true);
+          menuBarExit.setVisible(true);
+        });
+    menuBarHome.setOnMouseExited(
+        event -> {
+          menuBarSignage.setVisible(false);
+          menuBarServices.setVisible(false);
+          menuBarHome.setVisible(false);
+          menuBarMap.setVisible(false);
+          menuBarExit.setVisible(false);
+        });
+
+    menuBarMap.setOnMouseEntered(
+        event -> {
+          menuBarSignage.setVisible(true);
+          menuBarServices.setVisible(true);
+          menuBarHome.setVisible(true);
+          menuBarMap.setVisible(true);
+          menuBarExit.setVisible(true);
+        });
+    menuBarMap.setOnMouseExited(
+        event -> {
+          menuBarSignage.setVisible(false);
+          menuBarServices.setVisible(false);
+          menuBarHome.setVisible(false);
+          menuBarMap.setVisible(false);
+          menuBarExit.setVisible(false);
+        });
+
+    menuBarExit.setOnMouseEntered(
+        event -> {
+          menuBarSignage.setVisible(true);
+          menuBarServices.setVisible(true);
+          menuBarHome.setVisible(true);
+          menuBarMap.setVisible(true);
+          menuBarExit.setVisible(true);
+        });
+    menuBarExit.setOnMouseExited(
+        event -> {
+          menuBarSignage.setVisible(false);
+          menuBarServices.setVisible(false);
+          menuBarHome.setVisible(false);
+          menuBarMap.setVisible(false);
+          menuBarExit.setVisible(false);
         });
   }
 }

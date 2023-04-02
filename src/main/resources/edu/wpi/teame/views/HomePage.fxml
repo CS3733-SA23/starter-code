@@ -57,8 +57,11 @@
             </MFXButton>
             <VBox layoutX="55.0" layoutY="65.0" prefHeight="308.0" prefWidth="56.0">
                <children>
-                  <MFXButton fx:id="topB" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="TopB" textFill="WHITE" />
-                  <MFXButton fx:id="bottomB" prefHeight="94.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="BottomB" textFill="WHITE" />
+                  <MFXButton fx:id="menuBarSignage" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Signage" textFill="WHITE" />
+                  <MFXButton fx:id="menuBarServices" prefHeight="94.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Services" textFill="WHITE" />
+                  <MFXButton fx:id="menuBarHome" prefHeight="94.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Home" textFill="WHITE" />
+                  <MFXButton fx:id="menuBarMap" prefHeight="94.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Map" textFill="WHITE" />
+                  <MFXButton fx:id="menuBarExit" defaultButton="true" prefHeight="94.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Exit" textFill="WHITE" />
                </children>
             </VBox>
             </children>
