@@ -7,6 +7,10 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import pathfinding.MoveAttribute;
 
 public class DatabaseViewController {
 
@@ -24,9 +28,11 @@ public class DatabaseViewController {
 
   @FXML MFXButton exportButton;
 
-  @FXML TableView<MoveAttribute> dataTable;
+  @FXML
+  TableView<MoveAttribute> dataTable;
 
-  @FXML TableColumn<MoveAttribute, String> nodeIDCol;
+  @FXML
+  TableColumn<MoveAttribute, String> nodeIDCol;
 
   @FXML TableColumn<MoveAttribute, String> nameCol;
 
@@ -51,7 +57,7 @@ public class DatabaseViewController {
 
     List itemList = new ArrayList<>(); // REPLACE WITH THE METHOD CALL
 
-    dataTable.setItems();
+    //dataTable.setItems();
 
     dataTable.setEditable(true);
   }
