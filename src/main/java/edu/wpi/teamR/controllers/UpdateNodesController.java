@@ -1,4 +1,3 @@
 package edu.wpi.teamR.controllers;
 
-public class UpdateNodesController {
-}
+public class UpdateNodesController {}
