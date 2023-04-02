@@ -15,6 +15,8 @@ public class DatabaseController {
   private static List<HospitalNode> nodeList = new ArrayList<>();
   private static List<HospitalEdge> edgeList = new ArrayList<>();
 
+  private static List<MoveAttribute> moveList = new ArrayList<>();
+
   public static void main(String[] args) throws SQLException, IOException {
     Scanner s1 = new Scanner(System.in);
 
@@ -59,11 +61,6 @@ public class DatabaseController {
         case "retrieve":
           DBC1.retrieveFromTable();
           break;
-
-        case "display info":
-          DBC1.displayCSVInfo();
-          break;
-
         case "export table":
           DBC1.exportToCSV("Move", "C:\\filepath...", "Name of CSV file");
           break;
@@ -155,20 +152,24 @@ public class DatabaseController {
 
     nodeList = new ArrayList<>();
     edgeList = new ArrayList<>();
+    moveList = new ArrayList<>();
 
     List<String> eList = new ArrayList<>();
     List<String> nList = new ArrayList<>();
+    List<String> mList = new ArrayList<>();
 
     String queryCountE = "SELECT COUNT(*) FROM teame.l1edges;";
     String queryCountN = "SELECT COUNT(*) FROM teame.l1nodes;";
-    String queryCountEID = "SELECT edgeID FROM teame.l1edges;";
-    String queryCountNID = "SELECT nodeID FROM teame.l1nodes;";
+    String queryCountM = "SELECT COUNT(*) FROM teame.Move;";
+    String queryEID = "SELECT edgeID FROM teame.l1edges;";
+    String queryNID = "SELECT nodeID FROM teame.l1nodes;";
+    String queryMID = "SELECT moveID FROM teame.Move;";
 
     try (Statement stmt = c.createStatement()) {
       ResultSet rsn = stmt.executeQuery(queryCountN);
       if (rsn.next()) {
         int nodeCount = rsn.getInt(1);
-        ResultSet rsNodes = stmt.executeQuery(queryCountNID);
+        ResultSet rsNodes = stmt.executeQuery(queryNID);
         for (int i = 1; i <= nodeCount; i++) {
           if (rsNodes.next()) {
             nList.add(rsNodes.getString("nodeID"));
@@ -178,7 +179,7 @@ public class DatabaseController {
       ResultSet rse = stmt.executeQuery(queryCountE);
       if (rse.next()) {
         int edgeCount = rse.getInt(1);
-        ResultSet rsEdges = stmt.executeQuery(queryCountEID);
+        ResultSet rsEdges = stmt.executeQuery(queryEID);
         for (int i = 1; i <= edgeCount; i++) {
           if (rsEdges.next()) {
             String newid = rsEdges.getString("edgeid");
@@ -186,6 +187,7 @@ public class DatabaseController {
           }
         }
       }
+      ResultSet rsm = stmt.executeQuery(queryCountM);
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
@@ -238,76 +240,13 @@ public class DatabaseController {
   }
 
   public List<MoveAttribute> getMoveList() {
-    return new ArrayList<>();
+    return moveList;
   }
 
-  /**
-   * It populates the "nodeList" and "edgeList" ArrayLists with node and edge objects, respectively,
-   * by executing several SQL queries.
-   *
-   * @return void
-   */
-  private void displayCSVInfo() {
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("Which table would you like to see info from (Nodes, Edges): ");
-    String table = scanner.nextLine().trim();
-
-    if (table.equalsIgnoreCase("Nodes")) {
-      System.out.print("Please type the Node ID you would like to see the information from: ");
-      String nodeId = scanner.nextLine().trim();
-
-      try (PreparedStatement pstmt =
-          c.prepareStatement("SELECT * FROM teame.l1nodes WHERE nodeID = '" + nodeId + "'")) {
-        ResultSet rs = pstmt.executeQuery();
-
-        if (rs.next()) {
-          String nodeID = rs.getString("nodeID");
-          int xCoord = rs.getInt("xcoord");
-          int yCoord = rs.getInt("ycoord");
-          String floor = rs.getString("floor");
-          String building = rs.getString("building");
-          String nodeType = rs.getString("nodeType");
-          String longName = rs.getString("longName");
-          String shortName = rs.getString("shortName");
-
-          System.out.println(
-              "\nNode: ("
-                  + nodeID
-                  + ") information (nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName): ");
-          System.out.println(
-              nodeID + ", " + xCoord + ", " + yCoord + ", " + floor + ", " + building + ", "
-                  + nodeType + ", " + longName + ", " + shortName);
-        } else {
-          System.out.println("Node not found with ID " + nodeId);
-        }
-      } catch (SQLException e) {
-        System.err.println("Error retrieving node: " + e.getMessage());
-      }
-    } else if (table.equalsIgnoreCase("Edges")) {
-      System.out.print("Please type the Edge ID you would like to see the information from: ");
-      String edgeId = scanner.nextLine().trim();
-
-      try (PreparedStatement pstmt =
-          c.prepareStatement("SELECT * FROM teame.l1edges WHERE edgeid = '" + edgeId + "'")) {
-        ResultSet rs = pstmt.executeQuery();
-
-        if (rs.next()) {
-          String edgeID = rs.getString("edgeID");
-          String startNode = rs.getString("startNode");
-          String endNode = rs.getString("endNode");
-
-          System.out.println("\nEdge (" + edgeId + ") information (edgeID, startNode, endNode): ");
-          System.out.println(edgeID + ", " + startNode + ", " + endNode);
-        } else {
-          System.out.println("Edge not found with ID " + edgeId);
-        }
-      } catch (SQLException e) {
-        System.err.println("Error finding edge: " + e.getMessage());
-      }
-    } else {
-      System.out.println("Invalid table name: " + table);
-    }
+  private MoveAttribute extractMoveFromResultSet(ResultSet rs) throws SQLException{
+    return new MoveAttribute(rs.getString("nodeID"), rs.getString("longName"), rs.getString("date"));
   }
+
 
   /**
    * Extracts a HospitalNode object from the given ResultSet.
