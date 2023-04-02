@@ -54,7 +54,7 @@ public class HomeController {
 
   @FXML
   void getSignagePage(ActionEvent event) {
-    Navigation.navigate(Screen.SIGNAGE);
+    Navigation.navigate(Screen.MAP_HISTORY_PAGE);
   }
 
   /** Method run when controller is initialized */
