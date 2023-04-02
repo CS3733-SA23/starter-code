@@ -3,6 +3,9 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -16,54 +19,36 @@
                 <Font name="Verdana Bold" size="20.0" />
             </font>
         </Label>
-        <MFXButton fx:id="MEAL_backtohome" layoutX="34.0" layoutY="347.0" onAction="#goHome" prefHeight="26.0" prefWidth="110.0" text="Cancel" textFill="#016161">
+        <MFXButton fx:id="MEAL_backtohome" layoutX="34.0" layoutY="347.0" onAction="#goHome" prefHeight="26.0" prefWidth="110.0" text="Home" textFill="#016161">
             <font>
                 <Font name="Verdana Bold" size="13.0" />
             </font></MFXButton>
-        <MFXButton fx:id="MEAL_submit" layoutX="450.0" layoutY="347.0" onAction="#SubmitRequest" prefHeight="26.0" prefWidth="110.0" text="SUBMIT" textFill="#016161">
+        <MFXButton fx:id="MEAL_submit" layoutX="450.0" layoutY="347.0" onAction="#SubmitRequest" prefHeight="26.0" prefWidth="110.0" text="Edit Map" textFill="#016161">
             <font>
                 <Font name="Verdana Bold" size="13.0" />
             </font></MFXButton>
-        <Group layoutX="64.0" layoutY="102.0">
-            <children>
-                <Label layoutX="-29.0" layoutY="-10.0" text="Name:" textFill="WHITE">
-                    <font>
-                        <Font name="Verdana Bold" size="16.0" />
-                    </font>
-                </Label>
-            </children>
-        </Group>
-        <Group layoutX="64.0" layoutY="139.0">
-            <children>
-                <Label layoutX="-29.0" layoutY="-10.0" prefHeight="20.0" prefWidth="100.0" text="Room ID:" textFill="WHITE">
-                    <font>
-                        <Font name="Verdana Bold" size="16.0" />
-                    </font>
-                </Label>
-            </children>
-        </Group>
-        <Group layoutX="64.0" layoutY="183.0">
-            <children>
-                <Label layoutX="-29.0" layoutY="-8.0" prefHeight="20.0" prefWidth="100.0" text="Meal:" textFill="WHITE">
-                    <font>
-                        <Font name="Verdana Bold" size="16.0" />
-                    </font>
-                </Label>
-            </children>
-        </Group>
-        <Group layoutX="64.0" layoutY="221.0">
-            <children>
-                <Label layoutX="-29.0" layoutY="-25.0" prefHeight="90.0" prefWidth="102.0" text="Special Requests:" textFill="WHITE" textOverrun="CLIP" wrapText="true">
-                    <font>
-                        <Font name="Verdana Bold" size="15.0" />
-                    </font>
-                </Label>
-            </children>
-        </Group>
+        <Group layoutX="64.0" layoutY="102.0" />
+        <Group layoutX="64.0" layoutY="139.0" />
+        <Group layoutX="64.0" layoutY="183.0" />
+        <Group layoutX="64.0" layoutY="221.0" />
         <Label fx:id="MEAL_outputtext" layoutX="338.0" layoutY="342.0" prefHeight="36.0" prefWidth="100.0" textFill="#44d71f">
             <font>
                 <Font size="16.0" />
             </font>
         </Label>
+      <ScrollPane layoutX="200.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TableView editable="true" layoutX="-6.0" layoutY="-14.0" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
     </children>
 </AnchorPane>
