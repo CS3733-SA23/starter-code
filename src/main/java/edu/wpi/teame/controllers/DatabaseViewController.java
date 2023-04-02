@@ -1,10 +1,14 @@
 package edu.wpi.teame.controllers;
 
+import Database.DatabaseController;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -37,6 +41,9 @@ public class DatabaseViewController {
 
   @FXML
   public void initialize() {
+
+    DatabaseController databaseController = new DatabaseController("", "");
+
     // load the database into the table
     nodeIDCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("nodeID"));
     nameCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("longName"));
@@ -52,9 +59,9 @@ public class DatabaseViewController {
 
     // exportButton.setOnMouseClicked(event -> {});
 
-    List itemList = new ArrayList<>(); // REPLACE WITH THE METHOD CALL
+    ObservableList itemList = FXCollections.observableArrayList(databaseController.getMoveList()); 
 
-    // dataTable.setItems();
+    dataTable.setItems(itemList);
 
     dataTable.setEditable(true);
   }
