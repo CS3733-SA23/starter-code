@@ -4,9 +4,7 @@ import Database.DatabaseController;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import java.util.ArrayList;
-import java.util.List;
-
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,18 +16,18 @@ import pathfinding.MoveAttribute;
 public class DatabaseViewController {
 
   @FXML MFXButton backButton;
-  // @FXML MFXButton deleteButton;
+  @FXML MFXButton deleteButton;
 
-  // @FXML MFXButton addButton; // three text boxes and a button that says "add" next to it
-  // @FXML MFXTextField IDField;
+  @FXML MFXButton addButton; // three text boxes and a button that says "add" next to it
+  @FXML MFXTextField IDField;
 
-  // @FXML MFXTextField locationField;
+  @FXML MFXTextField locationField;
 
-  // @FXML MFXTextField dateField;
+  @FXML MFXTextField dateField;
 
-  // @FXML MFXButton importButton;
+  @FXML MFXButton importButton;
 
-  // @FXML MFXButton exportButton;
+  @FXML MFXButton exportButton;
 
   @FXML TableView<MoveAttribute> dataTable;
 
@@ -42,7 +40,7 @@ public class DatabaseViewController {
   @FXML
   public void initialize() {
 
-    DatabaseController databaseController = new DatabaseController("", "");
+    DatabaseController databaseController = new DatabaseController("teame", "teame50");
 
     // load the database into the table
     nodeIDCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("nodeID"));
@@ -51,15 +49,15 @@ public class DatabaseViewController {
 
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
 
-    // deleteButton.setOnMouseClicked(event -> {});
+    deleteButton.setOnMouseClicked(event -> {});
 
-    // addButton.setOnMouseClicked(event -> {});
+    addButton.setOnMouseClicked(event -> {});
 
-    // importButton.setOnMouseClicked(event -> {});
+    importButton.setOnMouseClicked(event -> {});
 
-    // exportButton.setOnMouseClicked(event -> {});
+    exportButton.setOnMouseClicked(event -> {});
 
-    ObservableList itemList = FXCollections.observableArrayList(databaseController.getMoveList()); 
+    ObservableList itemList = FXCollections.observableArrayList(databaseController.getMoveList());
 
     dataTable.setItems(itemList);
 
