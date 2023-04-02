@@ -8,7 +8,8 @@ public enum Screen {
   FURNITURE_REQUEST("views/FurnitureRequest.fxml"),
   HELP("views/Help.fxml"),
   SORT("views/sortOrders.fxml"),
-  UPDATE_NODES("views/UpdateNodes.fxml");
+  UPDATE_NODES("views/UpdateNodes.fxml"),
+  READCSV("views/CSVReader.fxml");
 
   private final String filename;
 
