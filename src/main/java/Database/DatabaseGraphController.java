@@ -5,9 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import pathfinding.HospitalEdge;
-import pathfinding.HospitalNode;
-import pathfinding.NodeInitializer;
+import pathfinding.*;
 
 public class DatabaseGraphController {
   DatabaseController DBC;
@@ -139,8 +137,28 @@ public class DatabaseGraphController {
     }
   }
 
-  /*
-  I get a floor, Need list of MoveAttributes(nodeID, longName, date)
-   */
-  //public
+  public List<MoveAttribute> getMoveAttributeFromFloor(Floor fl) {
+    String floor = Floor.floorToString(fl);
+    List<MoveAttribute> moveAttributes = new ArrayList<>();
+
+    try {
+      Statement stmt = DBC.getC().createStatement();
+
+      String sql =
+          "SELECT \"nodeID\", \"longName\", \"date\" FROM teame.\"Node\" NATURAL JOIN teame.\"Move\" WHERE floor = '"
+              + floor
+              + "';";
+      ResultSet rs = stmt.executeQuery(sql);
+
+      while (rs.next()) {
+        moveAttributes.add(
+            new MoveAttribute(
+                rs.getInt("nodeid") + "", rs.getString("longName"), rs.getString("date")));
+      }
+
+      return moveAttributes;
+    } catch (SQLException e) {
+      throw new RuntimeException("Something went wrong");
+    }
+  }
 }

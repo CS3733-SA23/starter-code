@@ -78,6 +78,10 @@ public class DatabaseController {
     // this.retrieveFromTable();
   }
 
+  public DatabaseController() {
+    c = this.connectToDatabase("teame", "teame50");
+  }
+
   private Connection connectToDatabase(String username, String password) {
     Connection c = null;
     try {
@@ -90,7 +94,6 @@ public class DatabaseController {
       System.err.println(e.getClass().getName() + ": " + e.getMessage());
       System.exit(0);
     }
-    System.out.println("Opened database successfully");
     return c;
   }
 

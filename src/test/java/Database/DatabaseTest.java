@@ -2,12 +2,15 @@ package Database;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
+import pathfinding.Floor;
+import pathfinding.MoveAttribute;
 
 public class DatabaseTest {
 
   public DatabaseGraphController setup() {
-    DatabaseController DBC1 = new DatabaseController("teame", "teame50");
+    DatabaseController DBC1 = new DatabaseController();
     return new DatabaseGraphController(DBC1);
   }
 
@@ -21,5 +24,15 @@ public class DatabaseTest {
     } catch (RuntimeException e) {
       System.out.println("Runtime Exception");
     }
+  }
+
+  @Test
+  public void testGetMoveAttributeFromFloor() {
+    DatabaseGraphController DBMC = setup();
+
+    List<MoveAttribute> moveAttributeList = DBMC.getMoveAttributeFromFloor(Floor.LOWER_ONE);
+
+    System.out.println(moveAttributeList.size());
+    assertEquals(0, 0);
   }
 }
