@@ -83,6 +83,14 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
                </graphic>
                 </MFXButton>
+            <MFXButton fx:id="DatabaseViewButton" graphicTextGap="10.0" layoutX="260.0" layoutY="404.0" minHeight="8.0" minWidth="100.0" prefHeight="40.0" prefWidth="300.0" rippleAnimateBackground="false" rippleAnimationSpeed="0.0" rippleBackgroundOpacity="0.0" rippleRadius="0.0" rippleRadiusMultiplier="0.0" style="-fx-background-color: #192d5aff; -fx-alignment: center-left;" text="Database View" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+               </graphic>
+            </MFXButton>
             </children>
          <StackPane.margin>
             <Insets />

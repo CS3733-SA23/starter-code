@@ -1,4 +1,3 @@
-
 package edu.wpi.teame.controllers;
 
 import static javafx.scene.paint.Color.*;
@@ -16,6 +15,8 @@ public class HomeController {
   @FXML MFXButton flowersButton;
   @FXML MFXButton mealRequestButton;
   @FXML MFXButton exitButton;
+
+  @FXML MFXButton databaseViewButton;
 
   @FXML ImageView logoImage;
 
@@ -41,6 +42,9 @@ public class HomeController {
 
     mouseSetup(mealRequestButton);
     mealRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
+
+    mouseSetup(databaseViewButton);
+    databaseViewButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
   }
 
   private void mouseSetup(MFXButton btn) {
