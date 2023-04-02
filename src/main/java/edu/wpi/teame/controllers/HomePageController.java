@@ -20,113 +20,68 @@ public class HomePageController {
   // private boolean b = false;
 
   public void initialize() {
-
-    menuBarSignage.setVisible(false);
-    menuBarServices.setVisible(false);
-    menuBarHome.setVisible(false);
-    menuBarMap.setVisible(false);
-    menuBarExit.setVisible(false);
+    menuDropDownVisibilty(false);
 
     menuButton.setOnMouseEntered(
         event -> {
-          menuBarSignage.setVisible(true);
-          menuBarServices.setVisible(true);
-          menuBarHome.setVisible(true);
-          menuBarMap.setVisible(true);
-          menuBarExit.setVisible(true);
+          menuDropDownVisibilty(true);
         });
     menuButton.setOnMouseExited(
         event -> {
-          menuBarSignage.setVisible(false);
-          menuBarServices.setVisible(false);
-          menuBarHome.setVisible(false);
-          menuBarMap.setVisible(false);
-          menuBarExit.setVisible(false);
+          menuDropDownVisibilty(false);
         });
 
     menuBarSignage.setOnMouseEntered(
         event -> {
-          menuBarSignage.setVisible(true);
-          menuBarServices.setVisible(true);
-          menuBarHome.setVisible(true);
-          menuBarMap.setVisible(true);
-          menuBarExit.setVisible(true);
+          menuDropDownVisibilty(true);
         });
     menuBarSignage.setOnMouseExited(
         event -> {
-          menuBarSignage.setVisible(false);
-          menuBarServices.setVisible(false);
-          menuBarHome.setVisible(false);
-          menuBarMap.setVisible(false);
-          menuBarExit.setVisible(false);
+          menuDropDownVisibilty(false);
         });
 
     menuBarServices.setOnMouseEntered(
         event -> {
-          menuBarSignage.setVisible(true);
-          menuBarServices.setVisible(true);
-          menuBarHome.setVisible(true);
-          menuBarMap.setVisible(true);
-          menuBarExit.setVisible(true);
+          menuDropDownVisibilty(true);
         });
     menuBarServices.setOnMouseExited(
         event -> {
-          menuBarSignage.setVisible(false);
-          menuBarServices.setVisible(false);
-          menuBarHome.setVisible(false);
-          menuBarMap.setVisible(false);
-          menuBarExit.setVisible(false);
+          menuDropDownVisibilty(false);
         });
 
     menuBarHome.setOnMouseEntered(
         event -> {
-          menuBarSignage.setVisible(true);
-          menuBarServices.setVisible(true);
-          menuBarHome.setVisible(true);
-          menuBarMap.setVisible(true);
-          menuBarExit.setVisible(true);
+          menuDropDownVisibilty(true);
         });
     menuBarHome.setOnMouseExited(
         event -> {
-          menuBarSignage.setVisible(false);
-          menuBarServices.setVisible(false);
-          menuBarHome.setVisible(false);
-          menuBarMap.setVisible(false);
-          menuBarExit.setVisible(false);
+          menuDropDownVisibilty(false);
         });
 
     menuBarMap.setOnMouseEntered(
         event -> {
-          menuBarSignage.setVisible(true);
-          menuBarServices.setVisible(true);
-          menuBarHome.setVisible(true);
-          menuBarMap.setVisible(true);
-          menuBarExit.setVisible(true);
+          menuDropDownVisibilty(true);
         });
     menuBarMap.setOnMouseExited(
         event -> {
-          menuBarSignage.setVisible(false);
-          menuBarServices.setVisible(false);
-          menuBarHome.setVisible(false);
-          menuBarMap.setVisible(false);
-          menuBarExit.setVisible(false);
+          menuDropDownVisibilty(false);
         });
 
     menuBarExit.setOnMouseEntered(
         event -> {
-          menuBarSignage.setVisible(true);
-          menuBarServices.setVisible(true);
-          menuBarHome.setVisible(true);
-          menuBarMap.setVisible(true);
-          menuBarExit.setVisible(true);
+          menuDropDownVisibilty(true);
         });
     menuBarExit.setOnMouseExited(
         event -> {
-          menuBarSignage.setVisible(false);
-          menuBarServices.setVisible(false);
-          menuBarHome.setVisible(false);
-          menuBarMap.setVisible(false);
-          menuBarExit.setVisible(false);
+          menuDropDownVisibilty(false);
         });
+  }
+
+  public void menuDropDownVisibilty(boolean bool) {
+    menuBarSignage.setVisible(bool);
+    menuBarServices.setVisible(bool);
+    menuBarHome.setVisible(bool);
+    menuBarMap.setVisible(bool);
+    menuBarExit.setVisible(bool);
   }
 }
