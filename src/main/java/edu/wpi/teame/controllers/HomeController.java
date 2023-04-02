@@ -1,4 +1,3 @@
-
 package edu.wpi.teame.controllers;
 
 import static javafx.scene.paint.Color.*;

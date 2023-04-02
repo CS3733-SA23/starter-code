@@ -1,4 +1,3 @@
-
 package Database;
 
 import java.io.*;
@@ -14,7 +13,7 @@ public class DatabaseController {
   private static List<HospitalNode> nodeList = new ArrayList<>();
   private static List<HospitalEdge> edgeList = new ArrayList<>();
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws SQLException, IOException {
     Scanner s1 = new Scanner(System.in);
 
     System.out.print("Please enter your username (will default to \"teame\"): ");
@@ -40,7 +39,7 @@ public class DatabaseController {
           break;
 
         case "delete":
-          DBC1.deleteFromTable();
+          DBC1.deleteFromTable("1200");
           break;
 
         case "help":
@@ -61,7 +60,7 @@ public class DatabaseController {
           break;
 
         case "export table":
-          DBC1.userExportToCSV();
+          DBC1.exportToCSV("Move", "C:\\filepath...", "Name of CSV file");
           break;
 
         case "import table":
@@ -99,70 +98,53 @@ public class DatabaseController {
     return c;
   }
 
-  private void deleteFromTable() {
-    Statement stmt = null;
-    Scanner s1 = new Scanner(System.in);
+  /**
+   * Delete attributes from the edge or node table based on user's input
+   *
+   * @return void
+   */
+  private void deleteFromTable(String moveAttribute) {
+    Statement stmt;
+    String nodeId = moveAttribute;
 
-    boolean donedeleting = true;
-    while (donedeleting) {
-
-      System.out.println("Which table would you like to delete from (Nodes, Edges): ");
-      String tabletoEdit = s1.nextLine().toLowerCase().trim();
-
-      if (tabletoEdit.equals("nodes")) {
-        System.out.println("Please type the Node ID you would like to delete: ");
-        String nodetoDelete = s1.nextLine();
-
-        try {
-          stmt = c.createStatement();
-          String sql = "DELETE FROM teame.l1nodes WHERE nodeid = '" + nodetoDelete + "';";
-          int rs = stmt.executeUpdate(sql);
-          stmt.close();
-          if (rs > 0) {
-            System.out.println("Row Deleted successfully from " + tabletoEdit);
-
-            System.out.println("Are you done deleting (y/n)?");
-            String ans = s1.nextLine().toLowerCase().trim();
-            if (ans.equals("y")) {
-              donedeleting = false;
-            }
-          } else {
-            System.out.println("Please enter a valid node id\n\n");
-          }
-        } catch (SQLException e) {
-          System.out.println();
-        }
-      } else if (tabletoEdit.equals("edges")) {
-        System.out.println("Please type the Edge ID you would like to delete: ");
-        String edgetoDelete = s1.nextLine();
-        try {
-          stmt = c.createStatement();
-          String sql = "DELETE FROM teame.l1edges WHERE edgeid = '" + edgetoDelete + "';";
-          int rs = stmt.executeUpdate(sql);
-          stmt.close();
-          if (rs > 0) {
-            System.out.println("Row Deleted successfully from " + tabletoEdit);
-
-            System.out.println("Are you done deleting (y/n)?");
-            String ans = s1.nextLine().toLowerCase().trim();
-            if (ans.equals("y")) {
-              donedeleting = false;
-            }
-          } else {
-            System.out.println("Please enter a valid edge id\n\n");
-          }
-        } catch (SQLException e) {
-          System.out.println();
-        }
-
-      } else {
-        System.out.println("Please enter a valid table name (nodes, edges)");
+    try {
+      stmt = c.createStatement();
+      String sql = "DELETE FROM \"Move\" WHERE \"nodeID\" = '" + nodeId + "';";
+      int rs = stmt.executeUpdate(sql);
+      stmt.close();
+      if (rs > 0) {
+        System.out.println("Row Deleted successfully from " + nodeId);
       }
+    } catch (SQLException e) {
+      System.out.println();
     }
 
     this.retrieveFromTable();
   }
 
+  private void addToTable(String moveAttribute){
+    Statement stmt;
+    //String nodeId= .moveAttribute;
+    //String longName = .moveAttribute;
+    //String date = .moveAttribute;
+
+    try{
+      stmt = c.createStatement();
+      String insertTable = "INSERT INTO \"Move\" VALUES("+ moveAttribute +");";
+      ResultSet rs = stmt.executeQuery(insertTable);
+
+    } catch(SQLException e){
+      System.out.println();
+    }
+  }
+
+  /**
+   * The node and edge data are retrieved using SQL queries that count the number of nodes and edges
+   * in the table, select all node and edge IDs from the table, and then retrieve the corresponding
+   * node and edge data using those IDs.
+   *
+   * @return void
+   */
   public void retrieveFromTable() {
 
     nodeList = new ArrayList<>();
@@ -249,6 +231,12 @@ public class DatabaseController {
     return edgeList;
   }
 
+  /**
+   * It populates the "nodeList" and "edgeList" ArrayLists with node and edge objects, respectively,
+   * by executing several SQL queries.
+   *
+   * @return void
+   */
   private void displayCSVInfo() {
     Scanner scanner = new Scanner(System.in);
     System.out.print("Which table would you like to see info from (Nodes, Edges): ");
@@ -311,6 +299,13 @@ public class DatabaseController {
     }
   }
 
+  /**
+   * Extracts a HospitalNode object from the given ResultSet.
+   *
+   * @param rs The ResultSet to extract the node from.
+   * @return A HospitalNode object extracted from the given ResultSet.
+   * @throws SQLException if an error occurs while accessing the ResultSet.
+   */
   private HospitalNode extractNodeFromResultSet(ResultSet rs) throws SQLException {
     String nodeID = rs.getString("nodeid");
     int xCoord = rs.getInt("xcoord");
@@ -323,6 +318,13 @@ public class DatabaseController {
     return new HospitalNode(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName);
   }
 
+  /**
+   * Description: Extracts a HospitalEdge object from the given ResultSet.
+   *
+   * @param rs The ResultSet to extract the edge from.
+   * @return A HospitalEdge object extracted from the given ResultSet.
+   * @throws SQLException if an error occurs while accessing the ResultSet.
+   */
   private HospitalEdge extractEdgeFromResultSet(ResultSet rs) throws SQLException {
     String edgeID = rs.getString("edgeID");
     String startNode = rs.getString("startNode");
@@ -331,6 +333,13 @@ public class DatabaseController {
     return new HospitalEdge(edgeID, startNode, endNode);
   }
 
+  /**
+   * It prompts the user to input which table they want to update (nodes or edges), then the ID of
+   * the node or edge they want to update, and finally which attribute they want to update (xcoord,
+   * ycoord, longname, edgeid, startnode, endnode)
+   *
+   * @return void
+   */
   private void updateTable() {
 
     boolean doneUpdating = true;
@@ -376,6 +385,15 @@ public class DatabaseController {
     this.retrieveFromTable();
   }
 
+  /**
+   * This method updates the value of a specific attribute in a specific row of a given table.
+   *
+   * @param tabletoEdit The name of the table to edit.
+   * @param idToUpdate The value of the ID attribute for the row to update.
+   * @param attributeToEdit The name of the attribute to update.
+   * @param idType The name of the ID attribute for the table.
+   * @return void
+   */
   public void updateAttribute(
       String tabletoEdit, String idToUpdate, String attributeToEdit, String idType) {
     Scanner s1 = new Scanner(System.in);
@@ -442,158 +460,15 @@ public class DatabaseController {
         exit = true;
       }
     }
-
-    /*
-    // User Operations:
-    System.out.println("\tUser Operations:\n");
-    System.out.println("\t\tUser inputs username to database.");
-    System.out.println("\t\tUser inputs password to database.");
-    System.out.println(
-        "\t\tUser inputs which operation they wish to use (delete, retrieve, update, help)");
-
-    System.out.println("\t\t\tIf delete:");
-    System.out.println("\t\t\t\tUser inputs which table they wish to edit (nodes or edges).");
-    System.out.println("\t\t\t\t\tIf nodes:");
-    System.out.println("\t\t\t\t\t\tUser inputs the node ID they wish to delete.");
-    System.out.println("\t\t\t\t\tIf edges:");
-    System.out.println("\t\t\t\t\t\tUser inputs the edge ID they wish to delete.");
-
-    System.out.println("\t\t\tIf retrieve:");
-    System.out.println("\t\t\t\tUser inputs which table they wish to edit (nodes or edges).");
-    System.out.println("\t\t\t\t\tIf nodes:");
-    System.out.println("\t\t\t\t\t\tUser inputs the node ID they wish to retrieve.");
-    System.out.println("\t\t\t\t\tIf edges:");
-    System.out.println("\t\t\t\t\t\tUser inputs the edge ID they wish to retrieve.");
-
-    System.out.println("\t\t\tIf update:");
-    System.out.println("\t\t\t\tUser inputs which table they wish to update (nodes or edges).");
-    System.out.println("\t\t\t\t\tIf nodes:");
-    System.out.println(
-        "\t\t\t\t\t\tUser inputs the attribute they wish to update (xcoord, ycoord, longname).");
-    System.out.println("\t\t\t\t\t\t\tIf xcoord:");
-    System.out.println("\t\t\t\t\t\t\t\tUser inputs the new xcoord.");
-    System.out.println("\t\t\t\t\t\t\tIf ycoord:");
-    System.out.println("\t\t\t\t\t\t\t\tUser inputs the new ycoord.");
-    System.out.println("\t\t\t\t\t\t\tIf longname:");
-    System.out.println("\t\t\t\t\t\t\t\tUser inputs the new long name.");
-    System.out.println("\t\t\t\t\tIf edges:");
-    System.out.println(
-        "\t\t\t\t\t\tUser inputs the attribute they wish to update (edgeID, startNode, endNode).");
-    System.out.println("\t\t\t\t\t\t\tIf edgeID:");
-    System.out.println("\t\t\t\t\t\t\t\tUser inputs the new edge ID.");
-    System.out.println("\t\t\t\t\t\t\tIf startNode:");
-    System.out.println("\t\t\t\t\t\t\t\tUser inputs the new start node.");
-    System.out.println("\t\t\t\t\t\t\tIf endNode:");
-    System.out.println("\t\t\t\t\t\t\t\tUser inputs the new end node.");
-
-    // Functions:
-    System.out.println("\n\n\tFunctions:\n");
-
-    // connectToDatabase
-    System.out.println("\t\tconnectToDatabase(String username, String password)");
-    System.out.println("\t\t***Used to log into the database***");
-    System.out.println("\t\tParameters:");
-    System.out.println("\t\t\tString username: type in database username");
-    System.out.println("\t\t\tString password: type in database password");
-    System.out.println("\t\treturn: void\n\n");
-
-    // deleteFromTable
-    System.out.println("\t\tdeleteFromTable(Connection c)");
-    System.out.println("\t\t***Used to delete a specified row from a table***");
-    System.out.println("\t\tParameters:");
-    System.out.println(
-        "\t\t\tConnection c: connection from connectToDatabase (done automatically by the system)");
-    System.out.println("\t\tUser Inputs:");
-    System.out.println(
-        "\t\t\ttableToEdit: Input which table the user wishes to edit (nodes or edges)");
-    System.out.println("\t\t\t\tIf nodes:");
-    System.out.println("\t\t\t\t\tnodeToDelete: Input the Node ID that the user wishes to delete");
-    System.out.println("\t\t\t\tIf edges:");
-    System.out.println("\t\t\t\t\tedgeToDelete: Input the Edge ID that the user wishes to delete");
-    System.out.println("\t\treturn: void\n\n");
-
-    // retrieveFromTable
-    System.out.println("\t\tretrieveFromTable(Connection c)");
-    System.out.println(
-        "\t\t***Creates a HospitalNode and assigns the specified data from the table (unless it already exists)***");
-    System.out.println("\t\tParameters:");
-    System.out.println(
-        "\t\t\tConnection c: connection from connectToDatabase (done automatically by the system)");
-    System.out.println("\t\tUser Inputs:");
-    System.out.println(
-        "\t\t\ttableToEdit: Input which table the user wishes to edit (nodes or edges)");
-    System.out.println("\t\t\t\tIf nodes:");
-    System.out.println(
-        "\t\t\t\t\tnodeToretrieve: Input the Node ID that the user wishes to retrieve");
-    System.out.println("\t\t\t\tIf edges:");
-    System.out.println(
-        "\t\t\t\t\tedgeToretrieve: Input the Edge ID that the user wishes to retrieve");
-    System.out.println("\t\treturn: void\n\n");
-
-    // updateTable
-    System.out.println("\t\tupdateTable(Connection c)");
-    System.out.println(
-        "\t\t***Updates the specified field of the specified node or edge with the new value***");
-    System.out.println("\t\tParameters:");
-    System.out.println(
-        "\t\t\tConnection c: connection from connectToDatabase (done automatically by the system)");
-    System.out.println("\t\tUser Inputs:");
-    System.out.println(
-        "\t\t\ttableToEdit: Input which table the user wishes to edit (nodes or edges)");
-    System.out.println("\t\t\t\tIf nodes:");
-    System.out.println(
-        "\t\t\t\t\tattributeToUpdate: Input the attribute the user wishes to update (xcoord, ycoord, longname)");
-    System.out.println("\t\t\t\t\t\tIf xcoord:");
-    System.out.println("\t\t\t\t\t\t\tnewval: Input the new xcoord");
-    System.out.println("\t\t\t\t\t\tIf ycoord:");
-    System.out.println("\t\t\t\t\t\t\tnewval: Input the new ycoord");
-    System.out.println("\t\t\t\t\t\tIf longname:");
-    System.out.println("\t\t\t\t\t\t\tnewval: Input the new longname");
-    System.out.println("\t\t\t\t\t\tIf shortname:");
-    System.out.println("\t\t\t\t\t\t\tnewval: Input the new shortname");
-    System.out.println("\t\t\t\tIf edges:");
-    System.out.println(
-        "\t\t\t\t\tattributeToUpdate: Input the attribute the user wishes to update (edgeID, startNode, endNode)");
-    System.out.println("\t\t\t\t\t\tIf edgeID:");
-    System.out.println("\t\t\t\t\t\t\tnewval: Input the new edge ID");
-    System.out.println("\t\t\t\t\t\tIf startNode:");
-    System.out.println("\t\t\t\t\t\t\tnewval: Input the new start node");
-    System.out.println("\t\t\t\t\t\tIf endNode:");
-    System.out.println("\t\t\t\t\t\t\tnewval: Input the new end node");
-    System.out.println(
-        "\t\t\tdoneUpdating: Input if there are more attributes that the user wants to edit (y or n)");
-    System.out.println("\t\t\t\tIf y:");
-    System.out.println(
-        "\t\t\t\t\tContinue while loop (doneUpdating is true) - returns to top of User Input Section and starts over");
-    System.out.println("\t\t\t\tIf n:");
-    System.out.println(
-        "\t\t\t\t\tExit while loop (doneUpdating is false) - continues the rest of the program");
-    System.out.println("\t\treturn: void\n\n");
-
-    // help
-    System.out.println("\t\thelp()");
-    System.out.println(
-        "\t\t\t***Displays information about how each function works and what the user should do when using the program***");
-    System.out.println("\t\t\tParameters: None");
-    System.out.println("\t\t\tUser Inputs:");
-    System.out.println("\t\t\t\texit: Input exit when ready to leave help screen (exit)");
-    System.out.println("\t\t\treturn: void\n\n");
-
-     */
-
   }
 
-  private void exitDatabaseProgram() {
-    try {
-      c.close();
-      System.out.println("Database Connection Closed");
-    } catch (Exception e) {
-      System.err.println(e.getClass().getName() + ": " + e.getMessage());
-      System.exit(0);
-    }
-  }
-
-  // nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName
+  /**
+   * This method imports data from a CSV file to a specified database table.
+   *
+   * @param filePath The file path of the CSV file to be imported.
+   * @param tableName The name of the database table to import data to.
+   * @throws FileNotFoundException if the specified file path is not found.
+   */
   public void importFromCSV(String filePath, String tableName) throws FileNotFoundException {
     try {
       // Load CSV file
@@ -647,27 +522,16 @@ public class DatabaseController {
     }
   }
 
-  private void userExportToCSV() {
-    Scanner s1 = new Scanner(System.in);
-
-    System.out.println("What table do you want to export?");
-    String table = s1.nextLine();
-    System.out.println("What is the filepath you wish to store this file?");
-    String filepath = s1.nextLine();
-    System.out.println("What is the name of the file you wish to create?");
-    String fileName = s1.nextLine();
-
-    try {
-      this.exportToCSV(table, filepath, fileName);
-      System.out.println("File Successfully Exported to Desired Location");
-    } catch (SQLException e) {
-      System.out.println("Sorry your table name isn't valid");
-    } catch (IOException e) {
-      System.out.println("Sorry Something Went Wrong. Try Checking your file path and retrying");
-    }
-  }
-
-  private void exportToCSV(String name, String filePath, String fileName)
+  /**
+   * This method exports the data from a specified database table to a CSV file.
+   *
+   * @param name The name of the database table to export data from.
+   * @param filePath The file path to save the CSV file.
+   * @param fileName The name of the CSV file.
+   * @throws SQLException if there is an error accessing the database.
+   * @throws IOException if there is an error creating or writing to the CSV file.
+   */
+  public void exportToCSV(String name, String filePath, String fileName)
       throws SQLException, IOException {
 
     // Initialization
@@ -714,5 +578,15 @@ public class DatabaseController {
     fileWriter.close();
     rs.close();
     stmt.close();
+  }
+
+  private void exitDatabaseProgram() {
+    try {
+      c.close();
+      System.out.println("Database Connection Closed");
+    } catch (Exception e) {
+      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      System.exit(0);
+    }
   }
 }
