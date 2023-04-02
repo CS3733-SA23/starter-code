@@ -17,6 +17,7 @@ public class HomeController {
   @FXML MFXButton navigateButton;
   @FXML MFXButton mealButton;
   @FXML MFXButton furnitureButton;
+  @FXML MFXButton loginButton;
   @FXML MenuItem exitButton;
   @FXML MenuItem about;
   @FXML BorderPane borderPane;
@@ -31,6 +32,7 @@ public class HomeController {
     mealButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
     exitButton.setOnAction(actionEvent -> Platform.exit());
     furnitureButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FURNITURE_REQUEST));
+    loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.READCSV));
 
     about.setOnAction(
         event -> {
