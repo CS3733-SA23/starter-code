@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 import pathfinding.HospitalEdge;
 import pathfinding.HospitalNode;
+import pathfinding.MoveAttribute;
 
 public class DatabaseController {
   private Connection c;
@@ -23,6 +24,7 @@ public class DatabaseController {
     System.out.println();
 
     DatabaseController DBC1 = new DatabaseController("teame", "teame50");
+    MoveAttribute mA = new MoveAttribute("17827", "Long Hall 123", "1/20/2023");
 
     // DBC1.importFromCSV("C:\\Users\\thesm\\OneDrive\\Desktop\\Test.csv", "l1nodes");
 
@@ -39,7 +41,7 @@ public class DatabaseController {
           break;
 
         case "delete":
-          DBC1.deleteFromTable("1200");
+          DBC1.deleteFromTable(mA);
           break;
 
         case "help":
@@ -103,9 +105,9 @@ public class DatabaseController {
    *
    * @return void
    */
-  private void deleteFromTable(String moveAttribute) {
+  private void deleteFromTable(MoveAttribute moveAttribute) {
     Statement stmt;
-    String nodeId = moveAttribute;
+    String nodeId = moveAttribute.nodeID;
 
     try {
       stmt = c.createStatement();
@@ -230,6 +232,11 @@ public class DatabaseController {
   public List<HospitalEdge> getHospitalEdges() {
     return edgeList;
   }
+
+  public List<MoveAttribute> getMoveList(){
+    return new ArrayList<>();
+  }
+
 
   /**
    * It populates the "nodeList" and "edgeList" ArrayLists with node and edge objects, respectively,
