@@ -1,8 +1,6 @@
 package edu.wpi.teame.controllers;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.geometry.*;
 import javafx.scene.control.*;
@@ -15,71 +13,16 @@ public class HomePageController {
   @FXML MFXButton menuBarHome;
   @FXML MFXButton menuBarMap;
   @FXML MFXButton menuBarExit;
-  
 
   public void initialize() {
     menuDropDownVisibilty(false);
 
-    menuButton.setOnMouseEntered(
-        event -> {
-          menuDropDownVisibilty(true);
-        });
-    menuButton.setOnMouseExited(
-        event -> {
-          menuDropDownVisibilty(false);
-        });
-
-
-    menuBarSignage.setOnMouseEntered(
-        event -> {
-          menuDropDownVisibilty(true);
-        });
-    menuBarSignage.setOnMouseExited(
-        event -> {
-          menuDropDownVisibilty(false);
-        });
-
-
-    menuBarServices.setOnMouseEntered(
-        event -> {
-          menuDropDownVisibilty(true);
-        });
-    menuBarServices.setOnMouseExited(
-        event -> {
-          menuDropDownVisibilty(false);
-        });
-
-
-    menuBarHome.setOnMouseEntered(
-        event -> {
-          menuDropDownVisibilty(true);
-        });
-    menuBarHome.setOnMouseExited(
-        event -> {
-          menuDropDownVisibilty(false);
-        });
-
-
-    menuBarMap.setOnMouseEntered(
-        event -> {
-          menuDropDownVisibilty(true);
-        });
-    menuBarMap.setOnMouseExited(
-        event -> {
-          menuDropDownVisibilty(false);
-        });
-
-
-    menuBarExit.setOnMouseEntered(
-        event -> {
-          menuDropDownVisibilty(true);
-        });
-    menuBarExit.setOnMouseExited(
-        event -> {
-          menuDropDownVisibilty(false);
-        });
-
-
+    showMenuButtonsWhenHovered(menuButton);
+    showMenuButtonsWhenHovered(menuBarSignage);
+    showMenuButtonsWhenHovered(menuBarServices);
+    showMenuButtonsWhenHovered(menuBarHome);
+    showMenuButtonsWhenHovered(menuBarMap);
+    showMenuButtonsWhenHovered(menuBarExit);
   }
 
   public void menuDropDownVisibilty(boolean bool) {
@@ -88,5 +31,16 @@ public class HomePageController {
     menuBarHome.setVisible(bool);
     menuBarMap.setVisible(bool);
     menuBarExit.setVisible(bool);
+  }
+
+  public void showMenuButtonsWhenHovered(MFXButton button) {
+    button.setOnMouseEntered(
+        event -> {
+          menuDropDownVisibilty(true);
+        });
+    button.setOnMouseExited(
+        event -> {
+          menuDropDownVisibilty(false);
+        });
   }
 }
