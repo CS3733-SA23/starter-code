@@ -16,6 +16,8 @@ public class HomeController {
   @FXML MFXButton mealRequestButton;
   @FXML MFXButton exitButton;
 
+  @FXML MFXButton databaseViewButton;
+
   @FXML ImageView logoImage;
 
   @FXML
@@ -40,6 +42,9 @@ public class HomeController {
 
     mouseSetup(mealRequestButton);
     mealRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
+
+    mouseSetup(databaseViewButton);
+    databaseViewButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
   }
 
   private void mouseSetup(MFXButton btn) {
