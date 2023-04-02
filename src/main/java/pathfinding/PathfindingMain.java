@@ -3,6 +3,8 @@ package pathfinding;
 import Database.DatabaseController;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PathfindingMain {
@@ -131,5 +133,24 @@ public class PathfindingMain {
     System.out.println("\trun [fileName] - Runs a series of these commands stored in a text file");
     System.out.println("\thelp - Displays this menu");
     System.out.println("\tquit - Exits the program");
+  }
+
+  public static void useExample(){
+    // These three are direct from the database
+    List<MapInitializer> mapInitializers = new ArrayList<>();
+    List<NodeInitializer> nodeInitializers = new ArrayList<>();
+    List<LocationName> locationNames = new ArrayList<>();
+    List<HospitalEdge> edgeList = new ArrayList<>();
+
+    for(NodeInitializer initializer : nodeInitializers){
+      new HospitalNode(initializer);
+    }
+
+    HospitalNode.processEdgeList(edgeList);
+
+    for(MapInitializer initializer : mapInitializers){
+      initializer.setLocation();
+    }
+
   }
 }

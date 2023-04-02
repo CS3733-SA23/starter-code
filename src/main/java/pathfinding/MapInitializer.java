@@ -10,8 +10,4 @@ public class MapInitializer {
         this.longName = longName;
     }
 
-    public void setLocation(){
-        HospitalNode node = HospitalNode.allNodes.get(nodeID);
-        node.setName(LocationName.allLocations.get(longName));
-    }
 }

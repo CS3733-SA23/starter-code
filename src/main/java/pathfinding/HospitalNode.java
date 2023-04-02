@@ -20,8 +20,6 @@ public class HospitalNode {
   @Getter Floor floor;
   @Getter String building;
 
-  @Getter @Setter
-  LocationName name;
 
   public HospitalNode(
       String id,

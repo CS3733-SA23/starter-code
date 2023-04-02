@@ -1,7 +1,5 @@
 package pathfinding;
 
-import lombok.Getter;
-
 public class NodeInitializer {
 
     public String nodeID;

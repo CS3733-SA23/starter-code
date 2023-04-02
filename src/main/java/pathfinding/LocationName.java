@@ -4,6 +4,8 @@ import lombok.Getter;
 
 import java.util.HashMap;
 
+import static java.util.Objects.hash;
+
 public class LocationName {
 
     public static HashMap<String, LocationName> allLocations = new HashMap<>();
@@ -33,5 +35,10 @@ public class LocationName {
         this.nodeType = nodeType;
 
         allLocations.put(this.longName, this);
+    }
+
+    @Override
+    public int hashCode() {
+        return hash(longName);
     }
 }
