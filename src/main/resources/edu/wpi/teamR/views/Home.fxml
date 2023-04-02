@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,100 +13,113 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <BorderPane prefHeight="400.0" prefWidth="600.0">
+<BorderPane fx:id="borderPane" prefHeight="900.0" prefWidth="1600.0" stylesheets="@../styles/home.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamR.controllers.HomeController">
          <bottom>
-            <HBox prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-               <children>
-                  <MFXButton fx:id="employeeButton" alignment="CENTER" text="Employee Login" textAlignment="CENTER" translateY="20.0" underline="true">
-                     <font>
-                        <Font name="Times New Roman" size="12.0" />
-                     </font>
-                  </MFXButton>
-                  <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="450.0">
-                     <image>
-                        <Image url="@../images/Brigham_and_Womens_Hospital_logo.svg.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+                  <HBox prefHeight="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <MFXButton fx:id="employeeButton" alignment="CENTER" text="Employee Login" textAlignment="CENTER" translateY="20.0" underline="true" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="Times New Roman" size="12.0" />
+                           </font>
+                        </MFXButton>
+                  <AnchorPane prefHeight="200.0" HBox.hgrow="ALWAYS" />
+                        <ImageView fitHeight="50.0" fitWidth="200.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                           <image>
+                              <Image url="@../images/Brigham_and_Womens_Hospital_logo.svg.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+         </children>
+      </AnchorPane>
          </bottom>
          <top>
-            <ToolBar prefHeight="41.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-               <items>
-                  <MFXButton fx:id="helpButton" alignment="CENTER" text="Help" textAlignment="CENTER" underline="true">
-                     <font>
-                        <Font name="Times New Roman" size="12.0" />
-                     </font>
-                  </MFXButton>
-                  <MFXButton fx:id="exitButton" alignment="CENTER" text="Exit" textAlignment="CENTER" underline="true">
-                     <font>
-                        <Font name="Times New Roman" size="12.0" />
-                     </font>
-                  </MFXButton>
-               </items>
-            </ToolBar>
+            <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="1600.0">
+              <menus>
+                <Menu fx:id="fileMenu" mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem fx:id="exitButton" mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem fx:id="about" mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+            </AnchorPane>
          </top>
-         <center>
-            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fitHeight="200.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" translateY="20.0">
-                     <image>
-                        <Image url="@../images/long_triangle.png" />
-                     </image>
-                  </ImageView>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+   <left>
+            <ImageView fx:id="triangleImage" fitHeight="200.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" translateY="-10.0" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../images/long_triangle.png" />
+               </image>
+            </ImageView>
+   </left>
+   <center>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+                  <VBox layoutX="14.0" layoutY="159.0" prefHeight="354.0" prefWidth="587.0" AnchorPane.bottomAnchor="297.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="949.0" AnchorPane.topAnchor="159.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Brigham &amp; Women's Hospital!" translateY="25.0">
+                        <Text fx:id="welcomeText" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Brigham &amp; Women's Hospital!" translateY="25.0" VBox.vgrow="ALWAYS">
                            <font>
-                              <Font name="Times New Roman Bold" size="24.0" />
+                              <Font name="Times New Roman Bold" size="30.0" />
                            </font>
                         </Text>
-                        <VBox prefHeight="200.0" prefWidth="300.0" translateX="20.0" translateY="75.0">
+                        <VBox prefHeight="327.0" prefWidth="627.0" spacing="5.0" translateY="75.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please Select Your Desired Action:">
+                              <Text fx:id="selectText" strokeType="OUTSIDE" strokeWidth="0.0" text="Please Select Your Desired Action:" VBox.vgrow="ALWAYS">
                                  <font>
-                                    <Font name="Times New Roman Italic" size="18.0" />
+                                    <Font name="Times New Roman Italic" size="24.0" />
                                  </font>
                               </Text>
-                              <HBox prefHeight="20.0" prefWidth="200.0">
+                              <HBox VBox.vgrow="ALWAYS">
                                  <children>
-                                    <MFXButton fx:id="navigateButton" accessibleRole="PARENT" text="Directions" translateX="12.0" underline="true">
+                                    <MFXButton fx:id="navigateButton" accessibleRole="PARENT" style="-fx-background-color: transparent;" text="Directions" translateX="12.0" underline="true" HBox.hgrow="ALWAYS">
                                        <font>
-                                          <Font name="Times New Roman" size="18.0" />
+                                          <Font name="Times New Roman" size="24.0" />
                                        </font>
                                     </MFXButton>
-                                    <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" translateX="12.0" translateY="10.0">
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" translateX="12.0" translateY="10.0" HBox.hgrow="ALWAYS">
                                        <image>
                                           <Image url="@../images/TriangleArrow-Right.svg.png" />
                                        </image>
                                     </ImageView>
                                  </children>
                               </HBox>
-                              <HBox prefHeight="20.0" prefWidth="200.0">
+                              <HBox prefHeight="20.0" spacing="5.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <MFXButton fx:id="furnitureButton" text="Furniture Delivery Service Request" translateX="12.0" underline="true">
+                                    <MFXButton fx:id="furnitureButton" style="-fx-background-color: transparent;" text="Furniture Delivery Service Request" translateX="12.0" underline="true" HBox.hgrow="ALWAYS">
                                        <font>
-                                          <Font name="Times New Roman" size="18.0" />
+                                          <Font name="Times New Roman" size="24.0" />
                                        </font>
                                     </MFXButton>
-                                    <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" translateX="12.0" translateY="10.0">
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" translateX="12.0" translateY="10.0" HBox.hgrow="ALWAYS">
                                        <image>
                                           <Image url="@../images/TriangleArrow-Right.svg.png" />
                                        </image>
                                     </ImageView>
                                  </children>
                               </HBox>
-                              <HBox prefHeight="20.0" prefWidth="200.0">
+                              <HBox prefHeight="20.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <MFXButton fx:id="mealButton" text="Meal Delivery Service Request" translateX="12.0" underline="true">
+                                    <MFXButton fx:id="mealButton" style="-fx-background-color: transparent;" text="Meal Delivery Service Request" translateX="12.0" underline="true" HBox.hgrow="ALWAYS">
                                        <font>
-                                          <Font name="Times New Roman" size="18.0" />
+                                          <Font name="Times New Roman" size="24.0" />
                                        </font>
                                     </MFXButton>
-                                    <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" translateX="12.0" translateY="10.0">
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" translateX="12.0" translateY="10.0" HBox.hgrow="ALWAYS">
                                        <image>
                                           <Image url="@../images/TriangleArrow-Right.svg.png" />
                                        </image>
@@ -115,9 +130,7 @@
                         </VBox>
                      </children>
                   </VBox>
-               </children>
-            </HBox>
-         </center>
+         </children>
+      </AnchorPane>
+   </center>
       </BorderPane>
-   </children>
-</AnchorPane>

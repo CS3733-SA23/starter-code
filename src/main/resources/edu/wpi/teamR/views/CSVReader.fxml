@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamR.views.CSVReaderController">
+   <center>
+      <AnchorPane>
+         <children>
+            <MFXButton layoutX="390.0" layoutY="295.0" text="Choose File" AnchorPane.topAnchor="295.0">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+            </MFXButton>
+            <Text layoutX="572.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="...">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+            </Text>
+            <MFXButton fx:id="backButton" layoutX="14.0" layoutY="849.0" text="Back" AnchorPane.topAnchor="849.0">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </MFXButton>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
