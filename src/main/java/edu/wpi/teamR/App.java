@@ -6,6 +6,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.Getter;
@@ -27,6 +28,11 @@ public class App extends Application {
   public void start(Stage primaryStage) throws IOException {
     /* primaryStage is generally only used if one of your components require the stage to display */
     App.primaryStage = primaryStage;
+    primaryStage.setTitle("Hospital Application");
+    Image icon =
+        new Image(
+            getClass().getResourceAsStream("images/Brigham_and_Womens_Hospital_logo.svg.png"));
+    primaryStage.getIcons().add(icon);
 
     final FXMLLoader loader = new FXMLLoader(App.class.getResource("views/Root.fxml"));
     final BorderPane root = loader.load();
@@ -35,6 +41,7 @@ public class App extends Application {
 
     final Scene scene = new Scene(root);
     primaryStage.setScene(scene);
+    // primaryStage.setMaximized(true);
     primaryStage.show();
 
     Navigation.navigate(Screen.HOME);
