@@ -27,10 +27,10 @@ public class ServiceRequestData {
     assignedStaff = "None";
   }
 
-  public ServiceRequestData(RequestType requestType, JSONObject requestData, Status currentStatus, String assignedStaff) {
+  public ServiceRequestData(RequestType requestType, JSONObject requestData, Status requestStatus, String assignedStaff) {
     this.requestData = requestData;
     this.requestType = requestType;
-    requestStatus = Status.PENDING;
-    assignedStaff = "None";
+    this.requestStatus = requestStatus;
+    this.assignedStaff = assignedStaff;
   }
 }
