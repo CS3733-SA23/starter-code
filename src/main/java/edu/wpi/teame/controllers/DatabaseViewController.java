@@ -3,26 +3,29 @@ package edu.wpi.teame.controllers;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import pathfinding.MoveAttribute;
 
 public class DatabaseViewController {
 
   @FXML MFXButton backButton;
-  @FXML MFXButton deleteButton;
+  // @FXML MFXButton deleteButton;
 
-  @FXML MFXButton addButton; // three text boxes and a button that says "add" next to it
-  @FXML MFXTextField IDField;
+  // @FXML MFXButton addButton; // three text boxes and a button that says "add" next to it
+  // @FXML MFXTextField IDField;
 
-  @FXML MFXTextField locationField;
+  // @FXML MFXTextField locationField;
 
-  @FXML MFXTextField dateField;
+  // @FXML MFXTextField dateField;
 
-  @FXML MFXButton importButton;
+  // @FXML MFXButton importButton;
 
-  @FXML MFXButton exportButton;
+  // @FXML MFXButton exportButton;
 
   @FXML TableView<MoveAttribute> dataTable;
 
@@ -41,17 +44,17 @@ public class DatabaseViewController {
 
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
 
-    deleteButton.setOnMouseClicked(event -> {});
+    // deleteButton.setOnMouseClicked(event -> {});
 
-    addButton.setOnMouseClicked(event -> {});
+    // addButton.setOnMouseClicked(event -> {});
 
-    importButton.setOnMouseClicked(event -> {});
+    // importButton.setOnMouseClicked(event -> {});
 
-    exportButton.setOnMouseClicked(event -> {});
+    // exportButton.setOnMouseClicked(event -> {});
 
     List itemList = new ArrayList<>(); // REPLACE WITH THE METHOD CALL
 
-    dataTable.setItems();
+    // dataTable.setItems();
 
     dataTable.setEditable(true);
   }
