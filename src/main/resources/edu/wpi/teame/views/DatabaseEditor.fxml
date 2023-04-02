@@ -8,9 +8,9 @@
    <children>
       <TableView fx:id="dataTable">
         <columns>
-          <TableColumn prefWidth="75.0" text="NodeID" />
-          <TableColumn prefWidth="75.0" text="Name" />
-            <TableColumn prefWidth="75.0" text="Date" />
+          <TableColumn fx:id="nodeIDCol" prefWidth="75.0" text="NodeID" />
+          <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="dateCol" prefWidth="75.0" text="Date" />
         </columns>
       </TableView>
    </children>
