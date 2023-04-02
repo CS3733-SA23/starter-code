@@ -49,7 +49,9 @@ public class DatabaseViewController {
 
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
 
-    deleteButton.setOnMouseClicked(event -> {});
+    deleteButton.setOnMouseClicked(event -> {
+      dataTable.getItems().removeAll(dataTable.getSelectionModel().getSelectedItem());
+    });
 
     addButton.setOnMouseClicked(event -> {});
 
