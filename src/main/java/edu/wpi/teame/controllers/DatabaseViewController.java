@@ -11,7 +11,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.DirectoryChooser;
 import pathfinding.MoveAttribute;
+
+import java.io.File;
+
 
 public class DatabaseViewController {
 
@@ -37,8 +41,11 @@ public class DatabaseViewController {
 
   @FXML TableColumn<MoveAttribute, String> dateCol;
 
+  DirectoryChooser directoryChooser = new DirectoryChooser();
+
   @FXML
   public void initialize() {
+    directoryChooser.setInitialDirectory(new File("src"));
 
     DatabaseController databaseController = new DatabaseController("teame", "teame50");
 
@@ -51,11 +58,14 @@ public class DatabaseViewController {
 
     deleteButton.setOnMouseClicked(event -> {
       dataTable.getItems().removeAll(dataTable.getSelectionModel().getSelectedItem());
+      //delete row in database (call method)
     });
 
     addButton.setOnMouseClicked(event -> {});
 
-    importButton.setOnMouseClicked(event -> {});
+    importButton.setOnMouseClicked(event -> {
+      //File selectedDirectory = directoryChooser.showDialog();
+    });
 
     exportButton.setOnMouseClicked(event -> {});
 
