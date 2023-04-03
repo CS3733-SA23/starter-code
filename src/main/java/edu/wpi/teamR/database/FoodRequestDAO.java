@@ -21,11 +21,14 @@ public class FoodRequestDAO { //TODO: make sure tablename is the view
     }
     public static FoodRequestDAO getInstance(){return FoodRequestDAO.instance;}
     public ArrayList<FoodRequest> getFoodRequests(){return foodRequests;};
-    public FoodRequest addFoodRequest(String requesterName, String location, String mealType, String staffMember, String additionalNotes, Integer requestID, String requestType, Timestamp requestDate, RequestStatus requestStatus) throws SQLException, ClassNotFoundException {
+    public FoodRequest addFoodRequest(int requestID, String requesterName, String location, String mealType, String staffMember, String additionalNotes, Timestamp requestDate, RequestStatus requestStatus) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
         String sqlInsert = "INSERT INTO "+schemaName+"."+tableName+"(requestID, requesterName, location, requestDate, additionalNotes, mealType)";
-        sqlInsert+= "VALUES("+requestID+",\'"+requesterName+"\',\'"+location+"\'"+
+        sqlInsert+= "VALUES("+requestID+",\'"+requesterName+"\',\'"+location+"\',\'"+requestDate+"\',\'"+additionalNotes+"\',\'"+mealType+"\');";
+        FoodRequest aFoodRequest = new FoodRequest(requestID, requesterName, location, mealType, staffMember, additionalNotes, requestDate, requestStatus);
+        foodRequests.add()
+        closeConnection(connection);
     }
     private Connection createConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");

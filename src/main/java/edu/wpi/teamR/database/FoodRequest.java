@@ -8,8 +8,8 @@ public class FoodRequest {
     private RequestStatus requestStatus;
     private Integer requestID;
 
-    public FoodRequest(String requesterName, String location, String mealType, String staffMember,
-                            String additionalNotes, LocalDateTime requestDate, RequestStatus requestStatus, Integer requestID) {
+    public FoodRequest(Integer requestID, String requesterName, String location, String mealType, String staffMember,
+                            String additionalNotes, LocalDateTime requestDate, RequestStatus requestStatus) {
         this.requesterName = requesterName;
         this.location = location;
         this.mealType = mealType;
