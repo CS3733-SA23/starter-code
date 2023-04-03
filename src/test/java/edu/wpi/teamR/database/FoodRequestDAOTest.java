@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import java.time.LocalDateTime;
@@ -22,13 +23,13 @@ class FoodRequestDAOTest {
                 "furnitureRequestview",
                 "test",
                 "jdbc:postgresql://database.cs.wpi.edu:5432/teamrdb");
-        LocalDateTime testLocalDateTime = LocalDateTime.of(
+        Timestamp testLocalDateTime = Timestamp.valueOf(LocalDateTime.of(
                 2023,
                 Month.JANUARY,
                 15,
                 22,
                 59,
-                59);
+                59));
         aFoodRequestDAO.addFoodRequest(
                 1,
                 "James",
@@ -54,13 +55,13 @@ class FoodRequestDAOTest {
     }
     @Test
     void addAndDeleteFoodRequestTest() throws Exception{
-        LocalDateTime testLocalDateTime = LocalDateTime.of(
+        Timestamp testLocalDateTime = Timestamp.valueOf(LocalDateTime.of(
                 2023,
                 Month.FEBRUARY,
                 12,
                 1,
                 2,
-                1);
+                1));
         FoodRequest one = new FoodRequest(
                 10,
                 "Ryan",
@@ -80,7 +81,7 @@ class FoodRequestDAOTest {
                 testLocalDateTime,
                 RequestStatus.Unstarted);
         FoodRequest two = aFoodRequestDAO.selectFoodRequests(one.getRequestID(), null, null, null, null, null, null, null).get(0);
-        Boolean matchingRequestID = one.getRequestID()==two.getRequestID();
+        Boolean matchingRequestID = one.getRequestID().equals(two.getRequestID());
         Boolean matchingRequesterName = one.getRequesterName().equals(two.getRequesterName());
         Boolean matchingLocation = one.getLocation().equals(two.getLocation());
         Boolean matchingFurnitureType = one.getMealType().equals(two.getMealType());
@@ -94,13 +95,13 @@ class FoodRequestDAOTest {
     }
     @Test
     void modifyFoodRequestByIDTest() throws Exception {
-        LocalDateTime testLocalDateTime = LocalDateTime.of(
+        Timestamp testLocalDateTime = Timestamp.valueOf(LocalDateTime.of(
                 2023,
                 Month.MARCH,
                 9,
                 9,
                 9,
-                9);
+                9));
         FoodRequest one = new FoodRequest(
                 900,
                 "Charlie",
@@ -140,22 +141,22 @@ class FoodRequestDAOTest {
                 "Pineapple juice is great",
                 testLocalDateTime,
                 RequestStatus.Complete);
-        Boolean matchingRequestID = updatedOne.getRequestID()==correctOne.getRequestID();
-        Boolean matchingRequesterName = updatedOne.getRequesterName().equals(correctOne.getRequesterName());
-        Boolean matchingLocation = updatedOne.getLocation().equals(correctOne.getLocation());
-        Boolean matchingFurnitureType = updatedOne.getMealType().equals(correctOne.getMealType());
-        Boolean matchingStaffMember = updatedOne.getStaffMember().equals(correctOne.getStaffMember());
-        Boolean matchingAdditionalNotes = updatedOne.getAdditionalNotes().equals(correctOne.getAdditionalNotes());
-        Boolean matchingTime =  updatedOne.getRequestDate().toString().equals(correctOne.getRequestDate().toString());
-        Boolean matchingRequestStatus = updatedOne.getRequestStatus().toString().equals(correctOne.getRequestStatus().toString());
+        assertEquals(updatedOne.getRequestID(), correctOne.getRequestID());
+        assertEquals(updatedOne.getRequesterName(), correctOne.getRequesterName());
+        assertEquals(updatedOne.getLocation(), correctOne.getLocation());
+        assertEquals(updatedOne.getMealType(), correctOne.getMealType());
+        assertEquals(updatedOne.getStaffMember(), correctOne.getStaffMember());
+        assertEquals(updatedOne.getAdditionalNotes(), correctOne.getAdditionalNotes());
+        assertEquals(updatedOne.getRequestDate().toString(), correctOne.getRequestDate().toString());
+        assertEquals(updatedOne.getRequestStatus().toString(), correctOne.getRequestStatus().toString());
         aFoodRequestDAO.deleteFoodRequests(900, null, null, null, null, null, null, null);
     }
     @Test
     void selectFoodRequestsTests() throws SQLException, ClassNotFoundException{
-        LocalDateTime testLocalDateTime1 = LocalDateTime.of(2023, Month.MAY, 10, 10, 10, 10);
-        LocalDateTime testLocalDateTime2 = LocalDateTime.of(2023, Month.JUNE, 11, 11, 11, 11);
-        LocalDateTime testLocalDateTime3 = LocalDateTime.of(2023, Month.JULY, 12, 12, 12, 12);
-        LocalDateTime testLocalDateTime4 = LocalDateTime.of(2023, Month.AUGUST, 8, 8, 8, 8);
+        Timestamp testLocalDateTime1 = Timestamp.valueOf(LocalDateTime.of(2023, Month.MAY, 10, 10, 10, 10));
+        Timestamp testLocalDateTime2 = Timestamp.valueOf(LocalDateTime.of(2023, Month.JUNE, 11, 11, 11, 11));
+        Timestamp testLocalDateTime3 = Timestamp.valueOf(LocalDateTime.of(2023, Month.JULY, 12, 12, 12, 12));
+        Timestamp testLocalDateTime4 = Timestamp.valueOf(LocalDateTime.of(2023, Month.AUGUST, 8, 8, 8, 8));
         aFoodRequestDAO.addFoodRequest(
                 17,
                 "Blue",
