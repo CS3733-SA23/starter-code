@@ -103,7 +103,7 @@ public class DatabaseController {
    *
    * @return void
    */
-  private void deleteFromTable(MoveAttribute moveAttribute) {
+  public void deleteFromTable(MoveAttribute moveAttribute) {
     Statement stmt;
     String nodeId = moveAttribute.nodeID;
 

@@ -1,6 +1,6 @@
 package edu.wpi.teame.controllers;
 
-
+import Database.DatabaseController;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -12,7 +12,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.DirectoryChooser;
 import pathfinding.MoveAttribute;
-import Database.DatabaseController;
 
 public class DatabaseViewController {
 
@@ -42,10 +41,9 @@ public class DatabaseViewController {
 
   @FXML
   public void initialize() {
-    /* directoryChooser.setInitialDirectory(new File("src"));
+    // directoryChooser.setInitialDirectory(new File("src"));
 
-        DatabaseController databaseController = new DatabaseController("teame", "teame50");
-    */
+    DatabaseController dC = new DatabaseController("teame", "teame50");
 
     // load the database into the table
     nodeIDCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("nodeID"));
@@ -68,8 +66,11 @@ public class DatabaseViewController {
 
     deleteButton.setOnMouseClicked(
         event -> {
-          dataTable.getItems().removeAll(dataTable.getSelectionModel().getSelectedItem());
-          // delete row in database (call method)
+          MoveAttribute selectedItem = dataTable.getSelectionModel().getSelectedItem();
+          if (selectedItem != null) {
+            dataTable.getItems().remove(selectedItem);
+            dC.deleteFromTable(selectedItem);
+          }
         });
 
     addButton.setOnMouseClicked(
@@ -78,7 +79,6 @@ public class DatabaseViewController {
           String name = locationField.getText();
           String date = dateField.getText();
           MoveAttribute newMoveAttribute = new MoveAttribute(nodeID, name, date);
-          DatabaseController dC = new DatabaseController("teame", "teame50");
           dataTable.getItems().add(newMoveAttribute);
           dC.addToTable(newMoveAttribute);
         });
