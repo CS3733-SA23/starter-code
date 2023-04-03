@@ -48,12 +48,7 @@ public class Node {
    * @param floor - floor of the node ex: L1
    * @param building - building of the node ex: CCONF
    */
-  public Node(
-      String nodeID,
-      int xCoord,
-      int yCoord,
-      String floor,
-      String building) {
+  public Node(String nodeID, int xCoord, int yCoord, String floor, String building) {
     this.nodeID = nodeID;
     this.xCoord = xCoord;
     this.yCoord = yCoord;
