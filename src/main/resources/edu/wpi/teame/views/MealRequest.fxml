@@ -1,213 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.ContextMenu?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.MotionBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.MealRequestController">
-   <children>
-      <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #3B63A5;">
+
+<BorderPane style="-fx-background-color: #3b63a5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
          <children>
-            <Pane id="backGround" prefHeight="638.0" prefWidth="600.0" style="-fx-background-color: e1e1e1;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="490.0" layoutX="5.0" layoutY="5.0" strokeType="INSIDE" width="790.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                <effect>
-                  <DropShadow>
+                  <DropShadow height="31.53" radius="16.1425" spread="0.48" width="35.04">
                      <color>
-                        <Color red="0.8980392217636108" green="0.7372549176216125" blue="0.23137255012989044" />
+                        <Color red="0.8700000047683716" green="0.7006400227546692" blue="0.23489999771118164" opacity="0.8571428656578064" />
                      </color>
                   </DropShadow>
                </effect>
-            </Pane>
-            <VBox prefHeight="400.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+            </Rectangle>
+            <ImageView fitHeight="490.0" fitWidth="790.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" AnchorPane.bottomAnchor="-38.6824951171875" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="5.0">
+               <image>
+                  <Image url="@../images/BWH_BridgeInside_JK.jpg" />
+               </image>
+               <effect>
+                  <MotionBlur radius="4.7" />
+               </effect>
+            </ImageView>
+            <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#7e7e7e" height="462.0" layoutX="131.0" layoutY="19.0" opacity="0.64" stroke="TRANSPARENT" strokeType="INSIDE" width="537.0" />
+            <Text fontSmoothingType="LCD" layoutX="270.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Delivery" underline="true">
+               <font>
+                  <Font name="Poor Richard" size="48.0" />
+               </font>
+            </Text>
+            <ScrollPane layoutX="175.0" layoutY="109.0" prefHeight="350.0" prefWidth="450.0">
+               <content>
+                  <AnchorPane prefWidth="450.0">
                      <children>
-                        <MFXButton fx:id="backButton" text="Back">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </MFXButton>
-                        <Label text="Meal Delivery Request " textAlignment="CENTER" textFill="#0f0000">
-                           <font>
-                              <Font name="Open Sans Bold" size="24.0" />
-                           </font>
-                           <effect>
-                              <Glow level="0.07" />
-                           </effect>
-                           <HBox.margin>
-                              <Insets left="110.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <ScrollPane id="scrollPane" blendMode="COLOR_BURN" prefHeight="738.0" prefWidth="600.0">
-                     <content>
-                        <ButtonBar>
-                           <buttons>
-                              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                        <VBox prefHeight="500.0" prefWidth="450.0" spacing="15.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefWidth="450.0" spacing="5.0">
                                  <children>
-                                    <VBox prefHeight="830.0" prefWidth="599.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="19.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Recipient Name">
+                                       <font>
+                                          <Font name="Times New Roman" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <MFXTextField fx:id="recipientName" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" textLimit="0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefWidth="450.0" spacing="5.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room Number">
+                                       <font>
+                                          <Font name="Times New Roman" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <MFXTextField fx:id="roomNumber" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="122.0" prefWidth="450.0" spacing="5.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Time">
+                                       <font>
+                                          <Font name="Times New Roman" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <MFXComboBox fx:id="deliveryTime" alignment="CENTER" prefWidth="250.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="212.0" prefWidth="450.0" spacing="5.0">
+                                 <children>
+                                    <Text fx:id="mainCourse" strokeType="OUTSIDE" strokeWidth="0.0" text="Main Course">
+                                       <font>
+                                          <Font name="Times New Roman" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <MFXComboBox fx:id="mainCourseChoice" alignment="CENTER" prefWidth="250.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="290.0" prefWidth="450.0" spacing="5.0">
+                                 <children>
+                                    <Text fx:id="sideCourse" strokeType="OUTSIDE" strokeWidth="0.0" text="Side Course">
+                                       <font>
+                                          <Font name="Times New Roman" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <MFXComboBox fx:id="sideCourseChoice" prefWidth="250.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="123.0" prefWidth="450.0" spacing="5.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Notes">
+                                       <font>
+                                          <Font name="Times New Roman" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <MFXTextField fx:id="notes" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" textLimit="0" />
+                                    <VBox alignment="TOP_CENTER" prefWidth="450.0" spacing="5.0" visible="false">
                                        <children>
-                                          <Label prefHeight="17.0" prefWidth="99.0" style="-fx-background-color: FFFFFF;" text="Patient's Name" textAlignment="CENTER" textFill="#0f0000">
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assign Staff">
                                              <font>
-                                                <Font name="Open Sans Regular" size="14.0" />
+                                                <Font name="Times New Roman" size="16.0" />
                                              </font>
-                                             <effect>
-                                                <Glow level="0.07" />
-                                             </effect>
-                                          </Label>
-                                          <MFXTextField id="patientName" fx:id="receiverName" prefHeight="30.0" prefWidth="550.0" promptText="Name of the receiver">
-                                             <VBox.margin>
-                                                <Insets />
-                                             </VBox.margin>
-                                          </MFXTextField>
-                                          <Label style="-fx-background-color: FFFFFF;" text="Room Number" textAlignment="CENTER" textFill="#0f0000">
-                                             <font>
-                                                <Font name="Open Sans Regular" size="14.0" />
-                                             </font>
-                                             <effect>
-                                                <Glow level="0.07" />
-                                             </effect>
-                                          </Label>
-                                          <MFXTextField id="roomNumber" fx:id="roomNumber" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="51.0" promptText="Delivery Room">
-                                             <VBox.margin>
-                                                <Insets />
-                                             </VBox.margin>
-                                          </MFXTextField>
-                                          <Label style="-fx-background-color: FFFFFF;" text="Main Course Selection" textAlignment="CENTER" textFill="#0f0000">
-                                             <font>
-                                                <Font name="Open Sans Regular" size="14.0" />
-                                             </font>
-                                             <effect>
-                                                <Glow level="0.07" />
-                                             </effect>
-                                          </Label>
-                                          <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
-                                             <items>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                                   <children>
-                                                      <MFXTextField fx:id="foodSelection" prefHeight="158.0" prefWidth="273.0" promptText="Input your food selection" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                         <textFill>
-                                                            <Color red="0.01315789483487606" />
-                                                         </textFill>
-                                                      </MFXTextField>
-                                                   </children>
-                                                </AnchorPane>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                                   <children>
-                                                      <ListView layoutX="-31.0" layoutY="-2.0" prefHeight="158.0" prefWidth="273.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                         <contextMenu>
-                                                            <ContextMenu>
-                                                               <items>
-                                                                  <MenuItem mnemonicParsing="false" text="Ingredients" />
-                                                               </items>
-                                                            </ContextMenu>
-                                                         </contextMenu>
-                                                      </ListView>
-                                                   </children>
-                                                </AnchorPane>
-                                             </items>
-                                          </SplitPane>
-                                          <Label style="-fx-background-color: FFFFFF;" text="Sides Selection" textAlignment="CENTER" textFill="#0f0000">
-                                             <font>
-                                                <Font name="Open Sans Regular" size="14.0" />
-                                             </font>
-                                             <effect>
-                                                <Glow level="0.07" />
-                                             </effect>
-                                          </Label>
-                                          <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
-                                             <items>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                                   <children>
-                                                      <MFXTextField id="sideSelection" fx:id="sideSelection" layoutX="56.0" layoutY="67.0" prefHeight="158.0" prefWidth="273.0" promptText="Input your side selection here!" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                   </children>
-                                                </AnchorPane>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                                   <children>
-                                                      <ListView layoutX="-31.0" layoutY="-2.0" prefHeight="158.0" prefWidth="273.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                         <contextMenu>
-                                                            <ContextMenu>
-                                                               <items>
-                                                                  <MenuItem mnemonicParsing="false" text="Ingredients" />
-                                                               </items>
-                                                            </ContextMenu>
-                                                         </contextMenu>
-                                                      </ListView>
-                                                   </children>
-                                                </AnchorPane>
-                                             </items>
-                                          </SplitPane>
-                                          <Label style="-fx-background-color: FFFFFF;" text="Delivery Time" textAlignment="CENTER" textFill="#0f0000">
-                                             <font>
-                                                <Font name="Open Sans Regular" size="14.0" />
-                                             </font>
-                                             <effect>
-                                                <Glow level="0.07" />
-                                             </effect>
-                                          </Label>
-                                          <MFXTextField id="deliveryTime" fx:id="deliveryTime" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="23:00 am/pm" />
-                                          <Label style="-fx-background-color: FFFFFF;" text="Notes" textAlignment="CENTER" textFill="#0f0000">
-                                             <font>
-                                                <Font name="Open Sans Regular" size="14.0" />
-                                             </font>
-                                             <effect>
-                                                <Glow level="0.07" />
-                                             </effect>
-                                          </Label>
-                                          <MFXTextField id="notes" fx:id="notes" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="66.0" prefWidth="554.0" promptText="Any food or religious restrictions" />
+                                          </Text>
+                                          <MFXTextField fx:id="assignStaff" alignment="CENTER" disable="true" prefHeight="50.0" prefWidth="250.0" textLimit="0" />
                                        </children>
                                     </VBox>
                                  </children>
-                              </AnchorPane>
-                           </buttons>
-                        </ButtonBar>
-                     </content>
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="5.0" />
-                     </VBox.margin>
-                  </ScrollPane>
-                  <VBox>
-                     <children>
-                        <HBox>
-                           <children>
-                              <MFXButton fx:id="cancelButton" prefHeight="30.0" prefWidth="70.0" text="Cancel">
-                                 <HBox.margin>
-                                    <Insets left="50.0" right="350.0" />
-                                 </HBox.margin>
-                              </MFXButton>
-                              <MFXButton fx:id="submitButton" prefHeight="30.0" prefWidth="70.0" text="Submit">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </MFXButton>
+                              </VBox>
+                              <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
+                                 <children>
+                                    <MFXButton fx:id="cancelButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" layoutX="284.0" layoutY="12.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Cancel" />
+                                    <MFXButton fx:id="flowerRequestSubmit" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Submit" />
+                                 </children>
+                              </HBox>
                            </children>
-                           <VBox.margin>
-                              <Insets bottom="20.0" />
-                           </VBox.margin>
-                        </HBox>
+                        </VBox>
                      </children>
-                  </VBox>
-               </children>
-            </VBox>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+            <MFXButton fx:id="returnButtonMealRequest" contentDisplay="GRAPHIC_ONLY" layoutX="142.0" layoutY="45.0" style="-fx-background-color: #192d5a;">
+               <graphic>
+                  <ImageView fx:id="returnButtonService" fitHeight="100.0" fitWidth="50.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Back%20Arrow.png" />
+                     </image>
+                     <effect>
+                        <DropShadow spread="0.61">
+                           <color>
+                              <Color red="0.8980392217636108" green="0.7372549176216125" blue="0.23137255012989044" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </ImageView>
+               </graphic>
+            </MFXButton>
          </children>
       </AnchorPane>
-   </children>
-</HBox>
+   </center>
+</BorderPane>
