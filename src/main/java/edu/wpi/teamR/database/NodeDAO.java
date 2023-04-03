@@ -112,7 +112,7 @@ public class NodeDAO {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
         String sqlUpdate = "UPDATE " + schemaName + "." + tableName + " SET xCoord = " + xCoord;
-        sqlUpdate += ", yCoord = " + yCoord + ", floorNum = \'" + floorNum+ "\' , building = \'" + building + "\' WHERE nodeID = " + nodeID;
+        sqlUpdate += ", yCoord = " + yCoord + ", floorNum = \'" + floorNum+ "\' , building = \'" + building + "\' WHERE nodeID = " + nodeID + ";";
         statement.executeUpdate(sqlUpdate);
         closeConnection(connection);
         Node aNode = selectNodes(nodeID, null, null, null, null).get(0);
