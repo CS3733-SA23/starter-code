@@ -20,4 +20,8 @@ public class Graph {
          * }
          */
     }
+
+    public GraphNode getGraphNode(int key) {
+        return pathfindingArea.get(key);
+    }
 }

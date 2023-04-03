@@ -13,6 +13,14 @@ public class Edge {
   Integer startNode;
   Integer endNode;
 
+  public Integer getStartNode() {
+    return startNode;
+  }
+
+  public Integer getEndNode() {
+    return endNode;
+  }
+
   public Edge(Integer startNode, Integer endNode) {
     this.startNode = startNode;
     this.endNode = endNode;

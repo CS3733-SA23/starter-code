@@ -5,85 +5,87 @@ import edu.wpi.teamA.database.Node;
 import java.util.ArrayList;
 
 public class SearchController {
-    public class Wrapping {
-        Node currentNode;
-        Wrapping previousPath;
-        boolean noPrevPath;
 
-        public Wrapping(Node currentNode, Wrapping previousPath) {
-            this.currentNode = currentNode;
-            this.previousPath = previousPath;
-            noPrevPath = false;
-        }
+    private Graph graph;
 
-        public Wrapping(Node currentNode) {
-            this.currentNode = currentNode;
-            noPrevPath = true;
-        }
-
-        public void addPath(Wrapping path) {
-            this.previousPath = path;
-            noPrevPath = false;
-        }
+    public SearchController(Graph graph) {
+        this.graph = graph;
     }
+
+
+//    public class Wrapping {
+//        Node currentNode;
+//        Wrapping previousPath;
+//        boolean noPrevPath;
+//
+//        public Wrapping(Node currentNode, Wrapping previousPath) {
+//            this.currentNode = currentNode;
+//            this.previousPath = previousPath;
+//            noPrevPath = false;
+//        }
+//
+//        public Wrapping(Node currentNode) {
+//            this.currentNode = currentNode;
+//            noPrevPath = true;
+//        }
+//
+//        public void addPath(Wrapping path) {
+//            this.previousPath = path;
+//            noPrevPath = false;
+//        }
+//    }
 
     ArrayList<Node> nodeList;
     ArrayList<Edge> edgeList;
 
-    public ArrayList pathOfNodes(Node startNode, Node endNode) {
-        ArrayList<Node> queue = new ArrayList<Node>();
-        ArrayList<Node> path = new ArrayList<Node>();
-        ArrayList<Node> visited = new ArrayList<Node>();
-        ArrayList<Wrapping> listOfPaths = new ArrayList<Wrapping>();
+    public ArrayList pathOfNodes(int startID, int endID) {
 
-        Node currentNode = startNode;
-        Wrapping currentPath = new Wrapping(currentNode);
-        visited.add(currentNode);
 
-        while (!currentNode.getNodeID() == endNode.getNodeID()) {
+        ArrayList<Integer> queue = new ArrayList<Integer>();
+        ArrayList<Integer> path = new ArrayList<Integer>();
 
-            for (int i = 0; i < currentNode.edgeCount(); i++) {
+        int currentID = startID;
 
-                Edge currentEdge = currentNode.getEdge(i);
-                Node otherNode;
+        GraphNode currentGNode = currentGNode = graph.getGraphNode(currentID);
 
-                if (currentEdge
-                        .getStartNode()
-                        .getNodeID()
-                        .equals(
-                                currentNode
-                                        .getNodeID())) { // check whether node is starting node or ending node in the
+        while (currentID != endID) {
+            for (int i = 0; i < currentGNode.edgeCount(); i++) {
+
+                Edge currentEdge = currentGNode.getEdge(i);
+                int otherNodeID;
+                GraphNode otherGNode;
+
+                if (currentEdge.getStartNode() == currentID) { // check whether node is starting node or ending node in the
                     // edge
-                    otherNode = currentEdge.getEndNode();
+                    otherNodeID = currentEdge.getEndNode();
                 } else {
-                    otherNode = currentEdge.getStartNode();
+                    otherNodeID = currentEdge.getStartNode();
                 }
 
-                boolean otherVisited = false;
-                for (int j = 0; j < visited.size(); j++) {
-                    if (otherNode
-                            .getNodeID() == visited.get(j).getNodeID()) { // check if node has been visited
-                        otherVisited = true;
-                    }
-                }
+//                boolean otherVisited = false;
+//                for (int j = 0; j < visited.size(); j++) {
+//                    if (otherNode
+//                            .getNodeID() == visited.get(j).getNodeID()) { // check if node has been visited
+//                        otherVisited = true;
+//                    }
+//                }
 
-                if (!otherVisited) { // if not visited, add to queue and add to wrapping queue
-                    queue.add(otherNode);
-                    Wrapping newPath = new Wrapping(otherNode, currentPath);
-                    listOfPaths.add(newPath);
+                if (!currentGNode.isVisited()) { // if not visited, add to queue and add to wrapping queue
+                    queue.add(otherNodeID);
                 }
             }
 
-            visited.add(currentNode);
-            currentNode = queue.remove(0);
-            currentPath = listOfPaths.remove(0);
+            currentGNode.setVisited(true);
+            currentID = queue.remove(0);
+            currentGNode = graph.getGraphNode(currentID);
         }
 
-        while (currentPath.noPrevPath == false) { // while the path still has a previous path
-            path.add(0, currentPath.currentNode);
-            currentPath = currentPath.previousPath;
+        while (currentID != startID) { // while the path still has a previous path
+            path.add(0, currentID);
+            currentGNode = currentGNode.getPrev();
+            currentID = currentGNode.getNodeID();
         }
-        path.add(0, startNode);
+        path.add(0, startID);
 
         return path;
     }
