@@ -12,6 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import net.kurobako.gesturefx.GesturePane?>
 <?import org.controlsfx.control.tableview2.FilteredTableView?>
+<?import org.controlsfx.control.tableview2.cell.TextField2TableCell?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.MapChangeHistoryController">
     <children>
@@ -55,7 +56,8 @@
       </ScrollPane>
       <MFXButton fx:id="testButton" layoutX="62.0" layoutY="209.0" onAction="#getText" />
       <MFXTextField fx:id="inputBox" layoutX="47.0" layoutY="139.0" promptText="Type In Move" />
-      <FilteredTableView layoutX="240.0" layoutY="103.0" prefHeight="169.0" prefWidth="360.0" />
+      <FilteredTableView fx:id="sortTable" layoutX="178.0" layoutY="115.0" prefHeight="169.0" prefWidth="360.0" />
       <GesturePane layoutX="43.0" layoutY="245.0" prefHeight="73.0" prefWidth="121.0" />
+      <TextField2TableCell layoutX="120.0" layoutY="271.0" prefHeight="21.0" prefWidth="47.0" />
     </children>
 </AnchorPane>
