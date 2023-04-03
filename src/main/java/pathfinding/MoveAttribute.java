@@ -10,5 +10,4 @@ public class MoveAttribute {
     this.longName = longName;
     this.date = date;
   }
-
 }

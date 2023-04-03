@@ -5,11 +5,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import pathfinding.Floor;
 import pathfinding.HospitalEdge;
 import pathfinding.HospitalNode;
-import pathfinding.NodeInitializer;
-import pathfinding.Floor;
 import pathfinding.MoveAttribute;
+import pathfinding.NodeInitializer;
 
 public class DatabaseGraphController {
   DatabaseController DBC;
@@ -89,7 +89,7 @@ public class DatabaseGraphController {
       if (rs.next()) {
         return rs.getInt("nodeID");
       } else {
-        System.out.println("That is not a valid nodeID");
+        System.out.println("There is no node linked to that location");
         return 0;
       }
     } catch (SQLException e) {
