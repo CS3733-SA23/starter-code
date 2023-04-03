@@ -14,12 +14,10 @@ public class DatabaseController {
   private Connection c;
   private static List<HospitalNode> nodeList = new ArrayList<>();
   private static List<HospitalEdge> edgeList = new ArrayList<>();
-
   private static List<MoveAttribute> moveList = new ArrayList<>();
 
   public static void main(String[] args) throws SQLException, IOException {
     Scanner s1 = new Scanner(System.in);
-
     System.out.print("Please enter your username (will default to \"teame\"): ");
     String username = s1.nextLine(); // Unused in this Prototype
     System.out.print("Please enter your password (will default to \"teame50\"): ");
@@ -152,18 +150,14 @@ public class DatabaseController {
 
     nodeList = new ArrayList<>();
     edgeList = new ArrayList<>();
-    moveList = new ArrayList<>();
 
     List<String> eList = new ArrayList<>();
     List<String> nList = new ArrayList<>();
-    List<String> mList = new ArrayList<>();
 
     String queryCountE = "SELECT COUNT(*) FROM teame.l1edges;";
     String queryCountN = "SELECT COUNT(*) FROM teame.l1nodes;";
-    String queryCountM = "SELECT COUNT(*) FROM teame.\"Move\";";
     String queryEID = "SELECT edgeID FROM teame.l1edges;";
     String queryNID = "SELECT nodeID FROM teame.l1nodes;";
-    String queryMID = "SELECT \"nodeID\" FROM teame.\"Move\";";
 
     try (Statement stmt = c.createStatement()) {
       ResultSet rsn = stmt.executeQuery(queryCountN);
@@ -184,16 +178,6 @@ public class DatabaseController {
           if (rsEdges.next()) {
             String newid = rsEdges.getString("edgeid");
             eList.add(newid);
-          }
-        }
-      }
-      ResultSet rsm = stmt.executeQuery(queryCountM);
-      if (rsm.next()) {
-        int moveCount = rsm.getInt(1);
-        ResultSet rsMoves = stmt.executeQuery(queryMID);
-        for (int i = 0; i <= moveCount; i++) {
-          if (rsMoves.next()) {
-            mList.add(rsMoves.getString("nodeID"));
           }
         }
       }
@@ -238,6 +222,40 @@ public class DatabaseController {
     } else {
       System.out.println("Nodes retrieved successfully.");
     }
+  }
+
+  public List<HospitalNode> getHospitalNodes() {
+    return nodeList;
+  }
+
+  public List<HospitalEdge> getHospitalEdges() {
+    return edgeList;
+  }
+
+  /**
+   * Description: Fills a list with moveAttribute objects, with each row being an object and having
+   * a nodeID, longName, date
+   *
+   * @return list of move attribute objects
+   */
+  public List<MoveAttribute> getMoveList() {
+    List<String> mList = new ArrayList<>();
+    String queryCountM = "SELECT COUNT(*) FROM teame.\"Move\";";
+    String queryMID = "SELECT \"nodeID\" FROM teame.\"Move\";";
+    try (Statement stmt = c.createStatement()) {
+      ResultSet rsm = stmt.executeQuery(queryCountM);
+      if (rsm.next()) {
+        int moveCount = rsm.getInt(1);
+        ResultSet rsMoves = stmt.executeQuery(queryMID);
+        for (int i = 0; i <= moveCount; i++) {
+          if (rsMoves.next()) {
+            mList.add(rsMoves.getString("nodeID"));
+          }
+        }
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
 
     // Retrieve move
     for (String nodeID : mList) {
@@ -256,20 +274,16 @@ public class DatabaseController {
     } else {
       System.out.println("Move table retrieved successfully");
     }
-  }
-
-  public List<HospitalNode> getHospitalNodes() {
-    return nodeList;
-  }
-
-  public List<HospitalEdge> getHospitalEdges() {
-    return edgeList;
-  }
-
-  public List<MoveAttribute> getMoveList() {
     return moveList;
   }
 
+  /**
+   * Extracts a MoveTable object from the given ResultSet
+   *
+   * @param rs The ResultSet to extract the node, long name, and date from.
+   * @return A MoveTable object extracted from the given ResultSet.
+   * @throws SQLException if an error occurs while accessing the ResultSet.
+   */
   private MoveAttribute extractMoveFromResultSet(ResultSet rs) throws SQLException {
     return new MoveAttribute(
         rs.getString("nodeID"), rs.getString("longName"), rs.getString("date"));
