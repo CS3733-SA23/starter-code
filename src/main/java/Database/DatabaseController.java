@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import pathfinding.Floor;
 import pathfinding.HospitalEdge;
 import pathfinding.HospitalNode;
@@ -31,7 +32,7 @@ public class DatabaseController {
     while (exit) {
       System.out.println("\nWhat would you like to do?");
       System.out.println(
-          "Choices: update, retrieve, delete, display info, export table, import table, HELP, EXIT)");
+              "Choices: update, retrieve, delete, display info, export table, import table, HELP, EXIT)");
       String function = s1.nextLine().toLowerCase().trim();
 
       switch (function) {
@@ -88,8 +89,8 @@ public class DatabaseController {
     try {
       Class.forName("org.postgresql.Driver");
       c =
-          DriverManager.getConnection(
-              "jdbc:postgresql://database.cs.wpi.edu:5432/teamedb", username, password);
+              DriverManager.getConnection(
+                      "jdbc:postgresql://database.cs.wpi.edu:5432/teamedb", username, password);
     } catch (Exception e) {
       e.printStackTrace();
       System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -259,7 +260,7 @@ public class DatabaseController {
       String nodeId = scanner.nextLine().trim();
 
       try (PreparedStatement pstmt =
-          c.prepareStatement("SELECT * FROM teame.l1nodes WHERE nodeID = '" + nodeId + "'")) {
+                   c.prepareStatement("SELECT * FROM teame.l1nodes WHERE nodeID = '" + nodeId + "'")) {
         ResultSet rs = pstmt.executeQuery();
 
         if (rs.next()) {
@@ -273,12 +274,12 @@ public class DatabaseController {
           String shortName = rs.getString("shortName");
 
           System.out.println(
-              "\nNode: ("
-                  + nodeID
-                  + ") information (nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName): ");
+                  "\nNode: ("
+                          + nodeID
+                          + ") information (nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName): ");
           System.out.println(
-              nodeID + ", " + xCoord + ", " + yCoord + ", " + floor + ", " + building + ", "
-                  + nodeType + ", " + longName + ", " + shortName);
+                  nodeID + ", " + xCoord + ", " + yCoord + ", " + floor + ", " + building + ", "
+                          + nodeType + ", " + longName + ", " + shortName);
         } else {
           System.out.println("Node not found with ID " + nodeId);
         }
@@ -290,7 +291,7 @@ public class DatabaseController {
       String edgeId = scanner.nextLine().trim();
 
       try (PreparedStatement pstmt =
-          c.prepareStatement("SELECT * FROM teame.l1edges WHERE edgeid = '" + edgeId + "'")) {
+                   c.prepareStatement("SELECT * FROM teame.l1edges WHERE edgeid = '" + edgeId + "'")) {
         ResultSet rs = pstmt.executeQuery();
 
         if (rs.next()) {
@@ -376,7 +377,7 @@ public class DatabaseController {
   }
 
   public void updateAttribute(
-      String tabletoEdit, String idToUpdate, String attributeToEdit, String idType) {
+          String tabletoEdit, String idToUpdate, String attributeToEdit, String idType) {
     Scanner s1 = new Scanner(System.in);
     Statement stmt = null;
     String sql;
@@ -386,17 +387,17 @@ public class DatabaseController {
     try {
       stmt = c.createStatement();
       sql =
-          "UPDATE "
-              + tabletoEdit
-              + " SET "
-              + attributeToEdit
-              + " = '"
-              + newval
-              + "' WHERE "
-              + idType
-              + " = '"
-              + idToUpdate
-              + "';";
+              "UPDATE "
+                      + tabletoEdit
+                      + " SET "
+                      + attributeToEdit
+                      + " = '"
+                      + newval
+                      + "' WHERE "
+                      + idType
+                      + " = '"
+                      + idToUpdate
+                      + "';";
       int rs = stmt.executeUpdate(sql);
       stmt.close();
       if (rs > 0) {
@@ -422,17 +423,17 @@ public class DatabaseController {
     System.out.println("\tThe User inputs username to database.");
     System.out.println("\tThe User inputs password to database.");
     System.out.println(
-        "\tThe User inputs which operation they wish to use: \n\t\t(update, retrieve, delete, display info, "
-            + "export table, import table, help, exit).");
+            "\tThe User inputs which operation they wish to use: \n\t\t(update, retrieve, delete, display info, "
+                    + "export table, import table, help, exit).");
     System.out.println(
-        "\tThe user then inputs the id of what they want to modify in the database.");
+            "\tThe user then inputs the id of what they want to modify in the database.");
     System.out.println(
-        "\tThe User inputs all other necessary information for the specified editing operation.");
+            "\tThe User inputs all other necessary information for the specified editing operation.");
     System.out.println(
-        "\tThe User then inputs whether or not they want to edit the database further.");
+            "\tThe User then inputs whether or not they want to edit the database further.");
     System.out.println(
-        "\tAlternatively, the user could have inputted the list and adress of the file they "
-            + "wanted to import or export.");
+            "\tAlternatively, the user could have inputted the list and adress of the file they "
+                    + "wanted to import or export.");
     System.out.println("\nType \"exit\" to leave the help screen at any time:");
 
     while (!exit) {
@@ -600,35 +601,35 @@ public class DatabaseController {
         String[] splitL1 = l1.split(",");
         System.out.println(l1);
         String sql =
-            "INSERT INTO "
-                + tableName
-                + " VALUES ('"
-                + splitL1[0]
-                + "', "
-                + Integer.parseInt(splitL1[1])
-                + ", "
-                + Integer.parseInt(splitL1[2])
-                + ", '"
-                + splitL1[3]
-                + "', "
-                + " '"
-                + splitL1[4]
-                + "', "
-                + " '"
-                + splitL1[5]
-                + "', "
-                + " '"
-                + splitL1[6]
-                + "', "
-                + " '"
-                + splitL1[7]
-                + "'); ";
+                "INSERT INTO "
+                        + tableName
+                        + " VALUES ('"
+                        + splitL1[0]
+                        + "', "
+                        + Integer.parseInt(splitL1[1])
+                        + ", "
+                        + Integer.parseInt(splitL1[2])
+                        + ", '"
+                        + splitL1[3]
+                        + "', "
+                        + " '"
+                        + splitL1[4]
+                        + "', "
+                        + " '"
+                        + splitL1[5]
+                        + "', "
+                        + " '"
+                        + splitL1[6]
+                        + "', "
+                        + " '"
+                        + splitL1[7]
+                        + "'); ";
         System.out.println(sql);
         stmt.execute(sql);
       }
 
       System.out.println(
-          "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
+              "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
 
     } catch (IOException | SQLException e) {
       System.err.println("Error importing from " + filePath + " to " + tableName);
@@ -657,7 +658,7 @@ public class DatabaseController {
   }
 
   private void exportToCSV(String name, String filePath, String fileName)
-      throws SQLException, IOException {
+          throws SQLException, IOException {
 
     // Initialization
     Statement stmt = null;

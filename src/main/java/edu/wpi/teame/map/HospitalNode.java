@@ -1,4 +1,4 @@
-package pathfinding;
+package edu.wpi.teame.map;
 
 import static java.util.Objects.hash;
 
@@ -9,7 +9,7 @@ public class HospitalNode {
   public static HashMap<String, HospitalNode> allNodes = new HashMap<>();
 
   @Getter List<HospitalNode> neighbors;
-  HashMap<HospitalNode, Integer> edgeCosts;
+  @Getter HashMap<HospitalNode, Integer> edgeCosts;
 
   @Getter String nodeID;
 
@@ -44,11 +44,11 @@ public class HospitalNode {
 
   public HospitalNode(NodeInitializer nodeInitializer) {
     this(
-        nodeInitializer.nodeID,
-        nodeInitializer.xCoord,
-        nodeInitializer.yCoord,
-        nodeInitializer.floor,
-        nodeInitializer.building);
+            nodeInitializer.nodeID,
+            nodeInitializer.xCoord,
+            nodeInitializer.yCoord,
+            nodeInitializer.floor,
+            nodeInitializer.building);
   }
 
   @Override
