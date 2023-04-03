@@ -1,16 +1,16 @@
-package edu.wpi.teame.controllers;
+package edu.wpi.teame.entities;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONObject;
 
 public class ServiceRequestData {
-  enum Status {
+  public enum Status {
     PENDING,
     IN_PROGRESS,
     DONE
   }
-  enum RequestType {
+  public enum RequestType {
     MEALDELIVERY,
     FLOWERDELIVERY,
   }
