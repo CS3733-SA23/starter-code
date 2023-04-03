@@ -80,6 +80,11 @@ public class DatabaseController {
   public DatabaseController(String username, String password) {
     c = this.connectToDatabase(username, password);
     // this.retrieveFromTable();
+    // this.retrieveFromTable();
+  }
+
+  public DatabaseController() {
+    c = this.connectToDatabase("teame", "teame50");
   }
 
   private Connection connectToDatabase(String username, String password) {
@@ -405,6 +410,9 @@ public class DatabaseController {
     fileWriter.close();
     rs.close();
     stmt.close();
+  }
+  public Connection getC() {
+    return c;
   }
 
   private void exitDatabaseProgram() {

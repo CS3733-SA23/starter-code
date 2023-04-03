@@ -1,5 +1,9 @@
 package edu.wpi.teame.controllers;
 
+<<<<<<< HEAD
+=======
+import edu.wpi.teame.entities.ServiceRequestData;
+>>>>>>> main
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -49,9 +53,15 @@ public class MealRequestController implements IRequestController {
     Navigation.navigate(Screen.HOME);
     System.out.print(
         "\nDelivery Type: "
+<<<<<<< HEAD
             + mealRequestData.requestType
             + "\nRequest Data: "
             + mealRequestData.requestData);
+=======
+            + mealRequestData.getRequestType()
+            + "\nRequest Data: "
+            + mealRequestData.getRequestData());
+>>>>>>> main
     return mealRequestData;
   }
 

@@ -1,5 +1,9 @@
 package edu.wpi.teame.controllers;
 
+<<<<<<< HEAD
+=======
+import edu.wpi.teame.entities.ServiceRequestData;
+>>>>>>> main
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -56,9 +60,15 @@ public class FlowerRequestController implements IRequestController {
     Navigation.navigate(Screen.HOME);
     System.out.print(
         "\nDelivery Type: "
+<<<<<<< HEAD
             + flowerRequestData.requestType
             + "\nRequest Data: "
             + flowerRequestData.requestData);
+=======
+            + flowerRequestData.getRequestType()
+            + "\nRequest Data: "
+            + flowerRequestData.getRequestData());
+>>>>>>> main
     return flowerRequestData;
   }
 
