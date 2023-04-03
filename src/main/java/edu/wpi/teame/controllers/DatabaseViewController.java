@@ -1,19 +1,18 @@
 package edu.wpi.teame.controllers;
 
-import Database.DatabaseController;
+
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import java.io.File;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.DirectoryChooser;
 import pathfinding.MoveAttribute;
+import Database.DatabaseController;
 
 public class DatabaseViewController {
 
@@ -43,14 +42,27 @@ public class DatabaseViewController {
 
   @FXML
   public void initialize() {
-    directoryChooser.setInitialDirectory(new File("src"));
+    /* directoryChooser.setInitialDirectory(new File("src"));
 
-    DatabaseController databaseController = new DatabaseController("teame", "teame50");
+        DatabaseController databaseController = new DatabaseController("teame", "teame50");
+    */
 
     // load the database into the table
     nodeIDCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("nodeID"));
     nameCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("longName"));
     dateCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("date"));
+
+    /*ObservableList itemList = FXCollections.observableArrayList(databaseController.getMoveList());
+
+        dataTable.setItems(itemList);
+    */
+    dataTable.setEditable(true);
+
+    // testing stuff
+    dataTable.getItems().add(new MoveAttribute("1111", "testA", "4/2/2023"));
+    dataTable.getItems().add(new MoveAttribute("2222", "testB", "4/2/2023"));
+
+    dataTable.setPlaceholder(new Label("No rows to display"));
 
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
 
@@ -60,19 +72,21 @@ public class DatabaseViewController {
           // delete row in database (call method)
         });
 
-    addButton.setOnMouseClicked(event -> {});
-
-    importButton.setOnMouseClicked(
+    addButton.setOnMouseClicked(
         event -> {
-          // File selectedDirectory = directoryChooser.showDialog();
+          String nodeID = IDField.getText();
+          String name = locationField.getText();
+          String date = dateField.getText();
+          MoveAttribute newMoveAttribute = new MoveAttribute(nodeID, name, date);
+          dataTable.getItems().add(newMoveAttribute);
+          addToTable(newMoveAttribute);
         });
 
+    /* importButton.setOnMouseClicked(
+            event -> {
+              File selectedDirectory = directoryChooser.showDialog();
+            });
+    */
     exportButton.setOnMouseClicked(event -> {});
-
-    ObservableList itemList = FXCollections.observableArrayList(databaseController.getMoveList());
-
-    dataTable.setItems(itemList);
-
-    dataTable.setEditable(true);
   }
 }
