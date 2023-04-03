@@ -18,12 +18,12 @@ public class NodeDAO {
         this.connectionURL = connectionURL;
     }
 
-    public NodeDAO createInstance(String username, String password, String tableName, String schemaName, String connectionURL) {
+    public static NodeDAO createInstance(String username, String password, String tableName, String schemaName, String connectionURL) {
         if (NodeDAO.instance == null)
             NodeDAO.instance = new NodeDAO(username, password, tableName, schemaName, connectionURL);
         return NodeDAO.instance;
     }
-    public NodeDAO getInstance(){
+    public static NodeDAO getInstance(){
         return NodeDAO.instance;
     }
     public ArrayList<Node> getNodes(){
