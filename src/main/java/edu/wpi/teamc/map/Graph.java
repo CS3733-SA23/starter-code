@@ -180,15 +180,6 @@ public class Graph {
   }
 
   /**
-   * Returns the number of nodes in the graph
-   *
-   * @return number of nodes in the graph
-   */
-  public int getNumNodes() {
-    return nodes.size();
-  }
-
-  /**
    * Returns a list of directions from start to end
    *
    * @param start - start node
