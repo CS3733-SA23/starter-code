@@ -1,7 +1,11 @@
 package edu.wpi.teamc.map;
 
 import java.sql.Date;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Move {
   private String nodeID;
   private String longName;
