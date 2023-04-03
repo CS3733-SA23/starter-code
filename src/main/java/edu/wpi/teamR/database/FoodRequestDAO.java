@@ -1,6 +1,7 @@
 package edu.wpi.teamR.database;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class FoodRequestDAO { //TODO: make sure tablename is the view
@@ -21,7 +22,7 @@ public class FoodRequestDAO { //TODO: make sure tablename is the view
     }
     public static FoodRequestDAO getInstance(){return FoodRequestDAO.instance;}
     public ArrayList<FoodRequest> getFoodRequests(){return foodRequests;};
-    public FoodRequest addFoodRequest(int requestID, String requesterName, String location, String mealType, String staffMember, String additionalNotes, Timestamp requestDate, RequestStatus requestStatus) throws SQLException, ClassNotFoundException {
+    public FoodRequest addFoodRequest(int requestID, String requesterName, String location, String mealType, String staffMember, String additionalNotes, LocalDateTime requestDate, RequestStatus requestStatus) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
         String sqlInsert = "INSERT INTO "+schemaName+"."+tableName+"(requestID, requesterName, location, requestDate, additionalNotes, mealType)";
@@ -108,7 +109,7 @@ public class FoodRequestDAO { //TODO: make sure tablename is the view
             }
         }
     }
-    public void modifyFoodRequestByID(Integer requestID, String requesterName, String location, String mealType, String staffMember, String additionalNotes, Timestamp requestDate, RequestStatus requestStatus) throws SQLException, ClassNotFoundException {
+    public void modifyFoodRequestByID(Integer requestID, String requesterName, String location, String mealType, String staffMember, String additionalNotes, LocalDateTime requestDate, RequestStatus requestStatus) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
         String sqlUpdate = "UPDATE " + schemaName + "." + tableName + " SET requesterName = \'" + requesterName + "\'";

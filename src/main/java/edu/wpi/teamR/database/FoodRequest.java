@@ -1,5 +1,6 @@
 package edu.wpi.teamR.database;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class FoodRequest {
@@ -60,11 +61,11 @@ public class FoodRequest {
         this.additionalNotes = additionalNotes;
     }
 
-    public Timestamp getRequestDate() {
+    public LocalDateTime getRequestDate() {
         return requestDate;
     }
 
-    public void setRequestDate(Timestamp requestDate) {
+    public void setRequestDate(LocalDateTime requestDate) {
         this.requestDate = requestDate;
     }
 
