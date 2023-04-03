@@ -1,7 +1,6 @@
 package edu.wpi.teame.map.pathfinding;
 
 import edu.wpi.teame.map.HospitalNode;
-
 import java.util.*;
 
 public class AStarPathfinder extends AbstractPathfinder {
@@ -65,7 +64,9 @@ public class AStarPathfinder extends AbstractPathfinder {
   int heuristicDistance(HospitalNode from, HospitalNode to) {
     // estimate the distance to the target based on the euclidean distance to the target
     return (int)
-        Math.sqrt(Math.pow(from.getXCoord() - to.getXCoord(), 2) + Math.pow(from.getYCoord() - to.getYCoord(), 2));
+        Math.sqrt(
+            Math.pow(from.getXCoord() - to.getXCoord(), 2)
+                + Math.pow(from.getYCoord() - to.getYCoord(), 2));
   }
 
   /**

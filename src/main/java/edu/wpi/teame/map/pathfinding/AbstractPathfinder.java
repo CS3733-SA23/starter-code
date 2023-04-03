@@ -1,7 +1,6 @@
 package edu.wpi.teame.map.pathfinding;
 
 import edu.wpi.teame.map.HospitalNode;
-
 import java.util.List;
 
 public abstract class AbstractPathfinder {
