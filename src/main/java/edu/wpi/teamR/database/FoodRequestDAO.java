@@ -1,8 +1,9 @@
 package edu.wpi.teamR.database;
 
+import java.sql.*;
 import java.util.ArrayList;
 
-public class FoodRequestDAO {
+public class FoodRequestDAO { //TODO: make sure tablename is the view
     private static FoodRequestDAO instance;
     private ArrayList<FoodRequest> foodRequests;
     private String longName, username, password, tableName, schemaName, connectionURL;
@@ -20,6 +21,17 @@ public class FoodRequestDAO {
     }
     public static FoodRequestDAO getInstance(){return FoodRequestDAO.instance;}
     public ArrayList<FoodRequest> getFoodRequests(){return foodRequests;};
-
-    public FoodRequest addFoodRequest(String requesterName, String location, String mealType, String staffMember, String additionalNotes, )
+    public FoodRequest addFoodRequest(String requesterName, String location, String mealType, String staffMember, String additionalNotes, Integer requestID, String requestType, Timestamp requestDate, RequestStatus requestStatus) throws SQLException, ClassNotFoundException {
+        Connection connection = createConnection();
+        Statement statement = connection.createStatement();
+        String sqlInsert = "INSERT INTO "+schemaName+"."+tableName+"(requestID, requesterName, location, requestDate, additionalNotes, mealType)";
+        sqlInsert+= "VALUES("+requestID+",\'"+requesterName+"\',\'"+location+"\'"+
+    }
+    private Connection createConnection() throws SQLException, ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
+        return DriverManager.getConnection(connectionURL, username, password);
+    }
+    private void closeConnection(Connection connection) throws SQLException {
+        connection.close();
+    }
 }
