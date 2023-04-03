@@ -89,7 +89,7 @@ public class Cdb {
             exportNodesToCSV(csvFileName, databaseNodeList);
             break;
           case "import from a csv file into the node table":
-            csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/L1Nodes.csv";
+            csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Node.csv";
             importCSV(csvFileName, databaseNodeList);
             break;
           case "delete a node":
@@ -197,7 +197,7 @@ public class Cdb {
     }
   }
 
-  static void syncNodeDB(Connection connection, Node node, String operation) {
+  static void syncNodeDB(Node node, String operation) {
     try {
       // table names
       String NODE = "\"hospitalNode\".node";
@@ -320,7 +320,7 @@ public class Cdb {
         // update coordinates in node
         node.setXCoord(xCoordinate);
         node.setYCoord(yCoordinate);
-        syncNodeDB(connection, node, "update");
+        syncNodeDB(node, "update");
         break;
       }
     }
@@ -385,7 +385,7 @@ public class Cdb {
       if (node.getNodeID().equals(nodeID)) {
         databaseNodeList.remove(i);
         System.out.println("node deletion successful!");
-        syncNodeDB(connection, node, "delete");
+        syncNodeDB(node, "delete");
         break;
       }
       i++;
@@ -425,7 +425,7 @@ public class Cdb {
           String building = matcher.group(5);
           Node node = new Node(nodeID, xCoord, yCoord, floor, building);
           databaseNodeList.add(node);
-          syncNodeDB(connection, node, "add");
+          syncNodeDB(node, "insert");
         }
       }
     } catch (IOException e) {
