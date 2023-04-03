@@ -46,7 +46,9 @@ public class HomeController {
   }
 
   @FXML
-  void getHelpPage(ActionEvent event) {}
+  void getHelpPage(ActionEvent event) {
+    Navigation.navigate(Screen.HELP);
+  }
 
   @FXML
   void getMealDeliveryPage(ActionEvent event) {
@@ -89,6 +91,4 @@ public class HomeController {
 
   @FXML
   void getExportButton(ActionEvent event) {}
-
-
 }
