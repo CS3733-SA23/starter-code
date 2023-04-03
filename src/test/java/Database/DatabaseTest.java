@@ -11,33 +11,47 @@ import pathfinding.MoveAttribute;
 
 public class DatabaseTest {
 
+  /**
+   * Creates DatabaseGraphController to use for tests Will catch a runtime error if you cannot
+   * connect to Database
+   *
+   * @return DatabaseGraphController
+   */
   public DatabaseGraphController setup() {
-    DatabaseController DBC1 = new DatabaseController();
-    return new DatabaseGraphController(DBC1);
+    try {
+      DatabaseController DBC1 = new DatabaseController();
+      return new DatabaseGraphController(DBC1);
+    } catch (RuntimeException e) {
+      System.out.println(e.getMessage());
+    }
   }
 
+  /** Tests to see if you can get the nodeID from a given longName in the Move table */
   @Test
   public void testGetNodeIDFromName() {
     DatabaseGraphController DBMC = this.setup();
     try {
       int expected = DBMC.getNodeIDFromName("Hall 3 Level 1");
-      System.out.println(expected);
+
       assertEquals(expected, 1200);
     } catch (RuntimeException e) {
-      System.out.println("Runtime Exception");
+      System.out.println(
+          "SQL Exception: "
+              + "\nThere is no node linked to that longName in the Move table so the SQL query returned nothing");
     }
   }
 
+  /** Tests to see if you can get a list of MoveAttributes from a given floor */
   @Test
   public void testGetMoveAttributeFromFloor() {
     DatabaseGraphController DBMC = setup();
 
     List<MoveAttribute> moveAttributeList = DBMC.getMoveAttributeFromFloor(Floor.LOWER_ONE);
 
-    System.out.println(moveAttributeList.size());
-    assertEquals(0, 0);
+    assertEquals(45, moveAttributeList.size());
   }
 
+  /** Tests the new retrieveFromTable method and produces list of nodes and strings */
   @Test
   public void testNewRetrieveFromTable() {
     DatabaseGraphController DBMC = setup();

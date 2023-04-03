@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import pathfinding.Floor;
 import pathfinding.HospitalEdge;
@@ -17,7 +18,11 @@ public class DatabaseGraphController {
   private static List<HospitalEdge> edgeList = new ArrayList<>();
 
   public DatabaseGraphController(DatabaseController DBC) {
-    this.DBC = DBC;
+    try {
+      this.DBC = DBC;
+    } catch (RuntimeException e) {
+      throw new RuntimeException("Couldn't connect to the Database\nMake sure you're on WPI wifi");
+    }
   }
 
   public List<HospitalNode> getHospitalNodes() {
@@ -99,7 +104,7 @@ public class DatabaseGraphController {
 
   public List<MoveAttribute> getMoveAttributeFromFloor(Floor fl) {
     String floor = Floor.floorToString(fl);
-    List<MoveAttribute> moveAttributes = new ArrayList<>();
+    List<MoveAttribute> moveAttributes = new LinkedList<>();
 
     try {
       Statement stmt = DBC.getC().createStatement();
