@@ -38,7 +38,7 @@ public class DatabaseController {
 
       switch (function) {
         case "update":
-          DBC1.updateTable();
+          // DBC1.updateTable();
           break;
 
         case "delete":
@@ -57,7 +57,7 @@ public class DatabaseController {
           DBC1.addToTable(mA);
 
         case "retrieve":
-          DBC1.retrieveFromTable();
+          // DBC1.retrieveFromTable();
           break;
         case "export table":
           DBC1.exportToCSV("Move", "C:\\filepath...", "Name of CSV file");
@@ -79,7 +79,7 @@ public class DatabaseController {
 
   public DatabaseController(String username, String password) {
     c = this.connectToDatabase(username, password);
-    this.retrieveFromTable();
+    // this.retrieveFromTable();
   }
 
   private Connection connectToDatabase(String username, String password) {
@@ -119,7 +119,7 @@ public class DatabaseController {
       System.out.println();
     }
 
-    this.retrieveFromTable();
+    // this.retrieveFromTable();
   }
 
   public void addToTable(MoveAttribute moveAttribute) {
@@ -137,99 +137,6 @@ public class DatabaseController {
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
-  }
-
-  /**
-   * The node and edge data are retrieved using SQL queries that count the number of nodes and edges
-   * in the table, select all node and edge IDs from the table, and then retrieve the corresponding
-   * node and edge data using those IDs.
-   *
-   * @return void
-   */
-  public void retrieveFromTable() {
-
-    nodeList = new ArrayList<>();
-    edgeList = new ArrayList<>();
-
-    List<String> eList = new ArrayList<>();
-    List<String> nList = new ArrayList<>();
-
-    String queryCountE = "SELECT COUNT(*) FROM teame.l1edges;";
-    String queryCountN = "SELECT COUNT(*) FROM teame.l1nodes;";
-    String queryEID = "SELECT edgeID FROM teame.l1edges;";
-    String queryNID = "SELECT nodeID FROM teame.l1nodes;";
-
-    try (Statement stmt = c.createStatement()) {
-      ResultSet rsn = stmt.executeQuery(queryCountN);
-      if (rsn.next()) {
-        int nodeCount = rsn.getInt(1);
-        ResultSet rsNodes = stmt.executeQuery(queryNID);
-        for (int i = 1; i <= nodeCount; i++) {
-          if (rsNodes.next()) {
-            nList.add(rsNodes.getString("nodeID"));
-          }
-        }
-      }
-      ResultSet rse = stmt.executeQuery(queryCountE);
-      if (rse.next()) {
-        int edgeCount = rse.getInt(1);
-        ResultSet rsEdges = stmt.executeQuery(queryEID);
-        for (int i = 1; i <= edgeCount; i++) {
-          if (rsEdges.next()) {
-            String newid = rsEdges.getString("edgeid");
-            eList.add(newid);
-          }
-        }
-      }
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-
-    // Retrieve edges
-    for (String edgeId : eList) {
-      String edgeQuery = "SELECT * FROM teame.l1edges WHERE edgeid = '" + edgeId + "';";
-      try {
-        Statement stmt = c.createStatement();
-        ResultSet rs = stmt.executeQuery(edgeQuery);
-
-        if (rs.next()) {
-          edgeList.add(extractEdgeFromResultSet(rs));
-        }
-      } catch (SQLException m) {
-        System.out.println(m.getMessage());
-      }
-    }
-    if (edgeList.isEmpty()) {
-      System.out.println("No edges retrieved for the given list of IDs.");
-    } else {
-      System.out.println("Edges retrieved successfully.");
-    }
-
-    // Retrieve nodes
-    for (String nodeId : nList) {
-      String nodeQuery = "SELECT * FROM teame.l1nodes WHERE nodeid = '" + nodeId + "'";
-      try (Statement stmt = c.createStatement()) {
-        ResultSet rs = stmt.executeQuery(nodeQuery);
-        if (rs.next()) {
-          nodeList.add(extractNodeFromResultSet(rs));
-        }
-      } catch (SQLException d) {
-        System.out.println(d.getMessage());
-      }
-    }
-    if (nodeList.isEmpty()) {
-      System.out.println("No nodes retrieved for the given list of IDs");
-    } else {
-      System.out.println("Nodes retrieved successfully.");
-    }
-  }
-
-  public List<HospitalNode> getHospitalNodes() {
-    return nodeList;
-  }
-
-  public List<HospitalEdge> getHospitalEdges() {
-    return edgeList;
   }
 
   /**
@@ -297,15 +204,12 @@ public class DatabaseController {
    * @throws SQLException if an error occurs while accessing the ResultSet.
    */
   private HospitalNode extractNodeFromResultSet(ResultSet rs) throws SQLException {
-    String nodeID = rs.getString("nodeid");
-    int xCoord = rs.getInt("xcoord");
-    int yCoord = rs.getInt("ycoord");
-    String floor = rs.getString("floor");
-    String building = rs.getString("building");
-    String nodeType = rs.getString("nodeType");
-    String longName = rs.getString("longName");
-    String shortName = rs.getString("shortName");
-    return new HospitalNode(nodeID, xCoord, yCoord, Floor.stringToFloor(floor), building);
+    return new HospitalNode(
+        rs.getString("nodeid"),
+        rs.getInt("xcoord"),
+        rs.getInt("ycoord"),
+        Floor.stringToFloor(rs.getString("floor")),
+        rs.getString("building"));
   }
 
   /**
@@ -316,62 +220,7 @@ public class DatabaseController {
    * @throws SQLException if an error occurs while accessing the ResultSet.
    */
   private HospitalEdge extractEdgeFromResultSet(ResultSet rs) throws SQLException {
-    String startNode = rs.getString("startNode");
-    String endNode = rs.getString("endNode");
-
-    return new HospitalEdge(startNode, endNode);
-  }
-
-  /**
-   * It prompts the user to input which table they want to update (nodes or edges), then the ID of
-   * the node or edge they want to update, and finally which attribute they want to update (xcoord,
-   * ycoord, longname, edgeid, startnode, endnode)
-   *
-   * @return void
-   */
-  private void updateTable() {
-
-    boolean doneUpdating = true;
-    while (doneUpdating) {
-
-      Scanner s1 = new Scanner(System.in);
-      System.out.println("Which table would you like to update (Nodes, Edges): ");
-      String tabletoUpdate = s1.nextLine().toLowerCase();
-
-      if (tabletoUpdate.equals("nodes")) {
-        System.out.println("Please type the Node ID you would like to update: ");
-        String nodetoUpdate = s1.nextLine();
-
-        System.out.println("Which attribute would you like to update (xcoord, ycoord, longname)");
-        String attributeToUpdate = s1.nextLine().toLowerCase().trim();
-
-        try {
-          this.updateAttribute("l1nodes", nodetoUpdate, attributeToUpdate, "nodeid");
-        } catch (RuntimeException e) {
-          System.out.println("Invalid Input");
-        }
-      } else if (tabletoUpdate.equals("edges")) {
-        System.out.println("Please type the Edge ID you would like to update: ");
-        String edgetoUpdate = s1.nextLine();
-
-        System.out.println("Which attribute would you like to update (edgeid, startnode, endnode)");
-        String attributeToUpdate = s1.nextLine().toLowerCase().trim();
-
-        try {
-          this.updateAttribute("l1edges", edgetoUpdate, attributeToUpdate, "edgeid");
-        } catch (RuntimeException e) {
-          System.out.println("Invalid Input");
-        }
-      } else {
-        System.out.println("Invalid Table Name");
-      }
-
-      System.out.print("\nAre you done updating (y/n)?: ");
-      String ans = s1.nextLine();
-      if (ans.equals("y")) doneUpdating = false;
-    }
-
-    this.retrieveFromTable();
+    return new HospitalEdge(rs.getString("startNode"), rs.getString("endNode"));
   }
 
   /**

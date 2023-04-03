@@ -1,6 +1,6 @@
 package edu.wpi.teame.controllers;
 
-
+import Database.DatabaseController;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -12,7 +12,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.DirectoryChooser;
 import pathfinding.MoveAttribute;
-import Database.DatabaseController;
 
 public class DatabaseViewController {
 
