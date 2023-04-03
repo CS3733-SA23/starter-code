@@ -1,7 +1,8 @@
 package edu.wpi.teamc;
 
-import edu.wpi.teamc.databaseClasses.Edge;
-import edu.wpi.teamc.databaseClasses.Node;
+import edu.wpi.teamc.map.Edge;
+import edu.wpi.teamc.map.Graph;
+import edu.wpi.teamc.map.Node;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -120,6 +121,14 @@ public class Cdb {
 
   static void loadDatabaseTables(
       Connection connection, List<Node> databaseNodeList, List<Edge> databaseEdgeList) {
+
+    Graph temp = new Graph();
+    try {
+      temp.init();
+    } catch (IOException e) {
+      System.out.println("Exception!");
+    }
+
     try {
       Statement stmtNode = connection.createStatement();
       Statement stmtEdge = connection.createStatement();
@@ -145,7 +154,7 @@ public class Cdb {
         String edgeID = rsEdges.getString("edgeID");
         String startNode = rsEdges.getString("startNode");
         String endNode = rsEdges.getString("endNode");
-        databaseEdgeList.add(new Edge(edgeID, startNode, endNode));
+        databaseEdgeList.add(new Edge(edgeID, temp.getNode(startNode), temp.getNode(endNode)));
       }
     } catch (Exception e) {
       e.printStackTrace();
@@ -196,6 +205,7 @@ public class Cdb {
       // table names
       String EDGE = "\"hospitalNode\".edge";
       // queries
+
       String queryInsertEdgesDB = "INSERT INTO " + EDGE + " VALUES (?,?,?); ";
       String queryUpdateEdgesDB =
           "UPDATE  "

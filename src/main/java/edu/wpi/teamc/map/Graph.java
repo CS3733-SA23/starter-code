@@ -67,12 +67,12 @@ public class Graph {
     while (line != null) {
       String[] edge = line.split(delim);
 
-      Edge orig = new Edge(edge[0], nodes.get(edge[2]));
+      Edge orig = new Edge(edge[0], nodes.get(edge[1]), nodes.get(edge[2]));
 
       // reverse the edgeID for an edge going in the other direction
       String[] nodeID = edge[0].split("_");
       String reverse = nodeID[0] + "_" + nodeID[1];
-      Edge otherDirection = new Edge(reverse, nodes.get(edge[1]));
+      Edge otherDirection = new Edge(reverse, nodes.get(edge[2]), nodes.get(edge[1]));
 
       Node start = nodes.get(edge[1]);
       Node end = nodes.get(edge[2]);
