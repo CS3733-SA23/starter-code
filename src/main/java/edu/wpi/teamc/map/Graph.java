@@ -5,6 +5,7 @@ import static java.lang.Integer.parseInt;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.*;
 import java.util.*;
 
 public class Graph {
@@ -22,6 +23,62 @@ public class Graph {
    */
   Graph(Map<String, GraphNode> nodes) {
     this.nodes = nodes;
+  }
+
+  public void syncWithDB() {
+    Connection connection = null;
+
+    try {
+      // Load the PostgreSQL JDBC driver
+      Class.forName("org.postgresql.Driver");
+
+      // Establish the connection
+      String url = "jdbc:postgresql://database.cs.wpi.edu/teamcdb";
+      String user = "teamc";
+      String password = "teamc30";
+      connection = DriverManager.getConnection(url, user, password);
+
+      Statement nodeSt = connection.createStatement();
+      Statement edgeSt = connection.createStatement();
+
+      // queries
+      String queryDisplayNodes = "SELECT * FROM " + "\"hospitalNode\".node";
+      String queryDisplayEdges = "SELECT * FROM " + "\"hospitalNode\".edge";
+
+      ResultSet nodes = nodeSt.executeQuery(queryDisplayNodes);
+      ResultSet edges = edgeSt.executeQuery(queryDisplayEdges);
+      while (nodes.next()) {
+        addNode(
+            new GraphNode(
+                nodes.getString("nodeID"),
+                nodes.getInt("xcoord"),
+                nodes.getInt("ycoord"),
+                nodes.getString("floorNum"),
+                nodes.getString("building")));
+      }
+      while (edges.next()) {
+        String edgeID = edges.getString("edgeID");
+        String[] nodeID = edgeID.split("_");
+        String reverseID = nodeID[1] + "_" + nodeID[0];
+
+        GraphNode src = this.nodes.get(edges.getString("startNode"));
+        GraphNode dest = this.nodes.get(edges.getString("endNode"));
+
+        src.getGraphEdges().add(new GraphEdge(edgeID, src, dest));
+        dest.getGraphEdges().add(new GraphEdge(reverseID, dest, src));
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      // Close the connection
+      if (connection != null) {
+        try {
+          connection.close();
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
+    }
   }
 
   /**
