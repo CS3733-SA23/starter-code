@@ -36,9 +36,9 @@
       </AnchorPane>
          </bottom>
          <top>
-            <AnchorPane BorderPane.alignment="CENTER">
+            <AnchorPane prefWidth="1600.0" BorderPane.alignment="CENTER">
          <children>
-            <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="1600.0">
+            <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="1600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <menus>
                 <Menu fx:id="fileMenu" mnemonicParsing="false" text="File">
                   <items>
@@ -47,7 +47,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Service Request">
                   <items>
-                    <MenuItem fx:id="mealMenu" mnemonicParsing="false" text="MealRequest" />
+                    <MenuItem fx:id="mealMenu" mnemonicParsing="false" text="Meal Request" />
                         <MenuItem fx:id="furnitureMenu" mnemonicParsing="false" text="Furniture Request" />
                   </items>
                 </Menu>
