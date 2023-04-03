@@ -4,11 +4,13 @@ import lombok.Getter;
 
 @Getter
 public class GraphEdge extends Edge implements Comparable<GraphEdge> {
+  private String id;
   private double weight;
   private double heuristic;
 
   public GraphEdge(String id, Node startNode, Node endNode) {
-    super(id, startNode, endNode);
+    super(startNode, endNode);
+    this.id = id;
     this.weight =
         Math.hypot(
             startNode.getXCoord() - endNode.getXCoord(),

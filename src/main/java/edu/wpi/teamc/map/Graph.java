@@ -57,14 +57,12 @@ public class Graph {
                 nodes.getString("building")));
       }
       while (edges.next()) {
-        String edgeID = edges.getString("edgeID");
-        String[] nodeID = edgeID.split("_");
-        String reverseID = nodeID[1] + "_" + nodeID[0];
-
         GraphNode src = this.nodes.get(edges.getString("startNode"));
         GraphNode dest = this.nodes.get(edges.getString("endNode"));
+        String origID = src.getNodeID() + "_" + dest.getNodeID();
+        String reverseID = dest.getNodeID() + "_" + src.getNodeID();
 
-        src.getGraphEdges().add(new GraphEdge(edgeID, src, dest));
+        src.getGraphEdges().add(new GraphEdge(origID, src, dest));
         dest.getGraphEdges().add(new GraphEdge(reverseID, dest, src));
       }
     } catch (Exception e) {
