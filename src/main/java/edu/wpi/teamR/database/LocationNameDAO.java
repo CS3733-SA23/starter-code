@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,17 +13,19 @@ public class LocationNameDAO {
   private ArrayList<LocationName> locationNames;
   private String username, password, tableName, schemaName, connectionURL;
 
-  private LocationNameDAO(
-      String username, String password, String tableName, String schemaName, String connectionURL) {
+  private LocationNameDAO(String username, String password, String tableName, String schemaName, String connectionURL) throws SQLException, ClassNotFoundException {
     this.username = username;
     this.password = password;
     this.tableName = tableName;
     this.schemaName = schemaName;
     this.connectionURL = connectionURL;
+    locationNames = new ArrayList<LocationName>();
+    Connection connection = createConnection();
+    Statement statement = connection.createStatement();
+    ResultSet resultSet = statement.executeQuery("SELECT * FROM "+schemaName+"."+tableName+";");
   }
 
-  public static LocationNameDAO createInstance(
-      String username, String password, String tableName, String schemaName, String connectionURL) {
+  public static LocationNameDAO createInstance(String username, String password, String tableName, String schemaName, String connectionURL) throws SQLException, ClassNotFoundException {
     if (LocationNameDAO.instance == null)
       LocationNameDAO.instance =
           new LocationNameDAO(username, password, tableName, schemaName, connectionURL);
@@ -62,19 +61,11 @@ public class LocationNameDAO {
     if (longName == null && shortName == null && nodeType == null) {
       String sqlDeleteALL = "DELETE FROM " + schemaName + "." + tableName + ";";
     } else {
-      String sqlDelete =
-          "DELETE FROM "
-              + schemaName
-              + "."
-              + tableName
-              + "WHERE longName = "
-              + "\'"
-              + longName
-              + "\'";
+      String sqlDelete = "DELETE FROM " + schemaName + "."+tableName + "WHERE longName =" + "\'" + longName + "\'";
       int count = 0;
       if (longName != null) {
         count++;
-        sqlDelete += "longName = " + "\'" + longName + "\'";
+        sqlDelete += "longName ="+"\'"+longName+"\'";
       }
       if (shortName != null) {
         count++;
