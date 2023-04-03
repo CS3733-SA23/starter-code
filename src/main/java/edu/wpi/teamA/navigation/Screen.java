@@ -5,10 +5,11 @@ public enum Screen {
   HOME("views/Home.fxml"),
   SERVICE_REQUEST("views/ServiceRequest.fxml"),
   MAP("views/Map.fxml"),
-  OFFICE_MOVES("views/OfficeMoves.fxml"),
   SIGNAGE("views/Signage.fxml"),
   PATHFINDING("views/Pathfinding.fxml"),
-  HEADER("views/Header.fxml");
+  HEADER("views/Header.fxml"),
+  FLOWER_REQUEST("views/FlowerRequest.fxml"),
+  CONFERENCE_REQUEST("views/ConferenceRequest.fxml");
 
   private final String filename;
 
