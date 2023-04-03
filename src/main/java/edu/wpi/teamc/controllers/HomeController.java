@@ -31,6 +31,10 @@ public class HomeController {
 
   @FXML private Button mapPage;
 
+  @FXML private Button importButton;
+
+  @FXML private Button exportButton;
+
   @FXML
   void getFlowerDeliveryPage(ActionEvent event) {
     Navigation.navigate(Screen.FLOWER);
@@ -79,4 +83,12 @@ public class HomeController {
 
   @FXML
   void getMapPage(ActionEvent event) {}
+
+  @FXML
+  void getImportButton(ActionEvent event) {}
+
+  @FXML
+  void getExportButton(ActionEvent event) {}
+
+
 }
