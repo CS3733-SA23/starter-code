@@ -4,6 +4,7 @@ import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 public class GroundFloorNavMapController {
@@ -20,6 +21,8 @@ public class GroundFloorNavMapController {
   @FXML private MFXButton lowerLevelTwoButton;
   @FXML MFXComboBox currentLocationList;
   @FXML MFXComboBox destinationList;
+  ObservableList<String> floorLocations;
+
   @FXML
   public void initialize() {
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
@@ -28,5 +31,6 @@ public class GroundFloorNavMapController {
     firstFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_ONE));
     secondFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_TWO));
     thirdFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_THREE));
+
   }
 }
