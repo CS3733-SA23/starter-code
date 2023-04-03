@@ -6,12 +6,8 @@ import javafx.scene.control.Button;
 
 public class LoginPageController {
 
-    @FXML
-    private Button Map;
+  @FXML private Button Map;
 
-    @FXML
-    void getMapPage(ActionEvent event) {
-
-    }
-
+  @FXML
+  void getMapPage(ActionEvent event) {}
 }
