@@ -147,12 +147,8 @@ public class Cdb {
         int yCoord = rsNodes.getInt("ycoord");
         String floor = rsNodes.getString("floorNum");
         String building = rsNodes.getString("building");
-        String nodeType = rsNodes.getString("nodeType");
-        String longName = rsNodes.getString("longName");
-        String shortName = rsNodes.getString("shortName");
 
-        databaseNodeList.add(
-            new Node(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName));
+        databaseNodeList.add(new Node(nodeID, xCoord, yCoord, floor, building, null, null, null));
       }
       while (rsEdges.next()) {
         String edgeID = rsEdges.getString("edgeID");
@@ -165,17 +161,28 @@ public class Cdb {
     }
   }
 
-  static void syncNodeDB(Connection connection, Node node) {
+  static void syncNodeDB(Connection connection, Node node, String operation) {
     try {
       // table names
       String NODE = "\"hospitalNode\".node";
       // queries
-      String queryInsertNodesDB =
+      String queryInsertNodesDB = "INSERT INTO " + NODE + " VALUES (?,?,?,?,?,?,?,?); ";
+      String queryUpdateNodesDB =
           "UPDATE  "
               + NODE
               + " SET \"nodeID\"=?, xcoord=?, ycoord=?, \"floorNum\"=?, building=?, \"nodeType\"=?, \"longName\"=?, \"shortName\"=? WHERE \"nodeID\"=?; ";
+      String queryDeleteNodesDB = "DELETE FROM " + NODE + " WHERE \"nodeID\"=?; ";
 
-      PreparedStatement ps = connection.prepareStatement(queryInsertNodesDB);
+      PreparedStatement ps;
+      if (operation.equals("insert")) {
+        ps = connection.prepareStatement(queryInsertNodesDB);
+      } else if (operation.equals("update")) {
+        ps = connection.prepareStatement(queryUpdateNodesDB);
+      } else if (operation.equals("delete")) {
+        ps = connection.prepareStatement(queryDeleteNodesDB);
+      } else {
+        throw new Exception("Invalid operation");
+      }
       ps.setString(1, node.getNodeID());
       ps.setInt(2, node.getXCoord());
       ps.setInt(3, node.getYCoord());
@@ -184,25 +191,45 @@ public class Cdb {
       ps.setString(6, node.getNodeType());
       ps.setString(7, node.getLongName());
       ps.setString(8, node.getShortName());
-      ps.setString(9, node.getNodeID());
+      if (operation.equals("update")) {
+        ps.setString(9, node.getNodeID());
+      }
       ps.executeUpdate();
-
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  static void syncEdgeDB(Connection connection, Edge edge) {
+  static void syncEdgeDB(Connection connection, Edge edge, String operation) {
     try {
       // table names
       String EDGE = "\"hospitalNode\".edge";
       // queries
-      String queryInsertEdgesDB = "DELETE FROM" + EDGE + " WHERE \"edgeID\"=?; ";
 
-      PreparedStatement ps = connection.prepareStatement(queryInsertEdgesDB);
-      ps.setString(1, edge.getId());
+      String queryInsertEdgesDB = "INSERT INTO " + EDGE + " VALUES (?,?,?); ";
+      String queryUpdateEdgesDB =
+          "UPDATE  "
+              + EDGE
+              + " SET \"edgeID\"=?, \"startNode\"=?, \"endNode\"=? WHERE \"edgeID\"=?; ";
+      String queryDeleteEdgesDB = "DELETE FROM " + EDGE + " WHERE \"edgeID\"=?; ";
+
+      PreparedStatement ps;
+      if (operation.equals("insert")) {
+        ps = connection.prepareStatement(queryInsertEdgesDB);
+      } else if (operation.equals("update")) {
+        ps = connection.prepareStatement(queryUpdateEdgesDB);
+      } else if (operation.equals("delete")) {
+        ps = connection.prepareStatement(queryDeleteEdgesDB);
+      } else {
+        throw new Exception("Invalid operation");
+      }
+      ps.setString(1, edge.getEdgeID());
+      ps.setString(2, edge.getStartNode());
+      ps.setString(3, edge.getEndNode());
+      if (operation.equals("update")) {
+        ps.setString(4, edge.getEdgeID());
+      }
       ps.executeUpdate();
-
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -266,7 +293,7 @@ public class Cdb {
         // update coordinates in node
         node.setXCoord(xCoordinate);
         node.setYCoord(yCoordinate);
-        syncNodeDB(connection, node);
+        syncNodeDB(connection, node, "update");
         break;
       }
     }
@@ -283,7 +310,7 @@ public class Cdb {
         // update name of node
         node.setLongName(locationNameLong);
         node.setShortName(locationNameShort);
-        syncNodeDB(connection, node);
+        syncNodeDB(connection, node, "update");
         break;
       }
     }
@@ -322,7 +349,7 @@ public class Cdb {
       if (node.getNodeID().equals(nodeID)) {
         databaseNodeList.remove(i);
         System.out.println("node deletion successful!");
-        syncNodeDB(connection, node);
+        syncNodeDB(connection, node, "delete");
         break;
       }
       i++;
@@ -335,55 +362,10 @@ public class Cdb {
       if (edge.getId().equals(edgeID)) {
         databaseEdgeList.remove(i);
         System.out.println("edge deletion successful!");
-        syncEdgeDB(connection, edge);
+        syncEdgeDB(connection, edge, "delete");
         break;
       }
       i++;
-    }
-  }
-
-  static void syncAddEdgeDB(Connection connection, Edge edge) {
-    try {
-      // table names
-      String EDGE = "\"hospitalNode\".edge";
-      // queries
-      String queryInsertEdgesDB =
-          "INSERT INTO " + EDGE + " (\"edgeID\", \"startNode\", \"endNode\") VALUES (?, ?, ?); ";
-
-      PreparedStatement ps = connection.prepareStatement(queryInsertEdgesDB);
-      ps.setString(1, edge.getId());
-      ps.setString(2, edge.getStartNode().getNodeID());
-      ps.setString(3, edge.getEndNode().getNodeID());
-      ps.executeUpdate();
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  static void syncAddNodeDB(Connection connection, Node node) {
-    try {
-      // table names
-      String NODE = "\"hospitalNode\".node";
-      // queries
-      String queryInsertNodesDB =
-          "INSERT INTO "
-              + NODE
-              + " (\"nodeID\", \"xcoord\", \"ycoord\", \"floorNum\", \"building\", \"nodeType\", \"longName\", \"shortName\") VALUES (?, ?, ?, ?, ?, ?, ?, ?); ";
-
-      PreparedStatement ps = connection.prepareStatement(queryInsertNodesDB);
-      ps.setString(1, node.getNodeID());
-      ps.setInt(2, node.getXCoord());
-      ps.setInt(3, node.getYCoord());
-      ps.setString(4, node.getFloor());
-      ps.setString(5, node.getBuilding());
-      ps.setString(6, node.getNodeType());
-      ps.setString(7, node.getLongName());
-      ps.setString(8, node.getShortName());
-      ps.executeUpdate();
-
-    } catch (Exception e) {
-      e.printStackTrace();
     }
   }
 
@@ -410,7 +392,7 @@ public class Cdb {
           Node node =
               new Node(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName);
           databaseNodeList.add(node);
-          syncAddNodeDB(connection, node);
+          syncNodeDB(connection, node, "add");
         }
       }
     } catch (IOException e) {
