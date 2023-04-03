@@ -5,9 +5,10 @@ public class FoodRequest {
     private String requesterName, location, mealType, staffMember, additionalNotes;
     private Timestamp requestDate;
     private RequestStatus requestStatus;
+    private Integer requestID;
 
     public FoodRequest(String requesterName, String location, String mealType, String staffMember,
-                            String additionalNotes, Timestamp requestDate, RequestStatus requestStatus) {
+                            String additionalNotes, Timestamp requestDate, RequestStatus requestStatus, Integer requestID) {
         this.requesterName = requesterName;
         this.location = location;
         this.mealType = mealType;
@@ -15,6 +16,7 @@ public class FoodRequest {
         this.additionalNotes = additionalNotes;
         this.requestDate = requestDate;
         this.requestStatus = requestStatus;
+        this.requestID = requestID;
     }
 
     public String getRequesterName() {
@@ -72,4 +74,8 @@ public class FoodRequest {
     public void setRequestStatus(RequestStatus requestStatus) {
         this.requestStatus = requestStatus;
     }
+
+    public Integer getRequestID(){ return requestID;}
+
+    public void setRequestID(Integer requestID){this.requestID = requestID;}
 }

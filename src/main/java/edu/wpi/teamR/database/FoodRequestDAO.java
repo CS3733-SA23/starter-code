@@ -21,5 +21,5 @@ public class FoodRequestDAO {
     public static FoodRequestDAO getInstance(){return FoodRequestDAO.instance;}
     public ArrayList<FoodRequest> getFoodRequests(){return foodRequests;};
 
-    public FoodRequest
+    public FoodRequest addFoodRequest(String requesterName, String location, String mealType, String staffMember, String additionalNotes, )
 }
