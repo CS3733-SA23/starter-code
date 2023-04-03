@@ -30,7 +30,7 @@ public class HomeController {
     navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE));
     mealButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
     exitButton.setOnAction(actionEvent -> Platform.exit());
-    furnitureButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FURNITURE_REQUEST));
+    furnitureButton.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING));
 
     about.setOnAction(
         event -> {
