@@ -37,7 +37,7 @@ public class HomeController {
     mealMenu.setOnAction(event -> Navigation.navigate(Screen.MEAL_REQUEST));
     furnitureMenu.setOnAction(event -> Navigation.navigate(Screen.MEAL_REQUEST));
     furnitureButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FURNITURE_REQUEST));
-    loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.READCSV));
+    loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LogIn));
 
     about.setOnAction(
         event -> {

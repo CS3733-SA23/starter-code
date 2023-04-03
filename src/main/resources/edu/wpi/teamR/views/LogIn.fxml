@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,8 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamR.controllers.LogInController">
    <left>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
@@ -29,17 +29,12 @@
                   <Font name="Times New Roman" size="20.0" />
                </font>
             </MFXTextField>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dbdbdb" height="79.0" layoutX="142.0" layoutY="381.0" stroke="#dbdbdb" strokeType="INSIDE" width="1000.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dbdbdb" height="108.0" layoutX="142.0" layoutY="381.0" stroke="#dbdbdb" strokeType="INSIDE" width="1000.0" />
             <Text layoutX="169.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="82.6552734375">
                <font>
                   <Font name="Times New Roman" size="20.0" />
                </font>
             </Text>
-            <MFXTextField fx:id="passwordField" layoutX="165.0" layoutY="410.0" maxHeight="53.0" minHeight="-Infinity" prefHeight="42.0" prefWidth="960.0">
-               <font>
-                  <Font name="Times New Roman" size="20.0" />
-               </font>
-            </MFXTextField>
             <MFXButton fx:id="cancelButton" layoutX="413.0" layoutY="552.0" text="Cancel">
                <font>
                   <Font name="Times New Roman" size="20.0" />
@@ -60,6 +55,11 @@
                   <Image url="@../images/Brigham_and_Womens_Hospital_logo.svg.png" />
                </image>
             </ImageView>
+            <MFXPasswordField fx:id="passwordField" layoutX="168.0" layoutY="405.0" prefHeight="49.0" prefWidth="954.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </MFXPasswordField>
          </children>
       </AnchorPane>
    </left>

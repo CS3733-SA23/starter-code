@@ -7,7 +7,9 @@ public enum Screen {
   SIGNAGE("views/Signage.fxml"),
   FURNITURE_REQUEST("views/FurnitureRequest.fxml"),
   HELP("views/Help.fxml"),
-  READCSV("views/CSVReader.fxml");
+  READCSV("views/CSVReader.fxml"),
+  LogIn("views/LogIn.fxml"),
+  SortOrders("views/SortOrders.fxml");
 
   private final String filename;
 
