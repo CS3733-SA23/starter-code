@@ -72,8 +72,8 @@ public class Node {
     this.edges = new LinkedList<>();
   }
 
-  public void addEdge(String edgeID, Node endNode) {
-    Edge temp = new Edge(edgeID, endNode);
+  public void addEdge(String edgeID, Node startNode, Node endNode) {
+    Edge temp = new Edge(edgeID, startNode, endNode);
     edges.add(temp);
   }
 }
