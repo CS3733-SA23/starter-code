@@ -11,7 +11,7 @@ public class NodeDAO {
     private static NodeDAO instance;
     private ArrayList<Node> nodes;
     private String username, password, tableName, schemaName, connectionURL;
-    private NodeDAO(String username, String password, String tableName, String schemaName, String connectionURL){
+    private NodeDAO(String username, String password, String tableName, String schemaName, String connectionURL) throws SQLException, ClassNotFoundException {
         this.username = username;
         this.password = password;
         this.tableName = tableName;
@@ -26,14 +26,14 @@ public class NodeDAO {
             Integer nodeID = resultSet.getInt("nodeID");
             Integer xCoord = resultSet.getInt("xCoord");
             Integer yCoord = resultSet.getInt("yCoord");
-            String floornum = resultSet.getDate("floornum");
-            String building = resultSet.getDate("building");
+            String floornum = resultSet.getString("floornum");
+            String building = resultSet.getString("building");
             Node aNode = new Node(nodeID, xCoord, yCoord, floornum, building);
             nodes.add(aNode);
         }
     }
 
-    public static NodeDAO createInstance(String username, String password, String tableName, String schemaName, String connectionURL) {
+    public static NodeDAO createInstance(String username, String password, String tableName, String schemaName, String connectionURL) throws SQLException, ClassNotFoundException {
         if (NodeDAO.instance == null)
             NodeDAO.instance = new NodeDAO(username, password, tableName, schemaName, connectionURL);
         return NodeDAO.instance;
