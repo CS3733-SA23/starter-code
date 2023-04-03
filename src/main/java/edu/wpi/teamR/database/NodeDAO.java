@@ -17,6 +17,20 @@ public class NodeDAO {
         this.tableName = tableName;
         this.schemaName = schemaName;
         this.connectionURL = connectionURL;
+
+        nodes = new ArrayList<Node>();
+        Connection connection = createConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM "+schemaName+"."+tableName+";");
+        while (resultSet.next()) {
+            Integer nodeID = resultSet.getInt("nodeID");
+            Integer xCoord = resultSet.getInt("xCoord");
+            Integer yCoord = resultSet.getInt("yCoord");
+            String floornum = resultSet.getDate("floornum");
+            String building = resultSet.getDate("building");
+            Node aNode = new Node(nodeID, xCoord, yCoord, floornum, building);
+            nodes.add(aNode);
+        }
     }
 
     public static NodeDAO createInstance(String username, String password, String tableName, String schemaName, String connectionURL) {
