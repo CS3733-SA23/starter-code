@@ -78,8 +78,9 @@ public class DatabaseViewController {
           String name = locationField.getText();
           String date = dateField.getText();
           MoveAttribute newMoveAttribute = new MoveAttribute(nodeID, name, date);
+          DatabaseController dC = new DatabaseController("teame", "teame50");
           dataTable.getItems().add(newMoveAttribute);
-          addToTable(newMoveAttribute);
+          dC.addToTable(newMoveAttribute);
         });
 
     /* importButton.setOnMouseClicked(
