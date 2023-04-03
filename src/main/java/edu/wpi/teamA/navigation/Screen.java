@@ -8,7 +8,9 @@ public enum Screen {
   OFFICE_MOVES("views/OfficeMoves.fxml"),
   SIGNAGE("views/Signage.fxml"),
   PATHFINDING("views/Pathfinding.fxml"),
-  HEADER("views/Header.fxml");
+  HEADER("views/Header.fxml"),
+  ROOM("views/Room.fxml"),
+  FLOWER("views/Flower.fxml");
 
   private final String filename;
 
