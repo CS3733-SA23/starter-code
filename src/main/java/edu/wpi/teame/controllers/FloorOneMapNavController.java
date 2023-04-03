@@ -4,6 +4,7 @@ import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
+import edu.wpi.teame.navigation.Screen;
 
 public class FloorOneMapNavController {
   @FXML private MFXButton lowerLevelTwoButton;
