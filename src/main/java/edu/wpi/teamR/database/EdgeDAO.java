@@ -28,7 +28,7 @@ public class EdgeDAO {
     edges = new ArrayList<Edge>();
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
-    ResultSet resultset = statement.executeQuery("SELECT * FROM edges");
+    ResultSet resultSet = statement.executeQuery("SELECT * FROM "+schemaName+"."+tableName+";");
     while(resultset.next()){
         Integer startNode = resultset.getInt("startNode");
         Integer endNode = resultset.getInt("endNode");
