@@ -88,7 +88,7 @@ public class NodeDAO {
                 }
                 sqlDelete += "building = " + "\'" + building+ "\'";
             }
-            sqlDelete += ";";
+            sqlDelete += "cascade ;";
             statement.executeUpdate(sqlDelete);
             closeConnection(connection);
         }

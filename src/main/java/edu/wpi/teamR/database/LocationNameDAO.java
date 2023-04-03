@@ -65,7 +65,7 @@ public class LocationNameDAO {
                 count++;
                 sqlDelete += "nodeType = " + "\'" + nodeType + "\'";
             }
-            sqlDelete += ";";
+            sqlDelete += "cascade ;";
             statement.executeUpdate(sqlDelete);
             closeConnection(connection);
         }
