@@ -1,10 +1,7 @@
 package edu.wpi.teamR.controllers;
 
 import edu.wpi.teamR.Main;
-import edu.wpi.teamR.navigation.Navigation;
-import edu.wpi.teamR.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import java.net.URL;
 import javafx.animation.Interpolator;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -27,17 +24,38 @@ public class MapController {
 
   @FXML GesturePane gesturePane;
 
+  ImageView groundFloorImage =
+      new ImageView(Main.class.getResource("images/00_thegroundfloor.png").toExternalForm());
+  ImageView firstFloorImage =
+      new ImageView(Main.class.getResource("images/01_thefirstfloor.png").toExternalForm());
+  ImageView secondFloorImage =
+      new ImageView(Main.class.getResource("images/02_thesecondfloor.png").toExternalForm());
+  ImageView thirdFloorImage =
+      new ImageView(Main.class.getResource("images/03_thethirdfloor.png").toExternalForm());
+  ImageView lowerOneImage =
+      new ImageView(Main.class.getResource("images/00_thelowerlevel1.png").toExternalForm());
+  ImageView lowerTwoImage =
+      new ImageView(Main.class.getResource("images/00_thelowerlevel2.png").toExternalForm());
+
+  int currentFloor = 2;
+  ImageView[] floorArray = {
+    lowerTwoImage,
+    lowerOneImage,
+    groundFloorImage,
+    firstFloorImage,
+    secondFloorImage,
+    thirdFloorImage
+  };
+
   @FXML
   public void initialize() {
-    URL imagePath = Main.class.getResource("images/00_thegroundfloor.png");
-    ImageView image = new ImageView(imagePath.toExternalForm());
-    gesturePane.setContent(image);
+    gesturePane.setContent(groundFloorImage); // set to ground floor
 
-    resetButton.setOnMouseClicked(event -> reset());
-    searchButton.setOnMouseClicked(event -> search());
+    //    resetButton.setOnMouseClicked(event -> reset());
+    //    searchButton.setOnMouseClicked(event -> search());
     floorDownButton.setOnMouseClicked(event -> displayFloorDown());
     floorUpButton.setOnMouseClicked(event -> displayFloorUp());
-    homeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    //    homeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   // Reset to original zoom
@@ -80,6 +98,10 @@ public class MapController {
     else
         make it known to user in some way they cant go farther
      */
+    if (currentFloor < 5) {
+      currentFloor++;
+      gesturePane.setContent(floorArray[currentFloor]); // set to ground floor
+    }
   }
 
   public void displayFloorDown() {
@@ -90,5 +112,9 @@ public class MapController {
     else
         make it known to user in some way they cant go farther
      */
+    if (currentFloor > 0) {
+      currentFloor--;
+      gesturePane.setContent(floorArray[currentFloor]); // set to ground floor
+    }
   }
 }
