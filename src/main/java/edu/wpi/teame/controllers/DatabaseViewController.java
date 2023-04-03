@@ -1,16 +1,18 @@
 package edu.wpi.teame.controllers;
 
 import Database.DatabaseController;
+import edu.wpi.teame.App;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.io.File;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import pathfinding.MoveAttribute;
 
 public class DatabaseViewController {
@@ -37,11 +39,15 @@ public class DatabaseViewController {
 
   @FXML TableColumn<MoveAttribute, String> dateCol;
 
-  DirectoryChooser directoryChooser = new DirectoryChooser();
+  FileChooser saveChooser = new FileChooser();
+  FileChooser selectChooser = new FileChooser();
 
   @FXML
   public void initialize() {
     // directoryChooser.setInitialDirectory(new File("src"));
+    saveChooser.setTitle("Select where to save your file");
+    saveChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV File", ".csv"));
+    selectChooser.setTitle("Select file to import");
 
     DatabaseController dC = new DatabaseController("teame", "teame50");
 
@@ -78,16 +84,39 @@ public class DatabaseViewController {
           String nodeID = IDField.getText();
           String name = locationField.getText();
           String date = dateField.getText();
-          MoveAttribute newMoveAttribute = new MoveAttribute(nodeID, name, date);
-          dataTable.getItems().add(newMoveAttribute);
-          dC.addToTable(newMoveAttribute);
+          MoveAttribute newMoveAttribute;
+          try {
+            newMoveAttribute = new MoveAttribute(nodeID, name, date);
+            dC.addToTable(newMoveAttribute);
+            dataTable.getItems().add(newMoveAttribute);
+          } catch (RuntimeException e) {
+            // have an error pop up
+            System.out.println("error caught");
+          }
         });
 
-    /* importButton.setOnMouseClicked(
-            event -> {
-              File selectedDirectory = directoryChooser.showDialog();
-            });
-    */
-    exportButton.setOnMouseClicked(event -> {});
+    importButton.setOnMouseClicked(
+        event -> {
+          File selectedFile = selectChooser.showOpenDialog(App.getPrimaryStage());
+          if (selectedFile == null) {
+            // cancel
+          } else {
+            // add the file
+            System.out.println(selectedFile.getAbsolutePath());
+          }
+        });
+
+    exportButton.setOnMouseClicked(
+        event -> {
+          // File selectedDirectory = directoryChooser.showDialog(App.getPrimaryStage());
+          File selectedFile = saveChooser.showSaveDialog(App.getPrimaryStage());
+          if (selectedFile == null) {
+            // cancel
+          } else {
+            // export to the given path
+            // ask user for file name
+            System.out.println(selectedFile.getAbsolutePath());
+          }
+        });
   }
 }
