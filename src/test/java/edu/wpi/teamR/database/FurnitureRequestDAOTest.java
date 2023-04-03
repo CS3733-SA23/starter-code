@@ -33,7 +33,15 @@ class FurnitureRequestDAOTest {
     }
     @AfterAll
     static void reset() throws Exception{
-        aFurnitureRequestDAO.deleteFurnitureRequests(1, null, null, null, null, null, null, null);
+        aFurnitureRequestDAO.deleteFurnitureRequests(
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
     }
     @Test
     void addAndDeleteFurnitureRequestTest() throws Exception{
@@ -92,7 +100,7 @@ class FurnitureRequestDAOTest {
                 null,
                 null,
                 null);
-        assertEquals(filteredFurnitureRequests.size(), 0);
+        assertEquals(filteredFurnitureRequests.size(), 1);
         FurnitureRequest updatedOne = filteredFurnitureRequests.get(0);
         FurnitureRequest correctOne = new FurnitureRequest(
                 101,
@@ -162,7 +170,7 @@ class FurnitureRequestDAOTest {
         );
         ArrayList<FurnitureRequest> tempFurnitureRequestList = aFurnitureRequestDAO.selectFurnitureRequests(
                 null,
-                null ,
+                null,
                 null,
                 null,
                 null,
