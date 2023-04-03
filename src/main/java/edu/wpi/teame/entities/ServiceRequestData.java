@@ -10,6 +10,7 @@ public class ServiceRequestData {
     IN_PROGRESS,
     DONE
   }
+
   public enum RequestType {
     MEALDELIVERY,
     FLOWERDELIVERY,
@@ -27,7 +28,8 @@ public class ServiceRequestData {
     assignedStaff = "None";
   }
 
-  public ServiceRequestData(RequestType requestType, JSONObject requestData, Status requestStatus, String assignedStaff) {
+  public ServiceRequestData(
+      RequestType requestType, JSONObject requestData, Status requestStatus, String assignedStaff) {
     this.requestData = requestData;
     this.requestType = requestType;
     this.requestStatus = requestStatus;

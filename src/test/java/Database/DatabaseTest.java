@@ -46,9 +46,9 @@ public class DatabaseTest {
     List<HospitalNode> nlist = DBMC.getHospitalNodes();
     List<HospitalEdge> elist = DBMC.getHospitalEdges();
 
-    for (HospitalNode hn : nlist) {
-      System.out.println(hn);
-    }
+    //    for (HospitalNode hn : nlist) {
+    //      System.out.println(hn);
+    //    }
 
     assertEquals(581, nlist.size());
     assertEquals(684, elist.size());
