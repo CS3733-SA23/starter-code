@@ -50,7 +50,7 @@
         </MFXButton>
         <Group layoutX="74.0" layoutY="93.0">
             <children>
-                <MFXTextField floatMode="DISABLED" layoutX="87.0" layoutY="-13.0" prefHeight="30.0" prefWidth="407.0" promptText="Enter Name" textLimit="1000000">
+                <MFXTextField floatMode="DISABLED" layoutX="87.0" layoutY="-13.0" prefHeight="30.0" prefWidth="412.0" promptText="Enter Name" textLimit="1000000">
                     <textFill>
                         <Color green="0.501960813999176" blue="0.501960813999176" opacity="0.8700000047683716" />
                     </textFill>
