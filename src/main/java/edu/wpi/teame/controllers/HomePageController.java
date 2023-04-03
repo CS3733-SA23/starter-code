@@ -37,6 +37,7 @@ public class HomePageController {
     // Page is made
     // menuBarExit.setOnMouseClicked(event -> Navigation.navigate(Screen.EXIT)); //Uncomment when we
     // know where exit goes
+
   }
 
   public void menuDropDownVisibility(boolean bool) {
