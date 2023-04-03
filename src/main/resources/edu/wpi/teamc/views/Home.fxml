@@ -2,6 +2,9 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
@@ -12,7 +15,7 @@
     <children>
         <Rectangle fill="#bae3e0" height="406.0" stroke="#bae3e0" strokeType="INSIDE" width="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         <Rectangle fill="TEAL" height="380.0" layoutX="12.0" layoutY="13.0" stroke="TEAL" strokeType="INSIDE" width="575.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="13.0" />
-        <Text fill="WHITE" layoutX="191.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Home Menu" wrappingWidth="217.6328125" AnchorPane.bottomAnchor="344.80078125" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="191.3671875" AnchorPane.topAnchor="36.892578125">
+        <Text fill="WHITE" layoutX="191.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Home Menu" wrappingWidth="217.6328125" AnchorPane.bottomAnchor="334.80078125" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="191.3671875" AnchorPane.topAnchor="46.892578125">
             <font>
                 <Font name="Verdana Bold" size="20.0" />
             </font>
@@ -138,7 +141,7 @@
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="223.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nagivation" textAlignment="CENTER" wrappingWidth="153.0">
+      <Text fill="WHITE" layoutX="223.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navigation" textAlignment="CENTER" wrappingWidth="153.0">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
@@ -148,5 +151,35 @@
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Text>
+      <MenuBar layoutX="12.0" layoutY="13.0" prefHeight="3.0" prefWidth="575.0" style="-fx-background-color: white;">
+        <menus>
+          <Menu mnemonicParsing="false" text="Service Requests">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Room Reservation" />
+                  <MenuItem mnemonicParsing="false" text="Meal Delivery" />
+                  <MenuItem mnemonicParsing="false" text="Flower Delivery" />
+                  <MenuItem mnemonicParsing="false" text="Furniture Delivery" />
+                  <MenuItem mnemonicParsing="false" text="Office Supplies" />
+                  <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Navigation">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Signage" />
+                  <MenuItem mnemonicParsing="false" text="Map" />
+                  <MenuItem mnemonicParsing="false" text="Edit Map" />
+                  <MenuItem mnemonicParsing="false" text="Map History" />
+                  <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Help" />
+                  <MenuItem mnemonicParsing="false" text="Log Out" />
+                  <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
     </children>
 </AnchorPane>
