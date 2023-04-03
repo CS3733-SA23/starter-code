@@ -1,0 +1,582 @@
+nodeID,longName,date
+1200,Hall 3 Level 1,1/1/2023
+1205,Hall 4 Level 2,1/1/2023
+1210,Hall 3 Level 3,1/1/2023
+1215,Hall 1 Level L2,1/1/2023
+1220,Hall 4 Level 1,1/1/2023
+1225,Hall 5 Level 2,1/1/2023
+1230,Hall 4 Level 3,1/1/2023
+1235,Hall 2 Level L2,1/1/2023
+1240,Hall 5 Level 1,1/1/2023
+1245,Hall 6 Level 2,1/1/2023
+1250,Hall 5 Level 3,1/1/2023
+1255,Hall 6 Level 1,1/1/2023
+1260,Hall 7 Level 2,1/1/2023
+1265,HallNode,1/1/2023
+1270,Hall 7 Level 1,1/1/2023
+1275,Hall 8 Level 1,1/1/2023
+1280,Hall 9 Level 1,1/1/2023
+1285,Hall 10 Level 1,1/1/2023
+1290,BTM Security Desk,1/1/2023
+1295,Innovation Hub,1/1/2023
+1300,MRI CT Scan Imaging,1/1/2023
+1305,Clinical Trials,1/1/2023
+1310,Restroom S elevator 1st floor,1/1/2023
+1315,Restroom BTM conference center 3rd floor,1/1/2023
+1320,Cafe,1/1/2023
+1325,Cafe Stairs,1/1/2023
+1330,Stairs Floor 2,1/1/2023
+1335,Duncan Reid Conference Room,1/1/2023
+1340,Hallway Intersection 38 Level 2,1/1/2023
+1345,Oral Medicine and Dentistry,1/1/2023
+1350,Lee Bell Breast Center,1/1/2023
+1355,Jen Center for Primary Care,1/1/2023
+1360,Ear Nose & Throat,1/1/2023
+1365,Hallway Intersection 45 Level 2,1/1/2023
+1370,Plastic Surgery,1/1/2023
+1375,Outpatient Pharmacy,1/1/2023
+1380,Weiner Center for Preoperative Evaluation,1/1/2023
+1385,Hallway Intersection 1 Level 2,1/1/2023
+1390,Hallway Intersection 2 Level 2,1/1/2023
+1395,Hallway Intersection 3 Level 2,1/1/2023
+1400,Hallway Intersection 4 Level 2,1/1/2023
+1405,Hallway Intersection 5 Level 2,1/1/2023
+1410,Hallway Intersection 6 Level 2,1/1/2023
+1415,Hallway Intersection 7 Level 2,1/1/2023
+1420,Hallway Intersection 8 Level 2,1/1/2023
+1425,Hallway Intersection 9 Level 2,1/1/2023
+1430,Hallway Intersection 10 Level 2,1/1/2023
+1435,Hallway Intersection 11 Level 2,1/1/2023
+1440,Hallway Intersection 12 Level 2,1/1/2023
+1445,Hallway Intersection 13 Level 2,1/1/2023
+1450,Hallway Intersection 14 Level 2,1/1/2023
+1455,Hallway Intersection 15 Level 2,1/1/2023
+1460,Hallway Intersection 16 Level 2,1/1/2023
+1465,Hallway Intersection 17 Level 2,1/1/2023
+1470,Hallway Intersection 18 Level 2,1/1/2023
+1475,Hallway Intersection 19 Level 2,1/1/2023
+1480,Hallway Intersection 20 Level 2,1/1/2023
+1485,Hallway Intersection 21 Level 2,1/1/2023
+1490,Hallway Intersection 22 Level 2,1/1/2023
+1495,Hallway Intersection 23 Level 2,1/1/2023
+1500,Hallway Intersection 25 Level 2,1/1/2023
+1505,Hallway Intersection 26 Level 2,1/1/2023
+1510,Hallway Intersection 27 Level 2,1/1/2023
+1515,Hallway Intersection 28 Level 2,1/1/2023
+1520,Hallway Intersection 29 Level 2,1/1/2023
+1525,Hallway Intersection 30 Level 2,1/1/2023
+1530,Hallway Intersection 31 Level 2,1/1/2023
+1535,Hallway Intersection 32 Level 2,1/1/2023
+1540,Information Desk Level 2,1/1/2023
+1545,Valet Service Level 2,1/1/2023
+1550,Vascular Diagnostic Lab,1/1/2023
+1555,Outpatient Specimen Collection,1/1/2023
+1560,Restroom 1 Level 2,1/1/2023
+1565,Restroom 2 Level 2,1/1/2023
+1570,Restroom 3 Level 2,1/1/2023
+1575,Restroom 4 Level 2,1/1/2023
+1580,Restroom 5 Level 2,1/1/2023
+1585,Patient Financial Services,1/1/2023
+1590,Staircase Intersection 1 Level 2,1/1/2023
+1595,Staircase Intersection 2 Level 2,1/1/2023
+1600,Staircase Intersection 3 Level 2,1/1/2023
+1605,Staircase Intersection 5 Level 2,1/1/2023
+1610,Staircase Intersection 6 Level 2,1/1/2023
+1615,Staircase Intersection 7 Level 2,1/1/2023
+1620,Staircase Intersection 8 Level 2,1/1/2023
+1625,Staircase Intersection 9 Level 2,1/1/2023
+1630,Staircase Intersection 10 Level 2,1/1/2023
+1635,Hallway Intersection 33 Level 2,1/1/2023
+1640,Hallway Intersection 34 Level 2,1/1/2023
+1645,Hallway Intersection 35 Level 2,1/1/2023
+1650,Comprehensive Breast Heath,1/1/2023
+1655,Hallway Intersection 36 Level 2,1/1/2023
+1660,Hallway Intersection 37 Level 2,1/1/2023
+1665,Hallway Intersection 41 Level 2,1/1/2023
+1670,Hallway Intersection 42 Level 2,1/1/2023
+1675,Hallway Intersection 43 level 2,1/1/2023
+1680,Hallway Intersection 44 Level 2,1/1/2023
+1685,Anesthesia Conf Floor L1,1/1/2023
+1690,Medical Records Conference Room Floor L1,1/1/2023
+1695,Abrams Conference Room,1/1/2023
+1700,Day Surgery Family Waiting Floor L1,1/1/2023
+1705,Day Surgery Family Waiting Exit Floor L1,1/1/2023
+1710,Medical Records Film Library Floor L1,1/1/2023
+1715,Hallway 1 Floor L1,1/1/2023
+1720,Hallway K Elevator Floor L2,1/1/2023
+1725,Hallway 2 Floor L1,1/1/2023
+1730,Hallway 2 Floor L2,1/1/2023
+1735,Hallway 3 Floor L1,1/1/2023
+1740,Hallway 3 Floor L2,1/1/2023
+1745,Hallway 4 Floor L1,1/1/2023
+1750,Hallway 4 Floor L2,1/1/2023
+1755,Hallway 5 Floor L1,1/1/2023
+1760,Hallway 5 Floor L2,1/1/2023
+1765,Hallway 6 Floor L1,1/1/2023
+1770,Hallway 6 Floor L2,1/1/2023
+1775,Hallway 7 Floor L1,1/1/2023
+1780,Hallway 7 Floor L2,1/1/2023
+1785,Hallway 8 Floor L1,1/1/2023
+1790,Hallway 8 Floor L2,1/1/2023
+1795,Hallway 9 Floor L1,1/1/2023
+3000,Hallway 9 Floor L2,1/1/2023
+100,Hallway 10 Floor L1,1/1/2023
+105,Hallway 10 Floor L2,1/1/2023
+110,Hallway 11 Floor L1,1/1/2023
+115,Hallway 12 Floor L1,1/1/2023
+120,Hallway 13 Floor L1,1/1/2023
+125,Hallway 14 Floor L1,1/1/2023
+130,Hallway 15 Floor L1,1/1/2023
+135,Outpatient Fluoroscopy Floor L1,1/1/2023
+140,Radiation Oncology TX Suite Floor L2,1/1/2023
+145,Pre-Op PACU Floor L1,1/1/2023
+150,Radiation Oncology Floor L2,1/1/2023
+155,Nuclear Medicine Floor L1,1/1/2023
+160,Ultrasound Floor L1,1/1/2023
+165,CSIR MRI Floor L1,1/1/2023
+170,Restroom L Elevator Floor L1,1/1/2023
+175,Restroom K Elevator Floor L2,1/1/2023
+180,Restroom M Elevator Floor L1,1/1/2023
+185,Restroom L Elevator Floor L2,1/1/2023
+190,Restroom K Elevator Floor L1,1/1/2023
+195,Restroom H Elevator Floor L1,1/1/2023
+200,Vending Machine 1 L1,1/1/2023
+205,Volunteers Floor L1,1/1/2023
+210,Interpreter Services Floor L2,1/1/2023
+215,Elevator A Floor 2,1/1/2023
+220,Elevator B Floor 2,1/1/2023
+225,Elevator C Floor 2,1/1/2023
+230,Elevator D Floor 2,1/1/2023
+235,Restroom B elevator Floor 2,1/1/2023
+240,Restroom C elevator Floor 2,1/1/2023
+245,Restroom C-D elevator Floor 2,1/1/2023
+250,Restroom D elevator Floor 2,1/1/2023
+255,15 Francis Security Desk Floor 2,1/1/2023
+260,Security Desk Thorn Floor 2,1/1/2023
+265,Chest Diseases Floor 2,1/1/2023
+270,Thoracic Surgery Clinic Floor 2,1/1/2023
+275,Brigham Health Floor 2,1/1/2023
+280,Waiting Room Floor 2,1/1/2023
+285,MRI Associates Floor 2,1/1/2023
+290,Carrie M. Hall Conference Center Floor 2,1/1/2023
+295,Pats Place Floor 2,1/1/2023
+300,15 Lobby Entrance Floor 2,1/1/2023
+305,Staircase1 Floor2,1/1/2023
+310,Staircase2 Floor2,1/1/2023
+315,Staircase3 Floor2,1/1/2023
+320,Staircase4 Floor2,1/1/2023
+325,Staircase5 Floor2,1/1/2023
+330,Staircase6 Floor2,1/1/2023
+335,Staircase7 Floor2,1/1/2023
+340,Staircase8 Floor2,1/1/2023
+345,Hallway 1 Floor 2,1/1/2023
+350,Hallway 2 Floor 2,1/1/2023
+355,Hallway 3 Floor 2,1/1/2023
+360,Hallway 4 Floor 2,1/1/2023
+365,Hallway 5 Floor 2,1/1/2023
+370,Hallway 6 Floor 2,1/1/2023
+375,Hallway 7 Floor 2,1/1/2023
+380,Hallway 8 Floor 2,1/1/2023
+385,Hallway 9 Floor 2,1/1/2023
+390,Hallway 10 Floor 2,1/1/2023
+395,Hallway 11 Floor 3,1/1/2023
+400,Hallway 12 Floor 3,1/1/2023
+405,Hallway 13 Floor 3,1/1/2023
+410,Hallway 14 Floor 3,1/1/2023
+415,Hallway 15 Floor 3,1/1/2023
+420,Hallway 16 Floor 3,1/1/2023
+425,Hallway 17 Floor 3,1/1/2023
+430,Hallway 18 Floor 3,1/1/2023
+435,Hallway 19 Floor 3,1/1/2023
+440,Hallway 20 Floor 3,1/1/2023
+445,Hallway 21 Floor 4,1/1/2023
+450,Hallway 22 Floor 4,1/1/2023
+455,Hallway 23 Floor 4,1/1/2023
+460,Hallway 24 Floor 4,1/1/2023
+465,Hallway 25 Floor 4,1/1/2023
+470,Hallway 26 Floor 4,1/1/2023
+475,Hallway 27 Floor 4,1/1/2023
+480,Hallway 28 Floor 4,1/1/2023
+485,Hallway 29 Floor 4,1/1/2023
+490,Hallway 30 Floor 4,1/1/2023
+495,Hallway 31 Floor 5,1/1/2023
+500,Hallway 32 Floor 5,1/1/2023
+505,Hallway 33 Floor 5,1/1/2023
+510,Hallway 34 Floor 5,1/1/2023
+515,Hallway 35 Floor 5,1/1/2023
+520,Hallway 36 Floor 5,1/1/2023
+525,Hallway 37 Floor 5,1/1/2023
+530,Hallway 38 Floor 5,1/1/2023
+535,Hallway 39 Floor 5,1/1/2023
+540,Hallway 40 Floor 5,1/1/2023
+545,Hallway 41 Floor 6,1/1/2023
+550,Hallway 42 Floor 6,1/1/2023
+555,Hallway 43 Floor 6,1/1/2023
+560,Hallway 44 Floor 6,1/1/2023
+565,Hallway 45 Floor 6,1/1/2023
+570,Hallway 46 Floor 6,1/1/2023
+575,Hallway 47 Floor 6,1/1/2023
+580,Hallway 48 Floor 2,1/1/2023
+585,Hallway 49 Floor 2,1/1/2023
+590,Hallway 50 Floor 2,1/1/2023
+595,Hallway 51 Floor 2,1/1/2023
+600,Hallway 52 Floor 2,1/1/2023
+605,Hallway 53 Floor 2,1/1/2023
+610,Hallway 54 Floor 2,1/1/2023
+615,Hallway 55 Floor 2,1/1/2023
+620,Hallway 56 Floor 2,1/1/2023
+625,Hallway 57 Floor 2,1/1/2023
+630,Hallway 58 Floor 2,1/1/2023
+635,Kiosk,1/1/2023
+640,Staircase K1 Floor 1,1/1/2023
+645,Hallway Node 1 Floor 1,1/1/2023
+650,Hallway Node 2 Floor 1,1/1/2023
+655,Staircase J1 Floor 1,1/1/2023
+660,Ambulance Parking Exit Floor 1,1/1/2023
+665,Hallway Node 3 Floor 1,1/1/2023
+670,Hallway Node 4 Floor 1,1/1/2023
+675,Hallway Node 5 Floor 1,1/1/2023
+680,Waiting Room 1 Floor 1,1/1/2023
+685,Hallway Node 6 Floor 1,1/1/2023
+690,Connors Center Security Desk Floor 1,1/1/2023
+695,Hallway Node 7 Floor 1,1/1/2023
+700,Hallway Node 8 Floor 1,1/1/2023
+705,Hallway Node 9 Floor 1,1/1/2023
+710,Hallway Node 10 Floor 1,1/1/2023
+715,Hallway Node 11 Floor 1,1/1/2023
+720,Hallway Node 12 Floor 1,1/1/2023
+725,Hallway Node 13 Floor 1,1/1/2023
+730,Hallway Node 14 Floor 1,1/1/2023
+735,Hallway Node 15 Floor 1,1/1/2023
+740,Hallway Node 16 Floor 1,1/1/2023
+745,Hallway Node 17 Floor 1,1/1/2023
+750,Hallway Node 18 Floor 1,1/1/2023
+755,Restroom G1 Floor 1,1/1/2023
+760,Exit 2 Floor 1,1/1/2023
+765,Asthma Research Floor 1,1/1/2023
+770,Wound and Ambulatory 1,1/1/2023
+775,Ocupational Health Floor 1,1/1/2023
+780,Hallway Node 19 Floor 1,1/1/2023
+785,Hallway Node 20 Floor 1,1/1/2023
+790,Hallway Node 21 Floor 1,1/1/2023
+795,Hallway Node 22 Floor 1,1/1/2023
+800,Hallway Node 23 Floor 1,1/1/2023
+805,Restroom F1 Floor 1,1/1/2023
+810,Hallway Node 24 Floor 1,1/1/2023
+815,Hallway Node 25 Floor 1,1/1/2023
+820,Hallway Node 26 Floor 1,1/1/2023
+825,Hallway Node 27 Floor 1,1/1/2023
+830,Hallway Node 28 Floor 1,1/1/2023
+835,Staircase H1 Floor 1,1/1/2023
+840,Restroom H1 Floor 1,1/1/2023
+845,Ambulatory X-Ray Floor 1,1/1/2023
+850,Rehabilitation Services Floor 1,1/1/2023
+855,Hallway Node 29 Floor 1,1/1/2023
+860,Hallway Node 30 Floor 1,1/1/2023
+865,Hallway Node 31 Floor 1,1/1/2023
+870,Staircase H2 Floor 1,1/1/2023
+2645,Hallway Node 11,1/1/2023
+875,Hallway Node 32 Floor 1,1/1/2023
+880,Hallway Node 33 Floor 1,1/1/2023
+885,Hallway Node 34 Floor 1,1/1/2023
+890,Lower Pike Hallway Exit Lobby,1/1/2023
+895,Lobby Shattuck Street,1/1/2023
+900,Lobby Shattuck Street Stairs,1/1/2023
+905,Shattuck Street Lobby 1,1/1/2023
+910,Shattuck Street Lobby Exit,1/1/2023
+915,Shattuck Street Lobby 2,1/1/2023
+920,Lobby Vending Machine,1/1/2023
+925,Shattuck Street Lobby 3,1/1/2023
+930,Shattuck Street Lobby ATM,1/1/2023
+935,Tower Lobby Entrance 1,1/1/2023
+940,Tower Elevator Entrance,1/1/2023
+945,Tower Hallway 1,1/1/2023
+950,Tower Hallway 5,1/1/2023
+955,Tower Hallway 2,1/1/2023
+960,Tower Hallway 3,1/1/2023
+965,Tower Stairway 1,1/1/2023
+970,Tower Hallway 4,1/1/2023
+975,Tower Staff Entrance,1/1/2023
+980,Center for International Medicine,1/1/2023
+985,Spiritual Care Office,1/1/2023
+990,Tower Hallway 6,1/1/2023
+995,Tower Medical Cashier,1/1/2023
+1000,Tower Hallway 7,1/1/2023
+1005,Tower Hallway 8,1/1/2023
+1010,Tower Hallway 9,1/1/2023
+1015,Multifaith Chapel,1/1/2023
+1020,Tower Hallway 10,1/1/2023
+1025,Tower Hallway 11,1/1/2023
+1030,Tower Hallway 12,1/1/2023
+1035,Bretholtz Center for Patients and Families,1/1/2023
+1040,Kessler Library,1/1/2023
+1045,Tower Hallway Entrance,1/1/2023
+1050,Sharf Admitting Center,1/1/2023
+1055,Hallway Lobby Entrance,1/1/2023
+1060,Obstetrics Admitting,1/1/2023
+1065,Lobby Hallway 1,1/1/2023
+1070,Lobby Hallway 2,1/1/2023
+1075,Lobby Hallway 3,1/1/2023
+1080,Lobby Escalator,1/1/2023
+1085,Lobby Hallway 4,1/1/2023
+1090,Lobby Hallway 7,1/1/2023
+1095,Emergency Department,1/1/2023
+1100,Lobby Entrance Hallway,1/1/2023
+1800,75 Francis Valet Drop-off,1/1/2023
+1805,75 Lobby,1/1/2023
+1810,75 Lobby Information Desk,1/1/2023
+1815,75 Lobby Valet Cashier,1/1/2023
+1820,Lobby Hallway 5,1/1/2023
+1825,Au Bon Pain,1/1/2023
+1830,Lobby Hallway 6,1/1/2023
+1835,Bathroom 75 Lobby,1/1/2023
+1840,Emergency Department Entrance,1/1/2023
+1845,Tower Hallway 13,1/1/2023
+1850,International Patient Center,1/1/2023
+1855,Emergency Hallway,1/1/2023
+1860,Shapiro Board Room MapNode 20 Floor 1,1/1/2023
+1865,Zinner Breakout Room MapNode 19 Floor 1,1/1/2023
+1870,Elevator N MapNode 26 Floor 1,1/1/2023
+1875,Elevator Q MapNode 18 Floor 1,1/1/2023
+1880,Francis Street Exit MapNode 1 Floor 1,1/1/2023
+1885,Hallway MapNode 2 Floor 1,1/1/2023
+1890,Hallway MapNode 3 Floor 1,1/1/2023
+1895,Hallway MapNode 6 Floor 1,1/1/2023
+1900,Hallway MapNode 7 Floor 1,1/1/2023
+1905,Hallway MapNode 8 Floor 1,1/1/2023
+1910,Hallway MapNode 9 Floor 1,1/1/2023
+1915,Hallway MapNode 10 Floor 1,1/1/2023
+1920,Hallway MapNode 14 Floor 1,1/1/2023
+1925,Hallway MapNode 15 Floor 1,1/1/2023
+1930,Hallway MapNode 16 Floor 1,1/1/2023
+1935,Hallway MapNode 17 Floor 1,1/1/2023
+1940,Hallway MapNode 21 Floor 1,1/1/2023
+1945,Hallway MapNode 22 Floor 1,1/1/2023
+1950,Hallway MapNode 24 Floor 1,1/1/2023
+1955,Hallway MapNode 28 Floor 1,1/1/2023
+1960,Hallway MapNode 29 Floor 1,1/1/2023
+1965,Hallway MapNode 30 Floor 1,1/1/2023
+1970,Hallway MapNode 31 Floor 1,1/1/2023
+1975,Hallway MapNode 33 Floor 1,1/1/2023
+1980,Hallway MapNode 34 Floor 1,1/1/2023
+1985,Bathroom MapNode 12 Floor 1,1/1/2023
+1990,Random Room MapNode 35 Floor 1,1/1/2023
+1995,ATM MapNode 23 Floor 1,1/1/2023
+2000,Stairway MapNode 5 Floor 1,1/1/2023
+2005,Staircase MapNode 13 Floor 1,1/1/2023
+2010,Waiting room? Node 7 Floor 2,1/1/2023
+2015,Watkins A Node 24 Floor 2 Floor 2,1/1/2023
+2020,Watkins B Node 35 Floor 2,1/1/2023
+2025,Elevator N Node 25 Floor 2,1/1/2023
+2030,Elevator Q Node 31a Floor 2,1/1/2023
+2035,Hall Node 1 Floor 2,1/1/2023
+2040,Hall Node 2 Floor 2,1/1/2023
+2045,Hall Node 3 Floor 2,1/1/2023
+2050,Hall Node 4 Floor 2,1/1/2023
+2055,Hall Node 5 Floor 2,1/1/2023
+2060,Hall Node 10 Floor 2,1/1/2023
+2065,Hall Node 11 Floor 2,1/1/2023
+2070,Hall Node 12 Floor 2,1/1/2023
+2075,Hall Node 13 Floor 2,1/1/2023
+2080,Hall Node 14 Floor 2,1/1/2023
+2085,Hall Node 15 Floor 2,1/1/2023
+2090,Hall Node 16 Floor 2,1/1/2023
+2095,Hall Node 17 (Exit?) Floor 2,1/1/2023
+2100,Hall Node 18 Floor 2,1/1/2023
+2105,Hall Node 20 Floor 2,1/1/2023
+2110,Hall Node 21 Floor 2,1/1/2023
+2115,Hall Node 22 Floor 2,1/1/2023
+2120,Hall Node 23 Floor 2,1/1/2023
+2125,Hall Node 27 Floor 2,1/1/2023
+2130,Hall Node 29 Floor 2,1/1/2023
+2135,Hall Node 30 Floor 2,1/1/2023
+2140,Hall Node 32 Floor 2,1/1/2023
+2145,Hall Node 33 Floor 2,1/1/2023
+2150,Hall Node 34 Floor 2,1/1/2023
+2155,Hall Node 36 Floor 2,1/1/2023
+2160,Hall Node 37 Floor 2,1/1/2023
+2165,Hall Node 38 Floor 2,1/1/2023
+2170,Info Node 19 Floor 2,1/1/2023
+2175,Restroom Node 6 Floor 2,1/1/2023
+2180,Restroom Node 31 Floor 2,1/1/2023
+2185,Stairs Node 26 Floor 2,1/1/2023
+2190,Stairs Node 28 Floor 2,1/1/2023
+2195,Brigham Circle Medical Associates Node 4 Floor 3,1/1/2023
+2200,Watkins Clinic C Node 14 Floor 3,1/1/2023
+2205,Elevator N Node 15 Floor 3,1/1/2023
+2210,Elevator Q Node 5 Floor 3,1/1/2023
+2215,Hallway Node 1 Floor 3,1/1/2023
+2220,Hallway Node 2 Floor 3,1/1/2023
+2225,Hallway Node 3 Floor 3,1/1/2023
+2230,Hallway Node 6 Floor 3,1/1/2023
+2235,Hallway Node 7 Floor 3,1/1/2023
+2240,Hallway Node 8 Floor 3,1/1/2023
+2245,Hallway Node 10 Floor 3,1/1/2023
+2250,Hallway Node 11 Floor 3,1/1/2023
+2255,Hallway Node 13 Floor 3,1/1/2023
+2260,Restroom Node 12 Floor 3,1/1/2023
+2265,The Porch Node 16 Floor 3,1/1/2023
+2270,Staircase Node 9 Floor 3,1/1/2023
+2275,Elevator Q MapNode 7 Floor L1,1/1/2023
+2280,Fenwood Road Exit MapNode 1 Floor L1,1/1/2023
+2285,Hallway MapNode 2 Floor L1,1/1/2023
+2290,Hallway MapNode 3 Floor L1,1/1/2023
+2295,Hallway MapNode 4 Floor L1,1/1/2023
+2300,Hallway MapNode 5 Floor L1,1/1/2023
+2305,Hallway MapNode 6 Floor L1,1/1/2023
+2310,Stairs MapNode 8 Floor L1,1/1/2023
+2315,Elevator Q MapNode 6 Floor L2,1/1/2023
+2320,Hallway MapNode 1 Floor L2,1/1/2023
+2325,Hallway MapNode 5 Floor L2,1/1/2023
+2330,Hallway MapNode 7 Floor L2,1/1/2023
+2335,Hallway MapNode 8 Floor L2,1/1/2023
+2340,Hallway MapNode 9 Floor L2,1/1/2023
+2345,Hallway MapNode 10 Floor L2,1/1/2023
+2350,Hallway MapNode 11 Floor L2,1/1/2023
+2355,Hallway MapNode 12 Floor L2,1/1/2023
+2360,Hallway MapNode 13 Floor L2,1/1/2023
+2365,Hallway MapNode 16 Floor L2,1/1/2023
+2370,Hallway MapNode 17 Floor L2,1/1/2023
+2375,Cardiovascular Imaging Center Floor L2,1/1/2023
+2380,Cardiac Stress Test Lab Floor L2,1/1/2023
+2385,CVRR Floor L2,1/1/2023
+2390,Restroom MapNode 4 Floor L2,1/1/2023
+2395,Hallway Connector 11 Floor 2,1/1/2023
+2400,Hallway Connector 12 Floor 2,1/1/2023
+2405,Garden Cafe,1/1/2023
+2410,Hallway Connector 13 Floor 2,1/1/2023
+2415,Stairwell 1 Floor 2,1/1/2023
+2420,Hallway Connector 14 Floor 2,1/1/2023
+2425,Hallway Connector 16 Floor 2,1/1/2023
+2430,Vending Machine Floor 2,1/1/2023
+2435,Bathroom 1 Tower Floor 2,1/1/2023
+2440,Gift Shop Tower Floor 2,1/1/2023
+2445,Hallway Connector 17 Floor 2,1/1/2023
+2450,Hallway Connector 18 Floor 2,1/1/2023
+2455,Stairwell 2 Tower Floor 2,1/1/2023
+2460,Hallway Connector 19 Floor 2,1/1/2023
+2465,Escalator 1 Floor 2,1/1/2023
+2470,Hallway Connector 15 Floor 2,1/1/2023
+2475,Hallway Connector 20 Floor 2,1/1/2023
+2480,Endoscopy,1/1/2023
+2485,Hallway Connector 5 Floor 3,1/1/2023
+2490,Stairwell 1 Floor 3,1/1/2023
+2495,Hallway Connector 4 Floor 3,1/1/2023
+2500,Hallway Connector 3 Floor 3,1/1/2023
+2505,Hallway Connector 16 Floor 3,1/1/2023
+2510,Reproductive Endocrine Labs,1/1/2023
+2515,Hallway Connector 17 Floor 3,1/1/2023
+2520,Hallway Connector 6 Floor 3,1/1/2023
+2525,Hallway Connector 7 Floor 3,1/1/2023
+2530,Dialysis Waiting Room,1/1/2023
+2535,Hallway Connector 8 Floor 3,1/1/2023
+2540,Nursing Room,1/1/2023
+2545,Hallway Connector 9 Floor 3,1/1/2023
+2550,Hallway Connector 10 Floor 3,1/1/2023
+2555,Bathroom 1 Tower Floor 3,1/1/2023
+2560,Hallway Connector 11 Floor 3,1/1/2023
+2565,MICU 3BC Waiting Room,1/1/2023
+2570,Hallway Connector 12 Floor 3,1/1/2023
+2575,Hallway Connector 13 Floor 3,1/1/2023
+2580,Hallway Connector 14 Floor 3,1/1/2023
+2585,Hallway Connector 15 Floor 3,1/1/2023
+2590,Bathroom 2 Tower Floor 3,1/1/2023
+2595,Hallway Node 1,1/1/2023
+2600,Hallway Node 2,1/1/2023
+2605,Hallway Node 3,1/1/2023
+2610,Hallway Node 4,1/1/2023
+2615,Hallway Node 5,1/1/2023
+2620,Hallway Node 6,1/1/2023
+2625,Hallway Node 7,1/1/2023
+2630,Hallway Node 8,1/1/2023
+2635,Hallway Node 9,1/1/2023
+2640,Hallway Node 10,1/1/2023
+2650,Hallway Node 12,1/1/2023
+2655,Hallway Node 13,1/1/2023
+2660,Hallway Node 14,1/1/2023
+2665,Hallway Node 15,1/1/2023
+2670,Hallway Node 16,1/1/2023
+2675,Hallway Node 17,1/1/2023
+2680,Hallway Node 18,1/1/2023
+2685,Hallway Node 19,1/1/2023
+2690,Hallway Node 20,1/1/2023
+2695,Hallway Node 22,1/1/2023
+2700,Restroom 1 - Family,1/1/2023
+2705,Restroom 2,1/1/2023
+2710,Restroom 3,1/1/2023
+2715,Restroom 4 - M wheelchair,1/1/2023
+2720,Restroom 5 - F wheelchair,1/1/2023
+2725,Center for Infertility and Reproductive Surgery,1/1/2023
+2730,Gynecology Oncology MIGS,1/1/2023
+2735,General Surgical Specialties Suite A,1/1/2023
+2740,General Surgical Specialties Suite B,1/1/2023
+2745,Urology,1/1/2023
+2750,Maternal Fetal Practice,1/1/2023
+2755,Obstetrics,1/1/2023
+2760,Fetal Med & Genetics,1/1/2023
+2765,Gynecology,1/1/2023
+2770,Elevator E Floor 1,1/1/2023
+2775,Elevator E Floor 2,1/1/2023
+2780,Elevator F Floor 1,1/1/2023
+2785,Elevator F Floor 2,1/1/2023
+2790,Elevator G Floor 1,1/1/2023
+2795,Elevator G Floor 2,1/1/2023
+2800,Elevator H Floor L1,1/1/2023
+2805,Elevator H Floor 1,1/1/2023
+2810,Elevator H Floor 2,1/1/2023
+2815,Elevator H Floor 3,1/1/2023
+2820,Elevator J Floor L2,1/1/2023
+2825,Elevator J Floor L1,1/1/2023
+2830,Elevator J Floor 1,1/1/2023
+2835,Elevator J Floor 2,1/1/2023
+2840,Elevator J Floor 3,1/1/2023
+2845,Elevator K Floor L2,1/1/2023
+2850,Elevator K Floor L1,1/1/2023
+2855,Elevator K Floor 1,1/1/2023
+2860,Elevator K Floor 2,1/1/2023
+2865,Elevator K Floor 3,1/1/2023
+2870,Elevator L Floor L2,1/1/2023
+2875,Elevator L Floor L1,1/1/2023
+2880,Elevator L Floor 1,1/1/2023
+2885,Elevator L Floor 2,1/1/2023
+2890,Elevator L Floor 3,1/1/2023
+2895,Elevator M Floor L2,1/1/2023
+2900,Elevator M Floor L1,1/1/2023
+2905,Elevator M Floor 1,1/1/2023
+2910,Elevator M Floor 2,1/1/2023
+2915,Elevator M Floor 3,1/1/2023
+2920,Hallway Connector 1 Floor L2,1/1/2023
+2925,Hallway Connector 2 Floor L2,1/1/2023
+2930,Hallway Connector 1 Floor 1,1/1/2023
+2935,Hallway Connector 2 Floor 1,1/1/2023
+2940,Hallway Connector 1 Floor 3,1/1/2023
+2945,Hallway Connector 2 Floor 3,1/1/2023
+2950,Hallway Connector 1 Floor 2,1/1/2023
+2955,Hallway Connector 2 Floor 2,1/1/2023
+2960,Hallway Connector 3 Floor 2,1/1/2023
+2965,Hallway Connector 4 Floor 2,1/1/2023
+2970,Hallway Connector 5 Floor 2,1/1/2023
+2975,Hallway Connector 6 Floor 2,1/1/2023
+2980,Hallway Connector 7 Floor 2,1/1/2023
+2985,Hallway Connector 8 Floor 2,1/1/2023
+2990,Hallway Connector 9 Floor 2,1/1/2023
+2995,Hallway Connector 10 Floor 2,1/1/2023
+1105,Hall 1 Level 2,1/1/2023
+1110,BTM Conference Center,1/1/2023
+1115,Neuroscience Waiting Room,1/1/2023
+1120,Orthopedics and Rhemutalogy,1/1/2023
+1125,MS Waiting,1/1/2023
+1130,CART Waiting,1/1/2023
+1135,Elevator S 01,1/1/2023
+1140,Elevator S 02,1/1/2023
+1145,Elevator S Floor 3,1/1/2023
+1150,Elevator S L2,1/1/2023
+1155,Parking Garage L2,1/1/2023
+1160,Hall 1 Level 1,1/1/2023
+1165,Hall 2 Level 2,1/1/2023
+1170,Hall 1 Level 3,1/1/2023
+1175,Hallway to Elevator,1/1/2023
+1180,Hall 2 Level 1,1/1/2023
+1185,Hall 3 Level 2,1/1/2023
+1190,Hall 2 Level 3,1/1/2023
+1195,Hallway Intersection,1/1/2023
