@@ -1,30 +1,22 @@
 package edu.wpi.teame.controllers;
 
-import io.github.palexdev.materialfx.controls.MFXButton;
-import javafx.fxml.FXML;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.fxml.FXML;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
 public class HomePageController {
-  @FXML
-  MFXButton serviceRequestButton;
-  @FXML
-  MFXButton signageButton;
-  @FXML
-  MFXButton menuButton;
-  @FXML
-  MFXButton menuBarSignage;
-  @FXML
-  MFXButton menuBarServices;
-  @FXML
-  MFXButton menuBarHome;
-  @FXML
-  MFXButton menuBarMap;
-  @FXML
-  MFXButton menuBarExit;
+  @FXML MFXButton serviceRequestButton;
+  @FXML MFXButton signageButton;
+  @FXML MFXButton menuButton;
+  @FXML MFXButton menuBarSignage;
+  @FXML MFXButton menuBarServices;
+  @FXML MFXButton menuBarHome;
+  @FXML MFXButton menuBarMap;
+  @FXML MFXButton menuBarExit;
 
   public void initialize() {
     menuDropDownVisibilty(false);
@@ -37,6 +29,12 @@ public class HomePageController {
     showMenuButtonsWhenHovered(menuBarExit);
     serviceRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
+
+    menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
+    menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
+    menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    //menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP)); //Uncomment when Map Page is made
+    //menuBarExit.setOnMouseClicked(event -> Navigation.navigate(Screen.EXIT)); //Uncomment when we know where exit goes
   }
 
   public void menuDropDownVisibilty(boolean bool) {
@@ -49,12 +47,12 @@ public class HomePageController {
 
   public void showMenuButtonsWhenHovered(MFXButton button) {
     button.setOnMouseEntered(
-            event -> {
-              menuDropDownVisibilty(true);
-            });
+        event -> {
+          menuDropDownVisibilty(true);
+        });
     button.setOnMouseExited(
-            event -> {
-              menuDropDownVisibilty(false);
-            });
+        event -> {
+          menuDropDownVisibilty(false);
+        });
   }
 }
