@@ -20,7 +20,7 @@ public class HomeController {
   @FXML MenuItem exitButton;
   @FXML MenuItem about;
   @FXML BorderPane borderPane;
-  @FXML MFXButton employeeButton;
+  @FXML MFXButton loginButton;
 
   private static Parent root;
 
@@ -32,7 +32,7 @@ public class HomeController {
     mealButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
     exitButton.setOnAction(actionEvent -> Platform.exit());
     furnitureButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FURNITURE_REQUEST));
-    employeeButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SORT));
+    loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.READCSV));
 
     about.setOnAction(
         event -> {
