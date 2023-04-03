@@ -9,8 +9,8 @@ public class FurnitureRequest {
     private Timestamp requestDate;
     private RequestStatus requestStatus;
 
-    public FurnitureRequest(String requesterName, String location, String furnitureType, String staffMember,
-                            String additionalNotes, Timestamp requestDate, RequestStatus requestStatus, Integer requestID) {
+    public FurnitureRequest(Integer requestID, String requesterName, String location, String furnitureType, String staffMember,
+                            String additionalNotes, Timestamp requestDate, RequestStatus requestStatus) {
         this.requesterName = requesterName;
         this.location = location;
         this.furnitureType = furnitureType;

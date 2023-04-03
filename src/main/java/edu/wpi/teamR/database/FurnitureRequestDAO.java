@@ -29,23 +29,23 @@ public class FurnitureRequestDAO {
     public ArrayList<FurnitureRequest> getFurnitureRequests(){
         return furnitureRequests;
     }
-    public FurnitureRequest addFurnitureRequest(String requesterName, String location, String furnitureType,
+    public FurnitureRequest addFurnitureRequest(int requestID, String requesterName, String location, String furnitureType,
                                                 String staffMember, String additionalNotes, Timestamp requestDate,
-                                                RequestStatus requestStatus, Integer requestID) throws SQLException, ClassNotFoundException {
+                                                RequestStatus requestStatus) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
-        String sqlInsert = "INSERT INTO "+schemaName+"."+tableName+"(requesterName, location, furnitureType, staffMember, additionalNotes, requestDate, requestStatus) ";
-        sqlInsert+= "VALUES(\'"+requesterName+"\',\'"+location+"\',\'"+furnitureType+"\',\'"+staffMember+"\',\""+additionalNotes+
+        String sqlInsert = "INSERT INTO "+schemaName+"."+tableName+"(furnitureID, requesterName, location, furnitureType, staffMember, additionalNotes, requestDate, requestStatus) ";
+        sqlInsert+= "VALUES("+requestID+",\'"+requesterName+"\',\'"+location+"\',\'"+furnitureType+"\',\'"+staffMember+"\',\""+additionalNotes+
             "\',\'"+requestDate.toString()+"\',\'"+requestStatus.toString()+"\'"+requestID+");";
         statement.executeUpdate(sqlInsert);
-        FurnitureRequest aReq = new FurnitureRequest(requesterName, location, furnitureType, staffMember, additionalNotes, requestDate, requestStatus, requestID);
+        FurnitureRequest aReq = new FurnitureRequest(requestID, requesterName, location, furnitureType, staffMember, additionalNotes, requestDate, requestStatus);
         furnitureRequests.add(aReq);
         closeConnection(connection);
         return aReq;
     }
-    public void deleteFurnitureRequests(String requesterName, String location, String furnitureType,
+    public void deleteFurnitureRequests(Integer requestID, String requesterName, String location, String furnitureType,
                             String staffMember, String additionalNotes, Timestamp requestDate,
-                            RequestStatus requestStatus, Integer requestID) throws SQLException, ClassNotFoundException {
+                            RequestStatus requestStatus) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
         if(requesterName == null && location == null && furnitureType == null && staffMember == null && additionalNotes == null
@@ -123,18 +123,19 @@ public class FurnitureRequestDAO {
     }
 
     //TODO timestamp is not correct
-    public void modifyFurnitureRequestByID(String requesterName, String location, String furnitureType,
+    public void modifyFurnitureRequestByID(Integer requestID, String requesterName, String location, String furnitureType,
                                String staffMember, String additionalNotes, Timestamp requestDate,
-                               RequestStatus requestStatus, Integer requestID) throws SQLException, ClassNotFoundException {
+                               RequestStatus requestStatus) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
         String sqlUpdate = "UPDATE " + schemaName + "." + tableName + " SET requesterName = \'" + requesterName + "\'";
         sqlUpdate += ", location = \'" + location + "\', furnitureType = \'" + furnitureType+ "\', staffMember = \'" + staffMember +
                 "\', additionalNotes = \'" + additionalNotes + "\', requestDate = \'" + requestDate +
-                    "\', requestStatus = \'" + requestStatus + "\', requestID = " + requestID + " WHERE requestID = " + requestID;
+                    "\', requestStatus = \'" + requestStatus + "\' WHERE requestID = " + requestID;
         statement.executeUpdate(sqlUpdate);
         closeConnection(connection);
-        FurnitureRequest aReq = selectRequests(null, null, null, null, null, null, null, requestID).get(0);
+        FurnitureRequest aReq = selectFurnitureRequests(requestID, null, null, null, null, null, null, null).get(0);
+        aReq.setRequestID(requestID);
         aReq.setRequesterName(requesterName);
         aReq.setLocation(location);
         aReq.setFurnitureType(furnitureType);
@@ -142,12 +143,11 @@ public class FurnitureRequestDAO {
         aReq.setAdditionalNotes(additionalNotes);
         aReq.setRequestDate(requestDate);
         aReq.setRequestStatus(requestStatus);
-        aReq.setRequestID(requestID);
     }
 
-    public ArrayList<FurnitureRequest> selectRequests(String requesterName, String location, String furnitureType,
+    public ArrayList<FurnitureRequest> selectFurnitureRequests(Integer requestID, String requesterName, String location, String furnitureType,
                                           String staffMember, String additionalNotes, Timestamp requestDate,
-                                          RequestStatus requestStatus, Integer requestID){
+                                          RequestStatus requestStatus){
         ArrayList<FurnitureRequest> aList = new ArrayList<FurnitureRequest>();
         for(int i = 0; i<furnitureRequests.size(); i++){
             Boolean requesterNameCheck = requesterName == null || requesterName == furnitureRequests.get(i).getRequesterName();
@@ -163,6 +163,8 @@ public class FurnitureRequestDAO {
         }
         return aList;
     }
+
+
 
     private Connection createConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
