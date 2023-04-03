@@ -189,61 +189,6 @@ public class Graph {
   }
 
   /**
-   * Returns the number of edges in the graph
-   *
-   * @return number of edges in the graph
-   */
-  public int getNumEdges() {
-    int numEdges = 0;
-    for (Node node : nodes.values()) {
-      numEdges += node.getEdges().size();
-    }
-    return numEdges;
-  }
-
-  /**
-   * Returns a list of the neighbors of a given node
-   *
-   * @param node - node to find neighbors of
-   * @return list of neighbors
-   */
-  public List<Node> getNeighbors(Node node) {
-    LinkedList<Node> neighbors = new LinkedList<>();
-
-    for (Edge edge : node.getEdges()) {
-      neighbors.add(edge.getEndNode());
-    }
-
-    return neighbors;
-  }
-
-  /**
-   * Returns a list of directions from start to end
-   *
-   * @param start - start node
-   * @param end - end node
-   * @return list of directions
-   */
-  public List<Node> getDirections_BFS(Node start, Node end) {
-    LinkedList queue = new LinkedList();
-    LinkedList<Node> visited = new LinkedList<>();
-    queue.add(start);
-    visited.add(start);
-    while (!queue.isEmpty()) {
-      Node current = (Node) queue.remove();
-      if (current.equals(end)) {
-        return visited; // if we found the end node, return the list of visited nodes
-      }
-      for (Node neighbor : getNeighbors(current)) {
-        if (!visited.contains(neighbor)) {
-          visited.add(neighbor);
-          queue.add(neighbor); // add the neighbor to the queue to be visited
-        }
-      }
-    }
-    return visited; // if we didn't find the end node, return the list of visited nodes
-  }
-  /**
    * Returns a list of directions from start to end
    *
    * @param start - start node
@@ -285,45 +230,6 @@ public class Graph {
       open.remove(current);
     }
     return null;
-  }
-
-  /** Prints the graph */
-  public void printGraph() {
-    for (Node node : nodes.values()) {
-      System.out.print(node.getNodeID() + ", Edges: ");
-      for (Edge edge : node.getEdges()) {
-        System.out.print(edge.getEndNode().getNodeID() + " ");
-      }
-      System.out.println();
-    }
-  }
-
-  /**
-   * Prints the directions from start to end
-   *
-   * @param start - start node
-   * @param end - end node
-   */
-  public void printDirections(String start, String end) {
-    Node startNode = nodes.get(start);
-    Node endNode = nodes.get(end);
-    Node saveTemp = null;
-    List<Node> directions = getDirections_BFS(startNode, endNode);
-    double totalDist = 0;
-
-    System.out.println();
-    for (Node node : directions) {
-      if (saveTemp != null) {
-        totalDist +=
-            Math.hypot(
-                saveTemp.getXCoord() - node.getXCoord(), saveTemp.getYCoord() - node.getYCoord());
-      }
-
-      System.out.print(" --> " + node.getNodeID());
-      saveTemp = node;
-    }
-
-    System.out.print(": Total dist: " + totalDist);
   }
 
   public void printDirectionsAStar(String start, String end) {
