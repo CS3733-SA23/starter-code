@@ -14,6 +14,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
+//public List<String> getLongNamesFromMove(List<MoveAttribute> mv)
+
 public class GroundFloorNavMapController {
   @FXML private MFXButton firstFloorButton;
 

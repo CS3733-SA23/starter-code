@@ -1,16 +1,16 @@
 package Database;
 
-import edu.wpi.teame.map.Floor;
-import edu.wpi.teame.map.HospitalEdge;
-import edu.wpi.teame.map.HospitalNode;
-import edu.wpi.teame.map.MoveAttribute;
-import edu.wpi.teame.map.NodeInitializer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import edu.wpi.teame.map.Floor;
+import edu.wpi.teame.map.HospitalEdge;
+import edu.wpi.teame.map.HospitalNode;
+import edu.wpi.teame.map.MoveAttribute;
+import edu.wpi.teame.map.NodeInitializer;
 
 public class DatabaseGraphController {
   DatabaseController DBC;
@@ -62,8 +62,6 @@ public class DatabaseGraphController {
     }
     if (nodeList.isEmpty()) {
       System.out.println("No nodes retrieved");
-    } else {
-      System.out.println("Edges and Nodes retrieved successfully.");
     }
   }
 
@@ -125,5 +123,13 @@ public class DatabaseGraphController {
     } catch (SQLException e) {
       throw new RuntimeException("Something went wrong");
     }
+  }
+
+  public List<String> getLongNamesFromMove(List<MoveAttribute> mv) {
+    List<String> longNames = new ArrayList<>();
+    for (MoveAttribute moveAttribute : mv) {
+      longNames.add(moveAttribute.getLongName());
+    }
+    return longNames;
   }
 }
