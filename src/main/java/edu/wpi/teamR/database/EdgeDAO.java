@@ -29,9 +29,9 @@ public class EdgeDAO {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
     ResultSet resultSet = statement.executeQuery("SELECT * FROM "+schemaName+"."+tableName+";");
-    while(resultset.next()){
-        Integer startNode = resultset.getInt("startNode");
-        Integer endNode = resultset.getInt("endNode");
+    while(resultSet.next()){
+        Integer startNode = resultSet.getInt("startNode");
+        Integer endNode = resultSet.getInt("endNode");
         Edge aEdge = new Edge(startNode, endNode);
         edges.add(aEdge);
     }

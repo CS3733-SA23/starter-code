@@ -111,7 +111,7 @@ class FurnitureRequestDAOTest {
                 "Actually, I'd rather go to sleep",
                 first,
                 RequestStatus.Unstarted);
-        Boolean matchingRequestID = updatedOne.getRequestID()==correctOne.getRequestID();
+        assertEquals(updatedOne.getRequestID(), correctOne.getRequestID());
         Boolean matchingRequesterName = updatedOne.getRequesterName().equals(correctOne.getRequesterName());
         Boolean matchingLocation = updatedOne.getLocation().equals(correctOne.getLocation());
         Boolean matchingFurnitureType = updatedOne.getFurnitureType().equals(correctOne.getFurnitureType());
