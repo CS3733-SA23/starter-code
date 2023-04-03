@@ -1,6 +1,7 @@
 package edu.wpi.teamR.navigation;
 
 public enum Screen {
+  PATHFINDING("views/Map.fxml"),
   ROOT("views/Root.fxml"),
   HOME("views/Home.fxml"),
   MEAL_REQUEST("views/MealRequest.fxml"),
