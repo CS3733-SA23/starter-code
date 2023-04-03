@@ -2,7 +2,7 @@ plugins {
     id 'application'
     id 'java'
     id 'jacoco'
-    id 'com.diffplug.gradle.spotless' version '3.27.1'
+    // id 'com.diffplug.gradle.spotless' version '3.27.1'
     id "io.freefair.lombok" version "6.6.1"
     id 'org.openjfx.javafxplugin' version '0.0.13'
 }
@@ -135,13 +135,13 @@ jacocoTestCoverageVerification {
 
 check.dependsOn jacocoTestCoverageVerification
 jacocoTestCoverageVerification.dependsOn jacocoTestReport
-compileJava.dependsOn 'spotlessApply'
+// compileJava.dependsOn 'spotlessApply'
 
-spotless {
-    java {
-        googleJavaFormat()
-    }
-}
+//spotless {
+//    java {
+//        googleJavaFormat()
+//    }
+//}
 
 tasks.withType(Jar).all {
     duplicatesStrategy 'exclude'
