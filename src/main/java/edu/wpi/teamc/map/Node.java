@@ -25,12 +25,7 @@ public class Node {
    * @param building - building of the node ex: CCONF
    */
   public Node(
-      String nodeID,
-      int xCoord,
-      int yCoord,
-      String floor,
-      String building,
-      List<Edge> edges) {
+      String nodeID, int xCoord, int yCoord, String floor, String building, List<Edge> edges) {
     this.nodeID = nodeID;
     this.xCoord = xCoord;
     this.yCoord = yCoord;
