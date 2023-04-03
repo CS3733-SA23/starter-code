@@ -144,7 +144,7 @@ public class Graph {
   }
 
   /**
-   * <<<<<<< HEAD ======= Removes a node from the graph
+   * Removes a node from the graph
    *
    * @param node - the node to be removed
    */
