@@ -29,7 +29,7 @@ public class NodeDAO {
     public ArrayList<Node> getNodes(){
         return nodes;
     }
-    public Node addNode(Integer nodeID, Integer xCoord, Integer yCoord, String floorNum, String building) throws SQLException {
+    public Node addNode(Integer nodeID, Integer xCoord, Integer yCoord, String floorNum, String building) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
         String sqlInsert = "INSERT INTO "+schemaName+"."+tableName+"(nodeID,xCoord,yCoord,floorNum,building) ";
@@ -40,7 +40,7 @@ public class NodeDAO {
         closeConnection(connection);
         return aNode;
     }
-    public void deleteNodes(Integer nodeID, Integer xCoord, Integer yCoord, String floorNum, String building) throws SQLException {
+    public void deleteNodes(Integer nodeID, Integer xCoord, Integer yCoord, String floorNum, String building) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
         if(nodeID == null && xCoord == null && yCoord == null && floorNum == null && building == null){
