@@ -1,4 +1,3 @@
-
 package edu.wpi.teame.controllers;
 
 import edu.wpi.teame.navigation.Navigation;
@@ -15,12 +14,12 @@ public class MealRequestController implements IRequestController {
   @FXML MFXButton returnButtonMealRequest;
   @FXML MFXButton cancelButton;
   @FXML MFXButton submitButton;
-  @FXML MFXComboBox deliveryTime;
   @FXML MFXTextField notes;
   @FXML MFXTextField recipientName;
   @FXML MFXTextField roomNumber;
-  @FXML MFXComboBox mainCourseChoice;
-  @FXML MFXComboBox sideCourseChoice;
+  @FXML MFXComboBox<String> deliveryTime;
+  @FXML MFXComboBox<String> mainCourseChoice;
+  @FXML MFXComboBox<String> sideCourseChoice;
 
   ObservableList<String> deliveryTimes =
       FXCollections.observableArrayList(

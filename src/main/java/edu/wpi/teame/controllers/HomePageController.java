@@ -17,6 +17,7 @@ public class HomePageController {
   @FXML MFXButton menuBarHome;
   @FXML MFXButton menuBarMap;
   @FXML MFXButton menuBarExit;
+  @FXML MFXButton mapsButton;
 
   public void initialize() {
     menuDropDownVisibilty(false);
@@ -29,12 +30,15 @@ public class HomePageController {
     showMenuButtonsWhenHovered(menuBarExit);
     serviceRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
+    mapsButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_MENU));
 
     menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    //menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP)); //Uncomment when Map Page is made
-    //menuBarExit.setOnMouseClicked(event -> Navigation.navigate(Screen.EXIT)); //Uncomment when we know where exit goes
+    // menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP)); //Uncomment when Map
+    // Page is made
+    // menuBarExit.setOnMouseClicked(event -> Navigation.navigate(Screen.EXIT)); //Uncomment when we
+    // know where exit goes
   }
 
   public void menuDropDownVisibilty(boolean bool) {

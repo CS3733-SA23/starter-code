@@ -1,4 +1,3 @@
-
 package edu.wpi.teame.controllers;
 
 import edu.wpi.teame.navigation.Navigation;
@@ -28,9 +27,9 @@ public class FlowerRequestController implements IRequestController {
   @FXML MFXButton flowerRequestSubmit;
   @FXML MFXTextField recipientName;
   @FXML MFXTextField roomNumber;
-  @FXML MFXComboBox deliveryTime;
-  @FXML MFXComboBox flowerChoice;
-  @FXML MFXComboBox numOfFlowers;
+  @FXML MFXComboBox<String> deliveryTime;
+  @FXML MFXComboBox<String> flowerChoice;
+  @FXML MFXComboBox<String> numOfFlowers;
   @FXML MFXTextField notes;
   @FXML MFXButton cancelButton;
 
@@ -80,4 +79,3 @@ public class FlowerRequestController implements IRequestController {
     Navigation.navigate(Screen.HOME);
   }
 }
-
