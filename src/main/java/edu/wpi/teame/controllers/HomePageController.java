@@ -19,7 +19,7 @@ public class HomePageController {
   @FXML MFXButton menuBarExit;
 
   public void initialize() {
-    menuDropDownVisibilty(false);
+    menuDropDownVisibility(false);
 
     showMenuButtonsWhenHovered(menuButton);
     showMenuButtonsWhenHovered(menuBarSignage);
@@ -33,11 +33,13 @@ public class HomePageController {
     menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    //menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP)); //Uncomment when Map Page is made
-    //menuBarExit.setOnMouseClicked(event -> Navigation.navigate(Screen.EXIT)); //Uncomment when we know where exit goes
+    // menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP)); //Uncomment when Map
+    // Page is made
+    // menuBarExit.setOnMouseClicked(event -> Navigation.navigate(Screen.EXIT)); //Uncomment when we
+    // know where exit goes
   }
 
-  public void menuDropDownVisibilty(boolean bool) {
+  public void menuDropDownVisibility(boolean bool) {
     menuBarSignage.setVisible(bool);
     menuBarServices.setVisible(bool);
     menuBarHome.setVisible(bool);
@@ -48,11 +50,11 @@ public class HomePageController {
   public void showMenuButtonsWhenHovered(MFXButton button) {
     button.setOnMouseEntered(
         event -> {
-          menuDropDownVisibilty(true);
+          menuDropDownVisibility(true);
         });
     button.setOnMouseExited(
         event -> {
-          menuDropDownVisibilty(false);
+          menuDropDownVisibility(false);
         });
   }
 }
