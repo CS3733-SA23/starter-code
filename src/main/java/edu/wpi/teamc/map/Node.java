@@ -60,10 +60,7 @@ public class Node {
       int xCoord,
       int yCoord,
       String floor,
-      String building,
-      String nodeType,
-      String longName,
-      String shortName) {
+      String building) {
     this.nodeID = nodeID;
     this.xCoord = xCoord;
     this.yCoord = yCoord;
