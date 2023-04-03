@@ -17,6 +17,7 @@ public class FloorOneMapNavController {
   @FXML private MFXButton groundFloorButton;
 
   @FXML private MFXButton lowerLevelOneButton;
+
   @FXML
   public void initialize() {
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));

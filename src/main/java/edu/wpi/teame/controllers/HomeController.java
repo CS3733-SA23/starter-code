@@ -15,7 +15,7 @@ public class HomeController {
   @FXML MFXButton flowersButton;
   @FXML MFXButton mealRequestButton;
   @FXML MFXButton exitButton;
-
+  @FXML MFXButton mapsButton;
   @FXML ImageView logoImage;
 
   @FXML
@@ -40,6 +40,9 @@ public class HomeController {
 
     mouseSetup(mealRequestButton);
     mealRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
+
+    mouseSetup(mapsButton);
+    mapsButton.setOnMouseClicked(event -> Navigation.navigate(Screen.GROUND_FLOOR));
   }
 
   private void mouseSetup(MFXButton btn) {

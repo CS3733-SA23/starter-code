@@ -28,5 +28,4 @@ public class LowerLevelOneMapNavController {
     secondFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_TWO));
     thirdFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_THREE));
   }
-
 }
