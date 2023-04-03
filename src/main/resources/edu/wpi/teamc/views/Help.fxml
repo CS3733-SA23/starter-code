@@ -53,7 +53,7 @@
             </Text>
          </children>
       </VBox>
-      <VBox layoutX="333.0" layoutY="112.0" prefHeight="278.0" prefWidth="245.0" spacing="15.0">
+      <VBox layoutX="333.0" layoutY="112.0" prefHeight="165.0" prefWidth="245.0" spacing="15.0">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Export: Click Export button to export a map csv file" wrappingWidth="201.8349609375">
                <font>
