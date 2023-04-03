@@ -13,7 +13,7 @@ public class HeaderController {
   @FXML private MenuButton menuButton;
   @FXML private MenuItem serviceRequestMenu;
   @FXML private MenuItem mapMenu;
-  @FXML private MenuItem officeMovesMenu;
+
   @FXML private MenuItem signageMenu;
   @FXML private MenuItem pathfindingMenu;
   @FXML private MenuItem exitMenu;
@@ -25,7 +25,6 @@ public class HeaderController {
     // setPageTitle("New page title");
     serviceRequestMenu.setOnAction(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
     mapMenu.setOnAction(event -> Navigation.navigate(Screen.MAP));
-    officeMovesMenu.setOnAction(event -> Navigation.navigate(Screen.OFFICE_MOVES));
     signageMenu.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE));
     pathfindingMenu.setOnAction(event -> Navigation.navigate(Screen.PATHFINDING));
     // exitMenu

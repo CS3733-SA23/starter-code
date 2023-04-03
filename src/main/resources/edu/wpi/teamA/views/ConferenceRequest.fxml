@@ -9,14 +9,16 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.Navigation.RoomController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.Navigation.ConferenceRequestController">
     <children>
         <fx:include fx:id="header" source="Header.fxml" />
         <fx:include fx:id="footer" layoutY="620.0" source="Footer.fxml" />
-        <fx:include fx:id="back" layoutX="20.0" layoutY="130.0" source="ServiceBack.fxml" />
         <Text fx:id="title" fill="#eebd28" layoutY="-32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confernce Room Reservation" textAlignment="CENTER" wrappingWidth="700.0" x="290.0" y="100.0">
             <font>
                 <Font name="Open Sans Bold" size="48.0" />
@@ -69,19 +71,43 @@
                   <Insets bottom="10.0" />
                </GridPane.margin>
             </Text>
-            <MFXDatePicker prefHeight="50.0" prefWidth="162.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <MFXTextField prefHeight="50.0" prefWidth="111.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <MFXTextField prefHeight="51.0" prefWidth="335.0" GridPane.columnIndex="1" />
-            <MFXComboBox GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <MFXComboBox GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <MFXTextField prefHeight="74.0" prefWidth="336.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <MFXDatePicker fx:id="datePicker" onAction="#validateButton" onContextMenuRequested="#validateButton" onMouseClicked="#validateButton" onMouseMoved="#validateButton" onMousePressed="#validateButton" onMouseReleased="#validateButton" prefHeight="50.0" prefWidth="162.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <MFXTextField fx:id="roomField" onTouchReleased="#validateButton" prefHeight="50.0" prefWidth="111.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <MFXTextField fx:id="nameField" onTouchReleased="#validateButton" prefHeight="51.0" prefWidth="335.0" GridPane.columnIndex="1" />
+            <MFXComboBox fx:id="startCombo" onHiding="#validateButton" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <MFXComboBox fx:id="endCombo" onHiding="#validateButton" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <MFXTextField fx:id="commentField" prefHeight="74.0" prefWidth="336.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <MFXButton fx:id="clearButton" layoutX="686.0" layoutY="572.0" text="Clear" />
-      <MFXButton layoutX="939.0" layoutY="543.0" prefHeight="58.0" prefWidth="120.0" style="-fx-background-color: #012D5A;" text="Submit" textFill="#eebd28">
+      <MFXButton fx:id="clearButton" layoutX="686.0" layoutY="572.0" onAction="#clear" text="Clear" />
+      <MFXButton fx:id="submitButton" layoutX="939.0" layoutY="543.0" prefHeight="58.0" prefWidth="120.0" style="-fx-background-color: #012D5A;" text="Submit" textFill="#eebd28">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
+      </MFXButton>
+      <MFXButton id="back" fx:id="backButton" layoutX="127.0" layoutY="23.0" onAction="#back" prefHeight="53.0" prefWidth="89.0" style="-fx-background-color: #0E5DAD; -fx-background-radius: 15; -fx-text-fill: WHITE;" text="Back" textAlignment="CENTER" textFill="#fcfcfc">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="Open Sans Bold" size="24.0" />
+         </font>
+         <rippleColor>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </rippleColor>
       </MFXButton>
     </children>
 </AnchorPane>
