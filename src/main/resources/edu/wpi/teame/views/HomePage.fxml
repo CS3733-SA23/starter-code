@@ -59,11 +59,81 @@
 
             <VBox layoutX="55.0" layoutY="65.0" prefHeight="308.0" prefWidth="56.0">
                <children>
-                  <MFXButton fx:id="menuBarSignage" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Signage" textFill="WHITE" />
-                  <MFXButton fx:id="menuBarServices" prefHeight="94.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Services" textFill="WHITE" />
-                  <MFXButton fx:id="menuBarHome" prefHeight="94.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Home" textFill="WHITE" />
-                  <MFXButton fx:id="menuBarMap" prefHeight="94.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Map" textFill="WHITE" />
-                  <MFXButton fx:id="menuBarExit" defaultButton="true" prefHeight="94.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Exit" textFill="WHITE" />
+                  <MFXButton fx:id="menuBarSignage" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Arrow.png" />
+                           </image>
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.949999988079071" green="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </ImageView>
+                     </graphic></MFXButton>
+                  <MFXButton fx:id="menuBarServices" prefHeight="94.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Services" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/food.png" />
+                           </image>
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.9490196108818054" green="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </ImageView>
+                     </graphic></MFXButton>
+                  <MFXButton fx:id="menuBarHome" prefHeight="94.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Home" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/home.png" />
+                           </image>
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.9490196108818054" green="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </ImageView>
+                     </graphic></MFXButton>
+                  <MFXButton fx:id="menuBarMap" prefHeight="94.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Map" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/database.png" />
+                           </image>
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.9490196108818054" green="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </ImageView>
+                     </graphic></MFXButton>
+                  <MFXButton fx:id="menuBarExit" defaultButton="true" prefHeight="94.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Exit" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/exit.png" />
+                           </image>
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.9490196108818054" green="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </ImageView>
+                     </graphic></MFXButton>
                </children>
             </VBox>
 
