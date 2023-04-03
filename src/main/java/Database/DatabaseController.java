@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DatabaseController {
+  public Connection getC() {
+    return c;
+  }
+
   private Connection c;
   private static List<HospitalNode> nodeList = new ArrayList<>();
   private static List<HospitalEdge> edgeList = new ArrayList<>();
