@@ -13,10 +13,11 @@ import javafx.scene.control.ChoiceBox;
 public class FurnitureController {
 
   @FXML MFXButton cancelButton;
-  @FXML MFXButton clearButton;
+  @FXML MFXButton resetButton;
   @FXML MFXButton submitButton;
   @FXML MFXTextField nameField;
   @FXML MFXTextField locationField;
+  @FXML MFXTextField staffMemberField;
   @FXML MFXTextField notesField;
   @FXML ChoiceBox furnitureTypeBox;
 
@@ -28,7 +29,7 @@ public class FurnitureController {
   @FXML
   public void initialize() {
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    clearButton.setOnMouseClicked(event -> clear());
+    resetButton.setOnMouseClicked(event -> clear());
     submitButton.setOnMouseClicked(event -> submit());
 
     furnitureTypeBox.setValue("Select Furniture");
@@ -39,6 +40,7 @@ public class FurnitureController {
   public void clear() {
     nameField.clear();
     locationField.clear();
+    staffMemberField.clear();
     notesField.clear();
 
     furnitureTypeBox.setValue("Select Furniture");
@@ -54,12 +56,18 @@ public class FurnitureController {
 
     furnitureFields =
         new FurnitureFields(
-            nameField.getText(), locationField.getText(), notesField.getText(), furnitureType);
+            nameField.getText(),
+            locationField.getText(),
+            staffMemberField.getText(),
+            notesField.getText(),
+            furnitureType);
 
     System.out.println(
         furnitureFields.getName()
             + "\n"
             + furnitureFields.getLocation()
+            + "\n"
+            + furnitureFields.getStaffMember()
             + "\n"
             + furnitureFields.getNotes()
             + "\n"

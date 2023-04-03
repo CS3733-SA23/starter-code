@@ -8,8 +8,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.*;
 import org.controlsfx.control.PopOver;
 
 public class HomeController {
@@ -17,24 +17,25 @@ public class HomeController {
   @FXML MFXButton navigateButton;
   @FXML MFXButton mealButton;
   @FXML MFXButton furnitureButton;
-  @FXML MFXButton helpButton;
-  @FXML MFXButton exitButton;
+  @FXML MFXButton loginButton;
+  @FXML MenuItem exitButton;
+  @FXML MenuItem about;
   @FXML BorderPane borderPane;
-  @FXML AnchorPane anchorPane;
+  @FXML MFXButton employeeButton;
 
   private static Parent root;
 
   @FXML
   public void initialize() {
-    borderPane.setStyle("-fx-background-color: #FFFFFF;");
-
     navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
+    navigateButton.setOnMouseEntered(event -> {});
     navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE));
     mealButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
-    exitButton.setOnMouseClicked(actionEvent -> Platform.exit());
+    exitButton.setOnAction(actionEvent -> Platform.exit());
     furnitureButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FURNITURE_REQUEST));
+    loginButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LogIn));
 
-    helpButton.setOnAction(
+    about.setOnAction(
         event -> {
           try {
             help();
@@ -48,11 +49,11 @@ public class HomeController {
   private void help() throws IOException {
     PopOver helpPopup = new PopOver();
     final FXMLLoader loader =
-        new FXMLLoader(getClass().getResource("/edu/wpi/romanticraijuu/views/Help.fxml"));
+        new FXMLLoader(getClass().getResource("/edu/wpi/teamR/views/Help.fxml"));
     Parent help = loader.load();
     helpPopup.setContentNode(help);
     helpPopup.setArrowLocation(PopOver.ArrowLocation.TOP_CENTER);
     helpPopup.setAutoHide(true);
-    helpPopup.show(helpButton);
+    helpPopup.show(borderPane);
   }
 }
