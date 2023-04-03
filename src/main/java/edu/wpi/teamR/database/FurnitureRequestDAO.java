@@ -35,7 +35,7 @@ public class FurnitureRequestDAO {
   }
 
   public static FurnitureRequestDAO createInstance(
-      String username, String password, String tableName, String schemaName, String connectionURL) {
+      String username, String password, String tableName, String schemaName, String connectionURL) throws SQLException, ClassNotFoundException {
     if (FurnitureRequestDAO.instance == null)
       FurnitureRequestDAO.instance =
           new FurnitureRequestDAO(username, password, tableName, schemaName, connectionURL);
