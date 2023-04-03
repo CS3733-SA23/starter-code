@@ -1,5 +1,10 @@
 package edu.wpi.teamc.map;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class LocationName {
   private String longName;
   private String shortName;

@@ -144,6 +144,42 @@ public class Graph {
   }
 
   /**
+   * <<<<<<< HEAD ======= Removes a node from the graph
+   *
+   * @param node - the node to be removed
+   */
+  public void removeNode(GraphNode node) {
+    // check if node exists
+    if (!nodes.containsKey(node.getNodeID())) {
+      System.out.println("Node does not exist");
+      return;
+    } else {
+      nodes.remove(node.getNodeID());
+    }
+    // TODO  remove node from connected nodes or edge list
+
+  }
+
+  /**
+   * Returns the node with the given ID
+   *
+   * @param nodeID - ID of the node to be returned
+   * @return Node with the given ID
+   */
+  public Node getNode(String nodeID) {
+    return nodes.get(nodeID);
+  }
+
+  /**
+   * Returns the HashMap of nodes
+   *
+   * @return HashMap of nodes
+   */
+  public Map<String, GraphNode> getNodes() {
+    return nodes;
+  }
+
+  /**
    * Returns a list of directions from start to end
    *
    * @param start - start node
