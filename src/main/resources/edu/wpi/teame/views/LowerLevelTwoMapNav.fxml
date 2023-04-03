@@ -45,9 +45,9 @@
                     <children>
                         <MFXButton fx:id="groundFloorButton" buttonType="RAISED" text="Ground Floor" />
                         <MFXButton fx:id="lowerLevelOneButton" layoutX="10.0" layoutY="10.0" text="Lower Level 1" />
-                        <MFXButton fx:id="FirstFloorButton" layoutX="10.0" layoutY="10.0" text="First Floor" />
-                        <MFXButton fx:id="SecondFloorButton" layoutX="10.0" layoutY="64.0" text="Second Floor" />
-                        <MFXButton fx:id="ThirdFloorButton" layoutX="10.0" layoutY="91.0" text="Third Floor" />
+                        <MFXButton fx:id="firstFloorButton" layoutX="10.0" layoutY="10.0" text="First Floor" />
+                        <MFXButton fx:id="secondFloorButton" layoutX="10.0" layoutY="64.0" text="Second Floor" />
+                        <MFXButton fx:id="thirdFloorButton" layoutX="10.0" layoutY="91.0" text="Third Floor" />
                     </children>
                     <padding>
                         <Insets left="175.0" />
