@@ -31,6 +31,7 @@ public class FlowerRequestController implements IRequestController {
   @FXML MFXComboBox flowerChoice;
   @FXML MFXComboBox numOfFlowers;
   @FXML MFXTextField notes;
+  @FXML MFXButton cancelButton;
 
   @FXML
   public void initialize() {
@@ -40,6 +41,7 @@ public class FlowerRequestController implements IRequestController {
     returnButtonFlowerRequest.setOnMouseClicked(
         event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     flowerRequestSubmit.setOnMouseClicked(event -> sendRequest());
+    cancelButton.setOnMouseClicked(event -> cancelRequest());
   }
 
   public ServiceRequestData sendRequest() {
