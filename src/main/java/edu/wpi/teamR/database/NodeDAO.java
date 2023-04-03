@@ -123,6 +123,14 @@ public class NodeDAO {
         return aList;
     }
 
+    public Node selectNodeByID(int nodeID) throws NotFoundException {
+        for (Node node : nodes){
+            if (node.getNodeID() == nodeID)
+                return node;
+        }
+        throw new NotFoundException();
+    }
+
     public void writeCSV(String outputFile) throws SQLException, IOException {
         File csvFile = new File(outputFile);
         FileWriter outputFileWriter = new FileWriter(csvFile);
