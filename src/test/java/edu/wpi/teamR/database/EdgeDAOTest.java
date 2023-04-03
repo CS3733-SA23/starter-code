@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -21,6 +23,9 @@ class EdgeDAOTest {
         String password = "teamr150";
         String schemaName = "test";
         String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamrdb";
+        Class.forName("org.postgresql.Driver");
+        Connection conn = DriverManager.getConnection(url, username, password);
+        conn.createStatement().executeUpdate("DELETE FROM test.edge;");
 
         //https://mega.nz/file/OQgCzZyS#hCwVqtJTGRmi3atPbmG1XLeR85FRZ4bOULGc8JpKULw
         nodeDAO = NodeDAO.createInstance(username, password, "node", schemaName, url);

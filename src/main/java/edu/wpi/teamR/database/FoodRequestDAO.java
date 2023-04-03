@@ -72,17 +72,17 @@ public class FoodRequestDAO { // TODO: make sure tablename is the view
     sqlInsert +=
         "VALUES("
             + requestID
-            + ",\'"
+            + ",'"
             + requesterName
-            + "\',\'"
+            + "','"
             + location
-            + "\',\'"
+            + "','"
             + requestDate
-            + "\',\'"
+            + "','"
             + additionalNotes
-            + "\',\'"
+            + "','"
             + mealType
-            + "\');";
+            + "');";
     FoodRequest aFoodRequest =
         new FoodRequest(
             requestID,
@@ -93,6 +93,7 @@ public class FoodRequestDAO { // TODO: make sure tablename is the view
             additionalNotes,
             requestDate,
             requestStatus);
+    statement.executeUpdate(sqlInsert);
     foodRequests.add(aFoodRequest);
     closeConnection(connection);
     return aFoodRequest;
@@ -131,54 +132,54 @@ public class FoodRequestDAO { // TODO: make sure tablename is the view
           sqlDelete += " AND ";
         }
         count++;
-        sqlDelete += "requestername = \'" + requesterName + "\'";
+        sqlDelete += "requestername = '" + requesterName + "'";
       }
       if (location != null) {
         if (count == 0) {
           sqlDelete += " AND ";
         }
         count++;
-        sqlDelete += "location = \'" + location + "\'";
+        sqlDelete += "location = '" + location + "'";
       }
       if (mealType != null) {
         if (count == 0) {
           sqlDelete += " AND ";
         }
         count++;
-        sqlDelete += "mealType   = " + "\'" + mealType + "\'";
+        sqlDelete += "mealType   = " + "'" + mealType + "'";
       }
       if (staffMember != null) {
         if (count == 0) {
           sqlDelete += " AND ";
         }
-        sqlDelete += "staffMember = " + "\'" + staffMember + "\'";
+        sqlDelete += "staffMember = " + "'" + staffMember + "'";
       }
       if (additionalNotes != null) {
         if (count == 0) {
           sqlDelete += " AND ";
         }
         count++;
-        sqlDelete += "additionalNotes = " + "\'" + additionalNotes + "\'";
+        sqlDelete += "additionalNotes = " + "'" + additionalNotes + "'";
       }
       if (requestDate != null) {
         if (count == 0) {
           sqlDelete += " AND ";
         }
         count++;
-        sqlDelete += "requestDate = " + "\'" + requestDate + "\'";
+        sqlDelete += "requestDate = " + "'" + requestDate + "'";
       }
       if (requestStatus != null) {
         if (count == 0) {
           sqlDelete += " AND ";
         }
-        sqlDelete += "requestStatus = " + "\'" + requestStatus + "\'";
+        sqlDelete += "requestStatus = " + "'" + requestStatus + "'";
       }
       sqlDelete += ";";
       statement.executeUpdate(sqlDelete);
       closeConnection(connection);
     }
     for (int i = 0; i < foodRequests.size(); i++) {
-      Boolean requestIDCheck = requestID == null || requestID == foodRequests.get(i).getRequestID();
+      Boolean requestIDCheck = requestID == null || requestID.equals(foodRequests.get(i).getRequestID());
       Boolean requesterNameCheck =
           requesterName == null || requesterName.equals(foodRequests.get(i).getRequesterName());
       Boolean locationCheck =
@@ -205,6 +206,7 @@ public class FoodRequestDAO { // TODO: make sure tablename is the view
           && requestDateCheck
           && requestStatusCheck) {
         foodRequests.remove(i);
+        i--;
       }
     }
   }
@@ -222,13 +224,13 @@ public class FoodRequestDAO { // TODO: make sure tablename is the view
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
     String sqlUpdate =
-        "UPDATE " + schemaName + "." + tableName + " SET requesterName = \'" + requesterName + "\'";
+        "UPDATE " + schemaName + "." + tableName + " SET requesterName = '" + requesterName + "'";
     sqlUpdate +=
-        ", location = \'" + location + "\', mealType = \'" + mealType + "\' , staffMember = \'";
+            ", location = '" + location + "', mealType = '" + mealType + "' , staffMember = '";
     sqlUpdate +=
-        staffMember + "\' , additionalNotes = \'" + additionalNotes + "\' , requestDate = \'";
-    sqlUpdate += requestDate.toString() + "\' , requestStatus = \'" + requestStatus.toString();
-    sqlUpdate += "\' WHERE requestID = " + requestID + ";";
+        staffMember + "' , additionalNotes = '" + additionalNotes + "' , requestDate = '";
+    sqlUpdate += requestDate.toString() + "' , requestStatus = '" + requestStatus.toString();
+    sqlUpdate += "' WHERE requestID = " + requestID + ";";
     statement.executeUpdate(sqlUpdate);
     closeConnection(connection);
     FoodRequest aFoodRequest =
@@ -252,34 +254,34 @@ public class FoodRequestDAO { // TODO: make sure tablename is the view
       Timestamp requestDate,
       RequestStatus requestStatus) {
     ArrayList<FoodRequest> aList = new ArrayList<FoodRequest>();
-    for (int i = 0; i < foodRequests.size(); i++) {
-      Boolean requestIDCheck = requestID == null || requestID == foodRequests.get(i).getRequestID();
+    for (FoodRequest foodRequest : foodRequests) {
+      Boolean requestIDCheck = requestID == null || requestID.equals(foodRequest.getRequestID());
       Boolean requesterNameCheck =
-          requesterName == null || requesterName.equals(foodRequests.get(i).getRequesterName());
+              requesterName == null || requesterName.equals(foodRequest.getRequesterName());
       Boolean locationCheck =
-          location == null || location.equals(foodRequests.get(i).getLocation());
+              location == null || location.equals(foodRequest.getLocation());
       Boolean mealTypeCheck =
-          mealType == null || mealType.equals(foodRequests.get(i).getMealType());
+              mealType == null || mealType.equals(foodRequest.getMealType());
       Boolean staffMemberCheck =
-          staffMember == null || staffMember.equals(foodRequests.get(i).getStaffMember());
+              staffMember == null || staffMember.equals(foodRequest.getStaffMember());
       Boolean additionalNotesCheck =
-          additionalNotes == null
-              || additionalNotes.equals(foodRequests.get(i).getAdditionalNotes());
+              additionalNotes == null
+                      || additionalNotes.equals(foodRequest.getAdditionalNotes());
       Boolean requestDateCheck =
-          requestDate == null
-              || requestDate.toString().equals(foodRequests.get(i).getRequestDate().toString());
+              requestDate == null
+                      || requestDate.toString().equals(foodRequest.getRequestDate().toString());
       Boolean requestStatusCheck =
-          requestStatus == null
-              || requestStatus.toString().equals(foodRequests.get(i).getRequestStatus().toString());
+              requestStatus == null
+                      || requestStatus.toString().equals(foodRequest.getRequestStatus().toString());
       if (requestIDCheck
-          && requesterNameCheck
-          && locationCheck
-          && mealTypeCheck
-          && staffMemberCheck
-          && additionalNotesCheck
-          && requestDateCheck
-          && requestStatusCheck) {
-        aList.add(foodRequests.get(i));
+              && requesterNameCheck
+              && locationCheck
+              && mealTypeCheck
+              && staffMemberCheck
+              && additionalNotesCheck
+              && requestDateCheck
+              && requestStatusCheck) {
+        aList.add(foodRequest);
       }
     }
     return aList;

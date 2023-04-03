@@ -26,7 +26,7 @@ class NodeDAOTest {
     }
 
     @Test
-    void createInstance() {
+    void createInstance() throws SQLException, ClassNotFoundException {
         NodeDAO dao2 = NodeDAO.createInstance("teamr", "teamr150", "node",
                 "test", "jdbc:postgresql://database.cs.wpi.edu:5432/teamrdb");
         assertSame(dao, dao2);
