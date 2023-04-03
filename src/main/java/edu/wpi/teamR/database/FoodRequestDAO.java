@@ -10,16 +10,33 @@ public class FoodRequestDAO { // TODO: make sure tablename is the view
   private String longName, username, password, tableName, schemaName, connectionURL;
 
   private FoodRequestDAO(
-      String username, String password, String tableName, String schemaName, String connectionURL) {
+      String username, String password, String tableName, String schemaName, String connectionURL) throws SQLException, ClassNotFoundException {
     this.username = username;
     this.password = password;
     this.tableName = tableName;
     this.schemaName = schemaName;
     this.connectionURL = connectionURL;
+
+    foodRequests = new ArrayList<>();
+    Connection connection = createConnection();
+    Statement statement = connection.createStatement();
+    ResultSet resultSet = statement.executeQuery("SELECT * FROM "+schemaName+"."+tableName+";");
+    while (resultSet.next()) {
+      Integer requestID = resultSet.getInt("requestid");
+      String requesterName = resultSet.getString("requestername");
+      String staffMember = resultSet.getString("staffmember");
+      String location = resultSet.getString("location");
+      Timestamp requestDate = resultSet.getTimestamp("requestdate");
+      String additionalNotes = resultSet.getString("additionalnotes");
+      String mealType = resultSet.getString("mealtype");
+      String requestStatus = resultSet.getString("requeststatus");
+      FoodRequest foodRequest = new FoodRequest(requestID, requesterName, location, mealType, staffMember, additionalNotes, requestDate, RequestStatus.valueOf(requestStatus));
+      foodRequests.add(foodRequest);
+    }
   }
 
   public static FoodRequestDAO createInstance(
-      String username, String password, String tableName, String schemaName, String connectionURL) {
+      String username, String password, String tableName, String schemaName, String connectionURL) throws SQLException, ClassNotFoundException {
     if (FoodRequestDAO.instance == null)
       FoodRequestDAO.instance =
           new FoodRequestDAO(username, password, tableName, schemaName, connectionURL);
@@ -35,14 +52,14 @@ public class FoodRequestDAO { // TODO: make sure tablename is the view
   };
 
   public FoodRequest addFoodRequest(
-      int requestID,
-      String requesterName,
-      String location,
-      String mealType,
-      String staffMember,
-      String additionalNotes,
-      LocalDateTime requestDate,
-      RequestStatus requestStatus)
+          int requestID,
+          String requesterName,
+          String location,
+          String mealType,
+          String staffMember,
+          String additionalNotes,
+          Timestamp requestDate,
+          RequestStatus requestStatus)
       throws SQLException, ClassNotFoundException {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
@@ -193,14 +210,14 @@ public class FoodRequestDAO { // TODO: make sure tablename is the view
   }
 
   public void modifyFoodRequestByID(
-      Integer requestID,
-      String requesterName,
-      String location,
-      String mealType,
-      String staffMember,
-      String additionalNotes,
-      LocalDateTime requestDate,
-      RequestStatus requestStatus)
+          Integer requestID,
+          String requesterName,
+          String location,
+          String mealType,
+          String staffMember,
+          String additionalNotes,
+          Timestamp requestDate,
+          RequestStatus requestStatus)
       throws SQLException, ClassNotFoundException {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();

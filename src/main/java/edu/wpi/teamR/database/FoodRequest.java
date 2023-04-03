@@ -5,12 +5,12 @@ import java.time.LocalDateTime;
 
 public class FoodRequest {
     private String requesterName, location, mealType, staffMember, additionalNotes;
-    private LocalDateTime requestDate; //TODO: test localdatetime vs timestamp
+    private Timestamp requestDate; //TODO: test localdatetime vs timestamp
     private RequestStatus requestStatus;
     private Integer requestID;
 
     public FoodRequest(Integer requestID, String requesterName, String location, String mealType, String staffMember,
-                            String additionalNotes, LocalDateTime requestDate, RequestStatus requestStatus) {
+                       String additionalNotes, Timestamp requestDate, RequestStatus requestStatus) {
         this.requesterName = requesterName;
         this.location = location;
         this.mealType = mealType;
@@ -61,11 +61,11 @@ public class FoodRequest {
         this.additionalNotes = additionalNotes;
     }
 
-    public LocalDateTime getRequestDate() {
+    public Timestamp getRequestDate() {
         return requestDate;
     }
 
-    public void setRequestDate(LocalDateTime requestDate) {
+    public void setRequestDate(Timestamp requestDate) {
         this.requestDate = requestDate;
     }
 

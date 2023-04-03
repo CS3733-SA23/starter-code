@@ -1,6 +1,7 @@
 package edu.wpi.teamR.database;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
@@ -8,6 +9,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.sql.ResultSet;
 
 public class EdgeDAO {
   private static EdgeDAO instance;
@@ -15,16 +18,28 @@ public class EdgeDAO {
   private String username, password, tableName, schemaName, connectionURL;
 
   private EdgeDAO(
-      String username, String password, String tableName, String schemaName, String connectionURL) {
+          String username, String password, String tableName, String schemaName, String connectionURL) throws SQLException, ClassNotFoundException {
     this.username = username;
     this.password = password;
     this.tableName = tableName;
     this.schemaName = schemaName;
     this.connectionURL = connectionURL;
+
+    edges = new ArrayList<Edge>();
+    Connection connection = createConnection();
+    Statement statement = connection.createStatement();
+    ResultSet resultset = statement.executeQuery("SELECT * FROM edges");
+    while(resultset.next()){
+        Integer startNode = resultset.getInt("startNode");
+        Integer endNode = resultset.getInt("endNode");
+        Edge aEdge = new Edge(startNode, endNode);
+        edges.add(aEdge);
+    }
+    closeConnection(connection);
   }
 
   public static EdgeDAO createInstance(
-      String username, String password, String tableName, String schemaName, String connectionURL) {
+      String username, String password, String tableName, String schemaName, String connectionURL) throws SQLException, ClassNotFoundException {
     if (EdgeDAO.instance == null)
       EdgeDAO.instance = new EdgeDAO(username, password, tableName, schemaName, connectionURL);
     return EdgeDAO.instance;
@@ -38,8 +53,7 @@ public class EdgeDAO {
     return edges;
   }
 
-  public Edge addEdge(Integer startNode, Integer endNode)
-      throws SQLException, ClassNotFoundException {
+  public Edge addEdge(Integer startNode, Integer endNode) throws SQLException, ClassNotFoundException {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
     String sqlInsert = "INSERT INTO " + schemaName + "." + tableName + "(startNode, endNode) ";
@@ -48,14 +62,16 @@ public class EdgeDAO {
     Edge aEdge = new Edge(startNode, endNode);
     edges.add(aEdge);
     closeConnection(connection);
-    return aEdge;
+      return aEdge;
   }
 
   public ArrayList<Integer> getAdjacentNodeIDs(Integer nodeID) {
     ArrayList<Integer> returnList = new ArrayList<Integer>();
     for (Edge edge : edges) {
-      if (edge.getStartNode() == nodeID) returnList.add(edge.getEndNode());
-      else if (edge.getEndNode() == nodeID) returnList.add(edge.getStartNode());
+      if (edge.getStartNode().intValue() == nodeID) {
+          returnList.add(edge.getEndNode());
+      }
+      else if (edge.getEndNode().intValue() == nodeID) returnList.add(edge.getStartNode());
     }
     return returnList;
   }
@@ -64,20 +80,20 @@ public class EdgeDAO {
       throws SQLException, ClassNotFoundException {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
-    String sqlDelete =
-        "DELETE FROM "
-            + schemaName
-            + "."
-            + tableName
-            + " WHERE startNode="
-            + nodeID1
-            + " AND endNode="
-            + nodeIDA;
+    String sqlDelete = "DELETE FROM " + schemaName + "." + tableName + " WHERE startNode=" + nodeID1 + " AND endNode=" + nodeIDA;
     sqlDelete += " OR startNode=" + nodeIDA + " AND endNode=" + nodeID1 + ";";
+    statement.executeUpdate(sqlDelete);
+    closeConnection(connection);
     for (int j = 0; j < edges.size(); j++) {
       Edge edge = edges.get(j);
-      if (edge.getStartNode() == nodeID1 && edge.getEndNode() == nodeIDA) edges.remove(j);
-      else if (edge.getStartNode() == nodeIDA && edge.getEndNode() == nodeID1) edges.remove(j);
+      if (edge.getStartNode().intValue() == nodeID1 && edge.getEndNode().intValue() == nodeIDA){
+          edges.remove(j);
+          j--;
+      }
+      else if (edge.getStartNode().intValue() == nodeIDA && edge.getEndNode().intValue() == nodeID1) {
+          edges.remove(j);
+          j--;
+      }
     }
   }
 
@@ -86,34 +102,22 @@ public class EdgeDAO {
     Statement statement = connection.createStatement();
     for (int j = 0; j < edges.size(); j++) {
       Edge edge = edges.get(j);
-      if (edge.getStartNode() == nodeID) {
+      if (edge.getStartNode().intValue() == nodeID) {
         String sqlDelete =
-            "DELETE FROM "
-                + schemaName
-                + "."
-                + tableName
-                + " WHERE startNode="
-                + nodeID
-                + " AND endNode="
-                + edge.getEndNode()
-                + ";";
+            "DELETE FROM " + schemaName + "." + tableName + " WHERE startNode=" + nodeID + " AND endNode=" + edge.getEndNode() + ";";
         edges.remove(j);
-      } else if (edge.getEndNode() == nodeID) {
+        j--;
+        statement.executeUpdate(sqlDelete);
+      } else if (edge.getEndNode().intValue() == nodeID) {
         String sqlDelete =
-            "DELETE FROM "
-                + schemaName
-                + "."
-                + tableName
-                + " WHERE startNode="
-                + edge.getStartNode()
-                + " AND endNode="
-                + nodeID
-                + ";";
+            "DELETE FROM " + schemaName + "." + tableName + " WHERE startNode=" + edge.getStartNode() + " AND endNode=" + nodeID + ";";
         edges.remove(j);
+        j--;
+        statement.executeUpdate(sqlDelete);
       }
     }
+    closeConnection(connection);
   }
-
   public void writeCSV(String outputFile) throws IOException {
     File csvFile = new File(outputFile);
     FileWriter outputFileWriter = new FileWriter(csvFile);
@@ -127,16 +131,21 @@ public class EdgeDAO {
     outputFileWriter.flush();
     outputFileWriter.close();
   }
-
-  public void readCSV(String readCSV) {
-    // TODO: Finish Implementation
+  public void readCSV(String filePath) throws FileNotFoundException, SQLException, ClassNotFoundException {
+      Scanner sc = new Scanner(new File(filePath));
+      sc.useDelimiter(",|\n");
+      sc.nextLine();
+      while(sc.hasNextLine() && sc.hasNext()){
+          Integer startNode = sc.nextInt();
+          Integer endNode = sc.nextInt();
+          addEdge(startNode, endNode);
+      }
+      sc.close();
   }
-
   private Connection createConnection() throws ClassNotFoundException, SQLException {
     Class.forName("org.postgresql.Driver");
     return DriverManager.getConnection(connectionURL, username, password);
   }
-
   private void closeConnection(Connection connection) throws SQLException {
     connection.close();
   }
