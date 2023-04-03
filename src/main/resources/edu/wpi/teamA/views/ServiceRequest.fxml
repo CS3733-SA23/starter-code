@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -13,5 +20,82 @@
             <Font name="Open Sans Bold" size="48.0" />
          </font>
       </Text>
+      <MFXButton id="back" fx:id="backButton" layoutX="117.0" layoutY="23.0" onAction="#back" prefHeight="53.0" prefWidth="89.0" style="-fx-background-color: #0E5DAD; -fx-background-radius: 15; -fx-text-fill: WHITE;" text="Back" textAlignment="CENTER" textFill="#fcfcfc">
+          <opaqueInsets>
+              <Insets />
+          </opaqueInsets>
+          <font>
+              <Font name="Open Sans Bold" size="24.0" />
+          </font>
+          <rippleColor>
+              <LinearGradient endX="1.0" endY="1.0">
+                  <stops>
+                      <Stop>
+                          <color>
+                              <Color />
+                          </color>
+                      </Stop>
+                      <Stop offset="1.0">
+                          <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                          </color>
+                      </Stop>
+                  </stops>
+              </LinearGradient>
+          </rippleColor>
+      </MFXButton>
+      <VBox alignment="CENTER" layoutX="514.0" layoutY="171.0" prefHeight="441.0" prefWidth="548.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="200.0">
+         <children>
+            <MFXButton fx:id="flowerDelivery" alignment="CENTER" contentDisplay="CENTER" prefHeight="135.0" prefWidth="380.0" style="-fx-background-radius: 60; -fx-text-fill: WHITE; -fx-background-color: #012D5A;" text="Flower Delivery" textAlignment="CENTER" textFill="#fcfcfc">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font name="Open Sans Bold" size="36.0" />
+               </font>
+               <rippleColor>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </rippleColor>
+            </MFXButton>
+            <Pane prefHeight="93.0" prefWidth="514.0" />
+            <MFXButton fx:id="conferenceRoom" alignment="CENTER" contentDisplay="CENTER" prefHeight="135.0" prefWidth="380.0" style="-fx-background-radius: 60; -fx-text-fill: WHITE; -fx-background-color: #012D5A;" text="Conference Room" textAlignment="CENTER" textFill="#fcfcfc">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font name="Open Sans Bold" size="36.0" />
+               </font>
+               <rippleColor>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </rippleColor>
+            </MFXButton>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

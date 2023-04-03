@@ -19,7 +19,6 @@
          <items>
             <MenuItem fx:id="serviceRequestMenu" mnemonicParsing="false" text="Service Requests" />
             <MenuItem fx:id="mapMenu" mnemonicParsing="false" text="Map" />
-            <MenuItem fx:id="officeMovesMenu" mnemonicParsing="false" text="Office Moves" />
             <MenuItem fx:id="signageMenu" mnemonicParsing="false" text="Signage" />
             <MenuItem fx:id="pathfindingMenu" mnemonicParsing="false" text="Pathfinding" />
             <MenuItem fx:id="exit" mnemonicParsing="false" text="Exit" />
