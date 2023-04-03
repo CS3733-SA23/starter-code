@@ -122,7 +122,7 @@ public class DatabaseController {
     this.retrieveFromTable();
   }
 
-  private void addToTable(MoveAttribute moveAttribute) {
+  public void addToTable(MoveAttribute moveAttribute) {
     Statement stmt;
     String nodeId = moveAttribute.nodeID;
     String longName = moveAttribute.longName;
