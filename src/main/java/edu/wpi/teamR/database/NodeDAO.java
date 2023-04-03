@@ -164,7 +164,8 @@ public class NodeDAO {
             }
     }
 
-    private Connection createConnection() throws SQLException {
+    private Connection createConnection() throws SQLException, ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
         return DriverManager.getConnection(connectionURL, username, password);
     }
 
