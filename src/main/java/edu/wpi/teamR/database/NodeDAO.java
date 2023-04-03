@@ -136,8 +136,8 @@ public class NodeDAO {
             Boolean nodeIDCheck = nodeID == null || nodeID == nodes.get(i).getNodeID();
             Boolean xCoordCheck = xCoord == null || xCoord == nodes.get(i).getxCoord();
             Boolean yCoordCheck = yCoord == null || yCoord == nodes.get(i).getyCoord();
-            Boolean floorNumCheck = floorNum == null || floorNum == nodes.get(i).getFloorNum();
-            Boolean buildingCheck = building == null || building == nodes.get(i).getBuilding();
+            Boolean floorNumCheck = floorNum == null || floorNum.equals(nodes.get(i).getFloorNum());
+            Boolean buildingCheck = building == null || building.equals(nodes.get(i).getBuilding());
             if(nodeIDCheck && xCoordCheck && yCoordCheck && floorNumCheck && buildingCheck){
                 aList.add(nodes.get(i));
             }
