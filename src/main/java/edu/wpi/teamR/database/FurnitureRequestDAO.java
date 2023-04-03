@@ -74,21 +74,21 @@ public class FurnitureRequestDAO {
     sqlInsert +=
         "VALUES("
             + requestID
-            + ",\'"
+            + ",'"
             + requesterName
-            + "\',\'"
+            + "','"
             + location
-            + "\',\'"
+            + "','"
             + furnitureType
-            + "\',\'"
+            + "','"
             + staffMember
-            + "\',\""
+            + "','"
             + additionalNotes
-            + "\',\'"
+            + "','"
             + requestDate.toString()
-            + "\',\'"
+            + "','"
             + requestStatus.toString()
-            + "\'"
+            + "'"
             + requestID
             + ");";
     statement.executeUpdate(sqlInsert);
@@ -133,46 +133,46 @@ public class FurnitureRequestDAO {
       int count = 0;
       if (requesterName != null) {
         count++;
-        sqlDelete += "requesterName = " + "\'" + requesterName + "\'";
+        sqlDelete += "requesterName = " + "'" + requesterName + "'";
       }
       if (location != null) {
         if (count == 0) {
           sqlDelete += " AND ";
         }
         count++;
-        sqlDelete += "location = " + "\'" + location + "\'";
+        sqlDelete += "location = " + "'" + location + "'";
       }
       if (furnitureType != null) {
         if (count == 0) {
           sqlDelete += " AND ";
         }
         count++;
-        sqlDelete += "furnitureType = " + "\'" + furnitureType + "\'";
+        sqlDelete += "furnitureType = " + "'" + furnitureType + "'";
       }
       if (staffMember != null) {
         if (count == 0) {
           sqlDelete += " AND ";
         }
         count++;
-        sqlDelete += "staffMember = " + "\'" + staffMember + "\'";
+        sqlDelete += "staffMember = " + "'" + staffMember + "'";
       }
       if (additionalNotes != null) {
         if (count == 0) {
           sqlDelete += " AND ";
         }
-        sqlDelete += "additionalNotes = " + "\'" + additionalNotes + "\'";
+        sqlDelete += "additionalNotes = " + "'" + additionalNotes + "'";
       }
       if (requestDate != null) {
         if (count == 0) {
           sqlDelete += " AND ";
         }
-        sqlDelete += "requestDate = " + "\'" + requestDate.toString() + "\'";
+        sqlDelete += "requestDate = " + "'" + requestDate.toString() + "\'";
       }
       if (requestStatus != null) {
         if (count == 0) {
           sqlDelete += " AND ";
         }
-        sqlDelete += "requestStatus = " + "\'" + requestStatus.toString() + "\'";
+        sqlDelete += "requestStatus = " + "'" + requestStatus.toString() + "\'";
       }
       if (requestID != null) {
         if (count == 0) {
@@ -187,16 +187,16 @@ public class FurnitureRequestDAO {
 
     for (int i = 0; i < furnitureRequests.size(); i++) {
       Boolean requesterNameCheck =
-          requesterName == null || requesterName == furnitureRequests.get(i).getRequesterName();
+          requesterName == null || requesterName.equals(furnitureRequests.get(i).getRequesterName());
       Boolean locationCheck =
-          location == null || location == furnitureRequests.get(i).getLocation();
+          location == null || location.equals(furnitureRequests.get(i).getLocation());
       Boolean furnitureTypeCheck =
-          furnitureType == null || furnitureType == furnitureRequests.get(i).getFurnitureType();
+          furnitureType == null || furnitureType.equals(furnitureRequests.get(i).getFurnitureType());
       Boolean staffMemberCheck =
-          staffMember == null || staffMember == furnitureRequests.get(i).getStaffMember();
+          staffMember == null || staffMember.equals(furnitureRequests.get(i).getStaffMember());
       Boolean additionalNotesCheck =
           additionalNotes == null
-              || additionalNotes == furnitureRequests.get(i).getAdditionalNotes();
+              || additionalNotes.equals(furnitureRequests.get(i).getAdditionalNotes());
       Boolean requestDateCheck =
           requestDate == null || requestDate == furnitureRequests.get(i).getRequestDate();
       Boolean requestIDCheck =
@@ -209,11 +209,11 @@ public class FurnitureRequestDAO {
           && requestDateCheck
           && requestIDCheck) {
         furnitureRequests.remove(i);
+        i--;
       }
     }
   }
 
-  // TODO timestamp is not correct
   public void modifyFurnitureRequestByID(
       Integer requestID,
       String requesterName,
@@ -227,21 +227,21 @@ public class FurnitureRequestDAO {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
     String sqlUpdate =
-        "UPDATE " + schemaName + "." + tableName + " SET requesterName = \'" + requesterName + "\'";
+        "UPDATE " + schemaName + "." + tableName + " SET requesterName = '" + requesterName + "'";
     sqlUpdate +=
-        ", location = \'"
+            ", location = '"
             + location
-            + "\', furnitureType = \'"
+            + "', furnitureType = '"
             + furnitureType
-            + "\', staffMember = \'"
+            + "', staffMember = '"
             + staffMember
-            + "\', additionalNotes = \'"
+            + "', additionalNotes = '"
             + additionalNotes
-            + "\', requestDate = \'"
+            + "', requestDate = '"
             + requestDate
-            + "\', requestStatus = \'"
+            + "', requestStatus = '"
             + requestStatus
-            + "\' WHERE requestID = "
+            + "' WHERE requestID = "
             + requestID;
     statement.executeUpdate(sqlUpdate);
     closeConnection(connection);
@@ -267,30 +267,32 @@ public class FurnitureRequestDAO {
       Timestamp requestDate,
       RequestStatus requestStatus) {
     ArrayList<FurnitureRequest> aList = new ArrayList<FurnitureRequest>();
-    for (int i = 0; i < furnitureRequests.size(); i++) {
+    for (FurnitureRequest furnitureRequest : furnitureRequests) {
       Boolean requesterNameCheck =
-          requesterName == null || requesterName == furnitureRequests.get(i).getRequesterName();
+              requesterName == null || requesterName.equals(furnitureRequest.getRequesterName());
       Boolean locationCheck =
-          location == null || location == furnitureRequests.get(i).getLocation();
+              location == null || location.equals(furnitureRequest.getLocation());
       Boolean furnitureTypeCheck =
-          furnitureType == null || furnitureType == furnitureRequests.get(i).getFurnitureType();
+              furnitureType == null || furnitureType.equals(furnitureRequest.getFurnitureType());
       Boolean staffMemberCheck =
-          staffMember == null || staffMember == furnitureRequests.get(i).getStaffMember();
+              staffMember == null || staffMember.equals(furnitureRequest.getStaffMember());
       Boolean additionalNotesCheck =
-          additionalNotes == null
-              || additionalNotes == furnitureRequests.get(i).getAdditionalNotes();
+              additionalNotes == null
+                      || additionalNotes.equals(furnitureRequest.getAdditionalNotes());
       Boolean requestDateCheck =
-          requestDate == null || requestDate == furnitureRequests.get(i).getRequestDate();
+              requestDate == null || requestDate == furnitureRequest.getRequestDate();
       Boolean requestIDCheck =
-          requestID == null || requestID == furnitureRequests.get(i).getRequestID();
+              requestID == null || requestID == furnitureRequest.getRequestID();
+      Boolean requestStatusCheck = requestStatus==null || requestStatus.toString().equals(furnitureRequest.getRequestStatus().toString());
       if (requesterNameCheck
-          && locationCheck
-          && furnitureTypeCheck
-          && staffMemberCheck
-          && additionalNotesCheck
-          && requestDateCheck
-          && requestIDCheck) {
-        aList.add(furnitureRequests.get(i));
+              && locationCheck
+              && furnitureTypeCheck
+              && staffMemberCheck
+              && additionalNotesCheck
+              && requestDateCheck
+              && requestIDCheck
+              && requestStatusCheck) {
+        aList.add(furnitureRequest);
       }
     }
     return aList;
