@@ -166,7 +166,10 @@ public class DatabaseController {
 
     // Retrieve move
     for (String nodeID : mList) {
-      String moveQuery = "SELECT * FROM teame.\"Move\" WHERE \"nodeID\" = '" + nodeID + "';";
+      String moveQuery =
+          "SELECT * FROM teame.\"Move\" WHERE \"nodeID\" = '"
+              + nodeID
+              + "'  ORDER BY \"nodeID\" ASC ;";
       try (Statement stmt = c.createStatement()) {
         ResultSet rs = stmt.executeQuery(moveQuery);
         if (rs.next()) {
@@ -324,28 +327,14 @@ public class DatabaseController {
         String[] splitL1 = l1.split(",");
         System.out.println(l1);
         String sql =
-            "INSERT INTO "
+            "INSERT INTO \""
                 + tableName
-                + " VALUES ('"
+                + "\" VALUES ("
                 + splitL1[0]
-                + "', "
-                + Integer.parseInt(splitL1[1])
-                + ", "
-                + Integer.parseInt(splitL1[2])
                 + ", '"
-                + splitL1[3]
-                + "', "
-                + " '"
-                + splitL1[4]
-                + "', "
-                + " '"
-                + splitL1[5]
-                + "', "
-                + " '"
-                + splitL1[6]
-                + "', "
-                + " '"
-                + splitL1[7]
+                + splitL1[1]
+                + "', '"
+                + splitL1[2]
                 + "'); ";
         System.out.println(sql);
         stmt.execute(sql);
