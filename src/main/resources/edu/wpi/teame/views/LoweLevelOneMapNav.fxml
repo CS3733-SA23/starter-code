@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <AnchorPane prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.LowerLevelOneMapNavController">
     <children>
         <BorderPane prefHeight="200.0" prefWidth="320.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -34,17 +35,17 @@
             <bottom>
                 <HBox alignment="CENTER" BorderPane.alignment="CENTER">
                     <children>
-                        <ComboBox prefWidth="150.0" promptText="Current Location" style="-fx-border-color: black;" />
+                        <MFXComboBox fx:id="currentLocationList" prefWidth="150.0" promptText="Current Location" style="-fx-border-color: black;" />
                         <Line endX="100.0" startX="-100.0" />
-                        <ComboBox prefWidth="150.0" promptText="Destination" style="-fx-border-color: black;" />
+                        <MFXComboBox fx:id="destinationList" prefWidth="150.0" promptText="Destination" style="-fx-border-color: black;" />
                     </children>
                 </HBox>
             </bottom>
             <right>
                 <VBox spacing="20.0" BorderPane.alignment="CENTER">
                     <children>
-                        <MFXButton fx:id="groundFloorButton" buttonType="RAISED" text="Ground Floor" />
                         <MFXButton fx:id="lowerLevelTwoButton" layoutX="10.0" layoutY="10.0" text="Lower Level 2" />
+                        <MFXButton fx:id="groundFloorButton" buttonType="RAISED" text="Ground Floor" />
                         <MFXButton fx:id="firstFloorButton" layoutX="10.0" layoutY="10.0" text="First Floor" />
                         <MFXButton fx:id="secondFloorButton" layoutX="10.0" layoutY="64.0" text="Second Floor" />
                         <MFXButton fx:id="thirdFloorButton" layoutX="10.0" layoutY="91.0" text="Third Floor" />

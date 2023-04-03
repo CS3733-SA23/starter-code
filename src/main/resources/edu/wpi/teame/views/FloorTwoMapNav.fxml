@@ -18,6 +18,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <AnchorPane prefHeight="900.0" prefWidth="1500.0" style="-fx-background-color: #3b63a5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.FloorTwoMapNavController">
     <children>
         <BorderPane prefHeight="200.0" prefWidth="320.0" style="-fx-background-color: #e1e1e1;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
@@ -38,9 +39,9 @@
             <bottom>
                 <HBox alignment="CENTER" BorderPane.alignment="CENTER">
                     <children>
-                        <ComboBox prefWidth="150.0" promptText="Current Location" style="-fx-border-color: black;" />
+                        <MFXComboBox fx:id="currentLocationList" prefWidth="150.0" promptText="Current Location" style="-fx-border-color: black;" />
                         <Line endX="100.0" startX="-100.0" />
-                        <ComboBox prefWidth="150.0" promptText="Destination" style="-fx-border-color: black;" />
+                        <MFXComboBox fx:id="destinationList" prefWidth="150.0" promptText="Destination" style="-fx-border-color: black;" />
                     </children>
                 </HBox>
             </bottom>
