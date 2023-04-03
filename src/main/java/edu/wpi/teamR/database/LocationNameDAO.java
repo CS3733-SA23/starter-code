@@ -1,6 +1,7 @@
 package edu.wpi.teamR.database;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
@@ -8,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class LocationNameDAO {
     private static LocationNameDAO instance;
@@ -112,7 +114,18 @@ public class LocationNameDAO {
         outputFileWriter.flush();
         outputFileWriter.close();
     }
-    public void readCSV(String inputFile){
+    public void readCSV(String inputFile) throws SQLException, ClassNotFoundException, FileNotFoundException {
+        Scanner sc = new Scanner(new File(inputFile));
+        sc.useDelimiter(",|\n");
+        sc.nextLine();
+        while (sc.hasNextLine() && sc.hasNext()) {
+            String longName = sc.next();
+            String shortName = sc.next();
+            String nodeType = sc.next();
+            addLocationName(longName, shortName, nodeType);
+        }
+
+        sc.close();
     }
     private Connection createConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
