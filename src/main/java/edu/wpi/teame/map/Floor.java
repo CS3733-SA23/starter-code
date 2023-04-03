@@ -1,4 +1,4 @@
-package pathfinding;
+package edu.wpi.teame.map;
 
 import java.util.NoSuchElementException;
 
@@ -6,6 +6,7 @@ public enum Floor {
   // Use Enum.ordinal() to get int value
   LOWER_TWO,
   LOWER_ONE,
+  GROUND,
   ONE,
   TWO,
   THREE;
@@ -16,6 +17,8 @@ public enum Floor {
         return LOWER_ONE;
       case "L2":
         return LOWER_TWO;
+      case "GROUND":
+        return GROUND;
       case "1":
         return ONE;
       case "2":
@@ -33,6 +36,8 @@ public enum Floor {
         return "L1";
       case LOWER_TWO:
         return "L2";
+      case GROUND:
+        return "GROUND";
       case ONE:
         return "1";
       case TWO:

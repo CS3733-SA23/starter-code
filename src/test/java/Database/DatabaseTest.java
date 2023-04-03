@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import pathfinding.Floor;
-import pathfinding.HospitalEdge;
-import pathfinding.HospitalNode;
-import pathfinding.MoveAttribute;
+import edu.wpi.teame.map.Floor;
+import edu.wpi.teame.map.HospitalEdge;
+import edu.wpi.teame.map.HospitalNode;
+import edu.wpi.teame.map.MoveAttribute;
 
 public class DatabaseTest {
 
