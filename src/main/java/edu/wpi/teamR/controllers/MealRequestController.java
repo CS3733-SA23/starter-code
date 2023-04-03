@@ -13,10 +13,11 @@ import javafx.scene.control.ChoiceBox;
 public class MealRequestController {
 
   @FXML MFXButton cancelButton;
-  @FXML MFXButton clearButton;
+  @FXML MFXButton resetButton;
   @FXML MFXButton submitButton;
   @FXML MFXTextField nameField;
   @FXML MFXTextField locationField;
+  @FXML MFXTextField staffMemberField;
   @FXML MFXTextField notesField;
   @FXML ChoiceBox mealTypeBox;
 
@@ -28,7 +29,7 @@ public class MealRequestController {
   @FXML
   public void initialize() {
     cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    clearButton.setOnMouseClicked(event -> clear());
+    resetButton.setOnMouseClicked(event -> clear());
     submitButton.setOnMouseClicked(event -> submit());
     mealTypeBox.setValue("Select Meal");
     mealTypeBox.setItems(mealTypeList);
@@ -42,11 +43,17 @@ public class MealRequestController {
     }
     mealField =
         new MealFields(
-            nameField.getText(), locationField.getText(), notesField.getText(), mealType);
+            nameField.getText(),
+            locationField.getText(),
+            staffMemberField.getText(),
+            notesField.getText(),
+            mealType);
     System.out.println(
         mealField.getName()
             + " "
             + mealField.getLocation()
+            + " "
+            + mealField.getStaffMember()
             + " "
             + mealField.getNotes()
             + " "
@@ -58,6 +65,7 @@ public class MealRequestController {
   public void clear() {
     nameField.clear();
     locationField.clear();
+    staffMemberField.clear();
     notesField.clear();
     mealTypeBox.setValue("Select Meal");
   }

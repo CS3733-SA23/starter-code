@@ -9,12 +9,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamR.controllers.SignageController">
+<BorderPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamR.controllers.SignageController">
    <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <HBox alignment="CENTER_LEFT" layoutX="367.0" layoutY="250.0" AnchorPane.topAnchor="250.0">
+            <HBox alignment="CENTER_LEFT" layoutX="94.0" layoutY="88.0" AnchorPane.topAnchor="88.0">
                <children>
                   <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" translateX="30.0" HBox.hgrow="NEVER">
                      <image>
@@ -28,23 +27,22 @@
                   </Text>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="367.0" layoutY="330.0" prefHeight="80.0" prefWidth="600.0">
+            <HBox alignment="CENTER_LEFT" layoutX="803.0" layoutY="314.0" prefHeight="80.0" prefWidth="386.0">
                <children>
-                  <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" translateX="30.0">
-                     <image>
-                        <Image url="@../images/left-arrow.png" />
-                     </image>
-                  </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Room" translateX="35.0">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ear, Nose, and Throat Department ">
                      <font>
                         <Font name="Times New Roman Bold" size="18.0" />
                      </font>
                   </Text>
+                  <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/right-arrow.png" />
+                     </image>
+                  </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="367.0" layoutY="570.0" prefHeight="80.0" prefWidth="600.0">
+            <HBox alignment="CENTER_RIGHT" layoutX="588.0" layoutY="490.0" prefHeight="80.0" prefWidth="600.0">
                <children>
-                  <MFXButton fx:id="backButton" text="Back" translateX="-350.0" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Restrooms" translateX="-35.0">
                      <font>
                         <Font name="Times New Roman Bold" size="18.0" />
@@ -57,7 +55,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="367.0" layoutY="490.0" prefHeight="80.0" prefWidth="600.0">
+            <HBox alignment="CENTER_RIGHT" layoutX="588.0" layoutY="404.0" prefHeight="80.0" prefWidth="600.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ultrasound Labs" translateX="-35.0">
                      <font>
@@ -71,20 +69,25 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="367.0" layoutY="410.0" prefHeight="80.0" prefWidth="600.0">
+            <HBox alignment="CENTER_RIGHT" layoutX="104.0" layoutY="186.0" prefHeight="80.0" prefWidth="239.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ear, Nose, and Throat Department" translateX="-35.0">
+                  <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/left-arrow.png" />
+                     </image>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" Emergency Room">
                      <font>
                         <Font name="Times New Roman Bold" size="18.0" />
                      </font>
                   </Text>
-                  <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0">
-                     <image>
-                        <Image url="@../images/right-arrow.png" />
-                     </image>
-                  </ImageView>
                </children>
             </HBox>
+            <MFXButton fx:id="backButton" layoutX="605.0" layoutY="595.0" prefHeight="38.0" prefWidth="94.0" text="Back">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </MFXButton>
          </children>
       </AnchorPane>
    </center>

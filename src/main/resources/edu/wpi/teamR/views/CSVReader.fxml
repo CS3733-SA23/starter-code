@@ -3,20 +3,32 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<BorderPane prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamR.views.CSVReaderController">
+<BorderPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamR.controllers.CSVReaderController">
+   <top>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="80.0" stroke="#003da6" strokeType="INSIDE" width="1280.0" />
+            <Text fill="WHITE" layoutX="454.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Import New CSV File">
+               <font>
+                  <Font name="Times New Roman" size="36.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </top>
    <center>
       <AnchorPane>
          <children>
-            <MFXButton layoutX="390.0" layoutY="295.0" text="Choose File" AnchorPane.topAnchor="295.0">
+            <MFXButton fx:id="fileButton" layoutX="390.0" layoutY="295.0" text="Choose File" AnchorPane.topAnchor="295.0">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>
             </MFXButton>
-            <Text layoutX="572.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="...">
+            <Text fx:id="fileText" layoutX="572.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="...">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>

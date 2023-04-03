@@ -41,7 +41,7 @@ public class App extends Application {
 
     final Scene scene = new Scene(root);
     primaryStage.setScene(scene);
-    // primaryStage.setMaximized(true);
+    primaryStage.setMaximized(true);
     primaryStage.show();
 
     Navigation.navigate(Screen.HOME);
