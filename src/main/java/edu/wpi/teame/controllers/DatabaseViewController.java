@@ -7,6 +7,10 @@ import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -56,10 +60,9 @@ public class DatabaseViewController {
     nameCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("longName"));
     dateCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("date"));
 
-    /*ObservableList itemList = FXCollections.observableArrayList(databaseController.getMoveList());
+    ObservableList itemList = FXCollections.observableArrayList(dC.getMoveList());
+    dataTable.setItems(itemList);
 
-        dataTable.setItems(itemList);
-    */
     dataTable.setEditable(true);
 
     // testing stuff
@@ -114,8 +117,16 @@ public class DatabaseViewController {
             // cancel
           } else {
             // export to the given path
-            // ask user for file name
-            System.out.println(selectedFile.getAbsolutePath());
+            // System.out.println(selectedFile.getAbsolutePath());
+            System.out.println(selectedFile.getName());
+            System.out.println(selectedFile.getParentFile().getAbsolutePath());
+            try {
+              dC.exportToCSV(
+                  "Move", selectedFile.getParentFile().getAbsolutePath(), selectedFile.getName());
+            } catch (SQLException | IOException e) {
+              System.out.println("You messed up big time!!!!!!");
+              System.out.println(e);
+            }
           }
         });
   }
