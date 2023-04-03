@@ -62,8 +62,6 @@ public class DatabaseGraphController {
     }
     if (nodeList.isEmpty()) {
       System.out.println("No nodes retrieved");
-    } else {
-      System.out.println("Edges and Nodes retrieved successfully.");
     }
   }
 
