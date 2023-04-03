@@ -45,9 +45,10 @@
                     <MenuItem fx:id="exitButton" mnemonicParsing="false" text="Close" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
+                <Menu mnemonicParsing="false" text="Service Request">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem fx:id="mealMenu" mnemonicParsing="false" text="MealRequest" />
+                        <MenuItem fx:id="furnitureMenu" mnemonicParsing="false" text="Furniture Request" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
