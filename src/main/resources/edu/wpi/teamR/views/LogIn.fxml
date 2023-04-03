@@ -60,6 +60,11 @@
                   <Font size="20.0" />
                </font>
             </MFXPasswordField>
+            <Text fx:id="messageText" layoutX="180.0" layoutY="518.0" strokeType="OUTSIDE" strokeWidth="0.0" text="..." wrappingWidth="640.0">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </left>
