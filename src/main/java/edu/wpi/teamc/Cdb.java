@@ -149,7 +149,7 @@ public class Cdb {
         String floor = rsNodes.getString("floorNum");
         String building = rsNodes.getString("building");
 
-        databaseNodeList.add(new Node(nodeID, xCoord, yCoord, floor, building, null, null, null));
+        databaseNodeList.add(new Node(nodeID, xCoord, yCoord, floor, building));
       }
       while (rsEdges.next()) {
         String edgeID = rsEdges.getString("edgeID");
@@ -391,7 +391,7 @@ public class Cdb {
           String shortName = matcher.group(8);
 
           Node node =
-              new Node(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName);
+              new Node(nodeID, xCoord, yCoord, floor, building);
           databaseNodeList.add(node);
           syncNodeDB(connection, node, "add");
         }
