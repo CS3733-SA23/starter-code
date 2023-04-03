@@ -24,6 +24,13 @@ public class HomeController {
 
   @FXML private Button signagePage;
 
+  @FXML private Button logOut;
+  @FXML private Button editMap;
+
+  @FXML private Button mapHistory;
+
+  @FXML private Button mapPage;
+
   @FXML
   void getFlowerDeliveryPage(ActionEvent event) {
     Navigation.navigate(Screen.FLOWER);
@@ -60,4 +67,16 @@ public class HomeController {
   /** Method run when controller is initialized */
   @FXML
   public void initialize() {}
+
+  @FXML
+  void getEditMap(ActionEvent event) {}
+
+  @FXML
+  void getLogOut(ActionEvent event) {}
+
+  @FXML
+  void getMapHistory(ActionEvent event) {}
+
+  @FXML
+  void getMapPage(ActionEvent event) {}
 }
