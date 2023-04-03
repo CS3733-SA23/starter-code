@@ -1,8 +1,13 @@
-package pathfinding;
+package edu.wpi.teame.map.pathfinding;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+
+import edu.wpi.teame.map.pathfinding.AStarPathfinder;
+import edu.wpi.teame.map.pathfinding.AbstractPathfinder;
+import edu.wpi.teame.map.pathfinding.BFSPathfinder;
+import edu.wpi.teame.map.HospitalNode;
 import org.junit.jupiter.api.Test;
 
 public class PathfindingTests {
