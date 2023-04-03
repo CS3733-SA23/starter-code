@@ -160,10 +160,10 @@ public class DatabaseController {
 
     String queryCountE = "SELECT COUNT(*) FROM teame.l1edges;";
     String queryCountN = "SELECT COUNT(*) FROM teame.l1nodes;";
-    String queryCountM = "SELECT COUNT(*) FROM teame.Move;";
+    String queryCountM = "SELECT COUNT(*) FROM teame.\"Move\";";
     String queryEID = "SELECT edgeID FROM teame.l1edges;";
     String queryNID = "SELECT nodeID FROM teame.l1nodes;";
-    String queryMID = "SELECT moveID FROM teame.Move;";
+    String queryMID = "SELECT \"nodeID\" FROM teame.\"Move\";";
 
     try (Statement stmt = c.createStatement()) {
       ResultSet rsn = stmt.executeQuery(queryCountN);
@@ -188,6 +188,15 @@ public class DatabaseController {
         }
       }
       ResultSet rsm = stmt.executeQuery(queryCountM);
+      if (rsm.next()) {
+        int moveCount = rsm.getInt(1);
+        ResultSet rsMoves = stmt.executeQuery(queryMID);
+        for (int i = 0; i <= moveCount; i++) {
+          if (rsMoves.next()) {
+            mList.add(rsMoves.getString("nodeID"));
+          }
+        }
+      }
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
@@ -229,6 +238,24 @@ public class DatabaseController {
     } else {
       System.out.println("Nodes retrieved successfully.");
     }
+
+    // Retrieve move
+    for (String nodeID : mList) {
+      String moveQuery = "SELECT * FROM teame.\"Move\" WHERE \"nodeID\" = '" + nodeID + "';";
+      try (Statement stmt = c.createStatement()) {
+        ResultSet rs = stmt.executeQuery(moveQuery);
+        if (rs.next()) {
+          moveList.add(extractMoveFromResultSet(rs));
+        }
+      } catch (SQLException d) {
+        throw new RuntimeException();
+      }
+    }
+    if (moveList.isEmpty()) {
+      System.out.println("Move table not retrieved");
+    } else {
+      System.out.println("Move table retrieved successfully");
+    }
   }
 
   public List<HospitalNode> getHospitalNodes() {
@@ -243,10 +270,10 @@ public class DatabaseController {
     return moveList;
   }
 
-  private MoveAttribute extractMoveFromResultSet(ResultSet rs) throws SQLException{
-    return new MoveAttribute(rs.getString("nodeID"), rs.getString("longName"), rs.getString("date"));
+  private MoveAttribute extractMoveFromResultSet(ResultSet rs) throws SQLException {
+    return new MoveAttribute(
+        rs.getString("nodeID"), rs.getString("longName"), rs.getString("date"));
   }
-
 
   /**
    * Extracts a HospitalNode object from the given ResultSet.

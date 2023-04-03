@@ -5,6 +5,7 @@ import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.io.File;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,9 +14,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.DirectoryChooser;
 import pathfinding.MoveAttribute;
-
-import java.io.File;
-
 
 public class DatabaseViewController {
 
@@ -56,16 +54,18 @@ public class DatabaseViewController {
 
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
 
-    deleteButton.setOnMouseClicked(event -> {
-      dataTable.getItems().removeAll(dataTable.getSelectionModel().getSelectedItem());
-      //delete row in database (call method)
-    });
+    deleteButton.setOnMouseClicked(
+        event -> {
+          dataTable.getItems().removeAll(dataTable.getSelectionModel().getSelectedItem());
+          // delete row in database (call method)
+        });
 
     addButton.setOnMouseClicked(event -> {});
 
-    importButton.setOnMouseClicked(event -> {
-      //File selectedDirectory = directoryChooser.showDialog();
-    });
+    importButton.setOnMouseClicked(
+        event -> {
+          // File selectedDirectory = directoryChooser.showDialog();
+        });
 
     exportButton.setOnMouseClicked(event -> {});
 
