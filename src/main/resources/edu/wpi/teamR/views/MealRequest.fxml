@@ -31,7 +31,7 @@
                   <Font name="Times New Roman" size="20.0" />
                </font>
             </MFXButton>
-            <MFXButton fx:id="clearButton" layoutX="587.0" layoutY="600.0" prefHeight="40.0" prefWidth="93.0" text="Clear">
+            <MFXButton fx:id="resetButton" layoutX="587.0" layoutY="600.0" prefHeight="40.0" prefWidth="93.0" text="Reset">
                <font>
                   <Font name="Times New Roman" size="20.0" />
                </font>
@@ -49,7 +49,7 @@
             </Text>
             <MFXTextField fx:id="nameField" layoutX="182.0" layoutY="190.0" maxHeight="53.0" minHeight="-Infinity" prefHeight="42.0" prefWidth="960.0">
                <font>
-                  <Font name="Times New Roman" size="10.0" />
+                  <Font name="Times New Roman" size="20.0" />
                </font>
             </MFXTextField>
             <Text layoutX="188.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Type:" wrappingWidth="115.32479095458984">
@@ -66,18 +66,18 @@
             </Text>
             <MFXTextField fx:id="locationField" layoutX="183.0" layoutY="303.0" maxHeight="53.0" minHeight="-Infinity" prefHeight="42.0" prefWidth="960.0">
                <font>
-                  <Font name="Times New Roman" size="10.0" />
+                  <Font name="Times New Roman" size="20.0" />
                </font>
             </MFXTextField>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dbdbdb" height="79.0" layoutX="709.0" layoutY="376.0" stroke="#dbdbdb" strokeType="INSIDE" width="445.0" />
-            <Text layoutX="728.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Staff Member:" wrappingWidth="123.54412841796875">
+            <Text layoutX="728.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Staff Member:" wrappingWidth="123.54412841796875">
                <font>
                   <Font name="Times New Roman" size="20.0" />
                </font>
             </Text>
-            <MFXTextField fx:id="staffMemberField" layoutX="726.0" layoutY="400.0" maxHeight="53.0" minHeight="-Infinity" prefHeight="42.0" prefWidth="411.0">
+            <MFXTextField fx:id="staffMemberField" layoutX="726.0" layoutY="405.0" maxHeight="53.0" minHeight="-Infinity" prefHeight="42.0" prefWidth="411.0">
                <font>
-                  <Font name="Times New Roman" size="10.0" />
+                  <Font name="Times New Roman" size="20.0" />
                </font>
             </MFXTextField>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dbdbdb" height="79.0" layoutX="158.0" layoutY="478.0" stroke="#dbdbdb" strokeType="INSIDE" width="1000.0" />
@@ -88,7 +88,7 @@
             </Text>
             <MFXTextField fx:id="notesField" layoutX="186.0" layoutY="506.0" maxHeight="53.0" minHeight="-Infinity" prefHeight="42.0" prefWidth="960.0">
                <font>
-                  <Font name="Times New Roman" size="10.0" />
+                  <Font name="Times New Roman" size="20.0" />
                </font>
             </MFXTextField>
          </children>
