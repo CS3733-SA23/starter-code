@@ -10,35 +10,35 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamR.controllers.sortOrdersController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamR.controllers.sortOrdersController">
    <children>
-      <AnchorPane>
+      <AnchorPane prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="65.0" stroke="#003da6" strokeType="INSIDE" width="600.0" />
-            <Text fill="WHITE" layoutX="93.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Information">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da6" height="136.0" stroke="#003da6" strokeType="INSIDE" width="1280.0" />
+            <Text fill="WHITE" layoutX="260.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Request Information">
                <font>
-                  <Font name="Times New Roman" size="36.0" />
+                  <Font name="Times New Roman" size="64.0" />
                </font>
             </Text>
-            <TextField layoutX="82.0" layoutY="90.0" prefHeight="25.0" prefWidth="259.0" />
-            <Text layoutX="41.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search">
+            <TextField layoutX="149.0" layoutY="179.0" prefHeight="34.0" prefWidth="504.0" />
+            <Text layoutX="99.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Text>
+            <ChoiceBox fx:id="sortListByBox" layoutX="1032.0" layoutY="192.0" prefWidth="150.0" />
+            <Text layoutX="940.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort List By:">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
             </Text>
-            <ChoiceBox fx:id="sortListByBox" layoutX="432.0" layoutY="90.0" prefWidth="150.0" />
-            <Text layoutX="432.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort List By:">
-               <font>
-                  <Font name="Times New Roman" size="12.0" />
-               </font>
-            </Text>
-            <TableView fx:id="requestTable" layoutX="31.0" layoutY="131.0" prefHeight="251.0" prefWidth="534.0">
+            <TableView fx:id="requestTable" layoutX="94.0" layoutY="264.0" prefHeight="407.0" prefWidth="1092.0">
               <columns>
-                <TableColumn fx:id="nameColumn" prefWidth="100.00000381469727" text="Name" />
-                <TableColumn fx:id="locationColumn" prefWidth="92.00006103515625" text="Location" />
-                 <TableColumn fx:id="staffMemberColumn" prefWidth="131.99998474121094" text="Staff Member" />
-                 <TableColumn fx:id="notesColumn" prefWidth="85.33331298828125" text="Notes" />
-                 <TableColumn fx:id="mealColumn" prefWidth="85.33331298828125" text="Meal" />
+                <TableColumn fx:id="nameColumn" prefWidth="170.22220611572266" text="Name" />
+                <TableColumn fx:id="locationColumn" prefWidth="184.66668701171875" text="Location" />
+                 <TableColumn fx:id="staffMemberColumn" prefWidth="257.55548095703125" text="Staff Member" />
+                 <TableColumn fx:id="notesColumn" prefWidth="277.111083984375" text="Notes" />
+                 <TableColumn fx:id="mealColumn" minWidth="0.0" prefWidth="203.77764892578125" text="Meal" />
               </columns>
             </TableView>
          </children>
