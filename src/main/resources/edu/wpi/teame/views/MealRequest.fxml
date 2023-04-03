@@ -133,7 +133,7 @@
                   </AnchorPane>
                </content>
             </ScrollPane>
-            <MFXButton fx:id="returnButtonMealRequest" contentDisplay="GRAPHIC_ONLY" layoutX="142.0" layoutY="45.0" style="-fx-background-color: #192d5a;">
+            <MFXButton fx:id="returnButtonMealRequest" contentDisplay="GRAPHIC_ONLY" layoutX="175.0" layoutY="53.0" style="-fx-background-color: #192d5a;">
                <graphic>
                   <ImageView fx:id="returnButtonService" fitHeight="100.0" fitWidth="50.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -149,6 +149,7 @@
                   </ImageView>
                </graphic>
             </MFXButton>
+            <MFXButton fx:id="clearForm" contentDisplay="TEXT_ONLY" layoutX="559.0" layoutY="49.0" prefHeight="45.0" prefWidth="65.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Clear" textFill="WHITE" />
          </children>
       </AnchorPane>
    </center>
