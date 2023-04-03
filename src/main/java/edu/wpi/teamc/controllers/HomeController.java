@@ -78,5 +78,7 @@ public class HomeController {
   void getMapHistory(ActionEvent event) {}
 
   @FXML
-  void getMapPage(ActionEvent event) {}
+  void getMapPage(ActionEvent event) {
+    Navigation.navigate(Screen.FLOOR_PLAN);
+  }
 }

@@ -15,7 +15,7 @@
                   <MenuItem fx:id="choice1" mnemonicParsing="false" onAction="#getChoice1" text="Floor 1" />
                   <MenuItem fx:id="choice2" mnemonicParsing="false" onAction="#getChoice2" text="Floor 2" />
                   <MenuItem fx:id="choice3" mnemonicParsing="false" onAction="#getChoice3" text="Floor 3" />
-                  <MenuItem fx:id="choice4" mnemonicParsing="false" onAction="#getChoice4" text="Ian's Conference Room" />
+                  <MenuItem fx:id="choice4" mnemonicParsing="false" onAction="#getChoice4" text="Floor 4" />
                </items>
                <font>
                   <Font name="Arial Bold" size="12.0" />
