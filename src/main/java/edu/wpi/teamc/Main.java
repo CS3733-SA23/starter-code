@@ -17,8 +17,8 @@ public class Main {
       System.out.println("Exception!");
     }
 
-    String startNode = "CHALL010L1";
-    String endNode = "CCONF001L1";
+    String startNode = "CCONF001L1";
+    String endNode = "CHALL010L1";
 
     graph.printDirectionsAStar(startNode, endNode);
 
