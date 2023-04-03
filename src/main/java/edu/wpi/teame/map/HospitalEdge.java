@@ -1,4 +1,4 @@
-package pathfinding;
+package edu.wpi.teame.map;
 
 public class HospitalEdge {
   String nodeOneID;
