@@ -4,11 +4,13 @@ import java.sql.Timestamp;
 
 public class FurnitureRequest {
     private String requesterName, location, furnitureType, staffMember, additionalNotes;
+
+    private int requestID;
     private Timestamp requestDate;
     private RequestStatus requestStatus;
 
     public FurnitureRequest(String requesterName, String location, String furnitureType, String staffMember,
-                            String additionalNotes, Timestamp requestDate, RequestStatus requestStatus) {
+                            String additionalNotes, Timestamp requestDate, RequestStatus requestStatus, Integer requestID) {
         this.requesterName = requesterName;
         this.location = location;
         this.furnitureType = furnitureType;
@@ -16,6 +18,7 @@ public class FurnitureRequest {
         this.additionalNotes = additionalNotes;
         this.requestDate = requestDate;
         this.requestStatus = requestStatus;
+        this.requestID = requestID;
     }
 
     public String getRequesterName() {
@@ -73,4 +76,7 @@ public class FurnitureRequest {
     public void setRequestStatus(RequestStatus requestStatus) {
         this.requestStatus = requestStatus;
     }
+    public int getRequestID() { return requestID; }
+
+    public void setRequestID(int requestID) { this.requestID = requestID; }
 }
