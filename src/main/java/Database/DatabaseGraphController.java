@@ -14,8 +14,8 @@ import pathfinding.NodeInitializer;
 
 public class DatabaseGraphController {
   DatabaseController DBC;
-  private static List<HospitalNode> nodeList = new ArrayList<>();
-  private static List<HospitalEdge> edgeList = new ArrayList<>();
+  private static List<HospitalNode> nodeList = new LinkedList<>();
+  private static List<HospitalEdge> edgeList = new LinkedList<>();
 
   public DatabaseGraphController(DatabaseController DBC) {
     try {

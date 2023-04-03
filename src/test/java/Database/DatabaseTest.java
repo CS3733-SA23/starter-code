@@ -24,6 +24,7 @@ public class DatabaseTest {
     } catch (RuntimeException e) {
       System.out.println(e.getMessage());
     }
+    return null;
   }
 
   /** Tests to see if you can get the nodeID from a given longName in the Move table */
@@ -48,7 +49,7 @@ public class DatabaseTest {
 
     List<MoveAttribute> moveAttributeList = DBMC.getMoveAttributeFromFloor(Floor.LOWER_ONE);
 
-    assertEquals(45, moveAttributeList.size());
+    assertEquals(moveAttributeList.size(), 45);
   }
 
   /** Tests the new retrieveFromTable method and produces list of nodes and strings */
