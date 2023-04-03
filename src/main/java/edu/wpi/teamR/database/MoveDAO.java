@@ -31,7 +31,7 @@ public class MoveDAO {
     }
     public static MoveDAO getInstance(){return MoveDAO.instance;}
     public ArrayList<Move> getMoves(){return moves;};
-    public Move AddMove(int nodeID, String longName, Date moveDate) throws SQLException, ClassNotFoundException {
+    public Move addMove(int nodeID, String longName, Date moveDate) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
         String sqlInsert = "INSERT INTO "+schemaName+"."+tableName+"(nodeID,longName,moveDate)";
