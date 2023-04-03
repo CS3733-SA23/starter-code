@@ -90,7 +90,7 @@ public class Cdb {
             break;
           case "import from a csv file into the node table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/L1Nodes.csv";
-            importCSV(connection, csvFileName, databaseNodeList);
+            importCSV(csvFileName, databaseNodeList);
             break;
           case "delete a node":
             System.out.println("please enter the node ID of the node you would like to delete");
@@ -407,7 +407,7 @@ public class Cdb {
     }
   }
 
-  static void importCSV(Connection connection, String csvFile, List<Node> databaseNodeList) {
+  static void importCSV(String csvFile, List<Node> databaseNodeList) {
     // Regular expression to match each row
     String regex = "(.*),(\\d+),(\\d+),(.*),(.*)";
     // Compile regular expression pattern
