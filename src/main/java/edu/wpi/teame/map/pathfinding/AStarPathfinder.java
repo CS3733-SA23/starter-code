@@ -1,7 +1,6 @@
 package edu.wpi.teame.map.pathfinding;
 
 import edu.wpi.teame.map.HospitalNode;
-
 import java.util.*;
 
 public class AStarPathfinder extends AbstractPathfinder {
@@ -21,15 +20,15 @@ public class AStarPathfinder extends AbstractPathfinder {
     HashMap<HospitalNode, HospitalNode> parentMap = new HashMap<HospitalNode, HospitalNode>();
 
     PriorityQueue<HospitalNode> queue =
-            new PriorityQueue<HospitalNode>(
-                    new Comparator<HospitalNode>() {
-                      @Override
-                      public int compare(HospitalNode o1, HospitalNode o2) {
-                        // Based on heuristic distance to target
-                        return (costMap.get(o1) + heuristicDistance(o1, to))
-                                - (costMap.get(o2) + heuristicDistance(o2, to));
-                      }
-                    });
+        new PriorityQueue<HospitalNode>(
+            new Comparator<HospitalNode>() {
+              @Override
+              public int compare(HospitalNode o1, HospitalNode o2) {
+                // Based on heuristic distance to target
+                return (costMap.get(o1) + heuristicDistance(o1, to))
+                    - (costMap.get(o2) + heuristicDistance(o2, to));
+              }
+            });
 
     queue.add(from);
     parentMap.put(from, null);
@@ -65,7 +64,9 @@ public class AStarPathfinder extends AbstractPathfinder {
   int heuristicDistance(HospitalNode from, HospitalNode to) {
     // estimate the distance to the target based on the euclidean distance to the target
     return (int)
-            Math.sqrt(Math.pow(from.getXCoord() - to.getXCoord(), 2) + Math.pow(from.getYCoord() - to.getYCoord(), 2));
+        Math.sqrt(
+            Math.pow(from.getXCoord() - to.getXCoord(), 2)
+                + Math.pow(from.getYCoord() - to.getYCoord(), 2));
   }
 
   /**
@@ -77,7 +78,7 @@ public class AStarPathfinder extends AbstractPathfinder {
    *     the target coordinate
    */
   private List<HospitalNode> reconstructPath(
-          HashMap<HospitalNode, HospitalNode> parentMap, HospitalNode current) {
+      HashMap<HospitalNode, HospitalNode> parentMap, HospitalNode current) {
     LinkedList<HospitalNode> path = new LinkedList<HospitalNode>();
     while (current != null) {
       path.addFirst(current);

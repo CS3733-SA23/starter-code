@@ -44,11 +44,11 @@ public class HospitalNode {
 
   public HospitalNode(NodeInitializer nodeInitializer) {
     this(
-            nodeInitializer.nodeID,
-            nodeInitializer.xCoord,
-            nodeInitializer.yCoord,
-            nodeInitializer.floor,
-            nodeInitializer.building);
+        nodeInitializer.nodeID,
+        nodeInitializer.xCoord,
+        nodeInitializer.yCoord,
+        nodeInitializer.floor,
+        nodeInitializer.building);
   }
 
   @Override

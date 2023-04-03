@@ -1,4 +1,3 @@
-
 package edu.wpi.teame.controllers;
 
 import edu.wpi.teame.entities.ServiceRequestData;
@@ -68,9 +67,9 @@ public class MealRequestController implements IRequestController {
     Navigation.navigate(Screen.HOME);
     System.out.print(
         "\nDelivery Type: "
-            + mealRequestData.requestType
+            + mealRequestData.getRequestType()
             + "\nRequest Data: "
-            + mealRequestData.requestData);
+            + mealRequestData.getRequestData());
     return mealRequestData;
   }
 
