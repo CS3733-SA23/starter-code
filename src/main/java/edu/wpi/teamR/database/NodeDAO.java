@@ -41,6 +41,14 @@ public class NodeDAO {
         closeConnection(connection);
         return aNode;
     }
+
+    /*
+    Any number of these arguments can be null. This function will delete any row in the
+    Node table that matches all non-null arguments.
+    Ex: if all arguments are null then it will delete all nodes
+    Ex2: if building is "45 Francis", floorNum is "L2", and everything else is null
+         then it will delete all nodes in the L2 floor of the 45 Francis building
+     */
     public void deleteNodes(Integer nodeID, Integer xCoord, Integer yCoord, String floorNum, String building) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
@@ -95,6 +103,11 @@ public class NodeDAO {
             }
         }
     }
+
+    /*
+    This function will take the node with the selected nodeID and replace all
+    attributes with the passed parameters
+     */
     public void modifyNodeByID(Integer nodeID, Integer xCoord, Integer yCoord, String floorNum, String building) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
@@ -109,6 +122,14 @@ public class NodeDAO {
         aNode.setyCoord(yCoord);
     }
 
+
+    /*
+    Any number of these arguments can be null. This function will select any row in the
+    Node table that matches all non-null arguments.
+    Ex: if all arguments are null then it return a list of all nodes
+    Ex2: if building is "45 Francis", floorNum is "L2", and everything else is null
+         then it will return a list of all nodes in the L2 floor of the 45 Francis building
+    */
     public ArrayList<Node> selectNodes(Integer nodeID, Integer xCoord, Integer yCoord, String floorNum, String building){
         ArrayList<Node> aList = new ArrayList<Node>();
         for(int i = 0; i<nodes.size(); i++){
