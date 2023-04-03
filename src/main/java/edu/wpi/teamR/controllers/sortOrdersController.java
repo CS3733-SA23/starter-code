@@ -25,7 +25,7 @@ public class sortOrdersController {
   public void initialize() {
     sortListByBox.setValue("Default");
     sortListByBox.setItems(orderList);
-    nameColumn.setCellValueFactory(new PropertyValueFactory<MealFields, String>("name"));
+    nameColumn.setCellValueFactory(new PropertyValueFactory<MealFields, String>("Name"));
     locationColumn.setCellValueFactory(new PropertyValueFactory<MealFields, String>("Location"));
     staffMemberColumn.setCellValueFactory(
         new PropertyValueFactory<MealFields, String>("Staff Member"));
