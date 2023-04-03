@@ -4,82 +4,14 @@ import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import pathfinding.Floor;
-import pathfinding.HospitalEdge;
-import pathfinding.HospitalNode;
 import pathfinding.MoveAttribute;
 
 public class DatabaseController {
   private Connection c;
-  private static List<HospitalNode> nodeList = new ArrayList<>();
-  private static List<HospitalEdge> edgeList = new ArrayList<>();
   private static List<MoveAttribute> moveList = new ArrayList<>();
-
-  public static void main(String[] args) throws SQLException, IOException {
-    Scanner s1 = new Scanner(System.in);
-    System.out.print("Please enter your username (will default to \"teame\"): ");
-    String username = s1.nextLine(); // Unused in this Prototype
-    System.out.print("Please enter your password (will default to \"teame50\"): ");
-    String password = s1.nextLine(); // Unused in this Prototype
-    System.out.println();
-
-    DatabaseController DBC1 = new DatabaseController("teame", "teame50");
-    MoveAttribute mA = new MoveAttribute("1200", "Hall 3 Level 1", "1/1/2023");
-
-    // DBC1.importFromCSV("C:\\Users\\thesm\\OneDrive\\Desktop\\Test.csv", "l1nodes");
-
-    boolean exit = true;
-    while (exit) {
-      System.out.println("\nWhat would you like to do?");
-      System.out.println(
-          "Choices: update, retrieve, delete, display info, export table, import table, HELP, EXIT, add to table move)");
-      String function = s1.nextLine().toLowerCase().trim();
-
-      switch (function) {
-        case "update":
-          // DBC1.updateTable();
-          break;
-
-        case "delete":
-          DBC1.deleteFromTable(mA);
-          break;
-
-        case "help":
-          DBC1.help();
-          break;
-
-        case "exit":
-          DBC1.exitDatabaseProgram();
-          exit = false;
-          break;
-        case "add to table move":
-          DBC1.addToTable(mA);
-
-        case "retrieve":
-          // DBC1.retrieveFromTable();
-          break;
-        case "export table":
-          DBC1.exportToCSV("Move", "C:\\filepath...", "Name of CSV file");
-          break;
-
-        case "import table":
-          System.out.println("What's the filepath?");
-          String filepath = s1.nextLine();
-          try {
-            DBC1.importFromCSV(filepath, "l1nodes");
-          } catch (IOException e) {
-            System.out.println("Something went wrong");
-          }
-        default:
-          System.out.println("Please enter a valid action");
-      }
-    }
-  }
 
   public DatabaseController(String username, String password) {
     c = this.connectToDatabase(username, password);
-    // this.retrieveFromTable();
     // this.retrieveFromTable();
   }
 
@@ -123,8 +55,6 @@ public class DatabaseController {
     } catch (SQLException e) {
       System.out.println();
     }
-
-    // this.retrieveFromTable();
   }
 
   public void addToTable(MoveAttribute moveAttribute) {
@@ -202,110 +132,6 @@ public class DatabaseController {
   private MoveAttribute extractMoveFromResultSet(ResultSet rs) throws SQLException {
     return new MoveAttribute(
         rs.getString("nodeID"), rs.getString("longName"), rs.getString("date"));
-  }
-
-  /**
-   * Extracts a HospitalNode object from the given ResultSet.
-   *
-   * @param rs The ResultSet to extract the node from.
-   * @return A HospitalNode object extracted from the given ResultSet.
-   * @throws SQLException if an error occurs while accessing the ResultSet.
-   */
-  private HospitalNode extractNodeFromResultSet(ResultSet rs) throws SQLException {
-    return new HospitalNode(
-        rs.getString("nodeid"),
-        rs.getInt("xcoord"),
-        rs.getInt("ycoord"),
-        Floor.stringToFloor(rs.getString("floor")),
-        rs.getString("building"));
-  }
-
-  /**
-   * Description: Extracts a HospitalEdge object from the given ResultSet.
-   *
-   * @param rs The ResultSet to extract the edge from.
-   * @return A HospitalEdge object extracted from the given ResultSet.
-   * @throws SQLException if an error occurs while accessing the ResultSet.
-   */
-  private HospitalEdge extractEdgeFromResultSet(ResultSet rs) throws SQLException {
-    return new HospitalEdge(rs.getString("startNode"), rs.getString("endNode"));
-  }
-
-  /**
-   * This method updates the value of a specific attribute in a specific row of a given table.
-   *
-   * @param tabletoEdit The name of the table to edit.
-   * @param idToUpdate The value of the ID attribute for the row to update.
-   * @param attributeToEdit The name of the attribute to update.
-   * @param idType The name of the ID attribute for the table.
-   * @return void
-   */
-  public void updateAttribute(
-      String tabletoEdit, String idToUpdate, String attributeToEdit, String idType) {
-    Scanner s1 = new Scanner(System.in);
-    Statement stmt = null;
-    String sql;
-
-    System.out.println("Please enter the new " + attributeToEdit + ": ");
-    String newval = s1.nextLine();
-    try {
-      stmt = c.createStatement();
-      sql =
-          "UPDATE "
-              + tabletoEdit
-              + " SET "
-              + attributeToEdit
-              + " = '"
-              + newval
-              + "' WHERE "
-              + idType
-              + " = '"
-              + idToUpdate
-              + "';";
-      int rs = stmt.executeUpdate(sql);
-      stmt.close();
-      if (rs > 0) {
-        System.out.println("Successfully updated " + attributeToEdit + " for node " + idToUpdate);
-      } else {
-        System.out.println("Your entry is invalid please try again");
-      }
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  private void help() {
-    System.out.println("");
-    System.out.println("");
-
-    System.out.println("Help Page:\n");
-    boolean exit = false;
-    Scanner s1 = new Scanner(System.in);
-
-    // User Operations:
-    // System.out.println("\tUser Operations:\n");
-    System.out.println("\tThe User inputs username to database.");
-    System.out.println("\tThe User inputs password to database.");
-    System.out.println(
-        "\tThe User inputs which operation they wish to use: \n\t\t(update, retrieve, delete, display info, "
-            + "export table, import table, help, exit).");
-    System.out.println(
-        "\tThe user then inputs the id of what they want to modify in the database.");
-    System.out.println(
-        "\tThe User inputs all other necessary information for the specified editing operation.");
-    System.out.println(
-        "\tThe User then inputs whether or not they want to edit the database further.");
-    System.out.println(
-        "\tAlternatively, the user could have inputted the list and adress of the file they "
-            + "wanted to import or export.");
-    System.out.println("\nType \"exit\" to leave the help screen at any time:");
-
-    while (!exit) {
-      String response = s1.nextLine().toLowerCase();
-      if (response.equals("exit")) {
-        exit = true;
-      }
-    }
   }
 
   /**
@@ -411,6 +237,7 @@ public class DatabaseController {
     rs.close();
     stmt.close();
   }
+
   public Connection getC() {
     return c;
   }

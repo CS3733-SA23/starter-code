@@ -16,28 +16,16 @@ public enum Floor {
         return LOWER_ONE;
       case "L2":
         return LOWER_TWO;
-<<<<<<< HEAD
-      case "ONE":
-      case "1":
-        return ONE;
-      case "TWO":
-      case "2":
-        return TWO;
-      case "THREE":
-=======
       case "1":
         return ONE;
       case "2":
         return TWO;
->>>>>>> main
       case "3":
         return THREE;
       default:
         throw new NoSuchElementException("No such Floor found");
     }
   }
-<<<<<<< HEAD
-=======
 
   public static String floorToString(Floor fl) {
     switch (fl) {
@@ -55,5 +43,4 @@ public enum Floor {
         throw new NoSuchElementException("No such Floor found");
     }
   }
->>>>>>> main
 }
