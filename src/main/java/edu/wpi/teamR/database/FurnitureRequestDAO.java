@@ -28,10 +28,13 @@ public class FurnitureRequestDAO {
       String location = resultSet.getString("location");
       Timestamp requestDate = resultSet.getTimestamp("requestDate");
       String additionalNotes = resultSet.getString("additionalNotes");
-      RequestStatus furnitureType = RequestStatus.valueOf(resultSet.getString("furnitureType"));
-      FurnitureRequest aFurnitureRequest = new FurnitureRequest(requestID, requesterName, location, furnitureType, staffMember, additionalNotes, requestDate, );
+      String furnitureType = resultSet.getString("furnitureType");
+      RequestStatus requestStatus = RequestStatus.valueOf(resultSet.getString("requestStatus"));
+      FurnitureRequest aFurnitureRequest = new FurnitureRequest(requestID, requesterName, location, furnitureType, staffMember, additionalNotes, requestDate, requestStatus);
       furnitureRequests.add(aFurnitureRequest);
     }
+
+    closeConnection(connection);
   }
 
   public static FurnitureRequestDAO createInstance(
