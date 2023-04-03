@@ -59,7 +59,7 @@
                                           <Font name="Times New Roman" size="16.0" />
                                        </font>
                                     </Text>
-                                    <MFXTextField fx:id="recipientName" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" textLimit="0" />
+                                    <MFXTextField fx:id="recipientName" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
                                  </children>
                               </VBox>
                               <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefWidth="450.0" spacing="5.0">
@@ -109,15 +109,15 @@
                                           <Font name="Times New Roman" size="16.0" />
                                        </font>
                                     </Text>
-                                    <MFXTextField fx:id="notes" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" textLimit="0" />
-                                    <VBox alignment="TOP_CENTER" prefWidth="450.0" spacing="5.0" visible="false">
+                                    <MFXTextField fx:id="notes" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
+                                    <VBox alignment="TOP_CENTER" prefWidth="450.0" spacing="5.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assign Staff">
                                              <font>
                                                 <Font name="Times New Roman" size="16.0" />
                                              </font>
                                           </Text>
-                                          <MFXTextField fx:id="assignStaff" alignment="CENTER" disable="true" prefHeight="50.0" prefWidth="250.0" textLimit="0" />
+                                          <MFXTextField fx:id="assignStaff" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
                                        </children>
                                     </VBox>
                                  </children>

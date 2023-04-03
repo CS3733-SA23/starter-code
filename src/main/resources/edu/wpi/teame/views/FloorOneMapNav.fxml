@@ -73,7 +73,7 @@
          <left>
             <Pane prefHeight="847.0" prefWidth="146.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="102.0" fitWidth="114.0" layoutX="29.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="9.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Brigham_and_Womens_Hospital_logo.svg.png" />
                      </image>
