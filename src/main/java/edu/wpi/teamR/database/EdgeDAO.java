@@ -31,7 +31,7 @@ public class EdgeDAO {
     public ArrayList<Edge> getEdges() {
         return edges;
     }
-    public Edge addEdge(Integer startNode, Integer endNode) throws SQLException {
+    public Edge addEdge(Integer startNode, Integer endNode) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
         String sqlInsert = "INSERT INTO "+schemaName+"."+tableName+"(startNode, endNode) ";
