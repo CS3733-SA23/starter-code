@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class NodeDAO {
     private static NodeDAO instance;
@@ -94,7 +95,7 @@ public class NodeDAO {
             }
         }
     }
-    public void modifyNodeByID(Integer nodeID, Integer xCoord, Integer yCoord, String floorNum, String building) throws SQLException {
+    public void modifyNodeByID(Integer nodeID, Integer xCoord, Integer yCoord, String floorNum, String building) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
         String sqlUpdate = "UPDATE " + schemaName + "." + tableName + " SET xCoord = " + xCoord;
@@ -123,6 +124,14 @@ public class NodeDAO {
         return aList;
     }
 
+    public Node selectNodeByID(int nodeID) throws NotFoundException {
+        for (Node node : nodes){
+            if (node.getNodeID() == nodeID)
+                return node;
+        }
+        throw new NotFoundException();
+    }
+
     public void writeCSV(String outputFile) throws SQLException, IOException {
         File csvFile = new File(outputFile);
         FileWriter outputFileWriter = new FileWriter(csvFile);
@@ -139,29 +148,20 @@ public class NodeDAO {
         outputFileWriter.flush();
         outputFileWriter.close();
     }
-    public void readCSV(String inputFile) throws FileNotFoundException { //TODO:
-        List<String> requiredColumns = Arrays.asList();
+    public void readCSV(String filePath) throws FileNotFoundException, SQLException, ClassNotFoundException { //TODO:
+        Scanner sc = new Scanner(new File(filePath));
+        sc.useDelimiter(",|\n");
+        sc.nextLine();
+        while (sc.hasNextLine() && sc.hasNext()) {
+            int nodeID = sc.nextInt();
+            int xCoord = sc.nextInt();
+            int yCoord = sc.nextInt();
+            String floorName = sc.next();
+            String building = sc.next();
+            addNode(nodeID, xCoord, yCoord, floorName, building);
+        }
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
-            String headerRow = reader.readLine();
-            List<String> columns = Arrays.asList(headerRow.split(","));
-
-            if (!columns.containsAll(requiredColumns)) {
-                // Prompt the user to enter the correct column order
-            }
-                String dataRow;
-                while ((dataRow = reader.readLine()) != null) {
-                    String[] dataValues = dataRow.split(",");
-                    // Map the columns to the correct order
-                    String[] mappedRow = new String[columnOrder.length];
-                    for (int i = 0; i < columnOrder.length; i++) {
-                        int index = columnOrder[i];
-                        mappedRow[i] = dataValues[index];
-                    }
-                    // Insert the data into the database
-                    // ...
-                }
-            }
+        sc.close();
     }
 
     private Connection createConnection() throws SQLException, ClassNotFoundException {
