@@ -1,11 +1,9 @@
 package pathfinding;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import static java.util.Objects.hash;
 
 import java.util.*;
+import lombok.Getter;
 
 public class HospitalNode {
   public static HashMap<String, HospitalNode> allNodes = new HashMap<>();
@@ -20,13 +18,7 @@ public class HospitalNode {
   @Getter Floor floor;
   @Getter String building;
 
-
-  public HospitalNode(
-      String id,
-      int xCoord,
-      int yCoord,
-      Floor floor,
-      String building) {
+  public HospitalNode(String id, int xCoord, int yCoord, Floor floor, String building) {
     this.neighbors = new LinkedList<HospitalNode>();
     edgeCosts = new HashMap<HospitalNode, Integer>();
     nodeID = id;
@@ -39,23 +31,24 @@ public class HospitalNode {
   }
 
   public HospitalNode() {
-    this(allNodes.size()+"",0,0,Floor.LOWER_ONE,"Unknown");
+    this(allNodes.size() + "", 0, 0, Floor.LOWER_ONE, "Unknown");
   }
 
   public HospitalNode(String id) {
-    this(id,0,0,Floor.LOWER_ONE,"Unknown");
+    this(id, 0, 0, Floor.LOWER_ONE, "Unknown");
   }
 
   public HospitalNode(String id, int xCoord, int yCoord) {
-    this(id,xCoord,yCoord,Floor.LOWER_ONE,"Unknown");
+    this(id, xCoord, yCoord, Floor.LOWER_ONE, "Unknown");
   }
 
-  public HospitalNode(NodeInitializer nodeInitializer){
-    this(nodeInitializer.nodeID,
-            nodeInitializer.xCoord,
-            nodeInitializer.yCoord,
-            nodeInitializer.floor,
-            nodeInitializer.building);
+  public HospitalNode(NodeInitializer nodeInitializer) {
+    this(
+        nodeInitializer.nodeID,
+        nodeInitializer.xCoord,
+        nodeInitializer.yCoord,
+        nodeInitializer.floor,
+        nodeInitializer.building);
   }
 
   @Override
