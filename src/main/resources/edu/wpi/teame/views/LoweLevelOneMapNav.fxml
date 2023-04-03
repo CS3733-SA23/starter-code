@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.LowerLevelOneMapNavController">
+    <children>
+        <BorderPane prefHeight="200.0" prefWidth="320.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+                <ScrollPane prefHeight="802.0" prefWidth="1145.0" BorderPane.alignment="CENTER">
+                    <content>
+                        <ImageView fitHeight="830.0" fitWidth="1700.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                            <image>
+                                <Image url="@../../../../../../../Maps/00_thelowerlevel1.png" />
+                            </image>
+                            <viewport>
+                                <Rectangle2D height="3500.0" width="5000.0" />
+                            </viewport>
+                        </ImageView>
+                    </content>
+                </ScrollPane>
+            </center>
+            <bottom>
+                <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+                    <children>
+                        <ComboBox prefWidth="150.0" promptText="Current Location" style="-fx-border-color: black;" />
+                        <Line endX="100.0" startX="-100.0" />
+                        <ComboBox prefWidth="150.0" promptText="Destination" style="-fx-border-color: black;" />
+                    </children>
+                </HBox>
+            </bottom>
+            <right>
+                <VBox spacing="20.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <MFXButton fx:id="groundFloorButton" buttonType="RAISED" text="Ground Floor" />
+                        <MFXButton fx:id="lowerLevelTwoButton" layoutX="10.0" layoutY="10.0" text="Lower Level 2" />
+                        <MFXButton fx:id="FirstFloorButton" layoutX="10.0" layoutY="10.0" text="First Floor" />
+                        <MFXButton fx:id="SecondFloorButton" layoutX="10.0" layoutY="64.0" text="Second Floor" />
+                        <MFXButton fx:id="ThirdFloorButton" layoutX="10.0" layoutY="91.0" text="Third Floor" />
+                    </children>
+                    <padding>
+                        <Insets left="175.0" />
+                    </padding>
+                </VBox>
+            </right>
+            <top>
+                <HBox BorderPane.alignment="CENTER">
+                    <children>
+                        <MFXButton fx:id="backButton" text="Back" />
+                        <Label text="Lower Level 1">
+                            <HBox.margin>
+                                <Insets left="600.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+            </top>
+        </BorderPane>
+    </children>
+</AnchorPane>

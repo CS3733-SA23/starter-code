@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import pathfinding.Floor;
 import pathfinding.HospitalEdge;
 import pathfinding.HospitalNode;
 
@@ -319,15 +320,14 @@ public class DatabaseController {
     String nodeType = rs.getString("nodeType");
     String longName = rs.getString("longName");
     String shortName = rs.getString("shortName");
-    return new HospitalNode(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName);
+    return new HospitalNode(nodeID, xCoord, yCoord, Floor.stringToFloor(floor), building);
   }
 
   private HospitalEdge extractEdgeFromResultSet(ResultSet rs) throws SQLException {
-    String edgeID = rs.getString("edgeID");
     String startNode = rs.getString("startNode");
     String endNode = rs.getString("endNode");
 
-    return new HospitalEdge(edgeID, startNode, endNode);
+    return new HospitalEdge(startNode, endNode);
   }
 
   private void updateTable() {
@@ -449,21 +449,18 @@ public class DatabaseController {
     System.out.println("\t\tUser inputs password to database.");
     System.out.println(
         "\t\tUser inputs which operation they wish to use (delete, retrieve, update, help)");
-
     System.out.println("\t\t\tIf delete:");
     System.out.println("\t\t\t\tUser inputs which table they wish to edit (nodes or edges).");
     System.out.println("\t\t\t\t\tIf nodes:");
     System.out.println("\t\t\t\t\t\tUser inputs the node ID they wish to delete.");
     System.out.println("\t\t\t\t\tIf edges:");
     System.out.println("\t\t\t\t\t\tUser inputs the edge ID they wish to delete.");
-
     System.out.println("\t\t\tIf retrieve:");
     System.out.println("\t\t\t\tUser inputs which table they wish to edit (nodes or edges).");
     System.out.println("\t\t\t\t\tIf nodes:");
     System.out.println("\t\t\t\t\t\tUser inputs the node ID they wish to retrieve.");
     System.out.println("\t\t\t\t\tIf edges:");
     System.out.println("\t\t\t\t\t\tUser inputs the edge ID they wish to retrieve.");
-
     System.out.println("\t\t\tIf update:");
     System.out.println("\t\t\t\tUser inputs which table they wish to update (nodes or edges).");
     System.out.println("\t\t\t\t\tIf nodes:");
@@ -484,10 +481,8 @@ public class DatabaseController {
     System.out.println("\t\t\t\t\t\t\t\tUser inputs the new start node.");
     System.out.println("\t\t\t\t\t\t\tIf endNode:");
     System.out.println("\t\t\t\t\t\t\t\tUser inputs the new end node.");
-
     // Functions:
     System.out.println("\n\n\tFunctions:\n");
-
     // connectToDatabase
     System.out.println("\t\tconnectToDatabase(String username, String password)");
     System.out.println("\t\t***Used to log into the database***");
@@ -495,7 +490,6 @@ public class DatabaseController {
     System.out.println("\t\t\tString username: type in database username");
     System.out.println("\t\t\tString password: type in database password");
     System.out.println("\t\treturn: void\n\n");
-
     // deleteFromTable
     System.out.println("\t\tdeleteFromTable(Connection c)");
     System.out.println("\t\t***Used to delete a specified row from a table***");
@@ -510,7 +504,6 @@ public class DatabaseController {
     System.out.println("\t\t\t\tIf edges:");
     System.out.println("\t\t\t\t\tedgeToDelete: Input the Edge ID that the user wishes to delete");
     System.out.println("\t\treturn: void\n\n");
-
     // retrieveFromTable
     System.out.println("\t\tretrieveFromTable(Connection c)");
     System.out.println(
@@ -528,7 +521,6 @@ public class DatabaseController {
     System.out.println(
         "\t\t\t\t\tedgeToretrieve: Input the Edge ID that the user wishes to retrieve");
     System.out.println("\t\treturn: void\n\n");
-
     // updateTable
     System.out.println("\t\tupdateTable(Connection c)");
     System.out.println(
@@ -568,7 +560,6 @@ public class DatabaseController {
     System.out.println(
         "\t\t\t\t\tExit while loop (doneUpdating is false) - continues the rest of the program");
     System.out.println("\t\treturn: void\n\n");
-
     // help
     System.out.println("\t\thelp()");
     System.out.println(
@@ -577,7 +568,6 @@ public class DatabaseController {
     System.out.println("\t\t\tUser Inputs:");
     System.out.println("\t\t\t\texit: Input exit when ready to leave help screen (exit)");
     System.out.println("\t\t\treturn: void\n\n");
-
      */
 
   }

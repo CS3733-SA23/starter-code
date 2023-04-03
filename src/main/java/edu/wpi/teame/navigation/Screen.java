@@ -8,7 +8,15 @@ public enum Screen {
 
   SIGNAGE_TEXT("views/Signage.fxml"),
   MEAL_REQUEST("views/MealRequest.fxml"),
-  FLOWER_REQUEST("views/FlowerRequest.fxml");
+  FLOWER_REQUEST("views/FlowerRequest.fxml"),
+
+  LOWER_ONE("views/LoweLevelOneMapNav.fxml"),
+  LOWER_TWO("views/LowerLevelTwoMapNav.fxml"),
+  FLOOR_ONE("views/FloorOneMapNav.fxml"),
+  FLOOR_TWO("views/FloorTwoMapNav.fxml"),
+  FLOOR_THREE("views/FloorThreeMapNav.fxml"),
+  MAP_MENU("views/MapMenu.fxml"),
+  GROUND_FLOOR("views/GroundFloorMapForNavigation.fxml");
 
   private final String filename;
 
