@@ -11,11 +11,14 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Popup;
 import pathfinding.MoveAttribute;
@@ -69,7 +72,6 @@ public class DatabaseViewController {
 
     ObservableList itemList = FXCollections.observableArrayList(dC.getMoveList());
     dataTable.setItems(itemList);
-
     dataTable.setEditable(true);
 
     // testing stuff
@@ -88,6 +90,22 @@ public class DatabaseViewController {
             dC.deleteFromTable(selectedItem);
           }
         });
+
+    App.getPrimaryStage()
+        .addEventHandler(
+            KeyEvent.KEY_PRESSED,
+            new EventHandler<KeyEvent>() {
+              @Override
+              public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.BACK_SPACE) {
+                  MoveAttribute selectedItem = dataTable.getSelectionModel().getSelectedItem();
+                  if (selectedItem != null) {
+                    dataTable.getItems().remove(selectedItem);
+                    dC.deleteFromTable(selectedItem);
+                  }
+                }
+              }
+            });
 
     addButton.setOnMouseClicked(
         event -> {
