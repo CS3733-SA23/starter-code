@@ -17,7 +17,7 @@
          <center>
             <ImageView fitHeight="279.0" fitWidth="402.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../../../../../../../../../Downloads/international-bwh-1428x1110.jpeg" />
+                  <Image url="@../assets/international-bwh-1428x1110%20(1).jpeg" />
                </image>
             </ImageView>
          </center>
