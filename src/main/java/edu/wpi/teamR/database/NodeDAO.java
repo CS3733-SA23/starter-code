@@ -169,7 +169,7 @@ public class NodeDAO {
         outputFileWriter.flush();
         outputFileWriter.close();
     }
-    public void readCSV(String filePath) throws FileNotFoundException, SQLException, ClassNotFoundException { //TODO:
+    public void readCSV(String filePath) throws FileNotFoundException, SQLException, ClassNotFoundException {
         Scanner sc = new Scanner(new File(filePath));
         sc.useDelimiter(",|\n");
         sc.nextLine();

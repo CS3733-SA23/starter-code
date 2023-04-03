@@ -2,6 +2,7 @@ package edu.wpi.teamR.database;
 import oracle.sql.DATE;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.util.Scanner;
 
 //TODO: string to date conversion, read and write CSV
 
@@ -119,8 +121,18 @@ public class MoveDAO {
         outputFileWriter.flush();
         outputFileWriter.close();
     }
-    public void readCSV(String inputFile){
+    public void readCSV(String inputFile) throws FileNotFoundException, SQLException, ClassNotFoundException {
+        Scanner sc = new Scanner(new File(inputFile));
+        sc.useDelimiter(",|\n");
+        sc.nextLine();
+        while (sc.hasNextLine() && sc.hasNext()) {
+            int nodeID = sc.nextInt();
+            String longName = sc.next();
+            Date moveDate = Date.valueOf(sc.next()); //TODO: check if this parsing works
+            addMove(nodeID, longName, moveDate);
+        }
 
+        sc.close();
     }
 
     private Connection createConnection() throws SQLException, ClassNotFoundException {
