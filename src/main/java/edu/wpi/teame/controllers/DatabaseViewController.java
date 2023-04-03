@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
+import javafx.stage.Popup;
 import pathfinding.MoveAttribute;
 
 public class DatabaseViewController {
@@ -48,6 +49,12 @@ public class DatabaseViewController {
 
   @FXML
   public void initialize() {
+    Popup windowPop = new Popup();
+    Label popupLabel = new Label("Error: improper formatting");
+    popupLabel.setStyle("-fx-background-color: red;");
+    windowPop.getContent().add(popupLabel);
+    windowPop.setAutoHide(true);
+
     // directoryChooser.setInitialDirectory(new File("src"));
     saveChooser.setTitle("Select where to save your file");
     saveChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV File", ".csv"));
@@ -66,8 +73,8 @@ public class DatabaseViewController {
     dataTable.setEditable(true);
 
     // testing stuff
-    dataTable.getItems().add(new MoveAttribute("1111", "testA", "4/2/2023"));
-    dataTable.getItems().add(new MoveAttribute("2222", "testB", "4/2/2023"));
+    // dataTable.getItems().add(new MoveAttribute("1111", "testA", "4/2/2023"));
+    // dataTable.getItems().add(new MoveAttribute("2222", "testB", "4/2/2023"));
 
     dataTable.setPlaceholder(new Label("No rows to display"));
 
@@ -92,9 +99,13 @@ public class DatabaseViewController {
             newMoveAttribute = new MoveAttribute(nodeID, name, date);
             dC.addToTable(newMoveAttribute);
             dataTable.getItems().add(newMoveAttribute);
+            IDField.clear();
+            locationField.clear();
+            dateField.clear();
           } catch (RuntimeException e) {
             // have an error pop up
             System.out.println("error caught");
+            windowPop.show(App.getPrimaryStage());
           }
         });
 
@@ -105,7 +116,14 @@ public class DatabaseViewController {
             // cancel
           } else {
             // add the file
-            System.out.println(selectedFile.getAbsolutePath());
+            try {
+              dC.importFromCSV(selectedFile.getAbsolutePath(), "Move");
+            } catch (IOException e) {
+              System.out.println("You messed up big time!!!!!!");
+              System.out.println(e);
+            }
+
+            // System.out.println(selectedFile.getAbsolutePath());
           }
         });
 
@@ -118,14 +136,12 @@ public class DatabaseViewController {
           } else {
             // export to the given path
             // System.out.println(selectedFile.getAbsolutePath());
-            System.out.println(selectedFile.getName());
-            System.out.println(selectedFile.getParentFile().getAbsolutePath());
             try {
               dC.exportToCSV(
                   "Move", selectedFile.getParentFile().getAbsolutePath(), selectedFile.getName());
             } catch (SQLException | IOException e) {
               System.out.println("You messed up big time!!!!!!");
-              System.out.println(e);
+              // System.out.println(e);
             }
           }
         });
