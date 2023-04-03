@@ -27,7 +27,7 @@ public class LogInController {
     System.out.println(passwordField.getText());
 
     if (usernameField.getText().equals("admin") && passwordField.getText().equals("admin")) {
-      Navigation.navigate(Screen.SortOrders);
+      Navigation.navigate(Screen.EMPLOYEE);
       messageText.setText("Successfully logged in!");
     } else {
       messageText.setText("Wrong username or password.\nPlease try log in again.");

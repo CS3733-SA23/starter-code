@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamR.controllers.EmployeeHomeController">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#003da8" height="100.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <Text fill="WHITE" layoutX="462.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Home ">
+               <font>
+                  <Font name="Times New Roman" size="48.0" />
+               </font>
+            </Text>
+            <MFXButton fx:id="backButton" layoutX="73.0" layoutY="605.0" text="Back">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </MFXButton>
+            <MFXButton fx:id="requestButton" layoutX="331.0" layoutY="326.0" text="Service Requests">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </MFXButton>
+            <Text layoutX="175.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please Select Your Desiered Action:">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>
