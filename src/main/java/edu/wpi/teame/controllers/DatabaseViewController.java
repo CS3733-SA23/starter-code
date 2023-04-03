@@ -1,16 +1,22 @@
 package edu.wpi.teame.controllers;
 
 import Database.DatabaseController;
+import edu.wpi.teame.App;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import pathfinding.MoveAttribute;
 
 public class DatabaseViewController {
@@ -37,24 +43,26 @@ public class DatabaseViewController {
 
   @FXML TableColumn<MoveAttribute, String> dateCol;
 
-  DirectoryChooser directoryChooser = new DirectoryChooser();
+  FileChooser saveChooser = new FileChooser();
+  FileChooser selectChooser = new FileChooser();
 
   @FXML
   public void initialize() {
-    /* directoryChooser.setInitialDirectory(new File("src"));
+    // directoryChooser.setInitialDirectory(new File("src"));
+    saveChooser.setTitle("Select where to save your file");
+    saveChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV File", ".csv"));
+    selectChooser.setTitle("Select file to import");
 
-        DatabaseController databaseController = new DatabaseController("teame", "teame50");
-    */
+    DatabaseController dC = new DatabaseController("teame", "teame50");
 
     // load the database into the table
     nodeIDCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("nodeID"));
     nameCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("longName"));
     dateCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("date"));
 
-    /*ObservableList itemList = FXCollections.observableArrayList(databaseController.getMoveList());
+    ObservableList itemList = FXCollections.observableArrayList(dC.getMoveList());
+    dataTable.setItems(itemList);
 
-        dataTable.setItems(itemList);
-    */
     dataTable.setEditable(true);
 
     // testing stuff
@@ -67,8 +75,11 @@ public class DatabaseViewController {
 
     deleteButton.setOnMouseClicked(
         event -> {
-          dataTable.getItems().removeAll(dataTable.getSelectionModel().getSelectedItem());
-          // delete row in database (call method)
+          MoveAttribute selectedItem = dataTable.getSelectionModel().getSelectedItem();
+          if (selectedItem != null) {
+            dataTable.getItems().remove(selectedItem);
+            dC.deleteFromTable(selectedItem);
+          }
         });
 
     addButton.setOnMouseClicked(
@@ -76,17 +87,47 @@ public class DatabaseViewController {
           String nodeID = IDField.getText();
           String name = locationField.getText();
           String date = dateField.getText();
-          MoveAttribute newMoveAttribute = new MoveAttribute(nodeID, name, date);
-          DatabaseController dC = new DatabaseController("teame", "teame50");
-          dataTable.getItems().add(newMoveAttribute);
-          dC.addToTable(newMoveAttribute);
+          MoveAttribute newMoveAttribute;
+          try {
+            newMoveAttribute = new MoveAttribute(nodeID, name, date);
+            dC.addToTable(newMoveAttribute);
+            dataTable.getItems().add(newMoveAttribute);
+          } catch (RuntimeException e) {
+            // have an error pop up
+            System.out.println("error caught");
+          }
         });
 
-    /* importButton.setOnMouseClicked(
-            event -> {
-              File selectedDirectory = directoryChooser.showDialog();
-            });
-    */
-    exportButton.setOnMouseClicked(event -> {});
+    importButton.setOnMouseClicked(
+        event -> {
+          File selectedFile = selectChooser.showOpenDialog(App.getPrimaryStage());
+          if (selectedFile == null) {
+            // cancel
+          } else {
+            // add the file
+            System.out.println(selectedFile.getAbsolutePath());
+          }
+        });
+
+    exportButton.setOnMouseClicked(
+        event -> {
+          // File selectedDirectory = directoryChooser.showDialog(App.getPrimaryStage());
+          File selectedFile = saveChooser.showSaveDialog(App.getPrimaryStage());
+          if (selectedFile == null) {
+            // cancel
+          } else {
+            // export to the given path
+            // System.out.println(selectedFile.getAbsolutePath());
+            System.out.println(selectedFile.getName());
+            System.out.println(selectedFile.getParentFile().getAbsolutePath());
+            try {
+              dC.exportToCSV(
+                  "Move", selectedFile.getParentFile().getAbsolutePath(), selectedFile.getName());
+            } catch (SQLException | IOException e) {
+              System.out.println("You messed up big time!!!!!!");
+              System.out.println(e);
+            }
+          }
+        });
   }
 }
