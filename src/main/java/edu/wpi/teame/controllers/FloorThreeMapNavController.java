@@ -20,6 +20,7 @@ public class FloorThreeMapNavController {
   @FXML private MFXButton lowerLevelOneButton;
   @FXML MFXComboBox currentLocationList;
   @FXML MFXComboBox destinationList;
+
   @FXML
   public void initialize() {
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
