@@ -52,9 +52,11 @@ public class MoveDAO {
   public Move addMove(Integer nodeID, String longName, Date moveDate) throws SQLException, ClassNotFoundException {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
-    String sqlInsert = "INSERT INTO " + schemaName + "." + tableName + "(nodeid,longName,moveDate)";
-    sqlInsert += "VALUES(" + nodeID + ",\'" + longName + "\'," + moveDate + ");";
-    statement.executeUpdate(sqlInsert);
+    PreparedStatement sqlInsert = connection.prepareStatement("INSERT INTO " + schemaName + "." + tableName + "(nodeid,longName,moveDate) VALUES(?, ?, ?);");
+    sqlInsert.setInt(1, nodeID);
+    sqlInsert.setString(2, longName);
+    java.sql.Date sqlDate = new java.sql.Date(moveDate.getTime());
+    sqlInsert.setDate(3, sqlDate);
     Move aMove = new Move(nodeID, longName, moveDate);
     moves.add(aMove);
     closeConnection(connection);
@@ -69,7 +71,7 @@ public class MoveDAO {
       String sqlDeleteALL = "DELETE FROM " + schemaName + "." + tableName + ";";
       statement.executeUpdate(sqlDeleteALL);
     } else {
-      String sqlDelete = "DELETE FROM " + schemaName + "." + tableName + "WHERE ";
+      String sqlDelete = "DELETE FROM " + schemaName + "." + tableName + " WHERE ";
       int count = 0;
       if (nodeID != null) {
         count++;
@@ -116,9 +118,10 @@ public class MoveDAO {
     }
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
-    String sqlUpdate =
-        "UPDATE " + schemaName + "." + tableName + " SET longName = \'" + longName + "\', moveDate = " + moveDate + "WHERE nodeID = " + nodeID;
-    statement.executeUpdate(sqlUpdate);
+    PreparedStatement sqlInsert = connection.prepareStatement("UPDATE " + schemaName + "." + tableName + " SET longName = ?, moveDate = ? WHERE nodeID = " + nodeID);
+    sqlInsert.setString(1, longName);
+    java.sql.Date sqlDate = new java.sql.Date(moveDate.getTime());
+    sqlInsert.setDate(2, sqlDate);
     closeConnection(connection);
     Move aMove = selectMoves(nodeID, null, null).get(0);
     aMove.setMoveDate(moveDate);
@@ -127,12 +130,12 @@ public class MoveDAO {
 
   public ArrayList<Move> selectMoves(Integer nodeID, String longName, Date moveDate) {
     ArrayList<Move> aList = new ArrayList<Move>();
-    for (int i = 0; i < moves.size(); i++) {
-      Boolean nodeIDCheck = nodeID == null || nodeID.intValue() == moves.get(i).getNodeID();
-      Boolean longNameCheck = longName == null || longName.equals(moves.get(i).getLongName());
-      Boolean moveDateCheck = moveDate == null || moveDate == moves.get(i).getMoveDate();
+    for (Move move : moves) {
+      Boolean nodeIDCheck = nodeID == null || nodeID.intValue() == move.getNodeID();
+      Boolean longNameCheck = longName == null || longName.equals(move.getLongName());
+      Boolean moveDateCheck = moveDate == null || moveDate.toString().equals(move.getMoveDate().toString());
       if (nodeIDCheck && longNameCheck && moveDateCheck) {
-        aList.add(moves.get(i));
+        aList.add(move);
       }
     }
     return aList;

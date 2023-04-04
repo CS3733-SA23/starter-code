@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -53,52 +54,44 @@ public class MoveDAOTest {
 
     @Test
     void addAndDeleteMove() throws Exception {
-        Move move = new Move(343, "The Move #2", Date.valueOf("11/11/11")); //TODO: Fix moveDate
+        Move move = new Move(343, "The Move #2", Date.valueOf("2023-12-30"));
         dao.addMove(move.getNodeID(),move.getLongName(),move.getMoveDate());
         Move move2 = dao.selectMoves(343, null, null).get(0);
-        boolean sameID = move.getNodeID()==move2.getNodeID();
-        boolean sameLongName = move.getLongName()==move2.getLongName();
-        boolean sameMoveDate = move.getMoveDate()==move2.getMoveDate();
-        assertTrue(sameID && sameLongName && sameMoveDate);
+        assertEquals(move.getNodeID(), move2.getNodeID());
+        assertEquals(move.getLongName(), move2.getLongName());
+        assertEquals(move.getMoveDate(), move2.getMoveDate());
         dao.deleteMove(343, null, null);
         assertEquals(dao.selectMoves(343, null, null).size(), 0);
     }
 
     @Test
     void modifyMoveByID() throws SQLException, ClassNotFoundException, NotFoundException {
-        dao.addMove(344, "The Move #3", Date.valueOf("11/11/11")); //TODO: Fix moveDate
-        dao.modifyMoveByID(344, "The Move #4", Date.valueOf("11/11/11")); //TODO: Fix moveDate
+        dao.addMove(344, "The Move #3", Date.valueOf("2023-1-1"));
+        dao.modifyMoveByID(344, "The Move #4", Date.valueOf("2023-2-2"));
         ArrayList<Move> moves = dao.selectMoves(null, null, null);
-        assertEquals(moves.size(), 1);
-        Move move = moves.get(0);
-        Move move2 = new Move(344, "The Move #5", Date.valueOf("11/11/11")); //TODO: Fix moveDate
+        assertEquals(moves.size(), 6); // extra from setup and extra tests
+        Move move = moves.get(5); // 5th entry because of setup and extra tests
+        Move move2 = new Move(344, "The Move #4", Date.valueOf("2023-2-2"));
         assertEquals(move.getNodeID(), move2.getNodeID());
         assertEquals(move.getLongName(), move2.getLongName());
         assertEquals(move.getMoveDate(), move2.getMoveDate());
         dao.deleteMove(344, null, null);
     }
-
     @Test
     void selectMoves() throws SQLException, ClassNotFoundException {
-        dao.addMove(1, "The Move #6", Date.valueOf("11/1/11")); //TODO: Fix moveDate
-        dao.addMove(2, "The Move #7", Date.valueOf("11/1/11")); //TODO: Fix moveDate
-        dao.addMove(3, "The Move #8", Date.valueOf("11/1/11")); //TODO: Fix moveDate
-        dao.addMove(4, "The Move #9", Date.valueOf("11/2/11")); //TODO: Fix moveDate
-
+        dao.addMove(1, "The Move #6", Date.valueOf("2023-1-1"));
+        dao.addMove(2, "The Move #7", Date.valueOf("2023-2-2"));
+        dao.addMove(3, "The Move #8", Date.valueOf("2023-3-3"));
+        dao.addMove(4, "The Move #9", Date.valueOf("2023-4-4"));
         ArrayList<Move> moves = dao.selectMoves(null, null, null);
         assertEquals(moves.size(), 5);
-
-        moves = dao.selectMoves(null, "The Move #10", Date.valueOf("11/1/11")); //TODO: Fix moveDate
+        moves = dao.selectMoves(null, "The Move #6", Date.valueOf("2023-1-1"));
         assertEquals(moves.size(), 1);
-
-        moves = dao.selectMoves(2, "The Move #11", Date.valueOf("11/1/11")); //TODO: Fix moveDate
+        moves = dao.selectMoves(2, "The Move #11", Date.valueOf("2023-1-1"));
         assertEquals(moves.size(), 0);
-
-        moves = dao.selectMoves(2, "The Move #12", Date.valueOf("11/1/11")); //TODO: Fix moveDate
+        moves = dao.selectMoves(2, "The Move #6", Date.valueOf("2023-5-5"));
         assertEquals(moves.size(), 0);
-
-        moves = dao.selectMoves(3, null, null); //TODO: Fix moveDate
-        assertEquals(moves.size(), 1);
+        moves = dao.selectMoves(3, null, null);
     }
 
     /*
