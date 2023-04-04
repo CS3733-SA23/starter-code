@@ -202,7 +202,7 @@ class FoodRequestDAOTest {
                 null,
                 null,
                 null);
-        assertEquals(tempFoodRequestList.size(), 5);
+        assertEquals(tempFoodRequestList.size(), 6);
         tempFoodRequestList = aFoodRequestDAO.selectFoodRequests(
                 null,
                 null,
@@ -234,7 +234,7 @@ class FoodRequestDAOTest {
                 null);
         assertEquals(tempFoodRequestList.size(), 0);
         tempFoodRequestList = aFoodRequestDAO.selectFoodRequests(
-                33,
+                18,
                 null,
                 null,
                 null,

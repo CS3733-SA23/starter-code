@@ -4,7 +4,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.stream.Location;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ class LocationNameDAOTest {
     }
 
     @Test
-    void createInstance() {
+    void createInstance() throws SQLException, ClassNotFoundException {
         LocationNameDAO dao2 = LocationNameDAO.createInstance("teamr", "teamr150", "locationName",
                 "test", "jdbc:postgresql://database.cs.wpi.edu:5432/teamrdb");
         assertSame(dao, dao2);
