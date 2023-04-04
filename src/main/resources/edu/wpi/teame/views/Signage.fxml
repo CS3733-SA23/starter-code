@@ -107,7 +107,7 @@
             </ImageView>
             <MFXButton fx:id="returnButtonSignage" contentDisplay="GRAPHIC_ONLY" layoutX="152.0" layoutY="49.0" style="-fx-background-color: #192d5a;">
                <graphic>
-                  <ImageView  fitHeight="100.0" fitWidth="50.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="50.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Back%20Arrow.png" />
                      </image>
@@ -122,13 +122,13 @@
                </graphic>
             </MFXButton>
             <MFXButton fx:id="menuButton1" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="1.0" layoutX="5.0" layoutY="65.0" prefHeight="50.0" prefWidth="50.0" rippleColor="#e1e1e1" style="-fx-background-color: #192d5a; -fx-background-radius: 0;" />
-            <VBox layoutX="55.0" layoutY="65.0" prefHeight="308.0" prefWidth="56.0">
+            <VBox layoutX="55.0" layoutY="65.0" prefHeight="383.0" prefWidth="80.0">
                <children>
                   <MFXButton fx:id="menuBarSignage" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/Arrow.png" />
+                              <Image url="@../images/signage.png" />
                            </image>
                            <effect>
                               <DropShadow>
@@ -144,7 +144,7 @@
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/food.png" />
+                              <Image url="@../images/services.png" />
                            </image>
                            <effect>
                               <DropShadow>
@@ -176,6 +176,22 @@
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
+                              <Image url="@../images/map_pathfinding.png" />
+                           </image>
+                           <effect>
+                              <DropShadow>
+                                 <color>
+                                    <Color red="0.9490196108818054" green="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="menuBarExit" defaultButton="true" prefHeight="75.0" prefWidth="80.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
                               <Image url="@../images/database.png" />
                            </image>
                            <effect>
@@ -188,7 +204,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="menuBarExit" defaultButton="true" prefHeight="98.0" prefWidth="147.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
+                  <MFXButton fx:id="menuBarExit1" defaultButton="true" prefHeight="75.0" prefWidth="80.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>

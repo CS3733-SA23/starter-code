@@ -63,7 +63,7 @@
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/Arrow.png" />
+                              <Image url="@../images/signage.png" />
                            </image>
                            <effect>
                               <DropShadow>
@@ -78,7 +78,7 @@
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/food.png" />
+                              <Image url="@../images/services.png" />
                            </image>
                            <effect>
                               <DropShadow>
@@ -108,7 +108,7 @@
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/database.png" />
+                              <Image url="@../images/map_pathfinding.png" />
                            </image>
                            <effect>
                               <DropShadow>
@@ -123,7 +123,7 @@
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/exit.png" />
+                              <Image url="@../images/database.png" />
                            </image>
                            <effect>
                               <DropShadow>
