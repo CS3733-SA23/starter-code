@@ -30,7 +30,7 @@ public class LowerLevelOneMapNavController {
   String curLocFromComboBox;
   String destFromComboBox;
 
-  DatabaseController db = new DatabaseController();
+  DatabaseController db = DatabaseController.INSTANCE;
   DatabaseGraphController graphController = new DatabaseGraphController(db);
   ObservableList<String> floorLocations =
       FXCollections.observableArrayList(

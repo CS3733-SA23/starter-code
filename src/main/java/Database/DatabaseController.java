@@ -80,7 +80,7 @@ public enum DatabaseController {
         break;
       case EDGE:
         HospitalEdge edge = (HospitalEdge) obj;
-        String startNode =
+        String startNode = "";
         //String endNode = HospitalEdge.endNode;
 
     }
