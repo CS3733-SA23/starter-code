@@ -121,7 +121,7 @@
                   </ImageView>
                </graphic>
             </MFXButton>
-            <MFXButton fx:id="menuButton1" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="1.0" layoutX="5.0" layoutY="65.0" prefHeight="50.0" prefWidth="50.0" rippleColor="#e1e1e1" style="-fx-background-color: #192d5a; -fx-background-radius: 0;" />
+            <MFXButton fx:id="menuButton" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="1.0" layoutX="5.0" layoutY="65.0" prefHeight="50.0" prefWidth="50.0" rippleColor="#e1e1e1" style="-fx-background-color: #192d5a; -fx-background-radius: 0;" />
             <VBox layoutX="55.0" layoutY="65.0" prefHeight="383.0" prefWidth="80.0">
                <children>
                   <MFXButton fx:id="menuBarHome" contentDisplay="GRAPHIC_ONLY" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Home" textFill="WHITE">
