@@ -8,7 +8,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class NodeDAOImp implements IDataBase, INodeDAO, IMapDAO {
+public class NodeDAOImp implements IDataBase, INodeDAO {
+  ArrayList<Node> NodeArray;
 
   public static Connection nodeConnection = createConnection();
 
@@ -30,9 +31,8 @@ public class NodeDAOImp implements IDataBase, INodeDAO, IMapDAO {
     }
   }
 
-  public static void Import(String filePath, String fileName) {
+  public static void Import(String filePath) {
     try {
-      String newFile = filePath + fileName;
       BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
       csvReader.readLine();
       String row;

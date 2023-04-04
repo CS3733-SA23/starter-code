@@ -33,7 +33,7 @@ public class MapController implements IPageController {
     fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
     File selectedFile = fileChooser.showOpenDialog(App.getPrimaryStage());
     System.out.println(selectedFile.getPath());
-    NodeDAOImp.Import(selectedFile.getPath(), selectedFile.getName());
+    NodeDAOImp.Import(selectedFile.getPath());
   }
 
   public void exportCSV() {
