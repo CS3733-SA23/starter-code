@@ -4,7 +4,6 @@ import static java.util.Objects.hash;
 
 import java.util.HashMap;
 import java.util.NoSuchElementException;
-
 import lombok.Getter;
 
 public class LocationName {
@@ -25,8 +24,8 @@ public class LocationName {
     BATH,
     EXIT;
 
-    public static NodeType stringToNodeType(String str){
-      switch (str.toUpperCase()){
+    public static NodeType stringToNodeType(String str) {
+      switch (str.toUpperCase()) {
         case "HALL":
           return NodeType.HALL;
         case "CONF":
