@@ -4,6 +4,7 @@ import edu.wpi.teamc.map.Move;
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,9 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.controlsfx.control.tableview2.FilteredTableView;
-
-import java.util.List;
-import java.util.ArrayList;
 
 public class MapChangeHistoryController {
 
@@ -41,52 +39,31 @@ public class MapChangeHistoryController {
     Navigation.navigate(Screen.HOME);
   }
 
-  public void dispTable(javafx.event.ActionEvent actionEvent) {
+  public void dispTable(List<Move> moveList) {
     ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("nodeID"));
     ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("longName"));
     ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("date"));
-    historyTable.getItems().setAll(gettableRows());
+    historyTable.getItems().setAll(gettableRows(moveList));
 
     System.out.println("did it");
   }
 
   public ObservableList<TableRow> gettableRows(List<Move> moveList) {
-//    List<Move> moveList = new ArrayList<Move>();
-    Move currMove;
     String nodeID;
     String longName;
     String date;
-    for (int i = 0; i < moveList.size(); i++) {
-      currMove = moveList.get(i);
+    for (Move currMove : moveList) {
       nodeID = currMove.getNodeID();
       longName = currMove.getLongName();
       date = currMove.getDate().toString();
       rows.add(new TableRow(nodeID, longName, date));
     }
-//    rows.add(new TableRow("1234", "Alpha", "4/17/02"));
-//    rows.add(new TableRow("456", "Beta", "4/5/2023"));
     return rows;
   }
-  //  @Override
-  //  public void initialize(URL location, ResourceBundle resources) {
-  //
-  //  }
-
-  //  @FXML
-  //  public String getText(ActionEvent event) {
-  //    String inputtedText;
-  //    inputtedText = textField.getText();
-  //    return inputtedText;
-  //  }
 
   public String getText(javafx.event.ActionEvent actionEvent) {
     String inputtedText;
     inputtedText = inputBox.getText();
     return inputtedText;
   }
-  //  public void createTable() {
-  //    String test = "testing";
-  //    ColLocation = ;
-  //
-  //  }
 }

@@ -1,5 +1,7 @@
 package edu.wpi.teamc;
 
+import edu.wpi.teamc.controllers.MapChangeHistoryController;
+import edu.wpi.teamc.controllers.TableRow;
 import edu.wpi.teamc.map.*;
 import edu.wpi.teamc.map.Edge;
 import edu.wpi.teamc.map.Node;
@@ -13,11 +15,14 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Cdb {
   static Connection connection = null;
+  ObservableList<TableRow> rows = FXCollections.observableArrayList();
 
-  public static void main(String[] args) {
+  public static void main() {
     try {
       // Load the PostgreSQL JDBC driver
       Class.forName("org.postgresql.Driver");
@@ -419,10 +424,21 @@ public class Cdb {
   }
 
   static void displayMoveInfo(List<Move> databaseMoveList) {
-    System.out.println("Move information:\n");
-    for (Move move : databaseMoveList) {
-      System.out.println(move.getNodeID() + "\t" + move.getLongName() + "\t" + move.getDate());
-    }
+    MapChangeHistoryController moveHistory = new MapChangeHistoryController();
+    moveHistory.dispTable(databaseMoveList);
+
+    //    for (Move currMove : databaseMoveList) {
+    //      nodeID = currMove.getNodeID();
+    //      longName = currMove.getLongName();
+    //      date = currMove.getDate().toString();
+    //      rows.add(new TableRow(nodeID, longName, date));
+    ////      System.out.println(move.getNodeID() + "\t" + move.getLongName() + "\t" +
+    // move.getDate());
+    //    }
+    //   List<Move> moveList = new ArrayList<Move>();
+    //    rows.add(new TableRow("1234", "Alpha", "4/17/02"));
+    //    rows.add(new TableRow("456", "Beta", "4/5/2023"));
+    //    return rows;
   }
 
   static void updateCoordinates(

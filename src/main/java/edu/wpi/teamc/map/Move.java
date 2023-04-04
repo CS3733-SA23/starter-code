@@ -17,7 +17,15 @@ public class Move {
     this.date = date;
   }
 
-  public String getNodeID(){return nodeID;};
-  public String getLongName(){return longName;};
-  public Date getDate(){return date;};
+  public String getNodeID() {
+    return nodeID;
+  };
+
+  public String getLongName() {
+    return longName;
+  };
+
+  public Date getDate() {
+    return date;
+  };
 }
