@@ -4,16 +4,16 @@ import java.sql.Date;
 
 // import java.util.Date;
 
-public class ConferenceRoomRequest {
-  public ConferenceRoom selection;
+public class ConferenceRoomRequest implements IServiceRequest  {
+  private ConferenceRoom selection;
 
-  public Date date;
+  private Date date;
 
-  public String startTime;
+  private String startTime;
 
-  public String endTime;
+  private String endTime;
 
-  public String addtionalNotes;
+  private String addtionalNotes;
 
   public ConferenceRoomRequest(
       ConferenceRoom select, Date date, String startTime, String endTime, String addtionalNotes) {
@@ -22,5 +22,11 @@ public class ConferenceRoomRequest {
     this.startTime = startTime;
     this.endTime = endTime;
     this.addtionalNotes = addtionalNotes;
+  }
+
+  public void addRequest() {
+  }
+
+  public void updateRequest() {
   }
 }
