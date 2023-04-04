@@ -52,7 +52,7 @@ public class LocationNameDAO {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
     String sqlInsert = "INSERT INTO " + schemaName + "." + tableName + "(longName, shortName, nodeType) ";
-    sqlInsert += "VALUES(\'" + longName + "\',\'" + shortName + "\',\'" + nodeType + "\');";
+    sqlInsert += "VALUES('" + longName + "','" + shortName + "','" + nodeType + "');";
     statement.executeUpdate(sqlInsert);
     LocationName aLocationName = new LocationName(longName, shortName, nodeType);
     locationNames.add(aLocationName);
@@ -64,30 +64,32 @@ public class LocationNameDAO {
       throws SQLException, ClassNotFoundException {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
+    String sqlDelete;
     if (longName == null && shortName == null && nodeType == null) {
-      String sqlDeleteALL = "DELETE FROM " + schemaName + "." + tableName + ";";
-      statement.executeUpdate(sqlDeleteALL);
+      sqlDelete = "DELETE FROM " + schemaName + "." + tableName + ";";
     } else {
-      String sqlDelete = "DELETE FROM " + schemaName + "."+tableName + "WHERE longName =" + "\'" + longName + "\'";
+      sqlDelete = "DELETE FROM " + schemaName + "."+tableName + " WHERE ";
       int count = 0;
       if (longName != null) {
         count++;
-        sqlDelete += "longName ="+"\'"+longName+"\'";
+        sqlDelete += "longName ="+"'"+longName+"'";
       }
       if (shortName != null) {
         if(count == 0){
-          sqlDelete += "shortName = " + "\'" + shortName + "\'";
+          sqlDelete+=" AND ";
         }
         count++;
+        sqlDelete += "shortName = " + "'" + shortName + "'";
       }
       if (nodeType != null) {
         if(count == 0){
-          sqlDelete += "nodeType = " + "\'" + nodeType + "\'";
+          sqlDelete+=" AND ";
         }
+        sqlDelete += "nodeType = " + "'" + nodeType + "'";
       }
-      sqlDelete += "cascade ;";
-      statement.executeUpdate(sqlDelete);
+      sqlDelete += ";";
     }
+    statement.executeUpdate(sqlDelete);
     closeConnection(connection);
     for (int i = 0; i < locationNames.size(); i++) {
       Boolean longNameCheck = longName == null || longName.equals(locationNames.get(i).getLongName());
@@ -112,7 +114,7 @@ public class LocationNameDAO {
     }
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
-    String sqlUpdate = "UPDATE " + schemaName + "." + tableName + " SET longName = \'" + longName + "\', shortName = \'" + shortName + "\', nodeType = \'" + nodeType + "\' WHERE longName = " + longName;
+    String sqlUpdate = "UPDATE " + schemaName + "." + tableName + " SET shortName = '" + shortName + "', nodeType = '" + nodeType + "' WHERE longName = '" + longName + "';";
     statement.executeUpdate(sqlUpdate);
     closeConnection(connection);
     LocationName aLocationName = selectLocationNames(longName, null, null).get(0);
@@ -121,12 +123,12 @@ public class LocationNameDAO {
   }
   public ArrayList<LocationName> selectLocationNames(String longName, String shortName, String nodeType) {
     ArrayList<LocationName> aList = new ArrayList<LocationName>();
-    for (int i = 0; i < locationNames.size(); i++) {
-      Boolean longNameCheck = longName == null || longName.equals(locationNames.get(i).getLongName());
-      Boolean shortNameCheck = shortName == null || shortName.equals(locationNames.get(i).getShortName());
-      Boolean nodeTypeCheck = nodeType == null || nodeType.equals(locationNames.get(i).getNodeType());
+    for (LocationName locationName : locationNames) {
+      Boolean longNameCheck = longName == null || longName.equals(locationName.getLongName());
+      Boolean shortNameCheck = shortName == null || shortName.equals(locationName.getShortName());
+      Boolean nodeTypeCheck = nodeType == null || nodeType.equals(locationName.getNodeType());
       if (longNameCheck && shortNameCheck && nodeTypeCheck) {
-        aList.add(locationNames.get(i));
+        aList.add(locationName);
       }
     }
     return aList;

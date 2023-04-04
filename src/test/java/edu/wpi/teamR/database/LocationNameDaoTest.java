@@ -18,6 +18,7 @@ class LocationNameDAOTest {
     static void setUp() throws Exception {
         dao = LocationNameDAO.createInstance("teamr", "teamr150", "locationName",
                 "test", "jdbc:postgresql://database.cs.wpi.edu:5432/teamrdb");
+        dao.deleteLocationNames(null, null, null);
         dao.addLocationName("lengthy", "short","STAI");
 
     }
@@ -74,22 +75,26 @@ class LocationNameDAOTest {
 
     @Test
     void selectLocationNames() throws SQLException, ClassNotFoundException {
+        dao.deleteLocationNames(null, null, null);
         dao.addLocationName("large", "small", "REST");
         dao.addLocationName("very large", "very small", "REST");
-        dao.addLocationName("large", "very small", "REST");
-        dao.addLocationName("very large", "small", "REST");
-        dao.addLocationName("large", "petite", "REST");
+        dao.addLocationName("largee", "very small", "REST");
+        dao.addLocationName("very largee", "small", "REST");
+        dao.addLocationName("largeee", "petite", "REST");
 
-        ArrayList<LocationName> locationNames = dao.selectLocationNames(null, null, "REST");
+        ArrayList<LocationName> locationNames = dao.selectLocationNames(null, null, null);
+        assertEquals(locationNames.size(), 5);
+
+        locationNames = dao.selectLocationNames(null, null, "REST");
         assertEquals(locationNames.size(), 5);
 
         locationNames = dao.selectLocationNames(null, "small", null);
         assertEquals(locationNames.size(), 2);
 
         locationNames = dao.selectLocationNames("large", null, null);
-        assertEquals(locationNames.size(), 3);
+        assertEquals(locationNames.size(), 1);
 
-        locationNames = dao.selectLocationNames("not large", "not small", null);
+        locationNames = dao.selectLocationNames("not large", null, null);
         assertEquals(locationNames.size(), 0);
     }
 
