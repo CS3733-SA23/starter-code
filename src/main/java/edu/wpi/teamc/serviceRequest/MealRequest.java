@@ -1,6 +1,6 @@
 package edu.wpi.teamc.serviceRequest;
 
-public class MealRequest {
+public class MealRequest implements IServiceRequest {
 
   private Meal selection;
   private String room;
@@ -10,5 +10,13 @@ public class MealRequest {
     this.selection = select;
     this.room = location;
     this.specialNotes = note;
+  }
+
+  @Override
+  public void addRequest() {
+  }
+
+  @Override
+  public void updateRequest() {
   }
 }
