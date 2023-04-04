@@ -47,9 +47,12 @@ public class NodeDAO {
     public Node addNode(Integer nodeID, Integer xCoord, Integer yCoord, String floorNum, String building) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
-        String sqlInsert = "INSERT INTO "+schemaName+"."+tableName+"(nodeID,xCoord,yCoord,floorNum,building) ";
-        sqlInsert+= "VALUES("+nodeID+","+xCoord+","+yCoord+",\'"+floorNum+"\',\'"+building+"\');";
-        statement.executeUpdate(sqlInsert);
+        PreparedStatement sqlInsert = connection.prepareStatement("INSERT INTO "+schemaName+"."+tableName+"(nodeID,xCoord,yCoord,floorNum,building) VALUES(?,?,?,?,?);");
+        sqlInsert.setInt(1, nodeID);
+        sqlInsert.setInt(2, xCoord);
+        sqlInsert.setInt(3, yCoord);
+        sqlInsert.setString(4, floorNum);
+        sqlInsert.setString(5, building);
         Node aNode = new Node(nodeID, xCoord, yCoord, floorNum, building);
         nodes.add(aNode);
         closeConnection(connection);
@@ -70,7 +73,7 @@ public class NodeDAO {
             String sqlDeleteALL = "DELETE FROM " + schemaName + "." + tableName + ";";
             statement.executeUpdate(sqlDeleteALL);
         } else{
-            String sqlDelete = "DELETE FROM " + schemaName + "." + tableName + "WHERE ";
+            String sqlDelete = "DELETE FROM " + schemaName + "." + tableName + " WHERE ";
             int count = 0;
             if(nodeID != null){
                 count++;
@@ -81,7 +84,7 @@ public class NodeDAO {
                     sqlDelete += " AND ";
                 }
                 count++;
-                    sqlDelete += "xCoord = " + xCoord;
+                sqlDelete += "xCoord = " + xCoord;
             }
             if(yCoord != null){
                 if(count == 0){
@@ -95,18 +98,18 @@ public class NodeDAO {
                     sqlDelete += " AND ";
                 }
                 count++;
-                sqlDelete += "floorNum = " + "\'" + floorNum+ "\'";
+                sqlDelete += "floorNum = " + "\'" + floorNum+  "\'";
             }
             if(building != null){
                 if(count == 0){
                     sqlDelete += " AND ";
                 }
-                sqlDelete += "building = " + "\'" + building+ "\'";
+                sqlDelete += "building = " + "\'" + building + "\'";
             }
-            sqlDelete += "cascade ;";
+            sqlDelete += ";";
             statement.executeUpdate(sqlDelete);
-            closeConnection(connection);
         }
+        closeConnection(connection);
         for(int i = 0; i<nodes.size(); i++){
             Boolean nodeIDCheck = nodeID == null || nodeID == nodes.get(i).getNodeID();
             Boolean xCoordCheck = xCoord == null || xCoord == nodes.get(i).getxCoord();
@@ -115,6 +118,7 @@ public class NodeDAO {
             Boolean buildingCheck = building == null || building.equals(nodes.get(i).getBuilding());
             if(nodeIDCheck && xCoordCheck && yCoordCheck && floorNumCheck && buildingCheck){
                 nodes.remove(i);
+                i--;
             }
         }
     }
@@ -147,14 +151,14 @@ public class NodeDAO {
     */
     public ArrayList<Node> selectNodes(Integer nodeID, Integer xCoord, Integer yCoord, String floorNum, String building){
         ArrayList<Node> aList = new ArrayList<Node>();
-        for(int i = 0; i<nodes.size(); i++){
-            Boolean nodeIDCheck = nodeID == null || nodeID == nodes.get(i).getNodeID();
-            Boolean xCoordCheck = xCoord == null || xCoord == nodes.get(i).getxCoord();
-            Boolean yCoordCheck = yCoord == null || yCoord == nodes.get(i).getyCoord();
-            Boolean floorNumCheck = floorNum == null || floorNum.equals(nodes.get(i).getFloorNum());
-            Boolean buildingCheck = building == null || building.equals(nodes.get(i).getBuilding());
-            if(nodeIDCheck && xCoordCheck && yCoordCheck && floorNumCheck && buildingCheck){
-                aList.add(nodes.get(i));
+        for (Node node : nodes) {
+            Boolean nodeIDCheck = nodeID == null || nodeID.intValue() == node.getNodeID();
+            Boolean xCoordCheck = xCoord == null || xCoord.intValue() == node.getxCoord();
+            Boolean yCoordCheck = yCoord == null || yCoord.intValue() == node.getyCoord();
+            Boolean floorNumCheck = floorNum == null || floorNum.equals(node.getFloorNum());
+            Boolean buildingCheck = building == null || building.equals(node.getBuilding());
+            if (nodeIDCheck && xCoordCheck && yCoordCheck && floorNumCheck && buildingCheck) {
+                aList.add(node);
             }
         }
         return aList;

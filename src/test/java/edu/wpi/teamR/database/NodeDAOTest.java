@@ -40,16 +40,22 @@ class NodeDAOTest {
 
     @Test
     void addAndDeleteNode() throws Exception {
+        dao.deleteNodes(null, null, null, null, null);
         Node node = new Node(343, 9323, 2938, "2", "other bud");
         dao.addNode(node.getNodeID(),node.getxCoord(),node.getyCoord(),node.getFloorNum(),node.getBuilding());
         Node node2 = dao.selectNodes(343, null, null, null, null).get(0);
-        boolean sameID = node.getNodeID()==node2.getNodeID();
-        boolean sameXCoord = node.getxCoord()==node2.getxCoord();
-        boolean sameYCoord = node.getyCoord()==node2.getyCoord();
-        boolean sameFloorNum = node.getFloorNum().equals(node2.getFloorNum());
-        boolean sameBuilding = node.getBuilding().equals(node2.getBuilding());
-        assertTrue(sameID && sameXCoord && sameYCoord && sameFloorNum && sameBuilding);
+        assertEquals(node.getNodeID(), node2.getNodeID());
+        assertEquals(node.getxCoord(), node2.getxCoord());
+        assertEquals(node.getyCoord(), node2.getyCoord());
+        assertEquals(node.getFloorNum(), node2.getFloorNum());
+        assertEquals(node.getBuilding(), node2.getBuilding());
+        for(Node aNode : dao.getNodes()){
+            System.out.println(aNode.getNodeID());
+        }
         dao.deleteNodes(343, null, null, null, null);
+        for(Node aNode : dao.getNodes()){
+            System.out.println(aNode.getNodeID());
+        }
         assertEquals(dao.selectNodes(343, null, null, null, null).size(), 0);
     }
 
