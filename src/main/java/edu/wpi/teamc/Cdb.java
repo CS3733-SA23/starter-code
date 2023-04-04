@@ -657,7 +657,17 @@ public class Cdb {
     return null;
   }
 
+  static void createFile(String fileName) throws IOException {
+    File file = new File(fileName);
+    if (file.createNewFile()) {
+      System.out.println("File created: " + file.getName());
+    } else {
+      System.out.println("File already exists.");
+    }
+  }
+
   static void exportNodesToCSV(String csvFile, List<Node> databaseNodeList) throws IOException {
+    createFile(csvFile);
     BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
     // Write the header row to the CSV file
     writer.write("nodeID,xCoord,yCoord,floor,building\n");
@@ -679,6 +689,7 @@ public class Cdb {
   }
 
   static void exportEdgesToCSV(String csvFile, List<Edge> databaseEdgeList) throws IOException {
+    createFile(csvFile);
     BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
     // Write the header row to the CSV file
     writer.write("startNodeID,endNodeID\n");
@@ -690,6 +701,7 @@ public class Cdb {
 
   static void exportLocationNamesToCSV(String csvFile, List<LocationName> databaseLocationNameList)
       throws IOException {
+    createFile(csvFile);
     BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
     // Write the header row to the CSV file
     writer.write("longName,shortName,nodeType\n");
@@ -706,6 +718,7 @@ public class Cdb {
   }
 
   static void exportMovesToCSV(String csvFile, List<Move> databaseMoveList) throws IOException {
+    createFile(csvFile);
     BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
     // Write the header row to the CSV file
     writer.write("nodeID,longName,moveDate\n");
