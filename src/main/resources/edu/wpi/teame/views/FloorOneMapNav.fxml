@@ -51,7 +51,7 @@
                         <MFXButton fx:id="lowerLevelTwoButton" buttonType="RAISED" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Lower Level 2" textFill="WHITE" />
                         <MFXButton fx:id="groundFloorButton" buttonType="RAISED" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Ground Floor" textFill="WHITE" />
                         <MFXButton fx:id="SecondFloorButton" buttonType="RAISED" layoutX="10.0" layoutY="64.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Second Floor" textFill="WHITE" />
-                        <MFXButton fx:id="thirdFloorButton" buttonType="RAISED" layoutX="10.0" layoutY="91.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Third Floor" textFill="WHITE" />
+                        <MFXButton fx:id="ThirdFloorButton" buttonType="RAISED" layoutX="10.0" layoutY="91.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Third Floor" textFill="WHITE" />
                     </children>
                 </VBox>
             </right>
