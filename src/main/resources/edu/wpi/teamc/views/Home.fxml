@@ -2,6 +2,9 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
@@ -12,12 +15,12 @@
     <children>
         <Rectangle fill="#bae3e0" height="406.0" stroke="#bae3e0" strokeType="INSIDE" width="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         <Rectangle fill="TEAL" height="380.0" layoutX="12.0" layoutY="13.0" stroke="TEAL" strokeType="INSIDE" width="575.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="13.0" />
-        <Text fill="WHITE" layoutX="191.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Home Menu" wrappingWidth="217.6328125" AnchorPane.bottomAnchor="344.80078125" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="191.3671875" AnchorPane.topAnchor="36.892578125">
+        <Text fill="WHITE" layoutX="191.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Home Menu" wrappingWidth="217.6328125" AnchorPane.bottomAnchor="318.80078125" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="191.3671875" AnchorPane.topAnchor="62.892578125">
             <font>
                 <Font name="Verdana Bold" size="20.0" />
             </font>
         </Text>
-      <VBox layoutX="37.0" layoutY="135.0" prefHeight="225.0" prefWidth="154.0" spacing="20.0">
+      <VBox layoutX="37.0" layoutY="151.0" prefHeight="225.0" prefWidth="154.0" spacing="20.0">
          <children>
               <Button fx:id="roomReservationPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getRoomReservationPage" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Room Reservation" textFill="#004646">
                   <cursor>
@@ -61,7 +64,7 @@
             </Button>
          </children>
       </VBox>
-      <VBox layoutX="223.0" layoutY="135.0" prefHeight="241.0" prefWidth="154.0" spacing="20.0">
+      <VBox layoutX="223.0" layoutY="151.0" prefHeight="241.0" prefWidth="154.0" spacing="20.0">
          <children>
               <Button fx:id="signagePage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getSignagePage" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: BAE3E0;" text="Signage" textFill="#004646">
                   <cursor>
@@ -105,7 +108,7 @@
             </Button>
          </children>
       </VBox>
-      <VBox layoutX="409.0" layoutY="135.0" prefHeight="231.0" prefWidth="154.0" spacing="20.0">
+      <VBox layoutX="409.0" layoutY="151.0" prefHeight="231.0" prefWidth="154.0" spacing="20.0">
          <children>
               <Button fx:id="helpPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getHelpPage" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Help" textFill="#004646">
                   <cursor>
@@ -123,22 +126,22 @@
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="importButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getImportButton" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Import" textFill="#004646">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <font>
-                  <Font name="Verdana Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button fx:id="exportButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getExportButton" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Export" textFill="#004646">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <font>
-                  <Font name="Verdana Bold" size="12.0" />
-               </font>
-            </Button>
+             <Button fx:id="importButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getImportButton" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Import" textFill="#004646">
+                 <cursor>
+                     <Cursor fx:constant="HAND" />
+                 </cursor>
+                 <font>
+                     <Font name="Verdana Bold" size="12.0" />
+                 </font>
+             </Button>
+             <Button fx:id="exportButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getExportButton" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Export" textFill="#004646">
+                 <cursor>
+                     <Cursor fx:constant="HAND" />
+                 </cursor>
+                 <font>
+                     <Font name="Verdana Bold" size="12.0" />
+                 </font>
+             </Button>
             <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Place Holder" textFill="#004646" visible="false">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -149,20 +152,53 @@
             </Button>
          </children>
       </VBox>
-      <Text fill="WHITE" layoutX="41.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Requests" textAlignment="CENTER" wrappingWidth="146.6328125">
+      <Text fill="WHITE" layoutX="41.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Requests" textAlignment="CENTER" wrappingWidth="146.6328125">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="223.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nagivation" textAlignment="CENTER" wrappingWidth="153.0">
+      <Text fill="WHITE" layoutX="223.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navigation" textAlignment="CENTER" wrappingWidth="153.0">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="410.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options" textAlignment="CENTER" wrappingWidth="153.0">
+      <Text fill="WHITE" layoutX="410.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options" textAlignment="CENTER" wrappingWidth="153.0">
          <font>
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Text>
+      <MenuBar layoutX="12.0" layoutY="13.0" prefHeight="3.0" prefWidth="575.0" style="-fx-background-color: white; -fx-background-radius: 2;">
+        <menus>
+          <Menu mnemonicParsing="false" text="Service Requests">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#getRoomReservationPage" text="Room Reservation" />
+                  <MenuItem mnemonicParsing="false" onAction="#getMealDeliveryPage" text="Meal Delivery" />
+                  <MenuItem mnemonicParsing="false" onAction="#getFlowerDeliveryPage" text="Flower Delivery" />
+                  <MenuItem mnemonicParsing="false" onAction="#getFurnitureDeliveryPage" text="Furniture Delivery" />
+                  <MenuItem mnemonicParsing="false" onAction="#getOfficeSuppliesPage" text="Office Supplies" />
+                  <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Navigation">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#getSignagePage" text="Signage" />
+                  <MenuItem mnemonicParsing="false" onAction="#getMapPage" text="Map" />
+                  <MenuItem mnemonicParsing="false" onAction="#getEditMap" text="Edit Map" />
+                  <MenuItem mnemonicParsing="false" onAction="#getMapHistory" text="Map History" />
+                  <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#getHelpPage" text="Help" />
+                  <MenuItem mnemonicParsing="false" onAction="#getLogOut" text="Log Out" />
+                  <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+        </menus>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </MenuBar>
     </children>
 </AnchorPane>
