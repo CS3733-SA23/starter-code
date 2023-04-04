@@ -70,7 +70,7 @@ public class FurnitureRequestDAO {
             + schemaName
             + "."
             + tableName
-            + "(furnitureID, requesterName, location, furnitureType, staffMember, additionalNotes, requestDate, requestStatus) ";
+            + "(requestid, requesterName, location, furnitureType, staffMember, additionalNotes, requestDate, requestStatus) ";
     sqlInsert +=
         "VALUES("
             + requestID
@@ -88,9 +88,7 @@ public class FurnitureRequestDAO {
             + requestDate.toString()
             + "','"
             + requestStatus.toString()
-            + "'"
-            + requestID
-            + ");";
+            + "');";
     statement.executeUpdate(sqlInsert);
     FurnitureRequest aReq =
         new FurnitureRequest(
@@ -119,6 +117,7 @@ public class FurnitureRequestDAO {
       throws SQLException, ClassNotFoundException {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
+    String sqlDelete;
     if (requesterName == null
         && location == null
         && furnitureType == null
@@ -127,63 +126,67 @@ public class FurnitureRequestDAO {
         && requestDate == null
         && requestStatus == null
         && requestID == null) {
-      String sqlDeleteALL = "DELETE FROM " + schemaName + "." + tableName + ";";
+      sqlDelete = "DELETE FROM " + schemaName + "." + tableName + ";";
     } else {
-      String sqlDelete = "DELETE FROM " + schemaName + "." + tableName + "WHERE ";
+      sqlDelete = "DELETE FROM " + schemaName + "." + tableName + " WHERE ";
       int count = 0;
       if (requesterName != null) {
         count++;
         sqlDelete += "requesterName = " + "'" + requesterName + "'";
       }
       if (location != null) {
-        if (count == 0) {
+        if (count > 0) {
           sqlDelete += " AND ";
         }
         count++;
         sqlDelete += "location = " + "'" + location + "'";
       }
       if (furnitureType != null) {
-        if (count == 0) {
+        if (count > 0) {
           sqlDelete += " AND ";
         }
         count++;
         sqlDelete += "furnitureType = " + "'" + furnitureType + "'";
       }
       if (staffMember != null) {
-        if (count == 0) {
+        if (count > 0) {
           sqlDelete += " AND ";
         }
         count++;
         sqlDelete += "staffMember = " + "'" + staffMember + "'";
       }
       if (additionalNotes != null) {
-        if (count == 0) {
+        if (count > 0) {
           sqlDelete += " AND ";
         }
+        count++;
         sqlDelete += "additionalNotes = " + "'" + additionalNotes + "'";
       }
       if (requestDate != null) {
-        if (count == 0) {
+        if (count > 0) {
           sqlDelete += " AND ";
         }
+        count++;
         sqlDelete += "requestDate = " + "'" + requestDate.toString() + "\'";
       }
       if (requestStatus != null) {
-        if (count == 0) {
+        if (count > 0) {
           sqlDelete += " AND ";
         }
+        count++;
         sqlDelete += "requestStatus = " + "'" + requestStatus.toString() + "\'";
       }
       if (requestID != null) {
-        if (count == 0) {
+        if (count > 0) {
           sqlDelete += " AND ";
         }
+        count++;
         sqlDelete += "requestID = " + requestID;
       }
       sqlDelete += ";";
-      statement.executeUpdate(sqlDelete);
-      closeConnection(connection);
     }
+    statement.executeUpdate(sqlDelete);
+    closeConnection(connection);
 
     for (int i = 0; i < furnitureRequests.size(); i++) {
       Boolean requesterNameCheck =

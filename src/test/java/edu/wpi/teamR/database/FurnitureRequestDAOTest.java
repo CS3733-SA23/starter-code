@@ -20,6 +20,7 @@ class FurnitureRequestDAOTest {
                 "furnitureRequestview",
                 "test",
                 "jdbc:postgresql://database.cs.wpi.edu:5432/teamrdb");
+        aFurnitureRequestDAO.deleteFurnitureRequests(null, null, null, null, null, null, null, null);
         Timestamp testTime = new Timestamp(2023, 11, 25, 23, 59, 59, 100000000);
         aFurnitureRequestDAO.addFurnitureRequest(
                 1,
@@ -27,7 +28,7 @@ class FurnitureRequestDAOTest {
                 "Fuller Upper",
                 "Recliner",
                 "Wong",
-                "Even though I can't feel my legs, I'd like a recliner!",
+                "Even though I cant feel my legs, Id like a recliner!",
                 testTime,
                 RequestStatus.In_Progress);
     }
@@ -84,13 +85,13 @@ class FurnitureRequestDAOTest {
         aFurnitureRequestDAO.addFurnitureRequest(one.getRequestID(), one.getRequesterName(), one.getLocation(), one.getFurnitureType(), one.getStaffMember(), one.getAdditionalNotes(), first, RequestStatus.Unstarted);
         aFurnitureRequestDAO.modifyFurnitureRequestByID(
                 101,
-                null,
-                null,
+                "Charles",
+                "Joshua Tree",
                 "Bed",
-                null,
-                "Actually, I'd rather go to sleep",
-                null,
-                null);
+                "Cameron",
+                "Actually, Id rather go to sleep",
+                first,
+                RequestStatus.In_Progress);
         ArrayList<FurnitureRequest> filteredFurnitureRequests = aFurnitureRequestDAO.selectFurnitureRequests(
                 null,
                 "Charles",
@@ -108,7 +109,7 @@ class FurnitureRequestDAOTest {
                 "Joshua Tree",
                 "Bed",
                 "Cameron",
-                "Actually, I'd rather go to sleep",
+                "Actually, Id rather go to sleep",
                 first,
                 RequestStatus.Unstarted);
         assertEquals(updatedOne.getRequestID(), correctOne.getRequestID());
@@ -144,7 +145,7 @@ class FurnitureRequestDAOTest {
                 "The real life",
                 "Our escape from reality",
                 "Poor boy",
-                "Because I'm easy come, easy go, Little high, little low",
+                "Because Im easy come, easy go, Little high, little low",
                 testStamp2,
                 RequestStatus.In_Progress
         );
@@ -154,7 +155,7 @@ class FurnitureRequestDAOTest {
                 "The edge of the world",
                 "The sun that rises in the east",
                 "Chili Peppers",
-                "It's understood that Hollywood sells Californication",
+                "Its understood that Hollywood sells Californication",
                 testStamp3,
                 RequestStatus.In_Progress
         );
