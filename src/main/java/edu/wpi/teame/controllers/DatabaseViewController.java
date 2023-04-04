@@ -123,7 +123,7 @@ public class DatabaseViewController {
     saveChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV File", ".csv"));
     selectChooser.setTitle("Select file to import");
 
-    DatabaseController dC = new DatabaseController("teame", "teame50");
+    DatabaseController dC = DatabaseController.INSTANCE;
 
     // load the database into the table
     nodeIDCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("nodeID"));

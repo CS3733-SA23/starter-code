@@ -1,21 +1,31 @@
 package Database;
 
+import pathfinding.MoveAttribute;
+
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import pathfinding.MoveAttribute;
 
-public class DatabaseController {
+public enum DatabaseController {
+  INSTANCE;
+
+  public enum Table{
+    LOCATION_NAME,
+    MOVE,
+    NODE,
+    EDGE,
+    SERVICE_REQUESTS
+  }
   private Connection c;
-  private static List<MoveAttribute> moveList = new ArrayList<>();
+  public List<MoveAttribute> moveList = new ArrayList<>();
 
-  public DatabaseController(String username, String password) {
+  DatabaseController(String username, String password) {
     c = this.connectToDatabase(username, password);
     // this.retrieveFromTable();
   }
 
-  public DatabaseController() {
+  DatabaseController() {
     c = this.connectToDatabase("teame", "teame50");
   }
 
@@ -24,8 +34,8 @@ public class DatabaseController {
     try {
       Class.forName("org.postgresql.Driver");
       c =
-          DriverManager.getConnection(
-              "jdbc:postgresql://database.cs.wpi.edu:5432/teamedb", username, password);
+              DriverManager.getConnection(
+                      "jdbc:postgresql://database.cs.wpi.edu:5432/teamedb", username, password);
     } catch (Exception e) {
       e.printStackTrace();
       System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -57,16 +67,27 @@ public class DatabaseController {
     }
   }
 
-  public void addToTable(MoveAttribute moveAttribute) {
+  public void addToTable(Table table, Object obj) {
+    String insertTable = "";
+    switch (table){
+      case MOVE:
+        MoveAttribute moveAttribute = (MoveAttribute) obj;
+        String nodeId = moveAttribute.nodeID;
+        String longName = moveAttribute.longName;
+        String date = moveAttribute.date;
+        insertTable =
+                "INSERT INTO \"Move\" VALUES(" + nodeId + ",'" + longName + "' , '" + date + "');";
+        break;
+      case EDGE:
+        //HospitalEdge edge = (HospitalEdge) obj;
+        String startNode = "";
+        //String endNode = HospitalEdge.endNode;
+
+    }
     Statement stmt;
-    String nodeId = moveAttribute.nodeID;
-    String longName = moveAttribute.longName;
-    String date = moveAttribute.date;
 
     try {
-      stmt = c.createStatement();
-      String insertTable =
-          "INSERT INTO \"Move\" VALUES(" + nodeId + ",'" + longName + "' , '" + date + "');";
+      stmt = c.createStatement();;
       int update = stmt.executeUpdate(insertTable);
       System.out.println(update);
     } catch (SQLException e) {
@@ -102,9 +123,9 @@ public class DatabaseController {
     // Retrieve move
     for (String nodeID : mList) {
       String moveQuery =
-          "SELECT * FROM teame.\"Move\" WHERE \"nodeID\" = '"
-              + nodeID
-              + "'  ORDER BY \"nodeID\" ASC ;";
+              "SELECT * FROM teame.\"Move\" WHERE \"nodeID\" = '"
+                      + nodeID
+                      + "'  ORDER BY \"nodeID\" ASC ;";
       try (Statement stmt = c.createStatement()) {
         ResultSet rs = stmt.executeQuery(moveQuery);
         if (rs.next()) {
@@ -131,7 +152,7 @@ public class DatabaseController {
    */
   private MoveAttribute extractMoveFromResultSet(ResultSet rs) throws SQLException {
     return new MoveAttribute(
-        rs.getString("nodeID"), rs.getString("longName"), rs.getString("date"));
+            rs.getString("nodeID"), rs.getString("longName"), rs.getString("date"));
   }
 
   /**
@@ -158,21 +179,21 @@ public class DatabaseController {
         String[] splitL1 = l1.split(",");
         System.out.println(l1);
         String sql =
-            "INSERT INTO \""
-                + tableName
-                + "\" VALUES ("
-                + splitL1[0]
-                + ", '"
-                + splitL1[1]
-                + "', '"
-                + splitL1[2]
-                + "'); ";
+                "INSERT INTO \""
+                        + tableName
+                        + "\" VALUES ("
+                        + splitL1[0]
+                        + ", '"
+                        + splitL1[1]
+                        + "', '"
+                        + splitL1[2]
+                        + "'); ";
         System.out.println(sql);
         stmt.execute(sql);
       }
 
       System.out.println(
-          "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
+              "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
 
     } catch (IOException | SQLException e) {
       System.err.println("Error importing from " + filePath + " to " + tableName);
@@ -190,7 +211,7 @@ public class DatabaseController {
    * @throws IOException if there is an error creating or writing to the CSV file.
    */
   public void exportToCSV(String name, String filePath, String fileName)
-      throws SQLException, IOException {
+          throws SQLException, IOException {
 
     // Initialization
     Statement stmt = null;
