@@ -66,7 +66,6 @@ public class MoveDAO {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
     if (nodeID == null && longName == null && moveDate == null) {
-      System.out.println("got here!!!!!!!!!!!!!!!!!!!!!!!!");
       String sqlDeleteALL = "DELETE FROM " + schemaName + "." + tableName + ";";
       statement.executeUpdate(sqlDeleteALL);
     } else {
