@@ -37,9 +37,11 @@ public class FlowerRequestController implements IRequestController {
 
   @FXML
   public void initialize() {
+    // Add the items to the combo boxes
     flowerChoice.setItems(flowerChoices);
     numOfFlowers.setItems(flowerNum);
     deliveryTime.setItems(deliveryTimes);
+    // Initialize the buttons
     returnButtonFlowerRequest.setOnMouseClicked(
         event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     flowerRequestSubmit.setOnMouseClicked(event -> sendRequest());
@@ -47,6 +49,7 @@ public class FlowerRequestController implements IRequestController {
   }
 
   public ServiceRequestData sendRequest() {
+
     // Create the json to store the values
     JSONObject requestData = new JSONObject();
     requestData.put("flowers", flowerChoice.getText());
@@ -55,12 +58,16 @@ public class FlowerRequestController implements IRequestController {
     requestData.put("recipient", recipientName.getText());
     requestData.put("room", roomNumber.getText());
     requestData.put("notes", notes.getText());
-    requestData.put("assignedStaff", assignedStaff.getText());
-    System.out.println(requestData);
 
     // Create the service request data
     ServiceRequestData flowerRequestData =
-        new ServiceRequestData(ServiceRequestData.RequestType.FLOWERDELIVERY, requestData);
+        new ServiceRequestData(
+            ServiceRequestData.RequestType.FLOWERDELIVERY,
+            requestData,
+            ServiceRequestData.Status.PENDING,
+            assignedStaff.getText());
+
+    // Return to the home screen
     Navigation.navigate(Screen.HOME);
     return flowerRequestData;
   }

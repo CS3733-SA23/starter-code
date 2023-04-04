@@ -21,13 +21,6 @@ public class ServiceRequestData {
   @Getter @Setter private Status requestStatus;
   @Getter @Setter private String assignedStaff;
 
-  public ServiceRequestData(RequestType requestType, JSONObject requestData) {
-    this.requestData = requestData;
-    this.requestType = requestType;
-    requestStatus = Status.PENDING;
-    assignedStaff = "None";
-  }
-
   public ServiceRequestData(
       RequestType requestType, JSONObject requestData, Status requestStatus, String assignedStaff) {
     this.requestData = requestData;
