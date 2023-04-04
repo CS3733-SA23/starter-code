@@ -13,6 +13,7 @@ public enum Screen {
   OFFICE_SUPPLY("views/OfficeSupply.fxml"),
   CONGRATS_PAGE("views/congratsPage.fxml"),
   MAP_HISTORY_PAGE("views/MapChangeHistory.fxml"),
+  PATHFINDING_PAGE("views/Pathfinding.fxml"),
   HELP("views/Help.fxml");
 
   private final String filename;
