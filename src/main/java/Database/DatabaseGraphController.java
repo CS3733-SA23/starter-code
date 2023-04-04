@@ -17,6 +17,14 @@ public class DatabaseGraphController {
   private static List<HospitalNode> nodeList = new LinkedList<>();
   private static List<HospitalEdge> edgeList = new LinkedList<>();
 
+  public static void main(String args[]) {
+    DatabaseController dbc = DatabaseController.INSTANCE;
+    DatabaseGraphController dgc = new DatabaseGraphController(dbc);
+    List<MoveAttribute> moveAttributes = dgc.getMoveAttributeFromFloor(Floor.ONE);
+    System.out.println(moveAttributes + " 1e114");
+    //System.out.println(dgc.getLongNamesFromMove(moveAttributes) + "1234567890");
+  }
+
   public DatabaseGraphController(DatabaseController DBC) {
     try {
       this.DBC = DBC;
