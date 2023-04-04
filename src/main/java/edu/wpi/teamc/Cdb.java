@@ -2,7 +2,6 @@ package edu.wpi.teamc;
 
 import edu.wpi.teamc.map.*;
 import edu.wpi.teamc.map.Edge;
-import edu.wpi.teamc.map.Graph;
 import edu.wpi.teamc.map.Node;
 import java.io.*;
 import java.sql.*;
@@ -155,13 +154,6 @@ public class Cdb {
       List<LocationName> databaseLocationNameList,
       List<Move> databaseMoveList) {
 
-    Graph temp = new Graph();
-    try {
-      temp.init();
-    } catch (IOException e) {
-      System.out.println("Exception!");
-    }
-
     try {
       Statement stmtNode = connection.createStatement();
       Statement stmtEdge = connection.createStatement();
@@ -194,7 +186,19 @@ public class Cdb {
       while (rsEdges.next()) {
         String startNode = rsEdges.getString("startNode");
         String endNode = rsEdges.getString("endNode");
-        databaseEdgeList.add(new Edge(temp.getNode(startNode), temp.getNode(endNode)));
+        Node src = null;
+        Node dest = null;
+
+        for (Node temp : databaseNodeList) {
+          if (temp.getNodeID().equals(startNode)) {
+            src = temp;
+          }
+          if (temp.getNodeID().equals(endNode)) {
+            dest = temp;
+          }
+        }
+
+        databaseEdgeList.add(new Edge(src, dest));
       }
       while (rsLocationNames.next()) {
         String locationNameLong = rsLocationNames.getString("longName");
