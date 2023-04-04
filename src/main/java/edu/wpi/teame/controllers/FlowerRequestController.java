@@ -52,11 +52,11 @@ public class FlowerRequestController implements IRequestController {
 
     // Create the json to store the values
     JSONObject requestData = new JSONObject();
-    requestData.put("flowers", flowerChoice.getText());
-    requestData.put("numFlowers", numOfFlowers.getText());
+    requestData.put("flowerChoice", flowerChoice.getText());
+    requestData.put("numOfFlowers", numOfFlowers.getText());
     requestData.put("deliveryTime", deliveryTime.getText());
-    requestData.put("recipient", recipientName.getText());
-    requestData.put("room", roomNumber.getText());
+    requestData.put("recipientName", recipientName.getText());
+    requestData.put("roomNumber", roomNumber.getText());
     requestData.put("notes", notes.getText());
 
     // Create the service request data
@@ -72,7 +72,9 @@ public class FlowerRequestController implements IRequestController {
     return flowerRequestData;
   }
 
+  // Cancels the current service request
   public void cancelRequest() {
     Navigation.navigate(Screen.HOME);
   }
+
 }
