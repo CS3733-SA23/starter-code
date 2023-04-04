@@ -70,6 +70,11 @@ public class HomeController {
     Navigation.navigate(Screen.SIGNAGE);
   }
 
+  @FXML
+  void getPathfindingPage(ActionEvent event) {
+    Navigation.navigate(Screen.PATHFINDING_PAGE);
+  }
+
   /** Method run when controller is initialized */
   @FXML
   public void initialize() {}

@@ -98,6 +98,14 @@
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Button>
+            <Button fx:id="editMap2" layoutX="10.0" layoutY="102.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getPathfindingPage" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: BAE3E0;" text="Pathfinding" textFill="#004646">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font>
+            </Button>
             <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Place Holder" textFill="#004646" visible="false">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -185,6 +193,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#getMapPage" text="Map" />
                   <MenuItem mnemonicParsing="false" onAction="#getEditMap" text="Edit Map" />
                   <MenuItem mnemonicParsing="false" onAction="#getMapHistory" text="Map History" />
+                <MenuItem mnemonicParsing="false" onAction="#getPathfindingPage" text="Pathfinding" />
                   <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
