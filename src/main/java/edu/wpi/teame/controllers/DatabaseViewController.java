@@ -39,7 +39,7 @@ public class DatabaseViewController {
 
   @FXML MFXButton exportButton;
 
-  @FXML TableView<MoveAttribute> dataTable;
+  @FXML TableView<MoveAttribute> moveTable;
 
   @FXML TableColumn<MoveAttribute, String> nodeIDCol;
 
@@ -71,22 +71,22 @@ public class DatabaseViewController {
     dateCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("date"));
 
     ObservableList itemList = FXCollections.observableArrayList(dC.getMoveList());
-    dataTable.setItems(itemList);
-    dataTable.setEditable(true);
+    moveTable.setItems(itemList);
+    moveTable.setEditable(true);
 
     // testing stuff
     // dataTable.getItems().add(new MoveAttribute("1111", "testA", "4/2/2023"));
     // dataTable.getItems().add(new MoveAttribute("2222", "testB", "4/2/2023"));
 
-    dataTable.setPlaceholder(new Label("No rows to display"));
+    moveTable.setPlaceholder(new Label("No rows to display"));
 
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
 
     deleteButton.setOnMouseClicked(
         event -> {
-          MoveAttribute selectedItem = dataTable.getSelectionModel().getSelectedItem();
+          MoveAttribute selectedItem = moveTable.getSelectionModel().getSelectedItem();
           if (selectedItem != null) {
-            dataTable.getItems().remove(selectedItem);
+            moveTable.getItems().remove(selectedItem);
             dC.deleteFromTable(selectedItem);
           }
         });
@@ -98,9 +98,9 @@ public class DatabaseViewController {
               @Override
               public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.BACK_SPACE) {
-                  MoveAttribute selectedItem = dataTable.getSelectionModel().getSelectedItem();
+                  MoveAttribute selectedItem = moveTable.getSelectionModel().getSelectedItem();
                   if (selectedItem != null) {
-                    dataTable.getItems().remove(selectedItem);
+                    moveTable.getItems().remove(selectedItem);
                     dC.deleteFromTable(selectedItem);
                   }
                 }
@@ -116,7 +116,7 @@ public class DatabaseViewController {
           try {
             newMoveAttribute = new MoveAttribute(nodeID, name, date);
             dC.addToTable(newMoveAttribute);
-            dataTable.getItems().add(newMoveAttribute);
+            moveTable.getItems().add(newMoveAttribute);
             IDField.clear();
             locationField.clear();
             dateField.clear();
