@@ -12,5 +12,6 @@ public class Main {
     String endNode = "100";
 
     graph.printDirectionsAStar(startNode, endNode);
+    CApp.launch(CApp.class, args);
   }
 }
