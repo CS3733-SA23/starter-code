@@ -2,7 +2,6 @@ package edu.wpi.teamc;
 
 import edu.wpi.teamc.map.*;
 import edu.wpi.teamc.map.Edge;
-import edu.wpi.teamc.map.Graph;
 import edu.wpi.teamc.map.Node;
 import java.io.*;
 import java.sql.*;
@@ -87,9 +86,20 @@ public class Cdb {
             getNode(databaseNodeList, nodeID);
             break;
           case "export node table into a csv file":
-            csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/exportedNodes.csv";
+            csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/Node.csv";
             exportNodesToCSV(csvFileName, databaseNodeList);
             break;
+          case "export edge table into a csv file":
+            csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/Edge.csv";
+            exportEdgesToCSV(csvFileName, databaseEdgeList);
+            break;
+          case "export location name table into a csv file":
+            csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/LocationName.csv";
+            exportLocationNamesToCSV(csvFileName, databaseLocationNameList);
+            break;
+          case "export move table into a csv file":
+            csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/Move.csv";
+            exportMovesToCSV(csvFileName, databaseMoveList);
           case "import from a csv file into the node table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Node.csv";
             importCSVNode(csvFileName, databaseNodeList);
@@ -155,13 +165,6 @@ public class Cdb {
       List<LocationName> databaseLocationNameList,
       List<Move> databaseMoveList) {
 
-    Graph temp = new Graph();
-    try {
-      temp.init();
-    } catch (IOException e) {
-      System.out.println("Exception!");
-    }
-
     try {
       Statement stmtNode = connection.createStatement();
       Statement stmtEdge = connection.createStatement();
@@ -193,8 +196,19 @@ public class Cdb {
       }
       while (rsEdges.next()) {
         String startNode = rsEdges.getString("startNode");
-        String endNode = rsEdges.getString("endNode");
-        databaseEdgeList.add(new Edge(temp.getNode(startNode), temp.getNode(endNode)));
+        String endNodeString = rsEdges.getString("endNode");
+        Node startNodeObject = null;
+        Node endNodeObject = null;
+        for (Node n : databaseNodeList) {
+          if (n.getNodeID().equals(startNode)) {
+            startNodeObject = n;
+          }
+          if (n.getNodeID().equals(endNodeString)) {
+            endNodeObject = n;
+          }
+        }
+        Edge edge1 = new Edge(startNodeObject, endNodeObject);
+        databaseEdgeList.add(edge1);
       }
       while (rsLocationNames.next()) {
         String locationNameLong = rsLocationNames.getString("longName");
@@ -366,6 +380,9 @@ public class Cdb {
             + "Update name of location node\n"
             + "Get specific node\n"
             + "Export node table into a CSV file\n"
+            + "Export edge table into a CSV file\n"
+            + "Export location name table into a CSV file\n"
+            + "Export move table into a CSV file\n"
             + "Import from a CSV file into the node table\n"
             + "import from a CSV file into the edge table\n"
             + "import from a CSV file into the location name table\n"
@@ -396,7 +413,7 @@ public class Cdb {
         "----------------------------------------------------------------------------------------------------------------------------");
     System.out.println("Edge information: \n");
     for (Edge edge : databaseEdgeList) {
-      System.out.println(edge.getStartNode() + "\t" + edge.getEndNode());
+      System.out.println(edge.getStartNode().getNodeID() + "\t" + edge.getEndNode().getNodeID());
     }
   }
 
