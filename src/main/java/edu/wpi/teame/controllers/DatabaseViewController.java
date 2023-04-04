@@ -174,12 +174,17 @@ public class DatabaseViewController {
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
 
     deleteButton.setOnMouseClicked(
+
         event -> {
-          MoveAttribute selectedItem = moveTable.getSelectionModel().getSelectedItem();
+          removeItem(dC);
+          /*
+          Object selectedItem = activeTable.getSelectionModel().getSelectedItem();
           if (selectedItem != null) {
             moveTable.getItems().remove(selectedItem);
-            dC.deleteFromTable(selectedItem);
+            //dC.deleteFromTable( ,selectedItem);
           }
+
+           */
         });
 
     App.getPrimaryStage()
@@ -189,17 +194,23 @@ public class DatabaseViewController {
               @Override
               public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.BACK_SPACE) {
+                  removeItem(dC);
+                  /*
                   MoveAttribute selectedItem = moveTable.getSelectionModel().getSelectedItem();
                   if (selectedItem != null) {
                     moveTable.getItems().remove(selectedItem);
                     dC.deleteFromTable(selectedItem);
                   }
+
+                   */
                 }
               }
             });
 
     addButton.setOnMouseClicked(
         event -> {
+          addRow(dC, windowPop);
+          /*
           String nodeID = IDField.getText();
           String name = locationField.getText();
           String date = dateField.getText();
@@ -216,6 +227,8 @@ public class DatabaseViewController {
             System.out.println("error caught");
             windowPop.show(App.getPrimaryStage());
           }
+
+           */
         });
 
     importButton.setOnMouseClicked(
@@ -310,6 +323,105 @@ public class DatabaseViewController {
         nodeAddZone.setVisible(false);
         edgeAddZone.setVisible(true);
         break;
+    }
+  }
+
+  private void addRow(DatabaseController dC, Popup windowPop){
+    Object toAdd;
+    switch (databaseChoice.getValue()){
+      case "move":
+        String nodeID = IDField.getText();
+        String name = locationField.getText();
+        String date = dateField.getText();
+        //MoveAttribute newMoveAttribute;
+        try {
+          toAdd = new MoveAttribute(nodeID, name, date);
+          dC.addToTable(DatabaseController.Table.MOVE, toAdd);
+          moveTable.getItems().add((MoveAttribute) toAdd);
+          IDField.clear();
+          locationField.clear();
+          dateField.clear();
+        } catch (RuntimeException e) {
+          // have an error pop up
+          System.out.println("error caught");
+          windowPop.show(App.getPrimaryStage());
+        }
+        break;
+      case "location":
+        String longName = longNameField.getText();
+        String shortName = shortNameField.getText();
+        LocationName.NodeType type = LocationName.NodeType.stringToNodeType(locationTypeField.getText());
+        try {
+          toAdd = new LocationName(longName, shortName, type);
+          dC.addToTable(DatabaseController.Table.LOCATION_NAME, toAdd);
+          locationTable.getItems().add((LocationName) toAdd);
+          longNameField.clear();
+          shortNameField.clear();
+          locationTypeField.clear();
+        } catch (RuntimeException e) {
+          // have an error pop up
+          System.out.println("error caught");
+          windowPop.show(App.getPrimaryStage());
+        }
+        break;
+      case "node":
+        String nodeI = IDFieldLoc.getText();
+        int nodeX = Integer.parseInt(xField.getText());
+        int nodeY = Integer.parseInt(yField.getText());
+        Floor flr = Floor.stringToFloor(floorField.getText());
+        String building = buildingField.getText();
+        try {
+          toAdd = new HospitalNode(nodeI, nodeX, nodeY, flr, building);
+          dC.addToTable(DatabaseController.Table.NODE, toAdd);
+          nodeTable.getItems().add((HospitalNode) toAdd);
+          IDFieldLoc.clear();
+          xField.clear();
+          yField.clear();
+          floorField.clear();
+          buildingField.clear();
+        } catch (RuntimeException e) {
+          // have an error pop up
+          System.out.println("error caught");
+          windowPop.show(App.getPrimaryStage());
+        }
+        break;
+      case "edge":
+        String edge1 = edge1Field.getText();
+        String edge2 = edge2Field.getText();
+        try {
+          toAdd = new HospitalEdge(edge1, edge2);
+          dC.addToTable(DatabaseController.Table.EDGE, toAdd);
+          edgeTable.getItems().add((HospitalEdge) toAdd);
+          edge1Field.clear();
+          edge2Field.clear();
+        } catch (RuntimeException e) {
+          // have an error pop up
+          System.out.println("error caught");
+          windowPop.show(App.getPrimaryStage());
+        }
+        break;
+    }
+  }
+
+  private void removeItem(DatabaseController dC){
+    Object selectedItem = activeTable.getSelectionModel().getSelectedItem();
+    if (selectedItem != null) {
+      activeTable.getItems().remove(selectedItem);
+      switch (databaseChoice.getValue()){
+        case "move":
+          dC.deleteFromTable(DatabaseController.Table.MOVE, selectedItem);
+          break;
+        case "location":
+          dC.deleteFromTable(DatabaseController.Table.LOCATION_NAME, selectedItem);
+          break;
+        case "node":
+          dC.deleteFromTable(DatabaseController.Table.NODE, selectedItem);
+          break;
+        case "edge":
+          dC.deleteFromTable(DatabaseController.Table.EDGE, selectedItem);
+          break;
+      }
+      //dC.deleteFromTable( ,selectedItem);
     }
   }
 }
