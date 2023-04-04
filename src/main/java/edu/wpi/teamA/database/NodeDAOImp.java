@@ -63,12 +63,14 @@ public class NodeDAOImp implements IDataBase,INodeDAO {
     }
 
     @Override
-    public void Export(String filePath) {
+    public void Export(String folderExportPath) {
         try {
+            String newFile = folderExportPath + "/Node.csv";
             Statement st = nodeConnection.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Prototype2_schema.\"Node\"");
 
-            FileWriter csvWriter = new FileWriter("Node.csv");
+            FileWriter csvWriter = new FileWriter(newFile);
+
             csvWriter.append("nodeID,xcoord,ycoord,floor,building\n");
 
             while (rs.next()) {

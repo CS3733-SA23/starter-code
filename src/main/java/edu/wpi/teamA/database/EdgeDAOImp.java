@@ -58,12 +58,13 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO{
 
 
     @Override
-    public void Export(String filePath) {
+    public void Export(String folderExportPath) {
         try {
+            String newFile = folderExportPath + "/Edfge.csv";
             Statement st = edgeConnection.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Prototype2_schema.\"Edge\"");
 
-            FileWriter csvWriter = new FileWriter("Edge.csv");
+            FileWriter csvWriter = new FileWriter(newFile);
             csvWriter.append("startNode,endNode\n");
 
             while (rs.next()) {
