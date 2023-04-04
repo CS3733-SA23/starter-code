@@ -10,13 +10,11 @@ public class LoginPageController {
 
   @FXML private Button Map;
 
-  @FXML
-  private Button AdminMapPage;
+  @FXML private Button AdminMapPage;
 
   @FXML
-  void getAdminMapPage(ActionEvent event) {
+  void getAdminMapPage(ActionEvent event) { Navigation.navigate(Screen.ADMIN_HOME);}
 
-  }
   @FXML
-  void getMapPage(ActionEvent event) {Navigation.navigate(Screen.HOME);}
+  void getMapPage(ActionEvent event) {Navigation.navigate(Screen.GUEST_HOME);}
 }

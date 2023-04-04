@@ -6,6 +6,11 @@ public enum Screen {
   SIGNAGE("views/SignagePage.fxml"),
   ELEVATOR_SIGNAGE("views/ElevatorSignage.fxml"),
   HOME("views/Home.fxml"),
+
+  FLOOR_PLAN("views/FloorPlan.fxml"),
+
+  LOGIN("views/LoginPage.fxml"),
+  GUEST_HOME("views/GuestHome.fxml"),
   MEAL("views/Meal.fxml"),
   CONFERENCE("views/Conference.fxml"),
   FLOWER("views/Flower.fxml"),
