@@ -107,7 +107,7 @@
             </ImageView>
             <MFXButton fx:id="returnButtonSignage" contentDisplay="GRAPHIC_ONLY" layoutX="152.0" layoutY="49.0" style="-fx-background-color: #192d5a;">
                <graphic>
-                  <ImageView fx:id="returnButtonService" fitHeight="100.0" fitWidth="50.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                  <ImageView  fitHeight="100.0" fitWidth="50.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Back%20Arrow.png" />
                      </image>
