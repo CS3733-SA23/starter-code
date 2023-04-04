@@ -1,4 +1,4 @@
-package edu.wpi.teamc;
+package edu.wpi.teamc.controllers;
 
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
