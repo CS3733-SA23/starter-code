@@ -15,11 +15,11 @@ public class MoveAttribute {
     return nodeID;
   }
 
-  public String getLongName(){
+  public String getLongName() {
     return longName;
   }
 
-  public String getDate(){
+  public String getDate() {
     return date;
   }
 }
