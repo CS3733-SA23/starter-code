@@ -17,7 +17,7 @@ public class FoodRequestDAO { // TODO: make sure tablename is the view
     this.schemaName = schemaName;
     this.connectionURL = connectionURL;
 
-    foodRequests = new ArrayList<>();
+    foodRequests = new ArrayList<FoodRequest>();
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
     ResultSet resultSet = statement.executeQuery("SELECT * FROM "+schemaName+"."+tableName+";");
@@ -68,21 +68,25 @@ public class FoodRequestDAO { // TODO: make sure tablename is the view
             + schemaName
             + "."
             + tableName
-            + "(requestID, requesterName, location, requestDate, additionalNotes, mealType)";
+            + "(requestID, requesterName, location, requestDate, additionalNotes, mealType, requestStatus, staffmember) ";
     sqlInsert +=
         "VALUES("
             + requestID
-            + ",'"
+            + ",\'"
             + requesterName
-            + "','"
+            + "\',\'"
             + location
-            + "','"
+            + "\',\'"
             + requestDate
-            + "','"
+            + "\',\'"
             + additionalNotes
-            + "','"
+            + "\',\'"
             + mealType
-            + "');";
+            + "\',\'"
+            + requestStatus.toString()
+            + "\',\'"
+            + staffMember
+            + "\');";
     FoodRequest aFoodRequest =
         new FoodRequest(
             requestID,
@@ -111,6 +115,7 @@ public class FoodRequestDAO { // TODO: make sure tablename is the view
       throws SQLException, ClassNotFoundException {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
+    String sqlDelete;
     if (requestID == null
         && requesterName == null
         && location == null
@@ -119,9 +124,9 @@ public class FoodRequestDAO { // TODO: make sure tablename is the view
         && additionalNotes == null
         && requestDate == null
         && requestStatus == null) {
-      String sqlDeleteALL = "DELETE FROM " + schemaName + "." + tableName + ";";
+      sqlDelete = "DELETE FROM " + schemaName + "." + tableName + ";";
     } else {
-      String sqlDelete = "DELETE FROM " + schemaName + "." + tableName + "WHERE ";
+      sqlDelete = "DELETE FROM " + schemaName + "." + tableName + " WHERE ";
       int count = 0;
       if (requestID != null) {
         count++;
@@ -175,9 +180,9 @@ public class FoodRequestDAO { // TODO: make sure tablename is the view
         sqlDelete += "requestStatus = " + "'" + requestStatus + "'";
       }
       sqlDelete += ";";
-      statement.executeUpdate(sqlDelete);
-      closeConnection(connection);
     }
+    statement.executeUpdate(sqlDelete);
+    closeConnection(connection);
     for (int i = 0; i < foodRequests.size(); i++) {
       Boolean requestIDCheck = requestID == null || requestID.equals(foodRequests.get(i).getRequestID());
       Boolean requesterNameCheck =

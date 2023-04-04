@@ -20,9 +20,10 @@ class FoodRequestDAOTest {
         aFoodRequestDAO = FoodRequestDAO.createInstance(
                 "teamr",
                 "teamr150",
-                "furnitureRequestview",
+                "foodRequestview",
                 "test",
                 "jdbc:postgresql://database.cs.wpi.edu:5432/teamrdb");
+        aFoodRequestDAO.deleteFoodRequests(null, null, null, null, null, null, null, null);
         Timestamp testLocalDateTime = Timestamp.valueOf(LocalDateTime.of(
                 2023,
                 Month.JANUARY,
@@ -36,7 +37,7 @@ class FoodRequestDAOTest {
                 "Fuller Lower",
                 "whole turkey",
                 "Wong",
-                "I'm just a bit hungry",
+                "Im just a bit hungry",
                 testLocalDateTime,
                 RequestStatus.Unstarted);
     }
@@ -70,7 +71,7 @@ class FoodRequestDAOTest {
                 "Qiyana",
                 "I need gravy for my meal",
                 testLocalDateTime,
-                RequestStatus.In_Progress);
+                RequestStatus.Unstarted);
         aFoodRequestDAO.addFoodRequest(
                 one.getRequestID(),
                 one.getRequesterName(),
@@ -81,15 +82,14 @@ class FoodRequestDAOTest {
                 testLocalDateTime,
                 RequestStatus.Unstarted);
         FoodRequest two = aFoodRequestDAO.selectFoodRequests(one.getRequestID(), null, null, null, null, null, null, null).get(0);
-        Boolean matchingRequestID = one.getRequestID().equals(two.getRequestID());
-        Boolean matchingRequesterName = one.getRequesterName().equals(two.getRequesterName());
-        Boolean matchingLocation = one.getLocation().equals(two.getLocation());
-        Boolean matchingFurnitureType = one.getMealType().equals(two.getMealType());
-        Boolean matchingStaffMember = one.getStaffMember().equals(two.getStaffMember());
-        Boolean matchingAdditionalNotes = one.getAdditionalNotes().equals(two.getAdditionalNotes());
-        Boolean matchingTime =  one.getRequestDate().toString().equals(two.getRequestDate().toString());
-        Boolean matchingRequestStatus = one.getRequestStatus().toString().equals(two.getRequestStatus().toString());
-        assertTrue(matchingRequestID && matchingRequesterName && matchingLocation && matchingFurnitureType && matchingStaffMember && matchingAdditionalNotes && matchingTime && matchingRequestStatus);
+        assertEquals(one.getRequestID(), two.getRequestID());
+        assertEquals(one.getRequesterName(), two.getRequesterName());
+        assertEquals(one.getLocation(), two.getLocation());
+        assertEquals(one.getMealType(), two.getMealType());
+        assertEquals(one.getStaffMember(), two.getStaffMember());
+        assertEquals(one.getAdditionalNotes(), two.getAdditionalNotes());
+        assertEquals(one.getRequestDate().toString(), two.getRequestDate().toString());
+        assertEquals(one.getRequestStatus().toString(), two.getRequestStatus().toString());
         aFoodRequestDAO.deleteFoodRequests(99, null, null, null, null, null, null, null);
         assertEquals(aFoodRequestDAO.selectFoodRequests(99, null, null, null, null, null, null, null).size(), 0);
     }
@@ -108,19 +108,19 @@ class FoodRequestDAOTest {
                 "Waikiki",
                 "Coconut",
                 "Connor",
-                null,
+                "Pineapple juice is great",
                 testLocalDateTime,
                 RequestStatus.Complete);
         aFoodRequestDAO.addFoodRequest(one.getRequestID(), one.getRequesterName(), one.getLocation(), one.getMealType(), one.getStaffMember(), one.getAdditionalNotes(), testLocalDateTime, RequestStatus.Complete);
         aFoodRequestDAO.modifyFoodRequestByID(
                 900,
-                null,
-                null,
+                "Charlie",
+                "Waikiki",
                 "Pineapple",
-                null,
+                "Connor",
                 "Pineapple juice is great",
-                null,
-                null);
+                testLocalDateTime,
+                RequestStatus.Complete);
         ArrayList<FoodRequest> filteredFoodRequests = aFoodRequestDAO.selectFoodRequests(
                 null,
                 "Charlie",
@@ -162,8 +162,8 @@ class FoodRequestDAOTest {
                 "Blue",
                 "Deep inside of me",
                 "Ooga-Chaka Ooga-Ooga",
-                "I'm high on believing",
-                "I can't stop this feeling",
+                "Im high on believing",
+                "I cant stop this feeling",
                 testLocalDateTime1,
                 RequestStatus.In_Progress);
         aFoodRequestDAO.addFoodRequest(
@@ -179,7 +179,7 @@ class FoodRequestDAOTest {
                 19,
                 "Queen",
                 "Down the street",
-                "Ain't no sound but the sound of his feet. Machine guns ready to go",
+                "Aint no sound but the sound of his feet. Machine guns ready to go",
                 "Are you ready hey are you ready for this?",
                 "Another one bites the dust",
                 testLocalDateTime3,
@@ -187,8 +187,8 @@ class FoodRequestDAOTest {
         aFoodRequestDAO.addFoodRequest(
                 20,
                 "Electric Light Orchestra",
-                "Sun is shinin' in the sky",
-                "There ain't a cloud in sight",
+                "Sun is shinin in the sky",
+                "There aint a cloud in sight",
                 "Mr. Blue Sky please tell us why",
                 "You had to hide away for so long (so long). Where did we go wrong?",
                 testLocalDateTime4,
@@ -206,7 +206,7 @@ class FoodRequestDAOTest {
         tempFoodRequestList = aFoodRequestDAO.selectFoodRequests(
                 null,
                 null,
-                "Sun is shinin' in the sky",
+                "Sun is shinin in the sky",
                 null,
                 null,
                 null,
@@ -216,7 +216,7 @@ class FoodRequestDAOTest {
         tempFoodRequestList = aFoodRequestDAO.selectFoodRequests(
                 null,
                 null,
-                "Sun is shinin' in the sky",
+                "Sun is shinin in the sky",
                 null,
                 null,
                 "Tomato",
