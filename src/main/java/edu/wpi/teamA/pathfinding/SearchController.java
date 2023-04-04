@@ -43,8 +43,8 @@ public class SearchController {
      */
     public ArrayList pathOfNodesBFS(int startID, int endID) {
 
-
         ArrayList<Integer> queue = new ArrayList<Integer>();
+        ArrayList<Integer> nodesToReset = new ArrayList<Integer>();
 
         int currentID = startID;
 
@@ -83,7 +83,11 @@ public class SearchController {
             currentGNode = graph.getGraphNode(currentID);
         }
 
-        return getOrder(startID, endID);
+        ArrayList<Integer> path = getOrder(startID, endID);
+
+        resetNodes(nodesToReset);
+
+        return path;
     }
 
 
@@ -95,6 +99,7 @@ public class SearchController {
      */
     public ArrayList pathOfNodesAStar(int startID, int endID) {
         ArrayList<Integer> queue = new ArrayList<Integer>();
+        ArrayList<Integer> nodesToReset = new ArrayList<Integer>();
 
         GraphNode endNode = graph.getGraphNode(endID);
         int endX = endNode.getXcoord();
@@ -131,6 +136,7 @@ public class SearchController {
             }
 
             currentNode.setVisited(true);
+            nodesToReset.add(currentNode.getNodeID());
 
             currentNode = graph.getGraphNode(queue.remove(0));
             currentX = currentNode.getXcoord();
@@ -138,14 +144,17 @@ public class SearchController {
 
         }
 
+        ArrayList<Integer> path = getOrder(startID, endID);
 
+        resetNodes(nodesToReset);
 
-        return getOrder(startID, endID);
+        return path;
     }
 
 
 
     public void insertIntoPQ(ArrayList<Integer> pQ, int nodeID) {
+
         //do it
 
     }
@@ -161,6 +170,12 @@ public class SearchController {
         }
         path.add(0, startID);
         return path;
+    }
+
+    public void resetNodes(ArrayList<Integer> resetList) {
+        for (int i = 0; i < resetList.size(); i++) {
+            graph.getGraphNode(resetList.get(i)).reset();
+        }
     }
 
 }

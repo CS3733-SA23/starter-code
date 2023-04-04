@@ -3,22 +3,22 @@ import edu.wpi.teamA.database.Edge;
 import edu.wpi.teamA.database.Node;
 import java.util.ArrayList;
 public class GraphNode {
-    int nodeID;
-    int xcoord;
-    int ycoord;
-    String floor;
-    String building;
-    String longName;
-    String shortName;
-    String nodeType;
-    ArrayList<Edge> edgeList; //change to Edge
-    boolean visited;
-    GraphNode prev;
-    int gCost;
-    int hCost;
+    private int nodeID;
+    private int xcoord;
+    private int ycoord;
+    private String floor;
+    private String building;
+    private String longName;
+    private String shortName;
+    private String nodeType;
+    private ArrayList<Edge> edgeList; //change to Edge
+    private boolean visited;
+    private GraphNode prev;
+    private int gCost;
+    private int hCost;
 
 
-    public GraphNode(int nodeID, int xcoord, int ycoord, String floor, String building, String longName, String shortName, String nodeType, ArrayList<Edge> edgeList, boolean visited, GraphNode prev) {
+    public GraphNode(int nodeID, int xcoord, int ycoord, String floor, String building, String longName, String shortName, String nodeType, ArrayList<Edge> edgeList) {
         this.nodeID = nodeID;
         this.xcoord = xcoord;
         this.ycoord = ycoord;
@@ -28,8 +28,10 @@ public class GraphNode {
         this.shortName = shortName;
         this.nodeType = nodeType;
         this.edgeList = edgeList;
-        this.visited = visited;
-        this.prev = prev;
+        this.visited = false;
+        this.prev = this;
+        this.gCost = -1;
+        this.hCost = -1;
 
     }
 
@@ -147,6 +149,13 @@ public class GraphNode {
 
     public Edge getEdge(int index) {
         return edgeList.get(index);
+    }
+
+    public void reset() { // implement
+        this.visited = false;
+        this.prev = this;
+        this.gCost = -1;
+        this.hCost = -1;
     }
 
 
