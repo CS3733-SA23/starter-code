@@ -13,10 +13,8 @@ public class MealRequest implements IServiceRequest {
   }
 
   @Override
-  public void addRequest() {
-  }
+  public void addRequest() {}
 
   @Override
-  public void updateRequest() {
-  }
+  public void updateRequest() {}
 }

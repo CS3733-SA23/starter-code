@@ -4,7 +4,7 @@ import java.sql.Date;
 
 // import java.util.Date;
 
-public class ConferenceRoomRequest implements IServiceRequest  {
+public class ConferenceRoomRequest implements IServiceRequest {
   private ConferenceRoom selection;
 
   private Date date;
@@ -24,9 +24,7 @@ public class ConferenceRoomRequest implements IServiceRequest  {
     this.addtionalNotes = addtionalNotes;
   }
 
-  public void addRequest() {
-  }
+  public void addRequest() {}
 
-  public void updateRequest() {
-  }
+  public void updateRequest() {}
 }
