@@ -88,16 +88,6 @@ public class Graph {
   }
 
   /**
-   * Returns the node with the given ID
-   *
-   * @param nodeID - ID of the node to be returned
-   * @return Node with the given ID
-   */
-  public Node getNode(String nodeID) {
-    return nodes.get(nodeID);
-  }
-
-  /**
    * Returns a list of directions from start to end
    *
    * @param start - start node
