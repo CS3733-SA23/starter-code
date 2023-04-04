@@ -27,7 +27,7 @@ public class FloorTwoMapNavController {
   @FXML MFXComboBox<String> destinationList;
   Floor currentFloor = Floor.TWO;
 
-  DatabaseController db = new DatabaseController();
+  DatabaseController db = DatabaseController.INSTANCE;
   DatabaseGraphController graphController = new DatabaseGraphController(db);
   ObservableList<String> floorLocations =
       FXCollections.observableArrayList(
