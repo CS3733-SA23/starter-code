@@ -100,6 +100,7 @@ public class Cdb {
           case "export move table into a csv file":
             csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/Move.csv";
             exportMovesToCSV(csvFileName, databaseMoveList);
+            break;
           case "import from a csv file into the node table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Node.csv";
             importCSVNode(csvFileName, databaseNodeList);
