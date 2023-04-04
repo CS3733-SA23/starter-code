@@ -1,18 +1,13 @@
 package edu.wpi.teamc.serviceRequest;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Meal {
-  public String mealName;
-  public String mealDescription;
-  public int mealCalories;
-  List<String> mealIngredient = new ArrayList<String>();
+  private String mealName;
 
-  public Meal(String name, String description, int calories, List<String> ingredient) {
-    mealName = name;
-    mealDescription = description;
-    mealCalories = calories;
-    mealIngredient = ingredient;
+  private String addtionalInfo;
+
+  // Should it be this.mealName = mealName? and this.addtionalInfo = addtionalInfo?
+  public Meal(String name, String notes) {
+    this.mealName = name;
+    this.addtionalInfo = notes;
   }
 }

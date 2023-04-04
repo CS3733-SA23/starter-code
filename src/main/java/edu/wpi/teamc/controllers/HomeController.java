@@ -81,7 +81,9 @@ public class HomeController {
   void getLogOut(ActionEvent event) {}
 
   @FXML
-  void getMapHistory(ActionEvent event) {}
+  void getMapHistory(ActionEvent event) {
+    Navigation.navigate(Screen.MAP_HISTORY_PAGE);
+  }
 
   @FXML
   void getMapPage(ActionEvent event) {}
