@@ -52,7 +52,7 @@ public class MoveDAO {
   public Move addMove(Integer nodeID, String longName, Date moveDate) throws SQLException, ClassNotFoundException {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
-    String sqlInsert = "INSERT INTO " + schemaName + "." + tableName + "(nodeID,longName,moveDate)";
+    String sqlInsert = "INSERT INTO " + schemaName + "." + tableName + "(nodeid,longName,moveDate)";
     sqlInsert += "VALUES(" + nodeID + ",\'" + longName + "\'," + moveDate + ");";
     statement.executeUpdate(sqlInsert);
     Move aMove = new Move(nodeID, longName, moveDate);
@@ -66,6 +66,7 @@ public class MoveDAO {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
     if (nodeID == null && longName == null && moveDate == null) {
+      System.out.println("got here!!!!!!!!!!!!!!!!!!!!!!!!");
       String sqlDeleteALL = "DELETE FROM " + schemaName + "." + tableName + ";";
       statement.executeUpdate(sqlDeleteALL);
     } else {
