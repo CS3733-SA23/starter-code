@@ -11,8 +11,9 @@ public enum Screen {
   FLOWER("views/Flower.fxml"),
   FURNITURE("views/Furniture.fxml"),
   OFFICE_SUPPLY("views/OfficeSupply.fxml"),
+  CONGRATS_PAGE("views/congratsPage.fxml"),
+  MAP_HISTORY_PAGE("views/MapChangeHistory.fxml");
   HELP("views/Help.fxml"),
-  CONGRATS_PAGE("views/congratsPage.fxml");
 
   private final String filename;
 
