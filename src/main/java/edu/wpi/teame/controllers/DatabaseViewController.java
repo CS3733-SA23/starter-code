@@ -19,26 +19,27 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Popup;
-import pathfinding.MoveAttribute;
+import pathfinding.*;
 
 public class DatabaseViewController {
 
+  //common buttons:
+  @FXML MFXButton importButton;
+  @FXML MFXButton exportButton;
   @FXML MFXButton backButton;
   @FXML MFXButton deleteButton;
-
   @FXML MFXButton addButton; // three text boxes and a button that says "add" next to it
+
+  // fields for Moves
+  @FXML HBox movesAddZone;
   @FXML MFXTextField IDField;
-
   @FXML MFXTextField locationField;
-
   @FXML MFXTextField dateField;
 
-  @FXML MFXButton importButton;
-
-  @FXML MFXButton exportButton;
-
+  // table data for Moves
   @FXML TableView<MoveAttribute> moveTable;
 
   @FXML TableColumn<MoveAttribute, String> nodeIDCol;
@@ -46,6 +47,45 @@ public class DatabaseViewController {
   @FXML TableColumn<MoveAttribute, String> nameCol;
 
   @FXML TableColumn<MoveAttribute, String> dateCol;
+
+  //fields for Nodes
+  @FXML HBox nodeAddZone;
+  @FXML MFXTextField IDFieldLoc;
+  @FXML MFXTextField xField;
+  @FXML MFXTextField yField;
+  @FXML MFXTextField floorField;
+  @FXML MFXTextField buildingField;
+
+
+  // table data for Nodes
+  @FXML TableView<HospitalNode> nodeTable;
+  @FXML TableColumn<HospitalNode, String> nodeIDCoordCol;
+  @FXML TableColumn<HospitalNode, Integer> nodeXCol;
+  @FXML TableColumn<HospitalNode, Integer> nodeYCol;
+  @FXML TableColumn<HospitalNode, Floor> floorCol;
+  @FXML TableColumn<HospitalNode, String> buildingCol;
+
+  // fields for Location Names
+  @FXML HBox locationAddZone;
+  @FXML MFXTextField longNameField;
+  @FXML MFXTextField shortNameField;
+  @FXML MFXTextField locationTypeField;
+
+  // table data for Location Names
+  @FXML TableView<LocationName> locationTable;
+  @FXML TableColumn<LocationName, String> longNameCol;
+  @FXML TableColumn<LocationName, String> shortNameCol;
+  @FXML TableColumn<LocationName, String> nodeTypeCol;
+
+  // fields for Edges
+  @FXML HBox edgeAddZone;
+  @FXML MFXTextField edge1Field;
+  @FXML MFXTextField edge2Field;
+
+  // table data for Edges
+  @FXML TableView<HospitalEdge> edgeTable;
+  @FXML TableColumn<HospitalEdge, String> edge1Col;
+  @FXML TableColumn<HospitalEdge, String> edge2Col;
 
   FileChooser saveChooser = new FileChooser();
   FileChooser selectChooser = new FileChooser();
