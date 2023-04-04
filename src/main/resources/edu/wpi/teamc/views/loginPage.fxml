@@ -23,20 +23,20 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <MFXTextField floatMode="DISABLED" layoutX="405.0" layoutY="124.0" prefHeight="30.0" prefWidth="132.0" textLimit="1000000">
+            <MFXTextField floatMode="DISABLED" layoutX="405.0" layoutY="124.0" prefHeight="30.0" prefWidth="132.0" promptText="Please Enter Username" textLimit="1000000">
                <textFill>
                   <Color green="0.501960813999176" blue="0.501960813999176" opacity="0.8700000047683716" />
                </textFill>
                <font>
-                  <Font name="Arial Bold" size="12.0" />
+                  <Font name="Arial Italic" size="9.0" />
                </font>
             </MFXTextField>
-            <MFXTextField floatMode="DISABLED" layoutX="405.0" layoutY="191.0" prefHeight="30.0" prefWidth="132.0" textLimit="1000000">
+            <MFXTextField floatMode="DISABLED" layoutX="405.0" layoutY="191.0" prefHeight="30.0" prefWidth="132.0" promptText="Please Enter Password" textLimit="1000000">
                <textFill>
                   <Color green="0.501960813999176" blue="0.501960813999176" opacity="0.8700000047683716" />
                </textFill>
                <font>
-                  <Font name="Arial Bold" size="12.0" />
+                  <Font name="Arial Italic" size="9.0" />
                </font>
             </MFXTextField>
             <Button fx:id="AdminPage" layoutX="401.0" layoutY="257.0" mnemonicParsing="false" onAction="#getAdminPage" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: BAE3E0;" text="Log In" textFill="#004646">
@@ -47,12 +47,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="424.0" layoutY="92.0" prefHeight="20.0" prefWidth="94.0" text="Username" textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="405.0" layoutY="93.0" prefHeight="20.0" prefWidth="105.0" text="Username:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Verdana Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="424.0" layoutY="164.0" prefHeight="20.0" prefWidth="94.0" text="Password" textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="405.0" layoutY="167.0" prefHeight="20.0" prefWidth="94.0" text="Password:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Verdana Bold" size="16.0" />
                </font>
