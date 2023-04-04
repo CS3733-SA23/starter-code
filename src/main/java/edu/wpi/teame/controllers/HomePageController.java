@@ -30,7 +30,7 @@ public class HomePageController {
     showMenuButtonsWhenHovered(menuBarExit);
     serviceRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
-    mapsButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_MENU));
+    mapsButton.setOnMouseClicked(event -> Navigation.navigate(Screen.GROUND_FLOOR));
 
     menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));

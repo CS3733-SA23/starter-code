@@ -1,5 +1,6 @@
-package pathfinding;
+package edu.wpi.teame.map.pathfinding;
 
+import edu.wpi.teame.map.HospitalNode;
 import java.util.*;
 
 public class AStarPathfinder extends AbstractPathfinder {
@@ -47,7 +48,7 @@ public class AStarPathfinder extends AbstractPathfinder {
         return reconstructPath(parentMap, current);
       }
       for (HospitalNode neighbor : current.getNeighbors()) {
-        int newCost = neighbor.edgeCosts.get(current) + costMap.get(current);
+        int newCost = neighbor.getEdgeCosts().get(current) + costMap.get(current);
         // If we've already explored the children of this node, don't add it to the queue
         if (!parentMap.containsKey(neighbor) || costMap.get(neighbor) > newCost) {
           costMap.put(neighbor, newCost);
@@ -63,7 +64,9 @@ public class AStarPathfinder extends AbstractPathfinder {
   int heuristicDistance(HospitalNode from, HospitalNode to) {
     // estimate the distance to the target based on the euclidean distance to the target
     return (int)
-        Math.sqrt(Math.pow(from.xCoord - to.xCoord, 2) + Math.pow(from.yCoord - to.yCoord, 2));
+        Math.sqrt(
+            Math.pow(from.getXCoord() - to.getXCoord(), 2)
+                + Math.pow(from.getYCoord() - to.getYCoord(), 2));
   }
 
   /**

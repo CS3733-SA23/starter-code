@@ -6,17 +6,21 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.GroundFloorNavMapController">
+<AnchorPane prefHeight="900.0" prefWidth="1500.0" style="-fx-background-color: #3b63a5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.GroundFloorNavMapController">
     <children>
-        <BorderPane prefHeight="200.0" prefWidth="320.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane layoutX="6.0" layoutY="7.0" prefHeight="887.0" prefWidth="1489.0" style="-fx-background-color: #e1e1e1;" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0">
             <center>
                 <ScrollPane prefHeight="802.0" prefWidth="1145.0" BorderPane.alignment="CENTER">
                     <content>
@@ -41,31 +45,49 @@
                 </HBox>
             </bottom>
             <right>
-                <VBox spacing="20.0" BorderPane.alignment="CENTER">
+                <VBox prefHeight="833.0" prefWidth="154.0" spacing="20.0" BorderPane.alignment="CENTER">
                     <children>
-                        <MFXButton fx:id="lowerLevelOneButton" buttonType="RAISED" text="Lower Level 1" />
-                        <MFXButton fx:id="lowerLevelTwoButton" layoutX="10.0" layoutY="10.0" text="Lower Level 2" />
-                        <MFXButton fx:id="FirstFloorButton" layoutX="10.0" layoutY="10.0" text="First Floor" />
-                        <MFXButton fx:id="SecondFloorButton" layoutX="10.0" layoutY="64.0" text="Second Floor" />
-                        <MFXButton fx:id="ThirdFloorButton" layoutX="10.0" layoutY="91.0" text="Third Floor" />
+                        <MFXButton fx:id="lowerLevelOneButton" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Lower Level 1" />
+                        <MFXButton fx:id="lowerLevelTwoButton" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Lower Level 2" />
+                        <MFXButton fx:id="FirstFloorButton" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="First Floor" />
+                        <MFXButton fx:id="SecondFloorButton" layoutX="10.0" layoutY="64.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Second Floor" />
+                        <MFXButton fx:id="ThirdFloorButton" layoutX="10.0" layoutY="91.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Third Floor" />
                     </children>
-                    <padding>
-                        <Insets left="175.0" />
-                    </padding>
                 </VBox>
             </right>
             <top>
-                <HBox BorderPane.alignment="CENTER">
+                <HBox prefHeight="7.0" prefWidth="1500.0" BorderPane.alignment="CENTER">
                     <children>
-                        <MFXButton fx:id="backButton" text="Back" />
+                        <MFXButton fx:id="backButton" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Back" />
                         <Label text="Ground Floor">
                             <HBox.margin>
                                 <Insets left="600.0" />
                             </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
                         </Label>
                     </children>
                 </HBox>
             </top>
+         <left>
+            <Pane prefHeight="200.0" prefWidth="146.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="9.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Brigham_and_Womens_Hospital_logo.svg.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </left>
+         <effect>
+            <DropShadow spread="0.6">
+               <color>
+                  <Color red="0.8980392217636108" green="0.7372549176216125" blue="0.23137255012989044" />
+               </color>
+            </DropShadow>
+         </effect>
         </BorderPane>
     </children>
 </AnchorPane>

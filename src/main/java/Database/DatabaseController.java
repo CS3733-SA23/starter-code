@@ -1,15 +1,19 @@
 package Database;
 
+import edu.wpi.teame.map.Floor;
+import edu.wpi.teame.map.HospitalEdge;
+import edu.wpi.teame.map.HospitalNode;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import pathfinding.Floor;
-import pathfinding.HospitalEdge;
-import pathfinding.HospitalNode;
 
 public class DatabaseController {
+  public Connection getC() {
+    return c;
+  }
+
   private Connection c;
   private static List<HospitalNode> nodeList = new ArrayList<>();
   private static List<HospitalEdge> edgeList = new ArrayList<>();

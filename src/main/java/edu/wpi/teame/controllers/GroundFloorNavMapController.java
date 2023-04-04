@@ -25,6 +25,6 @@ public class GroundFloorNavMapController {
     FirstFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_ONE));
     SecondFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_TWO));
     ThirdFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_THREE));
-    backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_MENU));
+    backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 }

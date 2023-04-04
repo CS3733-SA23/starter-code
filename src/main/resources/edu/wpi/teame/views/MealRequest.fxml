@@ -17,7 +17,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane style="-fx-background-color: #3b63a5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.MealRequestController">
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
@@ -59,7 +58,7 @@
                                           <Font name="Times New Roman" size="16.0" />
                                        </font>
                                     </Text>
-                                    <MFXTextField fx:id="recipientName" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" textLimit="0" />
+                                    <MFXTextField fx:id="recipientName" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
                                  </children>
                               </VBox>
                               <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefWidth="450.0" spacing="5.0">
@@ -109,15 +108,15 @@
                                           <Font name="Times New Roman" size="16.0" />
                                        </font>
                                     </Text>
-                                    <MFXTextField fx:id="notes" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" textLimit="0" />
-                                    <VBox alignment="TOP_CENTER" prefWidth="450.0" spacing="5.0" visible="false">
+                                    <MFXTextField fx:id="notes" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
+                                    <VBox alignment="TOP_CENTER" prefWidth="450.0" spacing="5.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assign Staff">
                                              <font>
                                                 <Font name="Times New Roman" size="16.0" />
                                              </font>
                                           </Text>
-                                          <MFXTextField fx:id="assignStaff" alignment="CENTER" disable="true" prefHeight="50.0" prefWidth="250.0" textLimit="0" />
+                                          <MFXTextField fx:id="assignStaff" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -125,7 +124,7 @@
                               <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
                                  <children>
                                     <MFXButton fx:id="cancelButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" layoutX="284.0" layoutY="12.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Cancel" />
-                                    <MFXButton fx:id="flowerRequestSubmit" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Submit" />
+                                    <MFXButton fx:id="submitButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Submit" />
                                  </children>
                               </HBox>
                            </children>
@@ -134,7 +133,7 @@
                   </AnchorPane>
                </content>
             </ScrollPane>
-            <MFXButton fx:id="returnButtonMealRequest" contentDisplay="GRAPHIC_ONLY" layoutX="142.0" layoutY="45.0" style="-fx-background-color: #192d5a;">
+            <MFXButton fx:id="returnButtonMealRequest" contentDisplay="GRAPHIC_ONLY" layoutX="175.0" layoutY="53.0" style="-fx-background-color: #192d5a;">
                <graphic>
                   <ImageView fx:id="returnButtonService" fitHeight="100.0" fitWidth="50.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -150,6 +149,7 @@
                   </ImageView>
                </graphic>
             </MFXButton>
+            <MFXButton fx:id="clearForm" contentDisplay="TEXT_ONLY" layoutX="559.0" layoutY="49.0" prefHeight="45.0" prefWidth="65.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Clear" textFill="WHITE" />
          </children>
       </AnchorPane>
    </center>
