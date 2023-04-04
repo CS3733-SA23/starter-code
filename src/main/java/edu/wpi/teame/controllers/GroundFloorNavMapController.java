@@ -7,9 +7,10 @@ import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
-import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 
 // public List<String> getLongNamesFromMove(List<MoveAttribute> mv)
@@ -26,11 +27,13 @@ public class GroundFloorNavMapController {
   @FXML private MFXButton lowerLevelOneButton;
 
   @FXML private MFXButton lowerLevelTwoButton;
-  @FXML MFXComboBox currentLocationList;
-  @FXML MFXComboBox destinationList;
+  @FXML MFXComboBox<String> currentLocationList;
+  @FXML MFXComboBox<String> destinationList;
   Floor currentFloor = Floor.ONE;
+  String curLocFromComboBox;
+  String destFromComboBox;
 
-  DatabaseController db = new DatabaseController("teame", "teame50");
+  DatabaseController db = new DatabaseController();
   DatabaseGraphController graphController = new DatabaseGraphController(db);
   ObservableList<String> floorLocations =
       FXCollections.observableArrayList(
@@ -47,14 +50,31 @@ public class GroundFloorNavMapController {
     thirdFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_THREE));
     currentLocationList.setItems(floorLocations);
     destinationList.setItems(floorLocations);
-    System.out.println(floorLocations);
+
+    currentLocationList.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            curLocFromComboBox = currentLocationList.getValue();
+            if (!(destFromComboBox == null)) {
+              displayPath(curLocFromComboBox, destFromComboBox);
+            }
+          }
+        });
+
+    destinationList.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            destFromComboBox = destinationList.getValue();
+            if (!(curLocFromComboBox == null)) {
+              displayPath(curLocFromComboBox, destFromComboBox);
+            }
+          }
+        });
   }
 
-  ArrayList<String> test() {
-    ArrayList<String> test = new ArrayList<>();
-    for (int i = 0; 10 > i; i++) {
-      test.add("i");
-    }
-    return test;
+  void displayPath(String from, String to) {
+    System.out.println(from + " to " + to); //used for testing
   }
 }
