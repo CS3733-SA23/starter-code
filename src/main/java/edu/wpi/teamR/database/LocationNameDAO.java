@@ -135,15 +135,13 @@ public class LocationNameDAO {
   }
 
   public void writeCSV(String outputFile) throws SQLException, IOException {
-    File csvFile = new File(outputFile);
-    FileWriter outputFileWriter = new FileWriter(csvFile);
-    outputFileWriter.write("longName,shortName,nodeType");
+    FileWriter outputFileWriter = new FileWriter(outputFile);
+    outputFileWriter.write("longName,shortName,nodeType\n");
     for (LocationName aLocationName : locationNames) {
-      String line = "\n";
-      line += aLocationName.getLongName() + ",";
-      line += aLocationName.getShortName() + ",";
-      line += aLocationName.getNodeType();
-      outputFileWriter.write(line);
+      String aLongName = aLocationName.getLongName();
+      String aShortName = aLocationName.getShortName();
+      String aNodeType = aLocationName.getNodeType();
+      outputFileWriter.write(String.format("%s,%s,%s\n",aLongName,aShortName,aNodeType));
     }
     outputFileWriter.flush();
     outputFileWriter.close();

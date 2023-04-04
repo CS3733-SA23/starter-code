@@ -5,8 +5,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 
-import java.sql.SQLException;
+import java.io.*;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Properties;
+import java.util.concurrent.Executor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -97,14 +101,53 @@ class LocationNameDAOTest {
         locationNames = dao.selectLocationNames("not large", null, null);
         assertEquals(locationNames.size(), 0);
     }
-
-    /*
     @Test
-    void writeCSV() {
+    void writeCSV() throws IOException, SQLException, ClassNotFoundException {
+        dao.deleteLocationNames(null, null, null);
+        dao.addLocationName("Hall 1 Level 2","Hall","HALL");
+        dao.addLocationName("Elevator S 01","Elevator S 1","ELEV");
+        dao.addLocationName("Hallway Intersection 22 Level 2","Hallway B2202","HALL");
+        String[][] inputData = {
+                {"longName,shortName,nodeType"},
+                {"Hall 1 Level 2,Hall,HALL"},
+                {"Elevator S 01,Elevator S 1,ELEV"},
+                {"Hallway Intersection 22 Level 2,Hallway B2202,HALL"}
+        };
+        File tempFile = File.createTempFile("test", ".csv");
+        dao.writeCSV(tempFile.getAbsolutePath());
+        BufferedReader reader = new BufferedReader(new FileReader(tempFile));
+        String line;
+        StringBuilder contents = new StringBuilder();
+        while ((line = reader.readLine()) != null) {
+            contents.append(line).append("\n");
+        }
+        reader.close();
+        String expectedOutput = "longName,shortName,nodeType\nHall 1 Level 2,Hall,HALL\nElevator S 01,Elevator S 1,ELEV\nHallway Intersection 22 Level 2,Hallway B2202,HALL\n";
+        assertEquals(expectedOutput, contents.toString());
+        tempFile.delete();
+        dao.deleteLocationNames(null, null, null);
     }
 
     @Test
-    void readCSV() {
+    void readCSV() throws IOException, SQLException, ClassNotFoundException {
+        dao.deleteLocationNames(null, null, null);
+        File tempFile = File.createTempFile("test", ".csv");
+        FileWriter writer = new FileWriter(tempFile);
+        writer.write("longName,shortName,nodeType\nHall 1 Level 2,Hall,HALL\nElevator S 01,Elevator S 1,ELEV\nHallway Intersection 22 Level 2,Hallway B2202,HALL\n");
+        writer.close();
+        dao.readCSV(tempFile.getAbsolutePath());
+        ArrayList<LocationName> aList = new ArrayList<LocationName>();
+        aList = dao.selectLocationNames("Hall 1 Level 2", "Hall", "HALL");
+        assertEquals("Hall 1 Level 2", aList.get(0).getLongName());
+        assertEquals("Hall", aList.get(0).getShortName());
+        assertEquals("HALL", aList.get(0).getNodeType());
+        aList = dao.selectLocationNames("Elevator S 01","Elevator S 1","ELEV");
+        assertEquals("Elevator S 01", aList.get(0).getLongName());
+        assertEquals("Elevator S 1", aList.get(0).getShortName());
+        assertEquals("ELEV", aList.get(0).getNodeType());
+        aList = dao.selectLocationNames("Hallway Intersection 22 Level 2", "Hallway B2202", "HALL");
+        assertEquals("Hallway Intersection 22 Level 2", aList.get(0).getLongName());
+        assertEquals("Hallway B2202", aList.get(0).getShortName());
+        assertEquals("HALL", aList.get(0).getNodeType());
     }
-     */
 }
