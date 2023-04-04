@@ -215,6 +215,7 @@ public class NodeDAO {
             sqlFullCommand += sqlInsert+";";
             Node aNode = new Node(nodeID, xCoord, yCoord, floorName, building);
             newNodes.add(aNode);
+            sc.nextLine(); //ensure that the scanner moves to the next line before trying to parse
         }
         sqlFullCommand = "DELETE FROM "+schemaName+"."+tableName+";" + sqlFullCommand;
         statement.executeUpdate(sqlFullCommand);

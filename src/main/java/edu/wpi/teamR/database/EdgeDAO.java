@@ -4,13 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.sql.ResultSet;
 
 public class EdgeDAO {
   private static EdgeDAO instance;
@@ -132,15 +128,32 @@ public class EdgeDAO {
     outputFileWriter.close();
   }
   public void readCSV(String filePath) throws FileNotFoundException, SQLException, ClassNotFoundException {
-      Scanner sc = new Scanner(new File(filePath));
-      sc.useDelimiter(",|\n");
-      sc.nextLine();
-      while(sc.hasNextLine() && sc.hasNext()){
-          Integer startNode = sc.nextInt();
-          Integer endNode = sc.nextInt();
-          addEdge(startNode, endNode);
-      }
-      sc.close();
+    Connection connection = createConnection();
+    Statement statement = connection.createStatement();
+    PreparedStatement sqlInsert = connection.prepareStatement("");
+    String sqlFullCommand = "";
+    ArrayList<Edge> newEdges = new ArrayList<Edge>();
+
+    Scanner sc = new Scanner(new File(filePath));
+    sc.useDelimiter(",|\n|\r");
+    sc.nextLine();
+    while(sc.hasNextLine() && sc.hasNext()){
+      int startNode = sc.nextInt();
+      int endNode = sc.nextInt();
+
+      sqlInsert = connection.prepareStatement("INSERT INTO "+schemaName+"."+tableName+"(startnode, endnode) VALUES(?,?);");
+      sqlInsert.setInt(1, startNode);
+      sqlInsert.setInt(2, endNode);
+      sqlFullCommand += sqlInsert+";";
+      Edge edge = new Edge(startNode, endNode);
+      newEdges.add(edge);
+      sc.nextLine(); //ensure that the scanner moves to the next line before trying to parse
+    }
+    sqlFullCommand = "DELETE FROM "+schemaName+"."+tableName+";" + sqlFullCommand;
+    statement.executeUpdate(sqlFullCommand);
+    this.edges = edges;
+    sc.close();
+    closeConnection(connection);
   }
   private Connection createConnection() throws ClassNotFoundException, SQLException {
     Class.forName("org.postgresql.Driver");
