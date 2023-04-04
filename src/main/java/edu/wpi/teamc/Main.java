@@ -12,8 +12,8 @@ public class Main {
     Graph graph = new Graph();
     graph.syncWithDB();
 
-    String startNode = "1335";
-    String endNode = "1535";
+    String startNode = "100";
+    String endNode = "150";
 
     graph.printDirectionsAStar(startNode, endNode);
 
