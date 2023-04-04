@@ -1,5 +1,6 @@
 package edu.wpi.teamc.controllers;
 
+import edu.wpi.teamc.map.Move;
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -10,6 +11,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.controlsfx.control.tableview2.FilteredTableView;
+
+import java.util.List;
+import java.util.ArrayList;
 
 public class MapChangeHistoryController {
 
@@ -46,9 +50,21 @@ public class MapChangeHistoryController {
     System.out.println("did it");
   }
 
-  public ObservableList<TableRow> gettableRows() {
-    rows.add(new TableRow("1234", "Alpha", "4/17/02"));
-    rows.add(new TableRow("456", "Beta", "4/5/2023"));
+  public ObservableList<TableRow> gettableRows(List<Move> moveList) {
+//    List<Move> moveList = new ArrayList<Move>();
+    Move currMove;
+    String nodeID;
+    String longName;
+    String date;
+    for (int i = 0; i < moveList.size(); i++) {
+      currMove = moveList.get(i);
+      nodeID = currMove.getNodeID();
+      longName = currMove.getLongName();
+      date = currMove.getDate().toString();
+      rows.add(new TableRow(nodeID, longName, date));
+    }
+//    rows.add(new TableRow("1234", "Alpha", "4/17/02"));
+//    rows.add(new TableRow("456", "Beta", "4/5/2023"));
     return rows;
   }
   //  @Override
