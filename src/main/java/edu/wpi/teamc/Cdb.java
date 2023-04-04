@@ -22,7 +22,7 @@ public class Cdb {
   static Connection connection = null;
   ObservableList<TableRow> rows = FXCollections.observableArrayList();
 
-  public static void main() {
+  public static void main(String[] args) {
     try {
       // Load the PostgreSQL JDBC driver
       Class.forName("org.postgresql.Driver");

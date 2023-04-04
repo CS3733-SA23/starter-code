@@ -64,6 +64,7 @@ public class MapChangeHistoryController {
   public String getText(javafx.event.ActionEvent actionEvent) {
     String inputtedText;
     inputtedText = inputBox.getText();
+    inputBox.clear();
     return inputtedText;
   }
 }

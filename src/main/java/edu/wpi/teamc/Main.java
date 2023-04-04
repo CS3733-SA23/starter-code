@@ -3,7 +3,6 @@ package edu.wpi.teamc;
 import edu.wpi.teamc.map.*;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +17,13 @@ public class Main {
 
     Graph graph = new Graph();
     // Load the PostgreSQL JDBC driver
-    Class.forName("org.postgresql.Driver");
-
-    // Establish the connection
-    String url = "jdbc:postgresql://database.cs.wpi.edu/teamcdb";
-    String user = "teamc";
-    String password = "teamc30";
-    connection = DriverManager.getConnection(url, user, password);
+    //    Class.forName("org.postgresql.Driver");
+    //
+    //    // Establish the connection
+    //    String url = "jdbc:postgresql://database.cs.wpi.edu/teamcdb";
+    //    String user = "teamc";
+    //    String password = "teamc30";
+    //    connection = DriverManager.getConnection(url, user, password);
     List<Node> databaseNodeList = new ArrayList<Node>();
     List<Edge> databaseEdgeList = new ArrayList<Edge>();
     List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
@@ -40,7 +39,8 @@ public class Main {
     String endNode = "CHALL010L1";
 
     graph.printDirectionsAStar(startNode, endNode);
-    Cdb.main();
+//    Cdb.main(args);
+    System.out.println("Cdb.main done");
     Cdb.loadDatabaseTables(
         databaseNodeList, databaseEdgeList, databaseLocationNameList, databaseMoveList);
     Cdb.displayMoveInfo(databaseMoveList);
