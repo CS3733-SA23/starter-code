@@ -221,6 +221,7 @@ public class NodeDAO {
         this.nodes = newNodes;
 
         sc.close();
+        closeConnection(connection);
     }
 
     private Connection createConnection() throws SQLException, ClassNotFoundException {
