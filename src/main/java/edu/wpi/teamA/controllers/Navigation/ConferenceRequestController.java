@@ -63,4 +63,6 @@ public class ConferenceRequestController implements IPageController, IServiceCon
       }
     }
   }
+
+  public void submit() {}
 }

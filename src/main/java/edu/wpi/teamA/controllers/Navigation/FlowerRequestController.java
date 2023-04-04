@@ -1,18 +1,22 @@
 package edu.wpi.teamA.controllers.Navigation;
 
+import edu.wpi.teamA.entity.FlowerDAOImpl;
+import edu.wpi.teamA.entity.FlowerEntity;
 import edu.wpi.teamA.navigation.Navigation;
 import edu.wpi.teamA.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.sql.Date;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 
 public class FlowerRequestController implements IPageController, IServiceController {
   @FXML MFXButton submitButton;
   @FXML MFXTextField nameField;
   @FXML MFXTextField roomField;
-  @FXML MFXDatePicker datePicker;
+
+  @FXML DatePicker datePicker;
   @FXML MFXComboBox timeCombo;
   @FXML MFXComboBox flowerCombo;
   @FXML MFXTextField commentField;
@@ -36,7 +40,7 @@ public class FlowerRequestController implements IPageController, IServiceControl
   @FXML
   public void validateButton() {
     if (nameField.getText().isEmpty()
-        || datePicker.getText().isEmpty()
+        || datePicker.getValue() == null
         || timeCombo.getSelectedIndex() == -1
         || flowerCombo.getSelectedIndex() == -1) {
       submitButton.setDisable(true);
@@ -58,6 +62,20 @@ public class FlowerRequestController implements IPageController, IServiceControl
     commentField.clear();
     timeCombo.getSelectionModel().clearSelection();
     flowerCombo.getSelectionModel().clearSelection();
-    datePicker.clear();
+    datePicker.setValue(null);
+  }
+
+  public void submit() {
+    FlowerEntity flower =
+        new FlowerEntity(
+            nameField.getText(),
+            Integer.parseInt(roomField.getText()),
+            Date.valueOf(datePicker.getValue()),
+            Integer.parseInt(timeCombo.getText()),
+            flowerCombo.getText(),
+            commentField.getText());
+    FlowerDAOImpl fd = new FlowerDAOImpl();
+    fd.addFlower(flower);
+    clear();
   }
 }

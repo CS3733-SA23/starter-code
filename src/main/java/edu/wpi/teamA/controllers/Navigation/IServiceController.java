@@ -11,4 +11,6 @@ public interface IServiceController {
   public void validateButton();
 
   public void clear();
+
+  public void submit();
 }
