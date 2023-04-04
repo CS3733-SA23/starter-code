@@ -197,14 +197,14 @@ public class NodeDAO {
         ArrayList<Node> newNodes = new ArrayList<Node>();
 
         Scanner sc = new Scanner(new File(filePath));
-        sc.useDelimiter(",|\n");
+        sc.useDelimiter(",|\n|\r");
         sc.nextLine();
         while (sc.hasNextLine() && sc.hasNext()) {
             int nodeID = sc.nextInt();
             int xCoord = sc.nextInt();
             int yCoord = sc.nextInt();
             String floorName = sc.next();
-            String building = sc.next().replace("\r", "");
+            String building = sc.next();
 
             sqlInsert = connection.prepareStatement("INSERT INTO "+schemaName+"."+tableName+"(nodeID,xCoord,yCoord,floorNum,building) VALUES(?,?,?,?,?);");
             sqlInsert.setInt(1, nodeID);
