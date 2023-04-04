@@ -656,4 +656,45 @@ public class Cdb {
 
     writer.close();
   }
+  static void exportEdgesToCSV(String csvFile, List<Edge> databaseEdgeList) throws IOException {
+    BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
+    // Write the header row to the CSV file
+    writer.write("startNodeID,endNodeID\n");
+    for (Edge edge : databaseEdgeList) {
+      writer.write(
+              edge.getStartNode().getNodeID()
+                      + ","
+                      + edge.getEndNode().getNodeID()
+                      + "\n");
+    }
+  }
+  static void exportLocationNamesToCSV(String csvFile, List<LocationName> databaseLocationNameList)
+      throws IOException {
+    BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
+    // Write the header row to the CSV file
+    writer.write("longName,shortName,nodeType\n");
+    for (LocationName locationName : databaseLocationNameList) {
+      writer.write(
+          locationName.getLongName()
+              + ","
+              + locationName.getShortName()
+              + ","
+              + locationName.getNodeType()
+              + "\n");
+    }
+  }
+  static void exportMovesToCSV(String csvFile, List<Move> databaseMoveList) throws IOException {
+    BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
+    // Write the header row to the CSV file
+    writer.write("nodeID,longName,moveDate\n");
+    for (Move move : databaseMoveList) {
+      writer.write(
+              move.getNodeID()
+                      + ","
+                      + move.getLongName()
+                      + ","
+                      + move.getDate()
+                      + "\n");
+    }
+  }
 }
