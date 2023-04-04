@@ -20,11 +20,11 @@
                 <Font name="Verdana Bold" size="20.0" />
             </font>
         </Label>
-        <MFXButton fx:id="MEAL_backtohome" layoutX="31.0" layoutY="350.0" prefHeight="26.0" prefWidth="110.0" text="Home" textFill="#016161">
+        <MFXButton fx:id="goHome" layoutX="31.0" layoutY="350.0" onAction="#getGoHome" prefHeight="26.0" prefWidth="110.0" text="Home" textFill="#016161">
             <font>
                 <Font name="Verdana Bold" size="13.0" />
             </font></MFXButton>
-        <MFXButton fx:id="MEAL_submit" layoutX="450.0" layoutY="350.0" prefHeight="26.0" prefWidth="110.0" text="Edit Map" textFill="#016161">
+        <MFXButton fx:id="editMap" layoutX="450.0" layoutY="350.0" prefHeight="26.0" prefWidth="110.0" text="Edit Map" textFill="#016161">
             <font>
                 <Font name="Verdana Bold" size="13.0" />
             </font></MFXButton>

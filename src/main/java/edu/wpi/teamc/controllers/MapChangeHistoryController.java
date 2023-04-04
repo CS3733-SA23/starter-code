@@ -5,6 +5,7 @@ import edu.wpi.teamc.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,6 +30,12 @@ public class MapChangeHistoryController {
   @FXML TableColumn<TableRow, String> ColumnTwo;
   @FXML TableColumn<TableRow, String> ColumnThree;
   ObservableList<TableRow> rows = FXCollections.observableArrayList();
+
+  @FXML private Button goHome;
+
+  public void getGoHome(ActionEvent event) {
+    Navigation.navigate(Screen.HOME);
+  }
 
   public void dispTable(javafx.event.ActionEvent actionEvent) {
     ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("nodeID"));

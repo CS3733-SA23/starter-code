@@ -83,7 +83,6 @@ public class HomeController {
   @FXML
   void getMapHistory(ActionEvent event) {
     Navigation.navigate(Screen.MAP_HISTORY_PAGE);
-
   }
 
   @FXML
