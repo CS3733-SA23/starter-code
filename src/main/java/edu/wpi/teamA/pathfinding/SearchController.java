@@ -1,9 +1,7 @@
 package edu.wpi.teamA.pathfinding;
 
 import edu.wpi.teamA.database.Edge;
-import edu.wpi.teamA.database.Node;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SearchController {
 
@@ -36,8 +34,6 @@ public class SearchController {
 //        }
 //    }
 
-    ArrayList<GraphNode> nodeList;
-    ArrayList<Edge> edgeList;
 
     /**
      * pathOfNodesBFS: BFS Algorithm Implementation
@@ -49,7 +45,6 @@ public class SearchController {
 
 
         ArrayList<Integer> queue = new ArrayList<Integer>();
-        ArrayList<Integer> path = new ArrayList<Integer>();
 
         int currentID = startID;
 
@@ -88,14 +83,7 @@ public class SearchController {
             currentGNode = graph.getGraphNode(currentID);
         }
 
-        while (currentID != startID) { // while the path still has a previous path
-            path.add(0, currentID);
-            currentGNode = currentGNode.getPrev();
-            currentID = currentGNode.getNodeID();
-        }
-        path.add(0, startID);
-
-        return path;
+        return getOrder(startID, endID);
     }
 
 
@@ -107,7 +95,6 @@ public class SearchController {
      */
     public ArrayList pathOfNodesAStar(int startID, int endID) {
         ArrayList<Integer> queue = new ArrayList<Integer>();
-        ArrayList<Integer> path = new ArrayList<Integer>();
 
         GraphNode endNode = graph.getGraphNode(endID);
         int endX = endNode.getXcoord();
@@ -137,19 +124,43 @@ public class SearchController {
                     int hCost = (int) Math.hypot(endX-otherGNode.getXcoord(),endY-otherGNode.getYcoord());
                     otherGNode.setgCost(gCost);
                     otherGNode.sethCost(hCost);
+                    otherGNode.setPrev(currentNode);
                     insertIntoPQ(queue, otherNodeID); // Not implemented yet
                 }
+
             }
+
+            currentNode.setVisited(true);
+
+            currentNode = graph.getGraphNode(queue.remove(0));
+            currentX = currentNode.getXcoord();
+            currentY = currentNode.getYcoord();
+
         }
 
 
 
-        return path;
+        return getOrder(startID, endID);
     }
+
+
 
     public void insertIntoPQ(ArrayList<Integer> pQ, int nodeID) {
         //do it
 
+    }
+
+    public ArrayList getOrder(int startID, int endID) {
+        ArrayList<Integer> path = new ArrayList<Integer>();
+        int currentID = endID;
+        GraphNode currentGNode = graph.getGraphNode(currentID);
+        while (currentID != startID) { // while the path still has a previous path
+            path.add(0, currentID);
+            currentGNode = currentGNode.getPrev();
+            currentID = currentGNode.getNodeID();
+        }
+        path.add(0, startID);
+        return path;
     }
 
 }
