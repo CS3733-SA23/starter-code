@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class SearchController {
 
-    private Graph graph;
+    final private Graph graph;
 
     public SearchController(Graph graph) {
         this.graph = graph;
@@ -41,10 +41,10 @@ public class SearchController {
      * @param endID
      * @return path of nodes
      */
-    public ArrayList pathOfNodesBFS(int startID, int endID) {
+    public ArrayList<Integer> pathOfNodesBFS(int startID, int endID) {
 
-        ArrayList<Integer> queue = new ArrayList<Integer>();
-        ArrayList<Integer> nodesToReset = new ArrayList<Integer>();
+        ArrayList<Integer> queue = new ArrayList<>();
+        ArrayList<Integer> nodesToReset = new ArrayList<>();
 
         int currentID = startID;
 
@@ -98,9 +98,9 @@ public class SearchController {
      * @param endID
      * @return path of nodes
      */
-    public ArrayList pathOfNodesAStar(int startID, int endID) {
-        ArrayList<Integer> queue = new ArrayList<Integer>();
-        ArrayList<Integer> nodesToReset = new ArrayList<Integer>();
+    public ArrayList<Integer> pathOfNodesAStar(int startID, int endID) {
+        ArrayList<Integer> queue = new ArrayList<>();
+        ArrayList<Integer> nodesToReset = new ArrayList<>();
 
         GraphNode endNode = graph.getGraphNode(endID);
         int endX = endNode.getXcoord();
@@ -132,14 +132,14 @@ public class SearchController {
                         otherGNode.setgCost(gCost);
                         otherGNode.sethCost(hCost);
                         otherGNode.setPrev(currentNode);
-                        insertIntoPQ(queue, otherNodeID); // Not implemented yet
+                        insertIntoPQ(queue, otherGNode); // Not implemented yet
                         nodesToReset.add(currentNode.getNodeID());
                     } else if (otherGNode.getfCost() > (gCost + hCost)) {
                         removeFromPQ(queue, otherNodeID);
                         otherGNode.setgCost(gCost);
                         otherGNode.sethCost(hCost);
                         otherGNode.setPrev(currentNode);
-                        insertIntoPQ(queue, otherNodeID); // Not implemented yet
+                        insertIntoPQ(queue, otherGNode); // Not implemented yet
                     }
                 }
 
@@ -162,20 +162,30 @@ public class SearchController {
 
 
 
-    public void insertIntoPQ(ArrayList<Integer> pQ, int nodeID) {
+    public void insertIntoPQ(ArrayList<Integer> pQ, GraphNode node) {
 
-        //do it
+        for (int i = 0; i < pQ.size(); i++) {
+            if (graph.getGraphNode(pQ.get(i)).getfCost() > node.getfCost()) {
+                pQ.add(i,node.getNodeID());
+                break;
+            }
+        }
 
     }
 
     public void removeFromPQ(ArrayList<Integer> pQ, int nodeID) {
 
-        //do it
+        for (int i = 0; i < pQ.size(); i++) {
+            if (pQ.get(i) == nodeID) {
+                pQ.remove(i);
+                break;
+            }
+        }
 
     }
 
-    public ArrayList getOrder(int startID, int endID) {
-        ArrayList<Integer> path = new ArrayList<Integer>();
+    public ArrayList<Integer> getOrder(int startID, int endID) {
+        ArrayList<Integer> path = new ArrayList<>();
         int currentID = endID;
         GraphNode currentGNode = graph.getGraphNode(currentID);
         while (currentID != startID) { // while the path still has a previous path
@@ -188,7 +198,7 @@ public class SearchController {
     }
 
     public void resetNodes(ArrayList<Integer> resetList) {
-        for (int i = 0; i < resetList.size(); i++) {
+        for (int i : resetList) {
             graph.getGraphNode(resetList.get(i)).reset();
         }
     }
