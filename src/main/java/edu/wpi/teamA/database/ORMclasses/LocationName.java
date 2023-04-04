@@ -1,4 +1,4 @@
-package edu.wpi.teamA.database;
+package edu.wpi.teamA.database.ORMclasses;
 
 public class LocationName {
   String longName;
