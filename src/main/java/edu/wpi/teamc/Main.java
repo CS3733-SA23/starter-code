@@ -23,7 +23,7 @@ public class Main {
 
     graph.printDirectionsAStar(startNode, endNode);
 
-    // CApp.launch(CApp.class, args);
+    CApp.launch(CApp.class, args);
     // graph.printDirections("CCONF001L1", "CHALL010L1");
   }
 }

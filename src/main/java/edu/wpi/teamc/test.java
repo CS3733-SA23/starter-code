@@ -1,4 +1,3 @@
 package edu.wpi.teamc;
 
-public class test {
-}
+public class test {}
