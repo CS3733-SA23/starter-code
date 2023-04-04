@@ -11,7 +11,11 @@ import javafx.scene.control.Button;
 
 public class PathfindingController {
   @FXML Button ClickButton; // fx:ID of the button in the ExampleFXML
-  private Connection connection = null; // connection to database
+  private Connection connection = null;
+
+  // connection to database
+
+
 
   @FXML private MFXButton goHome;
   @FXML private MFXButton submit;
