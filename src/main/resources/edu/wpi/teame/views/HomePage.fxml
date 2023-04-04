@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.MotionBlur?>
 <?import javafx.scene.image.Image?>
@@ -146,6 +147,8 @@
                   <Font name="Poor Richard" size="48.0" />
                </font>
             </Text>
+            <TextField layoutX="543.0" layoutY="501.0" promptText="Password:" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="107.5" />
+            <TextField layoutX="377.0" layoutY="501.0" promptText="Username:" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="273.5" />
 
             </children>
         </AnchorPane>
