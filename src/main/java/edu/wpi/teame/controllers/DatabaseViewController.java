@@ -229,31 +229,55 @@ public class DatabaseViewController {
     switch (db) {
       case "move":
         activeTable = moveTable;
+
         moveTable.setVisible(true);
         locationTable.setVisible(false);
         nodeTable.setVisible(false);
         edgeTable.setVisible(false);
+
+        movesAddZone.setVisible(true);
+        locationAddZone.setVisible(false);
+        nodeAddZone.setVisible(false);
+        edgeAddZone.setVisible(false);
         break;
       case "location":
         activeTable = locationTable;
+
         moveTable.setVisible(false);
         locationTable.setVisible(true);
         nodeTable.setVisible(false);
         edgeTable.setVisible(false);
+
+        movesAddZone.setVisible(false);
+        locationAddZone.setVisible(true);
+        nodeAddZone.setVisible(false);
+        edgeAddZone.setVisible(false);
         break;
       case "node":
         activeTable = nodeTable;
+
         moveTable.setVisible(false);
         locationTable.setVisible(false);
         nodeTable.setVisible(true);
         edgeTable.setVisible(false);
+
+        movesAddZone.setVisible(false);
+        locationAddZone.setVisible(false);
+        nodeAddZone.setVisible(true);
+        edgeAddZone.setVisible(false);
         break;
       case "edge":
         activeTable = edgeTable;
+
         moveTable.setVisible(false);
         locationTable.setVisible(false);
         nodeTable.setVisible(false);
         edgeTable.setVisible(true);
+
+        movesAddZone.setVisible(false);
+        locationAddZone.setVisible(false);
+        nodeAddZone.setVisible(false);
+        edgeAddZone.setVisible(true);
         break;
     }
   }
