@@ -5,73 +5,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import lombok.Getter;
 
 public class DatabaseController {
-  private Connection c;
-
-  public static void main(String[] args) {
-    Scanner s1 = new Scanner(System.in);
-
-    System.out.print("Please enter your username (will default to \"teame\"): ");
-    String username = s1.nextLine(); // Unused in this Prototype
-    System.out.print("Please enter your password (will default to \"teame50\"): ");
-    String password = s1.nextLine(); // Unused in this Prototype
-    System.out.println();
-
-    DatabaseController DBC1 = new DatabaseController("teame", "teame50");
-
-    // DBC1.importFromCSV("C:\\Users\\thesm\\OneDrive\\Desktop\\Test.csv", "l1nodes");
-
-    boolean exit = true;
-    while (exit) {
-      System.out.println("\nWhat would you like to do?");
-      System.out.println(
-          "Choices: update, retrieve, delete, display info, export table, import table, HELP, EXIT)");
-      String function = s1.nextLine().toLowerCase().trim();
-
-      switch (function) {
-        case "update":
-          // DBC1.updateTable();
-          break;
-
-        case "delete":
-          DBC1.deleteFromTable();
-          break;
-
-        case "help":
-          DBC1.help();
-          break;
-
-        case "exit":
-          DBC1.exitDatabaseProgram();
-          exit = false;
-          break;
-
-        case "retrieve":
-          // DBC1.retrieveFromTable();
-          break;
-
-        case "display info":
-          DBC1.displayCSVInfo();
-          break;
-
-        case "export table":
-          DBC1.userExportToCSV();
-          break;
-
-        case "import table":
-          System.out.println("What's the filepath?");
-          String filepath = s1.nextLine();
-          try {
-            DBC1.importFromCSV(filepath, "l1nodes");
-          } catch (IOException e) {
-            System.out.println("Something went wrong");
-          }
-        default:
-          System.out.println("Please enter a valid action");
-      }
-    }
-  }
+  @Getter private Connection c;
 
   public DatabaseController(String username, String password) {
     c = this.connectToDatabase(username, password);
@@ -386,9 +323,5 @@ public class DatabaseController {
     fileWriter.close();
     rs.close();
     stmt.close();
-  }
-
-  public Connection getC() {
-    return c;
   }
 }
