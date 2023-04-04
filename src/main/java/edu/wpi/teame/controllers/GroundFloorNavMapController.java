@@ -28,14 +28,14 @@ public class GroundFloorNavMapController {
   @FXML private MFXButton lowerLevelTwoButton;
   @FXML MFXComboBox currentLocationList;
   @FXML MFXComboBox destinationList;
-  Floor currentFloor = Floor.GROUND;
+  Floor currentFloor = Floor.ONE;
 
   DatabaseController db = new DatabaseController("teame", "teame50");
   DatabaseGraphController graphController = new DatabaseGraphController(db);
-  ObservableList<String> floorLocations = FXCollections.observableArrayList(test());
-  //        FXCollections.observableArrayList(
-  //            graphController.getLongNamesFromMove(
-  //                graphController.getMoveAttributeFromFloor(currentFloor)));
+  ObservableList<String> floorLocations =
+      FXCollections.observableArrayList(
+          graphController.getLongNamesFromMove(
+              graphController.getMoveAttributeFromFloor(currentFloor)));
 
   @FXML
   public void initialize() {
