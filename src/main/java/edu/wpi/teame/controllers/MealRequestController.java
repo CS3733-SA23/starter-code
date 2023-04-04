@@ -45,26 +45,21 @@ public class MealRequestController implements IRequestController {
   }
 
   public ServiceRequestData sendRequest() {
-    // Get the selected/input values
-    String selCourse = mainCourseChoice.getText();
-    String selSide = sideCourseChoice.getText();
-    String inputName = recipientName.getText();
-    String inputDelivery = deliveryTime.getText();
-    String inputRoom = roomNumber.getText();
-    String inputNotes = notes.getText();
 
     // Create the json to store the values
     JSONObject requestData = new JSONObject();
-    requestData.put("course", selCourse);
-    requestData.put("side", selSide);
-    requestData.put("recipient", inputName);
-    requestData.put("deliveryTime", inputDelivery);
-    requestData.put("room", inputRoom);
-    requestData.put("notes", inputNotes);
+    requestData.put("recipient", recipientName.getText());
+    requestData.put("roomNum", roomNumber.getText());
+    requestData.put("deliveryTime", deliveryTime.getText());
+    requestData.put("mainCourse", mainCourseChoice.getText());
+    requestData.put("sideCourse", sideCourseChoice.getText());
+    requestData.put("notes", notes.getText());
 
     // Create the service request data
     ServiceRequestData mealRequestData =
-        new ServiceRequestData(ServiceRequestData.RequestType.MEALDELIVERY, requestData);
+        new ServiceRequestData(ServiceRequestData.RequestType.MEALDELIVERY, requestData, ServiceRequestData.Status.PENDING, assignStaff.getText());
+
+    // Return to home screen
     Navigation.navigate(Screen.HOME);
     return mealRequestData;
   }
