@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,6 +17,7 @@ class NodeDAOTest {
     static void setUp() throws Exception {
         dao = NodeDAO.createInstance("teamr", "teamr150", "node",
                 "test", "jdbc:postgresql://database.cs.wpi.edu:5432/teamrdb");
+        dao.deleteNodes(null, null, null, null, null);
         dao.addNode(342, 3838,8989, "L2", "The second one");
 
     }
@@ -49,13 +51,7 @@ class NodeDAOTest {
         assertEquals(node.getyCoord(), node2.getyCoord());
         assertEquals(node.getFloorNum(), node2.getFloorNum());
         assertEquals(node.getBuilding(), node2.getBuilding());
-        for(Node aNode : dao.getNodes()){
-            System.out.println(aNode.getNodeID());
-        }
         dao.deleteNodes(343, null, null, null, null);
-        for(Node aNode : dao.getNodes()){
-            System.out.println(aNode.getNodeID());
-        }
         assertEquals(dao.selectNodes(343, null, null, null, null).size(), 0);
     }
 
@@ -67,24 +63,24 @@ class NodeDAOTest {
         assertEquals(nodes.size(), 1);
         Node node = nodes.get(0);
         Node node2 = new Node(344, 0, 0, "L2", "The third one");
-        boolean sameID = node.getNodeID()==node2.getNodeID();
-        boolean sameXCoord = node.getxCoord()==node2.getxCoord();
-        boolean sameYCoord = node.getyCoord()==node2.getyCoord();
-        boolean sameFloorNum = node.getFloorNum().equals(node2.getFloorNum());
-        boolean sameBuilding = node.getBuilding().equals(node2.getBuilding());
-        assertTrue(sameID && sameXCoord && sameYCoord && sameFloorNum && sameBuilding);
+        assertTrue(Objects.equals(node.getNodeID(), node2.getNodeID()));
+        assertTrue(Objects.equals(node.getxCoord(), node2.getxCoord()));
+        assertTrue(Objects.equals(node.getyCoord(), node2.getyCoord()));
+        assertTrue(node.getFloorNum().equals(node2.getFloorNum()));
+        assertTrue(node.getBuilding().equals(node2.getBuilding()));
         dao.deleteNodes(344, null, null, null, null);
     }
 
     @Test
     void selectNodes() throws SQLException, ClassNotFoundException {
+        dao.deleteNodes(null, null, null, null, null);
         dao.addNode(1, 0, 0, "5", "h");
         dao.addNode(2, 0, 0, "5", "");
         dao.addNode(3, 2, 0, "", "");
         dao.addNode(4, 1, 1, "", "");
 
         ArrayList<Node> nodes = dao.selectNodes(null, null, null, null, null);
-        assertEquals(nodes.size(), 5);
+        assertEquals(nodes.size(), 4);
 
         nodes = dao.selectNodes(null, 0, 0, "5", "h");
         assertEquals(nodes.size(), 1);
@@ -93,7 +89,7 @@ class NodeDAOTest {
         assertEquals(nodes.size(), 0);
 
         nodes = dao.selectNodes(2, 0, 0, "5", "");
-        assertEquals(nodes.size(), 0);
+        assertEquals(nodes.size(), 1);
 
         nodes = dao.selectNodes(3, null, null, null, null);
         assertEquals(nodes.size(), 1);
