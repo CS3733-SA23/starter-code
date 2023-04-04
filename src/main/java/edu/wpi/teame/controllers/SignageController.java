@@ -13,6 +13,7 @@ public class SignageController {
   @FXML MFXButton menuBarHome;
   @FXML MFXButton menuBarMap;
   @FXML MFXButton menuBarExit;
+  @FXML MFXButton menuBarDatabase;
 
   @FXML
   public void initialize() {
@@ -23,13 +24,14 @@ public class SignageController {
     showMenuButtonsWhenHovered(menuBarServices);
     showMenuButtonsWhenHovered(menuBarHome);
     showMenuButtonsWhenHovered(menuBarMap);
+    showMenuButtonsWhenHovered(menuBarDatabase);
     showMenuButtonsWhenHovered(menuBarExit);
 
     menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    // menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP)); //Uncomment when Map
-    // Page is made
+    menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_MENU));
+    //menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate((Screen.Database)));
     // menuBarExit.setOnMouseClicked(event -> Navigation.navigate(Screen.EXIT)); //Uncomment when we
     // know where exit goes
 
@@ -41,6 +43,7 @@ public class SignageController {
     menuBarServices.setVisible(bool);
     menuBarHome.setVisible(bool);
     menuBarMap.setVisible(bool);
+    menuBarDatabase.setVisible(bool);
     menuBarExit.setVisible(bool);
   }
 

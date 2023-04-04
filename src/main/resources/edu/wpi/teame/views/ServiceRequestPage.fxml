@@ -100,7 +100,7 @@
             <MFXButton fx:id="menuButton" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="1.0" layoutX="5.0" layoutY="65.0" prefHeight="50.0" prefWidth="50.0" rippleColor="#e1e1e1" style="-fx-background-color: #192d5a; -fx-background-radius: 0; -fx-background-size: 50;" />
             <VBox layoutX="55.0" layoutY="65.0" prefHeight="383.0" prefWidth="80.0">
                <children>
-                  <MFXButton fx:id="menuBarSignage" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" textFill="WHITE">
+                  <MFXButton fx:id="menuBarSignage" contentDisplay="GRAPHIC_ONLY" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -116,7 +116,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="menuBarServices" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Services" textFill="WHITE">
+                  <MFXButton fx:id="menuBarServices" contentDisplay="GRAPHIC_ONLY" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Services" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -132,7 +132,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="menuBarHome" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Home" textFill="WHITE">
+                  <MFXButton fx:id="menuBarHome" contentDisplay="GRAPHIC_ONLY" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Home" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -148,7 +148,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="menuBarMap" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Map" textFill="WHITE">
+                  <MFXButton fx:id="menuBarMap" contentDisplay="GRAPHIC_ONLY" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Map" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -164,7 +164,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="menuBarExit" defaultButton="true" prefHeight="75.0" prefWidth="80.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
+                  <MFXButton fx:id="menuBarDatabase" contentDisplay="GRAPHIC_ONLY" defaultButton="true" prefHeight="51.0" prefWidth="61.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -180,7 +180,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="menuBarExit1" defaultButton="true" prefHeight="75.0" prefWidth="80.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
+                  <MFXButton fx:id="menuBarExit" contentDisplay="GRAPHIC_ONLY" defaultButton="true" prefHeight="58.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
