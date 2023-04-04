@@ -190,6 +190,12 @@ public class NodeDAO {
         outputFileWriter.close();
     }
     public void readCSV(String filePath) throws FileNotFoundException, SQLException, ClassNotFoundException {
+        Connection connection = createConnection();
+        Statement statement = connection.createStatement();
+        PreparedStatement sqlInsert = connection.prepareStatement("");
+        String sqlFullCommand = "";
+        ArrayList<Node> newNodes = new ArrayList<Node>();
+
         Scanner sc = new Scanner(new File(filePath));
         sc.useDelimiter(",|\n");
         sc.nextLine();
@@ -198,9 +204,21 @@ public class NodeDAO {
             int xCoord = sc.nextInt();
             int yCoord = sc.nextInt();
             String floorName = sc.next();
-            String building = sc.next();
-            addNode(nodeID, xCoord, yCoord, floorName, building);
+            String building = sc.next().replace("\r", "");
+
+            sqlInsert = connection.prepareStatement("INSERT INTO "+schemaName+"."+tableName+"(nodeID,xCoord,yCoord,floorNum,building) VALUES(?,?,?,?,?);");
+            sqlInsert.setInt(1, nodeID);
+            sqlInsert.setInt(2, xCoord);
+            sqlInsert.setInt(3, yCoord);
+            sqlInsert.setString(4, floorName);
+            sqlInsert.setString(5, building);
+            sqlFullCommand += sqlInsert+";";
+            Node aNode = new Node(nodeID, xCoord, yCoord, floorName, building);
+            newNodes.add(aNode);
         }
+        sqlFullCommand = "DELETE FROM "+schemaName+"."+tableName+";" + sqlFullCommand;
+        statement.executeUpdate(sqlFullCommand);
+        this.nodes = newNodes;
 
         sc.close();
     }
