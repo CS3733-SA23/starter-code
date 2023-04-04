@@ -38,7 +38,7 @@ public class ServiceRequestPageController {
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_MENU));
-    //menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate((Screen.Database)));
+    // menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate((Screen.Database)));
     // menuBarExit.setOnMouseClicked(event -> Navigation.navigate(Screen.EXIT)); //Uncomment when we
     // know where exit goes
   }

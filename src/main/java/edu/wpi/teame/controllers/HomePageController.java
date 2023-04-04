@@ -38,8 +38,8 @@ public class HomePageController {
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_MENU));
-    //menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate((Screen.Database)));
-    //OnMouseClicked(event -> Navigation.navigate(Screen.EXIT)); //Uncomment when we
+    // menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate((Screen.Database)));
+    // OnMouseClicked(event -> Navigation.navigate(Screen.EXIT)); //Uncomment when we
     // know where exit goes
 
   }
@@ -51,7 +51,6 @@ public class HomePageController {
     menuBarMap.setVisible(bool);
     menuBarDatabase.setVisible(bool);
     menuBarExit.setVisible(bool);
-
   }
 
   public void showMenuButtonsWhenHovered(MFXButton button) {
