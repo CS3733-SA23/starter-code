@@ -21,6 +21,7 @@ public class MealRequestController implements IRequestController {
   @FXML MFXComboBox<String> deliveryTime;
   @FXML MFXComboBox<String> mainCourseChoice;
   @FXML MFXComboBox<String> sideCourseChoice;
+  @FXML MFXTextField assignStaff;
 
   ObservableList<String> deliveryTimes =
       FXCollections.observableArrayList(
@@ -65,11 +66,6 @@ public class MealRequestController implements IRequestController {
     ServiceRequestData mealRequestData =
         new ServiceRequestData(ServiceRequestData.RequestType.MEALDELIVERY, requestData);
     Navigation.navigate(Screen.HOME);
-    System.out.print(
-        "\nDelivery Type: "
-            + mealRequestData.getRequestType()
-            + "\nRequest Data: "
-            + mealRequestData.getRequestData());
     return mealRequestData;
   }
 

@@ -32,6 +32,7 @@ public class FlowerRequestController implements IRequestController {
   @FXML MFXComboBox<String> flowerChoice;
   @FXML MFXComboBox<String> numOfFlowers;
   @FXML MFXTextField notes;
+  @FXML MFXTextField assignedStaff;
   @FXML MFXButton cancelButton;
 
   @FXML
@@ -46,33 +47,21 @@ public class FlowerRequestController implements IRequestController {
   }
 
   public ServiceRequestData sendRequest() {
-    // Get the selected/input values
-    String selFlowers = flowerChoice.getText();
-    String selNumOfFlowers = numOfFlowers.getText();
-    String selDeliveryTime = deliveryTime.getText();
-    String inputName = recipientName.getText();
-    String inputRoom = roomNumber.getText();
-    String inputNotes = notes.getText();
-
     // Create the json to store the values
     JSONObject requestData = new JSONObject();
-    requestData.put("flowers", selFlowers);
-    requestData.put("numFlowers", selNumOfFlowers);
-    requestData.put("deliveryTime", selDeliveryTime);
-    requestData.put("recipient", inputName);
-    requestData.put("room", inputRoom);
-    requestData.put("notes", inputNotes);
-    // System.out.println(requestData);
+    requestData.put("flowers", flowerChoice.getText());
+    requestData.put("numFlowers", numOfFlowers.getText());
+    requestData.put("deliveryTime", deliveryTime.getText());
+    requestData.put("recipient", recipientName.getText());
+    requestData.put("room", roomNumber.getText());
+    requestData.put("notes", notes.getText());
+    requestData.put("assignedStaff", assignedStaff.getText());
+    System.out.println(requestData);
 
     // Create the service request data
     ServiceRequestData flowerRequestData =
         new ServiceRequestData(ServiceRequestData.RequestType.FLOWERDELIVERY, requestData);
     Navigation.navigate(Screen.HOME);
-    System.out.print(
-        "\nDelivery Type: "
-            + flowerRequestData.getRequestType()
-            + "\nRequest Data: "
-            + flowerRequestData.getRequestData());
     return flowerRequestData;
   }
 
