@@ -22,6 +22,7 @@ public class MealRequestController implements IRequestController {
   @FXML MFXComboBox<String> mainCourseChoice;
   @FXML MFXComboBox<String> sideCourseChoice;
   @FXML MFXTextField assignStaff;
+  @FXML MFXButton clearForm;
 
   ObservableList<String> deliveryTimes =
       FXCollections.observableArrayList(
@@ -42,14 +43,15 @@ public class MealRequestController implements IRequestController {
         event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     cancelButton.setOnMouseClicked(event -> cancelRequest());
     submitButton.setOnMouseClicked(event -> sendRequest());
+    clearForm.setOnMouseClicked(event -> clearForm());
   }
 
   public ServiceRequestData sendRequest() {
 
     // Create the json to store the values
     JSONObject requestData = new JSONObject();
-    requestData.put("recipient", recipientName.getText());
-    requestData.put("roomNum", roomNumber.getText());
+    requestData.put("recipientName", recipientName.getText());
+    requestData.put("roomNumber", roomNumber.getText());
     requestData.put("deliveryTime", deliveryTime.getText());
     requestData.put("mainCourse", mainCourseChoice.getText());
     requestData.put("sideCourse", sideCourseChoice.getText());
@@ -70,5 +72,15 @@ public class MealRequestController implements IRequestController {
 
   public void cancelRequest() {
     Navigation.navigate(Screen.HOME);
+  }
+
+  public void clearForm() {
+    recipientName.clear();
+    roomNumber.clear();
+    deliveryTime.clear();
+    mainCourseChoice.clear();
+    sideCourseChoice.clear();
+    notes.clear();
+    assignStaff.clear();
   }
 }
