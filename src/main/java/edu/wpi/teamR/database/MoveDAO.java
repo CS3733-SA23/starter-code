@@ -8,8 +8,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// TODO: string to date conversion, read and write CSV
-
 public class MoveDAO {
   private static MoveDAO instance;
   private ArrayList<Move> moves;
@@ -51,8 +49,7 @@ public class MoveDAO {
     return moves;
   };
 
-  public Move addMove(int nodeID, String longName, Date moveDate)
-      throws SQLException, ClassNotFoundException {
+  public Move addMove(Integer nodeID, String longName, Date moveDate) throws SQLException, ClassNotFoundException {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
     String sqlInsert = "INSERT INTO " + schemaName + "." + tableName + "(nodeID,longName,moveDate)";
@@ -70,6 +67,7 @@ public class MoveDAO {
     Statement statement = connection.createStatement();
     if (nodeID == null && longName == null && moveDate == null) {
       String sqlDeleteALL = "DELETE FROM " + schemaName + "." + tableName + ";";
+      statement.executeUpdate(sqlDeleteALL);
     } else {
       String sqlDelete = "DELETE FROM " + schemaName + "." + tableName + "WHERE ";
       int count = 0;
@@ -88,38 +86,38 @@ public class MoveDAO {
         if (count == 0) {
           sqlDelete += " AND ";
         }
-        count++;
-        sqlDelete += "moveDate =" + moveDate; // TODO: moveDate could error here!
+        sqlDelete += "moveDate =" + moveDate;
       }
       sqlDelete += ";";
       statement.executeUpdate(sqlDelete);
       closeConnection(connection);
     }
     for (int i = 0; i < moves.size(); i++) {
-      Boolean nodeIDCheck = nodeID == null || nodeID == moves.get(i).getNodeID();
-      Boolean longNameCheck = longName == null || longName == moves.get(i).getLongName();
+      Boolean nodeIDCheck = nodeID == null || nodeID.intValue() == moves.get(i).getNodeID();
+      Boolean longNameCheck = longName == null || longName.equals(moves.get(i).getLongName());
       Boolean moveDateCheck = moveDate == null || moveDate == moves.get(i).getMoveDate();
       if (nodeIDCheck && longNameCheck && moveDateCheck) {
         moves.remove(i);
+        i--;
       }
     }
+    closeConnection(connection);
   }
 
-  public void modifyMoveByID(Integer nodeID, String longName, Date moveDate)
-      throws SQLException, ClassNotFoundException {
+  public void modifyMoveByID(Integer nodeID, String longName, Date moveDate) throws SQLException, ClassNotFoundException, NotFoundException {
+    int count = 0;
+    for(Move theMove : moves){
+      if(theMove.getNodeID().intValue() == (nodeID)){
+        count++;
+      }
+    }
+    if(count == 0){
+      throw new NotFoundException();
+    }
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
     String sqlUpdate =
-        "UPDATE "
-            + schemaName
-            + "."
-            + tableName
-            + " SET longName = \'"
-            + longName
-            + "\', moveDate = "
-            + moveDate
-            + "WHERE nodeID = "
-            + nodeID;
+        "UPDATE " + schemaName + "." + tableName + " SET longName = \'" + longName + "\', moveDate = " + moveDate + "WHERE nodeID = " + nodeID;
     statement.executeUpdate(sqlUpdate);
     closeConnection(connection);
     Move aMove = selectMoves(nodeID, null, null).get(0);
@@ -130,11 +128,9 @@ public class MoveDAO {
   public ArrayList<Move> selectMoves(Integer nodeID, String longName, Date moveDate) {
     ArrayList<Move> aList = new ArrayList<Move>();
     for (int i = 0; i < moves.size(); i++) {
-      Boolean nodeIDCheck = nodeID == null || nodeID == moves.get(i).getNodeID();
-      Boolean longNameCheck = longName == null || longName == moves.get(i).getLongName();
-      Boolean moveDateCheck =
-          moveDate == null
-              || moveDate == moves.get(i).getMoveDate(); // TODO: moveDate could error here!
+      Boolean nodeIDCheck = nodeID == null || nodeID.intValue() == moves.get(i).getNodeID();
+      Boolean longNameCheck = longName == null || longName.equals(moves.get(i).getLongName());
+      Boolean moveDateCheck = moveDate == null || moveDate == moves.get(i).getMoveDate();
       if (nodeIDCheck && longNameCheck && moveDateCheck) {
         aList.add(moves.get(i));
       }
@@ -146,7 +142,7 @@ public class MoveDAO {
     File csvFile = new File(outputFile);
     FileWriter outputFileWriter = new FileWriter(csvFile);
     outputFileWriter.write("nodeID,longName,moveDate");
-    for (Move aMove : moves) { // TODO: moveDate could error here!
+    for (Move aMove : moves) {
       String line = "\n";
       line += aMove.getNodeID() + ",";
       line += aMove.getLongName() + ",";
@@ -156,22 +152,19 @@ public class MoveDAO {
     outputFileWriter.flush();
     outputFileWriter.close();
   }
-
   public void readCSV(String inputFile)
       throws FileNotFoundException, SQLException, ClassNotFoundException {
     Scanner sc = new Scanner(new File(inputFile));
     sc.useDelimiter(",|\n");
     sc.nextLine();
     while (sc.hasNextLine() && sc.hasNext()) {
-      int nodeID = sc.nextInt();
+      Integer nodeID = sc.nextInt();
       String longName = sc.next();
       Date moveDate = Date.valueOf(sc.next()); // TODO: check if this parsing works
       addMove(nodeID, longName, moveDate);
     }
-
     sc.close();
   }
-
   private Connection createConnection() throws SQLException, ClassNotFoundException {
     Class.forName("org.postgresql.Driver");
     return DriverManager.getConnection(connectionURL, username, password);
