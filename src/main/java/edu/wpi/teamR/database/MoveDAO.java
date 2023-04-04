@@ -156,17 +156,39 @@ public class MoveDAO {
     outputFileWriter.close();
   }
   public void readCSV(String inputFile)
-      throws FileNotFoundException, SQLException, ClassNotFoundException {
+          throws FileNotFoundException, SQLException, ClassNotFoundException {
+    Connection connection = createConnection();
+    Statement statement = connection.createStatement();
+    PreparedStatement sqlInsert = connection.prepareStatement("");
+    String sqlFullCommand = "";
+    ArrayList<Move> newMoves = new ArrayList<Move>();
+
     Scanner sc = new Scanner(new File(inputFile));
-    sc.useDelimiter(",|\n");
+    sc.useDelimiter(",|\n|\r");
     sc.nextLine();
     while (sc.hasNextLine() && sc.hasNext()) {
-      Integer nodeID = sc.nextInt();
+      int nodeID = sc.nextInt();
       String longName = sc.next();
-      Date moveDate = Date.valueOf(sc.next()); // TODO: check if this parsing works
-      addMove(nodeID, longName, moveDate);
+      String[] dateString = sc.next().split("/");
+      int month = Integer.parseInt(dateString[0]);
+      int day = Integer.parseInt(dateString[1]);
+      int year = Integer.parseInt(dateString[2]);
+      Date moveDate = new Date(year, month, day);
+
+      sqlInsert = connection.prepareStatement("INSERT INTO "+schemaName+"."+tableName+"(nodeid, longname, movedate) VALUES(?,?,?);");
+      sqlInsert.setInt(1, nodeID);
+      sqlInsert.setString(2, longName);
+      sqlInsert.setDate(3, moveDate);
+      sqlFullCommand += sqlInsert+";";
+      Move move = new Move(nodeID, longName, moveDate);
+      newMoves.add(move);
+      sc.nextLine(); //ensure that the scanner moves to the next line before trying to parse
     }
+    sqlFullCommand = "DELETE FROM "+schemaName+"."+tableName+";" + sqlFullCommand;
+    statement.executeUpdate(sqlFullCommand);
+    this.moves = newMoves;
     sc.close();
+    closeConnection(connection);
   }
   private Connection createConnection() throws SQLException, ClassNotFoundException {
     Class.forName("org.postgresql.Driver");
