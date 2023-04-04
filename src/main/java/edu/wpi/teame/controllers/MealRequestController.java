@@ -74,6 +74,7 @@ public class MealRequestController implements IRequestController {
     Navigation.navigate(Screen.HOME);
   }
 
+  // Clears the current service request fields
   public void clearForm() {
     recipientName.clear();
     roomNumber.clear();
