@@ -67,7 +67,7 @@ public class HomeController {
 
   @FXML
   void getSignagePage(ActionEvent event) {
-    Navigation.navigate(Screen.MAP_HISTORY_PAGE);
+    Navigation.navigate(Screen.SIGNAGE);
   }
 
   /** Method run when controller is initialized */
@@ -81,7 +81,10 @@ public class HomeController {
   void getLogOut(ActionEvent event) {}
 
   @FXML
-  void getMapHistory(ActionEvent event) {}
+  void getMapHistory(ActionEvent event) {
+    Navigation.navigate(Screen.MAP_HISTORY_PAGE);
+
+  }
 
   @FXML
   void getMapPage(ActionEvent event) {}
