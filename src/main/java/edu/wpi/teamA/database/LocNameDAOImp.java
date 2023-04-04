@@ -7,10 +7,13 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import lombok.Getter;
+import lombok.Setter;
 
 public class LocNameDAOImp implements IDataBase, ILocNameDAO {
 
-  ArrayList<LocationName> LocNameArray = new ArrayList<LocationName>();
+  @Getter @Setter
+  private static ArrayList<LocationName> LocNameArray = new ArrayList<LocationName>();
 
   static Connection LocNameConnection;
 

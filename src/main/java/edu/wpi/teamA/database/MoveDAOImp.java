@@ -7,10 +7,12 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import lombok.Getter;
+import lombok.Setter;
 
 public class MoveDAOImp implements IDataBase, IMoveDAO {
 
-  ArrayList<Move> MoveArray = new ArrayList<Move>();
+  @Getter @Setter private static ArrayList<Move> MoveArray = new ArrayList<Move>();
 
   static Connection moveConnection;
 
