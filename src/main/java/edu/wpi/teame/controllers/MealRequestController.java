@@ -57,7 +57,11 @@ public class MealRequestController implements IRequestController {
 
     // Create the service request data
     ServiceRequestData mealRequestData =
-        new ServiceRequestData(ServiceRequestData.RequestType.MEALDELIVERY, requestData, ServiceRequestData.Status.PENDING, assignStaff.getText());
+        new ServiceRequestData(
+            ServiceRequestData.RequestType.MEALDELIVERY,
+            requestData,
+            ServiceRequestData.Status.PENDING,
+            assignStaff.getText());
 
     // Return to home screen
     Navigation.navigate(Screen.HOME);
