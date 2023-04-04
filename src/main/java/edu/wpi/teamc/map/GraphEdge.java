@@ -28,7 +28,7 @@ public class GraphEdge extends Edge implements Comparable<GraphEdge> {
             getStartNode().getXCoord() - targetNode.getXCoord(),
             getEndNode().getYCoord() - targetNode.getYCoord());
 
-    if (!getStartNode().getFloor().equals(targetNode.getFloor())) {
+    if (!getEndNode().getFloor().equals(targetNode.getFloor())) {
       this.heuristic += 200;
     }
   }
