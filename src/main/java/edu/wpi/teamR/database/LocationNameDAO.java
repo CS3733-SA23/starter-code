@@ -148,16 +148,35 @@ public class LocationNameDAO {
   }
 
   public void readCSV(String inputFile) throws SQLException, ClassNotFoundException, FileNotFoundException {
+    Connection connection = createConnection();
+    Statement statement = connection.createStatement();
+    PreparedStatement sqlInsert = connection.prepareStatement("");
+    String sqlFullCommand = "";
+    ArrayList<LocationName> newLocationNames = new ArrayList<LocationName>();
+
     Scanner sc = new Scanner(new File(inputFile));
-    sc.useDelimiter(",|\n");
+    sc.useDelimiter(",|\n|\r");
     sc.nextLine();
     while (sc.hasNextLine() && sc.hasNext()) {
       String longName = sc.next();
       String shortName = sc.next();
       String nodeType = sc.next();
-      addLocationName(longName, shortName, nodeType);
+
+      sqlInsert = connection.prepareStatement("INSERT INTO "+schemaName+"."+tableName+"(longname, shortname, nodetype) VALUES(?,?,?);");
+      sqlInsert.setString(1, longName);
+      sqlInsert.setString(2, shortName);
+      sqlInsert.setString(3, nodeType);
+      sqlFullCommand += sqlInsert+";";
+      LocationName locationName = new LocationName(longName, shortName, nodeType);
+      newLocationNames.add(locationName);
+      sc.nextLine(); //ensure that the scanner moves to the next line before trying to parse
     }
+    sqlFullCommand = "DELETE FROM "+schemaName+"."+tableName+";" + sqlFullCommand;
+    statement.executeUpdate(sqlFullCommand);
+    this.locationNames = newLocationNames;
+
     sc.close();
+    closeConnection(connection);
   }
 
   private Connection createConnection() throws SQLException, ClassNotFoundException {
