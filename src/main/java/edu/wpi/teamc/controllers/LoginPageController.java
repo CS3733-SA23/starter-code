@@ -14,7 +14,7 @@ public class LoginPageController {
 
   @FXML
   void getAdminMapPage(ActionEvent event) {
-    Navigation.navigate(Screen.ADMIN_HOME);
+    Navigation.navigate(Screen.HOME);
   }
 
   @FXML
