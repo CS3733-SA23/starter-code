@@ -138,13 +138,6 @@ public class Cdb {
       List<LocationName> databaseLocationNameList,
       List<Move> databaseMoveList) {
 
-    Graph temp = new Graph();
-    try {
-      temp.init();
-    } catch (IOException e) {
-      System.out.println("Exception!");
-    }
-
     try {
       Statement stmtNode = connection.createStatement();
       Statement stmtEdge = connection.createStatement();

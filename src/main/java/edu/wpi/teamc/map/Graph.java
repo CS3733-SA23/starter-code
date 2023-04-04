@@ -1,17 +1,10 @@
 package edu.wpi.teamc.map;
 
-import static java.lang.Integer.parseInt;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 
 public class Graph {
   private Map<String, GraphNode> nodes = new HashMap<>();
-  private final String NODE_FILE = "src/main/resources/edu/wpi/teamc/csvs/L1Nodes.csv";
-  private final String EDGE_FILE = "src/main/resources/edu/wpi/teamc/csvs/L1Edges.csv";
 
   /** Empty Constructor for Graph */
   public Graph() {}
@@ -80,55 +73,6 @@ public class Graph {
   }
 
   /**
-   * Initializes the graph with L1 Floor Nodes & Edges
-   *
-   * @throws IOException
-   */
-  public void init() throws IOException {
-    BufferedReader reader = new BufferedReader(new FileReader(NODE_FILE));
-    String line = "", delim = ",";
-
-    // ignore first line
-    reader.readLine();
-    line = reader.readLine();
-
-    // add all nodes to graph
-    while (line != null) {
-      String[] node = line.split(delim);
-      GraphNode temp =
-          new GraphNode(node[0], parseInt(node[1]), parseInt(node[2]), node[3], node[4]);
-      addNode(temp);
-      line = reader.readLine();
-    }
-
-    reader = new BufferedReader(new FileReader(EDGE_FILE));
-
-    // ignore first line
-    reader.readLine();
-    line = reader.readLine();
-
-    // add all edges
-    while (line != null) {
-      String[] edge = line.split(delim);
-
-      GraphEdge orig = new GraphEdge(edge[0], nodes.get(edge[1]), nodes.get(edge[2]));
-
-      // reverse the edgeID for an edge going in the other direction
-      String[] nodeID = edge[0].split("_");
-      String reverse = nodeID[1] + "_" + nodeID[0];
-      GraphEdge otherDirection = new GraphEdge(reverse, nodes.get(edge[2]), nodes.get(edge[1]));
-
-      GraphNode start = nodes.get(edge[1]);
-      GraphNode end = nodes.get(edge[2]);
-
-      // add the edges to each Node's edge list
-      start.getGraphEdges().add(orig);
-      end.getGraphEdges().add(otherDirection);
-
-      line = reader.readLine();
-    }
-  }
-  /**
    * Adds a node to the map
    *
    * @param node - node to be added
@@ -144,23 +88,6 @@ public class Graph {
   }
 
   /**
-   * Removes a node from the graph
-   *
-   * @param node - the node to be removed
-   */
-  public void removeNode(GraphNode node) {
-    // check if node exists
-    if (!nodes.containsKey(node.getNodeID())) {
-      System.out.println("Node does not exist");
-      return;
-    } else {
-      nodes.remove(node.getNodeID());
-    }
-    // TODO  remove node from connected nodes or edge list
-
-  }
-
-  /**
    * Returns the node with the given ID
    *
    * @param nodeID - ID of the node to be returned
@@ -168,15 +95,6 @@ public class Graph {
    */
   public Node getNode(String nodeID) {
     return nodes.get(nodeID);
-  }
-
-  /**
-   * Returns the HashMap of nodes
-   *
-   * @return HashMap of nodes
-   */
-  public Map<String, GraphNode> getNodes() {
-    return nodes;
   }
 
   /**
@@ -240,11 +158,6 @@ public class Graph {
       totalDist += edge.getWeight();
     }
 
-    // purely for comparison sake
     System.out.print(": Total dist: " + totalDist);
-    System.out.println(
-        "\nTotal dist estimated by straight line: "
-            + (Math.abs(startNode.getXCoord() - endNode.getXCoord())
-                + Math.abs(startNode.getYCoord() - endNode.getYCoord())));
   }
 }
