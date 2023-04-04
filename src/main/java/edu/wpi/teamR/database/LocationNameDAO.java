@@ -100,7 +100,7 @@ public class LocationNameDAO {
     }
   }
 
-  public void modifyLocationNameByID(String longName, String shortName, String nodeType) throws SQLException, ClassNotFoundException, NotFoundException {
+  public void modifyLocationNameByLongName(String longName, String shortName, String nodeType) throws SQLException, ClassNotFoundException, NotFoundException {
     int count = 0;
     for(LocationName theLocation : locationNames){
       if(theLocation.getLongName().equals(longName)){
