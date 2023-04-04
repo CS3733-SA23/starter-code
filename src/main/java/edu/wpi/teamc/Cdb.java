@@ -118,6 +118,8 @@ public class Cdb {
             endNode = scanner.nextLine();
             deleteEdge(connection, databaseEdgeList, startNode, endNode);
             break;
+          case "display move information":
+            displayMoveInfo(databaseMoveList);
           case "help":
             System.out.println("");
             break;
@@ -201,7 +203,7 @@ public class Cdb {
       while (rsMoves.next()) {
         String nodeID = rsMoves.getString("nodeID");
         String longName = rsMoves.getString("longName");
-        Date date = rsMoves.getDate("date");
+        Date date = rsMoves.getDate("moveDate");
         databaseMoveList.add(new Move(nodeID, longName, date));
       }
     } catch (Exception e) {
@@ -367,6 +369,7 @@ public class Cdb {
             + "import from a CSV file into the move table\n"
             + "Delete a node\n"
             + "Delete an edge\n"
+            + "display move information\n"
             + "Help\n"
             + "Exit\n"
             + "===========================================\n");
@@ -394,6 +397,12 @@ public class Cdb {
     }
   }
 
+  static void displayMoveInfo(List<Move> databaseMoveList) {
+    System.out.println("Move information:\n");
+    for (Move move : databaseMoveList) {
+      System.out.println(move.getNodeID() + "\t" + move.getLongName() + "\t" + move.getDate());
+    }
+  }
 
   static void updateCoordinates(
       Connection connection,
