@@ -1,4 +1,4 @@
-package edu.wpi.teamA.database;
+package edu.wpi.teamA.database.DAOImps;
 
 public interface IDataBase {
   Integer nodeID = null;

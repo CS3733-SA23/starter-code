@@ -1,7 +1,7 @@
 package edu.wpi.teamA.controllers.Navigation;
 
 import edu.wpi.teamA.App;
-import edu.wpi.teamA.database.NodeDAOImp;
+import edu.wpi.teamA.database.DAOImps.NodeDAOImp;
 import edu.wpi.teamA.navigation.Navigation;
 import edu.wpi.teamA.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;

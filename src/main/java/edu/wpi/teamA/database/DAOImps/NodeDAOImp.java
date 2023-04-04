@@ -1,5 +1,8 @@
-package edu.wpi.teamA.database;
+package edu.wpi.teamA.database.DAOImps;
 
+import edu.wpi.teamA.database.Connection.DBConnectionProvider;
+import edu.wpi.teamA.database.Interfaces.INodeDAO;
+import edu.wpi.teamA.database.ORMclasses.Node;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -11,11 +14,12 @@ import java.util.Scanner;
 public class NodeDAOImp implements IDataBase, INodeDAO {
   ArrayList<Node> NodeArray;
 
-  public static Connection nodeConnection = createConnection();
+  static DBConnectionProvider nodeProvider = new DBConnectionProvider();
 
-  public NodeDAOImp(Connection nodeConnection, ArrayList<Node> NodeArray) {
-    NodeDAOImp.nodeConnection = NodeDAOImp.nodeConnection;
+  public NodeDAOImp(ArrayList<Node> NodeArray) {
+    this.NodeArray = NodeArray;
   }
+
   // ResultSet
 
   public static Connection createConnection() {
@@ -31,7 +35,39 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
     }
   }
 
-  public static void Import(String filePath) {
+
+  public static ArrayList<Node> loadNodesFromCSV(String filePath) {
+    ArrayList<Node> nodes = new ArrayList<>();
+
+    try {
+      BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
+      csvReader.readLine(); // Skip the header line
+      String row;
+
+      while ((row = csvReader.readLine()) != null) {
+        String[] data = row.split(",");
+
+        int nodeID = Integer.parseInt(data[0]);
+        int xcoord = Integer.parseInt(data[1]);
+        int ycoord = Integer.parseInt(data[2]);
+        String floor = data[3];
+        String building = data[4];
+
+        Node node = new Node(nodeID, xcoord, ycoord, floor, building);
+        nodes.add(node);
+      }
+
+      csvReader.close();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    return nodes;
+  }
+  public static ArrayList<Node> Import(String filePath) {
+
+    ArrayList<Node> NodeArray = loadNodesFromCSV(filePath);
+
     try {
       BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
       csvReader.readLine();
@@ -44,15 +80,17 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
               + "ycoord    int,"
               + "floor     Varchar(600),"
               + "building  Varchar(600))";
-      Statement stmtNode = nodeConnection.createStatement();
+      Statement stmtNode = nodeProvider.createConnection().createStatement();
       stmtNode.execute(sqlCreateEdge);
 
       while ((row = csvReader.readLine()) != null) {
         String[] data = row.split(",");
 
         PreparedStatement ps =
-            nodeConnection.prepareStatement(
-                "INSERT INTO \"Prototype2_schema\".\"Node\" VALUES (?, ?, ?, ?, ?)");
+            nodeProvider
+                .createConnection()
+                .prepareStatement(
+                    "INSERT INTO \"Prototype2_schema\".\"Node\" VALUES (?, ?, ?, ?, ?)");
         ps.setInt(1, Integer.parseInt(data[0]));
         ps.setInt(2, Integer.parseInt(data[1]));
         ps.setInt(3, Integer.parseInt(data[2]));
@@ -65,12 +103,13 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
 
       throw new RuntimeException(e);
     }
+  return NodeArray;
   }
 
   public static void Export(String folderExportPath) {
     try {
       String newFile = folderExportPath + "/Node.csv";
-      Statement st = nodeConnection.createStatement();
+      Statement st = nodeProvider.createConnection().createStatement();
       ResultSet rs = st.executeQuery("SELECT * FROM \"Prototype2_schema\".\"Node\"");
 
       FileWriter csvWriter = new FileWriter(newFile);
@@ -108,8 +147,9 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
       String building = input.next();
 
       PreparedStatement ps =
-          nodeConnection.prepareStatement(
-              "INSERT INTO Prototype2_schema.\"Node\" VALUES (?, ?, ?, ?, ?)");
+          nodeProvider
+              .createConnection()
+              .prepareStatement("INSERT INTO Prototype2_schema.\"Node\" VALUES (?, ?, ?, ?, ?)");
       ps.setInt(1, nodeID);
       ps.setInt(2, xcoord);
       ps.setInt(3, ycoord);
@@ -133,8 +173,9 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
       int nodeID = input.nextInt();
 
       PreparedStatement ps =
-          nodeConnection.prepareStatement(
-              "DELETE FROM Prototype2_schema.\"Node\" WHERE nodeID = ?");
+          nodeProvider
+              .createConnection()
+              .prepareStatement("DELETE FROM Prototype2_schema.\"Node\" WHERE nodeID = ?");
       ps.setInt(1, nodeID);
       ps.executeUpdate();
 
@@ -158,8 +199,10 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
       String building = input.next();
 
       PreparedStatement ps =
-          nodeConnection.prepareStatement(
-              "UPDATE Prototype2_schema.\"Node\" SET xcoord = ?, ycoord = ?, floor = ?, building = ? WHERE nodeID = ?");
+          nodeProvider
+              .createConnection()
+              .prepareStatement(
+                  "UPDATE Prototype2_schema.\"Node\" SET xcoord = ?, ycoord = ?, floor = ?, building = ? WHERE nodeID = ?");
       ps.setInt(1, xcoord);
       ps.setInt(2, ycoord);
       ps.setString(3, floor);

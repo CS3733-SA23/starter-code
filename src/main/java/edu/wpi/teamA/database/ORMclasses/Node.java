@@ -1,15 +1,15 @@
-package edu.wpi.teamA.database;
+package edu.wpi.teamA.database.ORMclasses;
 
 public class Node {
-  Integer nodeID;
+  public Integer nodeID;
 
-  Integer xccord;
+  public Integer xccord;
 
-  Integer ycoord;
+  public Integer ycoord;
 
-  String floor;
+  public String floor;
 
-  String building;
+  public String building;
 
   public Node(Integer nodeID, Integer xccord, Integer ycoord, String floor, String building) {
     this.nodeID = nodeID;

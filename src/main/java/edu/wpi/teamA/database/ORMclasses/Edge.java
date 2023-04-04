@@ -1,8 +1,8 @@
-package edu.wpi.teamA.database;
+package edu.wpi.teamA.database.ORMclasses;
 
 public class Edge {
-  Integer startNode;
-  Integer endNode;
+  public Integer startNode;
+  public Integer endNode;
 
   public Edge(Integer startNode, Integer endNode) {
     this.startNode = startNode;

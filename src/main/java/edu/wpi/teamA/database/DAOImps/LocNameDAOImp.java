@@ -1,5 +1,7 @@
-package edu.wpi.teamA.database;
+package edu.wpi.teamA.database.DAOImps;
 
+import edu.wpi.teamA.database.Interfaces.ILocNameDAO;
+import edu.wpi.teamA.database.ORMclasses.LocationName;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
