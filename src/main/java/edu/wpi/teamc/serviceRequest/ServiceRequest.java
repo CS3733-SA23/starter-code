@@ -1,9 +1,20 @@
 package edu.wpi.teamc.serviceRequest;
 
 public class ServiceRequest {
-  public String
-      username; // This is just a temporary User. We should change it into "user" type later
-  public String selection;
+
+  private int requestId;
+  private String selection;
+
+  private enum status {
+    PENDING,
+    INPROGRESS,
+    COMPLETE
+  }
+
+  public ServiceRequest(int id, String select) {
+    this.requestId = id;
+    this.selection = select;
+  }
 
   /*
   This function is used to switch between different Request page.

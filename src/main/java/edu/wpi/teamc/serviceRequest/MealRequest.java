@@ -1,13 +1,14 @@
 package edu.wpi.teamc.serviceRequest;
 
 public class MealRequest {
-  public Meal selection;
-  public int deliveryLocation;
-  public String specialNotes;
 
-  public MealRequest(Meal select, int location, String note) {
-    select = selection;
-    location = deliveryLocation;
-    note = specialNotes;
+  private Meal selection;
+  private String room;
+  private String specialNotes;
+
+  public MealRequest(Meal select, String location, String note) {
+    this.selection = select;
+    this.room = location;
+    this.specialNotes = note;
   }
 }
