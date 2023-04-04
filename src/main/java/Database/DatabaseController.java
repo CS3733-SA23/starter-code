@@ -1,22 +1,25 @@
 package Database;
 
-import pathfinding.MoveAttribute;
-
+import edu.wpi.teame.entities.ServiceRequestData;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import org.json.JSONObject;
+import pathfinding.*;
 
 public enum DatabaseController {
   INSTANCE;
 
-  public enum Table{
+  public enum Table {
     LOCATION_NAME,
     MOVE,
     NODE,
     EDGE,
     SERVICE_REQUESTS
   }
+
   private Connection c;
   public List<MoveAttribute> moveList = new ArrayList<>();
 
@@ -34,8 +37,8 @@ public enum DatabaseController {
     try {
       Class.forName("org.postgresql.Driver");
       c =
-              DriverManager.getConnection(
-                      "jdbc:postgresql://database.cs.wpi.edu:5432/teamedb", username, password);
+          DriverManager.getConnection(
+              "jdbc:postgresql://database.cs.wpi.edu:5432/teamedb", username, password);
     } catch (Exception e) {
       e.printStackTrace();
       System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -50,18 +53,50 @@ public enum DatabaseController {
    *
    * @return void
    */
-  public void deleteFromTable(MoveAttribute moveAttribute) {
-    Statement stmt;
-    String nodeId = moveAttribute.nodeID;
+  public void deleteFromTable(Table t, Object obj) {
+    String sqlDelete = "";
+    switch (t) {
+      case MOVE:
+        MoveAttribute moveAttribute = (MoveAttribute) obj;
+        String nodeId = moveAttribute.getNodeID();
+        sqlDelete =
+                "DELETE FROM \"Move\" WHERE \"nodeID\" = '" + nodeId + "';";
+        break;
+      case EDGE:
+        HospitalEdge edge = (HospitalEdge) obj;
+        String startNode = edge.getNodeOneID();
+        String endNode = edge.getNodeTwoID();
+        sqlDelete = "DELETE FROM \"Edge\" WHERE \"startNode\" = " + startNode + " AND \"endNode\" = '" + endNode + "';";
+        break;
+      case NODE:
+        HospitalNode node = (HospitalNode) obj;
+        String nodeID = node.getNodeID();
+        sqlDelete =
+                "DELETE FROM \"Node\" WHERE \"nodeID\" = '" + nodeID + "';";
+        break;
+      case LOCATION_NAME:
+        LocationName locationName = (LocationName) obj;
+        String lName = locationName.getLongName();
+        String shortName = locationName.getShortName();
+        sqlDelete =
+                "DELETE FROM \"LocationName\" WHERE \"longName\" = " + lName + " AND \"shortName\" = '" + shortName + "';";
+        break;
+      case SERVICE_REQUESTS:
+        ServiceRequestData serviceRequestData = (ServiceRequestData) obj;
+        JSONObject requestData = serviceRequestData.getRequestData();
+        ServiceRequestData.Status status = serviceRequestData.getRequestStatus();
+        String staffAssigned = serviceRequestData.getAssignedStaff();
+        ServiceRequestData.RequestType requestType = serviceRequestData.getRequestType();
+        sqlDelete =
+                "DELETE FROM \"ServiceRequests\" WHERE \"requestdata\" = " + requestData + " AND \"status\" = '" + status + "' AND \"staffassigned\" = '" + staffAssigned + "' AND \"requestType\" = '" + requestType + "';";
+        break;
+    }
 
+    Statement stmt;
     try {
       stmt = c.createStatement();
-      String sql = "DELETE FROM \"Move\" WHERE \"nodeID\" = '" + nodeId + "';";
-      int rs = stmt.executeUpdate(sql);
+      int rs = stmt.executeUpdate(sqlDelete);
       stmt.close();
-      if (rs > 0) {
-        System.out.println("Row Deleted successfully from " + nodeId);
-      }
     } catch (SQLException e) {
       System.out.println();
     }
@@ -69,25 +104,73 @@ public enum DatabaseController {
 
   public void addToTable(Table table, Object obj) {
     String insertTable = "";
-    switch (table){
+    switch (table) {
       case MOVE:
         MoveAttribute moveAttribute = (MoveAttribute) obj;
-        String nodeId = moveAttribute.nodeID;
-        String longName = moveAttribute.longName;
-        String date = moveAttribute.date;
+        String nodeId = moveAttribute.getNodeID();
+        String longName = moveAttribute.getLongName();
+        String date = moveAttribute.getDate();
         insertTable =
-                "INSERT INTO \"Move\" VALUES(" + nodeId + ",'" + longName + "' , '" + date + "');";
+            "INSERT INTO \"Move\" VALUES(" + nodeId + ",'" + longName + "' , '" + date + "');";
         break;
       case EDGE:
-        //HospitalEdge edge = (HospitalEdge) obj;
-        String startNode = "";
-        //String endNode = HospitalEdge.endNode;
-
+        HospitalEdge edge = (HospitalEdge) obj;
+        String startNode = edge.getNodeOneID();
+        String endNode = edge.getNodeTwoID();
+        insertTable = "INSERT INTO \"Edge\" VALUES(" + startNode + ",'" + endNode + "');";
+        ;
+        break;
+      case NODE:
+        HospitalNode node = (HospitalNode) obj;
+        String nodeID = node.getNodeID();
+        int xcoord = node.getXCoord();
+        int ycoord = node.getYCoord();
+        Floor floor = node.getFloor();
+        String building = node.getBuilding();
+        insertTable =
+            "INSERT INTO \"Node\" VALUES("
+                + nodeID
+                + ",'"
+                + xcoord
+                + "' , '"
+                + ycoord
+                + "' , '"
+                + floor
+                + "' , '"
+                + building
+                + "');";
+        break;
+      case LOCATION_NAME:
+        LocationName locationName = (LocationName) obj;
+        String lName = locationName.getLongName();
+        String shortName = locationName.getShortName();
+        LocationName.NodeType nodeType = locationName.getNodeType();
+        insertTable =
+            "INSERT INTO \"Move\" VALUES(" + lName + ",'" + shortName + "' , '" + nodeType + "');";
+        break;
+      case SERVICE_REQUESTS:
+        ServiceRequestData serviceRequestData = (ServiceRequestData) obj;
+        JSONObject requestData = serviceRequestData.getRequestData();
+        ServiceRequestData.Status status = serviceRequestData.getRequestStatus();
+        String staffAssigned = serviceRequestData.getAssignedStaff();
+        ServiceRequestData.RequestType requestType = serviceRequestData.getRequestType();
+        insertTable =
+            "INSERT INTO \"ServiceRequests\" VALUES("
+                + requestData
+                + ",'"
+                + status
+                + "' , '"
+                + staffAssigned
+                + "' , '"
+                + requestType
+                + "');";
+        break;
     }
-    Statement stmt;
 
+    Statement stmt;
     try {
-      stmt = c.createStatement();;
+      stmt = c.createStatement();
+      ;
       int update = stmt.executeUpdate(insertTable);
       System.out.println(update);
     } catch (SQLException e) {
@@ -123,9 +206,9 @@ public enum DatabaseController {
     // Retrieve move
     for (String nodeID : mList) {
       String moveQuery =
-              "SELECT * FROM teame.\"Move\" WHERE \"nodeID\" = '"
-                      + nodeID
-                      + "'  ORDER BY \"nodeID\" ASC ;";
+          "SELECT * FROM teame.\"Move\" WHERE \"nodeID\" = '"
+              + nodeID
+              + "'  ORDER BY \"nodeID\" ASC ;";
       try (Statement stmt = c.createStatement()) {
         ResultSet rs = stmt.executeQuery(moveQuery);
         if (rs.next()) {
@@ -143,6 +226,97 @@ public enum DatabaseController {
     return moveList;
   }
 
+  public List<MoveAttribute> getServiceRequests() {
+    List<MoveAttribute> moveAttributes = new LinkedList<>();
+
+    try {
+      Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
+
+      String sql =
+              "SELECT \"nodeID\", \"longName\", \"date\" FROM teame.\"Node\" NATURAL JOIN teame.\"Move\" WHERE floor = '"
+                      + "';";
+      ResultSet rs = stmt.executeQuery(sql);
+
+      while (rs.next()) {
+        moveAttributes.add(
+                new MoveAttribute(
+                        rs.getInt("nodeid") + "", rs.getString("longName"), rs.getString("date")));
+      }
+
+      return moveAttributes;
+    } catch (SQLException e) {
+      throw new RuntimeException("Something went wrong");
+    }
+  }
+
+
+  public List<MoveAttribute> getEdges() {
+    List<MoveAttribute> moveAttributes = new LinkedList<>();
+
+    try {
+      Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
+
+      String sql =
+              "SELECT \"nodeID\", \"longName\", \"date\" FROM teame.\"Node\" NATURAL JOIN teame.\"Move\" WHERE floor = '"
+                      + "';";
+      ResultSet rs = stmt.executeQuery(sql);
+
+      while (rs.next()) {
+        moveAttributes.add(
+                new MoveAttribute(
+                        rs.getInt("nodeid") + "", rs.getString("longName"), rs.getString("date")));
+      }
+
+      return moveAttributes;
+    } catch (SQLException e) {
+      throw new RuntimeException("Something went wrong");
+    }
+  }
+
+  public List<MoveAttribute> getNodes() {
+    List<MoveAttribute> moveAttributes = new LinkedList<>();
+
+    try {
+      Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
+
+      String sql =
+              "SELECT \"nodeID\", \"longName\", \"date\" FROM teame.\"Node\" NATURAL JOIN teame.\"Move\" WHERE floor = '" + "';";
+      ResultSet rs = stmt.executeQuery(sql);
+
+      while (rs.next()) {
+        moveAttributes.add(
+                new MoveAttribute(
+                        rs.getInt("nodeid") + "", rs.getString("longName"), rs.getString("date")));
+      }
+
+      return moveAttributes;
+    } catch (SQLException e) {
+      throw new RuntimeException("Something went wrong");
+    }
+  }
+
+  public List<MoveAttribute> getLocationName() {
+    List<MoveAttribute> moveAttributes = new LinkedList<>();
+
+    try {
+      Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
+
+      String sql =
+              "SELECT \"nodeID\", \"longName\", \"date\" FROM teame.\"Node\" NATURAL JOIN teame.\"Move\" WHERE floor = '" + "';";
+      ResultSet rs = stmt.executeQuery(sql);
+
+      while (rs.next()) {
+        moveAttributes.add(
+                new MoveAttribute(
+                        rs.getInt("nodeid") + "", rs.getString("longName"), rs.getString("date")));
+      }
+
+      return moveAttributes;
+    } catch (SQLException e) {
+      throw new RuntimeException("Something went wrong");
+    }
+  }
+
   /**
    * Extracts a MoveTable object from the given ResultSet
    *
@@ -152,7 +326,7 @@ public enum DatabaseController {
    */
   private MoveAttribute extractMoveFromResultSet(ResultSet rs) throws SQLException {
     return new MoveAttribute(
-            rs.getString("nodeID"), rs.getString("longName"), rs.getString("date"));
+        rs.getString("nodeID"), rs.getString("longName"), rs.getString("date"));
   }
 
   /**
@@ -179,21 +353,21 @@ public enum DatabaseController {
         String[] splitL1 = l1.split(",");
         System.out.println(l1);
         String sql =
-                "INSERT INTO \""
-                        + tableName
-                        + "\" VALUES ("
-                        + splitL1[0]
-                        + ", '"
-                        + splitL1[1]
-                        + "', '"
-                        + splitL1[2]
-                        + "'); ";
+            "INSERT INTO \""
+                + tableName
+                + "\" VALUES ("
+                + splitL1[0]
+                + ", '"
+                + splitL1[1]
+                + "', '"
+                + splitL1[2]
+                + "'); ";
         System.out.println(sql);
         stmt.execute(sql);
       }
 
       System.out.println(
-              "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
+          "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
 
     } catch (IOException | SQLException e) {
       System.err.println("Error importing from " + filePath + " to " + tableName);
@@ -211,7 +385,7 @@ public enum DatabaseController {
    * @throws IOException if there is an error creating or writing to the CSV file.
    */
   public void exportToCSV(String name, String filePath, String fileName)
-          throws SQLException, IOException {
+      throws SQLException, IOException {
 
     // Initialization
     Statement stmt = null;
