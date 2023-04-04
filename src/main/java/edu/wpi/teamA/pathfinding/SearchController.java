@@ -55,7 +55,6 @@ public class SearchController {
 
                 Edge currentEdge = currentGNode.getEdge(i);
                 int otherNodeID;
-                GraphNode otherGNode;
 
                 if (currentEdge.getStartNode() == currentID) { // check whether node is starting node or ending node in the
                     // edge
@@ -63,6 +62,7 @@ public class SearchController {
                 } else {
                     otherNodeID = currentEdge.getStartNode();
                 }
+                GraphNode otherGNode = graph.getGraphNode(otherNodeID);
 
 //                boolean otherVisited = false;
 //                for (int j = 0; j < visited.size(); j++) {
@@ -72,8 +72,9 @@ public class SearchController {
 //                    }
 //                }
 
-                if (!currentGNode.isVisited()) { // if not visited, add to queue and add to wrapping queue
-                    graph.getGraphNode(otherNodeID).setPrev(currentGNode);
+                if (!otherGNode.isVisited()) { // if not visited, add to queue and add to wrapping queue
+                    otherGNode.setPrev(currentGNode);
+                    nodesToReset.add(otherNodeID);
                     queue.add(otherNodeID);
                 }
             }
@@ -124,19 +125,27 @@ public class SearchController {
                     otherNodeID = currentEdge.getStartNode();
                 }
                 otherGNode = graph.getGraphNode(otherNodeID);
-                if(!otherGNode.isVisited()){
-                    int gCost = currentNode.getgCost()+ (int) Math.hypot(currentX-otherGNode.getXcoord(),currentY-otherGNode.getYcoord());
-                    int hCost = (int) Math.hypot(endX-otherGNode.getXcoord(),endY-otherGNode.getYcoord());
-                    otherGNode.setgCost(gCost);
-                    otherGNode.sethCost(hCost);
-                    otherGNode.setPrev(currentNode);
-                    insertIntoPQ(queue, otherNodeID); // Not implemented yet
+                if(!otherGNode.isVisited()) {
+                    int gCost = currentNode.getgCost() + (int) Math.hypot(currentX - otherGNode.getXcoord(), currentY - otherGNode.getYcoord());
+                    int hCost = (int) Math.hypot(endX - otherGNode.getXcoord(), endY - otherGNode.getYcoord());
+                    if (otherGNode.getPrev().getNodeID() == otherNodeID) {
+                        otherGNode.setgCost(gCost);
+                        otherGNode.sethCost(hCost);
+                        otherGNode.setPrev(currentNode);
+                        insertIntoPQ(queue, otherNodeID); // Not implemented yet
+                        nodesToReset.add(currentNode.getNodeID());
+                    } else if (otherGNode.getfCost() > (gCost + hCost)) {
+                        removeFromPQ(queue, otherNodeID);
+                        otherGNode.setgCost(gCost);
+                        otherGNode.sethCost(hCost);
+                        otherGNode.setPrev(currentNode);
+                        insertIntoPQ(queue, otherNodeID); // Not implemented yet
+                    }
                 }
 
             }
 
             currentNode.setVisited(true);
-            nodesToReset.add(currentNode.getNodeID());
 
             currentNode = graph.getGraphNode(queue.remove(0));
             currentX = currentNode.getXcoord();
@@ -154,6 +163,12 @@ public class SearchController {
 
 
     public void insertIntoPQ(ArrayList<Integer> pQ, int nodeID) {
+
+        //do it
+
+    }
+
+    public void removeFromPQ(ArrayList<Integer> pQ, int nodeID) {
 
         //do it
 
