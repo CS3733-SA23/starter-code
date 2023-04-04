@@ -34,6 +34,7 @@ public class FlowerRequestController implements IRequestController {
   @FXML MFXTextField notes;
   @FXML MFXTextField assignedStaff;
   @FXML MFXButton cancelButton;
+  @FXML MFXButton clearForm;
 
   @FXML
   public void initialize() {
@@ -46,6 +47,7 @@ public class FlowerRequestController implements IRequestController {
         event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     flowerRequestSubmit.setOnMouseClicked(event -> sendRequest());
     cancelButton.setOnMouseClicked(event -> cancelRequest());
+    clearForm.setOnMouseClicked(event -> clearForm());
   }
 
   public ServiceRequestData sendRequest() {
@@ -77,4 +79,14 @@ public class FlowerRequestController implements IRequestController {
     Navigation.navigate(Screen.HOME);
   }
 
+  // Clears the current service request fields
+  public void clearForm() {
+    flowerChoice.clear();
+    numOfFlowers.clear();
+    deliveryTime.clear();
+    recipientName.clear();
+    roomNumber.clear();
+    notes.clear();
+    assignedStaff.clear();
+  }
 }
