@@ -2,7 +2,6 @@ package edu.wpi.teamA.database;
 
 import java.time.LocalDate;
 
-
 public class Move {
   Integer nodeID;
 

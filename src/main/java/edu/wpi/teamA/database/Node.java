@@ -1,6 +1,5 @@
 package edu.wpi.teamA.database;
 
-
 public class Node {
   Integer nodeID;
 
@@ -19,5 +18,4 @@ public class Node {
     this.floor = floor;
     this.building = building;
   }
-
 }

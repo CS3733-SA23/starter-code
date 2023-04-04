@@ -1,7 +1,5 @@
 package edu.wpi.teamA.database;
 
-
-
 public class LocationName {
   String longName;
 
@@ -14,6 +12,4 @@ public class LocationName {
     this.shortName = shortName;
     this.nodeType = nodeType;
   }
-
-
 }
