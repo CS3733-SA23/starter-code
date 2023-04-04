@@ -16,13 +16,17 @@ public class PathfindingController {
   @FXML private MFXButton goHome;
   @FXML private MFXButton submit;
 
+  @FXML private MFXButton clear;
+
   @FXML
-  public void getGoHome() {
+  void getGoHome() {
     goHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   @FXML
-  void getClear() {}
+  void getClear() {
+    clear.setOnMouseClicked(event -> Navigation.navigate(Screen.PATHFINDING_PAGE));
+  }
 
   @FXML
   void getSubmit() {
