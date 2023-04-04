@@ -9,10 +9,13 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -26,12 +29,14 @@ import pathfinding.*;
 
 public class DatabaseViewController {
 
-  //common buttons:
+  // common buttons:
   @FXML MFXButton importButton;
   @FXML MFXButton exportButton;
   @FXML MFXButton backButton;
   @FXML MFXButton deleteButton;
   @FXML MFXButton addButton; // three text boxes and a button that says "add" next to it
+
+  @FXML ComboBox<String> databaseChoice;
 
   // fields for Moves
   @FXML HBox movesAddZone;
@@ -48,14 +53,13 @@ public class DatabaseViewController {
 
   @FXML TableColumn<MoveAttribute, String> dateCol;
 
-  //fields for Nodes
+  // fields for Nodes
   @FXML HBox nodeAddZone;
   @FXML MFXTextField IDFieldLoc;
   @FXML MFXTextField xField;
   @FXML MFXTextField yField;
   @FXML MFXTextField floorField;
   @FXML MFXTextField buildingField;
-
 
   // table data for Nodes
   @FXML TableView<HospitalNode> nodeTable;
@@ -90,15 +94,31 @@ public class DatabaseViewController {
   FileChooser saveChooser = new FileChooser();
   FileChooser selectChooser = new FileChooser();
 
+  TableView activeTable;
+
   @FXML
   public void initialize() {
+    ArrayList<String> choices = new ArrayList<String>();
+    choices.add("move");
+    choices.add("location");
+    choices.add("node");
+    choices.add("edge");
+    databaseChoice.setItems(FXCollections.observableArrayList(choices));
+
+    databaseChoice.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            switchActiveTable(databaseChoice.getValue());
+            // System.out.println(databaseChoice.getValue());
+          }
+        });
+
     Popup windowPop = new Popup();
     Label popupLabel = new Label("Error: improper formatting");
     popupLabel.setStyle("-fx-background-color: red;");
     windowPop.getContent().add(popupLabel);
     windowPop.setAutoHide(true);
-
-    // directoryChooser.setInitialDirectory(new File("src"));
     saveChooser.setTitle("Select where to save your file");
     saveChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV File", ".csv"));
     selectChooser.setTitle("Select file to import");
@@ -112,7 +132,7 @@ public class DatabaseViewController {
 
     ObservableList itemList = FXCollections.observableArrayList(dC.getMoveList());
     moveTable.setItems(itemList);
-    moveTable.setEditable(true);
+    moveTable.setEditable(false);
 
     // testing stuff
     // dataTable.getItems().add(new MoveAttribute("1111", "testA", "4/2/2023"));
@@ -203,5 +223,38 @@ public class DatabaseViewController {
             }
           }
         });
+  }
+
+  private void switchActiveTable(String db) {
+    switch (db) {
+      case "move":
+        activeTable = moveTable;
+        moveTable.setVisible(true);
+        locationTable.setVisible(false);
+        nodeTable.setVisible(false);
+        edgeTable.setVisible(false);
+        break;
+      case "location":
+        activeTable = locationTable;
+        moveTable.setVisible(false);
+        locationTable.setVisible(true);
+        nodeTable.setVisible(false);
+        edgeTable.setVisible(false);
+        break;
+      case "node":
+        activeTable = nodeTable;
+        moveTable.setVisible(false);
+        locationTable.setVisible(false);
+        nodeTable.setVisible(true);
+        edgeTable.setVisible(false);
+        break;
+      case "edge":
+        activeTable = edgeTable;
+        moveTable.setVisible(false);
+        locationTable.setVisible(false);
+        nodeTable.setVisible(false);
+        edgeTable.setVisible(true);
+        break;
+    }
   }
 }
