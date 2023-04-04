@@ -30,7 +30,7 @@ public class GroundFloorNavMapController {
   @FXML MFXComboBox destinationList;
   Floor currentFloor = Floor.GROUND;
 
-  DatabaseController db = new DatabaseController("teame", "teame50");
+  DatabaseController db = DatabaseController.INSTANCE;
   DatabaseGraphController graphController = new DatabaseGraphController(db);
   ObservableList<String> floorLocations = FXCollections.observableArrayList(test());
   //        FXCollections.observableArrayList(

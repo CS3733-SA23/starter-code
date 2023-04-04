@@ -1,21 +1,31 @@
 package Database;
 
+import edu.wpi.teame.map.HospitalEdge;
 import edu.wpi.teame.map.MoveAttribute;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseController {
+public enum DatabaseController {
+  INSTANCE;
+
+  public enum Table{
+    LOCATION_NAME,
+    MOVE,
+    NODE,
+    EDGE,
+    SERVICE_REQUESTS
+  }
   private Connection c;
   public List<MoveAttribute> moveList = new ArrayList<>();
 
-  public DatabaseController(String username, String password) {
+  DatabaseController(String username, String password) {
     c = this.connectToDatabase(username, password);
     // this.retrieveFromTable();
   }
 
-  public DatabaseController() {
+  DatabaseController() {
     c = this.connectToDatabase("teame", "teame50");
   }
 
@@ -57,18 +67,29 @@ public class DatabaseController {
     }
   }
 
-  public void addToTable(MoveAttribute moveAttribute) {
+  public void addToTable(Table table, Object obj) {
+    String insertTable;
+    switch (table){
+      case MOVE:
+        MoveAttribute moveAttribute = (MoveAttribute) obj;
+        String nodeId = moveAttribute.nodeID;
+        String longName = moveAttribute.longName;
+        String date = moveAttribute.date;
+        insertTable =
+                "INSERT INTO \"Move\" VALUES(" + nodeId + ",'" + longName + "' , '" + date + "');";
+        break;
+      case EDGE:
+        HospitalEdge edge = (HospitalEdge) obj;
+        String startNode =
+        //String endNode = HospitalEdge.endNode;
+
+    }
     Statement stmt;
-    String nodeId = moveAttribute.nodeID;
-    String longName = moveAttribute.longName;
-    String date = moveAttribute.date;
 
     try {
-      stmt = c.createStatement();
-      String insertTable =
-          "INSERT INTO \"Move\" VALUES(" + nodeId + ",'" + longName + "' , '" + date + "');";
-      int update = stmt.executeUpdate(insertTable);
-      System.out.println(update);
+      stmt = c.createStatement();;
+      //int update = stmt.executeUpdate(insertTable);
+      //System.out.println(update);
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
