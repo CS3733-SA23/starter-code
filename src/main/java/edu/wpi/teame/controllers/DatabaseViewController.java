@@ -130,9 +130,40 @@ public class DatabaseViewController {
     nameCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("longName"));
     dateCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("date"));
 
-    ObservableList itemList = FXCollections.observableArrayList(dC.getMoveList());
-    moveTable.setItems(itemList);
-    moveTable.setEditable(false);
+    ObservableList moveList = FXCollections.observableArrayList(dC.getMoveList());
+    moveTable.setItems(moveList);
+    moveTable.setEditable(true);
+
+    longNameCol.setCellValueFactory(new PropertyValueFactory<LocationName, String>("longName"));
+    shortNameCol.setCellValueFactory(new PropertyValueFactory<LocationName, String>("shortName"));
+    nodeTypeCol.setCellValueFactory(new PropertyValueFactory<LocationName, String>("nodeType"));
+
+    // ObservableList locationList = FXCollections.observableArrayList(dC.getLocationList);
+    ArrayList<LocationName> locationArrList = new ArrayList<>();
+    locationArrList.add(new LocationName("test long", "testshort", LocationName.NodeType.INFO));
+    locationArrList.add(new LocationName("test looong", "tstshrt", LocationName.NodeType.EXIT));
+    ObservableList locationList = FXCollections.observableArrayList(locationArrList);
+    locationTable.setItems(locationList);
+    locationTable.setEditable(true);
+
+    nodeIDCoordCol.setCellValueFactory(new PropertyValueFactory<HospitalNode, String>("nodeID"));
+    nodeXCol.setCellValueFactory(new PropertyValueFactory<HospitalNode, Integer>("xCoord"));
+    nodeYCol.setCellValueFactory(new PropertyValueFactory<HospitalNode, Integer>("yCoord"));
+    floorCol.setCellValueFactory(new PropertyValueFactory<HospitalNode, Floor>("floor"));
+    buildingCol.setCellValueFactory(new PropertyValueFactory<HospitalNode, String>("building"));
+    // ObservableList nodeList = FXCollections.observableArrayList(dC.getNodeList);
+    ArrayList<HospitalNode> nodeArrList = new ArrayList<>();
+    nodeArrList.add(new HospitalNode("22222"));
+    nodeArrList.add(new HospitalNode("120", 4, 5, Floor.LOWER_ONE, "Testing"));
+    nodeArrList.add(new HospitalNode());
+    ObservableList nodeList = FXCollections.observableArrayList(nodeArrList);
+    nodeTable.setItems(nodeList);
+    nodeTable.setEditable(true);
+
+    edge1Col.setCellValueFactory(new PropertyValueFactory<HospitalEdge, String>("nodeOneID"));
+    edge2Col.setCellValueFactory(new PropertyValueFactory<HospitalEdge, String>("nodeTwoID"));
+
+    // ObservableList edgeList = FXCollections.observableArrayList(dC.getEdgeList());
 
     // testing stuff
     // dataTable.getItems().add(new MoveAttribute("1111", "testA", "4/2/2023"));
