@@ -685,6 +685,7 @@ public class Cdb {
     for (Edge edge : databaseEdgeList) {
       writer.write(edge.getStartNode().getNodeID() + "," + edge.getEndNode().getNodeID() + "\n");
     }
+    writer.close();
   }
 
   static void exportLocationNamesToCSV(String csvFile, List<LocationName> databaseLocationNameList)
@@ -701,6 +702,7 @@ public class Cdb {
               + locationName.getNodeType()
               + "\n");
     }
+    writer.close();
   }
 
   static void exportMovesToCSV(String csvFile, List<Move> databaseMoveList) throws IOException {
@@ -710,5 +712,6 @@ public class Cdb {
     for (Move move : databaseMoveList) {
       writer.write(move.getNodeID() + "," + move.getLongName() + "," + move.getDate() + "\n");
     }
+    writer.close();
   }
 }
