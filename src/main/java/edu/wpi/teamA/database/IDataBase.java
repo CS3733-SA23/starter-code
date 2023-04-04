@@ -5,9 +5,9 @@ public interface IDataBase {
 
   String longName = null;
 
-  void Import(String s);
+  static void Import(String s) {};
 
-  void Export(String s);
+  static void Export(String s) {};
 
   void Add();
 

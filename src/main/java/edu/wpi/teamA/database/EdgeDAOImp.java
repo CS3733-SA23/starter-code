@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class EdgeDAOImp implements IDataBase, IEdgeDAO {
   ArrayList<Edge> edgeArray;
-  Connection edgeConnection;
+  static Connection edgeConnection;
 
   public EdgeDAOImp(Connection edgeConnection, ArrayList<Edge> EdgeArray) {
     this.edgeConnection = edgeConnection;
@@ -24,7 +24,7 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
 
   }
 
-  public void Import(String filePath) {
+  public static void Import(String filePath) {
     try {
       Scanner input = new Scanner(System.in);
       System.out.println("Please input the full qualified path of the file you want to import");
@@ -56,8 +56,7 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
     }
   }
 
-  @Override
-  public void Export(String folderExportPath) {
+  public static void Export(String folderExportPath) {
     try {
       String newFile = folderExportPath + "/Edfge.csv";
       Statement st = edgeConnection.createStatement();

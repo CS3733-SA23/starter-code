@@ -9,11 +9,9 @@ public class FlowerDAO implements IDataBase, IFDRDAO {
   @Override
   public void Update() {};
 
-  @Override
-  public void Import(String filePath) {}
+  public static void Import(String filePath) {}
 
-  @Override
-  public void Export(String filePath) {}
+  public static void Export(String filePath) {}
 
   @Override
   public void Add() {}

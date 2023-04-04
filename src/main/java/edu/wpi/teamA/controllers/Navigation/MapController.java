@@ -1,6 +1,7 @@
 package edu.wpi.teamA.controllers.Navigation;
 
 import edu.wpi.teamA.App;
+import edu.wpi.teamA.database.NodeDAOImp;
 import edu.wpi.teamA.navigation.Navigation;
 import edu.wpi.teamA.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -32,6 +33,7 @@ public class MapController implements IPageController {
     fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
     File selectedFile = fileChooser.showOpenDialog(App.getPrimaryStage());
     System.out.println(selectedFile.getPath());
+    NodeDAOImp.Import(selectedFile.getPath(), selectedFile.getName());
   }
 
   public void exportCSV() {
@@ -39,5 +41,6 @@ public class MapController implements IPageController {
     directoryChooser.setTitle("Export CSV File to");
     File selectedDirectory = directoryChooser.showDialog(App.getPrimaryStage());
     System.out.println(selectedDirectory.getPath());
+    NodeDAOImp.Export(selectedDirectory.getPath());
   }
 }

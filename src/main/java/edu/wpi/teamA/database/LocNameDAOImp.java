@@ -12,15 +12,14 @@ public class LocNameDAOImp implements IDataBase, ILocNameDAO {
 
   ArrayList<LocationName> LocNameArray = new ArrayList<LocationName>();
 
-  Connection LocNameConnection;
+  static Connection LocNameConnection;
 
   public LocNameDAOImp(Connection nodeConnection, ArrayList<LocationName> LocNameArray) {
     this.LocNameConnection = nodeConnection;
     this.LocNameArray = LocNameArray;
   }
 
-  @Override
-  public void Import(String filePath) {
+  public static void Import(String filePath) {
     try {
       Scanner input = new Scanner(System.in);
       System.out.println("Please input the full qualified path of the file you want to import");
@@ -55,8 +54,7 @@ public class LocNameDAOImp implements IDataBase, ILocNameDAO {
     }
   }
 
-  @Override
-  public void Export(String filePath) {
+  public static void Export(String filePath) {
     try {
       Statement st = LocNameConnection.createStatement();
       ResultSet rs = st.executeQuery("SELECT * FROM Prototype2_schema.\"LocationName\"");

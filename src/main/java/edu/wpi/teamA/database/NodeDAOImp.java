@@ -8,31 +8,39 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class NodeDAOImp implements IDataBase, INodeDAO {
-  ArrayList<Node> NodeArray;
+public class NodeDAOImp implements IDataBase, INodeDAO, IMapDAO {
 
-  Connection nodeConnection;
+  public static Connection nodeConnection = createConnection();
 
   public NodeDAOImp(Connection nodeConnection, ArrayList<Node> NodeArray) {
-    this.nodeConnection = nodeConnection;
-    this.NodeArray = NodeArray;
+    NodeDAOImp.nodeConnection = NodeDAOImp.nodeConnection;
   }
   // ResultSet
 
-  @Override
-  public void Import(String filePath) {
+  public static Connection createConnection() {
+    String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamadb";
+    String user = "teama";
+    String password = "teama10";
+
     try {
-      Scanner input = new Scanner(System.in);
-      System.out.println("Please input the full qualified path of the file you want to import");
-      filePath = input.nextLine();
+      return DriverManager.getConnection(url, user, password);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public static void Import(String filePath, String fileName) {
+    try {
+      String newFile = filePath + fileName;
       BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
       csvReader.readLine();
       String row;
 
       String sqlCreateEdge =
-          "Create Table if not exists Prototype2_schema.Node"
+          "Create Table if not exists \"Prototype2_schema\".\"Node\""
               + "(nodeID   int,"
-              + "xccord    int,"
+              + "xcoord    int,"
               + "ycoord    int,"
               + "floor     Varchar(600),"
               + "building  Varchar(600))";
@@ -44,7 +52,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
 
         PreparedStatement ps =
             nodeConnection.prepareStatement(
-                "INSERT INTO Prototype2_schema.\"Node\" VALUES (?, ?, ?, ?, ?)");
+                "INSERT INTO \"Prototype2_schema\".\"Node\" VALUES (?, ?, ?, ?, ?)");
         ps.setInt(1, Integer.parseInt(data[0]));
         ps.setInt(2, Integer.parseInt(data[1]));
         ps.setInt(3, Integer.parseInt(data[2]));
@@ -59,12 +67,11 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
     }
   }
 
-  @Override
-  public void Export(String folderExportPath) {
+  public static void Export(String folderExportPath) {
     try {
       String newFile = folderExportPath + "/Node.csv";
       Statement st = nodeConnection.createStatement();
-      ResultSet rs = st.executeQuery("SELECT * FROM Prototype2_schema.\"Node\"");
+      ResultSet rs = st.executeQuery("SELECT * FROM \"Prototype2_schema\".\"Node\"");
 
       FileWriter csvWriter = new FileWriter(newFile);
 

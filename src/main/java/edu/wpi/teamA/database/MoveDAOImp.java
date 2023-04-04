@@ -12,15 +12,14 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
 
   ArrayList<Move> MoveArray = new ArrayList<Move>();
 
-  Connection moveConnection;
+  static Connection moveConnection;
 
   public MoveDAOImp(Connection moveConnection, ArrayList<Move> MoveArray) {
     this.moveConnection = moveConnection;
     this.MoveArray = MoveArray;
   }
 
-  @Override
-  public void Import(String filePath) {
+  public static void Import(String filePath) {
     try {
       Scanner input = new Scanner(System.in);
       System.out.println("Please input the full qualified path of the file you want to import");
@@ -30,7 +29,7 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
       String row;
 
       String sqlCreateEdge =
-          "Create Table if not exists Prototype2_schema.Node"
+          "Create Table if not exists \"Prototype2_schema.Node\""
               + "(nodeID   Int,"
               + "LongName  Varchar(600),"
               + "date      date)";
@@ -55,8 +54,7 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
     }
   }
 
-  @Override
-  public void Export(String filePath) {
+  public static void Export(String filePath) {
     try {
       Statement st = moveConnection.createStatement();
       ResultSet rs = st.executeQuery("SELECT * FROM Prototype2_schema.\"Move\"");
