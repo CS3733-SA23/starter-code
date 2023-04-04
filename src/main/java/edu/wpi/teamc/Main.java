@@ -10,15 +10,10 @@ public class Main {
     Scanner scanner = new Scanner(System.in);
 
     Graph graph = new Graph();
-    /*try {
-      graph.init();
-    } catch (IOException e) {
-      System.out.println("Exception!");
-    }*/
     graph.syncWithDB();
 
-    String startNode = "305";
-    String endNode = "105";
+    String startNode = "1335";
+    String endNode = "1535";
 
     graph.printDirectionsAStar(startNode, endNode);
 
