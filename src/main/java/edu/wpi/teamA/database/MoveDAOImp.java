@@ -20,11 +20,11 @@ public class MoveDAOImp implements IDataBase, IMoveDAO{
     }
 
     @Override
-    public void Import() {
+    public void Import(String filePath) {
         try {
             Scanner input = new Scanner(System.in);
             System.out.println("Please input the full qualified path of the file you want to import");
-            String filePath = input.nextLine();
+            filePath = input.nextLine();
             BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
             csvReader.readLine();
             String row;
@@ -32,8 +32,8 @@ public class MoveDAOImp implements IDataBase, IMoveDAO{
             String sqlCreateEdge =
                     "Create Table if not exists Prototype2_schema.Node"
                             + "(nodeID   Int,"
-                            + "LongName     Varchar(600),"
-                            + "Date  Varchar(600))";
+                            + "LongName  Varchar(600),"
+                            + "date      date)";
             Statement stmtMove = moveConnection.createStatement();
             stmtMove.execute(sqlCreateEdge);
 
@@ -57,7 +57,7 @@ public class MoveDAOImp implements IDataBase, IMoveDAO{
     }
 
     @Override
-    public void Export() {
+    public void Export(String filePath) {
         try {
             Statement st = moveConnection.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Prototype2_schema.\"Move\"");
@@ -81,8 +81,12 @@ public class MoveDAOImp implements IDataBase, IMoveDAO{
         }
     }
 
+    /**
+     * create a new instance of Move and Insert the new object into database
+     */
     @Override
     public void Add() {
+
 
     }
 

@@ -20,11 +20,11 @@ public class LocNameDAOImp implements IDataBase,ILocNameDAO{
     }
 
     @Override
-    public void Import() {
+    public void Import(String filePath) {
         try {
             Scanner input = new Scanner(System.in);
             System.out.println("Please input the full qualified path of the file you want to import");
-            String filePath = input.nextLine();
+            filePath = input.nextLine();
             BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
             csvReader.readLine();
             String row;
@@ -57,7 +57,7 @@ public class LocNameDAOImp implements IDataBase,ILocNameDAO{
     }
 
     @Override
-    public void Export() {
+    public void Export(String filePath) {
         try {
             Statement st = LocNameConnection.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Prototype2_schema.\"LocationName\"");
