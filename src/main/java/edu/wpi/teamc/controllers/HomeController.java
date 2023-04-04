@@ -24,6 +24,17 @@ public class HomeController {
 
   @FXML private Button signagePage;
 
+  @FXML private Button logOut;
+  @FXML private Button editMap;
+
+  @FXML private Button mapHistory;
+
+  @FXML private Button mapPage;
+
+  @FXML private Button importButton;
+
+  @FXML private Button exportButton;
+
   @FXML
   void getFlowerDeliveryPage(ActionEvent event) {
     Navigation.navigate(Screen.FLOWER);
@@ -35,7 +46,9 @@ public class HomeController {
   }
 
   @FXML
-  void getHelpPage(ActionEvent event) {}
+  void getHelpPage(ActionEvent event) {
+    Navigation.navigate(Screen.HELP);
+  }
 
   @FXML
   void getMealDeliveryPage(ActionEvent event) {
@@ -60,4 +73,24 @@ public class HomeController {
   /** Method run when controller is initialized */
   @FXML
   public void initialize() {}
+
+  @FXML
+  void getEditMap(ActionEvent event) {}
+
+  @FXML
+  void getLogOut(ActionEvent event) {}
+
+  @FXML
+  void getMapHistory(ActionEvent event) {
+    Navigation.navigate(Screen.MAP_HISTORY_PAGE);
+  }
+
+  @FXML
+  void getMapPage(ActionEvent event) {}
+
+  @FXML
+  void getImportButton(ActionEvent event) {}
+
+  @FXML
+  void getExportButton(ActionEvent event) {}
 }
