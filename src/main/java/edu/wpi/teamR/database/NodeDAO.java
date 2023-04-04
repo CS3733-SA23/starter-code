@@ -53,6 +53,7 @@ public class NodeDAO {
         sqlInsert.setInt(3, yCoord);
         sqlInsert.setString(4, floorNum);
         sqlInsert.setString(5, building);
+        statement.executeUpdate(sqlInsert.toString());
         Node aNode = new Node(nodeID, xCoord, yCoord, floorNum, building);
         nodes.add(aNode);
         closeConnection(connection);
@@ -69,11 +70,11 @@ public class NodeDAO {
     public void deleteNodes(Integer nodeID, Integer xCoord, Integer yCoord, String floorNum, String building) throws SQLException, ClassNotFoundException {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
+        String sqlDelete;
         if(nodeID == null && xCoord == null && yCoord == null && floorNum == null && building == null){
-            String sqlDeleteALL = "DELETE FROM " + schemaName + "." + tableName + ";";
-            statement.executeUpdate(sqlDeleteALL);
+            sqlDelete = "DELETE FROM " + schemaName + "." + tableName + ";";
         } else{
-            String sqlDelete = "DELETE FROM " + schemaName + "." + tableName + " WHERE ";
+            sqlDelete = "DELETE FROM " + schemaName + "." + tableName + " WHERE ";
             int count = 0;
             if(nodeID != null){
                 count++;
@@ -98,22 +99,22 @@ public class NodeDAO {
                     sqlDelete += " AND ";
                 }
                 count++;
-                sqlDelete += "floorNum = " + "\'" + floorNum+  "\'";
+                sqlDelete += "floorNum = " + "'" + floorNum+ "'";
             }
             if(building != null){
                 if(count == 0){
                     sqlDelete += " AND ";
                 }
-                sqlDelete += "building = " + "\'" + building + "\'";
+                sqlDelete += "building = " + "'" + building + "'";
             }
             sqlDelete += ";";
-            statement.executeUpdate(sqlDelete);
         }
+        statement.executeUpdate(sqlDelete);
         closeConnection(connection);
         for(int i = 0; i<nodes.size(); i++){
-            Boolean nodeIDCheck = nodeID == null || nodeID == nodes.get(i).getNodeID();
-            Boolean xCoordCheck = xCoord == null || xCoord == nodes.get(i).getxCoord();
-            Boolean yCoordCheck = yCoord == null || yCoord == nodes.get(i).getyCoord();
+            Boolean nodeIDCheck = nodeID == null || nodeID.equals(nodes.get(i).getNodeID());
+            Boolean xCoordCheck = xCoord == null || xCoord.equals(nodes.get(i).getxCoord());
+            Boolean yCoordCheck = yCoord == null || yCoord.equals(nodes.get(i).getyCoord());
             Boolean floorNumCheck = floorNum == null || floorNum.equals(nodes.get(i).getFloorNum());
             Boolean buildingCheck = building == null || building.equals(nodes.get(i).getBuilding());
             if(nodeIDCheck && xCoordCheck && yCoordCheck && floorNumCheck && buildingCheck){
@@ -131,7 +132,7 @@ public class NodeDAO {
         Connection connection = createConnection();
         Statement statement = connection.createStatement();
         String sqlUpdate = "UPDATE " + schemaName + "." + tableName + " SET xCoord = " + xCoord;
-        sqlUpdate += ", yCoord = " + yCoord + ", floorNum = \'" + floorNum+ "\' , building = \'" + building + "\' WHERE nodeID = " + nodeID + ";";
+        sqlUpdate += ", yCoord = " + yCoord + ", floorNum = '" + floorNum+ "' , building = '" + building + "' WHERE nodeID = " + nodeID + ";";
         statement.executeUpdate(sqlUpdate);
         closeConnection(connection);
         Node aNode = selectNodes(nodeID, null, null, null, null).get(0);
