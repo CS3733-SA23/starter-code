@@ -8,7 +8,8 @@ public class Graph {
         this.pathfindingArea = new HashMap<>();
     }
 
-    public void prepGraph(){
+    public void prepGraph()
+    {
         // List<l1nodes> allNodes = NodeDAO.getALLNodes();
 
         // traverse through the node entities  (l1nodes)

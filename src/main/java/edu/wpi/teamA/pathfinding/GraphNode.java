@@ -93,10 +93,6 @@ public class GraphNode {
         this.nodeType = nodeType;
     }
 
-    public ArrayList<Edge> getEdgeList() {
-        return edgeList;
-    }
-
     public void setEdgeList(ArrayList<Edge> edgeList) {
         this.edgeList = edgeList;
     }

@@ -3,6 +3,7 @@ package edu.wpi.teamA.pathfinding;
 import edu.wpi.teamA.database.Edge;
 import edu.wpi.teamA.database.Node;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchController {
 
@@ -35,10 +36,16 @@ public class SearchController {
 //        }
 //    }
 
-    ArrayList<Node> nodeList;
+    ArrayList<GraphNode> nodeList;
     ArrayList<Edge> edgeList;
 
-    public ArrayList pathOfNodes(int startID, int endID) {
+    /**
+     * pathOfNodesBFS: BFS Algorithm Implementation
+     * @param startID
+     * @param endID
+     * @return path of nodes
+     */
+    public ArrayList pathOfNodesBFS(int startID, int endID) {
 
 
         ArrayList<Integer> queue = new ArrayList<Integer>();
@@ -46,7 +53,7 @@ public class SearchController {
 
         int currentID = startID;
 
-        GraphNode currentGNode = currentGNode = graph.getGraphNode(currentID);
+        GraphNode currentGNode = graph.getGraphNode(currentID);
 
         while (currentID != endID) {
             for (int i = 0; i < currentGNode.edgeCount(); i++) {
@@ -71,6 +78,7 @@ public class SearchController {
 //                }
 
                 if (!currentGNode.isVisited()) { // if not visited, add to queue and add to wrapping queue
+                    graph.getGraphNode(otherNodeID).setPrev(currentGNode);
                     queue.add(otherNodeID);
                 }
             }
@@ -89,4 +97,59 @@ public class SearchController {
 
         return path;
     }
+
+
+    /**
+     * pathOfNodesAStar: A* Algorithm Implementation
+     * @param startID
+     * @param endID
+     * @return path of nodes
+     */
+    public ArrayList pathOfNodesAStar(int startID, int endID) {
+        ArrayList<Integer> queue = new ArrayList<Integer>();
+        ArrayList<Integer> path = new ArrayList<Integer>();
+
+        GraphNode endNode = graph.getGraphNode(endID);
+        int endX = endNode.getXcoord();
+        int endY = endNode.getYcoord();
+        GraphNode currentNode = graph.getGraphNode(startID);
+        int currentX = currentNode.getXcoord();
+        int currentY = currentNode.getYcoord();
+
+        //currentNode info
+        currentNode.setgCost(0);
+        currentNode.sethCost((int) (Math.hypot(endX-currentX, endX-currentX)));
+
+        while(currentNode.getNodeID() != endID) {
+            for(int i=0; i<currentNode.edgeCount(); i++){
+                Edge currentEdge = currentNode.getEdge(i);
+                int otherNodeID;
+                GraphNode otherGNode;
+                if (currentEdge.getStartNode() == currentNode.getNodeID()) { // check whether node is starting node or ending node in the
+                    // edge
+                    otherNodeID = currentEdge.getEndNode();
+                } else {
+                    otherNodeID = currentEdge.getStartNode();
+                }
+                otherGNode = graph.getGraphNode(otherNodeID);
+                if(!otherGNode.isVisited()){
+                    int gCost = currentNode.getgCost()+ (int) Math.hypot(currentX-otherGNode.getXcoord(),currentY-otherGNode.getYcoord());
+                    int hCost = (int) Math.hypot(endX-otherGNode.getXcoord(),endY-otherGNode.getYcoord());
+                    otherGNode.setgCost(gCost);
+                    otherGNode.sethCost(hCost);
+                    insertIntoPQ(queue, otherNodeID); // Not implemented yet
+                }
+            }
+        }
+
+
+
+        return path;
+    }
+
+    public void insertIntoPQ(ArrayList<Integer> pQ, int nodeID) {
+        //do it
+
+    }
+
 }
