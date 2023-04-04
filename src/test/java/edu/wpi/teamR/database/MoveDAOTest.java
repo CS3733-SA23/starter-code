@@ -13,13 +13,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MoveDAOTest {
     static MoveDAO dao;
+    static NodeDAO aNodeDao;
+
+    static LocationNameDAO alocationNameDAO;
 
     @BeforeAll
     static void setUp() throws Exception {
-        dao = MoveDAO.createInstance("teamr", "teamr150", "node",
+        dao = MoveDAO.createInstance("teamr", "teamr150", "move",
                 "test", "jdbc:postgresql://database.cs.wpi.edu:5432/teamrdb");
-        dao.addMove(342, "The Move #1", Date.valueOf("1/23/3333")); //TODO: Fix moveDate
-
+        aNodeDao = NodeDAO.createInstance("teamr", "teamr150", "node",
+                "test", "jdbc:postgresql://database.cs.wpi.edu:5432/teamrdb");
+        alocationNameDAO = LocationNameDAO.createInstance("teamr", "teamr150", "locationName",
+                "test", "jdbc:postgresql://database.cs.wpi.edu:5432/teamrdb");
+        dao.deleteMove(null, null, null);
+        aNodeDao.deleteNodes(null, null, null, null, null);
+        alocationNameDAO.deleteLocationNames(null, null, null);
+        aNodeDao.addNode(342, 100, 100, "L100", "Outside");
+        alocationNameDAO.addLocationName("The Move #1", "one", "OUTS");
+        dao.addMove(342, "The Move #1", Date.valueOf("2023-1-23")); //TODO: Fix moveDate
     }
 
     @AfterAll

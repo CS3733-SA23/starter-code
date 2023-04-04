@@ -68,6 +68,7 @@ public class NodeDAO {
         Statement statement = connection.createStatement();
         if(nodeID == null && xCoord == null && yCoord == null && floorNum == null && building == null){
             String sqlDeleteALL = "DELETE FROM " + schemaName + "." + tableName + ";";
+            statement.executeUpdate(sqlDeleteALL);
         } else{
             String sqlDelete = "DELETE FROM " + schemaName + "." + tableName + "WHERE ";
             int count = 0;

@@ -23,6 +23,14 @@ public class LocationNameDAO {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
     ResultSet resultSet = statement.executeQuery("SELECT * FROM "+schemaName+"."+tableName+";");
+    while(resultSet.next()){
+      String longName = resultSet.getString("longName");
+      String shortName = resultSet.getString("shortName");
+      String nodeType = resultSet.getString("nodeType");
+      LocationName aLocationName = new LocationName(longName, shortName, nodeType);
+      locationNames.add(aLocationName);
+    }
+    closeConnection(connection);
   }
 
   public static LocationNameDAO createInstance(String username, String password, String tableName, String schemaName, String connectionURL) throws SQLException, ClassNotFoundException {
@@ -40,12 +48,10 @@ public class LocationNameDAO {
     return locationNames;
   }
 
-  public LocationName addLocationName(String longName, String shortName, String nodeType)
-      throws SQLException, ClassNotFoundException {
+  public LocationName addLocationName(String longName, String shortName, String nodeType) throws SQLException, ClassNotFoundException {
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
-    String sqlInsert =
-        "INSERT INTO " + schemaName + "." + tableName + "(longName, shortName, nodeType) ";
+    String sqlInsert = "INSERT INTO " + schemaName + "." + tableName + "(longName, shortName, nodeType) ";
     sqlInsert += "VALUES(\'" + longName + "\',\'" + shortName + "\',\'" + nodeType + "\');";
     statement.executeUpdate(sqlInsert);
     LocationName aLocationName = new LocationName(longName, shortName, nodeType);
@@ -60,6 +66,7 @@ public class LocationNameDAO {
     Statement statement = connection.createStatement();
     if (longName == null && shortName == null && nodeType == null) {
       String sqlDeleteALL = "DELETE FROM " + schemaName + "." + tableName + ";";
+      statement.executeUpdate(sqlDeleteALL);
     } else {
       String sqlDelete = "DELETE FROM " + schemaName + "."+tableName + "WHERE longName =" + "\'" + longName + "\'";
       int count = 0;
@@ -68,60 +75,56 @@ public class LocationNameDAO {
         sqlDelete += "longName ="+"\'"+longName+"\'";
       }
       if (shortName != null) {
+        if(count == 0){
+          sqlDelete += "shortName = " + "\'" + shortName + "\'";
+        }
         count++;
-        sqlDelete += "shortName = " + "\'" + shortName + "\'";
       }
       if (nodeType != null) {
-        count++;
-        sqlDelete += "nodeType = " + "\'" + nodeType + "\'";
+        if(count == 0){
+          sqlDelete += "nodeType = " + "\'" + nodeType + "\'";
+        }
       }
       sqlDelete += "cascade ;";
       statement.executeUpdate(sqlDelete);
-      closeConnection(connection);
     }
+    closeConnection(connection);
     for (int i = 0; i < locationNames.size(); i++) {
-      Boolean longNameCheck = longName == null || longName == locationNames.get(i).getLongName();
-      Boolean shortNameCheck =
-          shortName == null || shortName == locationNames.get(i).getShortName();
-      Boolean nodeTypeCheck = nodeType == null || nodeType == locationNames.get(i).getNodeType();
+      Boolean longNameCheck = longName == null || longName.equals(locationNames.get(i).getLongName());
+      Boolean shortNameCheck = shortName == null || shortName.equals(locationNames.get(i).getShortName());
+      Boolean nodeTypeCheck = nodeType == null || nodeType.equals(locationNames.get(i).getNodeType());
       if (longNameCheck && shortNameCheck && nodeTypeCheck) {
         locationNames.remove(i);
+        i--;
       }
     }
   }
 
-  public void modifyLocationNameByID(String longName, String shortName, String nodeType)
-      throws SQLException, ClassNotFoundException {
+  public void modifyLocationNameByLongName(String longName, String shortName, String nodeType) throws SQLException, ClassNotFoundException, NotFoundException {
+    int count = 0;
+    for(LocationName theLocation : locationNames){
+      if(theLocation.getLongName().equals(longName)){
+        count++;
+      }
+    }
+    if(count == 0){
+      throw new NotFoundException();
+    }
     Connection connection = createConnection();
     Statement statement = connection.createStatement();
-    String sqlUpdate =
-        "UPDATE "
-            + schemaName
-            + "."
-            + tableName
-            + " SET longName = \'"
-            + longName
-            + "\', \'"
-            + shortName
-            + "\', \'"
-            + nodeType
-            + "\' WHERE longName = "
-            + longName;
+    String sqlUpdate = "UPDATE " + schemaName + "." + tableName + " SET longName = \'" + longName + "\', shortName = \'" + shortName + "\', nodeType = \'" + nodeType + "\' WHERE longName = " + longName;
     statement.executeUpdate(sqlUpdate);
     closeConnection(connection);
     LocationName aLocationName = selectLocationNames(longName, null, null).get(0);
     aLocationName.setShortName(shortName);
     aLocationName.setNodeType(nodeType);
   }
-
-  public ArrayList<LocationName> selectLocationNames(
-      String longName, String shortName, String nodeType) {
+  public ArrayList<LocationName> selectLocationNames(String longName, String shortName, String nodeType) {
     ArrayList<LocationName> aList = new ArrayList<LocationName>();
     for (int i = 0; i < locationNames.size(); i++) {
-      Boolean longNameCheck = longName == null || longName == locationNames.get(i).getLongName();
-      Boolean shortNameCheck =
-          shortName == null || shortName == locationNames.get(i).getShortName();
-      Boolean nodeTypeCheck = nodeType == null || nodeType == locationNames.get(i).getNodeType();
+      Boolean longNameCheck = longName == null || longName.equals(locationNames.get(i).getLongName());
+      Boolean shortNameCheck = shortName == null || shortName.equals(locationNames.get(i).getShortName());
+      Boolean nodeTypeCheck = nodeType == null || nodeType.equals(locationNames.get(i).getNodeType());
       if (longNameCheck && shortNameCheck && nodeTypeCheck) {
         aList.add(locationNames.get(i));
       }
@@ -144,8 +147,7 @@ public class LocationNameDAO {
     outputFileWriter.close();
   }
 
-  public void readCSV(String inputFile)
-      throws SQLException, ClassNotFoundException, FileNotFoundException {
+  public void readCSV(String inputFile) throws SQLException, ClassNotFoundException, FileNotFoundException {
     Scanner sc = new Scanner(new File(inputFile));
     sc.useDelimiter(",|\n");
     sc.nextLine();
@@ -155,7 +157,6 @@ public class LocationNameDAO {
       String nodeType = sc.next();
       addLocationName(longName, shortName, nodeType);
     }
-
     sc.close();
   }
 
