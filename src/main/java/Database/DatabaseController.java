@@ -226,8 +226,10 @@ public enum DatabaseController {
     return moveList;
   }
 
-  public List<MoveAttribute> getServiceRequests() {
-    List<MoveAttribute> moveAttributes = new LinkedList<>();
+
+
+  public List<HospitalEdge> getEdges() {
+    List<HospitalEdge> hospitalEdges = new LinkedList<>();
 
     try {
       Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
@@ -238,43 +240,19 @@ public enum DatabaseController {
       ResultSet rs = stmt.executeQuery(sql);
 
       while (rs.next()) {
-        moveAttributes.add(
-                new MoveAttribute(
-                        rs.getInt("nodeid") + "", rs.getString("longName"), rs.getString("date")));
+        hospitalEdges.add(
+                new HospitalEdge(
+                        rs.getInt("nodeid") + "", rs.getString("longName")));
       }
 
-      return moveAttributes;
+      return hospitalEdges;
     } catch (SQLException e) {
       throw new RuntimeException("Something went wrong");
     }
   }
 
-
-  public List<MoveAttribute> getEdges() {
-    List<MoveAttribute> moveAttributes = new LinkedList<>();
-
-    try {
-      Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
-
-      String sql =
-              "SELECT \"nodeID\", \"longName\", \"date\" FROM teame.\"Node\" NATURAL JOIN teame.\"Move\" WHERE floor = '"
-                      + "';";
-      ResultSet rs = stmt.executeQuery(sql);
-
-      while (rs.next()) {
-        moveAttributes.add(
-                new MoveAttribute(
-                        rs.getInt("nodeid") + "", rs.getString("longName"), rs.getString("date")));
-      }
-
-      return moveAttributes;
-    } catch (SQLException e) {
-      throw new RuntimeException("Something went wrong");
-    }
-  }
-
-  public List<MoveAttribute> getNodes() {
-    List<MoveAttribute> moveAttributes = new LinkedList<>();
+  public List<HospitalNode> getNodes() {
+    List<HospitalNode> hospitalNodes = new LinkedList<>();
 
     try {
       Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
@@ -284,19 +262,19 @@ public enum DatabaseController {
       ResultSet rs = stmt.executeQuery(sql);
 
       while (rs.next()) {
-        moveAttributes.add(
-                new MoveAttribute(
+        hospitalNodes.add(
+                new HospitalNode(
                         rs.getInt("nodeid") + "", rs.getString("longName"), rs.getString("date")));
       }
 
-      return moveAttributes;
+      return hospitalNodes;
     } catch (SQLException e) {
       throw new RuntimeException("Something went wrong");
     }
   }
 
-  public List<MoveAttribute> getLocationName() {
-    List<MoveAttribute> moveAttributes = new LinkedList<>();
+  public List<LocationName> getLocationName() {
+    List<LocationName> locationNames = new LinkedList<>();
 
     try {
       Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
@@ -306,12 +284,12 @@ public enum DatabaseController {
       ResultSet rs = stmt.executeQuery(sql);
 
       while (rs.next()) {
-        moveAttributes.add(
-                new MoveAttribute(
+        locationNames.add(
+                new LocationName(
                         rs.getInt("nodeid") + "", rs.getString("longName"), rs.getString("date")));
       }
 
-      return moveAttributes;
+      return locationNames;
     } catch (SQLException e) {
       throw new RuntimeException("Something went wrong");
     }
