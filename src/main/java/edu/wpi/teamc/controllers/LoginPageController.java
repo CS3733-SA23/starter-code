@@ -8,17 +8,24 @@ import javafx.scene.control.Button;
 
 public class LoginPageController {
 
-  @FXML private Button Map;
+  @FXML private Button GuestPage;
 
-  @FXML private Button AdminMapPage;
+  @FXML private Button AdminPage;
+
+  @FXML private Button clear;
 
   @FXML
-  void getAdminMapPage(ActionEvent event) {
+  void getAdminPage(ActionEvent event) {
     Navigation.navigate(Screen.HOME);
   }
 
   @FXML
-  void getMapPage(ActionEvent event) {
+  void getGuestPage(ActionEvent event) {
     Navigation.navigate(Screen.GUEST_HOME);
+  }
+
+  @FXML
+  void getClear(ActionEvent event) {
+    Navigation.navigate(Screen.LOGIN);
   }
 }
