@@ -2,9 +2,7 @@ package edu.wpi.teamc.serviceRequest;
 
 public class ConferenceRoom {
   private String longName;
-
   private String shortName;
-
   private Boolean availability;
 
   // Should it be this.longName = longName? and this.shortName = shortName?
