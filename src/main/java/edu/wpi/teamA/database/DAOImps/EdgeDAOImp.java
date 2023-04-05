@@ -19,13 +19,14 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
 
   public EdgeDAOImp(ArrayList<Edge> EdgeArray) {
     this.edgeArray = EdgeArray;
-
     // check if the table exist
     // if it exist, populate the array list
     // use select * to get all info from the table
     // create objects based off of the results
-    //
+  }
 
+  public EdgeDAOImp() {
+    this.edgeArray = new ArrayList<Edge>();
   }
 
   public static void Import(String filePath) {
