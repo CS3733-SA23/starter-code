@@ -28,7 +28,7 @@ public class LowerLevelTwoMapNavController {
   @FXML MFXComboBox<String> destinationList;
   Floor currentFloor = Floor.LOWER_TWO;
 
-  DatabaseController db = new DatabaseController();
+  DatabaseController db = new DatabaseController("teame", "teame50");
   DatabaseGraphController graphController = new DatabaseGraphController(db);
   ObservableList<String> floorLocations =
       FXCollections.observableArrayList(
@@ -39,7 +39,7 @@ public class LowerLevelTwoMapNavController {
   public void initialize() {
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     groundFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.GROUND_FLOOR));
-    lowerLevelOneButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOWERR_LEVEL_ONE));
+    lowerLevelOneButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOWER_ONE));
     firstFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_ONE));
     secondFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_TWO));
     thirdFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_THREE));

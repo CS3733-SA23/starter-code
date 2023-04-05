@@ -126,6 +126,7 @@ public class DatabaseGraphController {
       throw new RuntimeException("Something went wrong");
     }
   }
+
   public List<String> getLongNamesFromMove(List<MoveAttribute> mv) {
     List<String> longNames = new ArrayList<>();
     for (MoveAttribute moveAttribute : mv) {
