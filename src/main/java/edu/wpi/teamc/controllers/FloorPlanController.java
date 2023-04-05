@@ -2,69 +2,44 @@ package edu.wpi.teamc.controllers;
 
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 
-public class FlowerController {
-  @FXML private MFXButton goHome;
-  @FXML private MFXButton submit;
+public class FloorPlanController {
+  @FXML private MenuItem choice1;
 
-  @FXML private MFXButton clear;
+  @FXML private MenuItem choice2;
 
-  @FXML private MenuItem chocie0;
-
-  @FXML private MenuItem chocie1;
-
-  @FXML private MenuItem chocie2;
-
-  @FXML private MenuItem chocie3;
+  @FXML private MenuItem choice3;
 
   @FXML private MenuItem choice4;
 
   @FXML private MenuButton menuButton;
 
   @FXML
-  void getChoice0() {
-    menuButton.setText("--Please Select Bouquet Option--");
+  void getChoice1(ActionEvent event) {
+    menuButton.setText("Floor 1");
   }
 
   @FXML
-  void getChoice1() {
-    menuButton.setText("Roses");
+  void getChoice2(ActionEvent event) {
+    menuButton.setText("Floor 2");
   }
 
   @FXML
-  void getChoice2() {
-    menuButton.setText("White Roses");
+  void getChoice3(ActionEvent event) {
+    menuButton.setText("Floor 3");
   }
 
   @FXML
-  void getChoice3() {
-    menuButton.setText("Random Bouquet");
+  void getChoice4(ActionEvent event) {
+    menuButton.setText("Floor 4");
   }
 
   @FXML
-  void getChoice4() {
-    menuButton.setText("Ian's Holiday Special");
-  }
-
-  @FXML
-  public void getGoHome() {
-    goHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-  }
-
-  @FXML
-  void getClear() {
-    clear.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWER));
-  }
-
-  @FXML
-  void getSubmit() {
-    submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
-  }
+  void getMenuButton(ActionEvent event) {}
 
   @FXML
   void getFlowerDeliveryPage(ActionEvent event) {

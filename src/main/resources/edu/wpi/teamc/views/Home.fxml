@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.HomeController">
     <children>
-        <Rectangle fill="#bae3e0" height="406.0" stroke="#bae3e0" strokeType="INSIDE" width="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <Rectangle fill="#bae3e0" height="407.0" stroke="#bae3e0" strokeType="INSIDE" width="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         <Rectangle fill="TEAL" height="380.0" layoutX="12.0" layoutY="13.0" stroke="TEAL" strokeType="INSIDE" width="575.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="13.0" />
         <Text fill="WHITE" layoutX="191.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Home Menu" wrappingWidth="217.6328125" AnchorPane.bottomAnchor="318.80078125" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="191.3671875" AnchorPane.topAnchor="62.892578125">
             <font>
@@ -98,6 +98,14 @@
                   <Font name="Verdana Bold" size="12.0" />
                </font>
             </Button>
+            <Button fx:id="editMap2" layoutX="10.0" layoutY="102.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getPathfindingPage" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: BAE3E0;" text="Pathfinding" textFill="#004646">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font>
+            </Button>
             <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Place Holder" textFill="#004646" visible="false">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -141,7 +149,7 @@
                  <font>
                      <Font name="Verdana Bold" size="12.0" />
                  </font>
-             </Button>
+            </Button>
             <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Place Holder" textFill="#004646" visible="false">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -185,6 +193,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#getMapPage" text="Map" />
                   <MenuItem mnemonicParsing="false" onAction="#getEditMap" text="Edit Map" />
                   <MenuItem mnemonicParsing="false" onAction="#getMapHistory" text="Map History" />
+                <MenuItem mnemonicParsing="false" onAction="#getPathfindingPage" text="Pathfinding" />
                   <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>

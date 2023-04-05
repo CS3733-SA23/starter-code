@@ -1,13 +1,14 @@
 package edu.wpi.teamc.serviceRequest;
 
 public interface IServiceRequest {
-  public void addRequest();
-
-  public void updateRequest();
-
-  public enum status {
+  public enum STATUS {
     PENDING,
     INPROGRESS,
     COMPLETE
+  }
+
+  public enum TYPE {
+    MEAL,
+    CONFERENCEROOM
   }
 }

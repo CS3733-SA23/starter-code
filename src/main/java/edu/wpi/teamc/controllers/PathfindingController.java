@@ -1,69 +1,58 @@
 package edu.wpi.teamc.controllers;
 
+import edu.wpi.teamc.map.Graph;
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.sql.*;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.Label;
 
-public class FlowerController {
+public class PathfindingController {
+  Graph graph = new Graph();
   @FXML private MFXButton goHome;
   @FXML private MFXButton submit;
-
   @FXML private MFXButton clear;
+  @FXML private MFXTextField startNode;
+  @FXML private MFXTextField endNode;
 
-  @FXML private MenuItem chocie0;
-
-  @FXML private MenuItem chocie1;
-
-  @FXML private MenuItem chocie2;
-
-  @FXML private MenuItem chocie3;
-
-  @FXML private MenuItem choice4;
-
-  @FXML private MenuButton menuButton;
+  @FXML private Label directionsbox;
 
   @FXML
-  void getChoice0() {
-    menuButton.setText("--Please Select Bouquet Option--");
-  }
-
-  @FXML
-  void getChoice1() {
-    menuButton.setText("Roses");
-  }
-
-  @FXML
-  void getChoice2() {
-    menuButton.setText("White Roses");
-  }
-
-  @FXML
-  void getChoice3() {
-    menuButton.setText("Random Bouquet");
-  }
-
-  @FXML
-  void getChoice4() {
-    menuButton.setText("Ian's Holiday Special");
-  }
-
-  @FXML
-  public void getGoHome() {
+  void getGoHome() {
     goHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   @FXML
-  void getClear() {
-    clear.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWER));
+  void getClear(javafx.event.ActionEvent event) {
+    startNode.clear();
+    endNode.clear();
+    directionsbox.setText("");
   }
 
   @FXML
-  void getSubmit() {
-    submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
+  void getSubmit(javafx.event.ActionEvent event) {
+    String startNodeString = startNode.getText();
+    String endNodeString = endNode.getText();
+    List<String> directions = graph.stringDirectionsAStar(startNodeString, endNodeString);
+    String directionsString = "";
+
+    directionsString += directions.get(0);
+    for (String s : directions.subList(1, directions.size() - 1)) {
+      directionsString += "->" + s;
+    }
+
+    directionsString += "\nWeight: " + directions.get(directions.size() - 1);
+    directionsbox.setWrapText(true);
+    directionsbox.setMaxWidth(330);
+    directionsbox.setText(directionsString);
+  }
+  /** Method run when controller is initializes */
+  public void initialize() {
+    graph.syncWithDB();
   }
 
   @FXML
@@ -100,10 +89,6 @@ public class FlowerController {
   void getSignagePage(ActionEvent event) {
     Navigation.navigate(Screen.SIGNAGE);
   }
-
-  /** Method run when controller is initialized */
-  @FXML
-  public void initialize() {}
 
   @FXML
   void getEditMap(ActionEvent event) {}

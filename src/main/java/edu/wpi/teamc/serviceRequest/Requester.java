@@ -4,6 +4,11 @@ public class Requester {
   public int requesterID;
   public String requesterName;
 
+  public Requester(int requesterID, String requesterName) {
+    this.requesterID = requesterID;
+    this.requesterName = requesterName;
+  }
+
   // getters + setters generated
   public int getRequesterID() {
     return requesterID;

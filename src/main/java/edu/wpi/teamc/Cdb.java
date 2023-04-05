@@ -4,6 +4,7 @@ import edu.wpi.teamc.controllers.TableRow;
 import edu.wpi.teamc.map.*;
 import edu.wpi.teamc.map.Edge;
 import edu.wpi.teamc.map.Node;
+import edu.wpi.teamc.serviceRequest.*;
 import java.io.*;
 import java.sql.*;
 import java.text.ParseException;
@@ -17,14 +18,13 @@ import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Cdb {
-  // static Connection connection = null;
-  ObservableList<TableRow> rows = FXCollections.observableArrayList();
-
-  static List<Node> databaseNodeList = new ArrayList<Node>();
-  static List<Edge> databaseEdgeList = new ArrayList<Edge>();
-  static List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
+public class Cdb implements IServiceRequest {
+  // database tables turned into two arrayLists
+  public static List<Node> databaseNodeList = new ArrayList<Node>();
+  public static List<Edge> databaseEdgeList = new ArrayList<Edge>();
+  public static List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
   public static List<Move> databaseMoveList = new ArrayList<Move>();
+  ObservableList<TableRow> rows = FXCollections.observableArrayList();
 
   public static void main(String[] args) {
     try {
@@ -37,12 +37,12 @@ public class Cdb {
       String password = "teamc30";
       Connection connection = DBConnection.getConnection();
 
+      /*Meal meal = new Meal("A", "None");
+      MealRequest mr = new MealRequest(meal, "1", "none", PENDING);
+      Requester rq = new Requester(90, "Bob");
+      Cdb.addMeal(mr, rq);*/
+
       Scanner scanner = new Scanner(System.in);
-      // database tables turned into two arrayLists
-      //      List<Node> databaseNodeList = new ArrayList<Node>();
-      //      List<Edge> databaseEdgeList = new ArrayList<Edge>();
-      //      List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
-      //      List<Move> databaseMoveList = new ArrayList<Move>();
       // load database into lists
       loadDatabaseTables(
           databaseNodeList, databaseEdgeList, databaseLocationNameList, databaseMoveList);
@@ -112,19 +112,18 @@ public class Cdb {
             break;
           case "import from a csv file into the node table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Node.csv";
-            importCSVNode(csvFileName, databaseNodeList);
+            importCSVNode(csvFileName);
             break;
           case "import from a csv file into the edge table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Edge.csv";
-            importCSVEdge(csvFileName, databaseEdgeList, databaseNodeList);
+            importCSVEdge(csvFileName);
             break;
           case "import from a csv file into the location name table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/LocationName.csv";
-            importCSVLocationName(csvFileName, databaseLocationNameList);
-            break;
+            importCSVLocationName(csvFileName);
           case "import from a csv file into the move table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Move.csv";
-            importCSVMove(csvFileName, databaseMoveList);
+            importCSVMove(csvFileName);
             break;
           case "delete a node":
             System.out.println("please enter the node ID of the node you would like to delete");
@@ -166,6 +165,118 @@ public class Cdb {
           e.printStackTrace();
         }
       }
+    }
+  }
+
+  // meal request adding + updating
+  static void addMeal(MealRequest mealReq, Requester requester) {
+    try {
+      String MEALREQUEST = "\"ServiceRequests\".\"mealRequest\"";
+      // query
+      String queryInsertMealReq = "INSERT INTO " + MEALREQUEST + " VALUES (?,?,?,?,?,?);";
+      PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(queryInsertMealReq);
+      {
+        preparedStatement.setInt(1, requester.getRequesterID());
+        preparedStatement.setString(2, requester.getRequesterName());
+        preparedStatement.setString(
+            3, "mealName"); // adds meal by meal name not my class -> can later figure out how
+        // to
+        preparedStatement.setString(4, mealReq.getStat());
+        preparedStatement.setString(5, mealReq.getRoom());
+        preparedStatement.setString(6, mealReq.getSpecialNotes());
+
+        // System.out.println(preparedStatement);
+        // Step 3: Execute the query or update query
+        preparedStatement.executeUpdate();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  static void addConferenceRoomRequest(ConferenceRoomRequest confReq, Requester requester) {
+    try {
+      String CONFREQUEST = "\"ServiceRequests\".\"conferenceRoomRequest\"";
+      // query
+      String queryInsertMealReq = "INSERT INTO " + CONFREQUEST + " VALUES (?,?,?,?,?,?);";
+      PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(queryInsertMealReq);
+      {
+        preparedStatement.setInt(1, requester.getRequesterID());
+        preparedStatement.setString(2, requester.getRequesterName());
+        preparedStatement.setString(
+            3,
+            confReq.getStat()); // adds meal by meal name not my class -> can later figure out how
+        // to
+        preparedStatement.setString(4, confReq.getStartTime());
+        preparedStatement.setString(5, confReq.getEndTime());
+        preparedStatement.setString(6, confReq.getAddtionalNotes());
+
+        preparedStatement.executeUpdate();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  static void updateConferenceRoomRequest(ConferenceRoomRequest confReq) {
+    try {
+      String CONFREQUEST = "\"ServiceRequests\".\"conferenceRoomRequest\"";
+      // query
+      String updateConfQuery =
+          "UPDATE  "
+              + CONFREQUEST
+              + " SET \"status\"=?, "
+              + "\"startTime\"=? "
+              + "\"endTime\"=? "
+              + "WHERE "
+              + "\"status\"=? "
+              + "AND \"startTime\"=?;"
+              + "AND \"endTime\"=?;";
+
+      PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(updateConfQuery);
+      {
+        preparedStatement.setString(
+            3,
+            confReq.getStat()); // adds meal by meal name not my class -> can later figure out how
+        // to
+        preparedStatement.setString(4, confReq.getStartTime());
+        preparedStatement.setString(5, confReq.getEndTime());
+        preparedStatement.executeUpdate();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  static void updateMealRequest(MealRequest mealReq) {
+    try {
+      String MEAL = "\"ServiceRequests\".\"mealRequest\"";
+      // query
+      String updateMealQuery =
+          "UPDATE  "
+              + MEAL
+              + " SET \"meal\"=?, "
+              + "\"status\"=? "
+              + "\"room\"=? "
+              + "WHERE "
+              + "\"meal\"=? "
+              + "AND \"status\"=?;"
+              + "AND \"room\"=?;";
+
+      PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(updateMealQuery);
+      {
+        preparedStatement.setString(
+            3,
+            mealReq
+                .getSelection()
+                .getMealName()); // adds meal by meal name not my class -> can later figure out how
+        // to
+        preparedStatement.setString(4, mealReq.getStat());
+        preparedStatement.setString(5, mealReq.getRoom());
+        preparedStatement.executeUpdate();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 
@@ -554,7 +665,7 @@ public class Cdb {
     }
   }
 
-  static void importCSVNode(String csvFile, List<Node> databaseNodeList) {
+  public static void importCSVNode(String csvFile) {
     // Regular expression to match each row
     String regex = "(.*),(\\d+),(\\d+),(.*),(.*)";
     // Compile regular expression pattern
@@ -581,8 +692,7 @@ public class Cdb {
     }
   }
 
-  static void importCSVEdge(
-      String csvFile, List<Edge> databaseEdgeList, List<Node> databaseNodeList) {
+  public static void importCSVEdge(String csvFile) {
     // Regular expression to match each row
     String regex = "(.*),(.*)";
     // Compile regular expression pattern
@@ -616,7 +726,7 @@ public class Cdb {
     }
   }
 
-  static void importCSVLocationName(String csvFile, List<LocationName> databaseLocationNameList) {
+  public static void importCSVLocationName(String csvFile) {
     // Regular expression to match each row
     String regex = "(.*),(.*),(.*)";
     // Compile regular expression pattern
@@ -641,7 +751,7 @@ public class Cdb {
     }
   }
 
-  static void importCSVMove(String csvFile, List<Move> databaseMoveList) {
+  public static void importCSVMove(String csvFile) {
     // Regular expression to match each row
     String regex = "(.*),(.*),(.*)";
     // Compile regular expression pattern
