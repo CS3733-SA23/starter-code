@@ -1,13 +1,13 @@
 package Database;
 
 import edu.wpi.teame.entities.ServiceRequestData;
+import edu.wpi.teame.map.*;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import org.json.JSONObject;
-import pathfinding.*;
 
 public enum DatabaseController {
   INSTANCE;
@@ -241,8 +241,6 @@ public enum DatabaseController {
     return moveList;
   }
 
-
-
   public List<HospitalEdge> getEdges() {
     List<HospitalEdge> hospitalEdges = new LinkedList<>();
 
@@ -256,10 +254,7 @@ public enum DatabaseController {
 
       while (rs.next()) {
 
-        hospitalEdges.add(
-                new HospitalEdge(
-                        rs.getInt("nodeid") + "", rs.getString("longName")));
-
+        hospitalEdges.add(new HospitalEdge(rs.getInt("nodeid") + "", rs.getString("longName")));
       }
 
       return hospitalEdges;
@@ -267,8 +262,6 @@ public enum DatabaseController {
       throw new RuntimeException("Something went wrong");
     }
   }
-
-
 
   public List<HospitalNode> getNodes() {
     List<HospitalNode> hospitalNodes = new LinkedList<>();
@@ -288,7 +281,7 @@ public enum DatabaseController {
                 new HospitalNode(
                         rs.getInt("nodeid") + "", rs.getString("longName"), rs.getString("date")));
       }
-      
+
        */
 
       return hospitalNodes;

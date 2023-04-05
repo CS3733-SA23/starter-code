@@ -2,6 +2,7 @@ package edu.wpi.teame.controllers;
 
 import Database.DatabaseController;
 import edu.wpi.teame.App;
+import edu.wpi.teame.map.*;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -25,7 +26,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Popup;
-import pathfinding.*;
 
 public class DatabaseViewController {
 
@@ -139,10 +139,10 @@ public class DatabaseViewController {
     nodeTypeCol.setCellValueFactory(new PropertyValueFactory<LocationName, String>("nodeType"));
 
     ObservableList locationList = FXCollections.observableArrayList(dC.getLocationName());
-    //ArrayList<LocationName> locationArrList = new ArrayList<>();
-    //locationArrList.add(new LocationName("test long", "testshort", LocationName.NodeType.INFO));
-    //locationArrList.add(new LocationName("test looong", "tstshrt", LocationName.NodeType.EXIT));
-    //ObservableList locationList = FXCollections.observableArrayList(locationArrList);
+    // ArrayList<LocationName> locationArrList = new ArrayList<>();
+    // locationArrList.add(new LocationName("test long", "testshort", LocationName.NodeType.INFO));
+    // locationArrList.add(new LocationName("test looong", "tstshrt", LocationName.NodeType.EXIT));
+    // ObservableList locationList = FXCollections.observableArrayList(locationArrList);
     locationTable.setItems(locationList);
     locationTable.setEditable(true);
 
@@ -152,11 +152,11 @@ public class DatabaseViewController {
     floorCol.setCellValueFactory(new PropertyValueFactory<HospitalNode, Floor>("floor"));
     buildingCol.setCellValueFactory(new PropertyValueFactory<HospitalNode, String>("building"));
     ObservableList nodeList = FXCollections.observableArrayList(dC.getNodes());
-    //ArrayList<HospitalNode> nodeArrList = new ArrayList<>();
-    //nodeArrList.add(new HospitalNode("22222"));
-    //nodeArrList.add(new HospitalNode("120", 4, 5, Floor.LOWER_ONE, "Testing"));
-    //nodeArrList.add(new HospitalNode());
-    //ObservableList nodeList = FXCollections.observableArrayList(nodeArrList);
+    // ArrayList<HospitalNode> nodeArrList = new ArrayList<>();
+    // nodeArrList.add(new HospitalNode("22222"));
+    // nodeArrList.add(new HospitalNode("120", 4, 5, Floor.LOWER_ONE, "Testing"));
+    // nodeArrList.add(new HospitalNode());
+    // ObservableList nodeList = FXCollections.observableArrayList(nodeArrList);
     nodeTable.setItems(nodeList);
     nodeTable.setEditable(true);
 

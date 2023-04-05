@@ -38,7 +38,7 @@ public class HomeController {
     Utilities.addButtonHover(signageButton, ColorPalette.DARK_BLUE, ColorPalette.WHITE, true);
     signageButton.setOnMouseClicked(event -> Utilities.navigate(Screen.SIGNAGE_TEXT));
 
-    databaseViewButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
+    databaseViewButton.setOnMouseClicked(event -> Utilities.navigate(Screen.DATABASE_VIEW));
 
     Utilities.addButtonHover(mealRequestButton, ColorPalette.DARK_BLUE, ColorPalette.WHITE, true);
     mealRequestButton.setOnMouseClicked(event -> Utilities.navigate(Screen.MEAL_REQUEST));
