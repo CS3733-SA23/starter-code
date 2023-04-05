@@ -247,6 +247,7 @@ public class DatabaseViewController {
                   selectedFile.getName());
             } catch (SQLException | IOException e) {
               System.out.println("You messed up big time!!!!!!");
+              System.out.println(e);
             }
           }
         });
