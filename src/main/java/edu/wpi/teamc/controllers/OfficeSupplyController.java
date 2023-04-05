@@ -4,46 +4,63 @@ import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 
 public class OfficeSupplyController {
-  @FXML private MFXButton OFF_backtohome;
-  @FXML private MFXButton OFF_submit;
-  @FXML private Label OFF_outputtext;
-  @FXML private MenuButton OFF_Menu;
-  @FXML private MenuItem OFF_Default;
-  @FXML private MenuItem OFF_Pen;
-  @FXML private MenuItem OFF_Notebook;
+  @FXML private MFXButton goHome;
+  @FXML private MFXButton submit;
 
-  @FXML
-  void OFF_Choice0() {
-    OFF_Menu.setText("-Please Select Office Supply-");
+  @FXML private MFXButton clear;
+
+  @FXML private MenuItem chocie0;
+
+  @FXML private MenuItem chocie1;
+
+  @FXML private MenuItem chocie2;
+
+  @FXML private MenuItem chocie3;
+
+  @FXML private MenuItem choice4;
+
+  @FXML private MenuButton menuButton;
+
+  public void getGoHome() {
+    goHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   @FXML
-  void OFF_Choice1() {
-    OFF_Menu.setText("Pen");
+  void getChoice0() {
+    menuButton.setText("--Please Select Furniture Supply Option--");
   }
 
   @FXML
-  void OFF_Choice2() {
-    OFF_Menu.setText("Notebook");
+  void getChoice1() {
+    menuButton.setText("Pen");
   }
 
   @FXML
-  public void goHome() {
-    OFF_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+  void getChoice2() {
+    menuButton.setText("Paper");
   }
 
-  /*@FXML
-  void SubmitRequest() {
-    OFF_outputtext.setText("Submitted");
-  }*/
+  @FXML
+  void getChoice3() {
+    menuButton.setText("Scissor");
+  }
 
   @FXML
-  void SubmitRequest() {
-    OFF_submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
+  void getChoice4() {
+    menuButton.setText("Ian's M1 MacBook Pro 14\" Silver, 1TB");
+  }
+
+  @FXML
+  void getSubmit() {
+    submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
+  }
+
+  @FXML
+  void getClear() {
+    clear.setOnMouseClicked(event -> Navigation.navigate(Screen.OFFICE_SUPPLY));
   }
 }

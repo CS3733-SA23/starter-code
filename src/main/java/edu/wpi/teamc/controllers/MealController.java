@@ -4,46 +4,63 @@ import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 
 public class MealController {
-  @FXML private MFXButton MEAL_backtohome;
-  @FXML private MFXButton MEAL_submit;
-  @FXML private Label MEAL_outputtext;
-  @FXML private MenuButton MEAL_Menu;
-  @FXML private MenuItem MEAL_Default;
-  @FXML private MenuItem MEAL_Keto;
-  @FXML private MenuItem MEAL_Vegan;
+  @FXML private MFXButton goHome;
+  @FXML private MFXButton submit;
 
-  @FXML
-  void MEAL_Choice0() {
-    MEAL_Menu.setText("-Please Select Meal-");
+  @FXML private MFXButton clear;
+
+  @FXML private MenuItem chocie0;
+
+  @FXML private MenuItem chocie1;
+
+  @FXML private MenuItem chocie2;
+
+  @FXML private MenuItem chocie3;
+
+  @FXML private MenuItem choice4;
+
+  @FXML private MenuButton menuButton;
+
+  public void getGoHome() {
+    goHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 
   @FXML
-  void MEAL_Choice1() {
-    MEAL_Menu.setText("Keto");
+  void getChoice0() {
+    menuButton.setText("--Please Select Bouquet Option--");
   }
 
   @FXML
-  void MEAL_Choice2() {
-    MEAL_Menu.setText("Vegan");
+  void getChoice1() {
+    menuButton.setText("Cheese Burger");
   }
 
   @FXML
-  public void goHome() {
-    MEAL_backtohome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+  void getChoice2() {
+    menuButton.setText("Hotdog");
   }
 
-  /*@FXML
-  void SubmitRequest() {
-    MEAL_outputtext.setText("Submitted");
-  }*/
+  @FXML
+  void getChoice3() {
+    menuButton.setText("Pizza");
+  }
 
   @FXML
-  void SubmitRequest() {
-    MEAL_submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
+  void getChoice4() {
+    menuButton.setText("Ian's Ham Sandwich");
+  }
+
+  @FXML
+  void getSubmit() {
+    submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
+  }
+
+  @FXML
+  void getClear() {
+    clear.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL));
   }
 }
