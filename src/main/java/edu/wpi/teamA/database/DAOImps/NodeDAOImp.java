@@ -120,6 +120,31 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
     }
   }
 
+  public ArrayList<Node> loadNodesFromDatabase() {
+    ArrayList<Node> nodes = new ArrayList<>();
+
+    try {
+      Statement st = nodeProvider.createConnection().createStatement();
+      ResultSet rs = st.executeQuery("SELECT * FROM \"Prototype2_schema\".\"Node\"");
+
+      while (rs.next()) {
+        int nodeID = rs.getInt("nodeID");
+        int xcoord = rs.getInt("xcoord");
+        int ycoord = rs.getInt("ycoord");
+        String floor = rs.getString("floor");
+        String building = rs.getString("building");
+
+        Node node = new Node(nodeID, xcoord, ycoord, floor, building);
+        nodes.add(node);
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    return nodes;
+  }
+
+
   @Override
   public void Add() {
     /** Insert new node object to the existing node table */
