@@ -103,9 +103,9 @@ public class DatabaseTest {
   }
 
   /**
-   * Tests retrieving the service requests from the table
-   * Tests run based on the current number of entries within the service request table
-   * Will fail if expected value is out of date for number of entries in the table
+   * Tests retrieving the service requests from the table Tests run based on the current number of
+   * entries within the service request table Will fail if expected value is out of date for number
+   * of entries in the table
    */
   @Test
   public void testretrieveRequestsFromTable() {
