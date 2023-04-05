@@ -4,10 +4,6 @@ import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
-import javafx.geometry.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-
 public class HomePageController {
   @FXML MFXButton serviceRequestButton;
   @FXML MFXButton signageButton;
