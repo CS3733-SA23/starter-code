@@ -106,7 +106,14 @@ public class MealController {
   void getEditMap(javafx.event.ActionEvent event) {}
 
   @FXML
-  void getLogOut(javafx.event.ActionEvent event) {}
+  void getLogOut(ActionEvent event) {
+    Navigation.navigate(Screen.LOGIN);
+  }
+
+  @FXML
+  void getExit(ActionEvent event) {
+    System.exit(0);
+  }
 
   @FXML
   void getMapHistory(javafx.event.ActionEvent event) {}

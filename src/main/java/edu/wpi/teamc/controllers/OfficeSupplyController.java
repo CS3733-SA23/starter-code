@@ -106,7 +106,14 @@ public class OfficeSupplyController {
   void getEditMap(ActionEvent event) {}
 
   @FXML
-  void getLogOut(ActionEvent event) {}
+  void getLogOut(ActionEvent event) {
+    Navigation.navigate(Screen.LOGIN);
+  }
+
+  @FXML
+  void getExit(ActionEvent event) {
+    System.exit(0);
+  }
 
   @FXML
   void getMapHistory(ActionEvent event) {}

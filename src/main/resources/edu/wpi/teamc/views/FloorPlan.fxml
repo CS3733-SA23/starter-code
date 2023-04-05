@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #BAE3E0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.FloorPlanController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #008080;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.FloorPlanController">
    <children>
       <AnchorPane layoutX="12.0" layoutY="13.0" prefHeight="373.0" prefWidth="575.0" style="-fx-background-color: #008080;">
          <children>
-            <MenuButton fx:id="menuButton" layoutX="84.0" layoutY="14.0" mnemonicParsing="false" onAction="#getMenuButton" prefHeight="25.0" prefWidth="407.0" style="-fx-background-color: #ffffff;" text="--Select Floor Level--" textFill="TEAL">
+            <MenuButton fx:id="menuButton" layoutX="84.0" layoutY="29.0" mnemonicParsing="false" onAction="#getMenuButton" prefHeight="25.0" prefWidth="407.0" style="-fx-background-color: #ffffff;" text="--Select Floor Level--" textFill="TEAL">
                <items>
                   <MenuItem fx:id="choice1" mnemonicParsing="false" onAction="#getChoice1" text="Floor 1" />
                   <MenuItem fx:id="choice2" mnemonicParsing="false" onAction="#getChoice2" text="Floor 2" />
@@ -26,5 +28,36 @@
             </MenuButton>
          </children>
       </AnchorPane>
+      <MenuBar prefHeight="28.0" prefWidth="600.0" style="-fx-background-radius: 2; -fx-background-color: white;">
+         <menus>
+            <Menu mnemonicParsing="false" text="Service Requests">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#getRoomReservationPage" text="Room Reservation" />
+                  <MenuItem mnemonicParsing="false" onAction="#getMealDeliveryPage" text="Meal Delivery" />
+                  <MenuItem mnemonicParsing="false" onAction="#getFlowerDeliveryPage" text="Flower Delivery" />
+                  <MenuItem mnemonicParsing="false" onAction="#getFurnitureDeliveryPage" text="Furniture Delivery" />
+                  <MenuItem mnemonicParsing="false" onAction="#getOfficeSuppliesPage" text="Office Supplies" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Navigation">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#getSignagePage" text="Signage" />
+                  <MenuItem mnemonicParsing="false" onAction="#getMapPage" text="Map" />
+                  <MenuItem mnemonicParsing="false" onAction="#getEditMap" text="Edit Map" />
+                  <MenuItem mnemonicParsing="false" onAction="#getMapHistory" text="Map History" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Options">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#getHelpPage" text="Help Page" />
+                  <MenuItem mnemonicParsing="false" onAction="#getLogOut" text="Log Out" />
+                  <MenuItem mnemonicParsing="false" onAction="#getExit" text="Exit App" />
+               </items>
+            </Menu>
+         </menus>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </MenuBar>
    </children>
 </AnchorPane>
