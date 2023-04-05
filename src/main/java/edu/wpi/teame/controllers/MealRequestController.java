@@ -69,16 +69,20 @@ public class MealRequestController implements IRequestController {
     requestData.put("notes", inputNotes);
 
     // Create the service request data
-    ServiceRequestData mealRequestData =
-        new ServiceRequestData(ServiceRequestData.RequestType.MEALDELIVERY, requestData);
+    //    ServiceRequestData mealRequestData =
+    //        new ServiceRequestData(ServiceRequestData.RequestType.MEALDELIVERY, requestData);
     Navigation.navigate(Screen.HOME);
-    System.out.print(
-        "\nDelivery Type: "
-            + mealRequestData.getRequestType()
-            + "\nRequest Data: "
-            + mealRequestData.getRequestData());
+    //    System.out.print(
+    //        "\nDelivery Type: "
+    //            + mealRequestData.getRequestType()
+    //            + "\nRequest Data: "
+    //            + mealRequestData.getRequestData());
 
-    return mealRequestData;
+    return new ServiceRequestData(
+        ServiceRequestData.RequestType.MEALDELIVERY,
+        new JSONObject(),
+        ServiceRequestData.Status.PENDING,
+        "Not Functioning");
   }
 
   public void cancelRequest() {

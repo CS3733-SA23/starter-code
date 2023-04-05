@@ -71,15 +71,19 @@ public class FlowerRequestController implements IRequestController {
     // System.out.println(requestData);
 
     // Create the service request data
-    ServiceRequestData flowerRequestData =
-        new ServiceRequestData(ServiceRequestData.RequestType.FLOWERDELIVERY, requestData);
+    // ServiceRequestData flowerRequestData =
+    //    new ServiceRequestData(ServiceRequestData.RequestType.FLOWERDELIVERY, requestData, );
     Navigation.navigate(Screen.HOME);
-    System.out.print(
-        "\nDelivery Type: "
-            + flowerRequestData.getRequestType()
-            + "\nRequest Data: "
-            + flowerRequestData.getRequestData());
-    return flowerRequestData;
+    //    System.out.print(
+    //        "\nDelivery Type: "
+    //            + flowerRequestData.getRequestType()
+    //            + "\nRequest Data: "
+    //            + flowerRequestData.getRequestData());
+    return new ServiceRequestData(
+        ServiceRequestData.RequestType.FLOWERDELIVERY,
+        new JSONObject(),
+        ServiceRequestData.Status.PENDING,
+        "Not Functioning");
   }
 
   public void cancelRequest() {

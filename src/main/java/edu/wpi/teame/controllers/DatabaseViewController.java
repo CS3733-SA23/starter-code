@@ -2,6 +2,7 @@ package edu.wpi.teame.controllers;
 
 import Database.DatabaseController;
 import edu.wpi.teame.App;
+import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.*;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
@@ -26,6 +27,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Popup;
+import org.json.JSONObject;
 
 public class DatabaseViewController {
 
@@ -91,6 +93,13 @@ public class DatabaseViewController {
   @FXML TableColumn<HospitalEdge, String> edge1Col;
   @FXML TableColumn<HospitalEdge, String> edge2Col;
 
+  // table data for service requests
+  @FXML TableView<ServiceRequestData> requestTable;
+  @FXML TableColumn<ServiceRequestData, JSONObject> dataCol;
+  @FXML TableColumn<ServiceRequestData, ServiceRequestData.RequestType> typeCol;
+  @FXML TableColumn<ServiceRequestData, ServiceRequestData.Status> statusCol;
+  @FXML TableColumn<ServiceRequestData, String> staffCol;
+
   FileChooser saveChooser = new FileChooser();
   FileChooser selectChooser = new FileChooser();
 
@@ -103,6 +112,7 @@ public class DatabaseViewController {
     choices.add(DatabaseController.Table.LOCATION_NAME);
     choices.add(DatabaseController.Table.NODE);
     choices.add(DatabaseController.Table.EDGE);
+    choices.add(DatabaseController.Table.SERVICE_REQUESTS);
     databaseChoice.setItems(FXCollections.observableArrayList(choices));
 
     databaseChoice.setOnAction(
@@ -158,6 +168,19 @@ public class DatabaseViewController {
     edgeTable.setItems(edgeList);
     edgeTable.setEditable(true);
 
+    dataCol.setCellValueFactory(
+        new PropertyValueFactory<ServiceRequestData, JSONObject>("requestData"));
+    typeCol.setCellValueFactory(
+        new PropertyValueFactory<ServiceRequestData, ServiceRequestData.RequestType>(
+            "requestType"));
+    statusCol.setCellValueFactory(
+        new PropertyValueFactory<ServiceRequestData, ServiceRequestData.Status>("requestStatus"));
+    staffCol.setCellValueFactory(
+        new PropertyValueFactory<ServiceRequestData, String>("assignedStaff"));
+
+    // ObservableList requestList = FXCollections.observableArrayList(dC.get)
+    requestTable.setEditable(true);
+
     moveTable.setPlaceholder(new Label("No rows to display"));
 
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
@@ -192,7 +215,9 @@ public class DatabaseViewController {
           } else {
             // add the file
             try {
-              dC.importFromCSV(selectedFile.getAbsolutePath(), "Move");
+              dC.importFromCSV(
+                  selectedFile.getAbsolutePath(),
+                  DatabaseController.Table.tableToString(databaseChoice.getValue()));
             } catch (IOException e) {
               System.out.println("You messed up big time!!!!!!");
               System.out.println(e);
@@ -210,7 +235,9 @@ public class DatabaseViewController {
             // export to the given path
             try {
               dC.exportToCSV(
-                  "Move", selectedFile.getParentFile().getAbsolutePath(), selectedFile.getName());
+                  DatabaseController.Table.tableToString(databaseChoice.getValue()),
+                  selectedFile.getParentFile().getAbsolutePath(),
+                  selectedFile.getName());
             } catch (SQLException | IOException e) {
               System.out.println("You messed up big time!!!!!!");
             }
@@ -227,11 +254,15 @@ public class DatabaseViewController {
         locationTable.setVisible(false);
         nodeTable.setVisible(false);
         edgeTable.setVisible(false);
+        requestTable.setVisible(false);
 
         movesAddZone.setVisible(true);
         locationAddZone.setVisible(false);
         nodeAddZone.setVisible(false);
         edgeAddZone.setVisible(false);
+
+        addButton.setDisable(false);
+        deleteButton.setDisable(false);
         break;
       case LOCATION_NAME:
         activeTable = locationTable;
@@ -240,11 +271,15 @@ public class DatabaseViewController {
         locationTable.setVisible(true);
         nodeTable.setVisible(false);
         edgeTable.setVisible(false);
+        requestTable.setVisible(false);
 
         movesAddZone.setVisible(false);
         locationAddZone.setVisible(true);
         nodeAddZone.setVisible(false);
         edgeAddZone.setVisible(false);
+
+        addButton.setDisable(false);
+        deleteButton.setDisable(false);
         break;
       case NODE:
         activeTable = nodeTable;
@@ -253,11 +288,15 @@ public class DatabaseViewController {
         locationTable.setVisible(false);
         nodeTable.setVisible(true);
         edgeTable.setVisible(false);
+        requestTable.setVisible(false);
 
         movesAddZone.setVisible(false);
         locationAddZone.setVisible(false);
         nodeAddZone.setVisible(true);
         edgeAddZone.setVisible(false);
+
+        addButton.setDisable(false);
+        deleteButton.setDisable(false);
         break;
       case EDGE:
         activeTable = edgeTable;
@@ -266,11 +305,31 @@ public class DatabaseViewController {
         locationTable.setVisible(false);
         nodeTable.setVisible(false);
         edgeTable.setVisible(true);
+        requestTable.setVisible(false);
 
         movesAddZone.setVisible(false);
         locationAddZone.setVisible(false);
         nodeAddZone.setVisible(false);
         edgeAddZone.setVisible(true);
+
+        addButton.setDisable(false);
+        deleteButton.setDisable(false);
+        break;
+      case SERVICE_REQUESTS:
+        activeTable = requestTable;
+        moveTable.setVisible(false);
+        locationTable.setVisible(false);
+        nodeTable.setVisible(false);
+        edgeTable.setVisible(false);
+        requestTable.setVisible(true);
+
+        movesAddZone.setVisible(false);
+        locationAddZone.setVisible(false);
+        nodeAddZone.setVisible(false);
+        edgeAddZone.setVisible(false);
+
+        addButton.setDisable(true);
+        deleteButton.setDisable(true);
         break;
     }
     if (!addButton.isVisible()) {
@@ -315,16 +374,17 @@ public class DatabaseViewController {
           // have an error pop up
           System.out.println("error caught");
           windowPop.show(App.getPrimaryStage());
+          System.out.println(e);
         }
         break;
       case NODE:
-        String nodeI = IDFieldLoc.getText();
+        String nodeI = (IDFieldLoc.getText());
         int nodeX = Integer.parseInt(xField.getText());
         int nodeY = Integer.parseInt(yField.getText());
-        Floor flr = Floor.stringToFloor(floorField.getText());
+        String flr = floorField.getText();
         String building = buildingField.getText();
         try {
-          toAdd = new HospitalNode(nodeI, nodeX, nodeY, flr, building);
+          toAdd = new HospitalNode(new NodeInitializer(nodeI, nodeX, nodeY, flr, building));
           DatabaseController.INSTANCE.addToTable(DatabaseController.Table.NODE, toAdd);
           nodeTable.getItems().add((HospitalNode) toAdd);
           IDFieldLoc.clear();
@@ -334,7 +394,7 @@ public class DatabaseViewController {
           buildingField.clear();
         } catch (RuntimeException e) {
           // have an error pop up
-          System.out.println("error caught");
+          System.out.println(e.getMessage());
           windowPop.show(App.getPrimaryStage());
         }
         break;
@@ -361,23 +421,6 @@ public class DatabaseViewController {
     if (selectedItem != null) {
       activeTable.getItems().remove(selectedItem);
       DatabaseController.INSTANCE.deleteFromTable(databaseChoice.getValue(), selectedItem);
-      /*
-      switch (databaseChoice.getValue()) {
-        case "move":
-          DatabaseController.INSTANCE.deleteFromTable(DatabaseController.Table.MOVE, selectedItem);
-          break;
-        case "location":
-          DatabaseController.INSTANCE.deleteFromTable(DatabaseController.Table.LOCATION_NAME, selectedItem);
-          break;
-        case "node":
-          DatabaseController.INSTANCE.deleteFromTable(DatabaseController.Table.NODE, selectedItem);
-          break;
-        case "edge":
-          DatabaseController.INSTANCE.deleteFromTable(DatabaseController.Table.EDGE, selectedItem);
-          break;
-      }
-
-       */
     }
   }
 }

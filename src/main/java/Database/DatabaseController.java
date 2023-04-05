@@ -1,7 +1,8 @@
 package Database;
 
-import static edu.wpi.teame.map.Floor.stringToFloor;
-import static edu.wpi.teame.map.LocationName.NodeType.stringToNodeType;
+import static Database.DatabaseController.Table.EDGE;
+import static Database.DatabaseController.Table.LOCATION_NAME;
+import static edu.wpi.teame.map.LocationName.NodeType.*;
 
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.*;
@@ -10,6 +11,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import org.json.JSONObject;
 
 public enum DatabaseController {
@@ -20,7 +22,32 @@ public enum DatabaseController {
     MOVE,
     NODE,
     EDGE,
-    SERVICE_REQUESTS
+    SERVICE_REQUESTS;
+
+    public static String tableToString(Table tb) {
+      switch (tb) {
+        case LOCATION_NAME:
+          return "LocationName";
+        case MOVE:
+          return "Move";
+        case NODE:
+          return "Node";
+        case EDGE:
+          return "Edge";
+        case SERVICE_REQUESTS:
+          return "ServiceRequests";
+        default:
+          throw new NoSuchElementException("No such Table found");
+      }
+    }
+  }
+
+  public static void main(String[] args) {
+    DatabaseController db = DatabaseController.INSTANCE;
+    LocationName locationName = new LocationName("Urology 1", "D5", INFO);
+    HospitalEdge edge = new HospitalEdge("2001", "2002");
+    db.addToTable(EDGE, edge);
+    // db.addToTable(LOCATION_NAME, locationName);
   }
 
   private Connection c;
@@ -83,11 +110,14 @@ public enum DatabaseController {
         LocationName locationName = (LocationName) obj;
         String lName = locationName.getLongName();
         String shortName = locationName.getShortName();
+        LocationName.NodeType nodeType = locationName.getNodeType();
         sqlDelete =
             "DELETE FROM \"LocationName\" WHERE \"longName\" = "
                 + lName
                 + " AND \"shortName\" = '"
                 + shortName
+                + "' AND \"nodeType\" = '"
+                + nodeType
                 + "';";
         break;
       case SERVICE_REQUESTS:
@@ -124,7 +154,7 @@ public enum DatabaseController {
     switch (table) {
       case MOVE:
         MoveAttribute moveAttribute = (MoveAttribute) obj;
-        String nodeId = moveAttribute.getNodeID();
+        int nodeId = Integer.parseInt(moveAttribute.getNodeID());
         String longName = moveAttribute.getLongName();
         String date = moveAttribute.getDate();
         insertTable =
@@ -132,28 +162,27 @@ public enum DatabaseController {
         break;
       case EDGE:
         HospitalEdge edge = (HospitalEdge) obj;
-        String startNode = edge.getNodeOneID();
-        String endNode = edge.getNodeTwoID();
-        insertTable = "INSERT INTO \"Edge\" VALUES(" + startNode + ",'" + endNode + "');";
-        ;
+        int startNode = Integer.parseInt(edge.getNodeOneID());
+        int endNode = Integer.parseInt(edge.getNodeTwoID());
+        insertTable = "INSERT INTO \"Edge\" VALUES(" + startNode + "," + endNode + ");";
         break;
       case NODE:
         HospitalNode node = (HospitalNode) obj;
         String nodeID = node.getNodeID();
         int xcoord = node.getXCoord();
         int ycoord = node.getYCoord();
-        Floor floor = node.getFloor();
+        String floor = Floor.floorToString(node.getFloor());
         String building = node.getBuilding();
         insertTable =
             "INSERT INTO \"Node\" VALUES("
                 + nodeID
-                + ",'"
+                + ","
                 + xcoord
-                + "' , '"
+                + ","
                 + ycoord
-                + "' , '"
+                + ",'"
                 + floor
-                + "' , '"
+                + "','"
                 + building
                 + "');";
         break;
@@ -161,24 +190,32 @@ public enum DatabaseController {
         LocationName locationName = (LocationName) obj;
         String lName = locationName.getLongName();
         String shortName = locationName.getShortName();
-        LocationName.NodeType nodeType = locationName.getNodeType();
+        String nodeType = LocationName.NodeType.nodeToString(locationName.getNodeType());
         insertTable =
-            "INSERT INTO \"Move\" VALUES(" + lName + ",'" + shortName + "' , '" + nodeType + "');";
+            "INSERT INTO \"LocationName\" VALUES('"
+                + lName
+                + "','"
+                + shortName
+                + "','"
+                + nodeType
+                + "');";
         break;
       case SERVICE_REQUESTS:
         ServiceRequestData serviceRequestData = (ServiceRequestData) obj;
         JSONObject requestData = serviceRequestData.getRequestData();
-        ServiceRequestData.Status status = serviceRequestData.getRequestStatus();
-        String staffAssigned = serviceRequestData.getAssignedStaff();
-        ServiceRequestData.RequestType requestType = serviceRequestData.getRequestType();
+        String status =
+            ServiceRequestData.Status.statusToString(serviceRequestData.getRequestStatus());
+        String requestType =
+            ServiceRequestData.RequestType.requestTypeToString(serviceRequestData.getRequestType());
+        int hashID = requestData.hashCode();
         insertTable =
-            "INSERT INTO \"ServiceRequests\" VALUES("
+            "INSERT INTO \"ServiceRequests\" VALUES('"
                 + requestData
-                + ",'"
+                + "','"
                 + status
-                + "' , '"
-                + staffAssigned
-                + "' , '"
+                + "', '"
+                + serviceRequestData.getAssignedStaff()
+                + "', '"
                 + requestType
                 + "');";
         break;
@@ -215,47 +252,6 @@ public enum DatabaseController {
     }
     return moveList;
   }
-  /*public List<MoveAttribute> getMoveList() {
-    List<String> mList = new ArrayList<>();
-    String queryCountM = "SELECT COUNT(*) FROM teame.\"Move\";";
-    String queryMID = "SELECT \"nodeID\" FROM teame.\"Move\";";
-    try (Statement stmt = c.createStatement()) {
-      ResultSet rsm = stmt.executeQuery(queryCountM);
-      if (rsm.next()) {
-        int moveCount = rsm.getInt(1);
-        ResultSet rsMoves = stmt.executeQuery(queryMID);
-        for (int i = 0; i <= moveCount; i++) {
-          if (rsMoves.next()) {
-            mList.add(rsMoves.getString("nodeID"));
-          }
-        }
-      }
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-
-    // Retrieve move
-    for (String nodeID : mList) {
-      String moveQuery =
-          "SELECT * FROM teame.\"Move\" WHERE \"nodeID\" = '"
-              + nodeID
-              + "'  ORDER BY \"nodeID\" ASC ;";
-      try (Statement stmt = c.createStatement()) {
-        ResultSet rs = stmt.executeQuery(moveQuery);
-        if (rs.next()) {
-          moveList.add(extractMoveFromResultSet(rs));
-        }
-      } catch (SQLException d) {
-        throw new RuntimeException();
-      }
-    }
-    if (moveList.isEmpty()) {
-      System.out.println("Move table not retrieved");
-    } else {
-      System.out.println("Move table retrieved successfully");
-    }
-    return moveList;
-  }*/
 
   public List<HospitalEdge> getEdges() {
     List<HospitalEdge> hospitalEdges = new LinkedList<>();
@@ -283,8 +279,7 @@ public enum DatabaseController {
     try {
       Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
 
-      String sql =
-          "SELECT \"nodeID\", \"xcoord\", \"ycoord\", \"floor\", \"building\" FROM teame.\"Node\" ;";
+      String sql = "SELECT * FROM teame.\"Node\";";
       ResultSet rs = stmt.executeQuery(sql);
 
       while (rs.next()) {
@@ -293,7 +288,7 @@ public enum DatabaseController {
                 rs.getString("nodeID"),
                 rs.getInt("xcoord"),
                 rs.getInt("ycoord"),
-                stringToFloor(rs.getString("floor")),
+                Floor.stringToFloor(rs.getString("floor")),
                 rs.getString("building")));
       }
 
@@ -362,9 +357,9 @@ public enum DatabaseController {
         String[] splitL1 = l1.split(",");
         System.out.println(l1);
         String sql =
-            "INSERT INTO \""
+            "INSERT INTO "
                 + tableName
-                + "\" VALUES ("
+                + " VALUES ("
                 + splitL1[0]
                 + ", '"
                 + splitL1[1]
@@ -399,7 +394,7 @@ public enum DatabaseController {
     // Initialization
     Statement stmt = null;
     stmt = c.createStatement();
-    ResultSet rs = stmt.executeQuery("SELECT * FROM \"" + name + "\";");
+    ResultSet rs = stmt.executeQuery("SELECT * FROM " + name + ";");
 
     // Makes new file or finds existing one
     File file = new File(filePath + File.separator + fileName);

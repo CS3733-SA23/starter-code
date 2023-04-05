@@ -54,6 +54,37 @@ public class LocationName {
           throw new NoSuchElementException("No such NodeType found");
       }
     }
+
+    public static String nodeToString(NodeType nodeType) {
+      switch (nodeType) {
+        case HALL:
+          return "HALL";
+        case CONF:
+          return "CONF";
+        case DEPT:
+          return "DEPT";
+        case INFO:
+          return "INFO";
+        case SERV:
+          return "SERV";
+        case LABS:
+          return "LABS";
+        case RETL:
+          return "RETL";
+        case STAI:
+          return "STAI";
+        case ELEV:
+          return "ELEV";
+        case REST:
+          return "REST";
+        case BATH:
+          return "BATH";
+        case EXIT:
+          return "EXIT";
+        default:
+          throw new NoSuchElementException("No such NodeType found");
+      }
+    }
   }
 
   @Getter String longName;
