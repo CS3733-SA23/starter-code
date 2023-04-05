@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 public class HomePageController {
   @FXML MFXButton serviceRequestButton;
   @FXML MFXButton signageButton;
+  @FXML MFXButton databaseViewButton;
   @FXML MFXButton menuButton;
   @FXML MFXButton menuBarSignage;
   @FXML MFXButton menuBarServices;
@@ -22,7 +23,7 @@ public class HomePageController {
   @FXML MFXButton menuBarMap;
   @FXML MFXButton menuBarExit;
   @FXML MFXButton mapsButton;
-  @FXML MFXButton menuBarDatabase;
+  // @FXML MFXButton menuBarDatabase;
 
   public void initialize() {
     menuDropDownVisibility(false);
@@ -32,7 +33,7 @@ public class HomePageController {
     showMenuButtonsWhenHovered(menuBarServices);
     showMenuButtonsWhenHovered(menuBarHome);
     showMenuButtonsWhenHovered(menuBarMap);
-    showMenuButtonsWhenHovered(menuBarDatabase);
+    // showMenuButtonsWhenHovered(menuBarDatabase);
     showMenuButtonsWhenHovered(menuBarExit);
 
     mouseSetup(serviceRequestButton);
@@ -41,6 +42,7 @@ public class HomePageController {
     serviceRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     mapsButton.setOnMouseClicked(event -> Navigation.navigate(Screen.GROUND_FLOOR));
+    databaseViewButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
 
     menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
@@ -57,7 +59,7 @@ public class HomePageController {
     menuBarServices.setVisible(bool);
     menuBarHome.setVisible(bool);
     menuBarMap.setVisible(bool);
-    menuBarDatabase.setVisible(bool);
+    // menuBarDatabase.setVisible(bool);
     menuBarExit.setVisible(bool);
   }
 

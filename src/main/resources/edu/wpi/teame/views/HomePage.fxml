@@ -53,7 +53,7 @@
                         <Font size="19.0" />
                      </font>
                   </MFXButton>
-                  <MFXButton fx:id="databasePage" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="10.0" layoutY="170.0" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Databases" textFill="WHITE">
+                  <MFXButton fx:id="databaseViewButton" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="10.0" layoutY="170.0" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Databases" textFill="WHITE">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -130,7 +130,7 @@
                      </graphic></MFXButton>
                   <MFXButton fx:id="menuBarDatabase" contentDisplay="GRAPHIC_ONLY" defaultButton="true" prefHeight="51.0" prefWidth="61.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
                      <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="menuBarDatabase" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/database.png" />
                            </image>
