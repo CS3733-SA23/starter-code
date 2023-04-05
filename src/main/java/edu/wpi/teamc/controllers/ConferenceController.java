@@ -74,9 +74,10 @@ public class ConferenceController {
     LocalDate end = endTime.getValue();
 
     String notes = specialRequest.getText();
+    String roomName = menuButton.getText();
     IServiceRequest.STATUS status = IServiceRequest.STATUS.COMPLETE;
     ConferenceRoomRequest req =
-        new ConferenceRoomRequest(start.toString(), end.toString(), notes, status);
+        new ConferenceRoomRequest(start.toString(), end.toString(), notes, roomName, status);
 
     String name = nameBox.getText();
     currentReqID++;
