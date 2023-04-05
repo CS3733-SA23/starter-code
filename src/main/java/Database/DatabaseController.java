@@ -1,5 +1,8 @@
 package Database;
 
+import static edu.wpi.teame.map.Floor.stringToFloor;
+import static edu.wpi.teame.map.LocationName.NodeType.stringToNodeType;
+
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.*;
 import java.io.*;
@@ -8,10 +11,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import org.json.JSONObject;
-
-import static edu.wpi.teame.map.Floor.floorToString;
-import static edu.wpi.teame.map.Floor.stringToFloor;
-import static edu.wpi.teame.map.LocationName.NodeType.stringToNodeType;
 
 public enum DatabaseController {
   INSTANCE;
@@ -206,7 +205,7 @@ public enum DatabaseController {
     List<MoveAttribute> moveList = new ArrayList<>();
     String query = "SELECT * FROM teame.\"Move\" ORDER BY \"nodeID\" ASC;";
     try (Statement stmt = c.createStatement();
-         ResultSet rs = stmt.executeQuery(query)) {
+        ResultSet rs = stmt.executeQuery(query)) {
       while (rs.next()) {
         moveList.add(extractMoveFromResultSet(rs));
       }
@@ -288,10 +287,14 @@ public enum DatabaseController {
           "SELECT \"nodeID\", \"xcoord\", \"ycoord\", \"floor\", \"building\" FROM teame.\"Node\" ;";
       ResultSet rs = stmt.executeQuery(sql);
 
-
       while (rs.next()) {
         hospitalNodes.add(
-                new HospitalNode(rs.getString("nodeID"), rs.getInt("xcoord"), rs.getInt("ycoord"),  stringToFloor(rs.getString("floor")), rs.getString("building")));
+            new HospitalNode(
+                rs.getString("nodeID"),
+                rs.getInt("xcoord"),
+                rs.getInt("ycoord"),
+                stringToFloor(rs.getString("floor")),
+                rs.getString("building")));
       }
 
       return hospitalNodes;
@@ -309,10 +312,12 @@ public enum DatabaseController {
       String sql = "SELECT \"longName\", \"shortName\", \"nodeType\" FROM teame.\"LocationName\";";
       ResultSet rs = stmt.executeQuery(sql);
 
-
       while (rs.next()) {
-        locationNames.add(new LocationName(rs.getString("longName") + "", rs.getString("shortName"), stringToNodeType(rs.getString("nodeType"))));
-
+        locationNames.add(
+            new LocationName(
+                rs.getString("longName") + "",
+                rs.getString("shortName"),
+                stringToNodeType(rs.getString("nodeType"))));
       }
 
       return locationNames;
