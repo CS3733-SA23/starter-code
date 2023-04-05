@@ -151,12 +151,12 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#getHelpPage" text="Help Page" />
                   <MenuItem mnemonicParsing="false" onAction="#getLogOut" text="Log Out" />
-                  <MenuItem mnemonicParsing="false" text="Exit App" />
+                  <MenuItem mnemonicParsing="false" onAction="#getExit" text="Exit App" />
                </items>
             </Menu>
          </menus>
          <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
       </MenuBar>
    </children>

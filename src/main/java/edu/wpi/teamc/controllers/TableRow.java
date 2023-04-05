@@ -4,6 +4,7 @@ public class TableRow {
   private String NodeID;
   private String LongName;
   private String Date;
+  private int index;
 
   public TableRow() {
     this.NodeID = "";
@@ -15,6 +16,13 @@ public class TableRow {
     this.NodeID = nodeID;
     this.LongName = longName;
     this.Date = date;
+  }
+
+  public TableRow(String nodeID, String longName, String date, int index) {
+    this.NodeID = nodeID;
+    this.LongName = longName;
+    this.Date = date;
+    this.index = index;
   }
 
   public String getNodeID() {
@@ -39,5 +47,9 @@ public class TableRow {
 
   public void setDate(String date) {
     this.Date = date;
+  }
+
+  public int getIndex() {
+    return index;
   }
 }
