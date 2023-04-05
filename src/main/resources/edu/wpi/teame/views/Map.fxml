@@ -2,7 +2,6 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
-<?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
@@ -17,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1500.0" style="-fx-background-color: #3b63a5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.GroundFloorNavMapController">
+<AnchorPane prefHeight="900.0" prefWidth="1500.0" style="-fx-background-color: #3b63a5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.MapController">
     <children>
         <BorderPane layoutX="6.0" layoutY="7.0" prefHeight="887.0" prefWidth="1489.0" style="-fx-background-color: #e1e1e1;" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0">
             <center>
@@ -34,6 +33,7 @@
                         <MFXComboBox fx:id="currentLocationList" layoutX="641.0" layoutY="418.0" prefWidth="150.0" promptText="Current Location" style="-fx-border-color: black;" />
                         <MFXComboBox fx:id="destinationList" layoutX="993.0" layoutY="418.0" prefWidth="150.0" promptText="Destination" style="-fx-border-color: black;" />
                   <Label fx:id="pathLabel" layoutX="651.0" layoutY="490.0" prefHeight="174.0" prefWidth="487.0" wrapText="true" />
+                        <MFXButton fx:id="backButton" layoutX="76.0" layoutY="46.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Back" />
                </children>
             </AnchorPane>
             </center>
@@ -56,28 +56,21 @@
                 </VBox>
             </right>
             <top>
-                <HBox prefHeight="7.0" prefWidth="1500.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <MFXButton fx:id="backButton" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Back" />
-                        <Label text="Ground Floor">
-                            <HBox.margin>
-                                <Insets left="600.0" />
-                            </HBox.margin>
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                        </Label>
-                    </children>
-                </HBox>
+                <HBox prefHeight="7.0" prefWidth="1500.0" BorderPane.alignment="CENTER" />
             </top>
          <left>
             <Pane prefHeight="200.0" prefWidth="146.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="9.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="9.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Brigham_and_Womens_Hospital_logo.svg.png" />
                      </image>
                   </ImageView>
+                        <Label fx:id="mapLabel" layoutX="17.0" layoutY="200.0" text="Ground Floor">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                        </Label>
                </children>
             </Pane>
          </left>

@@ -28,7 +28,8 @@ import javafx.scene.shape.Line;
 
 // public List<String> getLongNamesFromMove(List<MoveAttribute> mv)
 
-public class GroundFloorNavMapController {
+public class MapController {
+  @FXML private Label mapLabel;
   @FXML private MFXButton firstFloorButton;
 
   @FXML private MFXButton secondFloorButton;
@@ -46,9 +47,8 @@ public class GroundFloorNavMapController {
   @FXML private ImageView mapImage;
   @FXML MFXComboBox<String> currentLocationList;
   @FXML MFXComboBox<String> destinationList;
-
   @FXML private Label pathLabel;
-  Floor currentFloor = Floor.GROUND;
+  Floor currentFloor = Floor.ONE;
   String curLocFromComboBox;
   String destFromComboBox;
 
@@ -64,7 +64,6 @@ public class GroundFloorNavMapController {
 
   @FXML
   public void initialize() {
-
     mouseSetup(lowerLevelOneButton);
     mouseSetup(lowerLevelTwoButton);
     mouseSetup(secondFloorButton);
@@ -72,11 +71,11 @@ public class GroundFloorNavMapController {
     mouseSetup(thirdFloorButton);
     mouseSetup(backButton);
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    lowerLevelOneButton.setOnMouseClicked(event -> refreshMap(Floor.LOWER_ONE));
-    lowerLevelTwoButton.setOnMouseClicked(event -> refreshMap(Floor.LOWER_TWO));
-    firstFloorButton.setOnMouseClicked(event -> refreshMap(Floor.ONE));
-    secondFloorButton.setOnMouseClicked(event -> refreshMap(Floor.TWO));
-    thirdFloorButton.setOnMouseClicked(event -> refreshMap(Floor.THREE));
+    lowerLevelOneButton.setOnMouseClicked(event -> refreshPage(Floor.LOWER_ONE));
+    lowerLevelTwoButton.setOnMouseClicked(event -> refreshPage(Floor.LOWER_TWO));
+    firstFloorButton.setOnMouseClicked(event -> refreshPage(Floor.ONE));
+    secondFloorButton.setOnMouseClicked(event -> refreshPage(Floor.TWO));
+    thirdFloorButton.setOnMouseClicked(event -> refreshPage(Floor.THREE));
 
     currentLocationList.setOnAction(
         event -> {
@@ -93,11 +92,11 @@ public class GroundFloorNavMapController {
             displayPath(curLocFromComboBox, destFromComboBox);
           }
         });
-    refreshMap(currentFloor);
+    refreshPage(currentFloor);
   }
 
   @FXML
-  public void refreshMap(Floor floor) {
+  public void refreshPage(Floor floor) {
     currentFloor = floor;
     mapImage.setImage(new Image("file:" + floorToFilePath(floor)));
     floorLocations =
@@ -106,7 +105,10 @@ public class GroundFloorNavMapController {
                 graphController.getMoveAttributeFromFloor(currentFloor)));
     currentLocationList.setItems(floorLocations);
     destinationList.setItems(floorLocations);
+    currentLocationList.setValue("");
+    destinationList.setValue("");
     pathLabel.setText("");
+    mapLabel.setText(Floor.floorToString(currentFloor));
     refreshPath();
   }
 
@@ -116,8 +118,6 @@ public class GroundFloorNavMapController {
         return "maps/00_thelowerlevel1.png";
       case LOWER_TWO:
         return "maps/00_thelowerlevel2.png";
-      case GROUND:
-        return "maps/00_thegroundfloor.png";
       case ONE:
         return "maps/01_thefirstfloor.png";
       case TWO:
