@@ -2,6 +2,7 @@ package edu.wpi.teame.controllers;
 
 import Database.DatabaseController;
 import edu.wpi.teame.App;
+import edu.wpi.teame.map.*;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -25,7 +26,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Popup;
-import pathfinding.*;
 
 public class DatabaseViewController {
 
@@ -110,7 +110,6 @@ public class DatabaseViewController {
           @Override
           public void handle(ActionEvent event) {
             switchActiveTable(databaseChoice.getValue());
-            // System.out.println(databaseChoice.getValue());
           }
         });
 
@@ -138,11 +137,7 @@ public class DatabaseViewController {
     shortNameCol.setCellValueFactory(new PropertyValueFactory<LocationName, String>("shortName"));
     nodeTypeCol.setCellValueFactory(new PropertyValueFactory<LocationName, String>("nodeType"));
 
-    // ObservableList locationList = FXCollections.observableArrayList(dC.getLocationList);
-    ArrayList<LocationName> locationArrList = new ArrayList<>();
-    locationArrList.add(new LocationName("test long", "testshort", LocationName.NodeType.INFO));
-    locationArrList.add(new LocationName("test looong", "tstshrt", LocationName.NodeType.EXIT));
-    ObservableList locationList = FXCollections.observableArrayList(locationArrList);
+    ObservableList locationList = FXCollections.observableArrayList(dC.getLocationName());
     locationTable.setItems(locationList);
     locationTable.setEditable(true);
 
@@ -151,23 +146,18 @@ public class DatabaseViewController {
     nodeYCol.setCellValueFactory(new PropertyValueFactory<HospitalNode, Integer>("yCoord"));
     floorCol.setCellValueFactory(new PropertyValueFactory<HospitalNode, Floor>("floor"));
     buildingCol.setCellValueFactory(new PropertyValueFactory<HospitalNode, String>("building"));
-    // ObservableList nodeList = FXCollections.observableArrayList(dC.getNodeList);
-    ArrayList<HospitalNode> nodeArrList = new ArrayList<>();
-    nodeArrList.add(new HospitalNode("22222"));
-    nodeArrList.add(new HospitalNode("120", 4, 5, Floor.LOWER_ONE, "Testing"));
-    nodeArrList.add(new HospitalNode());
-    ObservableList nodeList = FXCollections.observableArrayList(nodeArrList);
+    ObservableList nodeList = FXCollections.observableArrayList(dC.getNodes());
     nodeTable.setItems(nodeList);
     nodeTable.setEditable(true);
 
     edge1Col.setCellValueFactory(new PropertyValueFactory<HospitalEdge, String>("nodeOneID"));
     edge2Col.setCellValueFactory(new PropertyValueFactory<HospitalEdge, String>("nodeTwoID"));
 
-    // ObservableList edgeList = FXCollections.observableArrayList(dC.getEdgeList());
+    ObservableList edgeList = FXCollections.observableArrayList(dC.getEdges());
 
-    // testing stuff
-    // dataTable.getItems().add(new MoveAttribute("1111", "testA", "4/2/2023"));
-    // dataTable.getItems().add(new MoveAttribute("2222", "testB", "4/2/2023"));
+    edgeTable.setItems(edgeList);
+    edgeTable.setEditable(true);
+
 
     moveTable.setPlaceholder(new Label("No rows to display"));
 
@@ -176,14 +166,6 @@ public class DatabaseViewController {
     deleteButton.setOnMouseClicked(
         event -> {
           removeItem(dC);
-          /*
-          Object selectedItem = activeTable.getSelectionModel().getSelectedItem();
-          if (selectedItem != null) {
-            moveTable.getItems().remove(selectedItem);
-            //dC.deleteFromTable( ,selectedItem);
-          }
-
-           */
         });
 
     App.getPrimaryStage()
@@ -194,14 +176,6 @@ public class DatabaseViewController {
               public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.BACK_SPACE) {
                   removeItem(dC);
-                  /*
-                  MoveAttribute selectedItem = moveTable.getSelectionModel().getSelectedItem();
-                  if (selectedItem != null) {
-                    moveTable.getItems().remove(selectedItem);
-                    dC.deleteFromTable(selectedItem);
-                  }
-
-                   */
                 }
               }
             });
@@ -209,25 +183,6 @@ public class DatabaseViewController {
     addButton.setOnMouseClicked(
         event -> {
           addRow(dC, windowPop);
-          /*
-          String nodeID = IDField.getText();
-          String name = locationField.getText();
-          String date = dateField.getText();
-          MoveAttribute newMoveAttribute;
-          try {
-            newMoveAttribute = new MoveAttribute(nodeID, name, date);
-            dC.addToTable(newMoveAttribute);
-            moveTable.getItems().add(newMoveAttribute);
-            IDField.clear();
-            locationField.clear();
-            dateField.clear();
-          } catch (RuntimeException e) {
-            // have an error pop up
-            System.out.println("error caught");
-            windowPop.show(App.getPrimaryStage());
-          }
-
-           */
         });
 
     importButton.setOnMouseClicked(
@@ -243,8 +198,6 @@ public class DatabaseViewController {
               System.out.println("You messed up big time!!!!!!");
               System.out.println(e);
             }
-
-            // System.out.println(selectedFile.getAbsolutePath());
           }
         });
 
@@ -256,13 +209,11 @@ public class DatabaseViewController {
             // cancel
           } else {
             // export to the given path
-            // System.out.println(selectedFile.getAbsolutePath());
             try {
               dC.exportToCSV(
                   "Move", selectedFile.getParentFile().getAbsolutePath(), selectedFile.getName());
             } catch (SQLException | IOException e) {
               System.out.println("You messed up big time!!!!!!");
-              // System.out.println(e);
             }
           }
         });
@@ -424,7 +375,6 @@ public class DatabaseViewController {
           dC.deleteFromTable(DatabaseController.Table.EDGE, selectedItem);
           break;
       }
-      // dC.deleteFromTable( ,selectedItem);
     }
   }
 }

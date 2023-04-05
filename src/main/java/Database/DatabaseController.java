@@ -1,13 +1,13 @@
 package Database;
 
 import edu.wpi.teame.entities.ServiceRequestData;
+import edu.wpi.teame.map.*;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import org.json.JSONObject;
-import pathfinding.*;
 
 public enum DatabaseController {
   INSTANCE;
@@ -241,8 +241,6 @@ public enum DatabaseController {
     return moveList;
   }
 
-
-
   public List<HospitalEdge> getEdges() {
     List<HospitalEdge> hospitalEdges = new LinkedList<>();
 
@@ -254,7 +252,7 @@ public enum DatabaseController {
       ResultSet rs = stmt.executeQuery(sql);
 
       while (rs.next()) {
-
+        
         hospitalEdges.add(
                 new HospitalEdge(
                         rs.getString("startNode"), rs.getString("endNode")));
@@ -267,8 +265,6 @@ public enum DatabaseController {
     }
   }
 
-
-
   public List<HospitalNode> getNodes() {
     List<HospitalNode> hospitalNodes = new LinkedList<>();
 
@@ -279,10 +275,13 @@ public enum DatabaseController {
           "SELECT \"nodeID\", \"xcoord\", \"ycoord\", \"floor\", \"building\" FROM teame.\"Node\" ;";
       ResultSet rs = stmt.executeQuery(sql);
 
+      /*
       while (rs.next()) {
         //hospitalNodes.add(
                 //new HospitalNode(rs.getInt("nodeID"), rs.getInt("xcoord"), rs.getInt("ycoord"),  rs.getString("floor"), rs.getString("building")));
       }
+
+       */
 
       return hospitalNodes;
     } catch (SQLException e) {
@@ -300,10 +299,13 @@ public enum DatabaseController {
           "SELECT \"longName\", \"shortName\", \"nodeType\" FROM teame.\"LocationName\";";
       ResultSet rs = stmt.executeQuery(sql);
 
+      /*
       while (rs.next()) {
         //locationNames.add(new LocationName(rs.getString("longName") + "", rs.getString("shortName"), rs.getString("nodeType")));
 
       }
+
+       */
 
       return locationNames;
     } catch (SQLException e) {

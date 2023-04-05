@@ -70,7 +70,7 @@
             </VBox>
             <VBox>
                <children>
-                  <ComboBox fx:id="databaseChoice" prefWidth="150.0" promptText="Select database to edit..." />
+                  <ComboBox fx:id="databaseChoice" prefWidth="150.0" promptText="Select database" />
                   <StackPane>
                      <children>
                         <TableView fx:id="edgeTable" visible="false">

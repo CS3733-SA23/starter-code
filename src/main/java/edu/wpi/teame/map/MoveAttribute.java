@@ -1,4 +1,4 @@
-package pathfinding;
+package edu.wpi.teame.map;
 
 import lombok.Getter;
 

@@ -1,5 +1,6 @@
-package pathfinding;
+package edu.wpi.teame.map.pathfinding;
 
+import edu.wpi.teame.map.HospitalNode;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
