@@ -1,5 +1,6 @@
 package edu.wpi.teamA.database.DAOImps;
 
+import edu.wpi.teamA.database.Connection.DBConnectionProvider;
 import edu.wpi.teamA.database.Interfaces.IEdgeDAO;
 import edu.wpi.teamA.database.ORMclasses.Edge;
 import java.io.BufferedReader;
@@ -12,10 +13,9 @@ import java.util.Scanner;
 
 public class EdgeDAOImp implements IDataBase, IEdgeDAO {
   ArrayList<Edge> edgeArray;
-  static Connection edgeConnection;
+  static DBConnectionProvider edgeConnectionProvider = new DBConnectionProvider();
 
-  public EdgeDAOImp(Connection edgeConnection, ArrayList<Edge> EdgeArray) {
-    this.edgeConnection = edgeConnection;
+  public EdgeDAOImp(ArrayList<Edge> EdgeArray) {
     this.edgeArray = EdgeArray;
 
     // check if the table exist
@@ -28,9 +28,6 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
 
   public static void Import(String filePath) {
     try {
-      Scanner input = new Scanner(System.in);
-      System.out.println("Please input the full qualified path of the file you want to import");
-      filePath = input.nextLine();
       BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
       csvReader.readLine();
       String row;
@@ -39,14 +36,14 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
           "Create Table if not exists Prototype2_schema.Edge"
               + "(startNode   int,"
               + "endNode    int)";
-      Statement stmtEdge = edgeConnection.createStatement();
+      Statement stmtEdge = edgeConnectionProvider.createConnection().createStatement();
       stmtEdge.execute(sqlCreateEdge);
 
       while ((row = csvReader.readLine()) != null) {
         String[] data = row.split(",");
 
         PreparedStatement ps =
-            edgeConnection.prepareStatement("INSERT INTO Prototype2_schema.\"Edge\" VALUES (?, ?)");
+            edgeConnectionProvider.createConnection().prepareStatement("INSERT INTO Prototype2_schema.\"Edge\" VALUES (?, ?)");
         ps.setInt(1, Integer.parseInt(data[0]));
         ps.setInt(2, Integer.parseInt(data[1]));
         ps.executeUpdate();
@@ -61,7 +58,7 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
   public static void Export(String folderExportPath) {
     try {
       String newFile = folderExportPath + "/Edfge.csv";
-      Statement st = edgeConnection.createStatement();
+      Statement st = edgeConnectionProvider.createConnection().createStatement();
       ResultSet rs = st.executeQuery("SELECT * FROM Prototype2_schema.\"Edge\"");
 
       FileWriter csvWriter = new FileWriter(newFile);
@@ -92,7 +89,7 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
       int endNode = input.nextInt();
 
       PreparedStatement ps =
-          edgeConnection.prepareStatement("INSERT INTO Prototype2_schema.\"Edge\" VALUES (?, ?)");
+          edgeConnectionProvider.createConnection().prepareStatement("INSERT INTO Prototype2_schema.\"Edge\" VALUES (?, ?)");
       ps.setInt(1, startNode);
       ps.setInt(2, endNode);
       ps.executeUpdate();
@@ -116,7 +113,7 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
       int endNode = input.nextInt();
 
       PreparedStatement ps =
-          edgeConnection.prepareStatement(
+          edgeConnectionProvider.createConnection().prepareStatement(
               "DELETE FROM Prototype2_schema.\"Edge\" WHERE startNode = ? AND endNode = ?");
       ps.setInt(1, startNode);
       ps.setInt(2, endNode);
@@ -144,7 +141,7 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
       int newEndNode = input.nextInt();
 
       PreparedStatement ps =
-          edgeConnection.prepareStatement(
+          edgeConnectionProvider.createConnection().prepareStatement(
               "UPDATE Prototype2_schema.\"Edge\" SET startNode = ?, endNode = ? WHERE startNode = ? AND endNode = ?");
       ps.setInt(1, newStartNode);
       ps.setInt(2, newEndNode);

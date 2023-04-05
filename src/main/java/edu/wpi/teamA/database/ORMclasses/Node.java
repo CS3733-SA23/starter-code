@@ -18,4 +18,24 @@ public class Node {
     this.floor = floor;
     this.building = building;
   }
+
+  public Integer getNodeID() {
+    return nodeID;
+  }
+
+  public Integer getXccord() {
+    return xccord;
+  }
+
+  public Integer getYcoord() {
+    return ycoord;
+  }
+
+  public String getFloor() {
+    return floor;
+  }
+
+  public String getBuilding() {
+    return building;
+  }
 }
