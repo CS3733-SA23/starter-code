@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.CSV_EditController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bae3e0" height="400.0" stroke="#bae3e0" strokeType="INSIDE" width="600.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TEAL" height="378.0" layoutX="11.0" layoutY="11.0" stroke="TEAL" strokeType="INSIDE" width="578.0" />
+        <Label layoutX="31.0" layoutY="23.0" text="Edit Map" textFill="WHITE">
+            <font>
+                <Font name="Verdana Bold" size="20.0" />
+            </font>
+        </Label>
+        <MFXButton fx:id="goHome" layoutX="31.0" layoutY="350.0" onAction="#getGoHome" prefHeight="26.0" prefWidth="110.0" text="Home" textFill="#016161">
+            <font>
+                <Font name="Verdana Bold" size="13.0" />
+            </font></MFXButton>
+        <MFXButton fx:id="editMap" layoutX="31.0" layoutY="275.0" onAction="#submit" prefHeight="26.0" prefWidth="110.0" text="Edit Map" textFill="#016161">
+            <font>
+                <Font name="Verdana Bold" size="13.0" />
+            </font></MFXButton>
+        <Group layoutX="64.0" layoutY="102.0" />
+        <Group layoutX="64.0" layoutY="139.0" />
+        <Group layoutX="64.0" layoutY="183.0" />
+        <Group layoutX="64.0" layoutY="221.0" />
+        <MFXButton fx:id="testButton" layoutX="533.0" layoutY="23.0" onAction="#getText" />
+        <MFXTextField fx:id="inputBox" layoutX="420.0" layoutY="-2.0" prefHeight="19.0" prefWidth="66.0" promptText="Type In Move" />
+        <ScrollPane layoutX="221.0" layoutY="60.0" prefHeight="280.0" prefWidth="352.0" AnchorPane.leftAnchor="221.0" AnchorPane.rightAnchor="27.0">
+         <content>
+            <TableView fx:id="Edit_Table" onMouseClicked="#rowClicked" prefHeight="278.0" prefWidth="351.0">
+              <columns>
+                <TableColumn fx:id="Column_longName" prefWidth="143.20000916719437" text="Long Name" />
+                <TableColumn fx:id="Column_shortName" prefWidth="98.4000244140625" text="Short Name" />
+                  <TableColumn fx:id="Column_nodeType" prefWidth="103.20002746582031" text="Node Type" />
+              </columns>
+            </TableView>
+         </content>
+        </ScrollPane>
+        <MFXButton fx:id="tableDispButton1" layoutX="254.8" layoutY="352.0" onAction="#dispTable" text="Display Table" />
+      <Group layoutX="31.0" layoutY="69.0">
+         <children>
+            <Label layoutX="4.0" text="Long Name:" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="longNameBar" layoutY="33.0" />
+            <Label layoutX="4.0" layoutY="70.0" text="Short Name:" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="shortNameBar" layoutY="103.0" />
+            <Label layoutX="4.0" layoutY="137.0" text="Node Type:" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nodeTypeBar" layoutY="170.0" />
+         </children>
+      </Group>
+    </children>
+</AnchorPane>

@@ -3,6 +3,7 @@ package edu.wpi.teamc.controllers;
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -61,7 +62,56 @@ public class FurnitureController {
   }
 
   @FXML
-  void getClear() {
-    clear.setOnMouseClicked(event -> Navigation.navigate(Screen.FURNITURE));
+  void getClear() {}
+
+  @FXML
+  void getFlowerDeliveryPage(javafx.event.ActionEvent event) {
+    Navigation.navigate(Screen.FLOWER);
   }
+
+  @FXML
+  void getFurnitureDeliveryPage(javafx.event.ActionEvent event) {
+    Navigation.navigate(Screen.FURNITURE);
+  }
+
+  @FXML
+  void getHelpPage(javafx.event.ActionEvent event) {
+    Navigation.navigate(Screen.HELP);
+  }
+
+  @FXML
+  void getMealDeliveryPage(javafx.event.ActionEvent event) {
+    Navigation.navigate(Screen.MEAL);
+  }
+
+  @FXML
+  void getOfficeSuppliesPage(javafx.event.ActionEvent event) {
+    Navigation.navigate(Screen.OFFICE_SUPPLY);
+  }
+
+  @FXML
+  void getRoomReservationPage(javafx.event.ActionEvent event) {
+    Navigation.navigate(Screen.CONFERENCE);
+  }
+
+  @FXML
+  void getSignagePage(javafx.event.ActionEvent event) {
+    Navigation.navigate(Screen.SIGNAGE);
+  }
+
+  /** Method run when controller is initialized */
+  @FXML
+  public void initialize() {}
+
+  @FXML
+  void getEditMap(javafx.event.ActionEvent event) {}
+
+  @FXML
+  void getLogOut(javafx.event.ActionEvent event) {}
+
+  @FXML
+  void getMapHistory(javafx.event.ActionEvent event) {}
+
+  @FXML
+  void getMapPage(ActionEvent event) {}
 }
