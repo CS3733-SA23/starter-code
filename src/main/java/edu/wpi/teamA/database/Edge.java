@@ -36,9 +36,9 @@ public class Edge {
       String row;
 
       String sqlCreateEdge =
-              "Create Table if not exists Prototype2_schema.Edge"
-                      + "(startNode   int,"
-                      + "endNode    int)";
+          "Create Table if not exists Prototype2_schema.Edge"
+              + "(startNode   int,"
+              + "endNode    int)";
       Statement stmtEdge = connection.createStatement();
       stmtEdge.execute(sqlCreateEdge);
 
@@ -46,8 +46,7 @@ public class Edge {
         String[] data = row.split(",");
 
         PreparedStatement ps =
-                connection.prepareStatement(
-                        "INSERT INTO Prototype2_schema.\"Edge\" VALUES (?, ?)");
+            connection.prepareStatement("INSERT INTO Prototype2_schema.\"Edge\" VALUES (?, ?)");
         ps.setInt(1, Integer.parseInt(data[0]));
         ps.setInt(2, Integer.parseInt(data[1]));
         ps.executeUpdate();

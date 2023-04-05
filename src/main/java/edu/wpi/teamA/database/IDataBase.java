@@ -1,25 +1,24 @@
 package edu.wpi.teamA.database;
 
-import java.sql.Connection;
-
 public interface IDataBase {
-    Integer nodeID = null;
+  Integer nodeID = null;
 
-    String longName = null;
-    void Import();
+  String longName = null;
 
-    void Export();
+  void Import();
 
-    void Add();
+  void Export();
 
-    void Delete();
+  void Add();
 
-    void Update();
-//1.get all
-//2.update
-//3.delete
+  void Delete();
 
-    //app start: instantiate and import all csv
-    //if csv already exists, drag it from the database
+  void Update();
+  // 1.get all
+  // 2.update
+  // 3.delete
+
+  // app start: instantiate and import all csv
+  // if csv already exists, drag it from the database
 
 }

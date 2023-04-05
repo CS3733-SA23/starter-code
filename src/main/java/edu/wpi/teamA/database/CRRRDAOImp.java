@@ -1,4 +1,3 @@
 package edu.wpi.teamA.database;
 
-public class CRRRDAOImp {
-}
+public class CRRRDAOImp {}

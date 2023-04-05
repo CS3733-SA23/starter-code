@@ -1,4 +1,3 @@
 package edu.wpi.teamA.database;
 
-public interface INodeDAO {
-}
+public interface INodeDAO {}

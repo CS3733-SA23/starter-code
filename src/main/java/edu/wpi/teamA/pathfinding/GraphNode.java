@@ -1,164 +1,170 @@
 package edu.wpi.teamA.pathfinding;
+
 import edu.wpi.teamA.database.Edge;
-import edu.wpi.teamA.database.Node;
 import java.util.ArrayList;
+
 public class GraphNode {
-    private int nodeID;
-    private int xcoord;
-    private int ycoord;
-    private String floor;
-    private String building;
-    private String longName;
-    private String shortName;
-    private String nodeType;
-    private ArrayList<Edge> edgeList; //change to Edge
-    private boolean visited;
-    private GraphNode prev;
-    private int gCost;
-    private int hCost;
+  private int nodeID;
+  private int xcoord;
+  private int ycoord;
+  private String floor;
+  private String building;
+  private String longName;
+  private String shortName;
+  private String nodeType;
+  private ArrayList<Edge> edgeList; // change to Edge
+  private boolean visited;
+  private GraphNode prev;
+  private int gCost;
+  private int hCost;
 
+  public GraphNode(
+      int nodeID,
+      int xcoord,
+      int ycoord,
+      String floor,
+      String building,
+      String longName,
+      String shortName,
+      String nodeType) {
+    this.nodeID = nodeID;
+    this.xcoord = xcoord;
+    this.ycoord = ycoord;
+    this.floor = floor;
+    this.building = building;
+    this.longName = longName;
+    this.shortName = shortName;
+    this.nodeType = nodeType;
+    this.edgeList = new ArrayList<Edge>();
+    this.visited = false;
+    this.prev = this;
+    this.gCost = -1;
+    this.hCost = -1;
+  }
 
-    public GraphNode(int nodeID, int xcoord, int ycoord, String floor, String building, String longName, String shortName, String nodeType, ArrayList<Edge> edgeList) {
-        this.nodeID = nodeID;
-        this.xcoord = xcoord;
-        this.ycoord = ycoord;
-        this.floor = floor;
-        this.building = building;
-        this.longName = longName;
-        this.shortName = shortName;
-        this.nodeType = nodeType;
-        this.edgeList = edgeList;
-        this.visited = false;
-        this.prev = this;
-        this.gCost = -1;
-        this.hCost = -1;
+  public void setNodeID(int nodeID) {
+    this.nodeID = nodeID;
+  }
 
-    }
+  public int getXcoord() {
+    return xcoord;
+  }
 
-    public void setNodeID(int nodeID) {
-        this.nodeID = nodeID;
-    }
+  public void setXcoord(int xcoord) {
+    this.xcoord = xcoord;
+  }
 
-    public int getXcoord() {
-        return xcoord;
-    }
+  public int getYcoord() {
+    return ycoord;
+  }
 
-    public void setXcoord(int xcoord) {
-        this.xcoord = xcoord;
-    }
+  public void setYcoord(int ycoord) {
+    this.ycoord = ycoord;
+  }
 
-    public int getYcoord() {
-        return ycoord;
-    }
+  public String getFloor() {
+    return floor;
+  }
 
-    public void setYcoord(int ycoord) {
-        this.ycoord = ycoord;
-    }
+  public void setFloor(String floor) {
+    this.floor = floor;
+  }
 
-    public String getFloor() {
-        return floor;
-    }
+  public String getBuilding() {
+    return building;
+  }
 
-    public void setFloor(String floor) {
-        this.floor = floor;
-    }
+  public void setBuilding(String building) {
+    this.building = building;
+  }
 
-    public String getBuilding() {
-        return building;
-    }
+  public String getLongName() {
+    return longName;
+  }
 
-    public void setBuilding(String building) {
-        this.building = building;
-    }
+  public void setLongName(String longName) {
+    this.longName = longName;
+  }
 
-    public String getLongName() {
-        return longName;
-    }
+  public String getShortName() {
+    return shortName;
+  }
 
-    public void setLongName(String longName) {
-        this.longName = longName;
-    }
+  public void setShortName(String shortName) {
+    this.shortName = shortName;
+  }
 
-    public String getShortName() {
-        return shortName;
-    }
+  public String getNodeType() {
+    return nodeType;
+  }
 
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
-    }
+  public void setNodeType(String nodeType) {
+    this.nodeType = nodeType;
+  }
 
-    public String getNodeType() {
-        return nodeType;
-    }
+  public void setEdgeList(ArrayList<Edge> edgeList) {
+    this.edgeList = edgeList;
+  }
 
-    public void setNodeType(String nodeType) {
-        this.nodeType = nodeType;
-    }
+  public boolean isVisited() {
+    return visited;
+  }
 
-    public void setEdgeList(ArrayList<Edge> edgeList) {
-        this.edgeList = edgeList;
-    }
+  public void setVisited(boolean visited) {
+    this.visited = visited;
+  }
 
-    public boolean isVisited() {
-        return visited;
-    }
+  public GraphNode getPrev() {
+    return prev;
+  }
 
-    public void setVisited(boolean visited) {
-        this.visited = visited;
-    }
+  public void setPrev(GraphNode prev) {
+    this.prev = prev;
+  }
 
-    public GraphNode getPrev() {
-        return prev;
-    }
+  public int getgCost() {
+    return gCost;
+  }
 
-    public void setPrev(GraphNode prev) {
-        this.prev = prev;
-    }
+  public void setgCost(int gCost) {
+    this.gCost = gCost;
+  }
 
-    public int getgCost() {
-        return gCost;
-    }
+  public int gethCost() {
+    return hCost;
+  }
 
-    public void setgCost(int gCost) {
-        this.gCost = gCost;
-    }
+  public void sethCost(int hCost) {
+    this.hCost = hCost;
+  }
 
-    public int gethCost() {
-        return hCost;
-    }
+  public int getfCost() {
+    return gCost + hCost;
+  }
 
-    public void sethCost(int hCost) {
-        this.hCost = hCost;
-    }
+  public int getNodeID() {
+    return nodeID;
+  }
 
-    public int getfCost() {
-        return gCost+hCost;
-    }
+  public void addEdge(Edge edge) {
+    edgeList.add(edge);
+  }
 
-    public int getNodeID() {
-        return nodeID;
-    }
+  public int edgeCount() {
+    return edgeList.size();
+  }
 
-    public void addEdge(Edge edge) {
-        edgeList.add(edge);
-    }
+  public Edge getEdge(int index) {
+    return edgeList.get(index);
+  }
 
-    public int edgeCount() {
-        return edgeList.size();
-    }
+  public void reset() { // implement
+    this.visited = false;
+    this.prev = this;
+    this.gCost = -1;
+    this.hCost = -1;
+  }
 
-    public Edge getEdge(int index) {
-        return edgeList.get(index);
-    }
-
-    public void reset() { // implement
-        this.visited = false;
-        this.prev = this;
-        this.gCost = -1;
-        this.hCost = -1;
-    }
-
-
-    //getters and setters for all attributes
-    //get fCost: gCost+hCost
+  // getters and setters for all attributes
+  // get fCost: gCost+hCost
 }
