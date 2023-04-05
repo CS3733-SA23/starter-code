@@ -14,7 +14,6 @@ public class ConferenceRoomRequest implements IServiceRequest {
   @Getter @Setter private STATUS stat;
 
   public ConferenceRoomRequest(
-
       Requester requester,
       ConferenceRoom conferenceRoom,
       String startTime,
