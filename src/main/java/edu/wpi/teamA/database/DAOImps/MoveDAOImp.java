@@ -42,8 +42,9 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
         String[] data = row.split(",");
 
         PreparedStatement ps =
-            moveProvider.createConnection().prepareStatement(
-                "INSERT INTO Prototype2_schema.\"Move\" VALUES (?, ?, ?)");
+            moveProvider
+                .createConnection()
+                .prepareStatement("INSERT INTO Prototype2_schema.\"Move\" VALUES (?, ?, ?)");
         ps.setInt(1, Integer.parseInt(data[0]));
         ps.setString(2, data[1]);
         ps.setString(3, data[2]);
