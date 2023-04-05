@@ -278,10 +278,8 @@ public enum DatabaseController {
 
       while (rs.next()) {
         hospitalNodes.add(
-                new HospitalNode(rs.getString("nodeID"), rs.getInt("xcoord"), rs.getInt("ycoord"),  stringToFloor(rs.getString(floorToString(stringToFloor("floor")))), rs.getString("building")));
+                new HospitalNode(rs.getString("nodeID"), rs.getInt("xcoord"), rs.getInt("ycoord"),  stringToFloor(rs.getString("floor")), rs.getString("building")));
       }
-
-
 
       return hospitalNodes;
     } catch (SQLException e) {
