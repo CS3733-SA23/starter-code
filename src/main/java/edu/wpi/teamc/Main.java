@@ -1,9 +1,7 @@
 package edu.wpi.teamc;
 
 import edu.wpi.teamc.map.*;
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class Main {
 

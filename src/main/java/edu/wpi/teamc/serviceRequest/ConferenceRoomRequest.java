@@ -1,45 +1,17 @@
 package edu.wpi.teamc.serviceRequest;
 
-import java.sql.Date;
-
 public class ConferenceRoomRequest implements IServiceRequest {
-  private ConferenceRoom selection;
-  private Date date;
-
   private String startTime;
   private String endTime;
-  private String addtionalNotes;
+  private String additionalNotes;
   private STATUS stat;
 
   public ConferenceRoomRequest(
-      ConferenceRoom select,
-      Date date,
-      String startTime,
-      String endTime,
-      String addtionalNotes,
-      STATUS stat) {
-    selection = select;
-    this.date = date;
+      String startTime, String endTime, String additionalNotes, STATUS stat) {
     this.startTime = startTime;
     this.endTime = endTime;
-    this.addtionalNotes = addtionalNotes;
+    this.additionalNotes = additionalNotes;
     this.stat = stat;
-  }
-
-  public ConferenceRoom getSelection() {
-    return selection;
-  }
-
-  public void setSelection(ConferenceRoom selection) {
-    this.selection = selection;
-  }
-
-  public Date getDate() {
-    return date;
-  }
-
-  public void setDate(Date date) {
-    this.date = date;
   }
 
   public String getStartTime() {
@@ -59,11 +31,11 @@ public class ConferenceRoomRequest implements IServiceRequest {
   }
 
   public String getAddtionalNotes() {
-    return addtionalNotes;
+    return additionalNotes;
   }
 
   public void setAddtionalNotes(String addtionalNotes) {
-    this.addtionalNotes = addtionalNotes;
+    this.additionalNotes = addtionalNotes;
   }
 
   public String getStat() {
