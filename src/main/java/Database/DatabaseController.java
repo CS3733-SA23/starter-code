@@ -286,7 +286,7 @@ public enum DatabaseController {
       while (rs.next()) {
         locationNames.add(
                 new LocationName(
-                        rs.getInt("nodeid") + "", rs.getString("longName"), rs.getString("date")));
+                        rs.getInt("nodeid") + "", rs.getString("longName"), rs.getInt("date")));
       }
 
       return locationNames;
