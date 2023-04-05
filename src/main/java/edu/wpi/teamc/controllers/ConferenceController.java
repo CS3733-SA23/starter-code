@@ -1,12 +1,20 @@
 package edu.wpi.teamc.controllers;
 
+import edu.wpi.teamc.Cdb;
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
+import edu.wpi.teamc.serviceRequest.ConferenceRoomRequest;
+import edu.wpi.teamc.serviceRequest.IServiceRequest;
+import edu.wpi.teamc.serviceRequest.Requester;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.time.LocalDate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 
 public class ConferenceController {
   @FXML private MFXButton goHome;
@@ -14,17 +22,22 @@ public class ConferenceController {
 
   @FXML private MFXButton clear;
 
-  @FXML private MenuItem chocie0;
+  @FXML private MenuItem choice0;
 
-  @FXML private MenuItem chocie1;
+  @FXML private MenuItem choice1;
 
-  @FXML private MenuItem chocie2;
+  @FXML private MenuItem choice2;
 
-  @FXML private MenuItem chocie3;
+  @FXML private MenuItem choice3;
 
   @FXML private MenuItem choice4;
 
   @FXML private MenuButton menuButton;
+  @FXML private MFXTextField nameBox;
+  @FXML private TextArea specialRequest;
+  @FXML private DatePicker startTime;
+  @FXML private DatePicker endTime;
+  private int currentReqID = 0;
 
   public void getGoHome() {
     goHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
@@ -56,8 +69,23 @@ public class ConferenceController {
   }
 
   @FXML
-  void getSubmit() {
-    submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
+  void getSubmit(ActionEvent event) {
+    LocalDate start = startTime.getValue();
+    LocalDate end = endTime.getValue();
+
+    String notes = specialRequest.getText();
+    IServiceRequest.STATUS status = IServiceRequest.STATUS.COMPLETE;
+    ConferenceRoomRequest req =
+        new ConferenceRoomRequest(start.toString(), end.toString(), notes, status);
+
+    String name = nameBox.getText();
+    currentReqID++;
+
+    Requester reqr = new Requester(currentReqID, name);
+
+    Cdb.addConferenceRoomRequest(req, reqr);
+
+    Navigation.navigate(Screen.CONGRATS_PAGE);
   }
 
   @FXML

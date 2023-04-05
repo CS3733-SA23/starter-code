@@ -52,7 +52,7 @@
         </MFXButton>
         <Group layoutX="74.0" layoutY="93.0">
             <children>
-                <MFXTextField floatMode="DISABLED" layoutX="87.0" layoutY="-13.0" prefHeight="30.0" prefWidth="412.0" promptText="Enter Name" textLimit="1000000">
+                <MFXTextField fx:id="nameBox" floatMode="DISABLED" layoutX="87.0" layoutY="-13.0" prefHeight="30.0" prefWidth="412.0" promptText="Enter Name" textLimit="1000000">
                     <textFill>
                         <Color green="0.501960813999176" blue="0.501960813999176" opacity="0.8700000047683716" />
                     </textFill>
@@ -77,9 +77,9 @@
             <MenuButton fx:id="menuButton" layoutX="87.0" layoutY="-8.0" mnemonicParsing="false" onAction="#getMenuButton" prefHeight="25.0" prefWidth="407.0" style="-fx-background-color: #ffffff;" text="--Select Conference Room--" textFill="TEAL">
                <items>
                   <MenuItem fx:id="chocie0" mnemonicParsing="false" onAction="#getChoice0" text="--Select Conference Room--" />
-                  <MenuItem fx:id="chocie1" mnemonicParsing="false" onAction="#getChoice1" text="Conference A1" />
-                  <MenuItem fx:id="chocie2" mnemonicParsing="false" onAction="#getChoice2" text="Conference B2" />
-                  <MenuItem fx:id="chocie3" mnemonicParsing="false" onAction="#getChoice3" text="Conference C3" />
+                  <MenuItem fx:id="choice1" mnemonicParsing="false" onAction="#getChoice1" text="Conference A1" />
+                  <MenuItem fx:id="choice2" mnemonicParsing="false" onAction="#getChoice2" text="Conference B2" />
+                  <MenuItem fx:id="choice3" mnemonicParsing="false" onAction="#getChoice3" text="Conference C3" />
                   <MenuItem fx:id="choice4" mnemonicParsing="false" onAction="#getChoice4" text="Ian's Conference Room" />
                </items>
                <font>
@@ -98,7 +98,7 @@
                         <Font name="Verdana Bold" size="16.0" />
                     </font>
                 </Label>
-            <DatePicker layoutX="87.0" layoutY="-10.0" prefHeight="26.0" prefWidth="146.0">
+            <DatePicker fx:id="startTime" layoutX="87.0" layoutY="-10.0" prefHeight="26.0" prefWidth="146.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -107,7 +107,7 @@
         </Group>
         <Group layoutX="74.0" layoutY="231.0">
             <children>
-                <TextArea fx:id="textArea" cache="true" layoutX="87.0" layoutY="-13.0" prefHeight="66.0" prefWidth="407.0" style="-fx-wrap-text: true; -fx-border-radius: 5; -fx-text-fill: teal;" wrapText="true">
+                <TextArea fx:id="specialRequest" cache="true" layoutX="87.0" layoutY="-13.0" prefHeight="66.0" prefWidth="407.0" style="-fx-wrap-text: true; -fx-border-radius: 5; -fx-text-fill: teal;" wrapText="true">
                     <font>
                         <Font name="Arial Bold" size="12.0" />
                     </font>
@@ -129,7 +129,7 @@
                   <Font name="Verdana Bold" size="16.0" />
                </font>
             </Label>
-            <DatePicker layoutX="71.0" layoutY="-10.0" prefHeight="26.0" prefWidth="146.0">
+            <DatePicker fx:id="endTime" layoutX="71.0" layoutY="-10.0" prefHeight="26.0" prefWidth="146.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
