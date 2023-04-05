@@ -169,12 +169,16 @@ public class SearchController {
   }
 
   private void insertIntoPQ(ArrayList<Integer> pQ, GraphNode node) {
-
+    boolean isAdded = false;
     for (int i = 0; i < pQ.size(); i++) {
       if (graph.getGraphNode(pQ.get(i)).getfCost() > node.getfCost()) {
         pQ.add(i, node.getNodeID());
+        isAdded = true;
         break;
       }
+    }
+    if (!isAdded) {
+      pQ.add(node.getNodeID());
     }
   }
 

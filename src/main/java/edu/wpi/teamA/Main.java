@@ -45,7 +45,8 @@ public class Main {
     //    }
 
     SearchController contA = new SearchController();
-    ArrayList<Integer> pathA = contA.pathOfNodesBFS(110, 115);
+    // ArrayList<Integer> pathA = contA.pathOfNodesBFS(110, 115);
+    ArrayList<Integer> pathA = contA.pathOfNodesAStar(110, 115);
 
     System.out.println("Start with Real Graph: ");
     System.out.println("Path Size: " + pathA.size());
