@@ -15,12 +15,7 @@ public class GraphNode {
   private int gCost;
   private int hCost;
 
-  public GraphNode(
-      int nodeID,
-      int xcoord,
-      int ycoord,
-      String floor,
-      String building) {
+  public GraphNode(int nodeID, int xcoord, int ycoord, String floor, String building) {
     this.nodeID = nodeID;
     this.xcoord = xcoord;
     this.ycoord = ycoord;

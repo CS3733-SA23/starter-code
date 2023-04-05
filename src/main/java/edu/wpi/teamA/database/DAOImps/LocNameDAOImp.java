@@ -9,7 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class LocNameDAOImp implements IDataBase, ILocNameDAO {
 
@@ -39,8 +38,9 @@ public class LocNameDAOImp implements IDataBase, ILocNameDAO {
         String[] data = row.split(",");
 
         PreparedStatement ps =
-            LocNameProvider.createConnection().prepareStatement(
-                "INSERT INTO Prototype2_schema.\"LocationName\" VALUES (?, ?, ?)");
+            LocNameProvider.createConnection()
+                .prepareStatement(
+                    "INSERT INTO Prototype2_schema.\"LocationName\" VALUES (?, ?, ?)");
         ps.setString(1, data[0]);
         ps.setString(2, data[1]);
         ps.setString(3, data[2]);

@@ -1,14 +1,12 @@
 package edu.wpi.teamA.database.DAOImps;
 
+import edu.wpi.teamA.database.Interfaces.IFlowerDAO;
+import edu.wpi.teamA.database.ORMclasses.FlowerEntity;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import edu.wpi.teamA.database.Interfaces.IFlowerDAO;
-import edu.wpi.teamA.database.ORMclasses.FlowerEntity;
-
 
 public class FlowerDAOImpl implements IFlowerDAO {
   ArrayList<FlowerEntity> flowerArray = new ArrayList<>();
@@ -29,8 +27,8 @@ public class FlowerDAOImpl implements IFlowerDAO {
       String status = flower.getStatus();
 
       PreparedStatement ps =
-              flowerConnection.prepareStatement(
-                      "INSERT INTO Prototype2_schema.\"flower\" VALUES (?, ?, ?, ?, ?, ?, ?)");
+          flowerConnection.prepareStatement(
+              "INSERT INTO Prototype2_schema.\"flower\" VALUES (?, ?, ?, ?, ?, ?, ?)");
       ps.setString(1, name);
       ps.setInt(2, room);
       ps.setDate(3, date);
@@ -52,8 +50,8 @@ public class FlowerDAOImpl implements IFlowerDAO {
 
     try {
       PreparedStatement ps =
-              flowerConnection.prepareStatement(
-                      "DELETE FROM Prototype2_schema.\"flower\" WHERE name = ?");
+          flowerConnection.prepareStatement(
+              "DELETE FROM Prototype2_schema.\"flower\" WHERE name = ?");
       ps.setString(1, flower.getName());
       ps.executeUpdate();
 
@@ -67,4 +65,3 @@ public class FlowerDAOImpl implements IFlowerDAO {
   @Override
   public void updateFlower(FlowerEntity flower) {}
 }
-
