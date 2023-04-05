@@ -1,5 +1,6 @@
 package edu.wpi.teamA.database.DAOImps;
 
+import edu.wpi.teamA.database.Connection.DBConnectionProvider;
 import edu.wpi.teamA.database.Interfaces.IMoveDAO;
 import edu.wpi.teamA.database.ORMclasses.Move;
 import java.io.BufferedReader;
@@ -16,10 +17,9 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
 
   @Getter @Setter private static ArrayList<Move> MoveArray = new ArrayList<Move>();
 
-  static Connection moveConnection;
+  static DBConnectionProvider moveProvider = new DBConnectionProvider();
 
-  public MoveDAOImp(Connection moveConnection, ArrayList<Move> MoveArray) {
-    this.moveConnection = moveConnection;
+  public MoveDAOImp(ArrayList<Move> MoveArray) {
     this.MoveArray = MoveArray;
   }
 
@@ -37,14 +37,14 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
               + "(nodeID   Int,"
               + "LongName  Varchar(600),"
               + "date      date)";
-      Statement stmtMove = moveConnection.createStatement();
+      Statement stmtMove = moveProvider.createConnection().createStatement();
       stmtMove.execute(sqlCreateEdge);
 
       while ((row = csvReader.readLine()) != null) {
         String[] data = row.split(",");
 
         PreparedStatement ps =
-            moveConnection.prepareStatement(
+            moveProvider.createConnection().prepareStatement(
                 "INSERT INTO Prototype2_schema.\"Move\" VALUES (?, ?, ?)");
         ps.setInt(1, Integer.parseInt(data[0]));
         ps.setString(2, data[1]);
@@ -60,7 +60,7 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
 
   public static void Export(String filePath) {
     try {
-      Statement st = moveConnection.createStatement();
+      Statement st = moveProvider.createConnection().createStatement();
       ResultSet rs = st.executeQuery("SELECT * FROM Prototype2_schema.\"Move\"");
 
       FileWriter csvWriter = new FileWriter("Move.csv");

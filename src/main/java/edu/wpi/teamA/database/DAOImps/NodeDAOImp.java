@@ -20,6 +20,21 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
     this.NodeArray = NodeArray;
   }
 
+  public NodeDAOImp() {
+    this.NodeArray = new ArrayList<Node>();
+  }
+
+  public static void createSchema(){
+    try {
+      Statement stmtSchema = nodeProvider.createConnection().createStatement();
+      String sqlCreateSchema = "CREATE SCHEMA IF NOT EXISTS \"Prototype2_schema\"";
+      stmtSchema.execute(sqlCreateSchema);
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
   // ResultSet
 
   public static Connection createConnection() {
@@ -65,7 +80,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
     return nodes;
   }
   public static ArrayList<Node> Import(String filePath) {
-
+    NodeDAOImp.createSchema();
     ArrayList<Node> NodeArray = loadNodesFromCSV(filePath);
 
     try {
@@ -73,7 +88,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
       csvReader.readLine();
       String row;
 
-      String sqlCreateEdge =
+      String sqlCreateNode =
           "Create Table if not exists \"Prototype2_schema\".\"Node\""
               + "(nodeID   int,"
               + "xcoord    int,"
@@ -81,7 +96,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
               + "floor     Varchar(600),"
               + "building  Varchar(600))";
       Statement stmtNode = nodeProvider.createConnection().createStatement();
-      stmtNode.execute(sqlCreateEdge);
+      stmtNode.execute(sqlCreateNode);
 
       while ((row = csvReader.readLine()) != null) {
         String[] data = row.split(",");
@@ -133,6 +148,31 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
       throw new RuntimeException(e);
     }
   }
+
+  public ArrayList<Node> loadNodesFromDatabase() {
+    ArrayList<Node> nodes = new ArrayList<>();
+
+    try {
+      Statement st = nodeProvider.createConnection().createStatement();
+      ResultSet rs = st.executeQuery("SELECT * FROM \"Prototype2_schema\".\"Node\"");
+
+      while (rs.next()) {
+        int nodeID = rs.getInt("nodeID");
+        int xcoord = rs.getInt("xcoord");
+        int ycoord = rs.getInt("ycoord");
+        String floor = rs.getString("floor");
+        String building = rs.getString("building");
+
+        Node node = new Node(nodeID, xcoord, ycoord, floor, building);
+        nodes.add(node);
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    return nodes;
+  }
+
 
   @Override
   public void Add() {
