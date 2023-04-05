@@ -18,6 +18,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <AnchorPane prefHeight="900.0" prefWidth="1500.0" style="-fx-background-color: #3b63a5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.LowerLevelTwoMapNavController">
     <children>
         <BorderPane prefHeight="200.0" prefWidth="320.0" style="-fx-background-color: e1e1e1;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
@@ -49,9 +50,9 @@
                     <children>
                         <MFXButton fx:id="groundFloorButton" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Ground Floor" />
                         <MFXButton fx:id="lowerLevelOneButton" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Lower Level 1" />
-                        <MFXButton fx:id="FirstFloorButton" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="First Floor" />
-                        <MFXButton fx:id="SecondFloorButton" layoutX="10.0" layoutY="64.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Second Floor" />
-                        <MFXButton fx:id="ThirdFloorButton" layoutX="10.0" layoutY="91.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Third Floor" />
+                        <MFXButton fx:id="firstFloorButton" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="First Floor" />
+                        <MFXButton fx:id="secondFloorButton" layoutX="10.0" layoutY="64.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Second Floor" />
+                        <MFXButton fx:id="thirdFloorButton" layoutX="10.0" layoutY="91.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Third Floor" />
                     </children>
                 </VBox>
             </right>
