@@ -38,15 +38,15 @@ public class PathfindingController {
     String endNodeString = endNode.getText();
     List<String> directions = graph.stringDirectionsAStar(startNodeString, endNodeString);
     String directionsString = "";
-    for (String s : directions) {
-      directionsString += s;
-      if (!s.equals(directions.get(directions.size() - 3))) {
-        directionsString += ">";
-      }
-      if (s.equals(directions.get(directions.size() - 2))) {
-        directionsString += "\n Weight:";
-      }
+
+    directionsString += directions.get(0);
+    for (String s : directions.subList(1, directions.size() - 1)) {
+      directionsString += "->" + s;
     }
+
+    directionsString += "\nWeight: " + directions.get(directions.size() - 1);
+    directionsbox.setWrapText(true);
+    directionsbox.setMaxWidth(330);
     directionsbox.setText(directionsString);
   }
   /** Method run when controller is initializes */
