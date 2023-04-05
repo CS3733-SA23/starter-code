@@ -10,12 +10,7 @@ public class TableRow {
   private String LongName;
   private String Date;
   private int index;
-  private String ID;
-  private String status;
-  private String start;
-  private String end;
-  private String name;
-  private String info, room;
+  private String s1, s2, s3, s4, s5, s6, s7;
 
   public TableRow(String nodeID, String longName, String date) {
     this.NodeID = nodeID;
@@ -30,15 +25,23 @@ public class TableRow {
     this.index = index;
   }
 
-  public TableRow(
-      String ID, String name, String status, String start, String end, String info, String room) {
-    this.ID = ID;
-    this.name = name;
-    this.status = status;
-    this.start = start;
-    this.end = end;
-    this.info = info;
-    this.room = room;
+  public TableRow(String s1, String s2, String s3, String s4, String s5, String s6) {
+    this.s1 = s1;
+    this.s2 = s2;
+    this.s3 = s3;
+    this.s4 = s4;
+    this.s5 = s5;
+    this.s6 = s6;
+  }
+
+  public TableRow(String s1, String s2, String s3, String s4, String s5, String s6, String s7) {
+    this.s1 = s1;
+    this.s2 = s2;
+    this.s3 = s3;
+    this.s4 = s4;
+    this.s5 = s5;
+    this.s6 = s6;
+    this.s7 = s7;
   }
 
   public String getNodeID() {
@@ -67,9 +70,5 @@ public class TableRow {
 
   public int getIndex() {
     return index;
-  }
-
-  public String getID() {
-    return ID;
   }
 }

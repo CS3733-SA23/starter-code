@@ -148,5 +148,10 @@ public class MealController {
   }
 
   @FXML
+  void getMealHistory(ActionEvent event) {
+    Navigation.navigate(Screen.MEAL_HISTORY);
+  }
+
+  @FXML
   void getMapPage(ActionEvent event) {}
 }
