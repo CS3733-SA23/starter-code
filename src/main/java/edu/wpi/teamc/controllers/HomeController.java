@@ -197,6 +197,9 @@ public class HomeController {
     File file = fileChooser.showSaveDialog(new Stage());
     if (file != null) {
       String filePath = file.getAbsolutePath();
+      if (!filePath.endsWith(".csv")) { // check if file path doesn't already end with ".csv"
+        filePath += ".csv"; // append ".csv" to the file path
+      }
       Cdb.exportNodesToCSV(filePath);
       testText.setText(filePath);
     }
@@ -210,6 +213,9 @@ public class HomeController {
     File file = fileChooser.showSaveDialog(new Stage());
     if (file != null) {
       String filePath = file.getAbsolutePath();
+      if (!filePath.endsWith(".csv")) { // check if file path doesn't already end with ".csv"
+        filePath += ".csv"; // append ".csv" to the file path
+      }
       Cdb.exportEdgesToCSV(filePath);
       testText.setText(filePath);
     }
@@ -223,6 +229,9 @@ public class HomeController {
     File file = fileChooser.showSaveDialog(new Stage());
     if (file != null) {
       String filePath = file.getAbsolutePath();
+      if (!filePath.endsWith(".csv")) { // check if file path doesn't already end with ".csv"
+        filePath += ".csv"; // append ".csv" to the file path
+      }
       Cdb.exportLocationNamesToCSV(filePath);
       testText.setText(filePath);
     }
@@ -236,6 +245,9 @@ public class HomeController {
     File file = fileChooser.showSaveDialog(new Stage());
     if (file != null) {
       String filePath = file.getAbsolutePath();
+      if (!filePath.endsWith(".csv")) { // check if file path doesn't already end with ".csv"
+        filePath += ".csv"; // append ".csv" to the file path
+      }
       Cdb.exportMovesToCSV(filePath);
       testText.setText(filePath);
     }
