@@ -91,10 +91,10 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
               + "endNode    int,"
               + "CONSTRAINT fk_startnode "
               + "FOREIGN KEY(startNode) "
-              + "REFERENCES \"Prototype2_schema\".\"Node(nodeid)\", "
+              + "REFERENCES \"Prototype2_schema\".\"Node(nodeID)\", "
               + "CONSTRAINT fk_endnode "
               + "FOREIGN KEY(endNode)"
-              + "REFERENCES \"Prototype2_schema\".\"Node(nodeid)\")";
+              + "REFERENCES \"Prototype2_schema\".\"Node(nodeID)\")";
 
       Statement stmtEdge = edgeProvider.createConnection().createStatement();
       stmtEdge.execute(sqlCreateEdge);

@@ -77,12 +77,17 @@ public class MapController implements IPageController {
     Navigation.navigate(Screen.HOME);
   }
 
-  public void importNodeCSV() {
+  private File importHelper() {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open CSV File");
     fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
     File selectedFile = fileChooser.showOpenDialog(App.getPrimaryStage());
     System.out.println(selectedFile.getPath());
+    return selectedFile;
+  }
+
+  public void importNodeCSV() {
+    File selectedFile = importHelper();
     ArrayList<Node> nodeArray = NodeDAOImp.Import(selectedFile.getPath());
     displayNodeData(nodeArray);
   }
@@ -100,11 +105,7 @@ public class MapController implements IPageController {
   }
 
   public void importLocNameCSV() {
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Open CSV File");
-    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
-    File selectedFile = fileChooser.showOpenDialog(App.getPrimaryStage());
-    System.out.println(selectedFile.getPath());
+    File selectedFile = importHelper();
     ArrayList<LocationName> locNameArray = LocNameDAOImp.Import(selectedFile.getPath());
     displayLocNameData(locNameArray);
   }
@@ -119,15 +120,10 @@ public class MapController implements IPageController {
     // locationNameTable.getColumns();
   }
 
-  public ArrayList<Move> importMoveCSV() {
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Open CSV File");
-    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
-    File selectedFile = fileChooser.showOpenDialog(App.getPrimaryStage());
-    System.out.println(selectedFile.getPath());
+  public void importMoveCSV() {
+    File selectedFile = importHelper();
     ArrayList<Move> moveArray = MoveDAOImp.Import(selectedFile.getPath());
     displayMoveData(moveArray);
-    return moveArray;
   }
 
   public void displayMoveData(ArrayList<Move> moveArray) {
@@ -140,7 +136,7 @@ public class MapController implements IPageController {
     // moveTable.getColumns();
   }
 
-  public ArrayList<Edge> importEdgeCSV() {
+  public void importEdgeCSV() {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open CSV File");
     fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
@@ -148,7 +144,6 @@ public class MapController implements IPageController {
     System.out.println(selectedFile.getPath());
     ArrayList<Edge> edgeArray = EdgeDAOImp.Import(selectedFile.getPath());
     displayEdgeData(edgeArray);
-    return edgeArray;
   }
 
   public void displayEdgeData(ArrayList<Edge> edgeArray) {
