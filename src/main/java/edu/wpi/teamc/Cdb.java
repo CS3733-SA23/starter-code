@@ -170,7 +170,7 @@ public class Cdb implements IServiceRequest {
   }
 
   // meal request adding + updating
-  static void addMeal(MealRequest mealReq, Requester requester) {
+  public static void addMeal(MealRequest mealReq, Requester requester) {
     try {
       String MEALREQUEST = "\"ServiceRequests\".\"mealRequest\"";
       // query
@@ -196,9 +196,9 @@ public class Cdb implements IServiceRequest {
     }
   }
 
-  static void addConferenceRoomRequest(ConferenceRoomRequest confReq, Requester requester) {
+  public static void addConferenceRoomRequest(ConferenceRoomRequest confReq, Requester requester) {
     try {
-      String CONFREQUEST = "\"ServiceRequests\".\"conferenceRoomRequest\"";
+      String CONFREQUEST = "\"ServiceRequests\".\"conferenceRoom\"";
       // query
       String queryInsertMealReq = "INSERT INTO " + CONFREQUEST + " VALUES (?,?,?,?,?,?);";
       PreparedStatement preparedStatement =
@@ -210,12 +210,10 @@ public class Cdb implements IServiceRequest {
             3,
             confReq
                 .getStat()
-                .name()); // adds meal by meal name not my class -> can later figure out how
-        // to
+                .name());
         preparedStatement.setString(4, confReq.getStartTime());
         preparedStatement.setString(5, confReq.getEndTime());
-        preparedStatement.setString(6, confReq.getAddtionalNotes());
-
+        preparedStatement.setString(6, confReq.getAdditionalNotes());
         preparedStatement.executeUpdate();
       }
     } catch (Exception e) {
