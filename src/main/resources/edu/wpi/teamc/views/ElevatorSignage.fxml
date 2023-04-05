@@ -7,7 +7,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 
+<?import javafx.scene.Cursor?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #008080;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.ElevatorSignageController">
     <children>
         <Text layoutX="172.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-family: Inter; -fx-font-size: 28; -fx-font-weight: bold;" text="Watkins Clinics A &amp; B (this floor)" />
@@ -20,7 +25,7 @@
         <Button layoutX="13.0" layoutY="10.0" mnemonicParsing="false" onAction="#initialize" style="-fx-background-color: #A9F6ED; -fx-text-fill: #008080;" text="Back" />
         <ImageView fitHeight="37.0" fitWidth="51.0" layoutX="649.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../../../../icone-de-cloche-grise%20(1).png" />
+                <Image url="@../../../../../../../icone-de-cloche-grise(1).png" />
             </image>
         </ImageView>
       <Line endX="13.399948120117188" endY="-28.749237060546875" layoutX="108.0" layoutY="362.0" startX="13.399978637695312" startY="1.1444091796875E-5" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
@@ -34,8 +39,40 @@
       <Line endX="3.6000213623046875" endY="24.050811767578125" layoutX="132.0" layoutY="133.0" startX="-10.600051879882812" startY="7.850799560546875" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
       <Line endX="13.399948120117188" endY="-37.149200439453125" layoutX="108.0" layoutY="103.0" startX="13.399948120117188" startY="-10.549232482910156" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
       <Line endX="65.39994812011719" endY="-1.149200439453125" layoutX="56.0" layoutY="64.0" startX="51.19999694824219" startY="14.199981689453125" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
-      <Line endX="3.6000213623046875" endY="24.050811767578125" layoutX="132.0" layoutY="55.0" startX="-10.600051879882812" startY="7.850799560546875" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" />
-      <MFXButton layoutX="14.0" layoutY="50.0" style="-fx-background-color: #A9F6ED; -fx-text-fill: #008080;" text="Back" />
+      <Line endX="3.6000213623046875" endY="24.050811767578125" layoutX="132.0" layoutY="55.0" startX="-10.600051879882812" startY="7.850799560546875" stroke="#3ee2cd" strokeLineCap="ROUND" strokeWidth="6.0" /><MFXButton layoutX="14.0" layoutY="50.0" style="-fx-background-color: #A9F6ED; -fx-text-fill: #008080;" text="Back" />
+
+
+        <MenuBar layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="578.0" style="-fx-background-radius: 2; -fx-background-color: white;">
+            <menus>
+                <Menu mnemonicParsing="false" text="Service Requests">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#getRoomReservationPage" text="Room Reservation" />
+                        <MenuItem mnemonicParsing="false" onAction="#getMealDeliveryPage" text="Meal Delivery" />
+                        <MenuItem mnemonicParsing="false" onAction="#getFlowerDeliveryPage" text="Flower Delivery" />
+                        <MenuItem mnemonicParsing="false" onAction="#getFurnitureDeliveryPage" text="Furniture Delivery" />
+                        <MenuItem mnemonicParsing="false" onAction="#getOfficeSuppliesPage" text="Office Supplies" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Navigation">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#getSignagePage" text="Signage" />
+                        <MenuItem mnemonicParsing="false" onAction="#getMapPage" text="Map" />
+                        <MenuItem mnemonicParsing="false" onAction="#getEditMap" text="Edit Map" />
+                        <MenuItem mnemonicParsing="false" onAction="#getMapHistory" text="Map History" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Options">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#getHelpPage" text="Help Page" />
+                        <MenuItem mnemonicParsing="false" onAction="#getLogOut" text="Log Out" />
+                        <MenuItem mnemonicParsing="false" text="Exit App" />
+                    </items>
+                </Menu>
+            </menus>
+            <cursor>
+                <Cursor fx:constant="OPEN_HAND" />
+            </cursor>
+        </MenuBar>
     </children>
 
 </AnchorPane>
