@@ -11,9 +11,6 @@ import java.util.Scanner;
 import lombok.Getter;
 
 public class DatabaseController {
-  public Connection getC() {
-    return c;
-  }
 
   @Getter private Connection c;
   private static List<HospitalNode> nodeList = new ArrayList<>();
@@ -40,7 +37,7 @@ public class DatabaseController {
       System.err.println(e.getClass().getName() + ": " + e.getMessage());
       System.exit(0);
     }
-    //System.out.println("Opened database successfully");
+    // System.out.println("Opened database successfully");
     return c;
   }
 

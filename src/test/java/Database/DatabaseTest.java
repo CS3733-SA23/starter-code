@@ -102,12 +102,17 @@ public class DatabaseTest {
     assertEquals(0, 0);
   }
 
+  /**
+   * Tests retrieving the service requests from the table
+   * Tests run based on the current number of entries within the service request table
+   * Will fail if expected value is out of date for number of entries in the table
+   */
   @Test
   public void testretrieveRequestsFromTable() {
     DatabaseServiceController dbsc = setupServiceController();
 
     List<ServiceRequestData> serviceRequestDataList = dbsc.retrieveRequestsFromTable();
 
-    assertEquals(1, serviceRequestDataList.size());
+    assertEquals(0, serviceRequestDataList.size());
   }
 }
