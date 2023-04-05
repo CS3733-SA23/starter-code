@@ -38,6 +38,8 @@ public class App extends Application {
     primaryStage.show();
 
     Navigation.navigate(Screen.HOME);
+
+    // call all database DAOs and populate the list
   }
 
   @Override
