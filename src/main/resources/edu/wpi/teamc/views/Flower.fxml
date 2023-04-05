@@ -124,7 +124,6 @@
             </MenuButton>
          </children>
       </Group>
-
        <MenuBar layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="578.0" style="-fx-background-radius: 2; -fx-background-color: white;">
            <menus>
                <Menu mnemonicParsing="false" text="Service Requests">

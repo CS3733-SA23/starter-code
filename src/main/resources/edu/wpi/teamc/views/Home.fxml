@@ -126,6 +126,14 @@
                       <Font name="Verdana Bold" size="12.0" />
                   </font>
             </Button>
+            <Button fx:id="logOut" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getLogOut" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Log Out" textFill="#004646">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font>
+            </Button>
              <Button fx:id="importButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getImportButton" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Import" textFill="#004646">
                  <cursor>
                      <Cursor fx:constant="HAND" />
@@ -141,14 +149,6 @@
                  <font>
                      <Font name="Verdana Bold" size="12.0" />
                  </font>
-             </Button>
-            <Button fx:id="logOut" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getLogOut" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Log Out" textFill="#004646">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <font>
-                  <Font name="Verdana Bold" size="12.0" />
-               </font>
             </Button>
             <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Place Holder" textFill="#004646" visible="false">
                <cursor>
