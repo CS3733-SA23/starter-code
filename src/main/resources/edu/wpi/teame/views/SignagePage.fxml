@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.MotionBlur?>
 <?import javafx.scene.image.Image?>
@@ -12,12 +11,13 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane style="-fx-background-color: #3b63a5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.ServiceRequestPageController">
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.SignageController">
    <center>
-      <AnchorPane prefHeight="500.0" prefWidth="810.0">
+      <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="534.0" layoutX="14.0" layoutY="14.0" strokeType="INSIDE" width="800.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="534.0" strokeType="INSIDE" width="800.0">
                <effect>
                   <DropShadow height="28.02" radius="15.265" width="35.04">
                      <color>
@@ -26,62 +26,86 @@
                   </DropShadow>
                </effect>
             </Rectangle>
-            <ImageView fitHeight="600.0" fitWidth="797.0" layoutX="6.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="5.0">
+            <ImageView fitHeight="600.0" fitWidth="797.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/BWH_BridgeInside_JK.jpg" />
                </image>
                <effect>
-                  <MotionBlur />
+                  <MotionBlur radius="4.7" />
                </effect>
             </ImageView>
-            <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#7e7e7e" height="462.0" layoutX="137.0" layoutY="41.0" opacity="0.64" stroke="TRANSPARENT" strokeType="INSIDE" width="537.0" />
-            <VBox alignment="TOP_CENTER" layoutX="255.0" layoutY="153.0" prefHeight="238.0" prefWidth="300.0" spacing="20.0">
-               <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="60.0" stroke="TRANSPARENT" strokeType="INSIDE" width="299.0" />
-                  <MFXButton fx:id="flowerRequest" alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Flower Delivery Request" textAlignment="RIGHT" textFill="WHITE">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/flowers.png" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="GAUSSIAN" height="22.17" radius="10.877500000000001" spread="0.6" width="23.34">
-                                 <color>
-                                    <Color red="0.8980392217636108" green="0.7372549176216125" blue="0.23137255012989044" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
-                  <MFXButton fx:id="mealRequest" alignment="CENTER_RIGHT" graphicTextGap="15.0" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Meal Delivery Request" textAlignment="RIGHT" textFill="WHITE">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/food.png" />
-                           </image>
-                           <effect>
-                              <DropShadow blurType="GAUSSIAN" height="22.17" radius="10.877500000000001" spread="0.6" width="23.34">
-                                 <color>
-                                    <Color red="0.8980392217636108" green="0.7372549176216125" blue="0.23137255012989044" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
-               </children>
-            </VBox>
-            <MFXButton fx:id="returnButtonService" contentDisplay="GRAPHIC_ONLY" layoutX="154.0" layoutY="65.0" style="-fx-background-color: #192d5a;">
+            <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#7e7e7e" height="462.0" layoutX="130.0" layoutY="36.0" opacity="0.73" stroke="TRANSPARENT" strokeType="INSIDE" width="537.0" />
+            <Text fontSmoothingType="LCD" layoutX="313.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Directory" underline="true">
+               <font>
+                  <Font name="Poor Richard" size="48.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="92.0" fitWidth="82.0" layoutX="499.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Arrow.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="92.0" fitWidth="82.0" layoutX="571.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Arrow.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="92.0" fitWidth="82.0" layoutX="272.0" layoutY="148.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Arrow.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="92.0" fitWidth="82.0" layoutX="227.0" layoutY="200.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Arrow.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="349.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shapiro Ward">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="297.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transformative Medicine">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="229.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Center For International Medicine (Floor 1)">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="287.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Room (Floor 1)">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="268.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="268.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Oncology/Gynecology (Floor 3)">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="331.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OBGYN (Floor 3)">
+               <font>
+                  <Font name="Times New Roman" size="20.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="92.0" fitWidth="82.0" layoutX="530.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Arrow.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="92.0" fitWidth="82.0" layoutX="486.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Arrow.png" />
+               </image>
+            </ImageView>
+            <MFXButton fx:id="returnButtonSignage" contentDisplay="GRAPHIC_ONLY" layoutX="152.0" layoutY="49.0" style="-fx-background-color: #192d5a;">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="50.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -97,7 +121,7 @@
                   </ImageView>
                </graphic>
             </MFXButton>
-            <MFXButton fx:id="menuButton" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="1.0" layoutX="5.0" layoutY="65.0" prefHeight="50.0" prefWidth="50.0" rippleColor="#e1e1e1" style="-fx-background-color: #192d5a; -fx-background-radius: 0; -fx-background-size: 50;" />
+            <MFXButton fx:id="menuButton" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="1.0" layoutX="5.0" layoutY="65.0" prefHeight="50.0" prefWidth="50.0" rippleColor="#e1e1e1" style="-fx-background-color: #192d5a; -fx-background-radius: 0;" />
             <VBox layoutX="55.0" layoutY="65.0" prefHeight="383.0" prefWidth="80.0">
                <children>
                   <MFXButton fx:id="menuBarHome" contentDisplay="GRAPHIC_ONLY" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Home" textFill="WHITE">
@@ -132,7 +156,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="menuBarSignage" contentDisplay="GRAPHIC_ONLY" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" textFill="WHITE">
+                  <MFXButton fx:id="menuBarSignage" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -164,7 +188,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="menuBarDatabase" contentDisplay="GRAPHIC_ONLY" defaultButton="true" prefHeight="51.0" prefWidth="61.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
+                  <MFXButton fx:id="menuBarDatabase" contentDisplay="GRAPHIC_ONLY" defaultButton="true" prefHeight="51.0" prefWidth="58.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -180,7 +204,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="menuBarExit" contentDisplay="GRAPHIC_ONLY" defaultButton="true" prefHeight="58.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
+                  <MFXButton fx:id="menuBarExit" contentDisplay="GRAPHIC_ONLY" defaultButton="true" prefHeight="58.0" prefWidth="53.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>

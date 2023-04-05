@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
@@ -63,6 +64,13 @@ public class GroundFloorNavMapController {
 
   @FXML
   public void initialize() {
+
+    mouseSetup(lowerLevelOneButton);
+    mouseSetup(lowerLevelTwoButton);
+    mouseSetup(secondFloorButton);
+    mouseSetup(firstFloorButton);
+    mouseSetup(thirdFloorButton);
+    mouseSetup(backButton);
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     lowerLevelOneButton.setOnMouseClicked(event -> refreshMap(Floor.LOWER_ONE));
     lowerLevelTwoButton.setOnMouseClicked(event -> refreshMap(Floor.LOWER_TWO));
@@ -217,5 +225,19 @@ public class GroundFloorNavMapController {
   public void refreshPath() {
     mapPane.getChildren().removeAll(currentCircles);
     mapPane.getChildren().removeAll(currentLines);
+  }
+
+  private void mouseSetup(MFXButton btn) {
+    btn.setOnMouseEntered(
+        event -> {
+          btn.setStyle(
+              "-fx-background-color: #ffffff; -fx-alignment: center; -fx-border-color: #192d5a; -fx-border-width: 2;");
+          btn.setTextFill(Color.web("#192d5aff", 1.0));
+        });
+    btn.setOnMouseExited(
+        event -> {
+          btn.setStyle("-fx-background-color: #192d5aff; -fx-alignment: center;");
+          btn.setTextFill(WHITE);
+        });
   }
 }
