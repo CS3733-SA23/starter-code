@@ -1,7 +1,7 @@
 package edu.wpi.teamA.pathfinding;
 
-import edu.wpi.teamA.database.Edge;
 import java.util.ArrayList;
+import edu.wpi.teamA.database.ORMclasses.Edge;
 
 public class SearchController {
 

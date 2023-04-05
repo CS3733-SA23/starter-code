@@ -1,6 +1,9 @@
 package edu.wpi.teamA.pathfinding;
 
 import java.util.HashMap;
+import java.util.ArrayList;
+import edu.wpi.teamA.database.
+import edu.wpi.teamA.database.DAOImps.NodeDAOImp;
 
 public class Graph {
   private HashMap<Integer, GraphNode> pathfindingArea;
@@ -11,7 +14,7 @@ public class Graph {
 
   public void prepGraph() {
 
-    // List<l1nodes> allNodes = NodeDAO.getALLNodes();
+    //ArrayList<GraphNode> allNodes = NodeDAOImp();
 
     // traverse through the node entities  (l1nodes)
 

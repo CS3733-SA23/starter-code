@@ -1,6 +1,5 @@
 package edu.wpi.teamA;
 
-import edu.wpi.teamA.database.Edge;
 import edu.wpi.teamA.pathfinding.Graph;
 import edu.wpi.teamA.pathfinding.GraphNode;
 import edu.wpi.teamA.pathfinding.SearchController;

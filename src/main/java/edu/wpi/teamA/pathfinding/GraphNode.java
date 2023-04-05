@@ -1,6 +1,6 @@
 package edu.wpi.teamA.pathfinding;
 
-import edu.wpi.teamA.database.Edge;
+import edu.wpi.teamA.database.ORMclasses.Edge;
 import java.util.ArrayList;
 
 public class GraphNode {
