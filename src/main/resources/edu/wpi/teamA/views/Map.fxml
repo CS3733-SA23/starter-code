@@ -2,6 +2,7 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,98 +13,123 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.Navigation.MapController">
-    <children>
-        <fx:include fx:id="header" source="Header.fxml" />
-        <fx:include fx:id="footer" layoutY="620.0" source="Footer.fxml" />
-        <Text fx:id="title" fill="#eebd28" layoutY="-32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Map Editor" textAlignment="CENTER" wrappingWidth="700.0" x="290.0" y="100.0">
-            <font>
-                <Font name="Open Sans Bold" size="48.0" />
-            </font>
-        </Text>
-      <MFXButton id="back" fx:id="backButton" layoutX="115.0" layoutY="23.0" onAction="#back" prefHeight="53.0" prefWidth="89.0" style="-fx-background-color: #0E5DAD; -fx-background-radius: 15; -fx-text-fill: WHITE;" text="Back" textAlignment="CENTER" textFill="#fcfcfc">
-          <opaqueInsets>
-              <Insets />
-          </opaqueInsets>
-          <font>
-              <Font name="Open Sans Bold" size="24.0" />
-          </font>
-          <rippleColor>
-              <LinearGradient endX="1.0" endY="1.0">
-                  <stops>
-                      <Stop>
-                          <color>
-                              <Color />
-                          </color>
-                      </Stop>
-                      <Stop offset="1.0">
-                          <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                          </color>
-                      </Stop>
-                  </stops>
-              </LinearGradient>
-          </rippleColor>
-      </MFXButton>
-      <TableView fx:id="table" layoutX="140.0" layoutY="130.0" prefHeight="380.0" prefWidth="1000.0">
-        <columns>
-          <TableColumn fx:id="nodeColumn" prefWidth="250.0" text="Node" />
-          <TableColumn fx:id="locationNameColumn" prefWidth="250.0" text="Location Name" />
-            <TableColumn fx:id="moveColumn" prefWidth="250.0" text="Move" />
-            <TableColumn fx:id="edgeDataColumn" prefWidth="250.0" text="Edge Data" />
-        </columns>
-      </TableView>
-      <HBox alignment="CENTER" layoutX="140.0" layoutY="540.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1000.0" spacing="200.0">
-         <children>
-            <MFXButton fx:id="importButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 60; -fx-text-fill: WHITE; -fx-background-color: #012D5A;" text="Import" textAlignment="CENTER" textFill="#fcfcfc">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <font>
-                  <Font name="Open Sans Bold" size="24.0" />
-               </font>
-               <rippleColor>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </rippleColor>
-            </MFXButton>
-            <MFXButton fx:id="exportButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 60; -fx-text-fill: WHITE; -fx-background-color: #012D5A;" text="Export" textAlignment="CENTER" textFill="#fcfcfc">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <font>
-                  <Font name="Open Sans Bold" size="24.0" />
-               </font>
-               <rippleColor>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </rippleColor>
-            </MFXButton>
-         </children>
-      </HBox>
-    </children>
-</AnchorPane>
+<ScrollPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamA.controllers.Navigation.MapController">
+    <content>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1440.0" prefWidth="1280.0">
+            <children>
+                <fx:include fx:id="header" source="Header.fxml" />
+                <fx:include fx:id="footer" layoutY="1340.0" source="Footer.fxml" />
+                <Text fx:id="title" fill="#eebd28" layoutY="-32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Map Editor" textAlignment="CENTER" wrappingWidth="700.0" x="290.0" y="100.0">
+                    <font>
+                        <Font name="Open Sans Bold" size="48.0" />
+                    </font>
+                </Text>
+                <MFXButton id="back" fx:id="backButton" layoutX="115.0" layoutY="23.0" onAction="#back" prefHeight="53.0" prefWidth="89.0" style="-fx-background-color: #0E5DAD; -fx-background-radius: 15; -fx-text-fill: WHITE;" text="Back" textAlignment="CENTER" textFill="#fcfcfc">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <font>
+                        <Font name="Open Sans Bold" size="24.0" />
+                    </font>
+                    <rippleColor>
+                        <LinearGradient endX="1.0" endY="1.0">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </LinearGradient>
+                    </rippleColor>
+                </MFXButton>
+                <TableView fx:id="nodeTable" layoutX="140.0" layoutY="130.0" prefHeight="250.0" prefWidth="1000.0">
+                    <columns>
+                        <TableColumn fx:id="nodeIDCol" prefWidth="200.0" text="NodeID" />
+                        <TableColumn prefWidth="200.0" text="XCoor" fx:id="xCoorCol" />
+                        <TableColumn fx:id="yCoorCol" prefWidth="200.0" text="YCoor" />
+                        <TableColumn fx:id="floorCol" prefWidth="200.0" text="Floor" />
+                        <TableColumn fx:id="buildingCol" prefWidth="200.0" text="Building" />
+                    </columns>
+                </TableView>
+                <TableView fx:id="locationNameTable" layoutX="140.0" layoutY="400.0" prefHeight="250.0" prefWidth="1000.0">
+                    <columns>
+                        <TableColumn fx:id="longNameCol" prefWidth="333.33" text="Long Name" />
+                        <TableColumn fx:id="shortNameCol" prefWidth="333.33" text="Short Name" />
+                        <TableColumn fx:id="nodeTypeCol" prefWidth="333.33" text="Node Type" />
+                    </columns>
+                </TableView>
+                <TableView fx:id="moveTable" layoutX="140.0" layoutY="670.0" prefHeight="250.0" prefWidth="1000.0">
+                    <columns>
+                        <TableColumn fx:id="moveNodeIDCol" prefWidth="333.33" text="NodeID" />
+                        <TableColumn fx:id="moveLongNameCol" prefWidth="333.33" text="Long Name" />
+                        <TableColumn fx:id="dateCol" prefWidth="333.33" text="Date" />
+                    </columns>
+                </TableView>
+                <TableView fx:id="edgeTable" layoutX="140.0" layoutY="950.0" prefHeight="250.0" prefWidth="1000.0">
+                    <columns>
+                        <TableColumn fx:id="startNodeCol" prefWidth="500.0" text="Start Node" />
+                        <TableColumn fx:id="endNodeCol" prefWidth="500.0" text="End Node" />
+                    </columns>
+                </TableView>
+                <HBox alignment="CENTER" layoutX="140.0" layoutY="1260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1000.0" spacing="200.0">
+                    <children>
+                        <MFXButton fx:id="importButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 60; -fx-text-fill: WHITE; -fx-background-color: #012D5A;" text="Import" textAlignment="CENTER" textFill="#fcfcfc">
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <font>
+                                <Font name="Open Sans Bold" size="24.0" />
+                            </font>
+                            <rippleColor>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </LinearGradient>
+                            </rippleColor>
+                        </MFXButton>
+                        <MFXButton fx:id="exportButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 60; -fx-text-fill: WHITE; -fx-background-color: #012D5A;" text="Export" textAlignment="CENTER" textFill="#fcfcfc">
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <font>
+                                <Font name="Open Sans Bold" size="24.0" />
+                            </font>
+                            <rippleColor>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </LinearGradient>
+                            </rippleColor>
+                        </MFXButton>
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+    </content>
+</ScrollPane>

@@ -49,7 +49,6 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
     }
   }
 
-
   public static ArrayList<Node> loadNodesFromCSV(String filePath) {
     ArrayList<Node> nodes = new ArrayList<>();
 

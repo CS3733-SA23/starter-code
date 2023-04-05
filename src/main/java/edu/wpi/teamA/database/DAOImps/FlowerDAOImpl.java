@@ -28,7 +28,7 @@ public class FlowerDAOImpl implements IFlowerDAO {
 
       PreparedStatement ps =
           flowerConnection.prepareStatement(
-              "INSERT INTO \"Prototype2_schema\".\"Flower\" VALUES ( ?, ?, ?, ?, ?, ?, ?)");
+              "INSERT INTO Prototype2_schema.\"flower\" VALUES (?, ?, ?, ?, ?, ?, ?)");
       ps.setString(1, name);
       ps.setInt(2, room);
       ps.setDate(3, date);
@@ -38,7 +38,7 @@ public class FlowerDAOImpl implements IFlowerDAO {
       ps.setString(7, status);
       ps.executeUpdate();
 
-      flowerArray.add(new FlowerEntity(name, room, date, time, type, comment, status));
+      // flowerArray.add(new FlowerEntity(name, room, date, time, type, comment));
 
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -51,7 +51,7 @@ public class FlowerDAOImpl implements IFlowerDAO {
     try {
       PreparedStatement ps =
           flowerConnection.prepareStatement(
-              "DELETE FROM \"Prototype2_schema\".\"flower\" WHERE key = ?");
+              "DELETE FROM Prototype2_schema.\"flower\" WHERE name = ?");
       ps.setString(1, flower.getName());
       ps.executeUpdate();
 
