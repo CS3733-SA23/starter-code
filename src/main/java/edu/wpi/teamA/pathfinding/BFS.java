@@ -114,7 +114,7 @@ public class BFS {
     String stringPath = "Start at node " + path.get(0);
 
     for (int i = 1; i < path.size(); i++) {
-      stringPath = ", then go to node " + path.get(i);
+      stringPath += ", then go to node " + path.get(i);
     }
 
     return stringPath + ". You have reached your destination.";

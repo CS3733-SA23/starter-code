@@ -42,9 +42,10 @@ public class PathfindingController implements IPageController {
 
   public void submit() {
     try {
-      BFS bfs = new BFS(startSelection.getSelectedItem(), startSelection.getSelectedItem());
+      BFS bfs = new BFS(startSelection.getSelectedItem(), endSelection.getSelectedItem());
       directions.setText(bfs.toString());
       System.out.println("Nodes submitted");
+      System.out.println(bfs);
     } catch (NullPointerException e) {
       System.out.println("Null Value");
     }
