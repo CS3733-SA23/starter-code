@@ -36,7 +36,7 @@
         <Group layoutX="64.0" layoutY="221.0" />
       <AnchorPane layoutX="39.0" layoutY="59.0" prefHeight="280.0" prefWidth="521.0">
          <children>
-            <FilteredTableView fx:id="historyTable" layoutY="10.0" prefHeight="280.0" prefWidth="521.0">
+            <FilteredTableView fx:id="historyTable" editable="true" layoutY="10.0" prefHeight="280.0" prefWidth="521.0">
                <columns>
                   <TableColumn fx:id="ColumnOne" prefWidth="180.0" text="Node ID" />
                   <TableColumn fx:id="ColumnTwo" prefWidth="180.0" text="Long Name" />

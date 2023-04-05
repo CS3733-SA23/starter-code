@@ -45,7 +45,17 @@ public class MapChangeHistoryController {
     ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("nodeID"));
     ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("longName"));
     ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("date"));
+    historyTable.setEditable(true);
+    historyTable.getOnMouseClicked();
+    historyTable.getEditingCell();
+    ColumnOne.isEditable();
+    ColumnTwo.setEditable(true);
+    ColumnThree.setEditable(true);
     historyTable.getItems().setAll(gettableRows(Cdb.databaseMoveList));
+    // historyTable.isEditable();
+    //    historyTable.setEditable(true);
+    //    ColumnOne.isEditable();
+    //    ColumnTwo.setEditable(true);
 
     System.out.println("did it");
   }
@@ -59,6 +69,9 @@ public class MapChangeHistoryController {
     ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("longName"));
     ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("date"));
     historyTable.getItems().setAll(gettableRows(moveList));
+    ColumnOne.setEditable(true);
+    ColumnTwo.setEditable(true);
+    ColumnThree.setEditable(true);
 
     System.out.println("did it");
   }
