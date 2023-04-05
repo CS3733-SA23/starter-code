@@ -1,5 +1,6 @@
 package edu.wpi.teamc.controllers;
 
+import edu.wpi.teamc.Cdb;
 import edu.wpi.teamc.map.Move;
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
@@ -34,6 +35,19 @@ public class MapChangeHistoryController {
   ObservableList<TableRow> rows = FXCollections.observableArrayList();
 
   @FXML private Button goHome;
+  //  List<Node> databaseNodeList = new ArrayList<Node>();
+  //  List<Edge> databaseEdgeList = new ArrayList<Edge>();
+  //  List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
+  //  List<Move> databaseMoveList = new ArrayList<Move>();
+
+  public void initialize() {
+    ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("nodeID"));
+    ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("longName"));
+    ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("date"));
+    historyTable.getItems().setAll(gettableRows(Cdb.databaseMoveList));
+
+    System.out.println("did it");
+  }
 
   public void getGoHome(ActionEvent event) {
     Navigation.navigate(Screen.HOME);

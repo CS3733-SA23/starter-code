@@ -3,8 +3,6 @@ package edu.wpi.teamc;
 import edu.wpi.teamc.map.*;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -14,10 +12,10 @@ public class Main {
     Scanner scanner = new Scanner(System.in);
 
     Graph graph = new Graph();
-    List<Node> databaseNodeList = new ArrayList<Node>();
-    List<Edge> databaseEdgeList = new ArrayList<Edge>();
-    List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
-    List<Move> databaseMoveList = new ArrayList<Move>();
+    //    List<Node> databaseNodeList = new ArrayList<Node>();
+    //    List<Edge> databaseEdgeList = new ArrayList<Edge>();
+    //    List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
+    //    List<Move> databaseMoveList = new ArrayList<Move>();
     try {
       graph.init();
     } catch (IOException e) {
@@ -30,8 +28,11 @@ public class Main {
 
     // graph.printDirectionsAStar(startNode, endNode);
     Cdb.loadDatabaseTables(
-        databaseNodeList, databaseEdgeList, databaseLocationNameList, databaseMoveList);
-    Cdb.displayMoveInfo(databaseMoveList);
+        Cdb.databaseNodeList,
+        Cdb.databaseEdgeList,
+        Cdb.databaseLocationNameList,
+        Cdb.databaseMoveList);
+    //    Cdb.displayMoveInfo(databaseMoveList);
 
     CApp.launch(CApp.class, args);
     // graph.printDirections("CCONF001L1", "CHALL010L1");

@@ -21,6 +21,11 @@ public class Cdb {
   // static Connection connection = null;
   ObservableList<TableRow> rows = FXCollections.observableArrayList();
 
+  static List<Node> databaseNodeList = new ArrayList<Node>();
+  static List<Edge> databaseEdgeList = new ArrayList<Edge>();
+  static List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
+  public static List<Move> databaseMoveList = new ArrayList<Move>();
+
   public static void main(String[] args) {
     try {
       // Load the PostgreSQL JDBC driver
@@ -34,10 +39,10 @@ public class Cdb {
 
       Scanner scanner = new Scanner(System.in);
       // database tables turned into two arrayLists
-      List<Node> databaseNodeList = new ArrayList<Node>();
-      List<Edge> databaseEdgeList = new ArrayList<Edge>();
-      List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
-      List<Move> databaseMoveList = new ArrayList<Move>();
+      //      List<Node> databaseNodeList = new ArrayList<Node>();
+      //      List<Edge> databaseEdgeList = new ArrayList<Edge>();
+      //      List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
+      //      List<Move> databaseMoveList = new ArrayList<Move>();
       // load database into lists
       loadDatabaseTables(
           databaseNodeList, databaseEdgeList, databaseLocationNameList, databaseMoveList);
@@ -435,14 +440,14 @@ public class Cdb {
     // MapChangeHistoryController moveHistory = new MapChangeHistoryController();
     // moveHistory.dispTable(databaseMoveList);
 
-    for (Move currMove : databaseMoveList) {
-      // nodeID = currMove.getNodeID();
-      // longName = currMove.getLongName();
-      // date = currMove.getDate().toString();
-      // rows.add(new TableRow(nodeID, longName, date));
-      System.out.println(
-          currMove.getNodeID() + "\t" + currMove.getLongName() + "\t" + currMove.getDate());
-    }
+    //    for (Move currMove : databaseMoveList) {
+    //       nodeID = currMove.getNodeID();
+    //       longName = currMove.getLongName();
+    //       date = currMove.getDate().toString();
+    //       rows.add(new TableRow(nodeID, longName, date));
+    //      System.out.println(
+    //          currMove.getNodeID() + "\t" + currMove.getLongName() + "\t" + currMove.getDate());
+    //    }
     // move.getDate());
     //    }
     //   List<Move> moveList = new ArrayList<Move>();
