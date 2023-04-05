@@ -1,9 +1,11 @@
 package edu.wpi.teamc.controllers;
 
-import edu.wpi.teamc.map.Move;
+import edu.wpi.teamc.Cdb;
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
+import edu.wpi.teamc.serviceRequest.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.sql.ResultSet;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,43 +28,50 @@ public class ConferenceHistoryController {
 
   @FXML private Button testButton;
   @FXML private TextField inputBox;
-  @FXML private FilteredTableView<TableRow> historyTable;
-  @FXML TableView<TableRow> otherTable;
-  @FXML TableColumn<TableRow, String> ColumnOne;
-  @FXML TableColumn<TableRow, String> ColumnTwo;
-  @FXML TableColumn<TableRow, String> ColumnThree;
-  @FXML TableColumn<TableRow, String> ColumnFour;
-  @FXML TableColumn<TableRow, String> ColumnFive;
-  @FXML TableColumn<TableRow, String> ColumnSix;
-  @FXML TableColumn<TableRow, String> ColumnSeven;
+  @FXML private FilteredTableView<ConferenceRoomRequest> historyTable;
+  @FXML TableView<ConferenceRoomRequest> otherTable;
+  @FXML TableColumn<ConferenceRoomRequest, String> ColumnOne;
+  @FXML TableColumn<ConferenceRoomRequest, String> ColumnTwo;
+  @FXML TableColumn<ConferenceRoomRequest, String> ColumnThree;
+  @FXML TableColumn<ConferenceRoomRequest, String> ColumnFour;
+  @FXML TableColumn<ConferenceRoomRequest, String> ColumnFive;
+  @FXML TableColumn<ConferenceRoomRequest, String> ColumnSix;
 
-  ObservableList<TableRow> rows = FXCollections.observableArrayList();
+  ObservableList<ConferenceRoomRequest> rows = FXCollections.observableArrayList();
 
   @FXML private Button goHome;
 
   /** Method run when controller is initialized */
   public void initialize() {
-    ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("requestID"));
-    ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("Requester"));
-    ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("status"));
-    ColumnFour.setCellValueFactory(new PropertyValueFactory<TableRow, String>("startTime"));
-    ColumnFive.setCellValueFactory(new PropertyValueFactory<TableRow, String>("endTime"));
-    ColumnSix.setCellValueFactory(new PropertyValueFactory<TableRow, String>("additionalInfo"));
-    ColumnSeven.setCellValueFactory(new PropertyValueFactory<TableRow, String>("roomName"));
+    ColumnOne.setCellValueFactory(
+        new PropertyValueFactory<ConferenceRoomRequest, String>("requestID"));
+    ColumnTwo.setCellValueFactory(
+        new PropertyValueFactory<ConferenceRoomRequest, String>("Requester"));
+    ColumnTwo.setCellValueFactory(
+        new PropertyValueFactory<ConferenceRoomRequest, String>("status"));
+    ColumnThree.setCellValueFactory(
+        new PropertyValueFactory<ConferenceRoomRequest, String>("startTime"));
+    ColumnFour.setCellValueFactory(
+        new PropertyValueFactory<ConferenceRoomRequest, String>("endTime"));
+    ColumnFive.setCellValueFactory(
+        new PropertyValueFactory<ConferenceRoomRequest, String>("additionalInfo"));
+    ColumnSix.setCellValueFactory(
+        new PropertyValueFactory<ConferenceRoomRequest, String>("roomName"));
     ColumnOne.setText("ID");
-    ColumnTwo.setText("Requester");
-    ColumnThree.setText("Status");
-    ColumnFour.setText("Start");
-    ColumnFive.setText("End");
-    ColumnSix.setText("Info");
-    ColumnSeven.setText("Room");
+    ColumnTwo.setText("Status");
+    ColumnThree.setText("Start");
+    ColumnFour.setText("End");
+    ColumnFive.setText("Info");
+    ColumnSix.setText("Room");
     //    ColumnOne.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
     //    ColumnTwo.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
     //    ColumnThree.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
 
     // get conference room table
 
-    // historyTable.getItems().setAll(gettableRows(Cdb.getMealHistory()));
+    historyTable
+        .getItems()
+        .setAll(this.convertToObservableList(Cdb.getTable("ServiceRequests", "conferenceRoom")));
 
     System.out.println("did it");
   }
@@ -84,15 +93,36 @@ public class ConferenceHistoryController {
   //    System.out.println("did it");
   //  }
 
-  public ObservableList<TableRow> gettableRows(List<Move> moveList) {
-    String nodeID;
-    String longName;
-    String date;
-    for (Move currMove : moveList) {
-      nodeID = currMove.getNodeID();
-      longName = currMove.getLongName();
-      date = currMove.getDate().toString();
-      rows.add(new TableRow(nodeID, longName, date));
+  ObservableList<ConferenceRoomRequest> convertToObservableList(List<ResultSet> resultSets) {
+    ObservableList<ConferenceRoomRequest> rows = FXCollections.observableArrayList();
+    String requestID;
+    String Requester;
+    String status;
+    String startTime;
+    String endTime;
+    String additionalInfo;
+    String roomName;
+    for (ResultSet rs : resultSets) {
+      try {
+        requestID = rs.getString("requestID");
+        Requester = rs.getString("Requester");
+        status = rs.getString("status");
+        startTime = rs.getString("startTime");
+        endTime = rs.getString("endTime");
+        additionalInfo = rs.getString("additionalInfo");
+        roomName = rs.getString("roomName");
+        rows.add(
+            new ConferenceRoomRequest(
+                new Requester(Integer.parseInt(requestID), Requester),
+                new ConferenceRoom(roomName, roomName, false),
+                startTime,
+                endTime,
+                additionalInfo,
+                IServiceRequest.STATUS.valueOf(status)));
+      } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Error in convertToObservableList");
+      }
     }
     return rows;
   }
