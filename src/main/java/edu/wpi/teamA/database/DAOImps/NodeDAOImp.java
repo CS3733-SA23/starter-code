@@ -24,6 +24,16 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
     this.NodeArray = new ArrayList<Node>();
   }
 
+  public static void createSchema(){
+    try {
+      Statement stmtSchema = nodeProvider.createConnection().createStatement();
+      String sqlCreateSchema = "CREATE SCHEMA IF NOT EXISTS \"Prototype2_schema\"";
+      stmtSchema.execute(sqlCreateSchema);
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
 
   // ResultSet
 
@@ -56,7 +66,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
     return nodes;
   }
   public static ArrayList<Node> Import(String filePath) {
-
+    NodeDAOImp.createSchema();
     ArrayList<Node> NodeArray = loadNodesFromCSV(filePath);
 
     try {
@@ -64,7 +74,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
       csvReader.readLine();
       String row;
 
-      String sqlCreateEdge =
+      String sqlCreateNode =
           "Create Table if not exists \"Prototype2_schema\".\"Node\""
               + "(nodeID   int,"
               + "xcoord    int,"
@@ -72,7 +82,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
               + "floor     Varchar(600),"
               + "building  Varchar(600))";
       Statement stmtNode = nodeProvider.createConnection().createStatement();
-      stmtNode.execute(sqlCreateEdge);
+      stmtNode.execute(sqlCreateNode);
 
       while ((row = csvReader.readLine()) != null) {
         String[] data = row.split(",");
