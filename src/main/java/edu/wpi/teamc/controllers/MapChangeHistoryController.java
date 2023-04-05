@@ -35,16 +35,16 @@ public class MapChangeHistoryController {
   ObservableList<TableRow> rows = FXCollections.observableArrayList();
 
   @FXML private Button goHome;
-  //  List<Node> databaseNodeList = new ArrayList<Node>();
-  //  List<Edge> databaseEdgeList = new ArrayList<Edge>();
-  //  List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
-  //  List<Move> databaseMoveList = new ArrayList<Move>();
 
   /** Method run when controller is initialized */
   public void initialize() {
     ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("nodeID"));
     ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("longName"));
     ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("date"));
+    //    ColumnOne.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
+    //    ColumnTwo.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
+    //    ColumnThree.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
+
     historyTable.getItems().setAll(gettableRows(Cdb.databaseMoveList));
 
     System.out.println("did it");
@@ -54,14 +54,18 @@ public class MapChangeHistoryController {
     Navigation.navigate(Screen.HOME);
   }
 
-  public void dispTable(List<Move> moveList) {
-    ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("nodeID"));
-    ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("longName"));
-    ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("date"));
-    historyTable.getItems().setAll(gettableRows(moveList));
-
-    System.out.println("did it");
-  }
+  //  public void dispTable(List<Move> moveList) {
+  //    ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("nodeID"));
+  //    ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("longName"));
+  //    ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("date"));
+  //    //    testTable.getItems().setAll(gettableRows(moveList));
+  //    historyTable.getItems().setAll(gettableRows(moveList));
+  //    //    ColumnOne.setEditable(true);
+  //    //    ColumnTwo.setEditable(true);
+  //    //    ColumnThree.setEditable(true);
+  //
+  //    System.out.println("did it");
+  //  }
 
   public ObservableList<TableRow> gettableRows(List<Move> moveList) {
     String nodeID;
