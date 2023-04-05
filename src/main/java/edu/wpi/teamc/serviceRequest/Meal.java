@@ -5,11 +5,10 @@ import lombok.Setter;
 
 public class Meal {
   @Getter @Setter private String mealName;
-  @Getter @Setter private String addtionalInfo;
+  @Getter @Setter private String additionalInfo;
 
-  // Should it be this.mealName = mealName? and this.addtionalInfo = addtionalInfo?
-  public Meal(String name, String notes) {
+  public Meal(String name, String additionalInfo) {
     this.mealName = name;
-    this.addtionalInfo = notes;
+    this.additionalInfo = additionalInfo;
   }
 }

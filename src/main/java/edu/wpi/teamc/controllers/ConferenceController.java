@@ -79,9 +79,8 @@ public class ConferenceController {
         new ConferenceRoomRequest(start.toString(), end.toString(), notes, status);
 
     String name = nameBox.getText();
-    currentReqID++;
 
-    Requester reqr = new Requester(currentReqID, name);
+    Requester reqr = new Requester(Cdb.latestRequestID("conferenceRoom") + 1, name);
 
     Cdb.addConferenceRoomRequest(req, reqr);
 
