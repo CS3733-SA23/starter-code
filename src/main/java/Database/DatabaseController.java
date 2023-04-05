@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import lombok.Getter;
 
 public class DatabaseController {
   public Connection getC() {
@@ -81,6 +82,7 @@ public class DatabaseController {
       }
     }
   }
+  @Getter private Connection c;
 
   public DatabaseController(String username, String password) {
     c = this.connectToDatabase(username, password);
