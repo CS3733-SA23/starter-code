@@ -2,8 +2,8 @@ package edu.wpi.teamc;
 
 import edu.wpi.teamc.map.*;
 import edu.wpi.teamc.map.Edge;
-import edu.wpi.teamc.map.Graph;
 import edu.wpi.teamc.map.Node;
+import edu.wpi.teamc.serviceRequest.*;
 import java.io.*;
 import java.sql.*;
 import java.text.ParseException;
@@ -15,7 +15,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Cdb {
+public class Cdb implements IServiceRequest {
   static Connection connection = null;
   // database tables turned into two arrayLists
   static List<Node> databaseNodeList = new ArrayList<Node>();
@@ -33,6 +33,11 @@ public class Cdb {
       String user = "teamc";
       String password = "teamc30";
       connection = DriverManager.getConnection(url, user, password);
+
+      /*Meal meal = new Meal("A", "None");
+      MealRequest mr = new MealRequest(meal, "1", "none", PENDING);
+      Requester rq = new Requester(90, "Bob");
+      Cdb.addMeal(mr, rq);*/
 
       Scanner scanner = new Scanner(System.in);
       // load database into lists
@@ -87,8 +92,20 @@ public class Cdb {
             getNode(databaseNodeList, nodeID);
             break;
           case "export node table into a csv file":
-            csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/exportedNodes.csv";
+            csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/Node.csv";
             exportNodesToCSV(csvFileName, databaseNodeList);
+            break;
+          case "export edge table into a csv file":
+            csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/Edge.csv";
+            exportEdgesToCSV(csvFileName, databaseEdgeList);
+            break;
+          case "export location name table into a csv file":
+            csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/LocationName.csv";
+            exportLocationNamesToCSV(csvFileName, databaseLocationNameList);
+            break;
+          case "export move table into a csv file":
+            csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/Move.csv";
+            exportMovesToCSV(csvFileName, databaseMoveList);
             break;
           case "import from a csv file into the node table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Node.csv";
@@ -104,6 +121,10 @@ public class Cdb {
           case "import from a csv file into the move table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Move.csv";
             importCSVMove(csvFileName);
+          case "import from a csv file into the move table":
+            csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Move.csv";
+            importCSVMove(csvFileName, databaseMoveList);
+            break;
           case "delete a node":
             System.out.println("please enter the node ID of the node you would like to delete");
             nodeID = scanner.nextLine();
@@ -120,6 +141,7 @@ public class Cdb {
             break;
           case "display move information":
             displayMoveInfo(databaseMoveList);
+            break;
           case "help":
             System.out.println("");
             break;
@@ -146,18 +168,123 @@ public class Cdb {
     }
   }
 
+  // meal request adding + updating
+  static void addMeal(MealRequest mealReq, Requester requester) {
+    try {
+      String MEALREQUEST = "\"ServiceRequests\".\"mealRequest\"";
+      // query
+      String queryInsertMealReq = "INSERT INTO " + MEALREQUEST + " VALUES (?,?,?,?,?,?);";
+      PreparedStatement preparedStatement = connection.prepareStatement(queryInsertMealReq);
+      {
+        preparedStatement.setInt(1, requester.getRequesterID());
+        preparedStatement.setString(2, requester.getRequesterName());
+        preparedStatement.setString(
+            3, "mealName"); // adds meal by meal name not my class -> can later figure out how
+        // to
+        preparedStatement.setString(4, mealReq.getStat());
+        preparedStatement.setString(5, mealReq.getRoom());
+        preparedStatement.setString(6, mealReq.getSpecialNotes());
+
+        // System.out.println(preparedStatement);
+        // Step 3: Execute the query or update query
+        preparedStatement.executeUpdate();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  static void addConferenceRoomRequest(ConferenceRoomRequest confReq, Requester requester) {
+    try {
+      String CONFREQUEST = "\"ServiceRequests\".\"conferenceRoomRequest\"";
+      // query
+      String queryInsertMealReq = "INSERT INTO " + CONFREQUEST + " VALUES (?,?,?,?,?,?);";
+      PreparedStatement preparedStatement = connection.prepareStatement(queryInsertMealReq);
+      {
+        preparedStatement.setInt(1, requester.getRequesterID());
+        preparedStatement.setString(2, requester.getRequesterName());
+        preparedStatement.setString(
+            3,
+            confReq.getStat()); // adds meal by meal name not my class -> can later figure out how
+        // to
+        preparedStatement.setString(4, confReq.getStartTime());
+        preparedStatement.setString(5, confReq.getEndTime());
+        preparedStatement.setString(6, confReq.getAddtionalNotes());
+
+        preparedStatement.executeUpdate();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  static void updateConferenceRoomRequest(ConferenceRoomRequest confReq) {
+    try {
+      String CONFREQUEST = "\"ServiceRequests\".\"conferenceRoomRequest\"";
+      // query
+      String updateConfQuery =
+          "UPDATE  "
+              + CONFREQUEST
+              + " SET \"status\"=?, "
+              + "\"startTime\"=? "
+              + "\"endTime\"=? "
+              + "WHERE "
+              + "\"status\"=? "
+              + "AND \"startTime\"=?;"
+              + "AND \"endTime\"=?;";
+
+      PreparedStatement preparedStatement = connection.prepareStatement(updateConfQuery);
+      {
+        preparedStatement.setString(
+            3,
+            confReq.getStat()); // adds meal by meal name not my class -> can later figure out how
+        // to
+        preparedStatement.setString(4, confReq.getStartTime());
+        preparedStatement.setString(5, confReq.getEndTime());
+        preparedStatement.executeUpdate();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  static void updateMealRequest(MealRequest mealReq) {
+    try {
+      String MEAL = "\"ServiceRequests\".\"mealRequest\"";
+      // query
+      String updateMealQuery =
+          "UPDATE  "
+              + MEAL
+              + " SET \"meal\"=?, "
+              + "\"status\"=? "
+              + "\"room\"=? "
+              + "WHERE "
+              + "\"meal\"=? "
+              + "AND \"status\"=?;"
+              + "AND \"room\"=?;";
+
+      PreparedStatement preparedStatement = connection.prepareStatement(updateMealQuery);
+      {
+        preparedStatement.setString(
+            3,
+            mealReq
+                .getSelection()
+                .getMealName()); // adds meal by meal name not my class -> can later figure out how
+        // to
+        preparedStatement.setString(4, mealReq.getStat());
+        preparedStatement.setString(5, mealReq.getRoom());
+        preparedStatement.executeUpdate();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
   static void loadDatabaseTables(
       List<Node> databaseNodeList,
       List<Edge> databaseEdgeList,
       List<LocationName> databaseLocationNameList,
       List<Move> databaseMoveList) {
-
-    Graph temp = new Graph();
-    try {
-      temp.init();
-    } catch (IOException e) {
-      System.out.println("Exception!");
-    }
 
     try {
       Statement stmtNode = connection.createStatement();
@@ -190,8 +317,19 @@ public class Cdb {
       }
       while (rsEdges.next()) {
         String startNode = rsEdges.getString("startNode");
-        String endNode = rsEdges.getString("endNode");
-        databaseEdgeList.add(new Edge(temp.getNode(startNode), temp.getNode(endNode)));
+        String endNodeString = rsEdges.getString("endNode");
+        Node startNodeObject = null;
+        Node endNodeObject = null;
+        for (Node n : databaseNodeList) {
+          if (n.getNodeID().equals(startNode)) {
+            startNodeObject = n;
+          }
+          if (n.getNodeID().equals(endNodeString)) {
+            endNodeObject = n;
+          }
+        }
+        Edge edge1 = new Edge(startNodeObject, endNodeObject);
+        databaseEdgeList.add(edge1);
       }
       while (rsLocationNames.next()) {
         String locationNameLong = rsLocationNames.getString("longName");
@@ -363,6 +501,9 @@ public class Cdb {
             + "Update name of location node\n"
             + "Get specific node\n"
             + "Export node table into a CSV file\n"
+            + "Export edge table into a CSV file\n"
+            + "Export location name table into a CSV file\n"
+            + "Export move table into a CSV file\n"
             + "Import from a CSV file into the node table\n"
             + "import from a CSV file into the edge table\n"
             + "import from a CSV file into the location name table\n"
@@ -393,7 +534,7 @@ public class Cdb {
         "----------------------------------------------------------------------------------------------------------------------------");
     System.out.println("Edge information: \n");
     for (Edge edge : databaseEdgeList) {
-      System.out.println(edge.getStartNode() + "\t" + edge.getEndNode());
+      System.out.println(edge.getStartNode().getNodeID() + "\t" + edge.getEndNode().getNodeID());
     }
   }
 
@@ -509,6 +650,7 @@ public class Cdb {
     Pattern pattern = Pattern.compile(regex);
     try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
       String line;
+      br.readLine(); // skip the first line
       while ((line = br.readLine()) != null) {
         // Match the regular expression to the current line
         Matcher matcher = pattern.matcher(line);
@@ -634,7 +776,17 @@ public class Cdb {
     return null;
   }
 
+  static void createFile(String fileName) throws IOException {
+    File file = new File(fileName);
+    if (file.createNewFile()) {
+      System.out.println("File created: " + file.getName());
+    } else {
+      System.out.println("File already exists.");
+    }
+  }
+
   static void exportNodesToCSV(String csvFile, List<Node> databaseNodeList) throws IOException {
+    createFile(csvFile);
     BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
     // Write the header row to the CSV file
     writer.write("nodeID,xCoord,yCoord,floor,building\n");
@@ -652,7 +804,46 @@ public class Cdb {
               + node.getBuilding()
               + "\n");
     }
+    writer.close();
+  }
 
+  static void exportEdgesToCSV(String csvFile, List<Edge> databaseEdgeList) throws IOException {
+    createFile(csvFile);
+    BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
+    // Write the header row to the CSV file
+    writer.write("startNodeID,endNodeID\n");
+    for (Edge edge : databaseEdgeList) {
+      writer.write(edge.getStartNode().getNodeID() + "," + edge.getEndNode().getNodeID() + "\n");
+    }
+    writer.close();
+  }
+
+  static void exportLocationNamesToCSV(String csvFile, List<LocationName> databaseLocationNameList)
+      throws IOException {
+    createFile(csvFile);
+    BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
+    // Write the header row to the CSV file
+    writer.write("longName,shortName,nodeType\n");
+    for (LocationName locationName : databaseLocationNameList) {
+      writer.write(
+          locationName.getLongName()
+              + ","
+              + locationName.getShortName()
+              + ","
+              + locationName.getNodeType()
+              + "\n");
+    }
+    writer.close();
+  }
+
+  static void exportMovesToCSV(String csvFile, List<Move> databaseMoveList) throws IOException {
+    createFile(csvFile);
+    BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
+    // Write the header row to the CSV file
+    writer.write("nodeID,longName,moveDate\n");
+    for (Move move : databaseMoveList) {
+      writer.write(move.getNodeID() + "," + move.getLongName() + "," + move.getDate() + "\n");
+    }
     writer.close();
   }
 }

@@ -35,7 +35,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </MFXButton>
-    <MFXButton fx:id="clear" layoutX="526.0" layoutY="296.0" onAction="#getClear" text="Clear" textFill="#016161">
+    <MFXButton fx:id="clear" layoutX="525.0" layoutY="43.0" onAction="#getClear" text="Clear" textFill="#016161">
         <font>
             <Font size="11.0" />
         </font>
@@ -45,7 +45,7 @@
     </MFXButton>
     <Group layoutX="74.0" layoutY="93.0">
         <children>
-            <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-14.0" prefHeight="30.0" prefWidth="425.0" promptText="Enter Starting Node ID" textLimit="1000000">
+            <MFXTextField fx:id="startNode" floatMode="DISABLED" layoutX="71.0" layoutY="-14.0" prefHeight="30.0" prefWidth="425.0" promptText="Enter Starting Node ID" textLimit="1000000">
                 <textFill>
                     <Color green="0.501960813999176" blue="0.501960813999176" opacity="0.8700000047683716" />
                 </textFill>
@@ -67,7 +67,7 @@
                     <Font name="Verdana Bold" size="16.0" />
                 </font>
             </Label>
-            <MFXTextField floatMode="DISABLED" layoutX="71.0" layoutY="-13.0" prefHeight="30.0" prefWidth="425.0" promptText="Enter Ending Node ID" textLimit="1000000">
+            <MFXTextField fx:id="endNode" floatMode="DISABLED" layoutX="71.0" layoutY="-13.0" prefHeight="30.0" prefWidth="425.0" promptText="Enter Ending Node ID" textLimit="1000000">
                 <font>
                     <Font name="Arial Bold" size="12.0" />
                 </font>
@@ -79,5 +79,10 @@
     </Group>
     <Group layoutX="74.0" layoutY="231.0" />
     <Group layoutX="74.0" layoutY="183.0" />
+      <Label fx:id="directionsbox" layoutX="148.0" layoutY="169.0" prefHeight="200.0" prefWidth="330.0" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="10.0" />
+         </font>
+      </Label>
 </children>
 </AnchorPane>
