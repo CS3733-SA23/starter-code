@@ -53,6 +53,11 @@
                         <Font size="19.0" />
                      </font>
                   </MFXButton>
+                  <MFXButton fx:id="databasePage" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="10.0" layoutY="170.0" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Databases" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </MFXButton>
                     </children>
                 </VBox>
             <MFXButton fx:id="loginButton" layoutX="709.0" layoutY="499.0" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Login">
