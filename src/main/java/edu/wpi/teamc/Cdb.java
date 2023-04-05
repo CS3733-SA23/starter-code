@@ -298,14 +298,18 @@ public class Cdb implements IServiceRequest {
     }
   }
 
-  public static List<ResultSet> getTable(String schema, String table) {
-    List<ResultSet> tableRows = new LinkedList<>();
+  public static List<List<String>> getTable(String schema, String table) {
+    List<List<String>> tableRows = new LinkedList<>();
     try {
       String query = "SELECT * FROM " + "\"" + schema + "\"" + ".\"" + table + "\";";
       PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
       ResultSet resultSet = preparedStatement.executeQuery();
       while (resultSet.next()) {
-        tableRows.add(resultSet);
+        List<String> row = new LinkedList<>();
+        for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+          row.add(resultSet.getString(i));
+        }
+        tableRows.add(row);
       }
     } catch (Exception e) {
       e.printStackTrace();

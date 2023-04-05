@@ -5,7 +5,6 @@ import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
 import edu.wpi.teamc.serviceRequest.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import java.sql.ResultSet;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -93,36 +92,31 @@ public class ConferenceHistoryController {
   //    System.out.println("did it");
   //  }
 
-  ObservableList<ConferenceRoomRequest> convertToObservableList(List<ResultSet> resultSets) {
+  ObservableList<ConferenceRoomRequest> convertToObservableList(List<List<String>> rowList) {
     ObservableList<ConferenceRoomRequest> rows = FXCollections.observableArrayList();
-    String requestID;
+    int requestID;
     String Requester;
     String status;
     String startTime;
     String endTime;
     String additionalInfo;
     String roomName;
-    for (ResultSet rs : resultSets) {
-      try {
-        requestID = rs.getString("requestID");
-        Requester = rs.getString("Requester");
-        status = rs.getString("status");
-        startTime = rs.getString("startTime");
-        endTime = rs.getString("endTime");
-        additionalInfo = rs.getString("additionalInfo");
-        roomName = rs.getString("roomName");
-        rows.add(
-            new ConferenceRoomRequest(
-                new Requester(Integer.parseInt(requestID), Requester),
-                new ConferenceRoom(roomName, roomName, false),
-                startTime,
-                endTime,
-                additionalInfo,
-                IServiceRequest.STATUS.valueOf(status)));
-      } catch (Exception e) {
-        e.printStackTrace();
-        System.out.println("Error in convertToObservableList");
-      }
+    for (List<String> rl : rowList) {
+      requestID = Integer.valueOf(rl.get(0));
+      Requester = rl.get(1);
+      status = rl.get(2);
+      startTime = rl.get(3);
+      endTime = rl.get(4);
+      additionalInfo = rl.get(5);
+      roomName = rl.get(6);
+      rows.add(
+          new ConferenceRoomRequest(
+              new Requester(requestID, Requester),
+              new ConferenceRoom(roomName, roomName, false),
+              startTime,
+              endTime,
+              additionalInfo,
+              IServiceRequest.STATUS.valueOf(status)));
     }
     return rows;
   }
