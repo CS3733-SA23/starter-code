@@ -206,11 +206,7 @@ public class Cdb implements IServiceRequest {
       {
         preparedStatement.setInt(1, requester.getRequesterID());
         preparedStatement.setString(2, requester.getRequesterName());
-        preparedStatement.setString(
-            3,
-            confReq
-                .getStat()
-                .name());
+        preparedStatement.setString(3, confReq.getStat().name());
         preparedStatement.setString(4, confReq.getStartTime());
         preparedStatement.setString(5, confReq.getEndTime());
         preparedStatement.setString(6, confReq.getAdditionalNotes());

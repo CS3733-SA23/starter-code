@@ -131,6 +131,11 @@ public class ConferenceController {
     Navigation.navigate(Screen.SIGNAGE);
   }
 
+  @FXML
+  void getConferenceHistory(ActionEvent event) {
+    Navigation.navigate(Screen.CONFERENCE_HISTORY);
+  }
+
   /** Method run when controller is initialized */
   @FXML
   public void initialize() {}

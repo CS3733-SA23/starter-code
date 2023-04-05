@@ -13,6 +13,8 @@ public enum Screen {
   GUEST_HOME("views/GuestHome.fxml"),
   MEAL("views/Meal.fxml"),
   CONFERENCE("views/Conference.fxml"),
+  CONFERENCE_HISTORY("views/ConferenceHistory.fxml"),
+
   FLOWER("views/Flower.fxml"),
   FURNITURE("views/Furniture.fxml"),
   OFFICE_SUPPLY("views/OfficeSupply.fxml"),
