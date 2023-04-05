@@ -1,23 +1,28 @@
 package edu.wpi.teamc.serviceRequest;
 
 public class Requester {
-    public int requesterID;
-    public String requesterName;
+  public int requesterID;
+  public String requesterName;
 
-    //getters + setters generated
-    public int getRequesterID() {
-        return requesterID;
-    }
+  public Requester(int requesterID, String requesterName) {
+    this.requesterID = requesterID;
+    this.requesterName = requesterName;
+  }
 
-    public void setRequesterID(int requesterID) {
-        this.requesterID = requesterID;
-    }
+  // getters + setters generated
+  public int getRequesterID() {
+    return requesterID;
+  }
 
-    public String getRequesterName() {
-        return requesterName;
-    }
+  public void setRequesterID(int requesterID) {
+    this.requesterID = requesterID;
+  }
 
-    public void setRequesterName(String requesterName) {
-        this.requesterName = requesterName;
-    }
+  public String getRequesterName() {
+    return requesterName;
+  }
+
+  public void setRequesterName(String requesterName) {
+    this.requesterName = requesterName;
+  }
 }
