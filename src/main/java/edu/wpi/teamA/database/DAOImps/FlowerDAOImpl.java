@@ -16,7 +16,7 @@ public class FlowerDAOImpl implements IFlowerDAO {
 
   @Override
   public void addFlower(FlowerEntity flower) {
-    /** Insert new node object to the existing node table */
+    /** Insert new node object to the existing flower table */
     try {
       String name = flower.getName();
       int room = flower.getRoom();
@@ -38,7 +38,7 @@ public class FlowerDAOImpl implements IFlowerDAO {
       ps.setString(7, status);
       ps.executeUpdate();
 
-      flowerArray.add(new FlowerEntity(name, room, date, time, type, comment));
+      // flowerArray.add(new FlowerEntity(name, room, date, time, type, comment));
 
     } catch (SQLException e) {
       throw new RuntimeException(e);

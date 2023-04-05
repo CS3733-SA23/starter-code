@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class NodeDAOImp implements IDataBase, INodeDAO {
-  ArrayList<Node> NodeArray = null;
+  ArrayList<Node> NodeArray;
 
   static DBConnectionProvider nodeProvider = new DBConnectionProvider();
 
@@ -35,6 +35,19 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
   }
 
   // ResultSet
+
+  public static Connection createConnection() {
+    String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamadb";
+    String user = "teama";
+    String password = "teama10";
+
+    try {
+      return DriverManager.getConnection(url, user, password);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
 
   public static ArrayList<Node> loadNodesFromCSV(String filePath) {
     ArrayList<Node> nodes = new ArrayList<>();
@@ -238,7 +251,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
       NodeArray.forEach(
           node -> {
             if (node.nodeID.equals(nodeID)) {
-              node.xccord = xcoord;
+              node.xcoord = xcoord;
               node.ycoord = ycoord;
               node.floor = floor;
               node.building = building;
