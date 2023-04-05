@@ -11,7 +11,7 @@ public class LoginData {
         this.password = password;
     }
     public hashPassword(String password){
-
+        System.out.println(password.hashCode());
     }
 
 
