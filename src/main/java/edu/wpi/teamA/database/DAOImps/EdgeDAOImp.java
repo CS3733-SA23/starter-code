@@ -91,10 +91,11 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
               + "endNode    int,"
               + "CONSTRAINT fk_startnode "
               + "FOREIGN KEY(startNode) "
-              + "REFERENCES Prototype2_schema.Node(nodeid), "
+              + "REFERENCES \"Prototype2_schema\".\"Node(nodeid)\", "
               + "CONSTRAINT fk_endnode "
               + "FOREIGN KEY(endNode)"
-              + "REFERENCES Prototype2_schema.Node(nodeid))";
+              + "REFERENCES \"Prototype2_schema\".\"Node(nodeid)\")";
+
       Statement stmtEdge = edgeProvider.createConnection().createStatement();
       stmtEdge.execute(sqlCreateEdge);
 
@@ -120,7 +121,7 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
 
   public static void Export(String folderExportPath) {
     try {
-      String newFile = folderExportPath + "/Edfge.csv";
+      String newFile = folderExportPath + "/Edge.csv";
       Statement st = edgeProvider.createConnection().createStatement();
       ResultSet rs = st.executeQuery("SELECT * FROM \"Prototype2_schema\".\"Edge\"");
 
@@ -207,7 +208,7 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
       ps.setInt(2, endNode);
       ps.executeUpdate();
 
-      EdgeArray.removeIf(Edge -> Edge.startNode == startNode && Edge.endNode == endNode);
+      EdgeArray.removeIf(Edge -> Edge.getStartNode() == startNode && Edge.getEndNode() == endNode);
 
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -232,7 +233,7 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
           edgeProvider
               .createConnection()
               .prepareStatement(
-                  "UPDATE Prototype2_schema.\"Edge\" SET startNode = ?, endNode = ? WHERE startNode = ? AND endNode = ?");
+                  "UPDATE \"Prototype2_schema\".\"Edge\" SET startNode = ?, endNode = ? WHERE startNode = ? AND endNode = ?");
       ps.setInt(1, newStartNode);
       ps.setInt(2, newEndNode);
       ps.setInt(3, oldStartNode);
@@ -241,9 +242,9 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
 
       EdgeArray.forEach(
           edge -> {
-            if (edge.startNode == oldStartNode && edge.endNode == oldEndNode) {
-              edge.startNode = newStartNode;
-              edge.endNode = newEndNode;
+            if (edge.getStartNode() == oldStartNode && edge.getEndNode() == oldEndNode) {
+              edge.setStartNode(newStartNode);
+              edge.setEndNode(newEndNode);
             }
           });
 

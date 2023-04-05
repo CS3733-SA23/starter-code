@@ -110,9 +110,9 @@ public class MapController implements IPageController {
   }
 
   public void displayLocNameData(ArrayList<LocationName> locNameArray) {
-    longNameCol.setCellValueFactory(new PropertyValueFactory<>("longName"));
-    shortNameCol.setCellValueFactory(new PropertyValueFactory<>("shortName"));
-    nodeTypeCol.setCellValueFactory(new PropertyValueFactory<>("nodeType"));
+    longNameCol.setCellValueFactory(new PropertyValueFactory<>("LongName"));
+    shortNameCol.setCellValueFactory(new PropertyValueFactory<>("ShortName"));
+    nodeTypeCol.setCellValueFactory(new PropertyValueFactory<>("NodeType"));
 
     locationNameTable.setItems(FXCollections.observableArrayList(locNameArray));
     locationNameTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);

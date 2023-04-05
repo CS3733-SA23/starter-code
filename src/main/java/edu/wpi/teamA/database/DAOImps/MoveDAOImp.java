@@ -9,8 +9,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Scanner;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -60,9 +60,10 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
 
         int nodeID = Integer.parseInt(data[0]);
         String longName = data[1];
-        LocalDate date = LocalDate.parse(data[2]);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+        LocalDate localDate = LocalDate.parse(data[2], formatter);
 
-        Move move = new Move(nodeID, longName, date);
+        Move move = new Move(nodeID, longName, localDate);
         moves.add(move);
       }
 
@@ -79,18 +80,15 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
     ArrayList<Move> MoveArray = loadMovesFromCSV(filePath);
 
     try {
-      Scanner input = new Scanner(System.in);
-      System.out.println("Please input the full qualified path of the file you want to import");
-      filePath = input.nextLine();
       BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
       csvReader.readLine();
       String row;
 
       String sqlCreateEdge =
-          "Create Table if not exists \"Prototype2_schema.Node\""
+          "Create Table if not exists \"Prototype2_schema\".\"Move\""
               + "(nodeID   int PRIMARY KEY,"
-              + "LongName  Varchar(600),"
-              + "date      date)";
+              + "longName  Varchar(600),"
+              + "localDate      date)";
       Statement stmtMove = moveProvider.createConnection().createStatement();
       stmtMove.execute(sqlCreateEdge);
 
@@ -100,10 +98,12 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
         PreparedStatement ps =
             moveProvider
                 .createConnection()
-                .prepareStatement("INSERT INTO Prototype2_schema.\"Move\" VALUES (?, ?, ?)");
+                .prepareStatement("INSERT INTO \"Prototype2_schema\".\"Move\" VALUES (?, ?, ?)");
         ps.setInt(1, Integer.parseInt(data[0]));
         ps.setString(2, data[1]);
-        ps.setString(3, data[2]);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+        LocalDate localDate = LocalDate.parse(data[2], formatter);
+        ps.setDate(3, java.sql.Date.valueOf(localDate));
         ps.executeUpdate();
       }
       csvReader.close();
@@ -117,7 +117,7 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
   public static void Export(String filePath) {
     try {
       Statement st = moveProvider.createConnection().createStatement();
-      ResultSet rs = st.executeQuery("SELECT * FROM Prototype2_schema.\"Move\"");
+      ResultSet rs = st.executeQuery("SELECT * FROM \"Prototype2_schema\".\"Move\"");
 
       FileWriter csvWriter = new FileWriter("Move.csv");
       csvWriter.append("nodeID,longName,date\n");

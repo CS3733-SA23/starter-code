@@ -1,19 +1,14 @@
 package edu.wpi.teamA.database.ORMclasses;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Edge {
-  public Integer startNode;
-  public Integer endNode;
+  @Getter @Setter private Integer startNode;
+  @Getter @Setter private Integer endNode;
 
   public Edge(Integer startNode, Integer endNode) {
     this.startNode = startNode;
     this.endNode = endNode;
-  }
-
-  public Integer getStartNode() {
-    return startNode;
-  }
-
-  public Integer getEndNode() {
-    return endNode;
   }
 }

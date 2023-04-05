@@ -217,7 +217,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
       ps.setInt(1, nodeID);
       ps.executeUpdate();
 
-      NodeArray.removeIf(node -> node.nodeID.equals(nodeID));
+      NodeArray.removeIf(node -> node.getNodeID().equals(nodeID));
 
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -250,11 +250,11 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
 
       NodeArray.forEach(
           node -> {
-            if (node.nodeID.equals(nodeID)) {
-              node.xcoord = xcoord;
-              node.ycoord = ycoord;
-              node.floor = floor;
-              node.building = building;
+            if (node.getNodeID().equals(nodeID)) {
+              node.setXcoord(xcoord);
+              node.setYcoord(ycoord);
+              node.setFloor(floor);
+              node.setBuilding(building);
             }
           });
 

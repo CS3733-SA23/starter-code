@@ -79,10 +79,10 @@ public class LocNameDAOImp implements IDataBase, ILocNameDAO {
       String row;
 
       String sqlCreateEdge =
-          "Create Table if not exists Prototype2_schema.Node"
-              + "(LongName   Varchar(600),"
-              + "ShortName     Varchar(600),"
-              + "NodeType  Varchar(600))";
+          "Create Table if not exists \"Prototype2_schema\".\"LocationName\""
+              + "(longName   Varchar(600),"
+              + "shortName     Varchar(600),"
+              + "nodeType  Varchar(600))";
       Statement stmtLocName = LocNameProvider.createConnection().createStatement();
       stmtLocName.execute(sqlCreateEdge);
 
@@ -92,7 +92,7 @@ public class LocNameDAOImp implements IDataBase, ILocNameDAO {
         PreparedStatement ps =
             LocNameProvider.createConnection()
                 .prepareStatement(
-                    "INSERT INTO Prototype2_schema.\"LocationName\" VALUES (?, ?, ?)");
+                    "INSERT INTO \"Prototype2_schema\".\"LocationName\" VALUES (?, ?, ?)");
         ps.setString(1, data[0]);
         ps.setString(2, data[1]);
         ps.setString(3, data[2]);
@@ -109,7 +109,7 @@ public class LocNameDAOImp implements IDataBase, ILocNameDAO {
   public static void Export(String filePath) {
     try {
       Statement st = LocNameProvider.createConnection().createStatement();
-      ResultSet rs = st.executeQuery("SELECT * FROM Prototype2_schema.\"LocationName\"");
+      ResultSet rs = st.executeQuery("SELECT * FROM \"Prototype2_schema\".\"LocationName\"");
 
       FileWriter csvWriter = new FileWriter("LocationName.csv");
       csvWriter.append("longName,shortName,nodeType\n");
