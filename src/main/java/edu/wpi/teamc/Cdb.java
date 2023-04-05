@@ -3,6 +3,7 @@ package edu.wpi.teamc;
 import edu.wpi.teamc.map.*;
 import edu.wpi.teamc.map.Edge;
 import edu.wpi.teamc.map.Node;
+import edu.wpi.teamc.serviceRequest.*;
 import java.io.*;
 import java.sql.*;
 import java.text.ParseException;
@@ -14,7 +15,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Cdb {
+public class Cdb implements IServiceRequest {
   static Connection connection = null;
 
   public static void main(String[] args) {
@@ -27,6 +28,11 @@ public class Cdb {
       String user = "teamc";
       String password = "teamc30";
       connection = DriverManager.getConnection(url, user, password);
+
+      /*Meal meal = new Meal("A", "None");
+      MealRequest mr = new MealRequest(meal, "1", "none", PENDING);
+      Requester rq = new Requester(90, "Bob");
+      Cdb.addMeal(mr, rq);*/
 
       Scanner scanner = new Scanner(System.in);
       // database tables turned into two arrayLists
@@ -157,6 +163,118 @@ public class Cdb {
           e.printStackTrace();
         }
       }
+    }
+  }
+
+  // meal request adding + updating
+  static void addMeal(MealRequest mealReq, Requester requester) {
+    try {
+      String MEALREQUEST = "\"ServiceRequests\".\"mealRequest\"";
+      // query
+      String queryInsertMealReq = "INSERT INTO " + MEALREQUEST + " VALUES (?,?,?,?,?,?);";
+      PreparedStatement preparedStatement = connection.prepareStatement(queryInsertMealReq);
+      {
+        preparedStatement.setInt(1, requester.getRequesterID());
+        preparedStatement.setString(2, requester.getRequesterName());
+        preparedStatement.setString(
+            3, "mealName"); // adds meal by meal name not my class -> can later figure out how
+        // to
+        preparedStatement.setString(4, mealReq.getStat());
+        preparedStatement.setString(5, mealReq.getRoom());
+        preparedStatement.setString(6, mealReq.getSpecialNotes());
+
+        // System.out.println(preparedStatement);
+        // Step 3: Execute the query or update query
+        preparedStatement.executeUpdate();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  static void addConferenceRoomRequest(ConferenceRoomRequest confReq, Requester requester) {
+    try {
+      String CONFREQUEST = "\"ServiceRequests\".\"conferenceRoomRequest\"";
+      // query
+      String queryInsertMealReq = "INSERT INTO " + CONFREQUEST + " VALUES (?,?,?,?,?,?);";
+      PreparedStatement preparedStatement = connection.prepareStatement(queryInsertMealReq);
+      {
+        preparedStatement.setInt(1, requester.getRequesterID());
+        preparedStatement.setString(2, requester.getRequesterName());
+        preparedStatement.setString(
+            3,
+            confReq.getStat()); // adds meal by meal name not my class -> can later figure out how
+        // to
+        preparedStatement.setString(4, confReq.getStartTime());
+        preparedStatement.setString(5, confReq.getEndTime());
+        preparedStatement.setString(6, confReq.getAddtionalNotes());
+
+        preparedStatement.executeUpdate();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  static void updateConferenceRoomRequest(ConferenceRoomRequest confReq) {
+    try {
+      String CONFREQUEST = "\"ServiceRequests\".\"conferenceRoomRequest\"";
+      // query
+      String updateConfQuery =
+          "UPDATE  "
+              + CONFREQUEST
+              + " SET \"status\"=?, "
+              + "\"startTime\"=? "
+              + "\"endTime\"=? "
+              + "WHERE "
+              + "\"status\"=? "
+              + "AND \"startTime\"=?;"
+              + "AND \"endTime\"=?;";
+
+      PreparedStatement preparedStatement = connection.prepareStatement(updateConfQuery);
+      {
+        preparedStatement.setString(
+            3,
+            confReq.getStat()); // adds meal by meal name not my class -> can later figure out how
+        // to
+        preparedStatement.setString(4, confReq.getStartTime());
+        preparedStatement.setString(5, confReq.getEndTime());
+        preparedStatement.executeUpdate();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  static void updateMealRequest(MealRequest mealReq) {
+    try {
+      String MEAL = "\"ServiceRequests\".\"mealRequest\"";
+      // query
+      String updateMealQuery =
+          "UPDATE  "
+              + MEAL
+              + " SET \"meal\"=?, "
+              + "\"status\"=? "
+              + "\"room\"=? "
+              + "WHERE "
+              + "\"meal\"=? "
+              + "AND \"status\"=?;"
+              + "AND \"room\"=?;";
+
+      PreparedStatement preparedStatement = connection.prepareStatement(updateMealQuery);
+      {
+        preparedStatement.setString(
+            3,
+            mealReq
+                .getSelection()
+                .getMealName()); // adds meal by meal name not my class -> can later figure out how
+        // to
+        preparedStatement.setString(4, mealReq.getStat());
+        preparedStatement.setString(5, mealReq.getRoom());
+        preparedStatement.executeUpdate();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 

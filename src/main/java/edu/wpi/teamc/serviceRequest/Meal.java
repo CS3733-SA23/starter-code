@@ -10,4 +10,20 @@ public class Meal {
     this.mealName = name;
     this.addtionalInfo = notes;
   }
+
+  public String getMealName() {
+    return mealName;
+  }
+
+  public void setMealName(String mealName) {
+    this.mealName = mealName;
+  }
+
+  public String getAddtionalInfo() {
+    return addtionalInfo;
+  }
+
+  public void setAddtionalInfo(String addtionalInfo) {
+    this.addtionalInfo = addtionalInfo;
+  }
 }
