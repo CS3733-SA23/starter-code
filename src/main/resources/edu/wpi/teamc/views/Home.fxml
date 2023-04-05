@@ -133,6 +133,9 @@
                <padding>
                   <Insets bottom="2.0" left="45.0" right="2.0" top="2.0" />
                </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </MenuButton>
             <MenuButton fx:id="importMenu1" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: BAE3E0;" text="Export" textAlignment="CENTER" textFill="#004646">
                <items>
@@ -147,6 +150,9 @@
                <padding>
                   <Insets bottom="2.0" left="46.0" right="2.0" top="2.0" />
                </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </MenuButton>
               <Button fx:id="helpPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getHelpPage" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Help" textFill="#004646">
                   <cursor>
