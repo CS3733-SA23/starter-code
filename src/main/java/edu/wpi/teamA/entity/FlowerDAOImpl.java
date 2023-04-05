@@ -10,7 +10,10 @@ public class FlowerDAOImpl implements IFlowerDAO {
   ArrayList<FlowerEntity> flowerArray = new ArrayList<>();
   Connection flowerConnection; // need connection to server
 
-  public FlowerDAOImpl() {}
+  public FlowerDAOImpl() {
+    this.flowerArray = new ArrayList<>();
+
+  }
 
   @Override
   public void addFlower(FlowerEntity flower) {
@@ -45,6 +48,7 @@ public class FlowerDAOImpl implements IFlowerDAO {
 
   @Override
   public void deleteFlower(FlowerEntity flower) {
+
     try {
       PreparedStatement ps =
           flowerConnection.prepareStatement(
