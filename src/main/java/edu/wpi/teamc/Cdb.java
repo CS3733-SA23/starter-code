@@ -1,6 +1,5 @@
 package edu.wpi.teamc;
 
-import edu.wpi.teamc.controllers.MapChangeHistoryController;
 import edu.wpi.teamc.controllers.TableRow;
 import edu.wpi.teamc.map.*;
 import edu.wpi.teamc.map.Edge;
@@ -19,7 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Cdb {
-  static Connection connection = null;
+  // static Connection connection = null;
   ObservableList<TableRow> rows = FXCollections.observableArrayList();
 
   public static void main(String[] args) {
@@ -31,7 +30,7 @@ public class Cdb {
       String url = "jdbc:postgresql://database.cs.wpi.edu/teamcdb";
       String user = "teamc";
       String password = "teamc30";
-      connection = DriverManager.getConnection(url, user, password);
+      Connection connection = DBConnection.getConnection();
 
       Scanner scanner = new Scanner(System.in);
       // database tables turned into two arrayLists
@@ -155,9 +154,9 @@ public class Cdb {
       e.printStackTrace();
     } finally {
       // Close the connection
-      if (connection != null) {
+      if (DBConnection.getConnection() != null) {
         try {
-          connection.close();
+          DBConnection.getConnection().close();
         } catch (SQLException e) {
           e.printStackTrace();
         }
@@ -172,10 +171,19 @@ public class Cdb {
       List<Move> databaseMoveList) {
 
     try {
-      Statement stmtNode = connection.createStatement();
-      Statement stmtEdge = connection.createStatement();
-      Statement stmtLocationName = connection.createStatement();
-      Statement stmtMove = connection.createStatement();
+      // Load the PostgreSQL JDBC driver
+      Class.forName("org.postgresql.Driver");
+
+      // Establish the connection
+      String url = "jdbc:postgresql://database.cs.wpi.edu/teamcdb";
+      String user = "teamc";
+      String password = "teamc30";
+      // connection = DriverManager.getConnection(url, user, password);
+
+      Statement stmtNode = DBConnection.getConnection().createStatement();
+      Statement stmtEdge = DBConnection.getConnection().createStatement();
+      Statement stmtLocationName = DBConnection.getConnection().createStatement();
+      Statement stmtMove = DBConnection.getConnection().createStatement();
       // table names
       String node = "\"hospitalNode\".node";
       String edge = "\"hospitalNode\".edge";
@@ -248,11 +256,11 @@ public class Cdb {
 
       PreparedStatement ps;
       if (operation.equals("insert")) {
-        ps = connection.prepareStatement(queryInsertNodesDB);
+        ps = DBConnection.getConnection().prepareStatement(queryInsertNodesDB);
       } else if (operation.equals("update")) {
-        ps = connection.prepareStatement(queryUpdateNodesDB);
+        ps = DBConnection.getConnection().prepareStatement(queryUpdateNodesDB);
       } else if (operation.equals("delete")) {
-        ps = connection.prepareStatement(queryDeleteNodesDB);
+        ps = DBConnection.getConnection().prepareStatement(queryDeleteNodesDB);
       } else {
         throw new Exception("Invalid operation");
       }
@@ -286,11 +294,11 @@ public class Cdb {
 
       PreparedStatement ps;
       if (operation.equals("insert")) {
-        ps = connection.prepareStatement(queryInsertEdgesDB);
+        ps = DBConnection.getConnection().prepareStatement(queryInsertEdgesDB);
       } else if (operation.equals("update")) {
-        ps = connection.prepareStatement(queryUpdateEdgesDB);
+        ps = DBConnection.getConnection().prepareStatement(queryUpdateEdgesDB);
       } else if (operation.equals("delete")) {
-        ps = connection.prepareStatement(queryDeleteEdgesDB);
+        ps = DBConnection.getConnection().prepareStatement(queryDeleteEdgesDB);
       } else {
         throw new Exception("Invalid operation");
       }
@@ -321,11 +329,11 @@ public class Cdb {
 
       PreparedStatement ps;
       if (operation.equals("insert")) {
-        ps = connection.prepareStatement(queryInsertLocationNamesDB);
+        ps = DBConnection.getConnection().prepareStatement(queryInsertLocationNamesDB);
       } else if (operation.equals("update")) {
-        ps = connection.prepareStatement(queryUpdateLocationNamesDB);
+        ps = DBConnection.getConnection().prepareStatement(queryUpdateLocationNamesDB);
       } else if (operation.equals("delete")) {
-        ps = connection.prepareStatement(queryDeleteLocationNamesDB);
+        ps = DBConnection.getConnection().prepareStatement(queryDeleteLocationNamesDB);
       } else {
         throw new Exception("Invalid operation");
       }
@@ -356,11 +364,11 @@ public class Cdb {
 
       PreparedStatement ps;
       if (operation.equals("insert")) {
-        ps = connection.prepareStatement(queryInsertMovesDB);
+        ps = DBConnection.getConnection().prepareStatement(queryInsertMovesDB);
       } else if (operation.equals("update")) {
-        ps = connection.prepareStatement(queryUpdateMovesDB);
+        ps = DBConnection.getConnection().prepareStatement(queryUpdateMovesDB);
       } else if (operation.equals("delete")) {
-        ps = connection.prepareStatement(queryDeleteMovesDB);
+        ps = DBConnection.getConnection().prepareStatement(queryDeleteMovesDB);
       } else {
         throw new Exception("Invalid operation");
       }
@@ -424,15 +432,17 @@ public class Cdb {
   }
 
   static void displayMoveInfo(List<Move> databaseMoveList) {
-    MapChangeHistoryController moveHistory = new MapChangeHistoryController();
-    moveHistory.dispTable(databaseMoveList);
+    // MapChangeHistoryController moveHistory = new MapChangeHistoryController();
+    // moveHistory.dispTable(databaseMoveList);
 
-    //    for (Move currMove : databaseMoveList) {
-    //      nodeID = currMove.getNodeID();
-    //      longName = currMove.getLongName();
-    //      date = currMove.getDate().toString();
-    //      rows.add(new TableRow(nodeID, longName, date));
-    ////      System.out.println(move.getNodeID() + "\t" + move.getLongName() + "\t" +
+    for (Move currMove : databaseMoveList) {
+      // nodeID = currMove.getNodeID();
+      // longName = currMove.getLongName();
+      // date = currMove.getDate().toString();
+      // rows.add(new TableRow(nodeID, longName, date));
+      System.out.println(
+          currMove.getNodeID() + "\t" + currMove.getLongName() + "\t" + currMove.getDate());
+    }
     // move.getDate());
     //    }
     //   List<Move> moveList = new ArrayList<Move>();
