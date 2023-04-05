@@ -6,6 +6,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
@@ -18,7 +20,7 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bae3e0" height="400.0" stroke="#bae3e0" strokeType="INSIDE" width="600.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TEAL" height="378.0" layoutX="10.0" layoutY="10.0" stroke="TEAL" strokeType="INSIDE" width="578.0" />
-      <Label layoutX="32.0" layoutY="29.0" text="Furniture Request" textFill="WHITE">
+      <Label layoutX="32.0" layoutY="43.0" text="Furniture Request" textFill="WHITE">
          <font>
             <Font name="Verdana Bold" size="20.0" />
          </font>
@@ -105,22 +107,36 @@
             </MenuButton>
          </children>
       </Group>
-      <Group layoutX="74.0" layoutY="231.0">
-         <children>
-            <TextArea fx:id="textArea" cache="true" layoutX="70.0" layoutY="-13.0" prefHeight="66.0" prefWidth="421.0" style="-fx-wrap-text: true; -fx-border-radius: 5; -fx-text-fill: teal;" wrapText="true">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font>
-               <padding>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </padding>
-            </TextArea>
-            <Label layoutX="-29.0" layoutY="-25.0" prefHeight="90.0" prefWidth="102.0" text="Special Requests:" textFill="WHITE" textOverrun="CLIP" wrapText="true">
-               <font>
-                  <Font name="Verdana Bold" size="15.0" />
-               </font>
-            </Label>
-         </children>
-      </Group>
+      <MenuBar layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="578.0" style="-fx-background-radius: 2; -fx-background-color: white;">
+         <menus>
+            <Menu mnemonicParsing="false" text="Service Requests">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#getRoomReservationPage" text="Room Reservation" />
+                  <MenuItem mnemonicParsing="false" onAction="#getMealDeliveryPage" text="Meal Delivery" />
+                  <MenuItem mnemonicParsing="false" onAction="#getFlowerDeliveryPage" text="Flower Delivery" />
+                  <MenuItem mnemonicParsing="false" onAction="#getFurnitureDeliveryPage" text="Furniture Delivery" />
+                  <MenuItem mnemonicParsing="false" onAction="#getOfficeSuppliesPage" text="Office Supplies" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Navigation">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#getSignagePage" text="Signage" />
+                  <MenuItem mnemonicParsing="false" onAction="#getMapPage" text="Map" />
+                  <MenuItem mnemonicParsing="false" onAction="#getEditMap" text="Edit Map" />
+                  <MenuItem mnemonicParsing="false" onAction="#getMapHistory" text="Map History" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Options">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#getHelpPage" text="Help Page" />
+                  <MenuItem mnemonicParsing="false" onAction="#getLogOut" text="Log Out" />
+                  <MenuItem mnemonicParsing="false" text="Exit App" />
+               </items>
+            </Menu>
+         </menus>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </MenuBar>
    </children>
 </AnchorPane>
