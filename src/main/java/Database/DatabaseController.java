@@ -1,7 +1,8 @@
 package Database;
 
+import static Database.DatabaseController.Table.LOCATION_NAME;
 import static edu.wpi.teame.map.Floor.stringToFloor;
-import static edu.wpi.teame.map.LocationName.NodeType.stringToNodeType;
+import static edu.wpi.teame.map.LocationName.NodeType.*;
 
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.*;
@@ -39,6 +40,12 @@ public enum DatabaseController {
           throw new NoSuchElementException("No such Table found");
       }
     }
+  }
+
+  public static void main(String[] args) {
+    DatabaseController db = DatabaseController.INSTANCE;
+    LocationName locationName = new LocationName("MICU 3BC Waiting RoomA", "Hall", ELEV);
+    db.addToTable(LOCATION_NAME, locationName);
   }
 
   private Connection c;
@@ -179,12 +186,13 @@ public enum DatabaseController {
         String lName = locationName.getLongName();
         String shortName = locationName.getShortName();
         LocationName.NodeType nodeType = locationName.getNodeType();
+        //        var nodeType = "Test";
         insertTable =
-            "INSERT INTO \"LocationName\" VALUES("
+            "INSERT INTO \"LocationName\" VALUES('"
                 + lName
-                + " ,'"
+                + "','"
                 + shortName
-                + "' , '"
+                + "','"
                 + nodeType
                 + "');";
         break;
@@ -344,9 +352,9 @@ public enum DatabaseController {
         String[] splitL1 = l1.split(",");
         System.out.println(l1);
         String sql =
-            "INSERT INTO \""
+            "INSERT INTO "
                 + tableName
-                + "\" VALUES ("
+                + " VALUES ("
                 + splitL1[0]
                 + ", '"
                 + splitL1[1]
@@ -381,7 +389,7 @@ public enum DatabaseController {
     // Initialization
     Statement stmt = null;
     stmt = c.createStatement();
-    ResultSet rs = stmt.executeQuery("SELECT * FROM \"" + name + "\";");
+    ResultSet rs = stmt.executeQuery("SELECT * FROM " + name + ";");
 
     // Makes new file or finds existing one
     File file = new File(filePath + File.separator + fileName);
