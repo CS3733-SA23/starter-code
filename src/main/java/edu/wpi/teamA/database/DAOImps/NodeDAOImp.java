@@ -24,7 +24,6 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
     this.NodeArray = new ArrayList<Node>();
   }
 
-
   // ResultSet
 
   public static ArrayList<Node> loadNodesFromCSV(String filePath) {
@@ -55,6 +54,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
 
     return nodes;
   }
+
   public static ArrayList<Node> Import(String filePath) {
 
     ArrayList<Node> NodeArray = loadNodesFromCSV(filePath);
@@ -94,7 +94,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
 
       throw new RuntimeException(e);
     }
-  return NodeArray;
+    return NodeArray;
   }
 
   public static void Export(String folderExportPath) {
@@ -148,7 +148,6 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
 
     return nodes;
   }
-
 
   @Override
   public void Add() {

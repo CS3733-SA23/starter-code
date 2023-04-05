@@ -1,7 +1,7 @@
 package edu.wpi.teamA.controllers.Navigation;
 
-import edu.wpi.teamA.entity.FlowerDAOImpl;
-import edu.wpi.teamA.entity.FlowerEntity;
+import edu.wpi.teamA.database.DAOImps.FlowerDAOImpl;
+import edu.wpi.teamA.database.ORMclasses.FlowerEntity;
 import edu.wpi.teamA.navigation.Navigation;
 import edu.wpi.teamA.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -71,11 +71,26 @@ public class FlowerRequestController implements IPageController, IServiceControl
             nameField.getText(),
             Integer.parseInt(roomField.getText()),
             Date.valueOf(datePicker.getValue()),
-            Integer.parseInt(timeCombo.getText()),
+            convertTime(timeCombo.getText()),
             flowerCombo.getText(),
             commentField.getText());
     FlowerDAOImpl fd = new FlowerDAOImpl();
     fd.addFlower(flower);
     clear();
+  }
+
+  public int convertTime(String time) {
+    int num;
+    String newString;
+    int length = time.length();
+    if (time.equals("00:00")) {
+      return 0;
+    } else if (length == 4) {
+      newString = time.charAt(0) + time.substring(2);
+    } else {
+      newString = time.substring(0, 2) + time.substring(2);
+    }
+    num = Integer.parseInt(newString);
+    return num;
   }
 }
