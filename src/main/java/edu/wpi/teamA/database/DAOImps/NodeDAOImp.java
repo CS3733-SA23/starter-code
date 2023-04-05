@@ -20,6 +20,11 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
     this.NodeArray = NodeArray;
   }
 
+  public NodeDAOImp() {
+    this.NodeArray = new ArrayList<Node>();
+  }
+
+
   // ResultSet
 
   public static ArrayList<Node> loadNodesFromCSV(String filePath) {
