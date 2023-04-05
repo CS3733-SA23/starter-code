@@ -34,12 +34,13 @@
             <children>
                 <FilteredTableView fx:id="historyTable" editable="true" prefHeight="281.0" prefWidth="521.0">
                     <columns>
-                        <TableColumn fx:id="ColumnOne" prefWidth="80.0" text="ID" />
-                        <TableColumn fx:id="ColumnTwo" prefWidth="80.0" text="Status" />
-                        <TableColumn fx:id="ColumnThree" prefWidth="80.0" text="Start" />
-                        <TableColumn fx:id="ColumnFour" prefWidth="80.0" text="End" />
-                        <TableColumn fx:id="ColumnFive" prefWidth="80.0" text="Info" />
-                        <TableColumn fx:id="ColumnSix" prefWidth="80.0" text="Room" />
+                  <TableColumn fx:id="ColumnOne" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="Name" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="ColumnTwo" prefWidth="75.0" text="Status" />
+                  <TableColumn fx:id="ColumnThree" prefWidth="75.0" text="Start" />
+                  <TableColumn fx:id="ColumnFour" prefWidth="75.0" text="End" />
+                  <TableColumn fx:id="ColumnFive" prefWidth="75.0" text="Info" />
+                  <TableColumn fx:id="ColumnSix" prefWidth="75.0" text="Room" />
                     </columns>
                 </FilteredTableView>
             </children>
