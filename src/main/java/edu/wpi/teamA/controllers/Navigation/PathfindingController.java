@@ -5,6 +5,7 @@ import edu.wpi.teamA.database.ORMclasses.Node;
 import edu.wpi.teamA.navigation.Navigation;
 import edu.wpi.teamA.navigation.Screen;
 import edu.wpi.teamA.pathfinding.BFS;
+import edu.wpi.teamA.pathfinding.SearchController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import java.util.ArrayList;
@@ -17,9 +18,10 @@ public class PathfindingController implements IPageController {
   @FXML private MFXFilterComboBox<Integer> startSelection;
   @FXML private MFXFilterComboBox<Integer> endSelection;
   @FXML private Text directions;
-  @FXML private MFXButton submitButton;
+  @FXML MFXButton submitButton;
   private ArrayList<Integer> nodeOptions = new ArrayList<Integer>();
   private NodeDAOImp nodeDAO = new NodeDAOImp();
+  private SearchController search;
 
   @Override
   public void initialize() {
@@ -39,8 +41,12 @@ public class PathfindingController implements IPageController {
   }
 
   public void submit() {
-    BFS bfs = new BFS(startSelection.getSelectedItem(), startSelection.getSelectedItem());
-    directions.setText(bfs.toString());
-    System.out.println("Nodes submitted");
+    try {
+      BFS bfs = new BFS(startSelection.getSelectedItem(), startSelection.getSelectedItem());
+      directions.setText(bfs.toString());
+      System.out.println("Nodes submitted");
+    } catch (NullPointerException e) {
+      System.out.println("Null Value");
+    }
   }
 }
