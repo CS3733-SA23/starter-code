@@ -17,14 +17,11 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
@@ -45,7 +42,6 @@ public class GroundFloorNavMapController {
 
   @FXML private AnchorPane mapPane;
 
-  @FXML private VBox vbox;
   @FXML private ImageView mapImage;
   @FXML MFXComboBox<String> currentLocationList;
   @FXML MFXComboBox<String> destinationList;
@@ -75,24 +71,18 @@ public class GroundFloorNavMapController {
     thirdFloorButton.setOnMouseClicked(event -> refreshMap(Floor.THREE));
 
     currentLocationList.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @Override
-          public void handle(ActionEvent event) {
-            curLocFromComboBox = currentLocationList.getValue();
-            if (!(destFromComboBox == null)) {
-              displayPath(curLocFromComboBox, destFromComboBox);
-            }
+        event -> {
+          curLocFromComboBox = currentLocationList.getValue();
+          if (!(destFromComboBox == null)) {
+            displayPath(curLocFromComboBox, destFromComboBox);
           }
         });
 
     destinationList.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @Override
-          public void handle(ActionEvent event) {
-            destFromComboBox = destinationList.getValue();
-            if (!(curLocFromComboBox == null)) {
-              displayPath(curLocFromComboBox, destFromComboBox);
-            }
+        event -> {
+          destFromComboBox = destinationList.getValue();
+          if (!(curLocFromComboBox == null)) {
+            displayPath(curLocFromComboBox, destFromComboBox);
           }
         });
     refreshMap(currentFloor);
