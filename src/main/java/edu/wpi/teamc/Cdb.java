@@ -24,6 +24,7 @@ public class Cdb implements IServiceRequest {
   public static List<Edge> databaseEdgeList = new ArrayList<Edge>();
   public static List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
   public static List<Move> databaseMoveList = new ArrayList<Move>();
+
   ObservableList<TableRow> rows = FXCollections.observableArrayList();
 
   public static void main(String[] args) {
@@ -96,19 +97,19 @@ public class Cdb implements IServiceRequest {
             break;
           case "export node table into a csv file":
             csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/Node.csv";
-            exportNodesToCSV(csvFileName, databaseNodeList);
+            exportNodesToCSV(csvFileName);
             break;
           case "export edge table into a csv file":
             csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/Edge.csv";
-            exportEdgesToCSV(csvFileName, databaseEdgeList);
+            exportEdgesToCSV(csvFileName);
             break;
           case "export location name table into a csv file":
             csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/LocationName.csv";
-            exportLocationNamesToCSV(csvFileName, databaseLocationNameList);
+            exportLocationNamesToCSV(csvFileName);
             break;
           case "export move table into a csv file":
             csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/Move.csv";
-            exportMovesToCSV(csvFileName, databaseMoveList);
+            exportMovesToCSV(csvFileName);
             break;
           case "import from a csv file into the node table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Node.csv";
@@ -815,7 +816,7 @@ public class Cdb implements IServiceRequest {
     }
   }
 
-  static void exportNodesToCSV(String csvFile, List<Node> databaseNodeList) throws IOException {
+  public static void exportNodesToCSV(String csvFile) throws IOException {
     createFile(csvFile);
     BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
     // Write the header row to the CSV file
@@ -837,7 +838,7 @@ public class Cdb implements IServiceRequest {
     writer.close();
   }
 
-  static void exportEdgesToCSV(String csvFile, List<Edge> databaseEdgeList) throws IOException {
+  public static void exportEdgesToCSV(String csvFile) throws IOException {
     createFile(csvFile);
     BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
     // Write the header row to the CSV file
@@ -848,8 +849,7 @@ public class Cdb implements IServiceRequest {
     writer.close();
   }
 
-  static void exportLocationNamesToCSV(String csvFile, List<LocationName> databaseLocationNameList)
-      throws IOException {
+  public static void exportLocationNamesToCSV(String csvFile) throws IOException {
     createFile(csvFile);
     BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
     // Write the header row to the CSV file
@@ -866,7 +866,7 @@ public class Cdb implements IServiceRequest {
     writer.close();
   }
 
-  static void exportMovesToCSV(String csvFile, List<Move> databaseMoveList) throws IOException {
+  public static void exportMovesToCSV(String csvFile) throws IOException {
     createFile(csvFile);
     BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
     // Write the header row to the CSV file
