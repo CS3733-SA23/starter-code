@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import org.controlsfx.control.tableview2.FilteredTableView;
 
 public class MapChangeHistoryController {
@@ -32,6 +33,10 @@ public class MapChangeHistoryController {
   @FXML TableColumn<TableRow, String> ColumnOne;
   @FXML TableColumn<TableRow, String> ColumnTwo;
   @FXML TableColumn<TableRow, String> ColumnThree;
+  //  @FXML TableColumn<TableRow, String> ColumnOne1;
+  //  @FXML TableColumn<TableRow, String> ColumnTwo1;
+  //  @FXML TableColumn<TableRow, String> ColumnThree1;
+  //  @FXML TableView<TableRow> testTable;
   ObservableList<TableRow> rows = FXCollections.observableArrayList();
 
   @FXML private Button goHome;
@@ -45,12 +50,16 @@ public class MapChangeHistoryController {
     ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("nodeID"));
     ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("longName"));
     ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("date"));
+    ColumnOne.setCellFactory(TextFieldTableCell.forTableColumn());
     historyTable.setEditable(true);
-    historyTable.getOnMouseClicked();
-    historyTable.getEditingCell();
-    ColumnOne.isEditable();
+    //    historyTable.getOnMouseClicked();
+    //    historyTable.getEditingCell();
+    //    testTable.setEditable(true);
+    ColumnOne.setEditable(true);
     ColumnTwo.setEditable(true);
     ColumnThree.setEditable(true);
+
+    //    testTable.getItems().setAll(gettableRows(Cdb.databaseMoveList));
     historyTable.getItems().setAll(gettableRows(Cdb.databaseMoveList));
     // historyTable.isEditable();
     //    historyTable.setEditable(true);
@@ -68,10 +77,11 @@ public class MapChangeHistoryController {
     ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("nodeID"));
     ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("longName"));
     ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("date"));
+    //    testTable.getItems().setAll(gettableRows(moveList));
     historyTable.getItems().setAll(gettableRows(moveList));
-    ColumnOne.setEditable(true);
-    ColumnTwo.setEditable(true);
-    ColumnThree.setEditable(true);
+    //    ColumnOne.setEditable(true);
+    //    ColumnTwo.setEditable(true);
+    //    ColumnThree.setEditable(true);
 
     System.out.println("did it");
   }
