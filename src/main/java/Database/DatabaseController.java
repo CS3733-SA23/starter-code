@@ -514,7 +514,7 @@ public class DatabaseController {
 
   }
 
-  private void exitDatabaseProgram() {
+  public void exitDatabaseProgram() {
     try {
       c.close();
       System.out.println("Database Connection Closed");

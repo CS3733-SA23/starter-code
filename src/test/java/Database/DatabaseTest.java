@@ -87,6 +87,10 @@ public class DatabaseTest {
     assertEquals(684, elist.size());
   }
 
+  /**
+   * Tests adding a service request to the Database will create a random arbitrary entry in the
+   * table doesn't actually assert equals anything cuz Idk how to check that
+   */
   @Test
   public void testAddServiceRequestToDatabase() {
     DatabaseServiceController dbsc = setupServiceController();

@@ -14,6 +14,11 @@ public class DatabaseServiceController {
 
   @Getter List<ServiceRequestData> serviceRequests;
 
+  /**
+   * Initializes a ServiceController by Passing in a db controller
+   *
+   * @param db DatabaseController
+   */
   public DatabaseServiceController(DatabaseController db) {
     try {
       this.db = db;
@@ -22,6 +27,11 @@ public class DatabaseServiceController {
     }
   }
 
+  /**
+   * Adds a service request to the Database by pulling out attributes and inserting with sql query
+   *
+   * @param srd Service request to be inserted
+   */
   public void addServiceRequestToDatabase(ServiceRequestData srd) {
     try {
       Statement stmt = db.getC().createStatement();
@@ -29,6 +39,7 @@ public class DatabaseServiceController {
       JSONObject requestData = srd.getRequestData();
       String status = ServiceRequestData.Status.statusToString(srd.getRequestStatus());
       String requestType = ServiceRequestData.RequestType.requestTypeToString(srd.getRequestType());
+      int hashID = requestData.hashCode();
 
       String sql =
           "INSERT INTO teame.\"ServiceRequests\" "
@@ -40,7 +51,9 @@ public class DatabaseServiceController {
               + srd.getAssignedStaff()
               + "', '"
               + requestType
-              + "');";
+              + "', "
+              + hashID
+              + ");";
 
       int result = stmt.executeUpdate(sql);
 
@@ -50,8 +63,14 @@ public class DatabaseServiceController {
     } catch (SQLException e) {
       System.out.println(e.getMessage());
     }
+    db.exitDatabaseProgram();
   }
 
+  /**
+   * retrieves a list of service requests from the table
+   *
+   * @return List of ServiceRequestData corresponding to Database
+   */
   public List<ServiceRequestData> retrieveRequestsFromTable() {
     serviceRequests = new LinkedList<>();
 

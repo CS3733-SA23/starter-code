@@ -17,6 +17,11 @@ public class DatabaseGraphController {
   private static List<HospitalNode> nodeList = new LinkedList<>();
   private static List<HospitalEdge> edgeList = new LinkedList<>();
 
+  /**
+   * Initializes the DatabaseGraphController by passing in valid DatabaseController
+   *
+   * @param DBC Valid DatabaseController
+   */
   public DatabaseGraphController(DatabaseController DBC) {
     try {
       this.DBC = DBC;
@@ -25,15 +30,40 @@ public class DatabaseGraphController {
     }
   }
 
+  /**
+   * Updates list of nodes and edges and returns list of nodes
+   *
+   * @return list of nodes
+   */
   public List<HospitalNode> getHospitalNodes() {
+    try {
+      retrieveFromTable();
+    } catch (RuntimeException e) {
+      System.out.println(e.getMessage());
+    }
     return nodeList;
   }
 
+  /**
+   * Updates list of nodes and edges and return list of edges
+   *
+   * @return list of edges
+   */
   public List<HospitalEdge> getHospitalEdges() {
+    try {
+      retrieveFromTable();
+    } catch (RuntimeException e) {
+      System.out.println(e.getMessage());
+    }
     return edgeList;
   }
 
-  public void retrieveFromTable() {
+  /**
+   * Updates list of nodes and edges from Database
+   *
+   * @throws RuntimeException SQL query error will through exception
+   */
+  public void retrieveFromTable() throws RuntimeException {
 
     nodeList = new ArrayList<>();
     edgeList = new ArrayList<>();
@@ -55,18 +85,23 @@ public class DatabaseGraphController {
         edgeList.add(he);
       }
     } catch (SQLException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException("There was a problem getting the information");
     }
     if (edgeList.isEmpty()) {
       System.out.println("No edges retrieved");
     }
     if (nodeList.isEmpty()) {
       System.out.println("No nodes retrieved");
-    } else {
-      System.out.println("Edges and Nodes retrieved successfully.");
     }
   }
 
+  /**
+   * Helper to extract and build a HospitalNode from ResultSet
+   *
+   * @param rs ResultSet to extract from
+   * @return newly created HospitalNode
+   * @throws SQLException If pulling from resultset fails, exception thrown
+   */
   private HospitalNode extractNodeFromResultSet(ResultSet rs) throws SQLException {
     int nodeID = rs.getInt("nodeID");
     int xCoord = rs.getInt("xcoord");
@@ -77,6 +112,13 @@ public class DatabaseGraphController {
     return new HospitalNode(new NodeInitializer(nodeID + "", xCoord, yCoord, floor, building));
   }
 
+  /**
+   * Helper to extract and build a HospitalEdge from ResultSet
+   *
+   * @param rs ResultSet to extract from
+   * @return newly created HospitalEdge
+   * @throws SQLException If pulling from ResultSet fails, exception thrown
+   */
   private HospitalEdge extractEdgeFromResultSet(ResultSet rs) throws SQLException {
     String startNode = rs.getString("startNode");
     String endNode = rs.getString("endNode");
@@ -84,6 +126,13 @@ public class DatabaseGraphController {
     return new HospitalEdge(startNode, endNode);
   }
 
+  /**
+   * Obtains the nodeID from given longName corresponding to move table
+   *
+   * @param longname
+   * @return int that represents the nodeID
+   * @throws RuntimeException if SQL query fails
+   */
   public int getNodeIDFromName(String longname) throws RuntimeException {
     try {
       Statement stmt = DBC.getC().createStatement();
