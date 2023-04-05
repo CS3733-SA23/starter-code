@@ -1,5 +1,7 @@
 package edu.wpi.teame.controllers;
 
+import Database.DatabaseController;
+import Database.DatabaseServiceController;
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
@@ -71,6 +73,11 @@ public class FlowerRequestController implements IRequestController {
 
     // Return to the home screen
     Navigation.navigate(Screen.HOME);
+
+    DatabaseController db = new DatabaseController();
+    DatabaseServiceController dbsc = new DatabaseServiceController(db);
+
+    dbsc.addServiceRequestToDatabase(flowerRequestData);
     return flowerRequestData;
   }
 

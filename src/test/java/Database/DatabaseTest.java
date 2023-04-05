@@ -3,13 +3,13 @@ package Database;
 import static org.junit.jupiter.api.Assertions.*;
 
 import edu.wpi.teame.entities.ServiceRequestData;
+import edu.wpi.teame.map.Floor;
+import edu.wpi.teame.map.HospitalEdge;
+import edu.wpi.teame.map.HospitalNode;
+import edu.wpi.teame.map.MoveAttribute;
 import java.util.List;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import pathfinding.Floor;
-import pathfinding.HospitalEdge;
-import pathfinding.HospitalNode;
-import pathfinding.MoveAttribute;
 
 public class DatabaseTest {
 
