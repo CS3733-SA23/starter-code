@@ -46,8 +46,8 @@ public enum DatabaseController {
     DatabaseController db = DatabaseController.INSTANCE;
     LocationName locationName = new LocationName("Urology 1", "D5", INFO);
     HospitalEdge edge = new HospitalEdge("2001", "2002");
-    db.addToTable(EDGE, edge);
     // db.addToTable(LOCATION_NAME, locationName);
+    db.deleteFromTable(LOCATION_NAME, locationName);
   }
 
   private Connection c;
@@ -112,13 +112,13 @@ public enum DatabaseController {
         String shortName = locationName.getShortName();
         LocationName.NodeType nodeType = locationName.getNodeType();
         sqlDelete =
-            "DELETE FROM \"LocationName\" WHERE \"longName\" = "
+            "DELETE FROM \"LocationName\" WHERE \"longName\" = '"
                 + lName
-                + " AND \"shortName\" = '"
+                + "','"
                 + shortName
-                + "' AND \"nodeType\" = '"
+                + "','"
                 + nodeType
-                + "';";
+                + "');";
         break;
       case SERVICE_REQUESTS:
         ServiceRequestData serviceRequestData = (ServiceRequestData) obj;
