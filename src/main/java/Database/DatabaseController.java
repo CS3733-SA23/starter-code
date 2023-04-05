@@ -344,8 +344,8 @@ public enum DatabaseController {
         }
         rows.remove(0);
         reader.close();
-
         Statement stmt = c.createStatement();
+
         switch (tableName) {
           case "Edge":
             for (String l1 : rows) {
@@ -450,7 +450,7 @@ public enum DatabaseController {
     // Initialization
     Statement stmt = null;
     stmt = c.createStatement();
-    ResultSet rs = stmt.executeQuery("SELECT * FROM " + name + ";");
+    ResultSet rs = stmt.executeQuery("SELECT * FROM " + "\"" + name + "\"" + ";");
 
     // Makes new file or finds existing one
     File file = new File(filePath + File.separator + fileName);
