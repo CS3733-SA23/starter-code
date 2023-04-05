@@ -80,9 +80,9 @@ public class LocNameDAOImp implements IDataBase, ILocNameDAO {
 
       String sqlCreateEdge =
           "Create Table if not exists \"Prototype2_schema\".\"LocationName\""
-              + "(longName   Varchar(600),"
+              + "(longName     Varchar(600),"
               + "shortName     Varchar(600),"
-              + "nodeType  Varchar(600))";
+              + "nodeType      Varchar(600))";
       Statement stmtLocName = LocNameProvider.createConnection().createStatement();
       stmtLocName.execute(sqlCreateEdge);
 
