@@ -5,24 +5,22 @@ import java.util.ArrayList;
 
 public class BFS {
   private final Graph graph = new Graph();
-  int start, end;
+  int startID, endID;
   private ArrayList<Integer> path = new ArrayList<Integer>();
 
-  public BFS(int start, int end) {
+  public BFS(int startID, int endID) {
     this.graph.prepGraph();
-    this.start = start;
-    this.end = end;
-    this.path = setPath(start, end);
+    this.startID = startID;
+    this.endID = endID;
+    this.path = setPath();
   }
 
   /**
    * setPath: BFS Algorithm Implementation
    *
-   * @param startID
-   * @param endID
    * @return path of nodes as integer IDs
    */
-  public ArrayList<Integer> setPath(int startID, int endID) {
+  public ArrayList<Integer> setPath() {
 
     ArrayList<Integer> queue = new ArrayList<>();
     ArrayList<Integer> nodesToReset = new ArrayList<>();
@@ -113,11 +111,6 @@ public class BFS {
   }
 
   public String toString() {
-    String stringPath = getPath(this.path);
-    return stringPath;
-  }
-
-  public static String getPath(ArrayList<Integer> path) {
     String stringPath = "Start at node " + path.get(0);
 
     for (int i = 1; i < path.size(); i++) {
