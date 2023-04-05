@@ -27,4 +27,9 @@ public class GuestHomeController {
   void getSignagePage(ActionEvent event) {
     Navigation.navigate(Screen.SIGNAGE);
   }
+
+  @FXML
+  void getExit(ActionEvent actionEvent) {
+    System.exit(0);
+  }
 }

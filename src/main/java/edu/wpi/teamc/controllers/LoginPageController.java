@@ -28,4 +28,9 @@ public class LoginPageController {
   void getClear(ActionEvent event) {
     Navigation.navigate(Screen.LOGIN);
   }
+
+  @FXML
+  public void getExit(ActionEvent actionEvent) {
+    System.exit(0);
+  }
 }
