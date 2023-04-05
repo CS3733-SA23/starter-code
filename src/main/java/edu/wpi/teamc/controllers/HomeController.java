@@ -6,6 +6,7 @@ import edu.wpi.teamc.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,8 +20,6 @@ public class HomeController {
 
   private String filePath;
   private Desktop desktop = Desktop.getDesktop();
-
-  @FXML private Label myLabel;
 
   @FXML MFXButton signageButton2;
 
@@ -47,7 +46,7 @@ public class HomeController {
 
   @FXML private MenuButton importMenu;
 
-  @FXML private Button saveButton;
+  @FXML private Label testText;
 
   @FXML
   void getFlowerDeliveryPage(ActionEvent event) {
@@ -182,17 +181,56 @@ public class HomeController {
   }
 
   @FXML
-  void getExportNodes(ActionEvent event) {
+  void getExportNodes(ActionEvent event) throws IOException {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Save");
+    fileChooser.getExtensionFilters().addAll(new ExtensionFilter("All Files", "*.*"));
+    File file = fileChooser.showSaveDialog(new Stage());
+    if (file != null) {
+      String filePath = file.getAbsolutePath();
+      Cdb.exportNodesToCSV(filePath);
+      testText.setText(filePath);
+    }
   }
 
   @FXML
-  void getExportEdges(ActionEvent event) {}
+  void getExportEdges(ActionEvent event) throws IOException {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Save");
+    fileChooser.getExtensionFilters().addAll(new ExtensionFilter("All Files", "*.*"));
+    File file = fileChooser.showSaveDialog(new Stage());
+    if (file != null) {
+      String filePath = file.getAbsolutePath();
+      Cdb.exportEdgesToCSV(filePath);
+      testText.setText(filePath);
+    }
+  }
 
   @FXML
-  void getExportLocationNames(ActionEvent event) {}
+  void getExportLocationNames(ActionEvent event) throws IOException {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Save");
+    fileChooser.getExtensionFilters().addAll(new ExtensionFilter("All Files", "*.*"));
+    File file = fileChooser.showSaveDialog(new Stage());
+    if (file != null) {
+      String filePath = file.getAbsolutePath();
+      Cdb.exportLocationNamesToCSV(filePath);
+      testText.setText(filePath);
+    }
+  }
 
   @FXML
-  void getExportMove(ActionEvent event) {}
+  void getExportMove(ActionEvent event) throws IOException {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Save");
+    fileChooser.getExtensionFilters().addAll(new ExtensionFilter("All Files", "*.*"));
+    File file = fileChooser.showSaveDialog(new Stage());
+    if (file != null) {
+      String filePath = file.getAbsolutePath();
+      Cdb.exportMovesToCSV(filePath);
+      testText.setText(filePath);
+    }
+  }
 
   @FXML
   void getExportButton(ActionEvent event) {}
