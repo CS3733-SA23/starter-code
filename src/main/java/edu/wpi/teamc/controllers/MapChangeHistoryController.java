@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import org.controlsfx.control.tableview2.FilteredTableView;
 
 public class MapChangeHistoryController {
@@ -42,9 +41,9 @@ public class MapChangeHistoryController {
     ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("nodeID"));
     ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("longName"));
     ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("date"));
-//    ColumnOne.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
-//    ColumnTwo.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
-//    ColumnThree.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
+    //    ColumnOne.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
+    //    ColumnTwo.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
+    //    ColumnThree.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
 
     historyTable.getItems().setAll(gettableRows(Cdb.databaseMoveList));
 

@@ -47,9 +47,12 @@ public class MapEditingController {
 
   /** Method run when controller is initialized */
   public void initialize() {
+    // Allows cells to be identifiable
     ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("nodeID"));
     ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("longName"));
     ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("date"));
+
+    // Allows cells to be editable
     ColumnOne.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
     ColumnTwo.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
     ColumnThree.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
@@ -63,28 +66,57 @@ public class MapEditingController {
     //    ColumnThree.setEditable(true);
 
     //    testTable.getItems().setAll(gettableRows(Cdb.databaseMoveList));
-    historyTable.getItems().setAll(gettableRows(Cdb.databaseMoveList));
+    historyTable
+        .getItems()
+        .setAll(
+            gettableRows(
+                Cdb.databaseMoveList)); // Need to change from move list to whatever we actually
+    // want here
+
+    // here to be used to update databaseMoveList, needs to be implemented still
     List<Move> moveList = Cdb.databaseMoveList;
-    ColumnOne.setOnEditCommit(
-        event -> {
-          TableRow rowData = event.getRowValue();
-          rowData.setNodeID(event.getNewValue());
-        });
+
+    // Allows cells to be edited and their edits to be saved and displayed in the table. If we do
+    // not want the nodeID to be editable, delete this call for columnOne
+
+    //    ColumnOne.setOnEditCommit(
+    //        event -> {
+    //          TableRow rowData = event.getRowValue();
+    //          rowData.setNodeID(event.getNewValue());
+    //        });
+
+    // index is used to find the point in the databaseMoveList the updated node is from. Can therefore
+    // use the index to only edit that specific node in the databaseMoveList (instead of checking for
+    // nodeID matching because, for this, you would have to look within the nodeID of each and every
+    // move object and find the matching one. This way you can just look for the matching index and
+    // replace the proper move object at that index)
     ColumnTwo.setOnEditCommit(
         event -> {
           TableRow rowData = event.getRowValue();
-          rowData.setNodeID(event.getNewValue());
+          rowData.setLongName(event.getNewValue());
+          String updatedNode = rowData.getNodeID();
+          String updatedLongName = rowData.getLongName();
+          System.out.print(updatedNode + " " + updatedLongName);
+          int index = rowData.getIndex();
+          System.out.println("/n this is the index: " + index);
         });
     ColumnThree.setOnEditCommit(
         event -> {
           TableRow rowData = event.getRowValue();
-          rowData.setNodeID(event.getNewValue());
+          rowData.setDate(event.getNewValue());
+          String updatedNode = rowData.getNodeID();
+          String updatedDate = rowData.getDate();
+          System.out.print(updatedNode + " " + updatedDate);
+          int index = rowData.getIndex();
         });
-    // historyTable.isEditable();
-    //    historyTable.setEditable(true);
-    //    ColumnOne.isEditable();
-    //    ColumnTwo.setEditable(true);
-
+    //    ObservableList<TableColumn<TableRow, ?>> nodeIDList = ColumnOne.getColumns();
+    //    TableColumn newColumn = nodeIDList.get(1);
+    //    TableRow newTableRow = newColumn.getTableView();
+    // use "indexOf()" to get index of nodeID in list from database and compare to saved nodeID from
+    // edited cell above?
+    System.out.println("before");
+    //    historyTable.getItems()
+    System.out.println(historyTable.getItems());
     System.out.println("did it");
   }
 
@@ -92,28 +124,30 @@ public class MapEditingController {
     Navigation.navigate(Screen.HOME);
   }
 
-  public void dispTable(List<Move> moveList) {
-    ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("nodeID"));
-    ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("longName"));
-    ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("date"));
-    //    testTable.getItems().setAll(gettableRows(moveList));
-    historyTable.getItems().setAll(gettableRows(moveList));
-    //    ColumnOne.setEditable(true);
-    //    ColumnTwo.setEditable(true);
-    //    ColumnThree.setEditable(true);
-
-    System.out.println("did it");
-  }
+  //  public void dispTable(List<Move> moveList) {
+  //    ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("nodeID"));
+  //    ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("longName"));
+  //    ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("date"));
+  //    //    testTable.getItems().setAll(gettableRows(moveList));
+  //    historyTable.getItems().setAll(gettableRows(moveList));
+  //    //    ColumnOne.setEditable(true);
+  //    //    ColumnTwo.setEditable(true);
+  //    //    ColumnThree.setEditable(true);
+  //
+  //    System.out.println("did it");
+  //  }
 
   public ObservableList<TableRow> gettableRows(List<Move> moveList) {
     String nodeID;
     String longName;
     String date;
+    int index = -1;
     for (Move currMove : moveList) {
       nodeID = currMove.getNodeID();
       longName = currMove.getLongName();
       date = currMove.getDate().toString();
-      rows.add(new TableRow(nodeID, longName, date));
+      index++;
+      rows.add(new TableRow(nodeID, longName, date, index));
     }
     return rows;
   }
