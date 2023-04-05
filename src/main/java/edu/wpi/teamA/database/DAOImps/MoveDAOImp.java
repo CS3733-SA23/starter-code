@@ -10,10 +10,12 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import lombok.Getter;
+import lombok.Setter;
 
 public class MoveDAOImp implements IDataBase, IMoveDAO {
 
-  ArrayList<Move> MoveArray = new ArrayList<Move>();
+  @Getter @Setter private static ArrayList<Move> MoveArray = new ArrayList<Move>();
 
   static DBConnectionProvider moveProvider = new DBConnectionProvider();
 
@@ -32,7 +34,7 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
 
       String sqlCreateEdge =
           "Create Table if not exists \"Prototype2_schema.Node\""
-              + "(nodeID   Int,"
+              + "(nodeID   int PRIMARY KEY,"
               + "LongName  Varchar(600),"
               + "date      date)";
       Statement stmtMove = moveProvider.createConnection().createStatement();
@@ -42,8 +44,9 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
         String[] data = row.split(",");
 
         PreparedStatement ps =
-            moveProvider.createConnection().prepareStatement(
-                "INSERT INTO Prototype2_schema.\"Move\" VALUES (?, ?, ?)");
+            moveProvider
+                .createConnection()
+                .prepareStatement("INSERT INTO Prototype2_schema.\"Move\" VALUES (?, ?, ?)");
         ps.setInt(1, Integer.parseInt(data[0]));
         ps.setString(2, data[1]);
         ps.setString(3, data[2]);

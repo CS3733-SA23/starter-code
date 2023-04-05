@@ -1,14 +1,15 @@
 package edu.wpi.teamA.pathfinding;
 
-import java.util.ArrayList;
 import edu.wpi.teamA.database.ORMclasses.Edge;
+import java.util.ArrayList;
 
 public class SearchController {
 
   private final Graph graph;
 
-  public SearchController(Graph graph) {
-    this.graph = graph;
+  public SearchController() {
+    this.graph = new Graph();
+    graph.prepGraph();
   }
 
   //    public class Wrapping {
@@ -167,7 +168,7 @@ public class SearchController {
     return path;
   }
 
-  public void insertIntoPQ(ArrayList<Integer> pQ, GraphNode node) {
+  private void insertIntoPQ(ArrayList<Integer> pQ, GraphNode node) {
 
     for (int i = 0; i < pQ.size(); i++) {
       if (graph.getGraphNode(pQ.get(i)).getfCost() > node.getfCost()) {
@@ -177,7 +178,7 @@ public class SearchController {
     }
   }
 
-  public void removeFromPQ(ArrayList<Integer> pQ, int nodeID) {
+  private void removeFromPQ(ArrayList<Integer> pQ, int nodeID) {
 
     for (int i = 0; i < pQ.size(); i++) {
       if (pQ.get(i) == nodeID) {
@@ -187,7 +188,7 @@ public class SearchController {
     }
   }
 
-  public ArrayList<Integer> getOrder(int startID, int endID) {
+  private ArrayList<Integer> getOrder(int startID, int endID) {
     ArrayList<Integer> path = new ArrayList<>();
     int currentID = endID;
     GraphNode currentGNode = graph.getGraphNode(currentID);
@@ -200,7 +201,7 @@ public class SearchController {
     return path;
   }
 
-  public void resetNodes(ArrayList<Integer> resetList) {
+  private void resetNodes(ArrayList<Integer> resetList) {
     for (int i : resetList) {
       System.out.println("RESET NODES: i-" + i);
       graph.getGraphNode(i).reset();
