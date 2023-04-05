@@ -253,7 +253,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
       NodeArray.forEach(
           node -> {
             if (node.nodeID.equals(nodeID)) {
-              node.xccord = xcoord;
+              node.xcoord = xcoord;
               node.ycoord = ycoord;
               node.floor = floor;
               node.building = building;
