@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #BAE3E0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.GuestHomeController">
    <children>
       <AnchorPane layoutX="19.0" layoutY="18.0" prefHeight="364.0" prefWidth="561.0" style="-fx-background-color: #008080;">
@@ -27,6 +26,14 @@
                </font>
             </Button>
             <Button fx:id="logOut" layoutX="394.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getLogOut" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Log Out" textFill="#004646">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="exitButton" layoutX="14.0" layoutY="323.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getExit" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: BAE3E0;" text="Exit" textFill="#004646">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

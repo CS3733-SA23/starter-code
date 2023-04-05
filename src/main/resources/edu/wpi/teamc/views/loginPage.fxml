@@ -15,7 +15,7 @@
    <children>
       <AnchorPane layoutX="18.0" layoutY="13.0" prefHeight="374.0" prefWidth="565.0" style="-fx-background-color: #008080;">
          <children>
-            <Button fx:id="GuestPage" layoutX="401.0" layoutY="320.0" mnemonicParsing="false" onAction="#getGuestPage" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: BAE3E0;" text="Continue as Guest" textFill="#004646">
+            <Button fx:id="GuestPage" layoutX="401.0" layoutY="293.0" mnemonicParsing="false" onAction="#getGuestPage" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: BAE3E0;" text="Continue as Guest" textFill="#004646">
                <font>
                   <Font name="Verdana Bold" size="11.0" />
                </font>
@@ -57,7 +57,7 @@
                   <Font name="Verdana Bold" size="16.0" />
                </font>
             </Label>
-            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="28.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Brigham and Womens Hospital" textAlignment="CENTER">
+            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="28.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Brigham and Womens Hospital" textAlignment="CENTER">
                <font>
                   <Font name="Verdana Bold" size="21.0" />
                </font>
@@ -65,6 +65,14 @@
             <Button fx:id="clear" layoutX="484.0" layoutY="229.0" mnemonicParsing="false" onAction="#getClear" prefHeight="15.0" prefWidth="49.0" style="-fx-background-color: BAE3E0;" text="Clear" textFill="#004646">
                <font>
                   <Font name="Verdana Bold" size="8.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="401.0" layoutY="328.0" mnemonicParsing="false" onAction="#getExit" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: BAE3E0;" text="Exit Application" textFill="#004646">
+               <font>
+                  <Font name="Verdana Bold" size="11.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
