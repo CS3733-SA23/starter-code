@@ -73,7 +73,7 @@ public enum DatabaseController {
       System.err.println(e.getClass().getName() + ": " + e.getMessage());
       System.exit(0);
     }
-    System.out.println("Opened database successfully");
+    // System.out.println("Opened database successfully");
     return c;
   }
 
@@ -109,16 +109,8 @@ public enum DatabaseController {
       case LOCATION_NAME:
         LocationName locationName = (LocationName) obj;
         String lName = locationName.getLongName();
-        String shortName = locationName.getShortName();
-        LocationName.NodeType nodeType = locationName.getNodeType();
-        sqlDelete =
-            "DELETE FROM \"LocationName\" WHERE \"longName\" = '"
-                + lName
-                + "','"
-                + shortName
-                + "','"
-                + nodeType
-                + "');";
+
+        sqlDelete = "DELETE FROM \"LocationName\" WHERE \"longName\" = '" + lName + "';";
         break;
       case SERVICE_REQUESTS:
         ServiceRequestData serviceRequestData = (ServiceRequestData) obj;
