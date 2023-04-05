@@ -3,11 +3,10 @@ package edu.wpi.teamc.controllers;
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-
-import java.awt.event.ActionEvent;
 
 public class FurnitureController {
   @FXML private MFXButton goHome;
@@ -66,37 +65,37 @@ public class FurnitureController {
   void getClear() {}
 
   @FXML
-  void getFlowerDeliveryPage(ActionEvent event) {
+  void getFlowerDeliveryPage(javafx.event.ActionEvent event) {
     Navigation.navigate(Screen.FLOWER);
   }
 
   @FXML
-  void getFurnitureDeliveryPage(ActionEvent event) {
+  void getFurnitureDeliveryPage(javafx.event.ActionEvent event) {
     Navigation.navigate(Screen.FURNITURE);
   }
 
   @FXML
-  void getHelpPage(ActionEvent event) {
+  void getHelpPage(javafx.event.ActionEvent event) {
     Navigation.navigate(Screen.HELP);
   }
 
   @FXML
-  void getMealDeliveryPage(ActionEvent event) {
+  void getMealDeliveryPage(javafx.event.ActionEvent event) {
     Navigation.navigate(Screen.MEAL);
   }
 
   @FXML
-  void getOfficeSuppliesPage(ActionEvent event) {
+  void getOfficeSuppliesPage(javafx.event.ActionEvent event) {
     Navigation.navigate(Screen.OFFICE_SUPPLY);
   }
 
   @FXML
-  void getRoomReservationPage(ActionEvent event) {
+  void getRoomReservationPage(javafx.event.ActionEvent event) {
     Navigation.navigate(Screen.CONFERENCE);
   }
 
   @FXML
-  void getSignagePage(ActionEvent event) {
+  void getSignagePage(javafx.event.ActionEvent event) {
     Navigation.navigate(Screen.SIGNAGE);
   }
 
@@ -105,16 +104,14 @@ public class FurnitureController {
   public void initialize() {}
 
   @FXML
-  void getEditMap(ActionEvent event) {}
+  void getEditMap(javafx.event.ActionEvent event) {}
 
   @FXML
-  void getLogOut(ActionEvent event) {}
+  void getLogOut(javafx.event.ActionEvent event) {}
 
   @FXML
-  void getMapHistory(ActionEvent event) {}
+  void getMapHistory(javafx.event.ActionEvent event) {}
 
   @FXML
   void getMapPage(ActionEvent event) {}
-
-
 }
