@@ -6,8 +6,6 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class HomeController {
   @FXML MFXButton signageButton2;
@@ -26,12 +24,16 @@ public class HomeController {
 
   @FXML private Button signagePage;
 
-  // Exit Button FUNTION Required START
-  @FXML private Button HOME_Exit;
-  @FXML private AnchorPane homepage;
-  // Exit Button FUNTION Required END
+  @FXML private Button logOut;
+  @FXML private Button editMap;
 
-  @FXML private Button CSV_EditPage;
+  @FXML private Button mapHistory;
+
+  @FXML private Button mapPage;
+
+  @FXML private Button importButton;
+
+  @FXML private Button exportButton;
 
   @FXML
   void getFlowerDeliveryPage(ActionEvent event) {
@@ -44,7 +46,9 @@ public class HomeController {
   }
 
   @FXML
-  void getHelpPage(ActionEvent event) {}
+  void getHelpPage(ActionEvent event) {
+    Navigation.navigate(Screen.HELP);
+  }
 
   @FXML
   void getMealDeliveryPage(ActionEvent event) {
@@ -66,24 +70,34 @@ public class HomeController {
     Navigation.navigate(Screen.SIGNAGE);
   }
 
-  @FXML
-    void getCSV_EditPage(ActionEvent event) {
-        Navigation.navigate(Screen.CSV_EDIT);
-    }
-
   /** Method run when controller is initialized */
   @FXML
   public void initialize() {}
 
-  // Exit Button FUNTION Required START
-  Stage stage;
+  @FXML
+  void getEditMap(ActionEvent event) {
+    Navigation.navigate(Screen.EDIT_MAP);
+  }
 
   @FXML
-  void HOME_ExitApp(ActionEvent event) {
-    stage = (Stage) homepage.getScene().getWindow();
-    stage.close();
+  void CloseApp(ActionEvent event) {
+    System.exit(0);
   }
-  // Exit Button FUNTION Required END
 
+  @FXML
+  void getLogOut(ActionEvent event) {}
 
+  @FXML
+  void getMapHistory(ActionEvent event) {
+    Navigation.navigate(Screen.MAP_HISTORY_PAGE);
+  }
+
+  @FXML
+  void getMapPage(ActionEvent event) {}
+
+  @FXML
+  void getImportButton(ActionEvent event) {}
+
+  @FXML
+  void getExportButton(ActionEvent event) {}
 }

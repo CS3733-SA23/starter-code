@@ -16,11 +16,12 @@ public class Main {
     } catch (IOException e) {
       System.out.println("Exception!");
     }
+    // graph.syncWithDB();
 
     String startNode = "CCONF001L1";
     String endNode = "CHALL010L1";
 
-    graph.printDirections(startNode, endNode);
+    graph.printDirectionsAStar(startNode, endNode);
 
     CApp.launch(CApp.class, args);
     // graph.printDirections("CCONF001L1", "CHALL010L1");

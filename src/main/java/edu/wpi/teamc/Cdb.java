@@ -1,10 +1,14 @@
 package edu.wpi.teamc;
 
+import edu.wpi.teamc.map.*;
 import edu.wpi.teamc.map.Edge;
 import edu.wpi.teamc.map.Graph;
 import edu.wpi.teamc.map.Node;
 import java.io.*;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,10 +16,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Cdb {
+  static Connection connection = null;
 
   public static void main(String[] args) {
-    Connection connection = null;
-
     try {
       // Load the PostgreSQL JDBC driver
       Class.forName("org.postgresql.Driver");
@@ -30,11 +33,15 @@ public class Cdb {
       // database tables turned into two arrayLists
       List<Node> databaseNodeList = new ArrayList<Node>();
       List<Edge> databaseEdgeList = new ArrayList<Edge>();
+      List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
+      List<Move> databaseMoveList = new ArrayList<Move>();
       // load database into lists
-      loadDatabaseTables(connection, databaseNodeList, databaseEdgeList);
+      loadDatabaseTables(
+          databaseNodeList, databaseEdgeList, databaseLocationNameList, databaseMoveList);
       // variables
       String nodeID;
-      String edgeID;
+      String startNode;
+      String endNode;
       int xCoordinate;
       int yCoordinate;
       String locationNameLong;
@@ -68,7 +75,11 @@ public class Cdb {
             locationNameShort = scanner.nextLine();
             // update the location name of the given nodeID
             updateLocationName(
-                connection, databaseNodeList, locationNameLong, locationNameShort, nodeID);
+                databaseLocationNameList,
+                databaseMoveList,
+                locationNameLong,
+                locationNameShort,
+                nodeID);
             break;
           case "get specific node":
             System.out.println("please enter the node ID of the node you would like to get");
@@ -80,19 +91,35 @@ public class Cdb {
             exportNodesToCSV(csvFileName, databaseNodeList);
             break;
           case "import from a csv file into the node table":
-            csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/L1Nodes.csv";
-            importCSV(connection, csvFileName, databaseNodeList);
+            csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Node.csv";
+            importCSVNode(csvFileName, databaseNodeList);
             break;
+          case "import from a csv file into the edge table":
+            csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Edge.csv";
+            importCSVEdge(csvFileName, databaseEdgeList, databaseNodeList);
+            break;
+          case "import from a csv file into the location name table":
+            csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/LocationName.csv";
+            importCSVLocationName(csvFileName, databaseLocationNameList);
+          case "import from a csv file into the move table":
+            csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Move.csv";
+            importCSVMove(csvFileName, databaseMoveList);
           case "delete a node":
             System.out.println("please enter the node ID of the node you would like to delete");
             nodeID = scanner.nextLine();
             deleteNode(connection, databaseNodeList, nodeID);
             break;
           case "delete an edge":
-            System.out.println("please enter the edge ID of the edge you would like to delete");
-            edgeID = scanner.nextLine();
-            deleteEdge(connection, databaseEdgeList, edgeID);
+            System.out.println(
+                "please enter the starting NodeID of the edge you would like to delete");
+            startNode = scanner.nextLine();
+            System.out.println(
+                "please enter the ending NodeID of the edge you would like to delete");
+            endNode = scanner.nextLine();
+            deleteEdge(connection, databaseEdgeList, startNode, endNode);
             break;
+          case "display move information":
+            displayMoveInfo(databaseMoveList);
           case "help":
             System.out.println("");
             break;
@@ -120,7 +147,10 @@ public class Cdb {
   }
 
   static void loadDatabaseTables(
-      Connection connection, List<Node> databaseNodeList, List<Edge> databaseEdgeList) {
+      List<Node> databaseNodeList,
+      List<Edge> databaseEdgeList,
+      List<LocationName> databaseLocationNameList,
+      List<Move> databaseMoveList) {
 
     Graph temp = new Graph();
     try {
@@ -132,77 +162,193 @@ public class Cdb {
     try {
       Statement stmtNode = connection.createStatement();
       Statement stmtEdge = connection.createStatement();
+      Statement stmtLocationName = connection.createStatement();
+      Statement stmtMove = connection.createStatement();
       // table names
       String node = "\"hospitalNode\".node";
       String edge = "\"hospitalNode\".edge";
+      String locationName = "\"hospitalNode\".\"locationName\"";
+      String move = "\"hospitalNode\".\"move\"";
       // queries
       String queryDisplayNodes = "SELECT * FROM " + node;
       String queryDisplayEdges = "SELECT * FROM " + edge;
+      String queryDisplayLocationNames = "SELECT * FROM " + locationName;
+      String queryDisplayMoves = "SELECT * FROM " + move;
 
       ResultSet rsNodes = stmtNode.executeQuery(queryDisplayNodes);
       ResultSet rsEdges = stmtEdge.executeQuery(queryDisplayEdges);
+      ResultSet rsLocationNames = stmtLocationName.executeQuery(queryDisplayLocationNames);
+      ResultSet rsMoves = stmtMove.executeQuery(queryDisplayMoves);
       while (rsNodes.next()) {
         String nodeID = rsNodes.getString("nodeID");
         int xCoord = rsNodes.getInt("xcoord");
         int yCoord = rsNodes.getInt("ycoord");
         String floor = rsNodes.getString("floorNum");
         String building = rsNodes.getString("building");
-        String nodeType = rsNodes.getString("nodeType");
-        String longName = rsNodes.getString("longName");
-        String shortName = rsNodes.getString("shortName");
 
-        databaseNodeList.add(
-            new Node(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName));
+        databaseNodeList.add(new Node(nodeID, xCoord, yCoord, floor, building));
       }
       while (rsEdges.next()) {
-        String edgeID = rsEdges.getString("edgeID");
         String startNode = rsEdges.getString("startNode");
         String endNode = rsEdges.getString("endNode");
-        databaseEdgeList.add(new Edge(edgeID, temp.getNode(startNode), temp.getNode(endNode)));
+        databaseEdgeList.add(new Edge(temp.getNode(startNode), temp.getNode(endNode)));
+      }
+      while (rsLocationNames.next()) {
+        String locationNameLong = rsLocationNames.getString("longName");
+        String locationNameShort = rsLocationNames.getString("shortName");
+        String nodeType = rsLocationNames.getString("nodeType");
+        databaseLocationNameList.add(
+            new LocationName(locationNameLong, locationNameShort, nodeType));
+      }
+      while (rsMoves.next()) {
+        String nodeID = rsMoves.getString("nodeID");
+        String longName = rsMoves.getString("longName");
+        Date date = rsMoves.getDate("moveDate");
+        databaseMoveList.add(new Move(nodeID, longName, date));
       }
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  static void syncNodeDB(Connection connection, Node node) {
+  static void syncNodeDB(Node node, String operation) {
     try {
       // table names
       String NODE = "\"hospitalNode\".node";
       // queries
-      String queryInsertNodesDB =
+      String queryInsertNodesDB = "INSERT INTO " + NODE + " VALUES (?,?,?,?,?);";
+      String queryUpdateNodesDB =
           "UPDATE  "
               + NODE
-              + " SET \"nodeID\"=?, xcoord=?, ycoord=?, \"floorNum\"=?, building=?, \"nodeType\"=?, \"longName\"=?, \"shortName\"=? WHERE \"nodeID\"=?; ";
+              + " SET \"nodeID\"=?, xcoord=?, ycoord=?, \"floorNum\"=?, building=? WHERE \"nodeID\"=?; ";
+      String queryDeleteNodesDB = "DELETE FROM " + NODE + " WHERE \"nodeID\"=?; ";
 
-      PreparedStatement ps = connection.prepareStatement(queryInsertNodesDB);
+      PreparedStatement ps;
+      if (operation.equals("insert")) {
+        ps = connection.prepareStatement(queryInsertNodesDB);
+      } else if (operation.equals("update")) {
+        ps = connection.prepareStatement(queryUpdateNodesDB);
+      } else if (operation.equals("delete")) {
+        ps = connection.prepareStatement(queryDeleteNodesDB);
+      } else {
+        throw new Exception("Invalid operation");
+      }
       ps.setString(1, node.getNodeID());
       ps.setInt(2, node.getXCoord());
       ps.setInt(3, node.getYCoord());
       ps.setString(4, node.getFloor());
       ps.setString(5, node.getBuilding());
-      ps.setString(6, node.getNodeType());
-      ps.setString(7, node.getLongName());
-      ps.setString(8, node.getShortName());
-      ps.setString(9, node.getNodeID());
+      if (operation.equals("update")) {
+        ps.setString(6, node.getNodeID());
+      }
       ps.executeUpdate();
-
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  static void syncEdgeDB(Connection connection, Edge edge) {
+  static void syncEdgeDB(Edge edge, String operation) {
     try {
       // table names
       String EDGE = "\"hospitalNode\".edge";
       // queries
-      String queryInsertEdgesDB = "DELETE FROM" + EDGE + " WHERE \"edgeID\"=?; ";
 
-      PreparedStatement ps = connection.prepareStatement(queryInsertEdgesDB);
-      ps.setString(1, edge.getId());
+      String queryInsertEdgesDB = "INSERT INTO " + EDGE + " VALUES (?,?); ";
+      String queryUpdateEdgesDB =
+          "UPDATE  "
+              + EDGE
+              + " SET \"startNode\"=?, \"endNode\"=? WHERE \"startNode\"=? AND \"endNode\"=?;";
+      String queryDeleteEdgesDB =
+          "DELETE FROM " + EDGE + " WHERE \"startNode\"=? AND \"endNode\"=?; ";
+
+      PreparedStatement ps;
+      if (operation.equals("insert")) {
+        ps = connection.prepareStatement(queryInsertEdgesDB);
+      } else if (operation.equals("update")) {
+        ps = connection.prepareStatement(queryUpdateEdgesDB);
+      } else if (operation.equals("delete")) {
+        ps = connection.prepareStatement(queryDeleteEdgesDB);
+      } else {
+        throw new Exception("Invalid operation");
+      }
+
+      ps.setString(1, edge.getStartNode().getNodeID());
+      ps.setString(2, edge.getEndNode().getNodeID());
+      if (operation.equals("update")) {
+        ps.setString(3, edge.getStartNode().getNodeID());
+        ps.setString(4, edge.getEndNode().getNodeID());
+      }
       ps.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 
+  static void syncLocationNameDB(LocationName locationName, String operation) {
+    try {
+      // table names
+      String LOCATIONNAME = "\"hospitalNode\".\"locationName\"";
+      // queries
+      String queryInsertLocationNamesDB = "INSERT INTO " + LOCATIONNAME + " VALUES (?,?,?); ";
+      String queryUpdateLocationNamesDB =
+          "UPDATE  "
+              + LOCATIONNAME
+              + " SET \"longName\"=?, \"shortName\"=?, \"nodeType\"=? WHERE \"longName\"=?; ";
+      String queryDeleteLocationNamesDB = "DELETE FROM " + LOCATIONNAME + " WHERE \"longName\"=?; ";
+
+      PreparedStatement ps;
+      if (operation.equals("insert")) {
+        ps = connection.prepareStatement(queryInsertLocationNamesDB);
+      } else if (operation.equals("update")) {
+        ps = connection.prepareStatement(queryUpdateLocationNamesDB);
+      } else if (operation.equals("delete")) {
+        ps = connection.prepareStatement(queryDeleteLocationNamesDB);
+      } else {
+        throw new Exception("Invalid operation");
+      }
+
+      ps.setString(1, locationName.getLongName());
+      ps.setString(2, locationName.getShortName());
+      ps.setString(3, locationName.getNodeType());
+      if (operation.equals("update")) {
+        ps.setString(4, locationName.getLongName());
+      }
+      ps.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  static void syncMoveDB(Move move, String operation) {
+    try {
+      // table names
+      String MOVE = "\"hospitalNode\".move";
+      // queries
+      String queryInsertMovesDB = "INSERT INTO " + MOVE + " VALUES (?,?,?); ";
+      String queryUpdateMovesDB =
+          "UPDATE  "
+              + MOVE
+              + " SET \"nodeID\"=?, \"longName\"=?, \"moveDate\"=? WHERE \"nodeID\"=?; ";
+      String queryDeleteMovesDB = "DELETE FROM " + MOVE + " WHERE \"nodeID\"=?; ";
+
+      PreparedStatement ps;
+      if (operation.equals("insert")) {
+        ps = connection.prepareStatement(queryInsertMovesDB);
+      } else if (operation.equals("update")) {
+        ps = connection.prepareStatement(queryUpdateMovesDB);
+      } else if (operation.equals("delete")) {
+        ps = connection.prepareStatement(queryDeleteMovesDB);
+      } else {
+        throw new Exception("Invalid operation");
+      }
+
+      ps.setString(1, move.getNodeID());
+      ps.setString(2, move.getLongName());
+      ps.setDate(3, move.getDate());
+      if (operation.equals("update")) {
+        ps.setString(4, move.getNodeID());
+      }
+      ps.executeUpdate();
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -218,8 +364,12 @@ public class Cdb {
             + "Get specific node\n"
             + "Export node table into a CSV file\n"
             + "Import from a CSV file into the node table\n"
+            + "import from a CSV file into the edge table\n"
+            + "import from a CSV file into the location name table\n"
+            + "import from a CSV file into the move table\n"
             + "Delete a node\n"
             + "Delete an edge\n"
+            + "display move information\n"
             + "Help\n"
             + "Exit\n"
             + "===========================================\n");
@@ -235,23 +385,22 @@ public class Cdb {
               + "\t"
               + node.getYCoord()
               + "\t"
-              + node.getXCoord()
-              + "\t"
               + node.getFloor()
               + "\t"
-              + node.getBuilding()
-              + "\t"
-              + node.getNodeType()
-              + "\t"
-              + node.getLongName()
-              + "\t"
-              + node.getShortName());
+              + node.getBuilding());
     }
     System.out.println(
         "----------------------------------------------------------------------------------------------------------------------------");
     System.out.println("Edge information: \n");
     for (Edge edge : databaseEdgeList) {
-      System.out.println(edge.getId() + "\t" + edge.getStartNode() + "\t" + edge.getEndNode());
+      System.out.println(edge.getStartNode() + "\t" + edge.getEndNode());
+    }
+  }
+
+  static void displayMoveInfo(List<Move> databaseMoveList) {
+    System.out.println("Move information:\n");
+    for (Move move : databaseMoveList) {
+      System.out.println(move.getNodeID() + "\t" + move.getLongName() + "\t" + move.getDate());
     }
   }
 
@@ -266,24 +415,39 @@ public class Cdb {
         // update coordinates in node
         node.setXCoord(xCoordinate);
         node.setYCoord(yCoordinate);
-        syncNodeDB(connection, node);
+        syncNodeDB(node, "update");
         break;
       }
     }
   }
 
+  /**
+   * Updates the long and short location name in the database based on nodeID
+   *
+   * @param databaseLocationNameList list of location names in the database
+   * @param databaseMoveList list of moves in the database
+   * @param locationNameLong new long name
+   * @param locationNameShort new short name
+   * @param nodeID nodeID of the node to update
+   */
   static void updateLocationName(
-      Connection connection,
-      List<Node> databaseNodeList,
+      List<LocationName> databaseLocationNameList,
+      List<Move> databaseMoveList,
       String locationNameLong,
       String locationNameShort,
       String nodeID) {
-    for (Node node : databaseNodeList) {
-      if (node.getNodeID().equals(nodeID)) {
-        // update name of node
-        node.setLongName(locationNameLong);
-        node.setShortName(locationNameShort);
-        syncNodeDB(connection, node);
+    String oldLongName = "";
+    for (Move move : databaseMoveList) {
+      if (move.getNodeID().equals(nodeID)) {
+        oldLongName = move.getLongName();
+        move.setLongName(locationNameLong);
+        move.setDate(Date.valueOf(LocalDate.now()));
+      }
+    }
+    for (LocationName locationName : databaseLocationNameList) {
+      if (locationName.getLongName().equals(oldLongName)) {
+        locationName.setLongName(locationNameLong);
+        locationName.setShortName(locationNameShort);
         break;
       }
     }
@@ -304,13 +468,7 @@ public class Cdb {
                 + "\t"
                 + node.getFloor()
                 + "\t"
-                + node.getBuilding()
-                + "\t"
-                + node.getNodeType()
-                + "\t"
-                + node.getLongName()
-                + "\t"
-                + node.getShortName());
+                + node.getBuilding());
         break;
       }
     }
@@ -322,74 +480,31 @@ public class Cdb {
       if (node.getNodeID().equals(nodeID)) {
         databaseNodeList.remove(i);
         System.out.println("node deletion successful!");
-        syncNodeDB(connection, node);
+        syncNodeDB(node, "delete");
         break;
       }
       i++;
     }
   }
 
-  static void deleteEdge(Connection connection, List<Edge> databaseEdgeList, String edgeID) {
+  static void deleteEdge(
+      Connection connection, List<Edge> databaseEdgeList, String startNodeID, String endNodeID) {
     int i = 0;
     for (Edge edge : databaseEdgeList) {
-      if (edge.getId().equals(edgeID)) {
+      if ((edge.getStartNode().getNodeID().equals(startNodeID))
+          && (edge.getEndNode().getNodeID().equals(endNodeID))) {
         databaseEdgeList.remove(i);
         System.out.println("edge deletion successful!");
-        syncEdgeDB(connection, edge);
+        syncEdgeDB(edge, "delete");
         break;
       }
       i++;
     }
   }
 
-  static void syncAddEdgeDB(Connection connection, Edge edge) {
-    try {
-      // table names
-      String EDGE = "\"hospitalNode\".edge";
-      // queries
-      String queryInsertEdgesDB =
-          "INSERT INTO " + EDGE + " (\"edgeID\", \"startNode\", \"endNode\") VALUES (?, ?, ?); ";
-
-      PreparedStatement ps = connection.prepareStatement(queryInsertEdgesDB);
-      ps.setString(1, edge.getId());
-      ps.setString(2, edge.getStartNode().getNodeID());
-      ps.setString(3, edge.getEndNode().getNodeID());
-      ps.executeUpdate();
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  static void syncAddNodeDB(Connection connection, Node node) {
-    try {
-      // table names
-      String NODE = "\"hospitalNode\".node";
-      // queries
-      String queryInsertNodesDB =
-          "INSERT INTO "
-              + NODE
-              + " (\"nodeID\", \"xcoord\", \"ycoord\", \"floorNum\", \"building\", \"nodeType\", \"longName\", \"shortName\") VALUES (?, ?, ?, ?, ?, ?, ?, ?); ";
-
-      PreparedStatement ps = connection.prepareStatement(queryInsertNodesDB);
-      ps.setString(1, node.getNodeID());
-      ps.setInt(2, node.getXCoord());
-      ps.setInt(3, node.getYCoord());
-      ps.setString(4, node.getFloor());
-      ps.setString(5, node.getBuilding());
-      ps.setString(6, node.getNodeType());
-      ps.setString(7, node.getLongName());
-      ps.setString(8, node.getShortName());
-      ps.executeUpdate();
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  static void importCSV(Connection connection, String csvFile, List<Node> databaseNodeList) {
+  static void importCSVNode(String csvFile, List<Node> databaseNodeList) {
     // Regular expression to match each row
-    String regex = "(.*),(\\d+),(\\d+),(.*),(.*),(.*),(.*),(.*)";
+    String regex = "(.*),(\\d+),(\\d+),(.*),(.*)";
     // Compile regular expression pattern
     Pattern pattern = Pattern.compile(regex);
     try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
@@ -403,14 +518,9 @@ public class Cdb {
           int yCoord = Integer.parseInt(matcher.group(3));
           String floor = matcher.group(4);
           String building = matcher.group(5);
-          String nodeType = matcher.group(6);
-          String longName = matcher.group(7);
-          String shortName = matcher.group(8);
-
-          Node node =
-              new Node(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName);
+          Node node = new Node(nodeID, xCoord, yCoord, floor, building);
           databaseNodeList.add(node);
-          syncAddNodeDB(connection, node);
+          syncNodeDB(node, "insert");
         }
       }
     } catch (IOException e) {
@@ -418,10 +528,117 @@ public class Cdb {
     }
   }
 
+  static void importCSVEdge(
+      String csvFile, List<Edge> databaseEdgeList, List<Node> databaseNodeList) {
+    // Regular expression to match each row
+    String regex = "(.*),(.*)";
+    // Compile regular expression pattern
+    Pattern pattern = Pattern.compile(regex);
+    try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+      String line;
+      br.readLine();
+      while ((line = br.readLine()) != null) {
+        // Match the regular expression to the current line
+        Matcher matcher = pattern.matcher(line);
+        if (matcher.matches()) {
+          String startNodeID = matcher.group(1);
+          String endNodeID = matcher.group(2);
+          Node startNode = null;
+          Node endNode = null;
+          for (Node node : databaseNodeList) {
+            if (node.getNodeID().equals(startNodeID)) {
+              startNode = node;
+            }
+            if (node.getNodeID().equals(endNodeID)) {
+              endNode = node;
+            }
+          }
+          Edge edge = new Edge(startNode, endNode);
+          databaseEdgeList.add(edge);
+          syncEdgeDB(edge, "insert");
+        }
+      }
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  static void importCSVLocationName(String csvFile, List<LocationName> databaseLocationNameList) {
+    // Regular expression to match each row
+    String regex = "(.*),(.*),(.*)";
+    // Compile regular expression pattern
+    Pattern pattern = Pattern.compile(regex);
+    try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+      String line;
+      br.readLine();
+      while ((line = br.readLine()) != null) {
+        // Match the regular expression to the current line
+        Matcher matcher = pattern.matcher(line);
+        if (matcher.matches()) {
+          String longName = matcher.group(1);
+          String shortName = matcher.group(2);
+          String nodeType = matcher.group(3);
+          LocationName locationName = new LocationName(longName, shortName, nodeType);
+          databaseLocationNameList.add(locationName);
+          syncLocationNameDB(locationName, "insert");
+        }
+      }
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  static void importCSVMove(String csvFile, List<Move> databaseMoveList) {
+    // Regular expression to match each row
+    String regex = "(.*),(.*),(.*)";
+    // Compile regular expression pattern
+    Pattern pattern = Pattern.compile(regex);
+    try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+      String line;
+      br.readLine();
+      while ((line = br.readLine()) != null) {
+        // Match the regular expression to the current line
+        Matcher matcher = pattern.matcher(line);
+        if (matcher.matches()) {
+          String nodeID = matcher.group(1);
+          String longName = matcher.group(2);
+          String dateString = matcher.group(3);
+          Date moveDate = returnDate(dateString);
+          Move move = new Move(nodeID, longName, moveDate);
+          databaseMoveList.add(move);
+          syncMoveDB(move, "insert");
+        }
+      }
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  static Date returnDate(String dateString) {
+    // function to convert to yyyy-mm-dd
+    SimpleDateFormat[] formats =
+        new SimpleDateFormat[] {
+          new SimpleDateFormat("d/M/yyyy"),
+          new SimpleDateFormat("dd/M/yyyy"),
+          new SimpleDateFormat("dd/MM/yyyy"),
+          new SimpleDateFormat("d/MM/yyyy")
+        };
+    for (SimpleDateFormat format : formats) {
+      try {
+        java.util.Date utilDate = format.parse(dateString);
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+        return sqlDate;
+      } catch (ParseException e) {
+        // ignore and try next format
+      }
+    }
+    return null;
+  }
+
   static void exportNodesToCSV(String csvFile, List<Node> databaseNodeList) throws IOException {
     BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
     // Write the header row to the CSV file
-    writer.write("nodeID,xCoord,yCoord,floor,building,nodeType,longName,shortName\n");
+    writer.write("nodeID,xCoord,yCoord,floor,building\n");
     // Write each Node into the CSV file
     for (Node node : databaseNodeList) {
       writer.write(
@@ -434,12 +651,6 @@ public class Cdb {
               + node.getFloor()
               + ","
               + node.getBuilding()
-              + ","
-              + node.getNodeType()
-              + ","
-              + node.getLongName()
-              + ","
-              + node.getShortName()
               + "\n");
     }
 

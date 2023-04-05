@@ -12,7 +12,10 @@ public enum Screen {
   FURNITURE("views/Furniture.fxml"),
   OFFICE_SUPPLY("views/OfficeSupply.fxml"),
   CONGRATS_PAGE("views/congratsPage.fxml"),
-  CSV_EDIT("views/CSV_Edit.fxml");
+  MAP_HISTORY_PAGE("views/MapChangeHistory.fxml"),
+  HELP("views/Help.fxml"),
+  LOGIN("views/loginPage.fxml"),
+  EDIT_MAP("views/CSV_Edit.fxml");
 
   private final String filename;
 
