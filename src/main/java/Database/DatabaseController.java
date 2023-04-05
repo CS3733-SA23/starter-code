@@ -251,16 +251,12 @@ public enum DatabaseController {
     try {
       Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
 
-      String sql =
-          "SELECT \"startNode\", \"endNode\" FROM teame.\"Edge\" ;";
+      String sql = "SELECT \"startNode\", \"endNode\" FROM teame.\"Edge\" ;";
       ResultSet rs = stmt.executeQuery(sql);
 
       while (rs.next()) {
-        
-        hospitalEdges.add(
-                new HospitalEdge(
-                        rs.getString("startNode"), rs.getString("endNode")));
 
+        hospitalEdges.add(new HospitalEdge(rs.getString("startNode"), rs.getString("endNode")));
       }
 
       return hospitalEdges;
@@ -299,8 +295,7 @@ public enum DatabaseController {
     try {
       Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
 
-      String sql =
-          "SELECT \"longName\", \"shortName\", \"nodeType\" FROM teame.\"LocationName\";";
+      String sql = "SELECT \"longName\", \"shortName\", \"nodeType\" FROM teame.\"LocationName\";";
       ResultSet rs = stmt.executeQuery(sql);
 
 

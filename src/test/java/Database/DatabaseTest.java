@@ -2,14 +2,12 @@ package Database;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
-
 import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.HospitalEdge;
 import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.map.MoveAttribute;
+import java.util.List;
 import org.junit.jupiter.api.Test;
-
 
 public class DatabaseTest {
 
