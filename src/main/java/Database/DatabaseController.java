@@ -281,12 +281,15 @@ public enum DatabaseController {
               + "';";
       ResultSet rs = stmt.executeQuery(sql);
 
+      /*
       while (rs.next()) {
 
         hospitalNodes.add(
                 new HospitalNode(
                         rs.getInt("nodeid") + "", rs.getString("longName"), rs.getString("date")));
       }
+      
+       */
 
       return hospitalNodes;
     } catch (SQLException e) {
@@ -305,12 +308,15 @@ public enum DatabaseController {
               + "';";
       ResultSet rs = stmt.executeQuery(sql);
 
+      /*
       while (rs.next()) {
         locationNames.add(
                 new LocationName(
                         rs.getInt("nodeid") + "", rs.getString("longName"), rs.getInt("date")));
 
       }
+
+       */
 
       return locationNames;
     } catch (SQLException e) {
