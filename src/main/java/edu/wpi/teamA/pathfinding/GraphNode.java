@@ -9,9 +9,6 @@ public class GraphNode {
   private int ycoord;
   private String floor;
   private String building;
-  private String longName;
-  private String shortName;
-  private String nodeType;
   private ArrayList<Edge> edgeList; // change to Edge
   private boolean visited;
   private GraphNode prev;
@@ -23,18 +20,12 @@ public class GraphNode {
       int xcoord,
       int ycoord,
       String floor,
-      String building,
-      String longName,
-      String shortName,
-      String nodeType) {
+      String building) {
     this.nodeID = nodeID;
     this.xcoord = xcoord;
     this.ycoord = ycoord;
     this.floor = floor;
     this.building = building;
-    this.longName = longName;
-    this.shortName = shortName;
-    this.nodeType = nodeType;
     this.edgeList = new ArrayList<Edge>();
     this.visited = false;
     this.prev = this;
@@ -76,30 +67,6 @@ public class GraphNode {
 
   public void setBuilding(String building) {
     this.building = building;
-  }
-
-  public String getLongName() {
-    return longName;
-  }
-
-  public void setLongName(String longName) {
-    this.longName = longName;
-  }
-
-  public String getShortName() {
-    return shortName;
-  }
-
-  public void setShortName(String shortName) {
-    this.shortName = shortName;
-  }
-
-  public String getNodeType() {
-    return nodeType;
-  }
-
-  public void setNodeType(String nodeType) {
-    this.nodeType = nodeType;
   }
 
   public void setEdgeList(ArrayList<Edge> edgeList) {

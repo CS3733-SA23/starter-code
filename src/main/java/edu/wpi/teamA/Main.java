@@ -1,5 +1,6 @@
 package edu.wpi.teamA;
 
+import edu.wpi.teamA.database.ORMclasses.Edge;
 import edu.wpi.teamA.pathfinding.Graph;
 import edu.wpi.teamA.pathfinding.GraphNode;
 import edu.wpi.teamA.pathfinding.SearchController;
@@ -12,11 +13,11 @@ public class Main {
     final Graph graph = new Graph();
     SearchController cont = new SearchController(graph);
 
-    GraphNode nodeA = new GraphNode(11, 0, 0, "", "", "", "", "");
-    GraphNode nodeB = new GraphNode(12, 0, 0, "", "", "", "", "");
-    GraphNode nodeC = new GraphNode(13, 0, 0, "", "", "", "", "");
-    GraphNode nodeD = new GraphNode(14, 0, 0, "", "", "", "", "");
-    GraphNode nodeE = new GraphNode(15, 0, 0, "", "", "", "", "");
+    GraphNode nodeA = new GraphNode(11, 0, 0, "", "");
+    GraphNode nodeB = new GraphNode(12, 0, 0, "", "");
+    GraphNode nodeC = new GraphNode(13, 0, 0, "", "");
+    GraphNode nodeD = new GraphNode(14, 0, 0, "", "");
+    GraphNode nodeE = new GraphNode(15, 0, 0, "", "");
 
     graph.addNodeToGraph(nodeA);
     graph.addNodeToGraph(nodeB);
@@ -46,5 +47,10 @@ public class Main {
     for (int i = 0; i < path.size(); i++) {
       System.out.println(path.get(i));
     }
+
+    final Graph graphA = new Graph();
+    SearchController contA = new SearchController(graph);
+
+
   }
 }
