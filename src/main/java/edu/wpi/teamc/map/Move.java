@@ -16,4 +16,16 @@ public class Move {
     this.longName = longName;
     this.date = date;
   }
+
+  public String getNodeID() {
+    return nodeID;
+  };
+
+  public String getLongName() {
+    return longName;
+  };
+
+  public Date getDate() {
+    return date;
+  };
 }
