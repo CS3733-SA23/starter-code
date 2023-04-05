@@ -39,6 +39,7 @@ public class HomePageController {
     mouseSetup(serviceRequestButton);
     mouseSetup(signageButton);
     mouseSetup(mapsButton);
+    mouseSetup(databaseViewButton);
     serviceRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     mapsButton.setOnMouseClicked(event -> Navigation.navigate(Screen.GROUND_FLOOR));

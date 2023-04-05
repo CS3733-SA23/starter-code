@@ -75,8 +75,8 @@
                      <children>
                         <TableView fx:id="edgeTable" visible="false">
                            <columns>
-                              <TableColumn fx:id="edge1Col" prefWidth="75.0" text="Edge 1" />
-                              <TableColumn fx:id="edge2Col" prefWidth="75.0" text="Edge 2" />
+                              <TableColumn fx:id="edge1Col" prefWidth="75.0" text="Start Node" />
+                              <TableColumn fx:id="edge2Col" prefWidth="75.0" text="End Node" />
                            </columns>
                         </TableView>
                         <TableView fx:id="locationTable" visible="false">
