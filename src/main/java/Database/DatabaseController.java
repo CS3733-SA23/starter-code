@@ -3,6 +3,8 @@ package Database;
 import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.HospitalEdge;
 import edu.wpi.teame.map.HospitalNode;
+import edu.wpi.teame.map.MoveAttribute;
+
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -708,4 +710,5 @@ public class DatabaseController {
     rs.close();
     stmt.close();
   }
+
 }
