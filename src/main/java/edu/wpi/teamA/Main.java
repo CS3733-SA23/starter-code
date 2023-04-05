@@ -1,12 +1,9 @@
 package edu.wpi.teamA;
 
-import edu.wpi.teamA.pathfinding.SearchController;
-import java.util.ArrayList;
-
 public class Main {
   public static void main(String[] args) {
-    System.out.println("Hey");
-    // App.launch(App.class, args);
+    // System.out.println("Hey");
+    App.launch(App.class, args);
     //    SearchController cont = new SearchController();
     //
     //    GraphNode nodeA = new GraphNode(11, 0, 0, "", "");
@@ -44,14 +41,16 @@ public class Main {
     //      System.out.println(path.get(i));
     //    }
 
-    SearchController contA = new SearchController();
-    // ArrayList<Integer> pathA = contA.pathOfNodesBFS(110, 115);
-    ArrayList<Integer> pathA = contA.pathOfNodesAStar(110, 115);
-
-    System.out.println("Start with Real Graph: ");
-    System.out.println("Path Size: " + pathA.size());
-    for (int i = 0; i < pathA.size(); i++) {
-      System.out.println(pathA.get(i));
-    }
+    /**
+     * SearchController contA = new SearchController(); // ArrayList<Integer> pathA =
+     * contA.pathOfNodesBFS(110, 115); ArrayList<Integer> pathA = contA.pathOfNodesAStar(110, 115);
+     *
+     * <p>System.out.println("Start with Real Graph: "); System.out.println("Path Size: " +
+     * pathA.size()); for (int i = 0; i < pathA.size(); i++) { System.out.println( pathA.get(i) + "
+     * " + contA.getGraphNode(pathA.get(i)).getXcoord() + " " +
+     * contA.getGraphNode(pathA.get(i)).getYcoord());
+     *
+     * <p>}
+     */
   }
 }

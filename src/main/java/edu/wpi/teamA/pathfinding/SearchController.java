@@ -211,4 +211,8 @@ public class SearchController {
       graph.getGraphNode(i).reset();
     }
   }
+
+  public GraphNode getGraphNode(int key) {
+    return graph.getGraphNode(key);
+  }
 }
