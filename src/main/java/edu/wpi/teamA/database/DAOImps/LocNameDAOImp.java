@@ -1,5 +1,6 @@
 package edu.wpi.teamA.database.DAOImps;
 
+import edu.wpi.teamA.database.Connection.DBConnectionProvider;
 import edu.wpi.teamA.database.Interfaces.ILocNameDAO;
 import edu.wpi.teamA.database.ORMclasses.LocationName;
 import java.io.BufferedReader;
@@ -14,18 +15,14 @@ public class LocNameDAOImp implements IDataBase, ILocNameDAO {
 
   ArrayList<LocationName> LocNameArray = new ArrayList<LocationName>();
 
-  static Connection LocNameConnection;
+  static DBConnectionProvider LocNameProvider = new DBConnectionProvider();
 
-  public LocNameDAOImp(Connection nodeConnection, ArrayList<LocationName> LocNameArray) {
-    this.LocNameConnection = nodeConnection;
+  public LocNameDAOImp(Connection nodeConnection) {
     this.LocNameArray = LocNameArray;
   }
 
   public static void Import(String filePath) {
     try {
-      Scanner input = new Scanner(System.in);
-      System.out.println("Please input the full qualified path of the file you want to import");
-      filePath = input.nextLine();
       BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
       csvReader.readLine();
       String row;
@@ -35,14 +32,14 @@ public class LocNameDAOImp implements IDataBase, ILocNameDAO {
               + "(LongName   Varchar(600),"
               + "ShortName     Varchar(600),"
               + "NodeType  Varchar(600))";
-      Statement stmtLocName = LocNameConnection.createStatement();
+      Statement stmtLocName = LocNameProvider.createConnection().createStatement();
       stmtLocName.execute(sqlCreateEdge);
 
       while ((row = csvReader.readLine()) != null) {
         String[] data = row.split(",");
 
         PreparedStatement ps =
-            LocNameConnection.prepareStatement(
+            LocNameProvider.createConnection().prepareStatement(
                 "INSERT INTO Prototype2_schema.\"LocationName\" VALUES (?, ?, ?)");
         ps.setString(1, data[0]);
         ps.setString(2, data[1]);
@@ -58,7 +55,7 @@ public class LocNameDAOImp implements IDataBase, ILocNameDAO {
 
   public static void Export(String filePath) {
     try {
-      Statement st = LocNameConnection.createStatement();
+      Statement st = LocNameProvider.createConnection().createStatement();
       ResultSet rs = st.executeQuery("SELECT * FROM Prototype2_schema.\"LocationName\"");
 
       FileWriter csvWriter = new FileWriter("LocationName.csv");
