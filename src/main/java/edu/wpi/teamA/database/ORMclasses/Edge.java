@@ -8,4 +8,12 @@ public class Edge {
     this.startNode = startNode;
     this.endNode = endNode;
   }
+
+  public Integer getStartNode() {
+    return startNode;
+  }
+
+  public Integer getEndNode() {
+    return endNode;
+  }
 }
