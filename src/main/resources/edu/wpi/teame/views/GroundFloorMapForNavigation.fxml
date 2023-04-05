@@ -5,7 +5,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -22,25 +21,25 @@
     <children>
         <BorderPane layoutX="6.0" layoutY="7.0" prefHeight="887.0" prefWidth="1489.0" style="-fx-background-color: #e1e1e1;" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0">
             <center>
-                <ScrollPane prefHeight="802.0" prefWidth="1145.0" BorderPane.alignment="CENTER">
-                    <content>
+            <AnchorPane fx:id="mapPane">
+               <children>
                         <ImageView fitHeight="830.0" fitWidth="1700.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                             <image>
-                                <Image url="@../../../../../../../Maps/00_thegroundfloor.png" />
+                                <Image url="@../../../../../../../Maps/01_thefirstfloor.png" />
                             </image>
                             <viewport>
                                 <Rectangle2D height="3500.0" width="5000.0" />
                             </viewport>
                         </ImageView>
-                    </content>
-                </ScrollPane>
+                        <MFXComboBox fx:id="currentLocationList" layoutX="641.0" layoutY="418.0" prefWidth="150.0" promptText="Current Location" style="-fx-border-color: black;" />
+                        <MFXComboBox fx:id="destinationList" layoutX="993.0" layoutY="418.0" prefWidth="150.0" promptText="Destination" style="-fx-border-color: black;" />
+               </children>
+            </AnchorPane>
             </center>
             <bottom>
                 <HBox alignment="CENTER" BorderPane.alignment="CENTER">
                     <children>
-                        <MFXComboBox fx:id="currentLocationList" prefWidth="150.0" promptText="Current Location" style="-fx-border-color: black;" />
                         <Line endX="100.0" startX="-100.0" />
-                        <MFXComboBox fx:id="destinationList" prefWidth="150.0" promptText="Destination" style="-fx-border-color: black;" />
                     </children>
                 </HBox>
             </bottom>
@@ -49,9 +48,9 @@
                     <children>
                         <MFXButton fx:id="lowerLevelOneButton" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Lower Level 1" />
                         <MFXButton fx:id="lowerLevelTwoButton" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Lower Level 2" />
-                        <MFXButton fx:id="FirstFloorButton" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="First Floor" />
-                        <MFXButton fx:id="SecondFloorButton" layoutX="10.0" layoutY="64.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Second Floor" />
-                        <MFXButton fx:id="ThirdFloorButton" layoutX="10.0" layoutY="91.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Third Floor" />
+                        <MFXButton fx:id="firstFloorButton" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="First Floor" />
+                        <MFXButton fx:id="secondFloorButton" layoutX="10.0" layoutY="64.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Second Floor" />
+                        <MFXButton fx:id="thirdFloorButton" layoutX="10.0" layoutY="91.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Third Floor" />
                     </children>
                 </VBox>
             </right>

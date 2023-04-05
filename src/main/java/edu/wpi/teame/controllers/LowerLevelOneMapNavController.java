@@ -30,7 +30,7 @@ public class LowerLevelOneMapNavController {
   String curLocFromComboBox;
   String destFromComboBox;
 
-  DatabaseController db = DatabaseController.INSTANCE;
+  DatabaseController db = new DatabaseController("teame", "teame50");
   DatabaseGraphController graphController = new DatabaseGraphController(db);
   ObservableList<String> floorLocations =
       FXCollections.observableArrayList(
@@ -41,7 +41,7 @@ public class LowerLevelOneMapNavController {
   public void initialize() {
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     groundFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.GROUND_FLOOR));
-    lowerLevelTwoButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOWERR_LEVEL_TWO));
+    lowerLevelTwoButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOWER_TWO));
     firstFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_ONE));
     secondFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_TWO));
     thirdFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_THREE));
