@@ -121,9 +121,6 @@ public class Cdb implements IServiceRequest {
           case "import from a csv file into the move table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Move.csv";
             importCSVMove(csvFileName);
-          case "import from a csv file into the move table":
-            csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Move.csv";
-            importCSVMove(csvFileName, databaseMoveList);
             break;
           case "delete a node":
             System.out.println("please enter the node ID of the node you would like to delete");
