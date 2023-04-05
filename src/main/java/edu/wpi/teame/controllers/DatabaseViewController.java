@@ -36,7 +36,7 @@ public class DatabaseViewController {
   @FXML MFXButton deleteButton;
   @FXML MFXButton addButton; // three text boxes and a button that says "add" next to it
 
-  @FXML ComboBox<String> databaseChoice;
+  @FXML ComboBox<DatabaseController.Table> databaseChoice;
 
   // fields for Moves
   @FXML HBox movesAddZone;
@@ -98,11 +98,11 @@ public class DatabaseViewController {
 
   @FXML
   public void initialize() {
-    ArrayList<String> choices = new ArrayList<String>();
-    choices.add("move");
-    choices.add("location");
-    choices.add("node");
-    choices.add("edge");
+    ArrayList<DatabaseController.Table> choices = new ArrayList<>();
+    choices.add(DatabaseController.Table.MOVE);
+    choices.add(DatabaseController.Table.LOCATION_NAME);
+    choices.add(DatabaseController.Table.NODE);
+    choices.add(DatabaseController.Table.EDGE);
     databaseChoice.setItems(FXCollections.observableArrayList(choices));
 
     databaseChoice.setOnAction(
@@ -157,7 +157,6 @@ public class DatabaseViewController {
 
     edgeTable.setItems(edgeList);
     edgeTable.setEditable(true);
-
 
     moveTable.setPlaceholder(new Label("No rows to display"));
 
@@ -219,9 +218,9 @@ public class DatabaseViewController {
         });
   }
 
-  private void switchActiveTable(String db) {
+  private void switchActiveTable(DatabaseController.Table db) {
     switch (db) {
-      case "move":
+      case MOVE:
         activeTable = moveTable;
 
         moveTable.setVisible(true);
@@ -234,7 +233,7 @@ public class DatabaseViewController {
         nodeAddZone.setVisible(false);
         edgeAddZone.setVisible(false);
         break;
-      case "location":
+      case LOCATION_NAME:
         activeTable = locationTable;
 
         moveTable.setVisible(false);
@@ -247,7 +246,7 @@ public class DatabaseViewController {
         nodeAddZone.setVisible(false);
         edgeAddZone.setVisible(false);
         break;
-      case "node":
+      case NODE:
         activeTable = nodeTable;
 
         moveTable.setVisible(false);
@@ -260,7 +259,7 @@ public class DatabaseViewController {
         nodeAddZone.setVisible(true);
         edgeAddZone.setVisible(false);
         break;
-      case "edge":
+      case EDGE:
         activeTable = edgeTable;
 
         moveTable.setVisible(false);
@@ -282,7 +281,7 @@ public class DatabaseViewController {
   private void addRow(Popup windowPop) {
     Object toAdd;
     switch (databaseChoice.getValue()) {
-      case "move":
+      case MOVE:
         String nodeID = IDField.getText();
         String name = locationField.getText();
         String date = dateField.getText();
@@ -300,7 +299,7 @@ public class DatabaseViewController {
           windowPop.show(App.getPrimaryStage());
         }
         break;
-      case "location":
+      case LOCATION_NAME:
         String longName = longNameField.getText();
         String shortName = shortNameField.getText();
         LocationName.NodeType type =
@@ -318,7 +317,7 @@ public class DatabaseViewController {
           windowPop.show(App.getPrimaryStage());
         }
         break;
-      case "node":
+      case NODE:
         String nodeI = IDFieldLoc.getText();
         int nodeX = Integer.parseInt(xField.getText());
         int nodeY = Integer.parseInt(yField.getText());
@@ -339,7 +338,7 @@ public class DatabaseViewController {
           windowPop.show(App.getPrimaryStage());
         }
         break;
-      case "edge":
+      case EDGE:
         String edge1 = edge1Field.getText();
         String edge2 = edge2Field.getText();
         try {
@@ -361,6 +360,8 @@ public class DatabaseViewController {
     Object selectedItem = activeTable.getSelectionModel().getSelectedItem();
     if (selectedItem != null) {
       activeTable.getItems().remove(selectedItem);
+      DatabaseController.INSTANCE.deleteFromTable(databaseChoice.getValue(), selectedItem);
+      /*
       switch (databaseChoice.getValue()) {
         case "move":
           DatabaseController.INSTANCE.deleteFromTable(DatabaseController.Table.MOVE, selectedItem);
@@ -375,6 +376,8 @@ public class DatabaseViewController {
           DatabaseController.INSTANCE.deleteFromTable(DatabaseController.Table.EDGE, selectedItem);
           break;
       }
+
+       */
     }
   }
 }
