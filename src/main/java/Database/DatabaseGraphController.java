@@ -1,16 +1,16 @@
 package Database;
 
+import edu.wpi.teame.map.Floor;
+import edu.wpi.teame.map.HospitalEdge;
+import edu.wpi.teame.map.HospitalNode;
+import edu.wpi.teame.map.MoveAttribute;
+import edu.wpi.teame.map.NodeInitializer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import pathfinding.Floor;
-import pathfinding.HospitalEdge;
-import pathfinding.HospitalNode;
-import pathfinding.MoveAttribute;
-import pathfinding.NodeInitializer;
 
 public class DatabaseGraphController {
   DatabaseController DBC;
