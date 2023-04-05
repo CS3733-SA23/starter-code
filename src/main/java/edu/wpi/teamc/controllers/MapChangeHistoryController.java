@@ -118,7 +118,6 @@ public class MapChangeHistoryController {
     Navigation.navigate(Screen.SIGNAGE);
   }
 
-
   @FXML
   void getEditMap(ActionEvent event) {}
 
@@ -130,5 +129,4 @@ public class MapChangeHistoryController {
 
   @FXML
   void getMapPage(ActionEvent event) {}
-
 }

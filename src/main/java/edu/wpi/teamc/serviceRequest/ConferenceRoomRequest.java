@@ -1,29 +1,16 @@
 package edu.wpi.teamc.serviceRequest;
 
+import java.sql.Date;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.sql.Date;
-
 public class ConferenceRoomRequest implements IServiceRequest {
-  @Getter
-  @Setter
-  private ConferenceRoom selection;
-  @Getter
-  @Setter
-  private Date date;
-  @Getter
-  @Setter
-  private String startTime;
-  @Getter
-  @Setter
-  private String endTime;
-  @Getter
-  @Setter
-  private String addtionalNotes;
-  @Getter
-  @Setter
-  private STATUS stat;
+  @Getter @Setter private ConferenceRoom selection;
+  @Getter @Setter private Date date;
+  @Getter @Setter private String startTime;
+  @Getter @Setter private String endTime;
+  @Getter @Setter private String addtionalNotes;
+  @Getter @Setter private STATUS stat;
 
   public ConferenceRoomRequest(
       ConferenceRoom select,
