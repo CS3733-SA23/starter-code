@@ -9,11 +9,9 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import lombok.Getter;
-import lombok.Setter;
 
 public class EdgeDAOImp implements IDataBase, IEdgeDAO {
-  @Getter @Setter private static ArrayList<Edge> edgeArray;
+  ArrayList<Edge> edgeArray;
   static Connection edgeConnection;
 
   public EdgeDAOImp(Connection edgeConnection, ArrayList<Edge> EdgeArray) {

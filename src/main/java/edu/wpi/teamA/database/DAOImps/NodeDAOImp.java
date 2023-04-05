@@ -10,11 +10,9 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import lombok.Getter;
-import lombok.Setter;
 
 public class NodeDAOImp implements IDataBase, INodeDAO {
-  @Getter @Setter private static ArrayList<Node> NodeArray;
+  ArrayList<Node> NodeArray;
 
   static DBConnectionProvider nodeProvider = new DBConnectionProvider();
 
