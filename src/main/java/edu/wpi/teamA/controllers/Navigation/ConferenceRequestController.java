@@ -4,15 +4,15 @@ import edu.wpi.teamA.navigation.Navigation;
 import edu.wpi.teamA.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 
 public class ConferenceRequestController implements IPageController, IServiceController {
   @FXML MFXButton submitButton;
   @FXML MFXTextField nameField;
   @FXML MFXTextField roomField;
-  @FXML MFXDatePicker datePicker;
+  @FXML DatePicker datePicker;
   @FXML MFXComboBox startCombo;
   @FXML MFXComboBox endCombo;
   @FXML MFXTextField commentField;
@@ -45,12 +45,12 @@ public class ConferenceRequestController implements IPageController, IServiceCon
     commentField.clear();
     startCombo.getSelectionModel().clearSelection();
     endCombo.getSelectionModel().clearSelection();
-    datePicker.clear();
+    datePicker.setValue(null);
   }
 
   public void validateButton() {
     if (nameField.getText().isEmpty()
-        || datePicker.getText().isEmpty()
+        || datePicker.getValue() == null
         || startCombo.getSelectedIndex() == -1
         || endCombo.getSelectedIndex() == -1) {
       submitButton.setDisable(true);

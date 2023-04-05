@@ -2,9 +2,9 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
-<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -19,7 +19,7 @@
     <children>
         <fx:include fx:id="header" source="Header.fxml" />
         <fx:include fx:id="footer" layoutY="620.0" source="Footer.fxml" />
-        <Text fx:id="title" fill="#eebd28" layoutY="-32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confernce Room Reservation" textAlignment="CENTER" wrappingWidth="700.0" x="290.0" y="100.0">
+        <Text fx:id="title" fill="#eebd28" layoutX="-67.0" layoutY="-32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Conference Room Reservation" textAlignment="CENTER" wrappingWidth="885.0" x="290.0" y="100.0">
             <font>
                 <Font name="Open Sans Bold" size="48.0" />
             </font>
@@ -71,16 +71,16 @@
                   <Insets bottom="10.0" />
                </GridPane.margin>
             </Text>
-            <MFXDatePicker fx:id="datePicker" onAction="#validateButton" onContextMenuRequested="#validateButton" onMouseClicked="#validateButton" onMouseMoved="#validateButton" onMousePressed="#validateButton" onMouseReleased="#validateButton" prefHeight="50.0" prefWidth="162.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <MFXTextField fx:id="roomField" onTouchReleased="#validateButton" prefHeight="50.0" prefWidth="111.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <MFXTextField fx:id="nameField" onTouchReleased="#validateButton" prefHeight="51.0" prefWidth="335.0" GridPane.columnIndex="1" />
             <MFXComboBox fx:id="startCombo" onHiding="#validateButton" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <MFXComboBox fx:id="endCombo" onHiding="#validateButton" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <MFXComboBox fx:id="endCombo" onAction="#validateButton" onHiding="#validateButton" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <MFXTextField fx:id="commentField" prefHeight="74.0" prefWidth="336.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <DatePicker fx:id="datePicker" onAction="#validateButton" prefHeight="50.0" prefWidth="186.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <MFXButton fx:id="clearButton" layoutX="686.0" layoutY="572.0" onAction="#clear" text="Clear" />
-      <MFXButton fx:id="submitButton" layoutX="939.0" layoutY="543.0" prefHeight="58.0" prefWidth="120.0" style="-fx-background-color: #012D5A;" text="Submit" textFill="#eebd28">
+      <MFXButton fx:id="submitButton" defaultButton="true" disable="true" layoutX="939.0" layoutY="543.0" prefHeight="58.0" prefWidth="120.0" style="-fx-background-color: #012D5A;" text="Submit" textFill="#eebd28">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
