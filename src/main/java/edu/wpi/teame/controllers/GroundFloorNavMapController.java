@@ -14,12 +14,17 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
@@ -39,9 +44,14 @@ public class GroundFloorNavMapController {
   @FXML private MFXButton lowerLevelTwoButton;
 
   @FXML private AnchorPane mapPane;
+
+  @FXML private VBox vbox;
+  @FXML private ImageView mapImage;
   @FXML MFXComboBox<String> currentLocationList;
   @FXML MFXComboBox<String> destinationList;
-  Floor currentFloor = Floor.ONE;
+
+  @FXML private Label pathLabel;
+  Floor currentFloor = Floor.GROUND;
   String curLocFromComboBox;
   String destFromComboBox;
 
@@ -58,13 +68,11 @@ public class GroundFloorNavMapController {
   @FXML
   public void initialize() {
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    lowerLevelOneButton.setOnMouseClicked(event -> Navigation.navigate(Screen.GROUND_FLOOR));
-    lowerLevelTwoButton.setOnMouseClicked(event -> Navigation.navigate(Screen.GROUND_FLOOR));
-    firstFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_ONE));
-    secondFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_TWO));
-    thirdFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_THREE));
-    currentLocationList.setItems(floorLocations);
-    destinationList.setItems(floorLocations);
+    lowerLevelOneButton.setOnMouseClicked(event -> refreshMap(Floor.LOWER_ONE));
+    lowerLevelTwoButton.setOnMouseClicked(event -> refreshMap(Floor.LOWER_TWO));
+    firstFloorButton.setOnMouseClicked(event -> refreshMap(Floor.ONE));
+    secondFloorButton.setOnMouseClicked(event -> refreshMap(Floor.TWO));
+    thirdFloorButton.setOnMouseClicked(event -> refreshMap(Floor.THREE));
 
     currentLocationList.setOnAction(
         new EventHandler<ActionEvent>() {
@@ -87,6 +95,40 @@ public class GroundFloorNavMapController {
             }
           }
         });
+    refreshMap(currentFloor);
+  }
+
+  @FXML
+  public void refreshMap(Floor floor) {
+    currentFloor = floor;
+    mapImage.setImage(new Image("file:" + floorToFilePath(floor)));
+    floorLocations =
+        FXCollections.observableArrayList(
+            graphController.getLongNamesFromMove(
+                graphController.getMoveAttributeFromFloor(currentFloor)));
+    currentLocationList.setItems(floorLocations);
+    destinationList.setItems(floorLocations);
+    pathLabel.setText("");
+    refreshPath();
+  }
+
+  private String floorToFilePath(Floor floor) {
+    switch (floor) {
+      case LOWER_ONE:
+        return "maps/00_thelowerlevel1.png";
+      case LOWER_TWO:
+        return "maps/00_thelowerlevel2.png";
+      case GROUND:
+        return "maps/00_thegroundfloor.png";
+      case ONE:
+        return "maps/01_thefirstfloor.png";
+      case TWO:
+        return "maps/02_thesecondfloor.png";
+      case THREE:
+        return "maps/03_thethirdfloor.png";
+      default:
+        throw new NoSuchElementException("No such Floor found");
+    }
   }
 
   @FXML
@@ -107,6 +149,9 @@ public class GroundFloorNavMapController {
       System.out.println("Path does not exist");
       return;
     }
+
+    pathLabel.setText(path.toString());
+
     drawPath(path);
   }
 
