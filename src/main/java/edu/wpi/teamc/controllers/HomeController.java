@@ -1,13 +1,25 @@
 package edu.wpi.teamc.controllers;
 
+import edu.wpi.teamc.Cdb;
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.awt.Desktop;
+import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class HomeController {
+
+  private String filePath;
+  private Desktop desktop = Desktop.getDesktop();
+
+  @FXML private Label myLabel;
+
   @FXML MFXButton signageButton2;
 
   @FXML private Button flowerDeliveryPage;
@@ -96,7 +108,26 @@ public class HomeController {
   void getMapPage(ActionEvent event) {}
 
   @FXML
-  void getImportButton(ActionEvent event) {}
+  void getImportButton(ActionEvent event) {
+    FileChooser fileChooser = new FileChooser();
+    FileChooser.ExtensionFilter extFilter =
+        new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+    fileChooser.getExtensionFilters().add(extFilter);
+    File file = fileChooser.showOpenDialog(new Stage());
+    if (file != null) {
+      try {
+        desktop.open(file);
+        filePath = file.getAbsolutePath();
+        Cdb.importCSVNode(filePath);
+        Cdb.importCSVEdge(filePath);
+        Cdb.importCSVLocationName(filePath);
+        Cdb.importCSVMove(filePath);
+
+      } catch (Exception ex) {
+        ex.printStackTrace();
+      }
+    }
+  }
 
   @FXML
   void getExportButton(ActionEvent event) {}

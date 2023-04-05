@@ -17,6 +17,11 @@ import java.util.regex.Pattern;
 
 public class Cdb {
   static Connection connection = null;
+  // database tables turned into two arrayLists
+  static List<Node> databaseNodeList = new ArrayList<Node>();
+  static List<Edge> databaseEdgeList = new ArrayList<Edge>();
+  static List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
+  static List<Move> databaseMoveList = new ArrayList<Move>();
 
   public static void main(String[] args) {
     try {
@@ -30,11 +35,6 @@ public class Cdb {
       connection = DriverManager.getConnection(url, user, password);
 
       Scanner scanner = new Scanner(System.in);
-      // database tables turned into two arrayLists
-      List<Node> databaseNodeList = new ArrayList<Node>();
-      List<Edge> databaseEdgeList = new ArrayList<Edge>();
-      List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
-      List<Move> databaseMoveList = new ArrayList<Move>();
       // load database into lists
       loadDatabaseTables(
           databaseNodeList, databaseEdgeList, databaseLocationNameList, databaseMoveList);
@@ -92,18 +92,18 @@ public class Cdb {
             break;
           case "import from a csv file into the node table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Node.csv";
-            importCSVNode(csvFileName, databaseNodeList);
+            importCSVNode(csvFileName);
             break;
           case "import from a csv file into the edge table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Edge.csv";
-            importCSVEdge(csvFileName, databaseEdgeList, databaseNodeList);
+            importCSVEdge(csvFileName);
             break;
           case "import from a csv file into the location name table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/LocationName.csv";
-            importCSVLocationName(csvFileName, databaseLocationNameList);
+            importCSVLocationName(csvFileName);
           case "import from a csv file into the move table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Move.csv";
-            importCSVMove(csvFileName, databaseMoveList);
+            importCSVMove(csvFileName);
           case "delete a node":
             System.out.println("please enter the node ID of the node you would like to delete");
             nodeID = scanner.nextLine();
@@ -502,7 +502,7 @@ public class Cdb {
     }
   }
 
-  static void importCSVNode(String csvFile, List<Node> databaseNodeList) {
+  public static void importCSVNode(String csvFile) {
     // Regular expression to match each row
     String regex = "(.*),(\\d+),(\\d+),(.*),(.*)";
     // Compile regular expression pattern
@@ -528,8 +528,7 @@ public class Cdb {
     }
   }
 
-  static void importCSVEdge(
-      String csvFile, List<Edge> databaseEdgeList, List<Node> databaseNodeList) {
+  public static void importCSVEdge(String csvFile) {
     // Regular expression to match each row
     String regex = "(.*),(.*)";
     // Compile regular expression pattern
@@ -563,7 +562,7 @@ public class Cdb {
     }
   }
 
-  static void importCSVLocationName(String csvFile, List<LocationName> databaseLocationNameList) {
+  public static void importCSVLocationName(String csvFile) {
     // Regular expression to match each row
     String regex = "(.*),(.*),(.*)";
     // Compile regular expression pattern
@@ -588,7 +587,7 @@ public class Cdb {
     }
   }
 
-  static void importCSVMove(String csvFile, List<Move> databaseMoveList) {
+  public static void importCSVMove(String csvFile) {
     // Regular expression to match each row
     String regex = "(.*),(.*),(.*)";
     // Compile regular expression pattern
