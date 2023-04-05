@@ -30,13 +30,13 @@
         <Group layoutX="64.0" layoutY="139.0" />
         <Group layoutX="64.0" layoutY="183.0" />
         <Group layoutX="64.0" layoutY="221.0" />
-        <AnchorPane layoutX="39.0" layoutY="59.0" prefHeight="280.0" prefWidth="521.0">
+        <AnchorPane layoutX="39.0" layoutY="68.0" prefHeight="281.0" prefWidth="521.0">
             <children>
-                <FilteredTableView fx:id="historyTable" editable="true" layoutY="10.0" prefHeight="280.0" prefWidth="521.0">
+                <FilteredTableView fx:id="historyTable" editable="true" prefHeight="281.0" prefWidth="521.0">
                     <columns>
                         <TableColumn fx:id="ColumnOne" prefWidth="80.0" text="ID" />
                         <TableColumn fx:id="ColumnTwo" prefWidth="80.0" text="Status" />
-                        <TableColumn fx:id="ColumnThree" prefWidth="60.0" text="Start" />
+                        <TableColumn fx:id="ColumnThree" prefWidth="80.0" text="Start" />
                         <TableColumn fx:id="ColumnFour" prefWidth="80.0" text="End" />
                         <TableColumn fx:id="ColumnFive" prefWidth="80.0" text="Info" />
                         <TableColumn fx:id="ColumnSix" prefWidth="80.0" text="Room" />

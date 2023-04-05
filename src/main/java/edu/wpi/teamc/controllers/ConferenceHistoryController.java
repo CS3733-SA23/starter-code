@@ -27,35 +27,27 @@ public class ConferenceHistoryController {
 
   @FXML private Button testButton;
   @FXML private TextField inputBox;
-  @FXML private FilteredTableView<ConferenceRoomRequest> historyTable;
-  @FXML TableView<ConferenceRoomRequest> otherTable;
-  @FXML TableColumn<ConferenceRoomRequest, String> ColumnOne;
-  @FXML TableColumn<ConferenceRoomRequest, String> ColumnTwo;
-  @FXML TableColumn<ConferenceRoomRequest, String> ColumnThree;
-  @FXML TableColumn<ConferenceRoomRequest, String> ColumnFour;
-  @FXML TableColumn<ConferenceRoomRequest, String> ColumnFive;
-  @FXML TableColumn<ConferenceRoomRequest, String> ColumnSix;
+  @FXML private FilteredTableView<TableRow> historyTable;
+  @FXML TableView<TableRow> otherTable;
+  @FXML TableColumn<TableRow, String> ColumnOne;
+  @FXML TableColumn<TableRow, String> ColumnTwo;
+  @FXML TableColumn<TableRow, String> ColumnThree;
+  @FXML TableColumn<TableRow, String> ColumnFour;
+  @FXML TableColumn<TableRow, String> ColumnFive;
+  @FXML TableColumn<TableRow, String> ColumnSix;
 
-  ObservableList<ConferenceRoomRequest> rows = FXCollections.observableArrayList();
+  ObservableList<TableRow> rows = FXCollections.observableArrayList();
 
   @FXML private Button goHome;
 
   /** Method run when controller is initialized */
   public void initialize() {
-    ColumnOne.setCellValueFactory(
-        new PropertyValueFactory<ConferenceRoomRequest, String>("requestID"));
-    ColumnTwo.setCellValueFactory(
-        new PropertyValueFactory<ConferenceRoomRequest, String>("Requester"));
-    ColumnTwo.setCellValueFactory(
-        new PropertyValueFactory<ConferenceRoomRequest, String>("status"));
-    ColumnThree.setCellValueFactory(
-        new PropertyValueFactory<ConferenceRoomRequest, String>("startTime"));
-    ColumnFour.setCellValueFactory(
-        new PropertyValueFactory<ConferenceRoomRequest, String>("endTime"));
-    ColumnFive.setCellValueFactory(
-        new PropertyValueFactory<ConferenceRoomRequest, String>("additionalInfo"));
-    ColumnSix.setCellValueFactory(
-        new PropertyValueFactory<ConferenceRoomRequest, String>("roomName"));
+    ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("ID"));
+    ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("Status"));
+    ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("Start"));
+    ColumnFour.setCellValueFactory(new PropertyValueFactory<TableRow, String>("End"));
+    ColumnFive.setCellValueFactory(new PropertyValueFactory<TableRow, String>("Info"));
+    ColumnSix.setCellValueFactory(new PropertyValueFactory<TableRow, String>("Room"));
     //    ColumnOne.setText("ID");
     //    ColumnTwo.setText("Status");
     //    ColumnThree.setText("Start");
@@ -70,7 +62,7 @@ public class ConferenceHistoryController {
 
     historyTable
         .getItems()
-        .setAll(this.convertToObservableList(Cdb.getTable("ServiceRequests", "conferenceRoom")));
+        .setAll(convertToObservableList(Cdb.getTable("ServiceRequests", "conferenceRoom")));
 
     System.out.println("did it");
   }
@@ -92,9 +84,8 @@ public class ConferenceHistoryController {
   //    System.out.println("did it");
   //  }
 
-  ObservableList<ConferenceRoomRequest> convertToObservableList(List<List<String>> rowList) {
-    ObservableList<ConferenceRoomRequest> rows = FXCollections.observableArrayList();
-    int requestID;
+  public ObservableList<TableRow> convertToObservableList(List<List<String>> rowList) {
+    String requestID;
     String Requester;
     String status;
     String startTime;
@@ -106,21 +97,15 @@ public class ConferenceHistoryController {
         System.out.println(s);
       }
 
-      requestID = Integer.valueOf(rl.get(0));
+      requestID = rl.get(0);
+      //      requestID = Integer.valueOf(rl.get(0)).toString();
       Requester = rl.get(1);
       status = rl.get(2);
       startTime = rl.get(3);
       endTime = rl.get(4);
       additionalInfo = rl.get(5);
       roomName = rl.get(6);
-      rows.add(
-          new ConferenceRoomRequest(
-              new Requester(requestID, Requester),
-              new ConferenceRoom(roomName, roomName, false),
-              startTime,
-              endTime,
-              additionalInfo,
-              IServiceRequest.STATUS.valueOf(status)));
+      rows.add(new TableRow(requestID, status, startTime, endTime, additionalInfo, roomName));
     }
     return rows;
   }
