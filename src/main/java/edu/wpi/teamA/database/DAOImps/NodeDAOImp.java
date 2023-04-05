@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class NodeDAOImp implements IDataBase, INodeDAO {
-  ArrayList<Node> NodeArray = null;
+  ArrayList<Node> NodeArray;
 
   static DBConnectionProvider nodeProvider = new DBConnectionProvider();
 
@@ -24,7 +24,30 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
     this.NodeArray = new ArrayList<Node>();
   }
 
+  public static void createSchema() {
+    try {
+      Statement stmtSchema = nodeProvider.createConnection().createStatement();
+      String sqlCreateSchema = "CREATE SCHEMA IF NOT EXISTS \"Prototype2_schema\"";
+      stmtSchema.execute(sqlCreateSchema);
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   // ResultSet
+
+  public static Connection createConnection() {
+    String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamadb";
+    String user = "teama";
+    String password = "teama10";
+
+    try {
+      return DriverManager.getConnection(url, user, password);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
 
   public static ArrayList<Node> loadNodesFromCSV(String filePath) {
     ArrayList<Node> nodes = new ArrayList<>();
@@ -56,7 +79,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
   }
 
   public static ArrayList<Node> Import(String filePath) {
-
+    NodeDAOImp.createSchema();
     ArrayList<Node> NodeArray = loadNodesFromCSV(filePath);
 
     try {
@@ -64,15 +87,15 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
       csvReader.readLine();
       String row;
 
-      String sqlCreateEdge =
+      String sqlCreateNode =
           "Create Table if not exists \"Prototype2_schema\".\"Node\""
-              + "(nodeID   int,"
+              + "(nodeID   int PRIMARY KEY,"
               + "xcoord    int,"
               + "ycoord    int,"
               + "floor     Varchar(600),"
               + "building  Varchar(600))";
       Statement stmtNode = nodeProvider.createConnection().createStatement();
-      stmtNode.execute(sqlCreateEdge);
+      stmtNode.execute(sqlCreateNode);
 
       while ((row = csvReader.readLine()) != null) {
         String[] data = row.split(",");
@@ -228,7 +251,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
       NodeArray.forEach(
           node -> {
             if (node.nodeID.equals(nodeID)) {
-              node.xccord = xcoord;
+              node.xcoord = xcoord;
               node.ycoord = ycoord;
               node.floor = floor;
               node.building = building;

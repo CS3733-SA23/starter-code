@@ -17,13 +17,14 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
 
   public EdgeDAOImp(ArrayList<Edge> EdgeArray) {
     this.edgeArray = EdgeArray;
-
     // check if the table exist
     // if it exist, populate the array list
     // use select * to get all info from the table
     // create objects based off of the results
-    //
+  }
 
+  public EdgeDAOImp() {
+    this.edgeArray = new ArrayList<Edge>();
   }
 
   public static void Import(String filePath) {
@@ -35,7 +36,13 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
       String sqlCreateEdge =
           "Create Table if not exists \"Prototype2_schema\".\"Edge\""
               + "(startNode   int,"
-              + "endNode    int)";
+              + "endNode    int,"
+              + "CONSTRAINT fk_startnode "
+              + "FOREIGN KEY(startNode) "
+              + "REFERENCES Prototype2_schema.Node(nodeid), "
+              + "CONSTRAINT fk_endnode "
+              + "FOREIGN KEY(endNode)"
+              + "REFERENCES Prototype2_schema.Node(nodeid))";
       Statement stmtEdge = edgeProvider.createConnection().createStatement();
       stmtEdge.execute(sqlCreateEdge);
 
