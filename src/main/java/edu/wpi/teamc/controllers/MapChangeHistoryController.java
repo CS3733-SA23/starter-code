@@ -40,6 +40,7 @@ public class MapChangeHistoryController {
   //  List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
   //  List<Move> databaseMoveList = new ArrayList<Move>();
 
+  /** Method run when controller is initialized */
   public void initialize() {
     ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("nodeID"));
     ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("longName"));
@@ -81,4 +82,53 @@ public class MapChangeHistoryController {
     inputBox.clear();
     return inputtedText;
   }
+
+  @FXML
+  void getFlowerDeliveryPage(ActionEvent event) {
+    Navigation.navigate(Screen.FLOWER);
+  }
+
+  @FXML
+  void getFurnitureDeliveryPage(ActionEvent event) {
+    Navigation.navigate(Screen.FURNITURE);
+  }
+
+  @FXML
+  void getHelpPage(ActionEvent event) {
+    Navigation.navigate(Screen.HELP);
+  }
+
+  @FXML
+  void getMealDeliveryPage(ActionEvent event) {
+    Navigation.navigate(Screen.MEAL);
+  }
+
+  @FXML
+  void getOfficeSuppliesPage(ActionEvent event) {
+    Navigation.navigate(Screen.OFFICE_SUPPLY);
+  }
+
+  @FXML
+  void getRoomReservationPage(ActionEvent event) {
+    Navigation.navigate(Screen.CONFERENCE);
+  }
+
+  @FXML
+  void getSignagePage(ActionEvent event) {
+    Navigation.navigate(Screen.SIGNAGE);
+  }
+
+
+  @FXML
+  void getEditMap(ActionEvent event) {}
+
+  @FXML
+  void getLogOut(ActionEvent event) {}
+
+  @FXML
+  void getMapHistory(ActionEvent event) {}
+
+  @FXML
+  void getMapPage(ActionEvent event) {}
+
 }
