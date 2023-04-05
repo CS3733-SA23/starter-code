@@ -80,17 +80,15 @@ public class MapController {
     currentLocationList.setOnAction(
         event -> {
           curLocFromComboBox = currentLocationList.getValue();
-          if (!(destFromComboBox == null)) {
-            displayPath(curLocFromComboBox, destFromComboBox);
-          }
+          destFromComboBox = destinationList.getValue();
+          displayPath(curLocFromComboBox, destFromComboBox);
         });
 
     destinationList.setOnAction(
         event -> {
+          curLocFromComboBox = currentLocationList.getValue();
           destFromComboBox = destinationList.getValue();
-          if (!(curLocFromComboBox == null)) {
-            displayPath(curLocFromComboBox, destFromComboBox);
-          }
+          displayPath(curLocFromComboBox, destFromComboBox);
         });
     refreshPage(currentFloor);
   }
@@ -131,14 +129,15 @@ public class MapController {
 
   @FXML
   public void displayPath(String from, String to) {
+    if (from.equals("") || to.equals("")) {
+      return;
+    }
+
     refreshPath();
     AStarPathfinder pf = new AStarPathfinder();
 
     String toNodeID = graphController.getNodeIDFromName(to) + "";
     String fromNodeID = graphController.getNodeIDFromName(from) + "";
-
-    System.out.println(toNodeID);
-    System.out.println(fromNodeID);
 
     List<HospitalNode> path =
         pf.findPath(HospitalNode.allNodes.get(fromNodeID), HospitalNode.allNodes.get(toNodeID));

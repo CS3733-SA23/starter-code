@@ -45,7 +45,7 @@
                 </HBox>
             </bottom>
             <right>
-                <VBox prefHeight="833.0" prefWidth="154.0" spacing="20.0" BorderPane.alignment="CENTER">
+                <VBox alignment="CENTER_LEFT" prefHeight="890.0" prefWidth="154.0" spacing="20.0" BorderPane.alignment="CENTER">
                     <children>
                         <MFXButton fx:id="lowerLevelOneButton" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Lower Level 1" />
                         <MFXButton fx:id="lowerLevelTwoButton" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #223b95; -fx-text-fill: #ffffff;" text="Lower Level 2" />
