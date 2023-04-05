@@ -25,7 +25,6 @@ public enum DatabaseController {
   }
 
   private Connection c;
-  public List<MoveAttribute> moveList = new ArrayList<>();
 
   DatabaseController(String username, String password) {
     c = this.connectToDatabase(username, password);
@@ -204,6 +203,20 @@ public enum DatabaseController {
    * @return list of move attribute objects
    */
   public List<MoveAttribute> getMoveList() {
+    List<MoveAttribute> moveList = new ArrayList<>();
+    String query = "SELECT * FROM teame.\"Move\" ORDER BY \"nodeID\" ASC;";
+    try (Statement stmt = c.createStatement();
+         ResultSet rs = stmt.executeQuery(query)) {
+      while (rs.next()) {
+        moveList.add(extractMoveFromResultSet(rs));
+      }
+      System.out.println("Move table retrieved successfully");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+    return moveList;
+  }
+  /*public List<MoveAttribute> getMoveList() {
     List<String> mList = new ArrayList<>();
     String queryCountM = "SELECT COUNT(*) FROM teame.\"Move\";";
     String queryMID = "SELECT \"nodeID\" FROM teame.\"Move\";";
@@ -243,7 +256,7 @@ public enum DatabaseController {
       System.out.println("Move table retrieved successfully");
     }
     return moveList;
-  }
+  }*/
 
   public List<HospitalEdge> getEdges() {
     List<HospitalEdge> hospitalEdges = new LinkedList<>();
