@@ -11,4 +11,9 @@ public class Meal {
     this.mealName = name;
     this.additionalInfo = additionalInfo;
   }
+
+  @Override
+  public String toString() {
+    return this.mealName;
+  }
 }
