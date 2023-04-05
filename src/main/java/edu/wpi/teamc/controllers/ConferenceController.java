@@ -3,10 +3,14 @@ package edu.wpi.teamc.controllers;
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.time.LocalDate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 
 public class ConferenceController {
   @FXML private MFXButton goHome;
@@ -14,17 +18,21 @@ public class ConferenceController {
 
   @FXML private MFXButton clear;
 
-  @FXML private MenuItem chocie0;
+  @FXML private MenuItem choice0;
 
-  @FXML private MenuItem chocie1;
+  @FXML private MenuItem choice1;
 
-  @FXML private MenuItem chocie2;
+  @FXML private MenuItem choice2;
 
-  @FXML private MenuItem chocie3;
+  @FXML private MenuItem choice3;
 
   @FXML private MenuItem choice4;
 
   @FXML private MenuButton menuButton;
+  @FXML private MFXTextField nameBox;
+  @FXML private TextArea specialRequest;
+  @FXML private DatePicker startTime;
+  @FXML private DatePicker endTime;
 
   public void getGoHome() {
     goHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
@@ -56,8 +64,12 @@ public class ConferenceController {
   }
 
   @FXML
-  void getSubmit() {
-    submit.setOnMouseClicked(event -> Navigation.navigate(Screen.CONGRATS_PAGE));
+  void getSubmit(ActionEvent event) {
+    LocalDate s = startTime.getValue();
+    System.out.println(s.toString());
+
+    // ConferenceRoomRequest req = new ConferenceRoomRequest(startTime.getPromptText(), )
+    Navigation.navigate(Screen.CONGRATS_PAGE);
   }
 
   @FXML

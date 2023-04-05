@@ -174,7 +174,8 @@ public class Cdb implements IServiceRequest {
       String MEALREQUEST = "\"ServiceRequests\".\"mealRequest\"";
       // query
       String queryInsertMealReq = "INSERT INTO " + MEALREQUEST + " VALUES (?,?,?,?,?,?);";
-      PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(queryInsertMealReq);
+      PreparedStatement preparedStatement =
+          DBConnection.getConnection().prepareStatement(queryInsertMealReq);
       {
         preparedStatement.setInt(1, requester.getRequesterID());
         preparedStatement.setString(2, requester.getRequesterName());
@@ -199,14 +200,12 @@ public class Cdb implements IServiceRequest {
       String CONFREQUEST = "\"ServiceRequests\".\"conferenceRoomRequest\"";
       // query
       String queryInsertMealReq = "INSERT INTO " + CONFREQUEST + " VALUES (?,?,?,?,?,?);";
-      PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(queryInsertMealReq);
+      PreparedStatement preparedStatement =
+          DBConnection.getConnection().prepareStatement(queryInsertMealReq);
       {
         preparedStatement.setInt(1, requester.getRequesterID());
         preparedStatement.setString(2, requester.getRequesterName());
-        preparedStatement.setString(
-            3,
-            confReq.getStat()); // adds meal by meal name not my class -> can later figure out how
-        // to
+        preparedStatement.setString(3, confReq.getStat());
         preparedStatement.setString(4, confReq.getStartTime());
         preparedStatement.setString(5, confReq.getEndTime());
         preparedStatement.setString(6, confReq.getAddtionalNotes());
@@ -233,7 +232,8 @@ public class Cdb implements IServiceRequest {
               + "AND \"startTime\"=?;"
               + "AND \"endTime\"=?;";
 
-      PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(updateConfQuery);
+      PreparedStatement preparedStatement =
+          DBConnection.getConnection().prepareStatement(updateConfQuery);
       {
         preparedStatement.setString(
             3,
@@ -263,7 +263,8 @@ public class Cdb implements IServiceRequest {
               + "AND \"status\"=?;"
               + "AND \"room\"=?;";
 
-      PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(updateMealQuery);
+      PreparedStatement preparedStatement =
+          DBConnection.getConnection().prepareStatement(updateMealQuery);
       {
         preparedStatement.setString(
             3,
