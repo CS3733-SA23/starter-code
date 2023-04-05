@@ -47,7 +47,7 @@ public class DatabaseTest {
   public void testGetNameFromNodeID() {
     DatabaseGraphController DBMC = this.setup();
     try {
-      String expected = DBMC.getNameFromNodeID(1200);
+      String expected = DBMC.getNameFromNodeID("1200");
 
       assertEquals(expected, "Hall 3 Level 1");
     } catch (RuntimeException e) {

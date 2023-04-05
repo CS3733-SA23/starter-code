@@ -146,8 +146,12 @@ public class MapController {
       System.out.println("Path does not exist");
       return;
     }
+    ArrayList<String> pathNames = new ArrayList<>();
+    for (HospitalNode node : path) {
+      pathNames.add(graphController.getNameFromNodeID(node.getNodeID()));
+    }
 
-    pathLabel.setText(path.toString());
+    pathLabel.setText(pathNames.toString());
 
     drawPath(path);
   }

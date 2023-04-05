@@ -102,7 +102,7 @@ public class DatabaseGraphController {
     }
   }
 
-  public String getNameFromNodeID(int nodeID) throws RuntimeException {
+  public String getNameFromNodeID(String nodeID) throws RuntimeException {
     try {
       Statement stmt = DBC.getC().createStatement();
       String sql = "SELECT \"longName\" FROM teame.\"Move\" WHERE \"nodeID\" = " + nodeID + ";";
