@@ -6,12 +6,6 @@ public class TableRow {
   private String Date;
   private int index;
 
-  public TableRow() {
-    this.NodeID = "";
-    this.LongName = "";
-    this.Date = "";
-  }
-
   public TableRow(String nodeID, String longName, String date) {
     this.NodeID = nodeID;
     this.LongName = longName;

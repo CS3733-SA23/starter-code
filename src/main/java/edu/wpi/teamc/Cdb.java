@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -170,7 +171,7 @@ public class Cdb implements IServiceRequest {
   }
 
   // meal request adding + updating
-  public static void addMeal(MealRequest mealReq, Requester requester) {
+  public static void addMeal(MealRequest mealReq) {
     try {
       String MEALREQUEST = "\"ServiceRequests\".\"mealRequest\"";
       // query
@@ -178,9 +179,9 @@ public class Cdb implements IServiceRequest {
       PreparedStatement preparedStatement =
           DBConnection.getConnection().prepareStatement(queryInsertMealReq);
       {
-        preparedStatement.setInt(1, requester.getRequesterID());
-        preparedStatement.setString(2, requester.getRequesterName());
-        preparedStatement.setString(3, mealReq.getSelection().getMealName());
+        preparedStatement.setInt(1, mealReq.getRequester().getRequesterID());
+        preparedStatement.setString(2, mealReq.getRequester().getRequesterName());
+        preparedStatement.setString(3, mealReq.getMeal().getMealName());
         preparedStatement.setString(4, mealReq.getStat().name());
         preparedStatement.setString(5, mealReq.getRoom());
         preparedStatement.setString(6, mealReq.getSpecialNotes());
@@ -209,7 +210,7 @@ public class Cdb implements IServiceRequest {
     return latestID;
   }
 
-  public static void addConferenceRoomRequest(ConferenceRoomRequest confReq, Requester requester) {
+  public static void addConferenceRoomRequest(ConferenceRoomRequest confReq) {
     try {
       String CONFREQUEST = "\"ServiceRequests\".\"conferenceRoom\"";
       // query
@@ -217,13 +218,13 @@ public class Cdb implements IServiceRequest {
       PreparedStatement preparedStatement =
           DBConnection.getConnection().prepareStatement(queryInsertMealReq);
       {
-        preparedStatement.setInt(1, requester.getRequesterID());
-        preparedStatement.setString(2, requester.getRequesterName());
+        preparedStatement.setInt(1, confReq.getRequester().getRequesterID());
+        preparedStatement.setString(2, confReq.getRequester().getRequesterName());
         preparedStatement.setString(3, confReq.getStat().name());
         preparedStatement.setString(4, confReq.getStartTime());
         preparedStatement.setString(5, confReq.getEndTime());
         preparedStatement.setString(6, confReq.getAdditionalNotes());
-        preparedStatement.setString(7, confReq.getRoomName());
+        preparedStatement.setString(7, confReq.getConferenceRoom().getShortName());
         preparedStatement.executeUpdate();
       }
     } catch (Exception e) {
@@ -285,7 +286,7 @@ public class Cdb implements IServiceRequest {
         preparedStatement.setString(
             3,
             mealReq
-                .getSelection()
+                .getMeal()
                 .getMealName()); // adds meal by meal name not my class -> can later figure out how
         // to
         preparedStatement.setString(4, mealReq.getStat().name());
@@ -295,6 +296,25 @@ public class Cdb implements IServiceRequest {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  public static List<List<String>> getTable(String schema, String table) {
+    List<List<String>> tableRows = new LinkedList<>();
+    try {
+      String query = "SELECT * FROM " + "\"" + schema + "\"" + ".\"" + table + "\";";
+      PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+      ResultSet resultSet = preparedStatement.executeQuery();
+      while (resultSet.next()) {
+        List<String> row = new LinkedList<>();
+        for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+          row.add(resultSet.getString(i));
+        }
+        tableRows.add(row);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return tableRows;
   }
 
   static void loadDatabaseTables(
