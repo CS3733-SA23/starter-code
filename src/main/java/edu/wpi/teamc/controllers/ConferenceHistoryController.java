@@ -1,6 +1,5 @@
 package edu.wpi.teamc.controllers;
 
-import edu.wpi.teamc.Cdb;
 import edu.wpi.teamc.map.Move;
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
@@ -32,20 +31,38 @@ public class ConferenceHistoryController {
   @FXML TableColumn<TableRow, String> ColumnOne;
   @FXML TableColumn<TableRow, String> ColumnTwo;
   @FXML TableColumn<TableRow, String> ColumnThree;
+  @FXML TableColumn<TableRow, String> ColumnFour;
+  @FXML TableColumn<TableRow, String> ColumnFive;
+  @FXML TableColumn<TableRow, String> ColumnSix;
+  @FXML TableColumn<TableRow, String> ColumnSeven;
+
   ObservableList<TableRow> rows = FXCollections.observableArrayList();
 
   @FXML private Button goHome;
 
   /** Method run when controller is initialized */
   public void initialize() {
-    ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("nodeID"));
-    ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("longName"));
-    ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("date"));
+    ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("requestID"));
+    ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("Requester"));
+    ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("status"));
+    ColumnFour.setCellValueFactory(new PropertyValueFactory<TableRow, String>("startTime"));
+    ColumnFive.setCellValueFactory(new PropertyValueFactory<TableRow, String>("endTime"));
+    ColumnSix.setCellValueFactory(new PropertyValueFactory<TableRow, String>("additionalInfo"));
+    ColumnSeven.setCellValueFactory(new PropertyValueFactory<TableRow, String>("roomName"));
+    ColumnOne.setText("ID");
+    ColumnTwo.setText("Requester");
+    ColumnThree.setText("Status");
+    ColumnFour.setText("Start");
+    ColumnFive.setText("End");
+    ColumnSix.setText("Info");
+    ColumnSeven.setText("Room");
     //    ColumnOne.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
     //    ColumnTwo.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
     //    ColumnThree.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
 
-    historyTable.getItems().setAll(gettableRows(Cdb.databaseMoveList));
+    // get conference room table
+
+    // historyTable.getItems().setAll(gettableRows(Cdb.getMealHistory()));
 
     System.out.println("did it");
   }
