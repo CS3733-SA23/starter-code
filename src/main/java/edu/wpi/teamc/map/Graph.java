@@ -88,16 +88,6 @@ public class Graph {
   }
 
   /**
-   * Returns the node with the given ID
-   *
-   * @param nodeID - ID of the node to be returned
-   * @return Node with the given ID
-   */
-  public Node getNode(String nodeID) {
-    return nodes.get(nodeID);
-  }
-
-  /**
    * Returns a list of directions from start to end
    *
    * @param start - start node
@@ -141,23 +131,28 @@ public class Graph {
     return null;
   }
 
-  public void printDirectionsAStar(String start, String end) {
+  public List<String> stringDirectionsAStar(String start, String end) {
     GraphNode startNode = nodes.get(start);
     GraphNode endNode = nodes.get(end);
+    LinkedList<String> returnList = new LinkedList<>();
     List<GraphEdge> directions = getDirections_Astar(startNode, endNode);
     double totalDist = 0;
 
     if (directions == null) {
-      System.out.println("No path exists!");
-      return;
+      return null;
     }
 
-    System.out.print("\n" + directions.get(0).getStartNode().getNodeID());
+    returnList.add(directions.get(0).getStartNode().getNodeID());
     for (GraphEdge edge : directions) {
-      System.out.print(" --> " + edge.getEndNode().getNodeID());
+      returnList.add(edge.getEndNode().getNodeID());
       totalDist += edge.getWeight();
     }
 
-    System.out.print(": Total dist: " + totalDist);
+    returnList.add(String.valueOf(totalDist));
+    return returnList;
+  }
+
+  public GraphNode getNode(String nodeID) {
+    return nodes.get(nodeID);
   }
 }

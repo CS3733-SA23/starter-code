@@ -11,6 +11,8 @@ public class FurnitureController {
   @FXML private MFXButton goHome;
   @FXML private MFXButton submit;
 
+  @FXML private MFXButton clear;
+
   @FXML private MenuItem chocie0;
 
   @FXML private MenuItem chocie1;
@@ -59,5 +61,7 @@ public class FurnitureController {
   }
 
   @FXML
-  void getClear() {}
+  void getClear() {
+    clear.setOnMouseClicked(event -> Navigation.navigate(Screen.FURNITURE));
+  }
 }
