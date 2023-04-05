@@ -167,5 +167,13 @@
              <Cursor fx:constant="HAND" />
          </cursor>
       </MenuBar>
+      <MFXButton layoutX="250.0" layoutY="344.0" onAction="#getConferenceHistory" prefHeight="26.0" prefWidth="117.0" text="Show History" textFill="#016161">
+         <font>
+            <Font name="Verdana Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </MFXButton>
     </children>
 </AnchorPane>
