@@ -83,4 +83,9 @@ public class FlowerDAOImpl implements IFlowerDAO {
 
   @Override
   public void updateFlower(FlowerEntity flower) {}
+
+  @Override
+  public void editFlower(FlowerEntity flower){
+
+  }
 }
