@@ -1,10 +1,13 @@
 package edu.wpi.teamc.serviceRequest;
+import java.sql.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 public class ConferenceRoomRequest implements IServiceRequest {
-  private String startTime;
-  private String endTime;
-  private String additionalNotes;
-  private STATUS stat;
+  @Getter @Setter private String startTime;
+  @Getter @Setter private String endTime;
+  @Getter @Setter private String additionalNotes;
+  @Getter @Setter private STATUS stat;
 
   public ConferenceRoomRequest(
       String startTime, String endTime, String additionalNotes, STATUS stat) {
@@ -12,33 +15,5 @@ public class ConferenceRoomRequest implements IServiceRequest {
     this.endTime = endTime;
     this.additionalNotes = additionalNotes;
     this.stat = stat;
-  }
-
-  public String getStartTime() {
-    return startTime;
-  }
-
-  public void setStartTime(String startTime) {
-    this.startTime = startTime;
-  }
-
-  public String getEndTime() {
-    return endTime;
-  }
-
-  public void setEndTime(String endTime) {
-    this.endTime = endTime;
-  }
-
-  public String getAddtionalNotes() {
-    return additionalNotes;
-  }
-
-  public void setAddtionalNotes(String addtionalNotes) {
-    this.additionalNotes = addtionalNotes;
-  }
-
-  public String getStat() {
-    return stat.name();
   }
 }

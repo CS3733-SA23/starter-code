@@ -152,7 +152,7 @@
                </Menu>
            </menus>
            <cursor>
-               <Cursor fx:constant="OPEN_HAND" />
+               <Cursor fx:constant="HAND" />
            </cursor>
        </MenuBar>
    </children>

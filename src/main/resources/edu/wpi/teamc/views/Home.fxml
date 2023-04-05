@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -118,6 +120,34 @@
       </VBox>
       <VBox layoutX="409.0" layoutY="151.0" prefHeight="231.0" prefWidth="154.0" spacing="20.0">
          <children>
+            <MenuButton fx:id="importMenu" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: BAE3E0;" text="Import" textAlignment="CENTER" textFill="#004646">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#getImportNodes" text="Import Nodes" />
+                <MenuItem mnemonicParsing="false" onAction="#getImportEdges" text="Import Edges" />
+                  <MenuItem mnemonicParsing="false" onAction="#getImportLocationNames" text="Import Location Names" />
+                  <MenuItem mnemonicParsing="false" onAction="#getImportMove" text="Import Move" />
+              </items>
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="45.0" right="2.0" top="2.0" />
+               </padding>
+            </MenuButton>
+            <MenuButton fx:id="importMenu1" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: BAE3E0;" text="Export" textAlignment="CENTER" textFill="#004646">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#getExportNodes" text="Export Nodes" />
+                  <MenuItem mnemonicParsing="false" onAction="#getExportEdges" text="Export Edges" />
+                  <MenuItem mnemonicParsing="false" onAction="#getExportLocationNames" text="Export Location Names" />
+                  <MenuItem mnemonicParsing="false" onAction="#getExportMove" text="Export Move" />
+               </items>
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="2.0" left="46.0" right="2.0" top="2.0" />
+               </padding>
+            </MenuButton>
               <Button fx:id="helpPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getHelpPage" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Help" textFill="#004646">
                   <cursor>
                       <Cursor fx:constant="HAND" />
@@ -127,30 +157,6 @@
                   </font>
             </Button>
             <Button fx:id="logOut" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getLogOut" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Log Out" textFill="#004646">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <font>
-                  <Font name="Verdana Bold" size="12.0" />
-               </font>
-            </Button>
-             <Button fx:id="importButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getImportButton" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Import" textFill="#004646">
-                 <cursor>
-                     <Cursor fx:constant="HAND" />
-                 </cursor>
-                 <font>
-                     <Font name="Verdana Bold" size="12.0" />
-                 </font>
-             </Button>
-             <Button fx:id="exportButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getExportButton" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Export" textFill="#004646">
-                 <cursor>
-                     <Cursor fx:constant="HAND" />
-                 </cursor>
-                 <font>
-                     <Font name="Verdana Bold" size="12.0" />
-                 </font>
-            </Button>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: BAE3E0;" text="Place Holder" textFill="#004646" visible="false">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -184,7 +190,6 @@
                   <MenuItem mnemonicParsing="false" onAction="#getFlowerDeliveryPage" text="Flower Delivery" />
                   <MenuItem mnemonicParsing="false" onAction="#getFurnitureDeliveryPage" text="Furniture Delivery" />
                   <MenuItem mnemonicParsing="false" onAction="#getOfficeSuppliesPage" text="Office Supplies" />
-                  <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Navigation">
@@ -194,14 +199,13 @@
                   <MenuItem mnemonicParsing="false" onAction="#getEditMap" text="Edit Map" />
                   <MenuItem mnemonicParsing="false" onAction="#getMapHistory" text="Map History" />
                 <MenuItem mnemonicParsing="false" onAction="#getPathfindingPage" text="Pathfinding" />
-                  <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Options">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#getHelpPage" text="Help" />
                   <MenuItem mnemonicParsing="false" onAction="#getLogOut" text="Log Out" />
-                  <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" onAction="#getExit" text="Exit" />
             </items>
           </Menu>
         </menus>

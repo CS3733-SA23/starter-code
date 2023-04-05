@@ -24,6 +24,7 @@ public class Cdb implements IServiceRequest {
   public static List<Edge> databaseEdgeList = new ArrayList<Edge>();
   public static List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
   public static List<Move> databaseMoveList = new ArrayList<Move>();
+
   ObservableList<TableRow> rows = FXCollections.observableArrayList();
 
   public static void main(String[] args) {
@@ -96,19 +97,19 @@ public class Cdb implements IServiceRequest {
             break;
           case "export node table into a csv file":
             csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/Node.csv";
-            exportNodesToCSV(csvFileName, databaseNodeList);
+            exportNodesToCSV(csvFileName);
             break;
           case "export edge table into a csv file":
             csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/Edge.csv";
-            exportEdgesToCSV(csvFileName, databaseEdgeList);
+            exportEdgesToCSV(csvFileName);
             break;
           case "export location name table into a csv file":
             csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/LocationName.csv";
-            exportLocationNamesToCSV(csvFileName, databaseLocationNameList);
+            exportLocationNamesToCSV(csvFileName);
             break;
           case "export move table into a csv file":
             csvFileName = "src/main/resources/edu/wpi/teamc/Exportedcsvs/Move.csv";
-            exportMovesToCSV(csvFileName, databaseMoveList);
+            exportMovesToCSV(csvFileName);
             break;
           case "import from a csv file into the node table":
             csvFileName = "src/main/resources/edu/wpi/teamc/csvFiles/Node.csv";
@@ -182,7 +183,7 @@ public class Cdb implements IServiceRequest {
         preparedStatement.setString(
             3, "mealName"); // adds meal by meal name not my class -> can later figure out how
         // to
-        preparedStatement.setString(4, mealReq.getStat());
+        preparedStatement.setString(4, mealReq.getStat().name());
         preparedStatement.setString(5, mealReq.getRoom());
         preparedStatement.setString(6, mealReq.getSpecialNotes());
 
@@ -205,11 +206,14 @@ public class Cdb implements IServiceRequest {
       {
         preparedStatement.setInt(1, requester.getRequesterID());
         preparedStatement.setString(2, requester.getRequesterName());
-        preparedStatement.setString(3, confReq.getStat());
+        preparedStatement.setString(
+            3,
+            confReq
+                .getStat()
+                .name());
         preparedStatement.setString(4, confReq.getStartTime());
         preparedStatement.setString(5, confReq.getEndTime());
-        preparedStatement.setString(6, confReq.getAddtionalNotes());
-
+        preparedStatement.setString(6, confReq.getAdditionalNotes());
         preparedStatement.executeUpdate();
       }
     } catch (Exception e) {
@@ -237,7 +241,9 @@ public class Cdb implements IServiceRequest {
       {
         preparedStatement.setString(
             3,
-            confReq.getStat()); // adds meal by meal name not my class -> can later figure out how
+            confReq
+                .getStat()
+                .name()); // adds meal by meal name not my class -> can later figure out how
         // to
         preparedStatement.setString(4, confReq.getStartTime());
         preparedStatement.setString(5, confReq.getEndTime());
@@ -272,7 +278,7 @@ public class Cdb implements IServiceRequest {
                 .getSelection()
                 .getMealName()); // adds meal by meal name not my class -> can later figure out how
         // to
-        preparedStatement.setString(4, mealReq.getStat());
+        preparedStatement.setString(4, mealReq.getStat().name());
         preparedStatement.setString(5, mealReq.getRoom());
         preparedStatement.executeUpdate();
       }
@@ -808,7 +814,7 @@ public class Cdb implements IServiceRequest {
     }
   }
 
-  static void exportNodesToCSV(String csvFile, List<Node> databaseNodeList) throws IOException {
+  public static void exportNodesToCSV(String csvFile) throws IOException {
     createFile(csvFile);
     BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
     // Write the header row to the CSV file
@@ -830,7 +836,7 @@ public class Cdb implements IServiceRequest {
     writer.close();
   }
 
-  static void exportEdgesToCSV(String csvFile, List<Edge> databaseEdgeList) throws IOException {
+  public static void exportEdgesToCSV(String csvFile) throws IOException {
     createFile(csvFile);
     BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
     // Write the header row to the CSV file
@@ -841,8 +847,7 @@ public class Cdb implements IServiceRequest {
     writer.close();
   }
 
-  static void exportLocationNamesToCSV(String csvFile, List<LocationName> databaseLocationNameList)
-      throws IOException {
+  public static void exportLocationNamesToCSV(String csvFile) throws IOException {
     createFile(csvFile);
     BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
     // Write the header row to the CSV file
@@ -859,7 +864,7 @@ public class Cdb implements IServiceRequest {
     writer.close();
   }
 
-  static void exportMovesToCSV(String csvFile, List<Move> databaseMoveList) throws IOException {
+  public static void exportMovesToCSV(String csvFile) throws IOException {
     createFile(csvFile);
     BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile));
     // Write the header row to the CSV file
