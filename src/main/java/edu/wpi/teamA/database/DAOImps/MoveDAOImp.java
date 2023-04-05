@@ -34,7 +34,7 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
 
       String sqlCreateEdge =
           "Create Table if not exists \"Prototype2_schema.Node\""
-              + "(nodeID   Int,"
+              + "(nodeID   int PRIMARY KEY,"
               + "LongName  Varchar(600),"
               + "date      date)";
       Statement stmtMove = moveProvider.createConnection().createStatement();

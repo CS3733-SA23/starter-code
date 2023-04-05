@@ -11,9 +11,9 @@ public class Node {
 
   public String building;
 
-  public Node(Integer nodeID, Integer xccord, Integer ycoord, String floor, String building) {
+  public Node(Integer nodeID, Integer xcoord, Integer ycoord, String floor, String building) {
     this.nodeID = nodeID;
-    this.xcoord = xccord;
+    this.xcoord = xcoord;
     this.ycoord = ycoord;
     this.floor = floor;
     this.building = building;
