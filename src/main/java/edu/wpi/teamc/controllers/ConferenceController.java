@@ -80,9 +80,8 @@ public class ConferenceController {
         new ConferenceRoomRequest(start.toString(), end.toString(), notes, roomName, status);
 
     String name = nameBox.getText();
-    currentReqID++;
 
-    Requester reqr = new Requester(currentReqID, name);
+    Requester reqr = new Requester(Cdb.latestRequestID("conferenceRoom") + 1, name);
 
     Cdb.addConferenceRoomRequest(req, reqr);
 
@@ -140,7 +139,14 @@ public class ConferenceController {
   void getEditMap(ActionEvent event) {}
 
   @FXML
-  void getLogOut(ActionEvent event) {}
+  void getLogOut(ActionEvent event) {
+    Navigation.navigate(Screen.LOGIN);
+  }
+
+  @FXML
+  void getExit(ActionEvent event) {
+    System.exit(0);
+  }
 
   @FXML
   void getMapHistory(ActionEvent event) {}

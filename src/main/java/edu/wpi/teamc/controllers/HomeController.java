@@ -113,7 +113,9 @@ public class HomeController {
   }
 
   @FXML
-  void getMapPage(ActionEvent event) {}
+  void getMapPage(ActionEvent event) {
+    Navigation.navigate(Screen.FLOOR_PLAN);
+  }
 
   @FXML
   void getImportNodes(ActionEvent event) {
