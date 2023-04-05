@@ -169,7 +169,7 @@ public class Cdb implements IServiceRequest {
   }
 
   // meal request adding + updating
-  static void addMeal(MealRequest mealReq, Requester requester) {
+  public static void addMeal(MealRequest mealReq, Requester requester) {
     try {
       String MEALREQUEST = "\"ServiceRequests\".\"mealRequest\"";
       // query
@@ -195,9 +195,9 @@ public class Cdb implements IServiceRequest {
     }
   }
 
-  static void addConferenceRoomRequest(ConferenceRoomRequest confReq, Requester requester) {
+  public static void addConferenceRoomRequest(ConferenceRoomRequest confReq, Requester requester) {
     try {
-      String CONFREQUEST = "\"ServiceRequests\".\"conferenceRoomRequest\"";
+      String CONFREQUEST = "\"ServiceRequests\".\"conferenceRoom\"";
       // query
       String queryInsertMealReq = "INSERT INTO " + CONFREQUEST + " VALUES (?,?,?,?,?,?);";
       PreparedStatement preparedStatement =

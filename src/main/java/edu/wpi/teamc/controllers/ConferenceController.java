@@ -1,7 +1,11 @@
 package edu.wpi.teamc.controllers;
 
+import edu.wpi.teamc.Cdb;
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
+import edu.wpi.teamc.serviceRequest.ConferenceRoomRequest;
+import edu.wpi.teamc.serviceRequest.IServiceRequest;
+import edu.wpi.teamc.serviceRequest.Requester;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.time.LocalDate;
@@ -33,6 +37,7 @@ public class ConferenceController {
   @FXML private TextArea specialRequest;
   @FXML private DatePicker startTime;
   @FXML private DatePicker endTime;
+  private int currentReqID = 0;
 
   public void getGoHome() {
     goHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
@@ -65,10 +70,21 @@ public class ConferenceController {
 
   @FXML
   void getSubmit(ActionEvent event) {
-    LocalDate s = startTime.getValue();
-    System.out.println(s.toString());
+    LocalDate start = startTime.getValue();
+    LocalDate end = endTime.getValue();
 
-    // ConferenceRoomRequest req = new ConferenceRoomRequest(startTime.getPromptText(), )
+    String notes = specialRequest.getText();
+    IServiceRequest.STATUS status = IServiceRequest.STATUS.COMPLETE;
+    ConferenceRoomRequest req =
+        new ConferenceRoomRequest(start.toString(), end.toString(), notes, status);
+
+    String name = nameBox.getText();
+    currentReqID++;
+
+    Requester reqr = new Requester(currentReqID, name);
+
+    Cdb.addConferenceRoomRequest(req, reqr);
+
     Navigation.navigate(Screen.CONGRATS_PAGE);
   }
 
