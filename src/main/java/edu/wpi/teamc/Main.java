@@ -1,7 +1,6 @@
 package edu.wpi.teamc;
 
 import edu.wpi.teamc.map.Graph;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -11,16 +10,12 @@ public class Main {
     Scanner scanner = new Scanner(System.in);
 
     Graph graph = new Graph();
-    try {
-      graph.init();
-    } catch (IOException e) {
-      System.out.println("Exception!");
-    }
+    graph.syncWithDB();
 
-    String startNode = "CCONF001L1";
-    String endNode = "CHALL010L1";
+    String startNode = "100";
+    String endNode = "150";
 
-    graph.printDirections(startNode, endNode);
+    graph.printDirectionsAStar(startNode, endNode);
 
     CApp.launch(CApp.class, args);
     // graph.printDirections("CCONF001L1", "CHALL010L1");

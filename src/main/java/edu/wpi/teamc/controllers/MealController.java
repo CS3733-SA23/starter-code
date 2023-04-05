@@ -3,14 +3,17 @@ package edu.wpi.teamc.controllers;
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 
+import java.awt.event.ActionEvent;
+
 public class MealController {
   @FXML private MFXButton goHome;
   @FXML private MFXButton submit;
+
+  @FXML private MFXButton clear;
 
   @FXML private MenuItem chocie0;
 

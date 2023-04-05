@@ -12,6 +12,8 @@ public class FlowerController {
   @FXML private MFXButton goHome;
   @FXML private MFXButton submit;
 
+  @FXML private MFXButton clear;
+
   @FXML private MenuItem chocie0;
 
   @FXML private MenuItem chocie1;
@@ -55,7 +57,9 @@ public class FlowerController {
   }
 
   @FXML
-  void getClear() {}
+  void getClear() {
+    clear.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWER));
+  }
 
   @FXML
   void getSubmit() {

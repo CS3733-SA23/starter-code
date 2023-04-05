@@ -12,6 +12,8 @@ public class OfficeSupplyController {
   @FXML private MFXButton goHome;
   @FXML private MFXButton submit;
 
+  @FXML private MFXButton clear;
+
   @FXML private MenuItem chocie0;
 
   @FXML private MenuItem chocie1;

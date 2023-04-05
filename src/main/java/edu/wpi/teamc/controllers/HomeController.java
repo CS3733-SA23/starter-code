@@ -70,6 +70,11 @@ public class HomeController {
     Navigation.navigate(Screen.SIGNAGE);
   }
 
+  @FXML
+  void getPathfindingPage(ActionEvent event) {
+    Navigation.navigate(Screen.PATHFINDING_PAGE);
+  }
+
   /** Method run when controller is initialized */
   @FXML
   public void initialize() {}
@@ -78,10 +83,14 @@ public class HomeController {
   void getEditMap(ActionEvent event) {}
 
   @FXML
-  void getLogOut(ActionEvent event) {}
+  void getLogOut(ActionEvent event) {
+    Navigation.navigate(Screen.LOGIN);
+  }
 
   @FXML
-  void getMapHistory(ActionEvent event) {}
+  void getMapHistory(ActionEvent event) {
+    Navigation.navigate(Screen.MAP_HISTORY_PAGE);
+  }
 
   @FXML
   void getMapPage(ActionEvent event) {}
