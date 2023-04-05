@@ -14,6 +14,7 @@ public class TableRow {
   private String status;
   private String start;
   private String end;
+  private String name;
   private String info, room;
 
   public TableRow(String nodeID, String longName, String date) {
@@ -29,8 +30,10 @@ public class TableRow {
     this.index = index;
   }
 
-  public TableRow(String ID, String status, String start, String end, String info, String room) {
+  public TableRow(
+      String ID, String name, String status, String start, String end, String info, String room) {
     this.ID = ID;
+    this.name = name;
     this.status = status;
     this.start = start;
     this.end = end;

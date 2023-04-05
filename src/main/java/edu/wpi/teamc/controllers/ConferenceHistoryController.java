@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import org.controlsfx.control.tableview2.FilteredTableView;
 
 public class ConferenceHistoryController {
@@ -31,6 +30,7 @@ public class ConferenceHistoryController {
   @FXML private FilteredTableView<TableRow> historyTable;
   @FXML TableView<TableRow> otherTable;
   @FXML TableColumn<TableRow, String> ColumnOne;
+  @FXML TableColumn<TableRow, String> NameColumn;
   @FXML TableColumn<TableRow, String> ColumnTwo;
   @FXML TableColumn<TableRow, String> ColumnThree;
   @FXML TableColumn<TableRow, String> ColumnFour;
@@ -44,6 +44,7 @@ public class ConferenceHistoryController {
   /** Method run when controller is initialized */
   public void initialize() {
     ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("ID"));
+    NameColumn.setCellValueFactory(new PropertyValueFactory<TableRow, String>("Name"));
     ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("Status"));
     ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("Start"));
     ColumnFour.setCellValueFactory(new PropertyValueFactory<TableRow, String>("End"));
@@ -53,11 +54,11 @@ public class ConferenceHistoryController {
     //    ColumnTwo.setText("Status");
     //    ColumnThree.setText("Start");
     //    ColumnFour.setText("End");
-    //    ColumnFive.setText("Info");
+    //   ColumnFive.setText("Info");
     //    ColumnSix.setText("Room");
-    ColumnOne.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
-    ColumnTwo.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
-    ColumnThree.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
+    //    ColumnOne.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
+    //    ColumnTwo.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
+    //    ColumnThree.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
 
     // get conference room table
 
@@ -87,7 +88,7 @@ public class ConferenceHistoryController {
 
   public ObservableList<TableRow> convertToObservableList(List<List<String>> rowList) {
     String requestID;
-    String Requester;
+    String reqname;
     String status;
     String startTime;
     String endTime;
@@ -99,14 +100,14 @@ public class ConferenceHistoryController {
       }
 
       requestID = rl.get(0);
-      //      requestID = Integer.valueOf(rl.get(0)).toString();
-      Requester = rl.get(1);
+      reqname = rl.get(1);
       status = rl.get(2);
       startTime = rl.get(3);
       endTime = rl.get(4);
       additionalInfo = rl.get(5);
       roomName = rl.get(6);
-      rows.add(new TableRow(requestID, status, startTime, endTime, additionalInfo, roomName));
+      rows.add(
+          new TableRow(requestID, reqname, status, startTime, endTime, additionalInfo, roomName));
     }
     return rows;
   }
