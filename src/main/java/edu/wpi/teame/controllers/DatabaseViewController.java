@@ -165,7 +165,7 @@ public class DatabaseViewController {
 
     deleteButton.setOnMouseClicked(
         event -> {
-          removeItem(dC);
+          removeItem();
         });
 
     App.getPrimaryStage()
@@ -175,14 +175,14 @@ public class DatabaseViewController {
               @Override
               public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.BACK_SPACE) {
-                  removeItem(dC);
+                  removeItem();
                 }
               }
             });
 
     addButton.setOnMouseClicked(
         event -> {
-          addRow(dC, windowPop);
+          addRow(windowPop);
         });
 
     importButton.setOnMouseClicked(
@@ -279,7 +279,7 @@ public class DatabaseViewController {
     }
   }
 
-  private void addRow(DatabaseController dC, Popup windowPop) {
+  private void addRow(Popup windowPop) {
     Object toAdd;
     switch (databaseChoice.getValue()) {
       case "move":
@@ -289,7 +289,7 @@ public class DatabaseViewController {
         // MoveAttribute newMoveAttribute;
         try {
           toAdd = new MoveAttribute(nodeID, name, date);
-          dC.addToTable(DatabaseController.Table.MOVE, toAdd);
+          DatabaseController.INSTANCE.addToTable(DatabaseController.Table.MOVE, toAdd);
           moveTable.getItems().add((MoveAttribute) toAdd);
           IDField.clear();
           locationField.clear();
@@ -307,7 +307,7 @@ public class DatabaseViewController {
             LocationName.NodeType.stringToNodeType(locationTypeField.getText());
         try {
           toAdd = new LocationName(longName, shortName, type);
-          dC.addToTable(DatabaseController.Table.LOCATION_NAME, toAdd);
+          DatabaseController.INSTANCE.addToTable(DatabaseController.Table.LOCATION_NAME, toAdd);
           locationTable.getItems().add((LocationName) toAdd);
           longNameField.clear();
           shortNameField.clear();
@@ -326,7 +326,7 @@ public class DatabaseViewController {
         String building = buildingField.getText();
         try {
           toAdd = new HospitalNode(nodeI, nodeX, nodeY, flr, building);
-          dC.addToTable(DatabaseController.Table.NODE, toAdd);
+          DatabaseController.INSTANCE.addToTable(DatabaseController.Table.NODE, toAdd);
           nodeTable.getItems().add((HospitalNode) toAdd);
           IDFieldLoc.clear();
           xField.clear();
@@ -344,7 +344,7 @@ public class DatabaseViewController {
         String edge2 = edge2Field.getText();
         try {
           toAdd = new HospitalEdge(edge1, edge2);
-          dC.addToTable(DatabaseController.Table.EDGE, toAdd);
+          DatabaseController.INSTANCE.addToTable(DatabaseController.Table.EDGE, toAdd);
           edgeTable.getItems().add((HospitalEdge) toAdd);
           edge1Field.clear();
           edge2Field.clear();
@@ -357,22 +357,22 @@ public class DatabaseViewController {
     }
   }
 
-  private void removeItem(DatabaseController dC) {
+  private void removeItem() {
     Object selectedItem = activeTable.getSelectionModel().getSelectedItem();
     if (selectedItem != null) {
       activeTable.getItems().remove(selectedItem);
       switch (databaseChoice.getValue()) {
         case "move":
-          dC.deleteFromTable(DatabaseController.Table.MOVE, selectedItem);
+          DatabaseController.INSTANCE.deleteFromTable(DatabaseController.Table.MOVE, selectedItem);
           break;
         case "location":
-          dC.deleteFromTable(DatabaseController.Table.LOCATION_NAME, selectedItem);
+          DatabaseController.INSTANCE.deleteFromTable(DatabaseController.Table.LOCATION_NAME, selectedItem);
           break;
         case "node":
-          dC.deleteFromTable(DatabaseController.Table.NODE, selectedItem);
+          DatabaseController.INSTANCE.deleteFromTable(DatabaseController.Table.NODE, selectedItem);
           break;
         case "edge":
-          dC.deleteFromTable(DatabaseController.Table.EDGE, selectedItem);
+          DatabaseController.INSTANCE.deleteFromTable(DatabaseController.Table.EDGE, selectedItem);
           break;
       }
     }
