@@ -200,20 +200,17 @@ public class Cdb implements IServiceRequest {
     try {
       String CONFREQUEST = "\"ServiceRequests\".\"conferenceRoom\"";
       // query
-      String queryInsertMealReq = "INSERT INTO " + CONFREQUEST + " VALUES (?,?,?,?,?,?);";
+      String queryInsertMealReq = "INSERT INTO " + CONFREQUEST + " VALUES (?,?,?,?,?,?,?);";
       PreparedStatement preparedStatement =
           DBConnection.getConnection().prepareStatement(queryInsertMealReq);
       {
         preparedStatement.setInt(1, requester.getRequesterID());
         preparedStatement.setString(2, requester.getRequesterName());
-        preparedStatement.setString(
-            3,
-            confReq
-                .getStat()
-                .name());
+        preparedStatement.setString(3, confReq.getStat().name());
         preparedStatement.setString(4, confReq.getStartTime());
         preparedStatement.setString(5, confReq.getEndTime());
         preparedStatement.setString(6, confReq.getAdditionalNotes());
+        preparedStatement.setString(7, confReq.getRoomName());
         preparedStatement.executeUpdate();
       }
     } catch (Exception e) {
