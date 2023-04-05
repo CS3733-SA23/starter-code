@@ -1,5 +1,6 @@
 package Database;
 
+import static Database.DatabaseController.Table.EDGE;
 import static Database.DatabaseController.Table.LOCATION_NAME;
 import static edu.wpi.teame.map.Floor.stringToFloor;
 import static edu.wpi.teame.map.LocationName.NodeType.*;
@@ -44,8 +45,8 @@ public enum DatabaseController {
 
   public static void main(String[] args) {
     DatabaseController db = DatabaseController.INSTANCE;
-    LocationName locationName = new LocationName("MICU 3BC Waiting RoomA", "Hall", ELEV);
-    db.addToTable(LOCATION_NAME, locationName);
+    HospitalEdge edge = new HospitalEdge("2000", "2005");
+    db.addToTable(EDGE, edge);
   }
 
   private Connection c;
@@ -159,7 +160,7 @@ public enum DatabaseController {
         HospitalEdge edge = (HospitalEdge) obj;
         String startNode = edge.getNodeOneID();
         String endNode = edge.getNodeTwoID();
-        insertTable = "INSERT INTO \"Edge\" VALUES(" + startNode + ",'" + endNode + "');";
+        insertTable = "INSERT INTO \"Edge\" VALUES(" + startNode + "," + endNode + ");";
         break;
       case NODE:
         HospitalNode node = (HospitalNode) obj;
@@ -171,13 +172,13 @@ public enum DatabaseController {
         insertTable =
             "INSERT INTO \"Node\" VALUES('"
                 + nodeID
-                + "' , '"
+                + "','"
                 + xcoord
-                + "' , '"
+                + "','"
                 + ycoord
-                + "' , '"
+                + "','"
                 + floor
-                + "' , '"
+                + "','"
                 + building
                 + "');";
         break;
@@ -186,7 +187,6 @@ public enum DatabaseController {
         String lName = locationName.getLongName();
         String shortName = locationName.getShortName();
         LocationName.NodeType nodeType = locationName.getNodeType();
-        //        var nodeType = "Test";
         insertTable =
             "INSERT INTO \"LocationName\" VALUES('"
                 + lName
