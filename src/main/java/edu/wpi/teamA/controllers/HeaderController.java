@@ -27,7 +27,7 @@ public class HeaderController {
     mapMenu.setOnAction(event -> Navigation.navigate(Screen.MAP));
     signageMenu.setOnAction(event -> Navigation.navigate(Screen.SIGNAGE));
     pathfindingMenu.setOnAction(event -> Navigation.navigate(Screen.PATHFINDING));
-    // exitMenu
+    // exit menu
     bwhLogo.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     // profile.setOnMouseClicked();
   }
