@@ -128,6 +128,13 @@ public class DatabaseViewController {
     popupLabel.setStyle("-fx-background-color: red;");
     windowPop.getContent().add(popupLabel);
     windowPop.setAutoHide(true);
+
+    Popup confirmPop = new Popup();
+    Label confirmLabel = new Label("Row added successfully");
+    confirmLabel.setStyle("-fx-background-color: green;");
+    confirmPop.getContent().add(confirmLabel);
+    confirmPop.setAutoHide(true);
+
     saveChooser.setTitle("Select where to save your file");
     saveChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV File", ".csv"));
     selectChooser.setTitle("Select file to import");
@@ -337,7 +344,7 @@ public class DatabaseViewController {
     }
   }
 
-  private void addRow(Popup windowPop) {
+  private void addRow(Popup windowPop, Popup confirmPop) {
     Object toAdd;
     switch (databaseChoice.getValue()) {
       case MOVE:
@@ -348,6 +355,7 @@ public class DatabaseViewController {
         try {
           toAdd = new MoveAttribute(nodeID, name, date);
           DatabaseController.INSTANCE.addToTable(DatabaseController.Table.MOVE, toAdd);
+          confirmPop.show(App.getPrimaryStage());
           moveTable.getItems().add((MoveAttribute) toAdd);
           IDField.clear();
           locationField.clear();
@@ -366,6 +374,7 @@ public class DatabaseViewController {
         try {
           toAdd = new LocationName(longName, shortName, type);
           DatabaseController.INSTANCE.addToTable(DatabaseController.Table.LOCATION_NAME, toAdd);
+          confirmPop.show(App.getPrimaryStage());
           locationTable.getItems().add((LocationName) toAdd);
           longNameField.clear();
           shortNameField.clear();
@@ -386,6 +395,7 @@ public class DatabaseViewController {
         try {
           toAdd = new HospitalNode(new NodeInitializer(nodeI, nodeX, nodeY, flr, building));
           DatabaseController.INSTANCE.addToTable(DatabaseController.Table.NODE, toAdd);
+          confirmPop.show(App.getPrimaryStage());
           nodeTable.getItems().add((HospitalNode) toAdd);
           IDFieldLoc.clear();
           xField.clear();
@@ -404,6 +414,7 @@ public class DatabaseViewController {
         try {
           toAdd = new HospitalEdge(edge1, edge2);
           DatabaseController.INSTANCE.addToTable(DatabaseController.Table.EDGE, toAdd);
+          confirmPop.show(App.getPrimaryStage());
           edgeTable.getItems().add((HospitalEdge) toAdd);
           edge1Field.clear();
           edge2Field.clear();
