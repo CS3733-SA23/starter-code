@@ -1,5 +1,8 @@
 package Database;
 
+import static edu.wpi.teame.map.Floor.stringToFloor;
+import static edu.wpi.teame.map.LocationName.NodeType.stringToNodeType;
+
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.*;
 import java.io.*;
@@ -8,10 +11,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import org.json.JSONObject;
-
-import static edu.wpi.teame.map.Floor.floorToString;
-import static edu.wpi.teame.map.Floor.stringToFloor;
-import static edu.wpi.teame.map.LocationName.NodeType.stringToNodeType;
 
 public enum DatabaseController {
   INSTANCE;
@@ -164,7 +163,7 @@ public enum DatabaseController {
         String shortName = locationName.getShortName();
         LocationName.NodeType nodeType = locationName.getNodeType();
         insertTable =
-            "INSERT INTO \"Move\" VALUES(" + lName + ",'" + shortName + "' , '" + nodeType + "');";
+            "INSERT INTO \"LocationName\" VALUES(" + lName + ",'" + shortName + "' , '" + nodeType + "');";
         break;
       case SERVICE_REQUESTS:
         ServiceRequestData serviceRequestData = (ServiceRequestData) obj;
@@ -206,7 +205,7 @@ public enum DatabaseController {
     List<MoveAttribute> moveList = new ArrayList<>();
     String query = "SELECT * FROM teame.\"Move\" ORDER BY \"nodeID\" ASC;";
     try (Statement stmt = c.createStatement();
-         ResultSet rs = stmt.executeQuery(query)) {
+        ResultSet rs = stmt.executeQuery(query)) {
       while (rs.next()) {
         moveList.add(extractMoveFromResultSet(rs));
       }
@@ -216,47 +215,6 @@ public enum DatabaseController {
     }
     return moveList;
   }
-  /*public List<MoveAttribute> getMoveList() {
-    List<String> mList = new ArrayList<>();
-    String queryCountM = "SELECT COUNT(*) FROM teame.\"Move\";";
-    String queryMID = "SELECT \"nodeID\" FROM teame.\"Move\";";
-    try (Statement stmt = c.createStatement()) {
-      ResultSet rsm = stmt.executeQuery(queryCountM);
-      if (rsm.next()) {
-        int moveCount = rsm.getInt(1);
-        ResultSet rsMoves = stmt.executeQuery(queryMID);
-        for (int i = 0; i <= moveCount; i++) {
-          if (rsMoves.next()) {
-            mList.add(rsMoves.getString("nodeID"));
-          }
-        }
-      }
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-
-    // Retrieve move
-    for (String nodeID : mList) {
-      String moveQuery =
-          "SELECT * FROM teame.\"Move\" WHERE \"nodeID\" = '"
-              + nodeID
-              + "'  ORDER BY \"nodeID\" ASC ;";
-      try (Statement stmt = c.createStatement()) {
-        ResultSet rs = stmt.executeQuery(moveQuery);
-        if (rs.next()) {
-          moveList.add(extractMoveFromResultSet(rs));
-        }
-      } catch (SQLException d) {
-        throw new RuntimeException();
-      }
-    }
-    if (moveList.isEmpty()) {
-      System.out.println("Move table not retrieved");
-    } else {
-      System.out.println("Move table retrieved successfully");
-    }
-    return moveList;
-  }*/
 
   public List<HospitalEdge> getEdges() {
     List<HospitalEdge> hospitalEdges = new LinkedList<>();
@@ -288,10 +246,14 @@ public enum DatabaseController {
           "SELECT \"nodeID\", \"xcoord\", \"ycoord\", \"floor\", \"building\" FROM teame.\"Node\" ;";
       ResultSet rs = stmt.executeQuery(sql);
 
-
       while (rs.next()) {
         hospitalNodes.add(
-                new HospitalNode(rs.getString("nodeID"), rs.getInt("xcoord"), rs.getInt("ycoord"),  stringToFloor(rs.getString("floor")), rs.getString("building")));
+            new HospitalNode(
+                rs.getString("nodeID"),
+                rs.getInt("xcoord"),
+                rs.getInt("ycoord"),
+                stringToFloor(rs.getString("floor")),
+                rs.getString("building")));
       }
 
       return hospitalNodes;
@@ -309,10 +271,12 @@ public enum DatabaseController {
       String sql = "SELECT \"longName\", \"shortName\", \"nodeType\" FROM teame.\"LocationName\";";
       ResultSet rs = stmt.executeQuery(sql);
 
-
       while (rs.next()) {
-        locationNames.add(new LocationName(rs.getString("longName") + "", rs.getString("shortName"), stringToNodeType(rs.getString("nodeType"))));
-
+        locationNames.add(
+            new LocationName(
+                rs.getString("longName") + "",
+                rs.getString("shortName"),
+                stringToNodeType(rs.getString("nodeType"))));
       }
 
       return locationNames;
