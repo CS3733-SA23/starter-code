@@ -13,11 +13,11 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.tableview2.FilteredTableView?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.ConferenceHistoryController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamc.controllers.MealHistoryController">
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bae3e0" height="400.0" stroke="#bae3e0" strokeType="INSIDE" width="600.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TEAL" height="378.0" layoutX="11.0" layoutY="11.0" stroke="TEAL" strokeType="INSIDE" width="578.0" />
-        <Label layoutX="35.0" layoutY="40.0" text="Conference Room History" textFill="WHITE">
+        <Label layoutX="35.0" layoutY="40.0" text="Meal Request History" textFill="WHITE">
             <font>
                 <Font name="Verdana Bold" size="20.0" />
             </font>
@@ -34,13 +34,12 @@
             <children>
                 <FilteredTableView fx:id="historyTable" editable="true" prefHeight="281.0" prefWidth="521.0">
                     <columns>
-                  <TableColumn fx:id="ColumnOne" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="NameColumn" prefWidth="75.0" text="Name" />
-                  <TableColumn fx:id="ColumnTwo" prefWidth="75.0" text="Status" />
-                  <TableColumn fx:id="ColumnThree" prefWidth="75.0" text="Start" />
-                  <TableColumn fx:id="ColumnFour" prefWidth="75.0" text="End" />
-                  <TableColumn fx:id="ColumnFive" prefWidth="75.0" text="Info" />
-                  <TableColumn fx:id="ColumnSix" prefWidth="75.0" text="Room" />
+                        <TableColumn fx:id="ColumnOne" prefWidth="75.0" text="ID" />
+                        <TableColumn fx:id="ColumnTwo" prefWidth="75.0" text="Status" />
+                        <TableColumn fx:id="ColumnThree" prefWidth="75.0" text="Start" />
+                        <TableColumn fx:id="ColumnFour" prefWidth="75.0" text="End" />
+                        <TableColumn fx:id="ColumnFive" prefWidth="75.0" text="Info" />
+                        <TableColumn fx:id="ColumnSix" prefWidth="75.0" text="Room" />
                     </columns>
                 </FilteredTableView>
             </children>

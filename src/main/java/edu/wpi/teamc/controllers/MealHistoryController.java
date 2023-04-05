@@ -14,7 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.controlsfx.control.tableview2.FilteredTableView;
 
-public class ConferenceHistoryController {
+public class MealHistoryController {
 
   /** */
   @FXML MFXButton backButton;
@@ -30,7 +30,6 @@ public class ConferenceHistoryController {
   @FXML private FilteredTableView<TableRow> historyTable;
   @FXML TableView<TableRow> otherTable;
   @FXML TableColumn<TableRow, String> ColumnOne;
-  @FXML TableColumn<TableRow, String> NameColumn;
   @FXML TableColumn<TableRow, String> ColumnTwo;
   @FXML TableColumn<TableRow, String> ColumnThree;
   @FXML TableColumn<TableRow, String> ColumnFour;
@@ -44,12 +43,11 @@ public class ConferenceHistoryController {
   /** Method run when controller is initialized */
   public void initialize() {
     ColumnOne.setCellValueFactory(new PropertyValueFactory<TableRow, String>("s1"));
-    NameColumn.setCellValueFactory(new PropertyValueFactory<TableRow, String>("s2"));
-    ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("s3"));
-    ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("s4"));
-    ColumnFour.setCellValueFactory(new PropertyValueFactory<TableRow, String>("s5"));
-    ColumnFive.setCellValueFactory(new PropertyValueFactory<TableRow, String>("s6"));
-    ColumnSix.setCellValueFactory(new PropertyValueFactory<TableRow, String>("s7"));
+    ColumnTwo.setCellValueFactory(new PropertyValueFactory<TableRow, String>("s2"));
+    ColumnThree.setCellValueFactory(new PropertyValueFactory<TableRow, String>("s3"));
+    ColumnFour.setCellValueFactory(new PropertyValueFactory<TableRow, String>("s4"));
+    ColumnFive.setCellValueFactory(new PropertyValueFactory<TableRow, String>("s5"));
+    ColumnSix.setCellValueFactory(new PropertyValueFactory<TableRow, String>("s6"));
     //    ColumnOne.setText("ID");
     //    ColumnTwo.setText("Status");
     //    ColumnThree.setText("Start");
@@ -64,7 +62,7 @@ public class ConferenceHistoryController {
 
     historyTable
         .getItems()
-        .setAll(convertToObservableList(Cdb.getTable("ServiceRequests", "conferenceRoom")));
+        .setAll(convertToObservableList(Cdb.getTable("ServiceRequests", "mealRequest")));
 
     System.out.println("did it");
   }
@@ -89,11 +87,11 @@ public class ConferenceHistoryController {
   public ObservableList<TableRow> convertToObservableList(List<List<String>> rowList) {
     String requestID;
     String reqname;
+    String meal;
     String status;
-    String startTime;
-    String endTime;
-    String additionalInfo;
-    String roomName;
+    String room;
+    String notes;
+
     for (List<String> rl : rowList) {
       for (String s : rl) {
         System.out.println(s);
@@ -101,13 +99,11 @@ public class ConferenceHistoryController {
 
       requestID = rl.get(0);
       reqname = rl.get(1);
-      status = rl.get(2);
-      startTime = rl.get(3);
-      endTime = rl.get(4);
-      additionalInfo = rl.get(5);
-      roomName = rl.get(6);
-      rows.add(
-          new TableRow(requestID, reqname, status, startTime, endTime, additionalInfo, roomName));
+      meal = rl.get(2);
+      status = rl.get(3);
+      room = rl.get(4);
+      notes = rl.get(5);
+      rows.add(new TableRow(requestID, reqname, meal, status, room, notes));
     }
     return rows;
   }
