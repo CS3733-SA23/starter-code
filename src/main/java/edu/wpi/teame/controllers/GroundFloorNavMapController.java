@@ -43,8 +43,8 @@ public class GroundFloorNavMapController {
   @FXML
   public void initialize() {
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    lowerLevelOneButton.setOnMouseClicked(event -> Navigation.navigate(Screen.GROUND_FLOOR));
-    lowerLevelTwoButton.setOnMouseClicked(event -> Navigation.navigate(Screen.GROUND_FLOOR));
+    lowerLevelOneButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOWER_ONE));
+    lowerLevelTwoButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOWER_TWO));
     firstFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_ONE));
     secondFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_TWO));
     thirdFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_THREE));
@@ -75,6 +75,6 @@ public class GroundFloorNavMapController {
   }
 
   void displayPath(String from, String to) {
-    System.out.println(from + " to " + to); //used for testing
+    System.out.println(from + " to " + to); // used for testing
   }
 }
