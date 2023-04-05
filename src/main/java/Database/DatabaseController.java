@@ -248,13 +248,15 @@ public enum DatabaseController {
       Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
 
       String sql =
-          "SELECT \"nodeID\", \"longName\", \"date\" FROM teame.\"Node\" NATURAL JOIN teame.\"Move\" WHERE floor = '"
-              + "';";
+          "SELECT \"startNode\", \"endNode\" FROM teame.\"Edge\" ;";
       ResultSet rs = stmt.executeQuery(sql);
 
       while (rs.next()) {
+        
+        hospitalEdges.add(
+                new HospitalEdge(
+                        rs.getString("startNode"), rs.getString("endNode")));
 
-        hospitalEdges.add(new HospitalEdge(rs.getInt("nodeid") + "", rs.getString("longName")));
       }
 
       return hospitalEdges;
@@ -270,16 +272,13 @@ public enum DatabaseController {
       Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
 
       String sql =
-          "SELECT \"nodeID\", \"longName\", \"date\" FROM teame.\"Node\" NATURAL JOIN teame.\"Move\" WHERE floor = '"
-              + "';";
+          "SELECT \"nodeID\", \"xcoord\", \"ycoord\", \"floor\", \"building\" FROM teame.\"Node\" ;";
       ResultSet rs = stmt.executeQuery(sql);
 
       /*
       while (rs.next()) {
-
-        hospitalNodes.add(
-                new HospitalNode(
-                        rs.getInt("nodeid") + "", rs.getString("longName"), rs.getString("date")));
+        //hospitalNodes.add(
+                //new HospitalNode(rs.getInt("nodeID"), rs.getInt("xcoord"), rs.getInt("ycoord"),  rs.getString("floor"), rs.getString("building")));
       }
 
        */
@@ -297,15 +296,12 @@ public enum DatabaseController {
       Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
 
       String sql =
-          "SELECT \"nodeID\", \"longName\", \"date\" FROM teame.\"Node\" NATURAL JOIN teame.\"Move\" WHERE floor = '"
-              + "';";
+          "SELECT \"longName\", \"shortName\", \"nodeType\" FROM teame.\"LocationName\";";
       ResultSet rs = stmt.executeQuery(sql);
 
       /*
       while (rs.next()) {
-        locationNames.add(
-                new LocationName(
-                        rs.getInt("nodeid") + "", rs.getString("longName"), rs.getInt("date")));
+        //locationNames.add(new LocationName(rs.getString("longName") + "", rs.getString("shortName"), rs.getString("nodeType")));
 
       }
 
