@@ -23,7 +23,7 @@ public class Node {
     return nodeID;
   }
 
-  public Integer getXccord() {
+  public Integer getXcoord() {
     return xcoord;
   }
 

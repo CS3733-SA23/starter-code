@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import lombok.Getter;
@@ -23,7 +24,60 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
     this.MoveArray = MoveArray;
   }
 
-  public static void Import(String filePath) {
+  public static void createSchema() {
+    try {
+      Statement stmtSchema = moveProvider.createConnection().createStatement();
+      String sqlCreateSchema = "CREATE SCHEMA IF NOT EXISTS \"Prototype2_schema\"";
+      stmtSchema.execute(sqlCreateSchema);
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static Connection createConnection() {
+    String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamadb";
+    String user = "teama";
+    String password = "teama10";
+
+    try {
+      return DriverManager.getConnection(url, user, password);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public static ArrayList<Move> loadMovesFromCSV(String filePath) {
+    ArrayList<Move> moves = new ArrayList<>();
+
+    try {
+      BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
+      csvReader.readLine(); // Skip the header line
+      String row;
+
+      while ((row = csvReader.readLine()) != null) {
+        String[] data = row.split(",");
+
+        int nodeID = Integer.parseInt(data[0]);
+        String longName = data[1];
+        LocalDate date = LocalDate.parse(data[2]);
+
+        Move move = new Move(nodeID, longName, date);
+        moves.add(move);
+      }
+
+      csvReader.close();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    return moves;
+  }
+
+  public static ArrayList<Move> Import(String filePath) {
+    MoveDAOImp.createSchema();
+    ArrayList<Move> MoveArray = loadMovesFromCSV(filePath);
+
     try {
       Scanner input = new Scanner(System.in);
       System.out.println("Please input the full qualified path of the file you want to import");
@@ -57,6 +111,7 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
 
       throw new RuntimeException(e);
     }
+    return MoveArray;
   }
 
   public static void Export(String filePath) {

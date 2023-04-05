@@ -20,7 +20,59 @@ public class LocNameDAOImp implements IDataBase, ILocNameDAO {
     this.LocNameArray = LocNameArray;
   }
 
-  public static void Import(String filePath) {
+  public static void createSchema() {
+    try {
+      Statement stmtSchema = LocNameProvider.createConnection().createStatement();
+      String sqlCreateSchema = "CREATE SCHEMA IF NOT EXISTS \"Prototype2_schema\"";
+      stmtSchema.execute(sqlCreateSchema);
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static Connection createConnection() {
+    String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamadb";
+    String user = "teama";
+    String password = "teama10";
+
+    try {
+      return DriverManager.getConnection(url, user, password);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public static ArrayList<LocationName> loadLocNamesFromCSV(String filePath) {
+    ArrayList<LocationName> locationNames = new ArrayList<>();
+
+    try {
+      BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
+      csvReader.readLine(); // Skip the header line
+      String row;
+
+      while ((row = csvReader.readLine()) != null) {
+        String[] data = row.split(",");
+
+        String longName = data[0];
+        String shortName = data[1];
+        String nodeType = data[2];
+        LocationName locationName = new LocationName(longName, shortName, nodeType);
+        locationNames.add(locationName);
+      }
+
+      csvReader.close();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    return locationNames;
+  }
+
+  public static ArrayList<LocationName> Import(String filePath) {
+    LocNameDAOImp.createSchema();
+    ArrayList<LocationName> LocNameArray = loadLocNamesFromCSV(filePath);
+
     try {
       BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
       csvReader.readLine();
@@ -51,6 +103,7 @@ public class LocNameDAOImp implements IDataBase, ILocNameDAO {
 
       throw new RuntimeException(e);
     }
+    return LocNameArray;
   }
 
   public static void Export(String filePath) {
