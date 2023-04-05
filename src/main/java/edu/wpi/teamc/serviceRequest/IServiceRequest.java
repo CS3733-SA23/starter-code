@@ -4,7 +4,7 @@ public interface IServiceRequest {
   public enum STATUS {
     PENDING,
     INPROGRESS,
-    COMPLETE
+    COMPLETE;
   }
 
   public enum TYPE {

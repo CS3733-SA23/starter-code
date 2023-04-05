@@ -183,7 +183,7 @@ public class Cdb implements IServiceRequest {
         preparedStatement.setString(
             3, "mealName"); // adds meal by meal name not my class -> can later figure out how
         // to
-        preparedStatement.setString(4, mealReq.getStat());
+        preparedStatement.setString(4, mealReq.getStat().name());
         preparedStatement.setString(5, mealReq.getRoom());
         preparedStatement.setString(6, mealReq.getSpecialNotes());
 
@@ -208,7 +208,9 @@ public class Cdb implements IServiceRequest {
         preparedStatement.setString(2, requester.getRequesterName());
         preparedStatement.setString(
             3,
-            confReq.getStat()); // adds meal by meal name not my class -> can later figure out how
+            confReq
+                .getStat()
+                .name()); // adds meal by meal name not my class -> can later figure out how
         // to
         preparedStatement.setString(4, confReq.getStartTime());
         preparedStatement.setString(5, confReq.getEndTime());
@@ -241,7 +243,9 @@ public class Cdb implements IServiceRequest {
       {
         preparedStatement.setString(
             3,
-            confReq.getStat()); // adds meal by meal name not my class -> can later figure out how
+            confReq
+                .getStat()
+                .name()); // adds meal by meal name not my class -> can later figure out how
         // to
         preparedStatement.setString(4, confReq.getStartTime());
         preparedStatement.setString(5, confReq.getEndTime());
@@ -276,7 +280,7 @@ public class Cdb implements IServiceRequest {
                 .getSelection()
                 .getMealName()); // adds meal by meal name not my class -> can later figure out how
         // to
-        preparedStatement.setString(4, mealReq.getStat());
+        preparedStatement.setString(4, mealReq.getStat().name());
         preparedStatement.setString(5, mealReq.getRoom());
         preparedStatement.executeUpdate();
       }

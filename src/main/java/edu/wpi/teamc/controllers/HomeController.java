@@ -88,6 +88,11 @@ public class HomeController {
     Navigation.navigate(Screen.PATHFINDING_PAGE);
   }
 
+  @FXML
+  void getExit(ActionEvent event) {
+    System.exit(0);
+  }
+
   /** Method run when controller is initialized */
   @FXML
   public void initialize() {}
