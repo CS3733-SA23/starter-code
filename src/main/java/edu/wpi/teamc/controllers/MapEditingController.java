@@ -16,6 +16,13 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import org.controlsfx.control.tableview2.FilteredTableView;
 
 public class MapEditingController {
+  /*
+  Notes:
+  * implement import and export buttons and get rid of navigation actions
+  * implement a submit button that submits all edits at once
+      * maybe store edits and their indices in an array and iterate over that array after the submit
+      * button is pressed to update the move list from the database
+   */
 
   /** */
   @FXML MFXButton backButton;
@@ -85,8 +92,10 @@ public class MapEditingController {
     //          rowData.setNodeID(event.getNewValue());
     //        });
 
-    // index is used to find the point in the databaseMoveList the updated node is from. Can therefore
-    // use the index to only edit that specific node in the databaseMoveList (instead of checking for
+    // index is used to find the point in the databaseMoveList the updated node is from. Can
+    // therefore
+    // use the index to only edit that specific node in the databaseMoveList (instead of checking
+    // for
     // nodeID matching because, for this, you would have to look within the nodeID of each and every
     // move object and find the matching one. This way you can just look for the matching index and
     // replace the proper move object at that index)

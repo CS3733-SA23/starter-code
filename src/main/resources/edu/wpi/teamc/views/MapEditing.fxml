@@ -17,16 +17,16 @@
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bae3e0" height="400.0" stroke="#bae3e0" strokeType="INSIDE" width="600.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TEAL" height="378.0" layoutX="11.0" layoutY="11.0" stroke="TEAL" strokeType="INSIDE" width="578.0" />
-        <Label layoutX="35.0" layoutY="40.0" text="Map Change History" textFill="WHITE">
+        <Label layoutX="35.0" layoutY="40.0" text="Map Editor" textFill="WHITE">
             <font>
                 <Font name="Verdana Bold" size="20.0" />
             </font>
         </Label>
-        <MFXButton fx:id="goHome" layoutX="38.0" layoutY="355.0" onAction="#getGoHome" prefHeight="26.0" prefWidth="110.0" text="Home" textFill="#016161">
+        <MFXButton fx:id="goHome" layoutX="38.0" layoutY="355.0" onAction="#getGoHome" prefHeight="26.0" prefWidth="110.0" text="Import CSV" textFill="#016161">
             <font>
                 <Font name="Verdana Bold" size="13.0" />
             </font></MFXButton>
-        <MFXButton fx:id="editMap" layoutX="450.0" layoutY="355.0" prefHeight="26.0" prefWidth="110.0" text="Edit Map" textFill="#016161">
+        <MFXButton fx:id="editMap" layoutX="450.0" layoutY="355.0" prefHeight="26.0" prefWidth="110.0" text="Export CSV" textFill="#016161">
             <font>
                 <Font name="Verdana Bold" size="13.0" />
             </font></MFXButton>
@@ -76,5 +76,10 @@
                 <Cursor fx:constant="OPEN_HAND" />
             </cursor>
         </MenuBar>
+      <MFXButton fx:id="submitEdits" layoutX="245.0" layoutY="355.0" onAction="#getGoHome" prefHeight="26.0" prefWidth="110.0" text="Submit Edits" textFill="#016161">
+         <font>
+            <Font name="Verdana Bold" size="13.0" />
+         </font>
+      </MFXButton>
     </children>
 </AnchorPane>
