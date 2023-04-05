@@ -59,27 +59,34 @@ public enum DatabaseController {
       case MOVE:
         MoveAttribute moveAttribute = (MoveAttribute) obj;
         String nodeId = moveAttribute.getNodeID();
-        sqlDelete =
-                "DELETE FROM \"Move\" WHERE \"nodeID\" = '" + nodeId + "';";
+        sqlDelete = "DELETE FROM \"Move\" WHERE \"nodeID\" = '" + nodeId + "';";
         break;
       case EDGE:
         HospitalEdge edge = (HospitalEdge) obj;
         String startNode = edge.getNodeOneID();
         String endNode = edge.getNodeTwoID();
-        sqlDelete = "DELETE FROM \"Edge\" WHERE \"startNode\" = " + startNode + " AND \"endNode\" = '" + endNode + "';";
+        sqlDelete =
+            "DELETE FROM \"Edge\" WHERE \"startNode\" = "
+                + startNode
+                + " AND \"endNode\" = '"
+                + endNode
+                + "';";
         break;
       case NODE:
         HospitalNode node = (HospitalNode) obj;
         String nodeID = node.getNodeID();
-        sqlDelete =
-                "DELETE FROM \"Node\" WHERE \"nodeID\" = '" + nodeID + "';";
+        sqlDelete = "DELETE FROM \"Node\" WHERE \"nodeID\" = '" + nodeID + "';";
         break;
       case LOCATION_NAME:
         LocationName locationName = (LocationName) obj;
         String lName = locationName.getLongName();
         String shortName = locationName.getShortName();
         sqlDelete =
-                "DELETE FROM \"LocationName\" WHERE \"longName\" = " + lName + " AND \"shortName\" = '" + shortName + "';";
+            "DELETE FROM \"LocationName\" WHERE \"longName\" = "
+                + lName
+                + " AND \"shortName\" = '"
+                + shortName
+                + "';";
         break;
       case SERVICE_REQUESTS:
         ServiceRequestData serviceRequestData = (ServiceRequestData) obj;
@@ -88,7 +95,15 @@ public enum DatabaseController {
         String staffAssigned = serviceRequestData.getAssignedStaff();
         ServiceRequestData.RequestType requestType = serviceRequestData.getRequestType();
         sqlDelete =
-                "DELETE FROM \"ServiceRequests\" WHERE \"requestdata\" = " + requestData + " AND \"status\" = '" + status + "' AND \"staffassigned\" = '" + staffAssigned + "' AND \"requestType\" = '" + requestType + "';";
+            "DELETE FROM \"ServiceRequests\" WHERE \"requestdata\" = "
+                + requestData
+                + " AND \"status\" = '"
+                + status
+                + "' AND \"staffassigned\" = '"
+                + staffAssigned
+                + "' AND \"requestType\" = '"
+                + requestType
+                + "';";
         break;
     }
 
@@ -235,14 +250,16 @@ public enum DatabaseController {
       Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
 
       String sql =
-              "SELECT \"nodeID\", \"longName\", \"date\" FROM teame.\"Node\" NATURAL JOIN teame.\"Move\" WHERE floor = '"
-                      + "';";
+          "SELECT \"nodeID\", \"longName\", \"date\" FROM teame.\"Node\" NATURAL JOIN teame.\"Move\" WHERE floor = '"
+              + "';";
       ResultSet rs = stmt.executeQuery(sql);
 
       while (rs.next()) {
+
         hospitalEdges.add(
                 new HospitalEdge(
                         rs.getInt("nodeid") + "", rs.getString("longName")));
+
       }
 
       return hospitalEdges;
@@ -251,6 +268,8 @@ public enum DatabaseController {
     }
   }
 
+
+
   public List<HospitalNode> getNodes() {
     List<HospitalNode> hospitalNodes = new LinkedList<>();
 
@@ -258,10 +277,12 @@ public enum DatabaseController {
       Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
 
       String sql =
-              "SELECT \"nodeID\", \"longName\", \"date\" FROM teame.\"Node\" NATURAL JOIN teame.\"Move\" WHERE floor = '" + "';";
+          "SELECT \"nodeID\", \"longName\", \"date\" FROM teame.\"Node\" NATURAL JOIN teame.\"Move\" WHERE floor = '"
+              + "';";
       ResultSet rs = stmt.executeQuery(sql);
 
       while (rs.next()) {
+
         hospitalNodes.add(
                 new HospitalNode(
                         rs.getInt("nodeid") + "", rs.getString("longName"), rs.getString("date")));
@@ -280,13 +301,15 @@ public enum DatabaseController {
       Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
 
       String sql =
-              "SELECT \"nodeID\", \"longName\", \"date\" FROM teame.\"Node\" NATURAL JOIN teame.\"Move\" WHERE floor = '" + "';";
+          "SELECT \"nodeID\", \"longName\", \"date\" FROM teame.\"Node\" NATURAL JOIN teame.\"Move\" WHERE floor = '"
+              + "';";
       ResultSet rs = stmt.executeQuery(sql);
 
       while (rs.next()) {
         locationNames.add(
                 new LocationName(
                         rs.getInt("nodeid") + "", rs.getString("longName"), rs.getInt("date")));
+
       }
 
       return locationNames;

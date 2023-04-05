@@ -174,7 +174,6 @@ public class DatabaseViewController {
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
 
     deleteButton.setOnMouseClicked(
-
         event -> {
           removeItem(dC);
           /*
@@ -324,16 +323,19 @@ public class DatabaseViewController {
         edgeAddZone.setVisible(true);
         break;
     }
+    if (!addButton.isVisible()) {
+      addButton.setVisible(true);
+    }
   }
 
-  private void addRow(DatabaseController dC, Popup windowPop){
+  private void addRow(DatabaseController dC, Popup windowPop) {
     Object toAdd;
-    switch (databaseChoice.getValue()){
+    switch (databaseChoice.getValue()) {
       case "move":
         String nodeID = IDField.getText();
         String name = locationField.getText();
         String date = dateField.getText();
-        //MoveAttribute newMoveAttribute;
+        // MoveAttribute newMoveAttribute;
         try {
           toAdd = new MoveAttribute(nodeID, name, date);
           dC.addToTable(DatabaseController.Table.MOVE, toAdd);
@@ -350,7 +352,8 @@ public class DatabaseViewController {
       case "location":
         String longName = longNameField.getText();
         String shortName = shortNameField.getText();
-        LocationName.NodeType type = LocationName.NodeType.stringToNodeType(locationTypeField.getText());
+        LocationName.NodeType type =
+            LocationName.NodeType.stringToNodeType(locationTypeField.getText());
         try {
           toAdd = new LocationName(longName, shortName, type);
           dC.addToTable(DatabaseController.Table.LOCATION_NAME, toAdd);
@@ -403,11 +406,11 @@ public class DatabaseViewController {
     }
   }
 
-  private void removeItem(DatabaseController dC){
+  private void removeItem(DatabaseController dC) {
     Object selectedItem = activeTable.getSelectionModel().getSelectedItem();
     if (selectedItem != null) {
       activeTable.getItems().remove(selectedItem);
-      switch (databaseChoice.getValue()){
+      switch (databaseChoice.getValue()) {
         case "move":
           dC.deleteFromTable(DatabaseController.Table.MOVE, selectedItem);
           break;
@@ -421,7 +424,7 @@ public class DatabaseViewController {
           dC.deleteFromTable(DatabaseController.Table.EDGE, selectedItem);
           break;
       }
-      //dC.deleteFromTable( ,selectedItem);
+      // dC.deleteFromTable( ,selectedItem);
     }
   }
 }

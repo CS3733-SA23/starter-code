@@ -52,7 +52,7 @@
                                           <MFXTextField fx:id="buildingField" promptText="Building" />
                                        </children>
                                     </HBox>
-                                    <HBox fx:id="movesAddZone">
+                                    <HBox fx:id="movesAddZone" visible="false">
                                        <children>
                                           <MFXTextField fx:id="IDField" promptText="Node ID" />
                                           <MFXTextField fx:id="locationField" promptText="Location Name" />
@@ -61,7 +61,7 @@
                                     </HBox>
                                  </children>
                               </StackPane>
-                              <MFXButton fx:id="addButton" minWidth="75.0" text="Add Row" />
+                              <MFXButton fx:id="addButton" minWidth="75.0" text="Add Row" visible="false" />
                            </children>
                         </HBox>
                      </children>
@@ -70,7 +70,7 @@
             </VBox>
             <VBox>
                <children>
-                  <ComboBox fx:id="databaseChoice" prefWidth="150.0" />
+                  <ComboBox fx:id="databaseChoice" prefWidth="150.0" promptText="Select database to edit..." />
                   <StackPane>
                      <children>
                         <TableView fx:id="edgeTable" visible="false">
@@ -95,7 +95,7 @@
                               <TableColumn fx:id="buildingCol" prefWidth="75.0" text="Building" />
                            </columns>
                         </TableView>
-                        <TableView fx:id="moveTable">
+                        <TableView fx:id="moveTable" visible="false">
                           <columns>
                             <TableColumn fx:id="nodeIDCol" prefWidth="75.0" text="NodeID" />
                             <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name" />
