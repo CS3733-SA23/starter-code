@@ -215,4 +215,26 @@ public class SearchController {
   public GraphNode getGraphNode(int key) {
     return graph.getGraphNode(key);
   }
+
+  public String bfs(int startID, int endID) {
+    ArrayList<Integer> path = this.pathOfNodesBFS(startID, endID);
+    String stringPath = getPath(path);
+    return stringPath;
+  }
+
+  public String aStar(int startID, int endID) {
+    ArrayList<Integer> path = this.pathOfNodesAStar(startID, endID);
+    String stringPath = getPath(path);
+    return stringPath;
+  }
+
+  public String getPath(ArrayList<Integer> path) {
+    String stringPath = "Start at node " + path.get(0);
+
+    for (int i = 1; i < path.size(); i++) {
+      stringPath = ", then go to node " + path.get(i);
+    }
+
+    return stringPath + ". You have reached your destination.";
+  }
 }
