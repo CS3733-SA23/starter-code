@@ -56,12 +56,12 @@ public class ConferenceHistoryController {
         new PropertyValueFactory<ConferenceRoomRequest, String>("additionalInfo"));
     ColumnSix.setCellValueFactory(
         new PropertyValueFactory<ConferenceRoomRequest, String>("roomName"));
-    ColumnOne.setText("ID");
-    ColumnTwo.setText("Status");
-    ColumnThree.setText("Start");
-    ColumnFour.setText("End");
-    ColumnFive.setText("Info");
-    ColumnSix.setText("Room");
+    //    ColumnOne.setText("ID");
+    //    ColumnTwo.setText("Status");
+    //    ColumnThree.setText("Start");
+    //    ColumnFour.setText("End");
+    //    ColumnFive.setText("Info");
+    //    ColumnSix.setText("Room");
     //    ColumnOne.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
     //    ColumnTwo.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
     //    ColumnThree.setCellFactory(TextFieldTableCell.<TableRow>forTableColumn());
