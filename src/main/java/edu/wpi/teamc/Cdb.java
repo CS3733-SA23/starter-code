@@ -180,9 +180,7 @@ public class Cdb implements IServiceRequest {
       {
         preparedStatement.setInt(1, requester.getRequesterID());
         preparedStatement.setString(2, requester.getRequesterName());
-        preparedStatement.setString(
-            3, "mealName"); // adds meal by meal name not my class -> can later figure out how
-        // to
+        preparedStatement.setString(3, mealReq.getSelection().getMealName());
         preparedStatement.setString(4, mealReq.getStat().name());
         preparedStatement.setString(5, mealReq.getRoom());
         preparedStatement.setString(6, mealReq.getSpecialNotes());
@@ -196,6 +194,21 @@ public class Cdb implements IServiceRequest {
     }
   }
 
+  public static int latestRequestID(String type) {
+    int latestID = 0;
+    try {
+      String query = "SELECT MAX(\"requestID\") FROM \"ServiceRequests\".\"" + type + "\";";
+      PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+      ResultSet resultSet = preparedStatement.executeQuery();
+      while (resultSet.next()) {
+        latestID = resultSet.getInt(1);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return latestID;
+  }
+
   public static void addConferenceRoomRequest(ConferenceRoomRequest confReq, Requester requester) {
     try {
       String CONFREQUEST = "\"ServiceRequests\".\"conferenceRoom\"";
@@ -206,11 +219,7 @@ public class Cdb implements IServiceRequest {
       {
         preparedStatement.setInt(1, requester.getRequesterID());
         preparedStatement.setString(2, requester.getRequesterName());
-        preparedStatement.setString(
-            3,
-            confReq
-                .getStat()
-                .name());
+        preparedStatement.setString(3, confReq.getStat().name());
         preparedStatement.setString(4, confReq.getStartTime());
         preparedStatement.setString(5, confReq.getEndTime());
         preparedStatement.setString(6, confReq.getAdditionalNotes());
