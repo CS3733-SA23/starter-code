@@ -102,6 +102,14 @@
                               <TableColumn fx:id="dateCol" prefWidth="75.0" text="Date" />
                           </columns>
                         </TableView>
+                        <TableView fx:id="requestTable" visible="false">
+                           <columns>
+                              <TableColumn fx:id="dataCol" prefWidth="75.0" text="data" />
+                              <TableColumn fx:id="typeCol" prefWidth="75.0" text="type" />
+                              <TableColumn fx:id="statusCol" prefWidth="75.0" text="status" />
+                              <TableColumn fx:id="staffCol" prefWidth="75.0" text="staff" />
+                           </columns>
+                        </TableView>
                      </children>
                   </StackPane>
                </children>
