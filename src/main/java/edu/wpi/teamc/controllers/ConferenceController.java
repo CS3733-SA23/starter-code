@@ -3,6 +3,7 @@ package edu.wpi.teamc.controllers;
 import edu.wpi.teamc.Cdb;
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
+import edu.wpi.teamc.serviceRequest.ConferenceRoom;
 import edu.wpi.teamc.serviceRequest.ConferenceRoomRequest;
 import edu.wpi.teamc.serviceRequest.IServiceRequest;
 import edu.wpi.teamc.serviceRequest.Requester;
@@ -72,18 +73,21 @@ public class ConferenceController {
   void getSubmit(ActionEvent event) {
     LocalDate start = startTime.getValue();
     LocalDate end = endTime.getValue();
-
+    String name = nameBox.getText();
+    String room = menuButton.getText();
     String notes = specialRequest.getText();
     String roomName = menuButton.getText();
     IServiceRequest.STATUS status = IServiceRequest.STATUS.COMPLETE;
     ConferenceRoomRequest req =
-        new ConferenceRoomRequest(start.toString(), end.toString(), notes, roomName, status);
+        new ConferenceRoomRequest(
+            new Requester(Cdb.latestRequestID("conferenceRoom") + 1, name),
+            new ConferenceRoom(room, room, false),
+            start.toString(),
+            end.toString(),
+            notes,
+            status);
 
-    String name = nameBox.getText();
-
-    Requester reqr = new Requester(Cdb.latestRequestID("conferenceRoom") + 1, name);
-
-    Cdb.addConferenceRoomRequest(req, reqr);
+    Cdb.addConferenceRoomRequest(req);
 
     Navigation.navigate(Screen.CONGRATS_PAGE);
   }

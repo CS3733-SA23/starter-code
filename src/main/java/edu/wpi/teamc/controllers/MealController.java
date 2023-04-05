@@ -71,12 +71,14 @@ public class MealController {
     String name = nameBox.getText();
     String room = roomID.getText();
     String text = textArea.getText();
-    MealRequest req = new MealRequest(new Meal(menuButton.getText(), ""), room, text, status);
-
-    Requester reqr = new Requester(Cdb.latestRequestID("mealRequest") + 1, name);
-
-    Cdb.addMeal(req, reqr);
-
+    MealRequest req =
+        new MealRequest(
+            new Requester(Cdb.latestRequestID("mealRequest") + 1, name),
+            new Meal(menuButton.getText(), ""),
+            room,
+            text,
+            status);
+    Cdb.addMeal(req);
     Navigation.navigate(Screen.CONGRATS_PAGE);
   }
 

@@ -11,4 +11,9 @@ public class Requester {
     this.requesterID = requesterID;
     this.requesterName = requesterName;
   }
+
+  @Override
+  public String toString() {
+    return Integer.toString(this.requesterID);
+  }
 }
