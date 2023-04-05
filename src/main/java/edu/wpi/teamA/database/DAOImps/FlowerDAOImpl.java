@@ -56,7 +56,7 @@ public class FlowerDAOImpl implements IFlowerDAO {
       ps.setString(7, status);
       ps.executeUpdate();
 
-      flowerArray.add(new FlowerEntity(name, room, date, time, type, comment));
+      flowerArray.add(new FlowerEntity(name, room, date, time, type, comment, status));
 
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -85,7 +85,5 @@ public class FlowerDAOImpl implements IFlowerDAO {
   public void updateFlower(FlowerEntity flower) {}
 
   @Override
-  public void editFlower(FlowerEntity flower){
-
-  }
+  public void editFlower(FlowerEntity flower) {}
 }

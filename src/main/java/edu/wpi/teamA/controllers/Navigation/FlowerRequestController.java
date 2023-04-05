@@ -73,7 +73,8 @@ public class FlowerRequestController implements IPageController, IServiceControl
             Date.valueOf(datePicker.getValue()),
             convertTime(timeCombo.getText()),
             flowerCombo.getText(),
-            commentField.getText());
+            commentField.getText(),
+            "new");
     FlowerDAOImpl fd = new FlowerDAOImpl();
     fd.addFlower(flower);
     clear();
