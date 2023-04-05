@@ -18,10 +18,10 @@ import java.util.regex.Pattern;
 public class Cdb implements IServiceRequest {
   static Connection connection = null;
   // database tables turned into two arrayLists
-  static List<Node> databaseNodeList = new ArrayList<Node>();
-  static List<Edge> databaseEdgeList = new ArrayList<Edge>();
-  static List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
-  static List<Move> databaseMoveList = new ArrayList<Move>();
+  public static List<Node> databaseNodeList = new ArrayList<Node>();
+  public static List<Edge> databaseEdgeList = new ArrayList<Edge>();
+  public static List<LocationName> databaseLocationNameList = new ArrayList<LocationName>();
+  public static List<Move> databaseMoveList = new ArrayList<Move>();
 
   public static void main(String[] args) {
     try {

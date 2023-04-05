@@ -4,12 +4,13 @@ import edu.wpi.teamc.Cdb;
 import edu.wpi.teamc.navigation.Navigation;
 import edu.wpi.teamc.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import java.awt.Desktop;
+import java.awt.*;
 import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -43,7 +44,7 @@ public class HomeController {
 
   @FXML private Button mapPage;
 
-  @FXML private Button importButton;
+  @FXML private MenuButton importMenu;
 
   @FXML private Button exportButton;
 
@@ -108,7 +109,7 @@ public class HomeController {
   void getMapPage(ActionEvent event) {}
 
   @FXML
-  void getImportButton(ActionEvent event) {
+  void getImportNodes(ActionEvent event) {
     FileChooser fileChooser = new FileChooser();
     FileChooser.ExtensionFilter extFilter =
         new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
@@ -119,10 +120,60 @@ public class HomeController {
         desktop.open(file);
         filePath = file.getAbsolutePath();
         Cdb.importCSVNode(filePath);
-        Cdb.importCSVEdge(filePath);
-        Cdb.importCSVLocationName(filePath);
-        Cdb.importCSVMove(filePath);
+      } catch (Exception ex) {
+        ex.printStackTrace();
+      }
+    }
+  }
 
+  @FXML
+  void getImportEdges(ActionEvent event) {
+    FileChooser fileChooser = new FileChooser();
+    FileChooser.ExtensionFilter extFilter =
+        new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+    fileChooser.getExtensionFilters().add(extFilter);
+    File file = fileChooser.showOpenDialog(new Stage());
+    if (file != null) {
+      try {
+        desktop.open(file);
+        filePath = file.getAbsolutePath();
+        Cdb.importCSVEdge(filePath);
+      } catch (Exception ex) {
+        ex.printStackTrace();
+      }
+    }
+  }
+
+  @FXML
+  void getImportLocationNames(ActionEvent event) {
+    FileChooser fileChooser = new FileChooser();
+    FileChooser.ExtensionFilter extFilter =
+        new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+    fileChooser.getExtensionFilters().add(extFilter);
+    File file = fileChooser.showOpenDialog(new Stage());
+    if (file != null) {
+      try {
+        desktop.open(file);
+        filePath = file.getAbsolutePath();
+        Cdb.importCSVLocationName(filePath);
+      } catch (Exception ex) {
+        ex.printStackTrace();
+      }
+    }
+  }
+
+  @FXML
+  void getImportMove(ActionEvent event) {
+    FileChooser fileChooser = new FileChooser();
+    FileChooser.ExtensionFilter extFilter =
+        new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+    fileChooser.getExtensionFilters().add(extFilter);
+    File file = fileChooser.showOpenDialog(new Stage());
+    if (file != null) {
+      try {
+        desktop.open(file);
+        filePath = file.getAbsolutePath();
+        Cdb.importCSVMove(filePath);
       } catch (Exception ex) {
         ex.printStackTrace();
       }
