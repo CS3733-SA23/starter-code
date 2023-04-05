@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
-
 import org.json.JSONObject;
 
 public enum DatabaseController {
@@ -24,8 +23,8 @@ public enum DatabaseController {
     EDGE,
     SERVICE_REQUESTS;
 
-    public static String tableToString(Table tb){
-      switch (tb){
+    public static String tableToString(Table tb) {
+      switch (tb) {
         case LOCATION_NAME:
           return "LocationName";
         case MOVE:
@@ -154,7 +153,6 @@ public enum DatabaseController {
         String startNode = edge.getNodeOneID();
         String endNode = edge.getNodeTwoID();
         insertTable = "INSERT INTO \"Edge\" VALUES(" + startNode + ",'" + endNode + "');";
-        ;
         break;
       case NODE:
         HospitalNode node = (HospitalNode) obj;
@@ -164,9 +162,9 @@ public enum DatabaseController {
         Floor floor = node.getFloor();
         String building = node.getBuilding();
         insertTable =
-            "INSERT INTO \"Node\" VALUES("
+            "INSERT INTO \"Node\" VALUES('"
                 + nodeID
-                + ",'"
+                + "' , '"
                 + xcoord
                 + "' , '"
                 + ycoord
@@ -182,7 +180,13 @@ public enum DatabaseController {
         String shortName = locationName.getShortName();
         LocationName.NodeType nodeType = locationName.getNodeType();
         insertTable =
-            "INSERT INTO \"LocationName\" VALUES(" + lName + ",'" + shortName + "' , '" + nodeType + "');";
+            "INSERT INTO \"LocationName\" VALUES("
+                + lName
+                + " ,'"
+                + shortName
+                + "' , '"
+                + nodeType
+                + "');";
         break;
       case SERVICE_REQUESTS:
         ServiceRequestData serviceRequestData = (ServiceRequestData) obj;
