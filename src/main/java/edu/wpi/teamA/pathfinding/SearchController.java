@@ -217,7 +217,7 @@ public class SearchController {
   }
 
   public String bfs(int startID, int endID) {
-    ArrayList<Integer> path = this.pathOfNodesBFS(startID, endID);
+    ArrayList<Integer> path = pathOfNodesBFS(startID, endID);
     String stringPath = getPath(path);
     return stringPath;
   }
