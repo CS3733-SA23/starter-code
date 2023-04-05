@@ -1,7 +1,7 @@
 package Database;
 
-import static Database.DatabaseController.Table.EDGE;
-import static Database.DatabaseController.Table.LOCATION_NAME;
+import static Database.DatabaseController.Table.*;
+import static edu.wpi.teame.map.Floor.ONE;
 import static edu.wpi.teame.map.Floor.stringToFloor;
 import static edu.wpi.teame.map.LocationName.NodeType.*;
 
@@ -46,9 +46,11 @@ public enum DatabaseController {
   public static void main(String[] args) {
     DatabaseController db = DatabaseController.INSTANCE;
     LocationName locationName = new LocationName("Urology 1", "D5", INFO);
-    HospitalEdge edge = new HospitalEdge("2001", "2002");
-    db.addToTable(EDGE, edge);
+    HospitalEdge edge = new HospitalEdge("1234", "2345");
+    HospitalNode node = new HospitalNode("101", 1750, 1750, ONE, "Test");
+    // db.addToTable(EDGE, edge);
     // db.addToTable(LOCATION_NAME, locationName);
+    db.addToTable(NODE, node);
   }
 
   private Connection c;
@@ -117,8 +119,8 @@ public enum DatabaseController {
                 + lName
                 + " AND \"shortName\" = '"
                 + shortName
-                    + "' AND \"nodeType\" = '"
-                    + nodeType
+                + "' AND \"nodeType\" = '"
+                + nodeType
                 + "';";
         break;
       case SERVICE_REQUESTS:
@@ -165,7 +167,7 @@ public enum DatabaseController {
         HospitalEdge edge = (HospitalEdge) obj;
         String startNode = edge.getNodeOneID();
         String endNode = edge.getNodeTwoID();
-        insertTable = "INSERT INTO \"Edge\" VALUES(" + startNode + "," + endNode + ");";
+        insertTable = "INSERT INTO \"Edge\" VALUES('" + startNode + "','" + endNode + "');";
         break;
       case NODE:
         HospitalNode node = (HospitalNode) obj;
@@ -177,11 +179,11 @@ public enum DatabaseController {
         insertTable =
             "INSERT INTO \"Node\" VALUES('"
                 + nodeID
-                + "','"
+                + "',"
                 + xcoord
-                + "','"
+                + ","
                 + ycoord
-                + "','"
+                + ",'"
                 + floor
                 + "','"
                 + building
