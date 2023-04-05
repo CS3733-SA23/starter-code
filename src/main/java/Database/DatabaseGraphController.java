@@ -102,6 +102,24 @@ public class DatabaseGraphController {
     }
   }
 
+  public String getNameFromNodeID(int nodeID) throws RuntimeException {
+    try {
+      Statement stmt = DBC.getC().createStatement();
+      String sql = "SELECT \"longName\" FROM teame.\"Move\" WHERE \"nodeID\" = " + nodeID + ";";
+
+      ResultSet rs = stmt.executeQuery(sql);
+
+      if (rs.next()) {
+        return rs.getString("longName");
+      } else {
+        System.out.println("There is no location linked to that node");
+        return "";
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   public List<MoveAttribute> getMoveAttributeFromFloor(Floor fl) {
     String floor = Floor.floorToString(fl);
     List<MoveAttribute> moveAttributes = new LinkedList<>();
