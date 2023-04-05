@@ -1,5 +1,7 @@
 package edu.wpi.teame.controllers;
 
+import static javafx.scene.paint.Color.WHITE;
+
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
@@ -9,6 +11,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.paint.Color;
 import org.json.JSONObject;
 
 public class MealRequestController implements IRequestController {
@@ -37,6 +40,10 @@ public class MealRequestController implements IRequestController {
     mainCourseChoice.setItems(mainCourses);
     sideCourseChoice.setItems(sideCourses);
     deliveryTime.setItems(deliveryTimes);
+
+    mouseSetup(returnButtonMealRequest);
+    mouseSetup(cancelButton);
+    mouseSetup(submitButton);
     returnButtonMealRequest.setOnMouseClicked(
         event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     cancelButton.setOnMouseClicked(event -> cancelRequest());
@@ -75,5 +82,19 @@ public class MealRequestController implements IRequestController {
 
   public void cancelRequest() {
     Navigation.navigate(Screen.HOME);
+  }
+
+  private void mouseSetup(MFXButton btn) {
+    btn.setOnMouseEntered(
+        event -> {
+          btn.setStyle(
+              "-fx-background-color: #ffffff; -fx-alignment: center; -fx-border-color: #192d5a; -fx-border-width: 2;");
+          btn.setTextFill(Color.web("#192d5aff", 1.0));
+        });
+    btn.setOnMouseExited(
+        event -> {
+          btn.setStyle("-fx-background-color: #192d5aff; -fx-alignment: center;");
+          btn.setTextFill(WHITE);
+        });
   }
 }

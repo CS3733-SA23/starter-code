@@ -19,7 +19,7 @@ public class DatabaseTest {
    */
   public DatabaseGraphController setup() {
     try {
-      DatabaseController DBC1 = new DatabaseController();
+      DatabaseController DBC1 = new DatabaseController("a", "b");
       return new DatabaseGraphController(DBC1);
     } catch (RuntimeException e) {
       System.out.println(e.getMessage());
