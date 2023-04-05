@@ -211,7 +211,7 @@ public class DatabaseViewController {
 
     addButton.setOnMouseClicked(
         event -> {
-          addRow(windowPop);
+          addRow(windowPop, confirmPop);
         });
 
     importButton.setOnMouseClicked(
