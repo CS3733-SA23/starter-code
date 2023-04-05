@@ -9,14 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Scanner;
-import lombok.Getter;
-import lombok.Setter;
 
 public class LocNameDAOImp implements IDataBase, ILocNameDAO {
 
-  @Getter @Setter
-  private static ArrayList<LocationName> LocNameArray = new ArrayList<LocationName>();
+  ArrayList<LocationName> LocNameArray = new ArrayList<LocationName>();
 
   static DBConnectionProvider LocNameProvider = new DBConnectionProvider();
 
@@ -42,8 +38,9 @@ public class LocNameDAOImp implements IDataBase, ILocNameDAO {
         String[] data = row.split(",");
 
         PreparedStatement ps =
-            LocNameProvider.createConnection().prepareStatement(
-                "INSERT INTO Prototype2_schema.\"LocationName\" VALUES (?, ?, ?)");
+            LocNameProvider.createConnection()
+                .prepareStatement(
+                    "INSERT INTO Prototype2_schema.\"LocationName\" VALUES (?, ?, ?)");
         ps.setString(1, data[0]);
         ps.setString(2, data[1]);
         ps.setString(3, data[2]);

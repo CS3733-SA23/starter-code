@@ -24,7 +24,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
     this.NodeArray = new ArrayList<Node>();
   }
 
-  public static void createSchema(){
+  public static void createSchema() {
     try {
       Statement stmtSchema = nodeProvider.createConnection().createStatement();
       String sqlCreateSchema = "CREATE SCHEMA IF NOT EXISTS \"Prototype2_schema\"";
@@ -33,7 +33,6 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
       throw new RuntimeException(e);
     }
   }
-
 
   // ResultSet
 
@@ -79,6 +78,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
 
     return nodes;
   }
+
   public static ArrayList<Node> Import(String filePath) {
     NodeDAOImp.createSchema();
     ArrayList<Node> NodeArray = loadNodesFromCSV(filePath);
@@ -118,7 +118,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
 
       throw new RuntimeException(e);
     }
-  return NodeArray;
+    return NodeArray;
   }
 
   public static void Export(String folderExportPath) {
@@ -172,7 +172,6 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
 
     return nodes;
   }
-
 
   @Override
   public void Add() {
