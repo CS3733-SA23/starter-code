@@ -10,5 +10,10 @@ public class LoginData {
         this.username = username;
         this.password = password;
     }
+    public hashPassword(String password){
+
+    }
+
+
 
 }
