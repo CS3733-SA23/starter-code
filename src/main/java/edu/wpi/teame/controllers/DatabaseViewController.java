@@ -192,7 +192,7 @@ public class DatabaseViewController {
           } else {
             // add the file
             try {
-              dC.importFromCSV(selectedFile.getAbsolutePath(), "Move");
+              dC.importFromCSV(selectedFile.getAbsolutePath(), DatabaseController.Table.tableToString(databaseChoice.getValue()));
             } catch (IOException e) {
               System.out.println("You messed up big time!!!!!!");
               System.out.println(e);
@@ -210,7 +210,7 @@ public class DatabaseViewController {
             // export to the given path
             try {
               dC.exportToCSV(
-                  "Move", selectedFile.getParentFile().getAbsolutePath(), selectedFile.getName());
+                      DatabaseController.Table.tableToString(databaseChoice.getValue()), selectedFile.getParentFile().getAbsolutePath(), selectedFile.getName());
             } catch (SQLException | IOException e) {
               System.out.println("You messed up big time!!!!!!");
             }

@@ -10,6 +10,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 import org.json.JSONObject;
 
 public enum DatabaseController {
@@ -20,7 +22,24 @@ public enum DatabaseController {
     MOVE,
     NODE,
     EDGE,
-    SERVICE_REQUESTS
+    SERVICE_REQUESTS;
+
+    public static String tableToString(Table tb){
+      switch (tb){
+        case LOCATION_NAME:
+          return "LocationName";
+        case MOVE:
+          return "Move";
+        case NODE:
+          return "Node";
+        case EDGE:
+          return "Edge";
+        case SERVICE_REQUESTS:
+          return "ServiceRequests";
+        default:
+          throw new NoSuchElementException("No such Table found");
+      }
+    }
   }
 
   private Connection c;
