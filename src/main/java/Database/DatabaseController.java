@@ -9,6 +9,10 @@ import java.util.LinkedList;
 import java.util.List;
 import org.json.JSONObject;
 
+import static edu.wpi.teame.map.Floor.floorToString;
+import static edu.wpi.teame.map.Floor.stringToFloor;
+import static edu.wpi.teame.map.LocationName.NodeType.stringToNodeType;
+
 public enum DatabaseController {
   INSTANCE;
 
@@ -275,13 +279,13 @@ public enum DatabaseController {
           "SELECT \"nodeID\", \"xcoord\", \"ycoord\", \"floor\", \"building\" FROM teame.\"Node\" ;";
       ResultSet rs = stmt.executeQuery(sql);
 
-      /*
+
       while (rs.next()) {
-        //hospitalNodes.add(
-                //new HospitalNode(rs.getInt("nodeID"), rs.getInt("xcoord"), rs.getInt("ycoord"),  rs.getString("floor"), rs.getString("building")));
+        hospitalNodes.add(
+                new HospitalNode(rs.getString("nodeID"), rs.getInt("xcoord"), rs.getInt("ycoord"),  stringToFloor(rs.getString(floorToString(stringToFloor("floor")))), rs.getString("building")));
       }
 
-       */
+
 
       return hospitalNodes;
     } catch (SQLException e) {
@@ -299,13 +303,11 @@ public enum DatabaseController {
           "SELECT \"longName\", \"shortName\", \"nodeType\" FROM teame.\"LocationName\";";
       ResultSet rs = stmt.executeQuery(sql);
 
-      /*
+
       while (rs.next()) {
-        //locationNames.add(new LocationName(rs.getString("longName") + "", rs.getString("shortName"), rs.getString("nodeType")));
+        locationNames.add(new LocationName(rs.getString("longName") + "", rs.getString("shortName"), stringToNodeType(rs.getString("nodeType"))));
 
       }
-
-       */
 
       return locationNames;
     } catch (SQLException e) {
