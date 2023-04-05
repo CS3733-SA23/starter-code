@@ -102,6 +102,10 @@ public class ConferenceHistoryController {
     String additionalInfo;
     String roomName;
     for (List<String> rl : rowList) {
+      for (String s : rl) {
+        System.out.println(s);
+      }
+
       requestID = Integer.valueOf(rl.get(0));
       Requester = rl.get(1);
       status = rl.get(2);
