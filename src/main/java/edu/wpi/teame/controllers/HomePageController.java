@@ -1,46 +1,34 @@
 package edu.wpi.teame.controllers;
 
 import static javafx.scene.paint.Color.WHITE;
+
 import edu.wpi.teame.entities.LoginData;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import javafx.application.Platform;
 import java.awt.*;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.*;
 import javafx.scene.control.*;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.control.TextField;
 
 public class HomePageController {
-  @FXML
-  MFXButton serviceRequestButton;
-  @FXML
-  MFXButton signageButton;
-  @FXML
-  MFXButton menuButton;
-  @FXML
-  MFXButton menuBarSignage;
-  @FXML
-  MFXButton menuBarServices;
-  @FXML
-  MFXButton menuBarHome;
-  @FXML
-  MFXButton menuBarMap;
-  @FXML
-  MFXButton menuBarExit;
-  @FXML
-  MFXButton mapsButton;
-  @FXML
-  MFXButton loginButton;
-  @FXML
-  TextField username;
-  @FXML
-  TextField password;
-  @FXML
-  MFXButton menuBarDatabase;
+  @FXML MFXButton serviceRequestButton;
+  @FXML MFXButton signageButton;
+  @FXML MFXButton menuButton;
+  @FXML MFXButton menuBarSignage;
+  @FXML MFXButton menuBarServices;
+  @FXML MFXButton menuBarHome;
+  @FXML MFXButton menuBarMap;
+  @FXML MFXButton menuBarExit;
+  @FXML MFXButton mapsButton;
+  @FXML MFXButton loginButton;
+  @FXML TextField username;
+  @FXML TextField password;
+  @FXML MFXButton menuBarDatabase;
 
   public void initialize() {
     menuDropDownVisibility(false);

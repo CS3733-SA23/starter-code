@@ -7,20 +7,13 @@ import javafx.fxml.FXML;
 
 public class ServiceRequestController {
 
-  @FXML
-  MFXButton backButton;
-  @FXML
-  MFXButton menuButton;
-  @FXML
-  MFXButton menuBarSignage;
-  @FXML
-  MFXButton menuBarServices;
-  @FXML
-  MFXButton menuBarHome;
-  @FXML
-  MFXButton menuBarMap;
-  @FXML
-  MFXButton menuBarExit;
+  @FXML MFXButton backButton;
+  @FXML MFXButton menuButton;
+  @FXML MFXButton menuBarSignage;
+  @FXML MFXButton menuBarServices;
+  @FXML MFXButton menuBarHome;
+  @FXML MFXButton menuBarMap;
+  @FXML MFXButton menuBarExit;
 
   @FXML
   public void initialize() {

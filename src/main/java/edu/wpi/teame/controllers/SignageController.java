@@ -10,22 +10,14 @@ import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
 
 public class SignageController {
-  @FXML
-  MFXButton returnButtonSignage;
-  @FXML
-  MFXButton menuButton;
-  @FXML
-  MFXButton menuBarSignage;
-  @FXML
-  MFXButton menuBarServices;
-  @FXML
-  MFXButton menuBarHome;
-  @FXML
-  MFXButton menuBarMap;
-  @FXML
-  MFXButton menuBarExit;
-  @FXML
-  MFXButton menuBarDatabase;
+  @FXML MFXButton returnButtonSignage;
+  @FXML MFXButton menuButton;
+  @FXML MFXButton menuBarSignage;
+  @FXML MFXButton menuBarServices;
+  @FXML MFXButton menuBarHome;
+  @FXML MFXButton menuBarMap;
+  @FXML MFXButton menuBarExit;
+  @FXML MFXButton menuBarDatabase;
 
   @FXML
   public void initialize() {

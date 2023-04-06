@@ -1,4 +1,5 @@
 package edu.wpi.teame.entities;
+
 import javafx.scene.control.Alert;
 
 public class LoginData {
@@ -9,6 +10,7 @@ public class LoginData {
     this.username = username;
     this.password = password;
   }
+
   public boolean attemptLogin() {
     // Popup message depending on results
     Alert popup = new Alert(Alert.AlertType.NONE);

@@ -23,12 +23,12 @@ public class GroundFloorNavMapController {
 
   @FXML
   public void initialize() {
-      mouseSetup(lowerLevelOneButton);
-      mouseSetup(lowerLevelTwoButton);
-      mouseSetup(SecondFloorButton);
-      mouseSetup(FirstFloorButton);
-      mouseSetup(ThirdFloorButton);
-      mouseSetup(backButton);
+    mouseSetup(lowerLevelOneButton);
+    mouseSetup(lowerLevelTwoButton);
+    mouseSetup(SecondFloorButton);
+    mouseSetup(FirstFloorButton);
+    mouseSetup(ThirdFloorButton);
+    mouseSetup(backButton);
     lowerLevelOneButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOWER_ONE));
     lowerLevelTwoButton.setOnMouseClicked(event -> Navigation.navigate(Screen.LOWER_TWO));
     FirstFloorButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOOR_ONE));
