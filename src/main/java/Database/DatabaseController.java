@@ -333,103 +333,106 @@ public enum DatabaseController {
    * @throws FileNotFoundException if the specified file path is not found.
    */
   public void importFromCSV(String filePath, String tableName) throws IOException {
-      try {
-        String sql = "";
-        // Load CSV file
-        BufferedReader reader = new BufferedReader(new FileReader(filePath));
-        String line;
-        List<String> rows = new ArrayList<>();
-        while ((line = reader.readLine()) != null) {
-          rows.add(line);
-        }
-        rows.remove(0);
-        reader.close();
-        Statement stmt = c.createStatement();
+    try {
+      String sql = "";
+      // Load CSV file
+      BufferedReader reader = new BufferedReader(new FileReader(filePath));
+      String line;
+      List<String> rows = new ArrayList<>();
+      while ((line = reader.readLine()) != null) {
+        rows.add(line);
+      }
+      rows.remove(0);
+      reader.close();
+      Statement stmt = c.createStatement();
 
-        switch (tableName) {
-          case "Edge":
-            for (String l1 : rows) {
-              String[] splitL1 = l1.split(",");
-              System.out.println(l1);
-              sql = "INSERT INTO \""
-                      + tableName
-                      + "\""
-                      + " VALUES ("
-                      + Integer.parseInt(splitL1[0])
-                      + ", "
-                      + Integer.parseInt(splitL1[1])
-                      + "); ";
-              System.out.println(sql);
-              stmt.execute(sql);
-            }
-            break;
-          case "Node":
-            for (String l1 : rows) {
-              String[] splitL1 = l1.split(",");
-              System.out.println(l1);
-              sql = "INSERT INTO \""
-                      + tableName
-                      + "\""
-                      + " VALUES ("
-                      + Integer.parseInt(splitL1[0])
-                      + ", '"
-                      + Integer.parseInt(splitL1[1])
-                      + ", '"
-                      + Integer.parseInt(splitL1[2])
-                      + ", '"
-                      + splitL1[3]
-                      + ", '"
-                      + splitL1[4];
-              System.out.println(sql);
-              stmt.execute(sql);
-            }
-            break;
-          case "Move":
-            for (String l1 : rows) {
-              String[] splitL1 = l1.split(",");
-              System.out.println(l1);
-              sql =
-                      "INSERT INTO "
-                              + "\""
-                              + tableName
-                              + "\""
-                              + " VALUES ("
-                              + Integer.parseInt(splitL1[0])
-                              + ", '"
-                              + splitL1[1]
-                              + "', '"
-                              + splitL1[2]
-                              + "'); ";
-              System.out.println(sql);
-              stmt.execute(sql);
-            }
-            break;
-          case "LocationName":
-            for (String l1 : rows) {
-              String[] splitL1 = l1.split(",");
-              System.out.println(l1);
-              sql = "INSERT INTO \""
-                      + tableName
-                      + "\""
-                      + " VALUES ('"
-                      + splitL1[0]
-                      + "', '"
-                      + splitL1[1]
-                      + "', '"
-                      + splitL1[2]
-                      + "'); ";
-              System.out.println(sql);
-              stmt.execute(sql);
-            }
-            break;
-        }
+      switch (tableName) {
+        case "Edge":
+          for (String l1 : rows) {
+            String[] splitL1 = l1.split(",");
+            System.out.println(l1);
+            sql =
+                "INSERT INTO \""
+                    + tableName
+                    + "\""
+                    + "VALUES ("
+                    + splitL1[0]
+                    + ","
+                    + splitL1[1]
+                    + "); ";
+            System.out.println(sql);
+            stmt.execute(sql);
+          }
+          break;
+        case "Node":
+          for (String l1 : rows) {
+            String[] splitL1 = l1.split(",");
+            System.out.println(l1);
+            sql =
+                "INSERT INTO \""
+                    + tableName
+                    + "\""
+                    + " VALUES ("
+                    + Integer.parseInt(splitL1[0])
+                    + ", '"
+                    + Integer.parseInt(splitL1[1])
+                    + ", '"
+                    + Integer.parseInt(splitL1[2])
+                    + ", '"
+                    + splitL1[3]
+                    + ", '"
+                    + splitL1[4];
+            System.out.println(sql);
+            stmt.execute(sql);
+          }
+          break;
+        case "Move":
+          for (String l1 : rows) {
+            String[] splitL1 = l1.split(",");
+            System.out.println(l1);
+            sql =
+                "INSERT INTO "
+                    + "\""
+                    + tableName
+                    + "\""
+                    + " VALUES ("
+                    + Integer.parseInt(splitL1[0])
+                    + ", '"
+                    + splitL1[1]
+                    + "', '"
+                    + splitL1[2]
+                    + "'); ";
+            System.out.println(sql);
+            stmt.execute(sql);
+          }
+          break;
+        case "LocationName":
+          for (String l1 : rows) {
+            String[] splitL1 = l1.split(",");
+            System.out.println(l1);
+            sql =
+                "INSERT INTO \""
+                    + tableName
+                    + "\""
+                    + " VALUES ('"
+                    + splitL1[0]
+                    + "', '"
+                    + splitL1[1]
+                    + "', '"
+                    + splitL1[2]
+                    + "'); ";
+            System.out.println(sql);
+            stmt.execute(sql);
+          }
+          break;
+      }
 
-        System.out.println(
-                "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
+      System.out.println(
+          "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
 
-        //we need to make sure we are putting ints where they should be
-        //so use Integer.parseInt(String) It's chill only nodeID and x, y coord
-      } catch (IOException | SQLException e) {
+      // we need to make sure we are putting ints where they should be
+      // so use Integer.parseInt(String) It's chill only nodeID and x, y coord
+    } catch (IOException | SQLException e) {
       System.err.println("Error importing from " + filePath + " to " + tableName);
       e.printStackTrace();
     }
