@@ -6,18 +6,10 @@ public enum Screen {
 
   SERVICE_REQUESTS("views/ServiceRequestPage.fxml"),
 
-  SIGNAGE_TEXT("views/Signage.fxml"),
+  SIGNAGE_TEXT("views/SignagePage.fxml"),
   MEAL_REQUEST("views/MealRequest.fxml"),
   FLOWER_REQUEST("views/FlowerRequest.fxml"),
-
-  LOWER_ONE("views/LoweLevelOneMapNav.fxml"),
-  LOWER_TWO("views/LowerLevelTwoMapNav.fxml"),
-  FLOOR_ONE("views/FloorOneMapNav.fxml"),
-  FLOOR_TWO("views/FloorTwoMapNav.fxml"),
-  FLOOR_THREE("views/FloorThreeMapNav.fxml"),
-  MAP_MENU("views/MapMenu.fxml"),
-  GROUND_FLOOR("views/GroundFloorMapForNavigation.fxml"),
-
+  MAP("views/Map.fxml"),
   DATABASE_VIEW("views/DatabaseEditor.fxml");
 
   private final String filename;

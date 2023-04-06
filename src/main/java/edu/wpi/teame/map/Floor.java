@@ -19,14 +19,10 @@ public enum Floor {
         return LOWER_TWO;
       case "GROUND":
         return GROUND;
-      case "ONE":
-        return ONE;
       case "1":
         return ONE;
-      case "TWO":
       case "2":
         return TWO;
-      case "THREE":
       case "3":
         return THREE;
       default:

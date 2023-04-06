@@ -42,6 +42,21 @@ public class DatabaseTest {
     }
   }
 
+  /** Tests to see if you can get the nodeID from a given longName in the Move table */
+  @Test
+  public void testGetNameFromNodeID() {
+    DatabaseGraphController DBMC = this.setup();
+    try {
+      String expected = DBMC.getNameFromNodeID("1200");
+
+      assertEquals(expected, "Hall 3 Level 1");
+    } catch (RuntimeException e) {
+      System.out.println(
+          "SQL Exception: "
+              + "\nThere is no longName linked to that nodeID in the Move table so the SQL query returned nothing");
+    }
+  }
+
   /** Tests to see if you can get a list of MoveAttributes from a given floor */
   @Test
   public void testGetMoveAttributeFromFloor() {

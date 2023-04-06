@@ -42,13 +42,13 @@ public class HomePageController {
     mouseSetup(databaseViewButton);
     serviceRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
-    mapsButton.setOnMouseClicked(event -> Navigation.navigate(Screen.GROUND_FLOOR));
     databaseViewButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
+    mapsButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
 
     menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_MENU));
+    menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
     // menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate((Screen.Database)));
     menuBarExit.setOnMouseClicked(event -> Platform.exit()); // Uncomment when we
     // know where exit goes
