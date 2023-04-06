@@ -20,6 +20,7 @@ public class DatabaseServiceController {
    * @param db DatabaseController
    */
   public DatabaseServiceController(DatabaseController db) {
+    this.serviceRequests = new LinkedList<>();
     try {
       this.db = db;
     } catch (RuntimeException e) {
@@ -63,7 +64,7 @@ public class DatabaseServiceController {
     } catch (SQLException e) {
       System.out.println(e.getMessage());
     }
-    db.exitDatabaseProgram();
+    // db.exitDatabaseProgram();
   }
 
   /**

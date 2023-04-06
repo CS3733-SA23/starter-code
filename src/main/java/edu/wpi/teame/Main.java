@@ -7,7 +7,7 @@ import edu.wpi.teame.map.HospitalNode;
 public class Main {
 
   public static void main(String[] args) {
-    DatabaseController db = new DatabaseController("teame", "teame50");
+    DatabaseController db = DatabaseController.INSTANCE;
     DatabaseGraphController graphController = new DatabaseGraphController(db);
     graphController.retrieveFromTable();
     HospitalNode.processEdgeList(graphController.getHospitalEdges());

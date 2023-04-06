@@ -70,7 +70,7 @@ public class MealRequestController implements IRequestController {
     // Return to home screen
     Navigation.navigate(Screen.HOME);
 
-    DatabaseController db = new DatabaseController();
+    DatabaseController db = DatabaseController.INSTANCE;
     DatabaseServiceController dbsc = new DatabaseServiceController(db);
     dbsc.addServiceRequestToDatabase(mealRequestData);
 
