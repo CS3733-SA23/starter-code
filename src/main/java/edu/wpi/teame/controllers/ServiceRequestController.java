@@ -29,11 +29,9 @@ public class ServiceRequestController {
     menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    // menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
-    // //Uncomment when Map
+    // menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP)); //Uncomment when Map
     // Page is made
-    // menuBarExit.setOnMouseClicked(event -> Navigation.navigate(Screen.EXIT));
-    // //Uncomment when we
+    // menuBarExit.setOnMouseClicked(event -> Navigation.navigate(Screen.EXIT)); //Uncomment when we
     // know where exit goes
 
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));

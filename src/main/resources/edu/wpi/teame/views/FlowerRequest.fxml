@@ -117,7 +117,7 @@
                                                 <Font name="Times New Roman" size="16.0" />
                                              </font>
                                           </Text>
-                                          <MFXTextField fx:id="assignStaff" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
+                                          <MFXTextField fx:id="assignedStaff" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
                                        </children>
                                     </VBox>
                                  </children>

@@ -34,9 +34,8 @@ public class SignageController {
     menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_MENU));
-    // menuBarDatabase.setOnMouseClicked(event ->
-    // Navigation.navigate((Screen.Database)));
+    menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
+    // menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate((Screen.Database)));
     menuBarExit.setOnMouseClicked(event -> Platform.exit());
     mouseSetup(returnButtonSignage);
     returnButtonSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
