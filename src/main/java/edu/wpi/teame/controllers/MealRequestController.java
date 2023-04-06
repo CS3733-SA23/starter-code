@@ -1,7 +1,7 @@
 package edu.wpi.teame.controllers;
 
-import static javafx.scene.paint.Color.WHITE;
-
+import Database.DatabaseController;
+import Database.DatabaseServiceController;
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
@@ -11,7 +11,6 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.paint.Color;
 import org.json.JSONObject;
 
 public class MealRequestController implements IRequestController {
@@ -24,6 +23,8 @@ public class MealRequestController implements IRequestController {
   @FXML MFXComboBox<String> deliveryTime;
   @FXML MFXComboBox<String> mainCourseChoice;
   @FXML MFXComboBox<String> sideCourseChoice;
+  @FXML MFXTextField assignStaff;
+  @FXML MFXButton clearForm;
 
   ObservableList<String> deliveryTimes =
       FXCollections.observableArrayList(
@@ -40,43 +41,39 @@ public class MealRequestController implements IRequestController {
     mainCourseChoice.setItems(mainCourses);
     sideCourseChoice.setItems(sideCourses);
     deliveryTime.setItems(deliveryTimes);
-
-    mouseSetup(returnButtonMealRequest);
-    mouseSetup(cancelButton);
-    mouseSetup(submitButton);
     returnButtonMealRequest.setOnMouseClicked(
         event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     cancelButton.setOnMouseClicked(event -> cancelRequest());
     submitButton.setOnMouseClicked(event -> sendRequest());
+    clearForm.setOnMouseClicked(event -> clearForm());
   }
 
   public ServiceRequestData sendRequest() {
-    // Get the selected/input values
-    String selCourse = mainCourseChoice.getText();
-    String selSide = sideCourseChoice.getText();
-    String inputName = recipientName.getText();
-    String inputDelivery = deliveryTime.getText();
-    String inputRoom = roomNumber.getText();
-    String inputNotes = notes.getText();
 
     // Create the json to store the values
     JSONObject requestData = new JSONObject();
-    requestData.put("course", selCourse);
-    requestData.put("side", selSide);
-    requestData.put("recipient", inputName);
-    requestData.put("deliveryTime", inputDelivery);
-    requestData.put("room", inputRoom);
-    requestData.put("notes", inputNotes);
+    requestData.put("recipientName", recipientName.getText());
+    requestData.put("roomNumber", roomNumber.getText());
+    requestData.put("deliveryTime", deliveryTime.getText());
+    requestData.put("mainCourse", mainCourseChoice.getText());
+    requestData.put("sideCourse", sideCourseChoice.getText());
+    requestData.put("notes", notes.getText());
 
     // Create the service request data
     ServiceRequestData mealRequestData =
-        new ServiceRequestData(ServiceRequestData.RequestType.MEALDELIVERY, requestData);
+        new ServiceRequestData(
+            ServiceRequestData.RequestType.MEALDELIVERY,
+            requestData,
+            ServiceRequestData.Status.PENDING,
+            assignStaff.getText());
+
+    // Return to home screen
     Navigation.navigate(Screen.HOME);
-    System.out.print(
-        "\nDelivery Type: "
-            + mealRequestData.getRequestType()
-            + "\nRequest Data: "
-            + mealRequestData.getRequestData());
+
+    DatabaseController db = new DatabaseController();
+    DatabaseServiceController dbsc = new DatabaseServiceController(db);
+    dbsc.addServiceRequestToDatabase(mealRequestData);
+
     return mealRequestData;
   }
 
@@ -84,17 +81,14 @@ public class MealRequestController implements IRequestController {
     Navigation.navigate(Screen.HOME);
   }
 
-  private void mouseSetup(MFXButton btn) {
-    btn.setOnMouseEntered(
-        event -> {
-          btn.setStyle(
-              "-fx-background-color: #ffffff; -fx-alignment: center; -fx-border-color: #192d5a; -fx-border-width: 2;");
-          btn.setTextFill(Color.web("#192d5aff", 1.0));
-        });
-    btn.setOnMouseExited(
-        event -> {
-          btn.setStyle("-fx-background-color: #192d5aff; -fx-alignment: center;");
-          btn.setTextFill(WHITE);
-        });
+  // Clears the current service request fields
+  public void clearForm() {
+    recipientName.clear();
+    roomNumber.clear();
+    deliveryTime.clear();
+    mainCourseChoice.clear();
+    sideCourseChoice.clear();
+    notes.clear();
+    assignStaff.clear();
   }
 }

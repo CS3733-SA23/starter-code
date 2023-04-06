@@ -1,7 +1,7 @@
 package edu.wpi.teame.controllers;
 
-import static javafx.scene.paint.Color.WHITE;
-
+import Database.DatabaseController;
+import Database.DatabaseServiceController;
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
@@ -11,7 +11,6 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.paint.Color;
 import org.json.JSONObject;
 
 public class FlowerRequestController implements IRequestController {
@@ -35,68 +34,66 @@ public class FlowerRequestController implements IRequestController {
   @FXML MFXComboBox<String> flowerChoice;
   @FXML MFXComboBox<String> numOfFlowers;
   @FXML MFXTextField notes;
+  @FXML MFXTextField assignedStaff;
   @FXML MFXButton cancelButton;
+  @FXML MFXButton clearForm;
 
   @FXML
   public void initialize() {
+    // Add the items to the combo boxes
     flowerChoice.setItems(flowerChoices);
     numOfFlowers.setItems(flowerNum);
     deliveryTime.setItems(deliveryTimes);
-    mouseSetup(returnButtonFlowerRequest);
-    mouseSetup(flowerRequestSubmit);
-    mouseSetup(cancelButton);
+    // Initialize the buttons
     returnButtonFlowerRequest.setOnMouseClicked(
         event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     flowerRequestSubmit.setOnMouseClicked(event -> sendRequest());
     cancelButton.setOnMouseClicked(event -> cancelRequest());
+    clearForm.setOnMouseClicked(event -> clearForm());
   }
 
   public ServiceRequestData sendRequest() {
-    // Get the selected/input values
-    String selFlowers = flowerChoice.getText();
-    String selNumOfFlowers = numOfFlowers.getText();
-    String selDeliveryTime = deliveryTime.getText();
-    String inputName = recipientName.getText();
-    String inputRoom = roomNumber.getText();
-    String inputNotes = notes.getText();
 
     // Create the json to store the values
     JSONObject requestData = new JSONObject();
-    requestData.put("flowers", selFlowers);
-    requestData.put("numFlowers", selNumOfFlowers);
-    requestData.put("deliveryTime", selDeliveryTime);
-    requestData.put("recipient", inputName);
-    requestData.put("room", inputRoom);
-    requestData.put("notes", inputNotes);
-    // System.out.println(requestData);
+    requestData.put("flowerChoice", flowerChoice.getText());
+    requestData.put("numOfFlowers", numOfFlowers.getText());
+    requestData.put("deliveryTime", deliveryTime.getText());
+    requestData.put("recipientName", recipientName.getText());
+    requestData.put("roomNumber", roomNumber.getText());
+    requestData.put("notes", notes.getText());
 
     // Create the service request data
     ServiceRequestData flowerRequestData =
-        new ServiceRequestData(ServiceRequestData.RequestType.FLOWERDELIVERY, requestData);
+        new ServiceRequestData(
+            ServiceRequestData.RequestType.FLOWERDELIVERY,
+            requestData,
+            ServiceRequestData.Status.PENDING,
+            assignedStaff.getText());
+
+    // Return to the home screen
     Navigation.navigate(Screen.HOME);
-    System.out.print(
-        "\nDelivery Type: "
-            + flowerRequestData.getRequestType()
-            + "\nRequest Data: "
-            + flowerRequestData.getRequestData());
+
+    DatabaseController db = new DatabaseController();
+    DatabaseServiceController dbsc = new DatabaseServiceController(db);
+
+    dbsc.addServiceRequestToDatabase(flowerRequestData);
     return flowerRequestData;
   }
 
+  // Cancels the current service request
   public void cancelRequest() {
     Navigation.navigate(Screen.HOME);
   }
 
-  private void mouseSetup(MFXButton btn) {
-    btn.setOnMouseEntered(
-        event -> {
-          btn.setStyle(
-              "-fx-background-color: #ffffff; -fx-alignment: center; -fx-border-color: #192d5a; -fx-border-width: 2;");
-          btn.setTextFill(Color.web("#192d5aff", 1.0));
-        });
-    btn.setOnMouseExited(
-        event -> {
-          btn.setStyle("-fx-background-color: #192d5aff; -fx-alignment: center;");
-          btn.setTextFill(WHITE);
-        });
+  // Clears the current service request fields
+  public void clearForm() {
+    flowerChoice.clear();
+    numOfFlowers.clear();
+    deliveryTime.clear();
+    recipientName.clear();
+    roomNumber.clear();
+    notes.clear();
+    assignedStaff.clear();
   }
 }
