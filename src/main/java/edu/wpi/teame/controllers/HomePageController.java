@@ -1,9 +1,13 @@
 package edu.wpi.teame.controllers;
 
+import edu.wpi.teame.entities.LoginData;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.awt.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+
 public class HomePageController {
   @FXML MFXButton serviceRequestButton;
   @FXML MFXButton signageButton;
@@ -14,6 +18,9 @@ public class HomePageController {
   @FXML MFXButton menuBarMap;
   @FXML MFXButton menuBarExit;
   @FXML MFXButton mapsButton;
+  @FXML MFXButton loginButton;
+  @FXML TextField username;
+  @FXML TextField password;
 
   public void initialize() {
     menuDropDownVisibilty(false);
@@ -35,6 +42,8 @@ public class HomePageController {
     // Page is made
     // menuBarExit.setOnMouseClicked(event -> Navigation.navigate(Screen.EXIT)); //Uncomment when we
     // know where exit goes
+
+    loginButton.setOnMouseClicked(event -> attemptLogin());
   }
 
   public void menuDropDownVisibilty(boolean bool) {
@@ -54,5 +63,23 @@ public class HomePageController {
         event -> {
           menuDropDownVisibilty(false);
         });
+  }
+
+  public void attemptLogin() {
+    // Get the input login info
+    LoginData login = new LoginData(username.getText(), password.getText());
+
+    // If the login was successful
+    if (login.attemptLogin()) {
+      // Hide text fields and button
+      password.setVisible(false);
+      username.setVisible(false);
+      loginButton.setVisible(false);
+    }
+    else {
+      // Clear the fields
+      password.clear();
+      username.clear();
+    }
   }
 }
