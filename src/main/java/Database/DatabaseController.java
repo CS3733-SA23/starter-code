@@ -42,14 +42,6 @@ public enum DatabaseController {
     }
   }
 
-  public static void main(String[] args) {
-    DatabaseController db = DatabaseController.INSTANCE;
-    LocationName locationName = new LocationName("Urology 1", "D5", INFO);
-    HospitalEdge edge = new HospitalEdge("2001", "2002");
-    // db.addToTable(LOCATION_NAME, locationName);
-    db.deleteFromTable(LOCATION_NAME, locationName);
-  }
-
   private Connection c;
 
   DatabaseController(String username, String password) {
@@ -69,7 +61,6 @@ public enum DatabaseController {
       System.err.println(e.getClass().getName() + ": " + e.getMessage());
       System.exit(0);
     }
-    // System.out.println("Opened database successfully");
     return c;
   }
 
@@ -301,7 +292,7 @@ public enum DatabaseController {
       while (rs.next()) {
         locationNames.add(
             new LocationName(
-                rs.getString("longName") + "",
+                rs.getString("longName"),
                 rs.getString("shortName"),
                 stringToNodeType(rs.getString("nodeType"))));
       }
