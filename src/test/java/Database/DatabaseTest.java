@@ -19,7 +19,7 @@ public class DatabaseTest {
    */
   public DatabaseGraphController setup() {
     try {
-      DatabaseController DBC1 = new DatabaseController("a", "b");
+      DatabaseController DBC1 = new DatabaseController("teame", "teame50");
       return new DatabaseGraphController(DBC1);
     } catch (RuntimeException e) {
       System.out.println(e.getMessage());
@@ -39,6 +39,21 @@ public class DatabaseTest {
       System.out.println(
           "SQL Exception: "
               + "\nThere is no node linked to that longName in the Move table so the SQL query returned nothing");
+    }
+  }
+
+  /** Tests to see if you can get the nodeID from a given longName in the Move table */
+  @Test
+  public void testGetNameFromNodeID() {
+    DatabaseGraphController DBMC = this.setup();
+    try {
+      String expected = DBMC.getNameFromNodeID("1200");
+
+      assertEquals(expected, "Hall 3 Level 1");
+    } catch (RuntimeException e) {
+      System.out.println(
+          "SQL Exception: "
+              + "\nThere is no longName linked to that nodeID in the Move table so the SQL query returned nothing");
     }
   }
 

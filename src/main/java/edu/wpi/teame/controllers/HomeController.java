@@ -13,7 +13,7 @@ public class HomeController {
   @FXML MFXButton flowersButton;
   @FXML MFXButton mealRequestButton;
   @FXML MFXButton exitButton;
-
+  @FXML MFXButton mapsButton;
   @FXML ImageView logoImage;
 
   @FXML
