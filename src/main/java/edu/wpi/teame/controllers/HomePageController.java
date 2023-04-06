@@ -30,6 +30,8 @@ public class HomePageController {
   @FXML TextField password;
   @FXML MFXButton menuBarDatabase;
 
+  Boolean loggedIn;
+
   public void initialize() {
     menuDropDownVisibility(false);
 
@@ -56,6 +58,7 @@ public class HomePageController {
     menuBarExit.setOnMouseClicked(event -> Platform.exit()); // Uncomment when we
     // know where exit goes
 
+    loggedIn = false;
     loginButton.setOnMouseClicked(event -> attemptLogin());
   }
 
@@ -103,6 +106,9 @@ public class HomePageController {
       password.setVisible(false);
       username.setVisible(false);
       loginButton.setVisible(false);
+      // Set loggedIn as true
+      loggedIn = true;
+
     } else {
       // Clear the fields
       password.clear();
