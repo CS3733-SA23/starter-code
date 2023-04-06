@@ -23,7 +23,7 @@ public class HomePageController {
   @FXML MFXButton menuBarMap;
   @FXML MFXButton menuBarExit;
   @FXML MFXButton mapsButton;
-  // @FXML MFXButton menuBarDatabase;
+  @FXML MFXButton menuBarDatabase;
 
   public void initialize() {
     menuDropDownVisibility(false);
@@ -33,7 +33,7 @@ public class HomePageController {
     showMenuButtonsWhenHovered(menuBarServices);
     showMenuButtonsWhenHovered(menuBarHome);
     showMenuButtonsWhenHovered(menuBarMap);
-    // showMenuButtonsWhenHovered(menuBarDatabase);
+    showMenuButtonsWhenHovered(menuBarDatabase);
     showMenuButtonsWhenHovered(menuBarExit);
 
     mouseSetup(serviceRequestButton);
@@ -49,7 +49,7 @@ public class HomePageController {
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
-    // menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate((Screen.Database)));
+    menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate((Screen.DATABASE_VIEW)));
     menuBarExit.setOnMouseClicked(event -> Platform.exit()); // Uncomment when we
     // know where exit goes
 
@@ -60,7 +60,7 @@ public class HomePageController {
     menuBarServices.setVisible(bool);
     menuBarHome.setVisible(bool);
     menuBarMap.setVisible(bool);
-    // menuBarDatabase.setVisible(bool);
+    menuBarDatabase.setVisible(bool);
     menuBarExit.setVisible(bool);
   }
 
