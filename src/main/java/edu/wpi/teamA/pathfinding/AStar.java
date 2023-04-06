@@ -42,8 +42,8 @@ public class AStar {
   /**
    * pathOfNodesAStar: A* Algorithm Implementation
    *
-   * @param startID
-   * @param endID
+   * @param
+   * @param
    * @return path of nodes
    */
   public ArrayList<Integer> setPath() {
