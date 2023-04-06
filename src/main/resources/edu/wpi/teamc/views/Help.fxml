@@ -39,7 +39,7 @@
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="2. Change the room name you want in place of the current room" wrappingWidth="218.8349609375">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="2. Change the room information you want in place of the current room" wrappingWidth="218.8349609375">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -58,12 +58,12 @@
       </VBox>
       <VBox layoutX="331.0" layoutY="138.0" prefHeight="165.0" prefWidth="245.0" spacing="15.0">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Export: Click Export button to export a map csv file" wrappingWidth="201.8349609375">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Export: Click Export button to export a csv file" wrappingWidth="201.8349609375">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Import: Click Import button to import a map csv file to the table" wrappingWidth="218.8349609375">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Import: Click Import button to import a csv file to the table" wrappingWidth="218.8349609375">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
