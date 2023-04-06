@@ -345,6 +345,9 @@ public enum DatabaseController {
       reader.close();
       Statement stmt = c.createStatement();
 
+      String sqlDelete = "DELETE FROM \"" + tableName + "\";";
+      stmt.execute(sqlDelete);
+
       switch (tableName) {
         case "Edge":
           for (String l1 : rows) {
