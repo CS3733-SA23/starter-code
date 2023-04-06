@@ -5,7 +5,6 @@ import edu.wpi.teamA.database.ORMclasses.Node;
 import edu.wpi.teamA.navigation.Navigation;
 import edu.wpi.teamA.navigation.Screen;
 import edu.wpi.teamA.pathfinding.AStar;
-import edu.wpi.teamA.pathfinding.BFS;
 import edu.wpi.teamA.pathfinding.SearchController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -29,7 +28,7 @@ public class PathfindingController implements IPageController {
     ArrayList<Node> nodeList = nodeDAO.loadNodesFromDatabase();
 
     for (Node node : nodeList) {
-      nodeOptions.add(node.nodeID);
+      nodeOptions.add(node.getNodeID());
     }
 
     startSelection.setItems(FXCollections.observableArrayList(nodeOptions));
