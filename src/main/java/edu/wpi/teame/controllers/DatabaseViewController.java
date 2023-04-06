@@ -185,7 +185,9 @@ public class DatabaseViewController {
     staffCol.setCellValueFactory(
         new PropertyValueFactory<ServiceRequestData, String>("assignedStaff"));
 
-    // ObservableList requestList = FXCollections.observableArrayList(dC.get)
+    //ObservableList requestList = FXCollections.observableArrayList(DatabaseService)
+
+    //requestTable.setItems(requestList);
     requestTable.setEditable(true);
 
     moveTable.setPlaceholder(new Label("No rows to display"));

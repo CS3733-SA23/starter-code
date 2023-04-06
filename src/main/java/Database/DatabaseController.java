@@ -193,6 +193,7 @@ public enum DatabaseController {
                 + "');";
         break;
       case SERVICE_REQUESTS:
+        /*
         ServiceRequestData serviceRequestData = (ServiceRequestData) obj;
         JSONObject requestData = serviceRequestData.getRequestData();
         String status =
@@ -210,6 +211,8 @@ public enum DatabaseController {
                 + "', '"
                 + requestType
                 + "');";
+
+         */
         break;
     }
 
