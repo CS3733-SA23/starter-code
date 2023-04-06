@@ -74,7 +74,7 @@ public class FlowerRequestController implements IRequestController {
     // Return to the home screen
     Navigation.navigate(Screen.HOME);
 
-    DatabaseController db = new DatabaseController();
+    DatabaseController db = DatabaseController.INSTANCE;
     DatabaseServiceController dbsc = new DatabaseServiceController(db);
 
     dbsc.addServiceRequestToDatabase(flowerRequestData);

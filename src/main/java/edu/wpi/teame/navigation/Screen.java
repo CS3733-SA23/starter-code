@@ -9,7 +9,8 @@ public enum Screen {
   SIGNAGE_TEXT("views/SignagePage.fxml"),
   MEAL_REQUEST("views/MealRequest.fxml"),
   FLOWER_REQUEST("views/FlowerRequest.fxml"),
-  MAP("views/Map.fxml");
+  MAP("views/Map.fxml"),
+  DATABASE_VIEW("views/DatabaseEditor.fxml");
 
   private final String filename;
 

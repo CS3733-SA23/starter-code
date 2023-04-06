@@ -21,7 +21,7 @@ public class DatabaseTest {
    */
   public DatabaseGraphController setupGraphController() {
     try {
-      DatabaseController DBC1 = new DatabaseController();
+      DatabaseController DBC1 = DatabaseController.INSTANCE;
       return new DatabaseGraphController(DBC1);
     } catch (RuntimeException e) {
       System.out.println(e.getMessage());

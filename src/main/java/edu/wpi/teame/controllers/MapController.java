@@ -55,7 +55,7 @@ public class MapController {
   ArrayList<Line> currentLines = new ArrayList<>();
   ArrayList<Circle> currentCircles = new ArrayList<>();
 
-  DatabaseController db = new DatabaseController("teame", "teame50");
+  DatabaseController db = DatabaseController.INSTANCE;
   DatabaseGraphController graphController = new DatabaseGraphController(db);
   ObservableList<String> floorLocations =
       FXCollections.observableArrayList(
