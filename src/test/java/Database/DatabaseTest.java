@@ -12,14 +12,15 @@ import org.junit.jupiter.api.Test;
 public class DatabaseTest {
 
   /**
-   * Creates DatabaseGraphController to use for tests Will catch a runtime error if you cannot
+   * Creates DatabaseGraphController to use for tests Will catch a runtime error
+   * if you cannot
    * connect to Database
    *
    * @return DatabaseGraphController
    */
   public DatabaseGraphController setup() {
     try {
-      DatabaseController DBC1 = new DatabaseController();
+      DatabaseController DBC1 = new DatabaseController("a", "b");
       return new DatabaseGraphController(DBC1);
     } catch (RuntimeException e) {
       System.out.println(e.getMessage());
@@ -27,7 +28,10 @@ public class DatabaseTest {
     return null;
   }
 
-  /** Tests to see if you can get the nodeID from a given longName in the Move table */
+  /**
+   * Tests to see if you can get the nodeID from a given longName in the Move
+   * table
+   */
   @Test
   public void testGetNodeIDFromName() {
     DatabaseGraphController DBMC = this.setup();
@@ -52,7 +56,9 @@ public class DatabaseTest {
     assertEquals(moveAttributeList.size(), 45);
   }
 
-  /** Tests the new retrieveFromTable method and produces list of nodes and strings */
+  /**
+   * Tests the new retrieveFromTable method and produces list of nodes and strings
+   */
   @Test
   public void testNewRetrieveFromTable() {
     DatabaseGraphController DBMC = setup();
@@ -61,9 +67,9 @@ public class DatabaseTest {
     List<HospitalNode> nlist = DBMC.getHospitalNodes();
     List<HospitalEdge> elist = DBMC.getHospitalEdges();
 
-    //    for (HospitalNode hn : nlist) {
-    //      System.out.println(hn);
-    //    }
+    // for (HospitalNode hn : nlist) {
+    // System.out.println(hn);
+    // }
 
     assertEquals(581, nlist.size());
     assertEquals(684, elist.size());
