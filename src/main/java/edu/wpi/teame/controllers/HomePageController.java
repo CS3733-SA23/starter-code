@@ -2,13 +2,16 @@ package edu.wpi.teame.controllers;
 
 import static javafx.scene.paint.Color.WHITE;
 
+import edu.wpi.teame.entities.LoginData;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.awt.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.*;
 import javafx.scene.control.*;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
@@ -23,7 +26,12 @@ public class HomePageController {
   @FXML MFXButton menuBarMap;
   @FXML MFXButton menuBarExit;
   @FXML MFXButton mapsButton;
+  @FXML MFXButton loginButton;
+  @FXML TextField username;
+  @FXML TextField password;
   @FXML MFXButton menuBarDatabase;
+
+  Boolean loggedIn;
 
   public void initialize() {
     menuDropDownVisibility(false);
@@ -53,6 +61,8 @@ public class HomePageController {
     menuBarExit.setOnMouseClicked(event -> Platform.exit()); // Uncomment when we
     // know where exit goes
 
+    loggedIn = false;
+    loginButton.setOnMouseClicked(event -> attemptLogin());
   }
 
   public void menuDropDownVisibility(boolean bool) {
@@ -87,5 +97,25 @@ public class HomePageController {
           btn.setStyle("-fx-background-color: #192d5aff; -fx-alignment: center;");
           btn.setTextFill(WHITE);
         });
+  }
+
+  public void attemptLogin() {
+    // Get the input login info
+    LoginData login = new LoginData(username.getText(), password.getText());
+
+    // If the login was successful
+    if (login.attemptLogin()) {
+      // Hide text fields and button
+      password.setVisible(false);
+      username.setVisible(false);
+      loginButton.setVisible(false);
+      // Set loggedIn as true
+      loggedIn = true;
+
+    } else {
+      // Clear the fields
+      password.clear();
+      username.clear();
+    }
   }
 }

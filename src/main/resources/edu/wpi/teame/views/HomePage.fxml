@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.MotionBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Rectangle?>
@@ -15,7 +17,7 @@
 
 <BorderPane style="-fx-background-color: #3b63a5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.HomePageController">
     <center>
-        <AnchorPane prefHeight="500.0" prefWidth="810.0">
+        <AnchorPane>
             <children>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="534.0" layoutX="14.0" layoutY="14.0" strokeType="INSIDE" width="800.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                     <effect>
@@ -60,11 +62,6 @@
                   </MFXButton>
                     </children>
                 </VBox>
-            <MFXButton fx:id="loginButton" layoutX="709.0" layoutY="499.0" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Login">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </MFXButton>
 
             <VBox layoutX="55.0" layoutY="65.0" prefHeight="383.0" prefWidth="80.0">
                <children>
@@ -167,6 +164,17 @@
                   <Font name="Poor Richard" size="48.0" />
                </font>
             </Text>
+            <HBox alignment="CENTER" layoutX="450.0" layoutY="491.0" prefHeight="50.0" prefWidth="345.0" spacing="2.0" AnchorPane.bottomAnchor="2.7142857142857153" AnchorPane.rightAnchor="15.142857142857167">
+               <children>
+                  <TextField fx:id="username" promptText="Username:" />
+                  <TextField fx:id="password" promptText="Password:" />
+                  <MFXButton fx:id="loginButton" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Login">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </MFXButton>
+               </children>
+            </HBox>
 
             </children>
         </AnchorPane>
