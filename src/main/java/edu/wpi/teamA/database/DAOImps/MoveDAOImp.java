@@ -8,8 +8,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Scanner;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,20 +24,71 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
     this.MoveArray = MoveArray;
   }
 
-  public static void Import(String filePath) {
+  public static void createSchema() {
     try {
-      Scanner input = new Scanner(System.in);
-      System.out.println("Please input the full qualified path of the file you want to import");
-      filePath = input.nextLine();
+      Statement stmtSchema = moveProvider.createConnection().createStatement();
+      String sqlCreateSchema = "CREATE SCHEMA IF NOT EXISTS \"Prototype2_schema\"";
+      stmtSchema.execute(sqlCreateSchema);
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static Connection createConnection() {
+    String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamadb";
+    String user = "teama";
+    String password = "teama10";
+
+    try {
+      return DriverManager.getConnection(url, user, password);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public static ArrayList<Move> loadMovesFromCSV(String filePath) {
+    ArrayList<Move> moves = new ArrayList<>();
+
+    try {
+      BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
+      csvReader.readLine(); // Skip the header line
+      String row;
+
+      while ((row = csvReader.readLine()) != null) {
+        String[] data = row.split(",");
+
+        int nodeID = Integer.parseInt(data[0]);
+        String longName = data[1];
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+        LocalDate localDate = LocalDate.parse(data[2], formatter);
+
+        Move move = new Move(nodeID, longName, localDate);
+        moves.add(move);
+      }
+
+      csvReader.close();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    return moves;
+  }
+
+  public static ArrayList<Move> Import(String filePath) {
+    MoveDAOImp.createSchema();
+    ArrayList<Move> MoveArray = loadMovesFromCSV(filePath);
+
+    try {
       BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
       csvReader.readLine();
       String row;
 
       String sqlCreateEdge =
-          "Create Table if not exists \"Prototype2_schema.Node\""
+          "Create Table if not exists \"Prototype2_schema\".\"Move\""
               + "(nodeID   int PRIMARY KEY,"
-              + "LongName  Varchar(600),"
-              + "date      date)";
+              + "longName  Varchar(600),"
+              + "localDate      date)";
       Statement stmtMove = moveProvider.createConnection().createStatement();
       stmtMove.execute(sqlCreateEdge);
 
@@ -46,10 +98,12 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
         PreparedStatement ps =
             moveProvider
                 .createConnection()
-                .prepareStatement("INSERT INTO Prototype2_schema.\"Move\" VALUES (?, ?, ?)");
+                .prepareStatement("INSERT INTO \"Prototype2_schema\".\"Move\" VALUES (?, ?, ?)");
         ps.setInt(1, Integer.parseInt(data[0]));
         ps.setString(2, data[1]);
-        ps.setString(3, data[2]);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+        LocalDate localDate = LocalDate.parse(data[2], formatter);
+        ps.setDate(3, java.sql.Date.valueOf(localDate));
         ps.executeUpdate();
       }
       csvReader.close();
@@ -57,12 +111,13 @@ public class MoveDAOImp implements IDataBase, IMoveDAO {
 
       throw new RuntimeException(e);
     }
+    return MoveArray;
   }
 
   public static void Export(String filePath) {
     try {
       Statement st = moveProvider.createConnection().createStatement();
-      ResultSet rs = st.executeQuery("SELECT * FROM Prototype2_schema.\"Move\"");
+      ResultSet rs = st.executeQuery("SELECT * FROM \"Prototype2_schema\".\"Move\"");
 
       FileWriter csvWriter = new FileWriter("Move.csv");
       csvWriter.append("nodeID,longName,date\n");

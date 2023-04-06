@@ -46,7 +46,7 @@
       </MFXButton>
       <VBox alignment="CENTER" layoutX="514.0" layoutY="171.0" prefHeight="441.0" prefWidth="548.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="200.0">
          <children>
-            <MFXButton fx:id="flowerDelivery" alignment="CENTER" contentDisplay="CENTER" prefHeight="135.0" prefWidth="380.0" style="-fx-background-radius: 60; -fx-text-fill: WHITE; -fx-background-color: #012D5A;" text="Flower Delivery" textAlignment="CENTER" textFill="#fcfcfc">
+            <MFXButton fx:id="flowerDelivery" alignment="CENTER" contentDisplay="CENTER" onAction="#flowerPage" prefHeight="135.0" prefWidth="380.0" style="-fx-background-radius: 60; -fx-text-fill: WHITE; -fx-background-color: #012D5A;" text="Flower Delivery" textAlignment="CENTER" textFill="#fcfcfc">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -71,7 +71,7 @@
                </rippleColor>
             </MFXButton>
             <Pane prefHeight="93.0" prefWidth="514.0" />
-            <MFXButton fx:id="conferenceRoom" alignment="CENTER" contentDisplay="CENTER" prefHeight="135.0" prefWidth="380.0" style="-fx-background-radius: 60; -fx-text-fill: WHITE; -fx-background-color: #012D5A;" text="Conference Room" textAlignment="CENTER" textFill="#fcfcfc">
+            <MFXButton fx:id="conferenceRoom" alignment="CENTER" contentDisplay="CENTER" onAction="#conferencePage" prefHeight="135.0" prefWidth="380.0" style="-fx-background-radius: 60; -fx-text-fill: WHITE; -fx-background-color: #012D5A;" text="Conference Room" textAlignment="CENTER" textFill="#fcfcfc">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

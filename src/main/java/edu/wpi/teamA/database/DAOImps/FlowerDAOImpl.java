@@ -1,22 +1,26 @@
 package edu.wpi.teamA.database.DAOImps;
 
+import edu.wpi.teamA.database.Connection.DBConnectionProvider;
 import edu.wpi.teamA.database.Interfaces.IFlowerDAO;
 import edu.wpi.teamA.database.ORMclasses.FlowerEntity;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class FlowerDAOImpl implements IFlowerDAO {
   ArrayList<FlowerEntity> flowerArray = new ArrayList<>();
-  Connection flowerConnection; // need connection to server
+  static DBConnectionProvider flowerProvider = new DBConnectionProvider();
 
-  public FlowerDAOImpl() {}
+  public FlowerDAOImpl() {
+    this.flowerArray = new ArrayList<>();
+  }
+
+  public FlowerDAOImpl(ArrayList<FlowerEntity> flowerArray) {
+    this.flowerArray = flowerArray;
+  }
 
   @Override
   public void addFlower(FlowerEntity flower) {
-    /** Insert new node object to the existing flower table */
+    /** Insert new node object to the existing node table */
     try {
       String name = flower.getName();
       int room = flower.getRoom();
@@ -26,9 +30,23 @@ public class FlowerDAOImpl implements IFlowerDAO {
       String comment = flower.getComment();
       String status = flower.getStatus();
 
+      String sqlCreateEdge =
+          "Create Table if not exists \"Prototype2_schema\".\"Flower\""
+              + "(namee   Varchar(600),"
+              + "room    int,"
+              + "datee    date,"
+              + "timee     int,"
+              + "flowerType     Varchar(600),"
+              + "comment     Varchar(600),"
+              + "status  Varchar(600))";
+      Statement stmtFlower = flowerProvider.createConnection().createStatement();
+      stmtFlower.execute(sqlCreateEdge);
+
       PreparedStatement ps =
-          flowerConnection.prepareStatement(
-              "INSERT INTO Prototype2_schema.\"flower\" VALUES (?, ?, ?, ?, ?, ?, ?)");
+          flowerProvider
+              .createConnection()
+              .prepareStatement(
+                  "INSERT INTO \"Prototype2_schema\".\"Flower\" VALUES (?, ?, ?, ?, ?, ?, ?)");
       ps.setString(1, name);
       ps.setInt(2, room);
       ps.setDate(3, date);
@@ -38,7 +56,7 @@ public class FlowerDAOImpl implements IFlowerDAO {
       ps.setString(7, status);
       ps.executeUpdate();
 
-      // flowerArray.add(new FlowerEntity(name, room, date, time, type, comment));
+      flowerArray.add(new FlowerEntity(name, room, date, time, type, comment, status));
 
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -50,8 +68,9 @@ public class FlowerDAOImpl implements IFlowerDAO {
 
     try {
       PreparedStatement ps =
-          flowerConnection.prepareStatement(
-              "DELETE FROM Prototype2_schema.\"flower\" WHERE name = ?");
+          flowerProvider
+              .createConnection()
+              .prepareStatement("DELETE FROM \"Prototype2_schema\".\"Flower\" WHERE name = ?");
       ps.setString(1, flower.getName());
       ps.executeUpdate();
 
@@ -64,4 +83,7 @@ public class FlowerDAOImpl implements IFlowerDAO {
 
   @Override
   public void updateFlower(FlowerEntity flower) {}
+
+  @Override
+  public void editFlower(FlowerEntity flower) {}
 }

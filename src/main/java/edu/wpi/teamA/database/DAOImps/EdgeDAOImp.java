@@ -12,22 +12,74 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class EdgeDAOImp implements IDataBase, IEdgeDAO {
-  ArrayList<Edge> edgeArray;
+  ArrayList<Edge> EdgeArray;
   static DBConnectionProvider edgeProvider = new DBConnectionProvider();
 
   public EdgeDAOImp(ArrayList<Edge> EdgeArray) {
-    this.edgeArray = EdgeArray;
+    this.EdgeArray = EdgeArray;
     // check if the table exist
     // if it exist, populate the array list
     // use select * to get all info from the table
     // create objects based off of the results
   }
 
-  public EdgeDAOImp() {
-    this.edgeArray = new ArrayList<Edge>();
+  public static void createSchema() {
+    try {
+      Statement stmtSchema = edgeProvider.createConnection().createStatement();
+      String sqlCreateSchema = "CREATE SCHEMA IF NOT EXISTS \"Prototype2_schema\"";
+      stmtSchema.execute(sqlCreateSchema);
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   }
 
-  public static void Import(String filePath) {
+  public static Connection createConnection() {
+    String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamadb";
+    String user = "teama";
+    String password = "teama10";
+
+    try {
+      return DriverManager.getConnection(url, user, password);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public static ArrayList<Edge> loadEdgesFromCSV(String filePath) {
+    ArrayList<Edge> edges = new ArrayList<>();
+
+    try {
+      BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
+      csvReader.readLine(); // Skip the header line
+      String row;
+
+      while ((row = csvReader.readLine()) != null) {
+        String[] data = row.split(",");
+
+        int startNode = Integer.parseInt(data[0]);
+        int endNode = Integer.parseInt(data[1]);
+
+        Edge edge = new Edge(startNode, endNode);
+        edges.add(edge);
+      }
+
+      csvReader.close();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    return edges;
+  }
+
+  public EdgeDAOImp() {
+    this.EdgeArray = new ArrayList<Edge>();
+  }
+
+  public static ArrayList<Edge> Import(String filePath) {
+    EdgeDAOImp.createSchema();
+    ArrayList<Edge> EdgeArray = loadEdgesFromCSV(filePath);
+
     try {
       BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
       csvReader.readLine();
@@ -36,14 +88,14 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
       String sqlCreateEdge =
           "Create Table if not exists \"Prototype2_schema\".\"Edge\""
               + "(startNode   int,"
-              + "endNode    int)";
-      //              + "CONSTRAINT fk_startnode "
-      //              + "FOREIGN KEY(startNode) "
-      //              + "REFERENCES Prototype2_schema.Node(nodeid), "
-      //              + "CONSTRAINT fk_endnode "
-      //              + "FOREIGN KEY(endNode)"
-      //              + "REFERENCES Prototype2_schema.Node(nodeid)
-      //                    )";
+              + "endNode    int,"
+              + "CONSTRAINT fk_startnode "
+              + "FOREIGN KEY(startNode) "
+              + "REFERENCES \"Prototype2_schema\".\"Node\"(nodeid), "
+              + "CONSTRAINT fk_endnode "
+              + "FOREIGN KEY(endNode)"
+              + "REFERENCES \"Prototype2_schema\".\"Node\"(nodeid))";
+
       Statement stmtEdge = edgeProvider.createConnection().createStatement();
       stmtEdge.execute(sqlCreateEdge);
 
@@ -63,11 +115,13 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
 
       throw new RuntimeException(e);
     }
+
+    return EdgeArray;
   }
 
   public static void Export(String folderExportPath) {
     try {
-      String newFile = folderExportPath + "/Edfge.csv";
+      String newFile = folderExportPath + "/Edge.csv";
       Statement st = edgeProvider.createConnection().createStatement();
       ResultSet rs = st.executeQuery("SELECT * FROM \"Prototype2_schema\".\"Edge\"");
 
@@ -127,7 +181,7 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
       ps.setInt(2, endNode);
       ps.executeUpdate();
 
-      edgeArray.add(new Edge(startNode, endNode));
+      EdgeArray.add(new Edge(startNode, endNode));
 
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -154,7 +208,7 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
       ps.setInt(2, endNode);
       ps.executeUpdate();
 
-      edgeArray.removeIf(Edge -> Edge.startNode == startNode && Edge.endNode == endNode);
+      EdgeArray.removeIf(Edge -> Edge.getStartNode() == startNode && Edge.getEndNode() == endNode);
 
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -179,18 +233,18 @@ public class EdgeDAOImp implements IDataBase, IEdgeDAO {
           edgeProvider
               .createConnection()
               .prepareStatement(
-                  "UPDATE Prototype2_schema.\"Edge\" SET startNode = ?, endNode = ? WHERE startNode = ? AND endNode = ?");
+                  "UPDATE \"Prototype2_schema\".\"Edge\" SET startNode = ?, endNode = ? WHERE startNode = ? AND endNode = ?");
       ps.setInt(1, newStartNode);
       ps.setInt(2, newEndNode);
       ps.setInt(3, oldStartNode);
       ps.setInt(4, oldEndNode);
       ps.executeUpdate();
 
-      edgeArray.forEach(
+      EdgeArray.forEach(
           edge -> {
-            if (edge.startNode == oldStartNode && edge.endNode == oldEndNode) {
-              edge.startNode = newStartNode;
-              edge.endNode = newEndNode;
+            if (edge.getStartNode() == oldStartNode && edge.getEndNode() == oldEndNode) {
+              edge.setStartNode(newStartNode);
+              edge.setEndNode(newEndNode);
             }
           });
 

@@ -1,15 +1,16 @@
 package edu.wpi.teamA.database.ORMclasses;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Node {
-  public Integer nodeID;
+  @Getter @Setter private Integer nodeID;
 
-  public Integer xcoord;
+  @Getter @Setter private Integer xcoord;
 
-  public Integer ycoord;
-
-  public String floor;
-
-  public String building;
+  @Getter @Setter private Integer ycoord;
+  @Getter @Setter private String floor;
+  @Getter @Setter private String building;
 
   public Node(Integer nodeID, Integer xcoord, Integer ycoord, String floor, String building) {
     this.nodeID = nodeID;
@@ -17,25 +18,5 @@ public class Node {
     this.ycoord = ycoord;
     this.floor = floor;
     this.building = building;
-  }
-
-  public Integer getNodeID() {
-    return nodeID;
-  }
-
-  public Integer getXccord() {
-    return xcoord;
-  }
-
-  public Integer getYcoord() {
-    return ycoord;
-  }
-
-  public String getFloor() {
-    return floor;
-  }
-
-  public String getBuilding() {
-    return building;
   }
 }

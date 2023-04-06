@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class FlowerEntity {
-  @Getter @Setter private String key;
   @Getter @Setter private String name;
   @Getter @Setter private int room;
   @Getter @Setter private Date date;
