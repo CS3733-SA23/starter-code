@@ -225,6 +225,22 @@ public class DatabaseViewController {
               dC.importFromCSV(
                   selectedFile.getAbsolutePath(),
                   DatabaseController.Table.tableToString(databaseChoice.getValue()));
+              // refresh
+              switch (databaseChoice.getValue()) {
+                case MOVE:
+                  activeTable.setItems(FXCollections.observableArrayList(dC.getMoveList()));
+                  break;
+                case NODE:
+                  activeTable.setItems(FXCollections.observableArrayList(dC.getNodes()));
+                  break;
+                case LOCATION_NAME:
+                  activeTable.setItems(FXCollections.observableArrayList(dC.getLocationName()));
+                  break;
+                case EDGE:
+                  activeTable.setItems(FXCollections.observableArrayList(dC.getEdges()));
+                  break;
+              }
+
             } catch (IOException e) {
               System.out.println("You messed up big time!!!!!!");
               System.out.println(e);
