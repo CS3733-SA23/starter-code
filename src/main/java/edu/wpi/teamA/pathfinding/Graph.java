@@ -24,7 +24,7 @@ public class Graph {
 
     for (Node n : allNodes) {
       GraphNode g =
-          new GraphNode(n.getNodeID(), n.getXccord(), n.getYcoord(), n.getFloor(), n.getBuilding());
+          new GraphNode(n.getNodeID(), n.getXcoord(), n.getYcoord(), n.getFloor(), n.getBuilding());
       addNodeToGraph(g);
     }
 

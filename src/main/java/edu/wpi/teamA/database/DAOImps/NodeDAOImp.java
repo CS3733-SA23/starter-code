@@ -89,7 +89,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
 
       String sqlCreateNode =
           "Create Table if not exists \"Prototype2_schema\".\"Node\""
-              + "(nodeID   int PRIMARY KEY,"
+              + "(nodeid   int PRIMARY KEY,"
               + "xcoord    int,"
               + "ycoord    int,"
               + "floor     Varchar(600),"
@@ -128,10 +128,10 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
 
       FileWriter csvWriter = new FileWriter(newFile);
 
-      csvWriter.append("nodeID,xcoord,ycoord,floor,building\n");
+      csvWriter.append("nodeid,xcoord,ycoord,floor,building\n");
 
       while (rs.next()) {
-        csvWriter.append((rs.getInt("nodeID")) + (","));
+        csvWriter.append((rs.getInt("nodeid")) + (","));
         csvWriter.append((rs.getInt("xcoord")) + (","));
         csvWriter.append((rs.getInt("ycoord")) + (","));
         csvWriter.append(rs.getString("floor")).append(",");
@@ -217,7 +217,7 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
       ps.setInt(1, nodeID);
       ps.executeUpdate();
 
-      NodeArray.removeIf(node -> node.nodeID.equals(nodeID));
+      NodeArray.removeIf(node -> node.getNodeID().equals(nodeID));
 
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -250,11 +250,11 @@ public class NodeDAOImp implements IDataBase, INodeDAO {
 
       NodeArray.forEach(
           node -> {
-            if (node.nodeID.equals(nodeID)) {
-              node.xcoord = xcoord;
-              node.ycoord = ycoord;
-              node.floor = floor;
-              node.building = building;
+            if (node.getNodeID().equals(nodeID)) {
+              node.setXcoord(xcoord);
+              node.setYcoord(ycoord);
+              node.setFloor(floor);
+              node.setBuilding(building);
             }
           });
 
