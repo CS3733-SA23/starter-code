@@ -360,8 +360,8 @@ public enum DatabaseController {
                     + ","
                     + splitL1[1]
                     + "); ";
-            System.out.println(sql);
             stmt.execute(sql);
+            System.out.println(sql);
           }
           break;
         case "Node":
@@ -374,14 +374,15 @@ public enum DatabaseController {
                     + "\""
                     + " VALUES ("
                     + Integer.parseInt(splitL1[0])
-                    + ", '"
+                    + ","
                     + Integer.parseInt(splitL1[1])
-                    + ", '"
+                    + ","
                     + Integer.parseInt(splitL1[2])
-                    + ", '"
-                    + splitL1[3]
-                    + ", '"
-                    + splitL1[4];
+                    + ","
+                    + (splitL1[3])
+                    + ",'"
+                    + splitL1[4]
+                    + "'); ";
             System.out.println(sql);
             stmt.execute(sql);
           }
@@ -396,10 +397,10 @@ public enum DatabaseController {
                     + tableName
                     + "\""
                     + " VALUES ("
-                    + Integer.parseInt(splitL1[0])
-                    + ", '"
+                    + splitL1[0]
+                    + ",'"
                     + splitL1[1]
-                    + "', '"
+                    + "','"
                     + splitL1[2]
                     + "'); ";
             System.out.println(sql);
@@ -416,9 +417,9 @@ public enum DatabaseController {
                     + "\""
                     + " VALUES ('"
                     + splitL1[0]
-                    + "', '"
+                    + "','"
                     + splitL1[1]
-                    + "', '"
+                    + "','"
                     + splitL1[2]
                     + "'); ";
             System.out.println(sql);
