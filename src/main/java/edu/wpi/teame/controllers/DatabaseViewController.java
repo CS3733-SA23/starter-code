@@ -1,6 +1,7 @@
 package edu.wpi.teame.controllers;
 
 import Database.DatabaseController;
+import Database.DatabaseServiceController;
 import edu.wpi.teame.App;
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.*;
@@ -185,9 +186,11 @@ public class DatabaseViewController {
     staffCol.setCellValueFactory(
         new PropertyValueFactory<ServiceRequestData, String>("assignedStaff"));
 
-    // ObservableList requestList = FXCollections.observableArrayList(DatabaseService)
+    DatabaseServiceController dsc = new DatabaseServiceController(dC);
+    dsc.retrieveRequestsFromTable();
+    ObservableList requestList = FXCollections.observableArrayList(dsc.getServiceRequests());
 
-    // requestTable.setItems(requestList);
+    requestTable.setItems(requestList);
     requestTable.setEditable(true);
 
     moveTable.setPlaceholder(new Label("No rows to display"));
@@ -205,7 +208,10 @@ public class DatabaseViewController {
             new EventHandler<KeyEvent>() {
               @Override
               public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.BACK_SPACE) {
+                if (event.getCode() == KeyCode.BACK_SPACE
+                    && !databaseChoice
+                        .getValue()
+                        .equals(DatabaseController.Table.SERVICE_REQUESTS)) {
                   removeItem();
                 }
               }
