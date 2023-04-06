@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 import org.json.JSONObject;
 
 public enum DatabaseController {
-  INSTANCE;
+  INSTANCE("teame", "teame50");
 
   public enum Table {
     LOCATION_NAME,
@@ -55,10 +55,6 @@ public enum DatabaseController {
   DatabaseController(String username, String password) {
     c = this.connectToDatabase(username, password);
     // this.retrieveFromTable();
-  }
-
-  DatabaseController() {
-    c = this.connectToDatabase("teame", "teame50");
   }
 
   private Connection connectToDatabase(String username, String password) {
@@ -504,7 +500,7 @@ public enum DatabaseController {
     return c;
   }
 
-  private void exitDatabaseProgram() {
+  void exitDatabaseProgram() {
     try {
       c.close();
       System.out.println("Database Connection Closed");
