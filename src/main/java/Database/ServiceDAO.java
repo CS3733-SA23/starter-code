@@ -42,7 +42,7 @@ public class ServiceDAO<E> extends DAO<ServiceRequestData> {
   }
 
   @Override
-  public void update() {}
+  public void update(ServiceRequestData obj, String attribute, String value) {}
 
   @Override
   public void delete(ServiceRequestData obj) {

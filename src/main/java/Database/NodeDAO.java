@@ -51,7 +51,33 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
   }
 
   @Override
-  public void update() {}
+  void update(HospitalNode obj, String attribute, String value) {
+    String nodeID = obj.getNodeID();
+    String sql = "";
+
+    try {
+      Statement stmt = activeConnection.createStatement();
+
+      if (attribute.equals("nodeID") || attribute.equals("xcoord") || attribute.equals("ycoord")) {
+        sql = "UPDATE \"Node\" " +
+                "SET \"" + attribute + "\" = " + value
+                + " WHERE \"nodeID\" = " + nodeID
+                + ";";
+      } else {
+        sql = "UPDATE \"Node\" " +
+                "SET \"" + attribute + "\" = '" + value
+                + "' WHERE \"nodeID\" = " + nodeID
+                + ";";
+      }
+
+      int result stmt.executeUpdate(sql);
+      if (result < 1)
+        System.out.println("There was a problem updating that value of the node");
+    } catch (SQLException e) {
+      throw new RuntimeException("There was a problem updating that value of the node");
+    }
+  }
+
 
   @Override
   public void delete(HospitalNode obj) {
