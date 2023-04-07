@@ -1,10 +1,18 @@
 package Database;
 
 import edu.wpi.teame.map.HospitalNode;
+
+import java.sql.Connection;
 import java.util.List;
 
 public class NodeDAO<E> implements DAO<HospitalNode> {
   List<HospitalNode> nodeList;
+
+  Connection c;
+
+  public NodeDAO(Connection c) {
+    this.c = c;
+  }
 
   @Override
   public List<HospitalNode> get() {
