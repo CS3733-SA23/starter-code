@@ -2,29 +2,21 @@ package edu.wpi.teame.controllers;
 
 import Database.DatabaseController;
 import Database.DatabaseServiceController;
-import edu.wpi.teame.App;
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.*;
+import edu.wpi.teame.App;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Popup;
@@ -38,8 +30,7 @@ public class DatabaseViewController {
   @FXML MFXButton backButton;
   @FXML MFXButton deleteButton;
   @FXML MFXButton addButton; // three text boxes and a button that says "add" next to it
-
-  @FXML ComboBox<DatabaseController.Table> databaseChoice;
+  
 
   // fields for Moves
   @FXML HBox movesAddZone;
@@ -114,8 +105,9 @@ public class DatabaseViewController {
     choices.add(DatabaseController.Table.NODE);
     choices.add(DatabaseController.Table.EDGE);
     choices.add(DatabaseController.Table.SERVICE_REQUESTS);
-    databaseChoice.setItems(FXCollections.observableArrayList(choices));
+    // databaseChoice.setItems(FXCollections.observableArrayList(choices));
 
+    /*
     databaseChoice.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
@@ -123,6 +115,8 @@ public class DatabaseViewController {
             switchActiveTable(databaseChoice.getValue());
           }
         });
+
+     */
 
     Popup windowPop = new Popup();
     Label popupLabel = new Label("Error: improper formatting");
@@ -202,6 +196,7 @@ public class DatabaseViewController {
           removeItem();
         });
 
+
     App.getPrimaryStage()
         .addEventHandler(
             KeyEvent.KEY_PRESSED,
@@ -222,6 +217,7 @@ public class DatabaseViewController {
           addRow(windowPop, confirmPop);
         });
 
+    /*
     importButton.setOnMouseClicked(
         event -> {
           File selectedFile = selectChooser.showOpenDialog(App.getPrimaryStage());
@@ -256,6 +252,9 @@ public class DatabaseViewController {
           }
         });
 
+     */
+
+    /*
     exportButton.setOnMouseClicked(
         event -> {
           // File selectedDirectory = directoryChooser.showDialog(App.getPrimaryStage());
@@ -275,102 +274,12 @@ public class DatabaseViewController {
             }
           }
         });
-  }
-
-  private void switchActiveTable(DatabaseController.Table db) {
-    switch (db) {
-      case MOVE:
-        activeTable = moveTable;
-
-        moveTable.setVisible(true);
-        locationTable.setVisible(false);
-        nodeTable.setVisible(false);
-        edgeTable.setVisible(false);
-        requestTable.setVisible(false);
-
-        movesAddZone.setVisible(true);
-        locationAddZone.setVisible(false);
-        nodeAddZone.setVisible(false);
-        edgeAddZone.setVisible(false);
-
-        addButton.setDisable(false);
-        deleteButton.setDisable(false);
-        break;
-      case LOCATION_NAME:
-        activeTable = locationTable;
-
-        moveTable.setVisible(false);
-        locationTable.setVisible(true);
-        nodeTable.setVisible(false);
-        edgeTable.setVisible(false);
-        requestTable.setVisible(false);
-
-        movesAddZone.setVisible(false);
-        locationAddZone.setVisible(true);
-        nodeAddZone.setVisible(false);
-        edgeAddZone.setVisible(false);
-
-        addButton.setDisable(false);
-        deleteButton.setDisable(false);
-        break;
-      case NODE:
-        activeTable = nodeTable;
-
-        moveTable.setVisible(false);
-        locationTable.setVisible(false);
-        nodeTable.setVisible(true);
-        edgeTable.setVisible(false);
-        requestTable.setVisible(false);
-
-        movesAddZone.setVisible(false);
-        locationAddZone.setVisible(false);
-        nodeAddZone.setVisible(true);
-        edgeAddZone.setVisible(false);
-
-        addButton.setDisable(false);
-        deleteButton.setDisable(false);
-        break;
-      case EDGE:
-        activeTable = edgeTable;
-
-        moveTable.setVisible(false);
-        locationTable.setVisible(false);
-        nodeTable.setVisible(false);
-        edgeTable.setVisible(true);
-        requestTable.setVisible(false);
-
-        movesAddZone.setVisible(false);
-        locationAddZone.setVisible(false);
-        nodeAddZone.setVisible(false);
-        edgeAddZone.setVisible(true);
-
-        addButton.setDisable(false);
-        deleteButton.setDisable(false);
-        break;
-      case SERVICE_REQUESTS:
-        activeTable = requestTable;
-        moveTable.setVisible(false);
-        locationTable.setVisible(false);
-        nodeTable.setVisible(false);
-        edgeTable.setVisible(false);
-        requestTable.setVisible(true);
-
-        movesAddZone.setVisible(false);
-        locationAddZone.setVisible(false);
-        nodeAddZone.setVisible(false);
-        edgeAddZone.setVisible(false);
-
-        addButton.setDisable(true);
-        deleteButton.setDisable(true);
-        break;
-    }
-    if (!addButton.isVisible()) {
-      addButton.setVisible(true);
-    }
+     */
   }
 
   private void addRow(Popup windowPop, Popup confirmPop) {
     Object toAdd;
+    /*
     switch (databaseChoice.getValue()) {
       case MOVE:
         String nodeID = IDField.getText();
@@ -450,13 +359,15 @@ public class DatabaseViewController {
         }
         break;
     }
+
+     */
   }
 
   private void removeItem() {
     Object selectedItem = activeTable.getSelectionModel().getSelectedItem();
     if (selectedItem != null) {
       activeTable.getItems().remove(selectedItem);
-      DatabaseController.INSTANCE.deleteFromTable(databaseChoice.getValue(), selectedItem);
+      // DatabaseController.INSTANCE.deleteFromTable(databaseChoice.getValue(), selectedItem);
     }
   }
 }
