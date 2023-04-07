@@ -7,22 +7,22 @@ public class ServiceDAO<E> implements DAO<ServiceRequestData> {
   List<ServiceRequestData> serviceRequestDataList;
 
   @Override
-  public List<ServiceRequestData> get() {
+  List<ServiceRequestData> get() {
     return null;
   }
 
   @Override
-  public void update() {}
+  void update() {}
 
   @Override
-  public void delete(ServiceRequestData obj) {}
+  void delete(ServiceRequestData obj) {}
 
   @Override
-  public void add(ServiceRequestData obj) {}
+  void add(ServiceRequestData obj) {}
 
   @Override
-  public void importFromCSV(String filePath, String tableName) {}
+  void importFromCSV(String filePath, String tableName) {}
 
   @Override
-  public void exportFromCSV(String name, String filePath, String fileName) {}
+  void exportFromCSV(String name, String filePath, String fileName) {}
 }

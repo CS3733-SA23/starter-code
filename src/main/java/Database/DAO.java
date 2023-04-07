@@ -4,15 +4,15 @@ import java.util.List;
 
 public interface DAO<E> {
 
-  public List<E> get();
+  List<E> get();
 
-  public void update();
+  void update();
 
-  public void delete(E obj);
+  void delete(E obj);
 
-  public void add(E obj);
+  void add(E obj);
 
-  public void importFromCSV(String filePath, String tableName);
+  void importFromCSV(String filePath, String tableName);
 
-  public void exportFromCSV(String name, String filePath, String fileName);
+  void exportFromCSV(String name, String filePath, String fileName);
 }

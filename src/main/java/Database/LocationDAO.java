@@ -7,22 +7,22 @@ public class LocationDAO<E> implements DAO<LocationName> {
   List<LocationName> locationNames;
 
   @Override
-  public List<LocationName> get() {
+  List<LocationName> get() {
     return null;
   }
 
   @Override
-  public void update() {}
+  void update() {}
 
   @Override
-  public void delete(LocationName obj) {}
+  void delete(LocationName obj) {}
 
   @Override
-  public void add(LocationName obj) {}
+  void add(LocationName obj) {}
 
   @Override
-  public void importFromCSV(String filePath, String tableName) {}
+  void importFromCSV(String filePath, String tableName) {}
 
   @Override
-  public void exportFromCSV(String name, String filePath, String fileName) {}
+  void exportFromCSV(String name, String filePath, String fileName) {}
 }
