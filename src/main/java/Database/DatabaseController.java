@@ -214,8 +214,6 @@ public enum DatabaseController {
     }
   }
 
-
-
   public List<HospitalNode> getNodes() {
     List<HospitalNode> hospitalNodes = new LinkedList<>();
 
@@ -240,8 +238,6 @@ public enum DatabaseController {
       throw new RuntimeException("Something went wrong");
     }
   }
-
-
 
   /**
    * This method imports data from a CSV file to a specified database table.

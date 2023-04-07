@@ -31,8 +31,7 @@ public abstract class DAO<E> {
    * @throws SQLException if there is an error accessing the database.
    * @throws IOException if there is an error creating or writing to the CSV file.
    */
-  public void exportToCSV(String filePath, String fileName)
-          throws SQLException, IOException {
+  public void exportToCSV(String filePath, String fileName) throws SQLException, IOException {
 
     // Initialization
     Statement stmt = null;
