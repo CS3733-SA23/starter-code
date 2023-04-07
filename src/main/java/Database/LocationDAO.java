@@ -3,7 +3,7 @@ package Database;
 import edu.wpi.teame.map.LocationName;
 import java.util.List;
 
-public class LocationDAO<E> implements DAO<LocationName> {
+public class LocationDAO<E> extends DAO<LocationName> {
   List<LocationName> locationNames;
 
   @Override
@@ -22,7 +22,4 @@ public class LocationDAO<E> implements DAO<LocationName> {
 
   @Override
   public void importFromCSV(String filePath, String tableName) {}
-
-  @Override
-  public void exportFromCSV(String name, String filePath, String fileName) {}
 }

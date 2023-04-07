@@ -3,7 +3,7 @@ package Database;
 import edu.wpi.teame.map.HospitalNode;
 import java.util.List;
 
-public class NodeDAO<E> implements DAO<HospitalNode> {
+public class NodeDAO<E> extends DAO<HospitalNode> {
   List<HospitalNode> nodeList;
 
   @Override
@@ -23,6 +23,4 @@ public class NodeDAO<E> implements DAO<HospitalNode> {
   @Override
   public void importFromCSV(String filePath, String tableName) {}
 
-  @Override
-  public void exportFromCSV(String name, String filePath, String fileName) {}
 }

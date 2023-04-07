@@ -3,7 +3,7 @@ package Database;
 import edu.wpi.teame.entities.ServiceRequestData;
 import java.util.List;
 
-public class ServiceDAO<E> implements DAO<ServiceRequestData> {
+public class ServiceDAO<E> extends DAO<ServiceRequestData> {
   List<ServiceRequestData> serviceRequestDataList;
 
   @Override
@@ -23,6 +23,4 @@ public class ServiceDAO<E> implements DAO<ServiceRequestData> {
   @Override
   public void importFromCSV(String filePath, String tableName) {}
 
-  @Override
-  public void exportFromCSV(String name, String filePath, String fileName) {}
 }
