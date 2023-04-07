@@ -235,25 +235,6 @@ public enum DatabaseController {
     return moveList;
   }
 
-  public List<HospitalEdge> getEdges() {
-    List<HospitalEdge> hospitalEdges = new LinkedList<>();
-
-    try {
-      Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
-
-      String sql = "SELECT \"startNode\", \"endNode\" FROM teame.\"Edge\" ;";
-      ResultSet rs = stmt.executeQuery(sql);
-
-      while (rs.next()) {
-
-        hospitalEdges.add(new HospitalEdge(rs.getString("startNode"), rs.getString("endNode")));
-      }
-
-      return hospitalEdges;
-    } catch (SQLException e) {
-      throw new RuntimeException("Something went wrong");
-    }
-  }
 
   public List<HospitalNode> getNodes() {
     List<HospitalNode> hospitalNodes = new LinkedList<>();
