@@ -1,5 +1,3 @@
 package Database;
 
-public class SQLRepo {
-
-}
+public class SQLRepo {}

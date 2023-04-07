@@ -2,16 +2,17 @@ package Database;
 
 import java.util.List;
 
-public interface DAO {
+public interface DAO<E> {
 
-    public List<?> get();
+  public List<E> get();
 
-    public void update();
+  public void update();
 
-    public void delete(Object obj);
+  public void delete(E obj);
 
-    public void add(Object obj);
+  public void add(E obj);
 
-    public void importFromCSV(String filePath, String tableName);
-    public void exportFromCSV(String name, String filePath, String fileName);
+  public void importFromCSV(String filePath, String tableName);
+
+  public void exportFromCSV(String name, String filePath, String fileName);
 }
