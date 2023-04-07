@@ -2,9 +2,9 @@ package edu.wpi.teame.controllers;
 
 import Database.DatabaseController;
 import Database.DatabaseServiceController;
+import edu.wpi.teame.App;
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.*;
-import edu.wpi.teame.App;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -14,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,8 +30,13 @@ public class DatabaseViewController {
   @FXML MFXButton exportButton;
   @FXML MFXButton backButton;
   @FXML MFXButton deleteButton;
-  @FXML MFXButton addButton; // three text boxes and a button that says "add" next to it
-  
+  @FXML MFXButton addNodeButton;
+  @FXML MFXButton addMoveButton;
+  @FXML MFXButton addLocationButton;
+  @FXML MFXButton addEdgeButton;
+
+  // Tabs
+  @FXML TabPane tableTabs;
 
   // fields for Moves
   @FXML HBox movesAddZone;
@@ -196,7 +202,7 @@ public class DatabaseViewController {
           removeItem();
         });
 
-
+    /*
     App.getPrimaryStage()
         .addEventHandler(
             KeyEvent.KEY_PRESSED,
@@ -212,10 +218,31 @@ public class DatabaseViewController {
               }
             });
 
-    addButton.setOnMouseClicked(
-        event -> {
-          addRow(windowPop, confirmPop);
-        });
+     */
+
+    addMoveButton.setOnMouseClicked(
+            event -> {
+              addMove(windowPop, confirmPop);
+            }
+    );
+
+    addEdgeButton.setOnMouseClicked(
+            event -> {
+              addEdge(windowPop, confirmPop);
+            }
+    );
+
+    addLocationButton.setOnMouseClicked(
+            event -> {
+              addLocation(windowPop, confirmPop);
+            }
+    );
+
+    addNodeButton.setOnMouseClicked(
+            event -> {
+              addNode(windowPop, confirmPop);
+            }
+    );
 
     /*
     importButton.setOnMouseClicked(
@@ -282,85 +309,105 @@ public class DatabaseViewController {
     /*
     switch (databaseChoice.getValue()) {
       case MOVE:
-        String nodeID = IDField.getText();
-        String name = locationField.getText();
-        String date = dateField.getText();
-        // MoveAttribute newMoveAttribute;
-        try {
-          toAdd = new MoveAttribute(nodeID, name, date);
-          DatabaseController.INSTANCE.addToTable(DatabaseController.Table.MOVE, toAdd);
-          confirmPop.show(App.getPrimaryStage());
-          moveTable.getItems().add((MoveAttribute) toAdd);
-          IDField.clear();
-          locationField.clear();
-          dateField.clear();
-        } catch (RuntimeException e) {
-          // have an error pop up
-          System.out.println("error caught");
-          windowPop.show(App.getPrimaryStage());
-        }
+
         break;
       case LOCATION_NAME:
-        String longName = longNameField.getText();
-        String shortName = shortNameField.getText();
-        LocationName.NodeType type =
-            LocationName.NodeType.stringToNodeType(locationTypeField.getText());
-        try {
-          toAdd = new LocationName(longName, shortName, type);
-          DatabaseController.INSTANCE.addToTable(DatabaseController.Table.LOCATION_NAME, toAdd);
-          confirmPop.show(App.getPrimaryStage());
-          locationTable.getItems().add((LocationName) toAdd);
-          longNameField.clear();
-          shortNameField.clear();
-          locationTypeField.clear();
-        } catch (RuntimeException e) {
-          // have an error pop up
-          System.out.println("error caught");
-          windowPop.show(App.getPrimaryStage());
-          System.out.println(e);
-        }
+
         break;
       case NODE:
-        String nodeI = (IDFieldLoc.getText());
-        int nodeX = Integer.parseInt(xField.getText());
-        int nodeY = Integer.parseInt(yField.getText());
-        String flr = floorField.getText();
-        String building = buildingField.getText();
-        try {
-          toAdd = new HospitalNode(new NodeInitializer(nodeI, nodeX, nodeY, flr, building));
-          DatabaseController.INSTANCE.addToTable(DatabaseController.Table.NODE, toAdd);
-          confirmPop.show(App.getPrimaryStage());
-          nodeTable.getItems().add((HospitalNode) toAdd);
-          IDFieldLoc.clear();
-          xField.clear();
-          yField.clear();
-          floorField.clear();
-          buildingField.clear();
-        } catch (RuntimeException e) {
-          // have an error pop up
-          System.out.println(e.getMessage());
-          windowPop.show(App.getPrimaryStage());
-        }
+
         break;
       case EDGE:
-        String edge1 = edge1Field.getText();
-        String edge2 = edge2Field.getText();
-        try {
-          toAdd = new HospitalEdge(edge1, edge2);
-          DatabaseController.INSTANCE.addToTable(DatabaseController.Table.EDGE, toAdd);
-          confirmPop.show(App.getPrimaryStage());
-          edgeTable.getItems().add((HospitalEdge) toAdd);
-          edge1Field.clear();
-          edge2Field.clear();
-        } catch (RuntimeException e) {
-          // have an error pop up
-          System.out.println("error caught");
-          windowPop.show(App.getPrimaryStage());
-        }
+
         break;
     }
 
      */
+  }
+
+  private void addNode(Popup windowPop, Popup confirmPop){
+    Object toAdd;
+    String nodeI = (IDFieldLoc.getText());
+    int nodeX = Integer.parseInt(xField.getText());
+    int nodeY = Integer.parseInt(yField.getText());
+    String flr = floorField.getText();
+    String building = buildingField.getText();
+    try {
+      toAdd = new HospitalNode(new NodeInitializer(nodeI, nodeX, nodeY, flr, building));
+      DatabaseController.INSTANCE.addToTable(DatabaseController.Table.NODE, toAdd);
+      confirmPop.show(App.getPrimaryStage());
+      nodeTable.getItems().add((HospitalNode) toAdd);
+      IDFieldLoc.clear();
+      xField.clear();
+      yField.clear();
+      floorField.clear();
+      buildingField.clear();
+    } catch (RuntimeException e) {
+      // have an error pop up
+      System.out.println(e.getMessage());
+      windowPop.show(App.getPrimaryStage());
+    }
+  }
+
+  private void addLocation(Popup windowPop, Popup confirmPop){
+    Object toAdd;
+    String longName = longNameField.getText();
+    String shortName = shortNameField.getText();
+    LocationName.NodeType type =
+            LocationName.NodeType.stringToNodeType(locationTypeField.getText());
+    try {
+      toAdd = new LocationName(longName, shortName, type);
+      DatabaseController.INSTANCE.addToTable(DatabaseController.Table.LOCATION_NAME, toAdd);
+      confirmPop.show(App.getPrimaryStage());
+      locationTable.getItems().add((LocationName) toAdd);
+      longNameField.clear();
+      shortNameField.clear();
+      locationTypeField.clear();
+    } catch (RuntimeException e) {
+      // have an error pop up
+      System.out.println("error caught");
+      windowPop.show(App.getPrimaryStage());
+      System.out.println(e);
+    }
+  }
+
+  private void addMove(Popup windowPop, Popup confirmPop){
+    Object toAdd;
+    String nodeID = IDField.getText();
+    String name = locationField.getText();
+    String date = dateField.getText();
+    // MoveAttribute newMoveAttribute;
+    try {
+      toAdd = new MoveAttribute(nodeID, name, date);
+      DatabaseController.INSTANCE.addToTable(DatabaseController.Table.MOVE, toAdd);
+      confirmPop.show(App.getPrimaryStage());
+      moveTable.getItems().add((MoveAttribute) toAdd);
+      IDField.clear();
+      locationField.clear();
+      dateField.clear();
+    } catch (RuntimeException e) {
+      // have an error pop up
+      System.out.println("error caught");
+      windowPop.show(App.getPrimaryStage());
+    }
+  }
+
+  private void addEdge(Popup windowPop, Popup confirmPop){
+    Object toAdd;
+    String edge1 = edge1Field.getText();
+    String edge2 = edge2Field.getText();
+    try {
+      toAdd = new HospitalEdge(edge1, edge2);
+      DatabaseController.INSTANCE.addToTable(DatabaseController.Table.EDGE, toAdd);
+      confirmPop.show(App.getPrimaryStage());
+      edgeTable.getItems().add((HospitalEdge) toAdd);
+      edge1Field.clear();
+      edge2Field.clear();
+    } catch (RuntimeException e) {
+      // have an error pop up
+      System.out.println("error caught");
+      windowPop.show(App.getPrimaryStage());
+    }
   }
 
   private void removeItem() {

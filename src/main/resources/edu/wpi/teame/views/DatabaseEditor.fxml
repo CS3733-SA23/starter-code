@@ -18,7 +18,7 @@
             <VBox>
                <children>
                   <MFXButton fx:id="backButton" text="Back" />
-                  <VBox prefHeight="334.0" prefWidth="333.0">
+                  <VBox>
                      <children>
                         <MFXButton fx:id="deleteButton" text="Delete Selected Row" />
                         <HBox>
@@ -32,9 +32,9 @@
                   </VBox>
                </children>
             </VBox>
-            <TabPane tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tableTabs" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Node">
+                <Tab closable="false" text="Node">
                   <content>
                     <AnchorPane>
                            <children>
@@ -49,7 +49,7 @@
                                           <TableColumn fx:id="buildingCol" prefWidth="75.0" text="Building" />
                                        </columns>
                                     </TableView>
-                                    <HBox fx:id="nodeAddZone" prefHeight="30.0">
+                                    <HBox fx:id="nodeAddZone">
                                        <children>
                                           <MFXTextField fx:id="IDFieldLoc" prefHeight="30.0" promptText="Node ID" />
                                           <MFXTextField prefHeight="30.0" promptText="X Coord" fx:id="xField" />
@@ -65,7 +65,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab text="Service Requests">
+                  <Tab closable="false" text="Service Requests">
                     <content>
                       <AnchorPane>
                            <children>
@@ -73,7 +73,7 @@
                                  <children>
                                     <TableView fx:id="requestTable">
                                        <columns>
-                                          <TableColumn fx:id="dataCol" prefWidth="75.0" text="data" />
+                                          <TableColumn fx:id="dataCol" prefWidth="200.0" text="data" />
                                           <TableColumn fx:id="typeCol" prefWidth="75.0" text="type" />
                                           <TableColumn fx:id="statusCol" prefWidth="75.0" text="status" />
                                           <TableColumn fx:id="staffCol" prefWidth="75.0" text="staff" />
@@ -85,7 +85,7 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Edges">
+                  <Tab closable="false" text="Edges">
                     <content>
                       <AnchorPane>
                            <children>
@@ -97,7 +97,7 @@
                                           <TableColumn fx:id="edge2Col" prefWidth="75.0" text="End Node" />
                                        </columns>
                                     </TableView>
-                                    <HBox fx:id="edgeAddZone" prefHeight="30.0">
+                                    <HBox fx:id="edgeAddZone">
                                        <children>
                                           <MFXTextField fx:id="edge1Field" promptText="Edge 1" />
                                           <MFXTextField fx:id="edge2Field" promptText="Edge 2" />
@@ -110,7 +110,7 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Location Names">
+                  <Tab closable="false" text="Location Names">
                     <content>
                       <AnchorPane>
                            <children>
@@ -123,7 +123,7 @@
                                           <TableColumn fx:id="nodeTypeCol" prefWidth="75.0" text="Node Type" />
                                        </columns>
                                     </TableView>
-                                    <HBox fx:id="locationAddZone" prefHeight="30.0">
+                                    <HBox fx:id="locationAddZone">
                                        <children>
                                           <MFXTextField fx:id="longNameField" promptText="Long Name" />
                                           <MFXTextField fx:id="shortNameField" promptText="Short Name" />
@@ -137,7 +137,7 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Move">
+                  <Tab closable="false" text="Move">
                     <content>
                       <AnchorPane>
                            <children>
@@ -150,7 +150,7 @@
                                           <TableColumn fx:id="dateCol" prefWidth="75.0" text="Date" />
                                       </columns>
                                     </TableView>
-                                    <HBox fx:id="movesAddZone" prefHeight="30.0">
+                                    <HBox fx:id="movesAddZone">
                                        <children>
                                           <MFXTextField fx:id="IDField" promptText="Node ID" />
                                           <MFXTextField fx:id="locationField" promptText="Location Name" />
