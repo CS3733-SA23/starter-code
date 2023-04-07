@@ -15,7 +15,7 @@ public abstract class DAO<E> {
 
   abstract List<E> get();
 
-  abstract void update();
+  abstract void update(String attribute, String value);
 
   abstract void delete(E obj);
 

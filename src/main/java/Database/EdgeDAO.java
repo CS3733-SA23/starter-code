@@ -42,7 +42,9 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   }
 
   @Override
-  public void update() {}
+  public void update(String attribute, String value) {
+
+  }
 
   @Override
   public void delete(HospitalEdge edge) {

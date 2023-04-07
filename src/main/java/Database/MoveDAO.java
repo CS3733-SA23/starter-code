@@ -37,7 +37,7 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
     return moveAttributes;
   }
 
-  public void update() {}
+  public void update(String attribute, String value) {}
 
   public void delete(MoveAttribute moveAttribute) {
     String nodeId = moveAttribute.getNodeID();
