@@ -3,8 +3,6 @@ package Database;
 import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.map.NodeInitializer;
-
-import javax.swing.plaf.nimbus.State;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -37,16 +35,15 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
       ResultSet rs = stmt.executeQuery(sql);
       while (rs.next()) {
         nodeList.add(
-                new HospitalNode(
-                        new NodeInitializer(
-                                rs.getInt("nodeID") + "",
-                                rs.getInt("xcoord"),
-                                rs.getInt("ycoord"),
-                                rs.getString("floor"),
-                                rs.getString("building"))));
+            new HospitalNode(
+                new NodeInitializer(
+                    rs.getInt("nodeID") + "",
+                    rs.getInt("xcoord"),
+                    rs.getInt("ycoord"),
+                    rs.getString("floor"),
+                    rs.getString("building"))));
       }
-      if (nodeList.isEmpty())
-        System.out.println("There was a problem returning the nodes");
+      if (nodeList.isEmpty()) System.out.println("There was a problem returning the nodes");
     } catch (SQLException e) {
       throw new RuntimeException("There was a problem retrieving the nodes");
     }
@@ -54,9 +51,7 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
   }
 
   @Override
-  public void update() {
-
-  }
+  public void update() {}
 
   @Override
   public void delete(HospitalNode obj) {
@@ -68,8 +63,7 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
 
       int result = stmt.executeUpdate(sql);
 
-      if (result < 1)
-        System.out.println("There was a problem deleting the node");
+      if (result < 1) System.out.println("There was a problem deleting the node");
     } catch (SQLException e) {
       throw new RuntimeException("There was a problem deleting the node");
     }
@@ -86,17 +80,17 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
 
       Statement stmt = activeConnection.createStatement();
       String sql =
-              "INSERT INTO \"Node\" VALUES("
-                      + nodeID
-                      + ","
-                      + xcoord
-                      + ","
-                      + ycoord
-                      + ",'"
-                      + floor
-                      + "','"
-                      + building
-                      + "');";
+          "INSERT INTO \"Node\" VALUES("
+              + nodeID
+              + ","
+              + xcoord
+              + ","
+              + ycoord
+              + ",'"
+              + floor
+              + "','"
+              + building
+              + "');";
       int result = stmt.executeUpdate(sql);
       if (result < 1) {
         System.out.println("There was a problem inserting the node");
@@ -127,29 +121,29 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
         String[] splitL1 = l1.split(",");
         System.out.println(l1);
         String sql =
-                "INSERT INTO \""
-                        + tableName
-                        + "\""
-                        + " VALUES ("
-                        + Integer.parseInt(splitL1[0])
-                        + ","
-                        + Integer.parseInt(splitL1[1])
-                        + ","
-                        + Integer.parseInt(splitL1[2])
-                        + ","
-                        + (splitL1[3])
-                        + ",'"
-                        + splitL1[4]
-                        + "'); ";
+            "INSERT INTO \""
+                + tableName
+                + "\""
+                + " VALUES ("
+                + Integer.parseInt(splitL1[0])
+                + ","
+                + Integer.parseInt(splitL1[1])
+                + ","
+                + Integer.parseInt(splitL1[2])
+                + ","
+                + (splitL1[3])
+                + ",'"
+                + splitL1[4]
+                + "'); ";
         System.out.println(sql);
         stmt.execute(sql);
-    }
-  } catch (SQLException e) {
+      }
+    } catch (SQLException e) {
       throw new RuntimeException("There was a problem inserting the data");
     } catch (FileNotFoundException e) {
       throw new RuntimeException("Sorry File was not found");
     } catch (IOException e) {
       throw new RuntimeException("Sorry Something went wrong");
     }
-
   }
+}

@@ -1,7 +1,8 @@
 package Database;
 
-import edu.wpi.teame.map.LocationName;
+import static edu.wpi.teame.map.LocationName.NodeType.stringToNodeType;
 
+import edu.wpi.teame.map.LocationName;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,8 +12,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
-import static edu.wpi.teame.map.LocationName.NodeType.stringToNodeType;
 
 public class LocationDAO<E> extends DAO<LocationName> {
   List<LocationName> locationNames;
@@ -29,10 +28,10 @@ public class LocationDAO<E> extends DAO<LocationName> {
 
       while (rs.next()) {
         locationNames.add(
-                new LocationName(
-                        rs.getString("longName"),
-                        rs.getString("shortName"),
-                        stringToNodeType(rs.getString("nodeType"))));
+            new LocationName(
+                rs.getString("longName"),
+                rs.getString("shortName"),
+                stringToNodeType(rs.getString("nodeType"))));
       }
 
       return locationNames;
@@ -53,10 +52,9 @@ public class LocationDAO<E> extends DAO<LocationName> {
       Statement stmt = activeConnection.createStatement();
       stmt.execute(sqlDelete);
       stmt.close();
-    } catch (SQLException e){
+    } catch (SQLException e) {
       System.out.println("error deleting");
     }
-
   }
 
   @Override
@@ -65,26 +63,26 @@ public class LocationDAO<E> extends DAO<LocationName> {
     String shortName = locationName.getShortName();
     String nodeType = LocationName.NodeType.nodeToString(locationName.getNodeType());
     String sqlAdd =
-            "INSERT INTO \"LocationName\" VALUES('"
-                    + lName
-                    + "','"
-                    + shortName
-                    + "','"
-                    + nodeType
-                    + "');";
+        "INSERT INTO \"LocationName\" VALUES('"
+            + lName
+            + "','"
+            + shortName
+            + "','"
+            + nodeType
+            + "');";
 
     try {
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlAdd);
       stmt.close();
-    } catch (SQLException e){
+    } catch (SQLException e) {
       System.out.println("error adding");
     }
   }
 
   @Override
   public void importFromCSV(String filePath, String tableName) {
-    try{
+    try {
       BufferedReader lreader = new BufferedReader(new FileReader(filePath));
       String line;
       List<String> rows = new ArrayList<>();
@@ -102,27 +100,26 @@ public class LocationDAO<E> extends DAO<LocationName> {
         String[] splitL1 = l1.split(",");
         System.out.println(l1);
         String sql =
-                "INSERT INTO \""
-                        + tableName
-                        + "\""
-                        + " VALUES ('"
-                        + splitL1[0]
-                        + "','"
-                        + splitL1[1]
-                        + "','"
-                        + splitL1[2]
-                        + "'); ";
+            "INSERT INTO \""
+                + tableName
+                + "\""
+                + " VALUES ('"
+                + splitL1[0]
+                + "','"
+                + splitL1[1]
+                + "','"
+                + splitL1[2]
+                + "'); ";
         System.out.println(sql);
         stmt.execute(sql);
       }
 
-      System.out.println("Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
+      System.out.println(
+          "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
 
     } catch (IOException | SQLException e) {
       System.err.println("Error importing from " + filePath + " to " + tableName);
       e.printStackTrace();
     }
   }
-
-
 }

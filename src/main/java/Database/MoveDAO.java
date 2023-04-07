@@ -1,7 +1,6 @@
 package Database;
 
 import edu.wpi.teame.map.MoveAttribute;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,9 +24,10 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
     String query = "SELECT * FROM teame.\"Move\" ORDER BY \"nodeID\" ASC;";
 
     try (Statement stmt = activeConnection.createStatement();
-         ResultSet rs = stmt.executeQuery(query)) {
+        ResultSet rs = stmt.executeQuery(query)) {
       while (rs.next()) {
-        moveAttributes.add(new MoveAttribute(
+        moveAttributes.add(
+            new MoveAttribute(
                 rs.getString("nodeID"), rs.getString("longName"), rs.getString("date")));
       }
       System.out.println("Move table retrieved successfully");
@@ -58,19 +58,19 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
     String longName = moveAttribute.getLongName();
     String date = moveAttribute.getDate();
     String sqlAdd =
-            "INSERT INTO \"Move\" VALUES(" + nodeId + ",'" + longName + "' , '" + date + "');";
+        "INSERT INTO \"Move\" VALUES(" + nodeId + ",'" + longName + "' , '" + date + "');";
 
     try {
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlAdd);
       stmt.close();
-    } catch (SQLException e){
+    } catch (SQLException e) {
       System.out.println("error adding");
     }
   }
 
   public void importFromCSV(String filePath, String tableName) {
-    try{
+    try {
       BufferedReader mreader = new BufferedReader(new FileReader(filePath));
       String line;
       List<String> rows = new ArrayList<>();
@@ -88,27 +88,27 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
         String[] splitL1 = l1.split(",");
         System.out.println(l1);
         String sql =
-                "INSERT INTO "
-                        + "\""
-                        + tableName
-                        + "\""
-                        + " VALUES ("
-                        + splitL1[0]
-                        + ",'"
-                        + splitL1[1]
-                        + "','"
-                        + splitL1[2]
-                        + "'); ";
+            "INSERT INTO "
+                + "\""
+                + tableName
+                + "\""
+                + " VALUES ("
+                + splitL1[0]
+                + ",'"
+                + splitL1[1]
+                + "','"
+                + splitL1[2]
+                + "'); ";
         System.out.println(sql);
         stmt.execute(sql);
       }
 
-      System.out.println("Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
+      System.out.println(
+          "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
 
     } catch (IOException | SQLException e) {
       System.err.println("Error importing from " + filePath + " to " + tableName);
       e.printStackTrace();
     }
   }
-
 }
