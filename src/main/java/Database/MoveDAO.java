@@ -1,5 +1,6 @@
 package Database;
 
+import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.MoveAttribute;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -37,7 +38,9 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
     return moveAttributes;
   }
 
-  public void update(String attribute, String value) {}
+  public void update(MoveAttribute moveAttribute, String attribute, String value) {
+
+  }
 
   public void delete(MoveAttribute moveAttribute) {
     String nodeId = moveAttribute.getNodeID();

@@ -2,6 +2,7 @@ package Database;
 
 import static edu.wpi.teame.map.LocationName.NodeType.stringToNodeType;
 
+import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.LocationName;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -41,7 +42,7 @@ public class LocationDAO<E> extends DAO<LocationName> {
   }
 
   @Override
-  public void update(String attribute, String value) {}
+  public void update(LocationName locationName, String attribute, String value) {}
 
   @Override
   public void delete(LocationName locationName) {

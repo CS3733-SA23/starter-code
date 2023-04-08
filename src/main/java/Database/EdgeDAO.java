@@ -1,5 +1,6 @@
 package Database;
 
+import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.HospitalEdge;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -41,7 +42,16 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   }
 
   @Override
-  public void update(String attribute, String value) {}
+  public void update(HospitalEdge obj, String attribute, String value) {
+    String startNode = obj.getNodeOneID();
+    String endNode = obj.getNodeTwoID();
+    switch (attribute){
+      case "startNode":
+        break;
+      case "endNode":
+        break;
+    }
+  }
 
   @Override
   public void delete(HospitalEdge edge) {
