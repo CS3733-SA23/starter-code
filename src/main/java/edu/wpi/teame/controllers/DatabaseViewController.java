@@ -221,28 +221,24 @@ public class DatabaseViewController {
      */
 
     addMoveButton.setOnMouseClicked(
-            event -> {
-              addMove(windowPop, confirmPop);
-            }
-    );
+        event -> {
+          addMove(windowPop, confirmPop);
+        });
 
     addEdgeButton.setOnMouseClicked(
-            event -> {
-              addEdge(windowPop, confirmPop);
-            }
-    );
+        event -> {
+          addEdge(windowPop, confirmPop);
+        });
 
     addLocationButton.setOnMouseClicked(
-            event -> {
-              addLocation(windowPop, confirmPop);
-            }
-    );
+        event -> {
+          addLocation(windowPop, confirmPop);
+        });
 
     addNodeButton.setOnMouseClicked(
-            event -> {
-              addNode(windowPop, confirmPop);
-            }
-    );
+        event -> {
+          addNode(windowPop, confirmPop);
+        });
 
     /*
     importButton.setOnMouseClicked(
@@ -325,7 +321,7 @@ public class DatabaseViewController {
      */
   }
 
-  private void addNode(Popup windowPop, Popup confirmPop){
+  private void addNode(Popup windowPop, Popup confirmPop) {
     Object toAdd;
     String nodeI = (IDFieldLoc.getText());
     int nodeX = Integer.parseInt(xField.getText());
@@ -349,12 +345,12 @@ public class DatabaseViewController {
     }
   }
 
-  private void addLocation(Popup windowPop, Popup confirmPop){
+  private void addLocation(Popup windowPop, Popup confirmPop) {
     Object toAdd;
     String longName = longNameField.getText();
     String shortName = shortNameField.getText();
     LocationName.NodeType type =
-            LocationName.NodeType.stringToNodeType(locationTypeField.getText());
+        LocationName.NodeType.stringToNodeType(locationTypeField.getText());
     try {
       toAdd = new LocationName(longName, shortName, type);
       DatabaseController.INSTANCE.addToTable(DatabaseController.Table.LOCATION_NAME, toAdd);
@@ -371,7 +367,7 @@ public class DatabaseViewController {
     }
   }
 
-  private void addMove(Popup windowPop, Popup confirmPop){
+  private void addMove(Popup windowPop, Popup confirmPop) {
     Object toAdd;
     String nodeID = IDField.getText();
     String name = locationField.getText();
@@ -392,7 +388,7 @@ public class DatabaseViewController {
     }
   }
 
-  private void addEdge(Popup windowPop, Popup confirmPop){
+  private void addEdge(Popup windowPop, Popup confirmPop) {
     Object toAdd;
     String edge1 = edge1Field.getText();
     String edge2 = edge2Field.getText();
