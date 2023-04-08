@@ -41,9 +41,7 @@ public class LocationDAO<E> extends DAO<LocationName> {
   }
 
   @Override
-  public void update(String attribute, String value) {
-
-  }
+  public void update(String attribute, String value) {}
 
   @Override
   public void delete(LocationName locationName) {

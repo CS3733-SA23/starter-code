@@ -1,13 +1,12 @@
 package Database;
 
 import edu.wpi.teame.entities.ServiceRequestData;
-import org.json.JSONObject;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
+import org.json.JSONObject;
 
 public class ServiceDAO<E> extends DAO<ServiceRequestData> {
   List<ServiceRequestData> serviceRequestDataList;
@@ -24,12 +23,12 @@ public class ServiceDAO<E> extends DAO<ServiceRequestData> {
       ResultSet rs = stmt.executeQuery(sql);
       while (rs.next()) {
         ServiceRequestData.RequestType rt =
-                ServiceRequestData.RequestType.stringToRequestType(rs.getString("requestType"));
+            ServiceRequestData.RequestType.stringToRequestType(rs.getString("requestType"));
 
         JSONObject json = new JSONObject(rs.getString("requestdata"));
 
         ServiceRequestData.Status st =
-                ServiceRequestData.Status.stringToStatus(rs.getString("status"));
+            ServiceRequestData.Status.stringToStatus(rs.getString("status"));
 
         String staffassigned = rs.getString("staffassigned");
         serviceRequestDataList.add(new ServiceRequestData(rt, json, st, staffassigned));
@@ -71,18 +70,18 @@ public class ServiceDAO<E> extends DAO<ServiceRequestData> {
       int hashID = requestData.hashCode();
 
       String sql =
-              "INSERT INTO teame.\"ServiceRequests\" "
-                      + "Values ('"
-                      + requestData
-                      + "', '"
-                      + status
-                      + "', '"
-                      + obj.getAssignedStaff()
-                      + "', '"
-                      + requestType
-                      + "', "
-                      + hashID
-                      + ");";
+          "INSERT INTO teame.\"ServiceRequests\" "
+              + "Values ('"
+              + requestData
+              + "', '"
+              + status
+              + "', '"
+              + obj.getAssignedStaff()
+              + "', '"
+              + requestType
+              + "', "
+              + hashID
+              + ");";
 
       int result = stmt.executeUpdate(sql);
 
