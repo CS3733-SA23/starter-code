@@ -1,10 +1,7 @@
 package Database;
 
 import edu.wpi.teame.entities.ServiceRequestData;
-import edu.wpi.teame.map.HospitalEdge;
-import edu.wpi.teame.map.HospitalNode;
-import edu.wpi.teame.map.LocationName;
-import edu.wpi.teame.map.MoveAttribute;
+import edu.wpi.teame.map.*;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -47,7 +44,6 @@ public enum SQLRepo {
   DAO<MoveAttribute> moveDAO;
   DAO<LocationName> locationDAO;
   DAO<ServiceRequestData> serviceDAO;
-
   DatabaseUtility dbUtility;
 
   public void connectToDatabase(String username, String password) {
@@ -80,6 +76,23 @@ public enum SQLRepo {
       System.exit(0);
     }
   }
+
+  public int getNodeIDFromName(String longName) {
+    return this.dbUtility.getNodeIDFromName(longName);
+  }
+
+  public String getNamefromNodeID(int nodeID) {
+    return this.dbUtility.getNameFromNodeID(nodeID);
+  }
+
+  public List<MoveAttribute> getMoveAttributeFromFloor(Floor fl) {
+    return this.dbUtility.getMoveAttributeFromFloor(fl);
+  }
+
+  public List<String> getLongNamesFromMove(List<MoveAttribute> mv) {
+    return this.dbUtility.getLongNamesFromMove(mv);
+  }
+
 
   public void importFromCSV(Table table, String filepath) {
     try {
