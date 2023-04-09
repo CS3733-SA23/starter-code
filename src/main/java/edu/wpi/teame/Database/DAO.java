@@ -1,4 +1,4 @@
-package Database;
+package edu.wpi.teame.Database;
 
 import java.io.File;
 import java.io.FileWriter;

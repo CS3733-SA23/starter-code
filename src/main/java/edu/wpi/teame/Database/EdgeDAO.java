@@ -1,8 +1,6 @@
-package Database;
+package edu.wpi.teame.Database;
 
-import static edu.wpi.teame.map.LocationName.NodeType.stringToNodeType;
-
-import edu.wpi.teame.map.LocationName;
+import edu.wpi.teame.map.HospitalEdge;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,50 +12,48 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class LocationDAO<E> extends DAO<LocationName> {
-  List<LocationName> locationNames;
+public class EdgeDAO<E> extends DAO<HospitalEdge> {
+  List<HospitalEdge> hospitalEdgeList;
 
-  public LocationDAO(Connection c) {
+  public EdgeDAO(Connection c) {
     activeConnection = c;
-    table = "\"LocationName\"";
+    table = "\"Edge\"";
   }
 
   @Override
-  List<LocationName> get() {
-    locationNames = new LinkedList<>();
+  List<HospitalEdge> get() {
+    hospitalEdgeList = new LinkedList<>();
 
     try {
       Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
 
-      String sql = "SELECT \"longName\", \"shortName\", \"nodeType\" FROM teame.\"LocationName\";";
+      String sql = "SELECT \"startNode\", \"endNode\" FROM teame.\"Edge\" ;";
       ResultSet rs = stmt.executeQuery(sql);
 
       while (rs.next()) {
-        locationNames.add(
-            new LocationName(
-                rs.getString("longName"),
-                rs.getString("shortName"),
-                stringToNodeType(rs.getString("nodeType"))));
+        hospitalEdgeList.add(new HospitalEdge(rs.getString("startNode"), rs.getString("endNode")));
       }
-
-      return locationNames;
+      return hospitalEdgeList;
     } catch (SQLException e) {
       throw new RuntimeException("Something went wrong");
     }
   }
 
   @Override
-  void update(LocationName locationName, String attribute, String value) {
-    String longName = locationName.getLongName();
+  void update(HospitalEdge obj, String attribute, String value) {
+    String startNode = obj.getNodeOneID();
+    String endNode = obj.getNodeTwoID();
     String sqlUpdate =
-        "UPDATE \"LocationName\" "
+        "UPDATE \"Edge\" "
             + "SET \""
             + attribute
-            + "\" = '"
+            + "\" = "
             + value
-            + "' WHERE \"longName\" = '"
-            + longName
-            + "';";
+            + " WHERE \"endNode\" = "
+            + endNode
+            + " AND \"startNode\" = "
+            + startNode
+            + ";";
 
     try {
       Statement stmt = activeConnection.createStatement();
@@ -65,18 +61,24 @@ public class LocationDAO<E> extends DAO<LocationName> {
       stmt.close();
     } catch (SQLException e) {
       System.out.println(
-          "Exception: Cannot duplicate two set of the same locationNames, longName has to exist, shortName can be any, node type has a specific enum");
+          "Exception: Cannot duplicate two set of the same edges, start and end nodes have to exist (cannot create more ids)");
     }
   }
 
   @Override
-  void delete(LocationName locationName) {
-    String lName = locationName.getLongName();
-    String sqlDelete = "DELETE FROM \"LocationName\" WHERE \"longName\" = '" + lName + "';";
+  void delete(HospitalEdge edge) {
+    String startNode = edge.getNodeOneID();
+    String endNode = edge.getNodeTwoID();
+    String sqlDelete =
+        "DELETE FROM \"Edge\" WHERE \"startNode\" = "
+            + startNode
+            + " AND \"endNode\" = '"
+            + endNode
+            + "';";
 
     try {
       Statement stmt = activeConnection.createStatement();
-      stmt.execute(sqlDelete);
+      stmt.executeUpdate(sqlDelete);
       stmt.close();
     } catch (SQLException e) {
       System.out.println("error deleting");
@@ -84,19 +86,10 @@ public class LocationDAO<E> extends DAO<LocationName> {
   }
 
   @Override
-  void add(LocationName locationName) {
-    String lName = locationName.getLongName();
-    String shortName = locationName.getShortName();
-    String nodeType = LocationName.NodeType.nodeToString(locationName.getNodeType());
-    String sqlAdd =
-        "INSERT INTO \"LocationName\" VALUES('"
-            + lName
-            + "','"
-            + shortName
-            + "','"
-            + nodeType
-            + "');";
-
+  void add(HospitalEdge edge) {
+    String startNode = edge.getNodeOneID();
+    String endNode = edge.getNodeTwoID();
+    String sqlAdd = "INSERT INTO \"Edge\" VALUES('" + startNode + "','" + endNode + "');";
     try {
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlAdd);
@@ -109,14 +102,14 @@ public class LocationDAO<E> extends DAO<LocationName> {
   @Override
   void importFromCSV(String filePath, String tableName) {
     try {
-      BufferedReader lreader = new BufferedReader(new FileReader(filePath));
+      BufferedReader reader = new BufferedReader(new FileReader(filePath));
       String line;
       List<String> rows = new ArrayList<>();
-      while ((line = lreader.readLine()) != null) {
+      while ((line = reader.readLine()) != null) {
         rows.add(line);
       }
       rows.remove(0);
-      lreader.close();
+      reader.close();
       Statement stmt = activeConnection.createStatement();
 
       String sqlDelete = "DELETE FROM \"" + tableName + "\";";
@@ -124,20 +117,17 @@ public class LocationDAO<E> extends DAO<LocationName> {
 
       for (String l1 : rows) {
         String[] splitL1 = l1.split(",");
-        System.out.println(l1);
         String sql =
             "INSERT INTO \""
                 + tableName
                 + "\""
-                + " VALUES ('"
+                + "VALUES ("
                 + splitL1[0]
-                + "','"
+                + ","
                 + splitL1[1]
-                + "','"
-                + splitL1[2]
-                + "'); ";
-        System.out.println(sql);
+                + "); ";
         stmt.execute(sql);
+        System.out.println(sql);
       }
 
       System.out.println(

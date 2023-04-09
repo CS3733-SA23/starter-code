@@ -1,7 +1,5 @@
-package Database;
+package edu.wpi.teame.Database;
 
-import static Database.DatabaseController.Table.EDGE;
-import static Database.DatabaseController.Table.LOCATION_NAME;
 import static edu.wpi.teame.map.LocationName.NodeType.*;
 
 import edu.wpi.teame.entities.ServiceRequestData;

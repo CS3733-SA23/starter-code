@@ -1,4 +1,4 @@
-package Database;
+package edu.wpi.teame.Database;
 
 import edu.wpi.teame.entities.ServiceRequestData;
 import java.io.BufferedReader;
