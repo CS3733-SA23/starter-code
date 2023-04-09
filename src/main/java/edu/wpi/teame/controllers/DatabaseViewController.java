@@ -9,13 +9,11 @@ import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -158,16 +156,14 @@ public class DatabaseViewController {
     nameCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("longName"));
     dateCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("date"));
 
-    ObservableList moveList = FXCollections.observableArrayList(dC.getMoveList());
-    moveTable.setItems(moveList);
+    moveTable.setItems(FXCollections.observableArrayList(dC.getMoveList()));
     moveTable.setEditable(true);
 
     longNameCol.setCellValueFactory(new PropertyValueFactory<LocationName, String>("longName"));
     shortNameCol.setCellValueFactory(new PropertyValueFactory<LocationName, String>("shortName"));
     nodeTypeCol.setCellValueFactory(new PropertyValueFactory<LocationName, String>("nodeType"));
 
-    ObservableList locationList = FXCollections.observableArrayList(dC.getLocationName());
-    locationTable.setItems(locationList);
+    locationTable.setItems(FXCollections.observableArrayList(dC.getLocationName()));
     locationTable.setEditable(true);
 
     nodeIDCoordCol.setCellValueFactory(new PropertyValueFactory<HospitalNode, String>("nodeID"));
@@ -175,16 +171,13 @@ public class DatabaseViewController {
     nodeYCol.setCellValueFactory(new PropertyValueFactory<HospitalNode, Integer>("yCoord"));
     floorCol.setCellValueFactory(new PropertyValueFactory<HospitalNode, Floor>("floor"));
     buildingCol.setCellValueFactory(new PropertyValueFactory<HospitalNode, String>("building"));
-    ObservableList nodeList = FXCollections.observableArrayList(dC.getNodes());
-    nodeTable.setItems(nodeList);
+    nodeTable.setItems(FXCollections.observableArrayList(dC.getNodes()));
     nodeTable.setEditable(true);
 
     edge1Col.setCellValueFactory(new PropertyValueFactory<HospitalEdge, String>("nodeOneID"));
     edge2Col.setCellValueFactory(new PropertyValueFactory<HospitalEdge, String>("nodeTwoID"));
 
-    ObservableList edgeList = FXCollections.observableArrayList(dC.getEdges());
-
-    edgeTable.setItems(edgeList);
+    edgeTable.setItems(FXCollections.observableArrayList(dC.getEdges()));
     edgeTable.setEditable(true);
 
     dataCol.setCellValueFactory(
@@ -199,9 +192,8 @@ public class DatabaseViewController {
 
     DatabaseServiceController dsc = new DatabaseServiceController(dC);
     dsc.retrieveRequestsFromTable();
-    ObservableList requestList = FXCollections.observableArrayList(dsc.getServiceRequests());
 
-    requestTable.setItems(requestList);
+    requestTable.setItems(FXCollections.observableArrayList(dsc.getServiceRequests()));
     requestTable.setEditable(true);
 
     moveTable.setPlaceholder(new Label("No rows to display"));
@@ -213,7 +205,6 @@ public class DatabaseViewController {
           removeItem();
         });
 
-
     App.getPrimaryStage()
         .addEventHandler(
             KeyEvent.KEY_PRESSED,
@@ -221,13 +212,11 @@ public class DatabaseViewController {
               @Override
               public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.BACK_SPACE
-                    && !activeTableEnum
-                        .equals(DatabaseController.Table.SERVICE_REQUESTS)) {
+                    && !activeTableEnum.equals(DatabaseController.Table.SERVICE_REQUESTS)) {
                   removeItem();
                 }
               }
             });
-
 
     addMoveButton.setOnMouseClicked(
         event -> {
@@ -290,7 +279,6 @@ public class DatabaseViewController {
           }
         });
 
-
     importButton.setOnMouseClicked(
         event -> {
           File selectedFile = selectChooser.showOpenDialog(App.getPrimaryStage());
@@ -324,8 +312,6 @@ public class DatabaseViewController {
             }
           }
         });
-
-
 
     exportButton.setOnMouseClicked(
         event -> {
