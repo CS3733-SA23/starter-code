@@ -53,21 +53,8 @@ public class LocationDAO<E> extends DAO<LocationName> {
   @Override
   void update(LocationName locationName, String attribute, String value) {
     String longName = locationName.getLongName();
-    String shortName = locationName.getShortName();
-    LocationName.NodeType nodeType = locationName.getNodeType();
-    String sqlUpdate = "";
+    String sqlUpdate = "UPDATE \"LocationName\" " + "SET \"" +  attribute + "\" = '" +  value + "' WHERE \"longName\" = '" + longName + "';";
 
-    switch (attribute){
-      case "longName":
-        sqlUpdate = "UPDATE \"LocationName\" " + "SET \"longName\" = '" +  value + "' WHERE \"longName\" = '" + longName + "';";
-        break;
-      case "shortName":
-        sqlUpdate = "UPDATE \"LocationName\" " + "SET \"shortName\" = '" + value + "' WHERE \"longName\" = '" + longName  + "';";
-        break;
-      case "nodeType":
-        sqlUpdate = "UPDATE \"LocationName\" " + "SET \"nodeType\" = " + value + " WHERE \"longName\" = '" + longName + "';";
-        break;
-    }
     try{
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlUpdate);
