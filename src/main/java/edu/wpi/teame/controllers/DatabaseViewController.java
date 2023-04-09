@@ -344,22 +344,16 @@ public class DatabaseViewController {
     try {
       nodeX = Integer.parseInt(xField.getText());
       nodeY = Integer.parseInt(yField.getText());
-      try {
-        toAdd = new HospitalNode(new NodeInitializer(nodeI, nodeX, nodeY, flr, building));
-        DatabaseController.INSTANCE.addToTable(DatabaseController.Table.NODE, toAdd);
-        confirmPop.show(App.getPrimaryStage());
-        nodeTable.getItems().add((HospitalNode) toAdd);
-        IDFieldLoc.clear();
-        xField.clear();
-        yField.clear();
-        floorField.clear();
-        buildingField.clear();
-      } catch (RuntimeException e) {
-        // have an error pop up
-        System.out.println(e.getMessage());
-        windowPop.show(App.getPrimaryStage());
-      }
-    } catch (NumberFormatException e) {
+      toAdd = new HospitalNode(new NodeInitializer(nodeI, nodeX, nodeY, flr, building));
+      DatabaseController.INSTANCE.addToTable(DatabaseController.Table.NODE, toAdd);
+      confirmPop.show(App.getPrimaryStage());
+      nodeTable.getItems().add((HospitalNode) toAdd);
+      IDFieldLoc.clear();
+      xField.clear();
+      yField.clear();
+      floorField.clear();
+      buildingField.clear();
+    } catch (RuntimeException e) {
       System.out.println(e.getMessage());
       windowPop.show(App.getPrimaryStage());
     }
