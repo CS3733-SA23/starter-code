@@ -45,10 +45,7 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
 
   public void update(MoveAttribute moveAttribute, String attribute, String value) {
     String nodeID = moveAttribute.getNodeID();
-    String longName = moveAttribute.getLongName();
-    String date = moveAttribute.getDate();
     String sqlUpdate = "UPDATE \"Move\" " + "SET \"" + attribute + "\" = '" +  value + "' WHERE \"nodeID\" = '" + nodeID + "';";
-
 
     try{
       Statement stmt = activeConnection.createStatement();
@@ -79,7 +76,7 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
     String longName = moveAttribute.getLongName();
     String date = moveAttribute.getDate();
     String sqlAdd =
-        "INSERT INTO \"Move\" VALUES(" + nodeId + ",'" + longName + "' , '" + date + "');";
+        "INSERT INTO \"Move\" VALUES(" + nodeId + ",'" + longName + "','" + date + "');";
 
     try {
       Statement stmt = activeConnection.createStatement();
