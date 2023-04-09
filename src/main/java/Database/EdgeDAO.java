@@ -45,7 +45,7 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   void update(HospitalEdge obj, String attribute, String value) {
     String startNode = obj.getNodeOneID();
     String endNode = obj.getNodeTwoID();
-    String sqlUpdate = "UPDATE \"Edge\" " + "SET \"" + attribute + "\" = '" +  value + "' WHERE \"endNode\" = '" + endNode + "' AND \"startNode\" = '" + startNode + "';";
+    String sqlUpdate = "UPDATE \"Edge\" " + "SET \"" + attribute + "\" = " +  value + " WHERE \"endNode\" = " + endNode + " AND \"startNode\" = " + startNode + ";";
 
     try{
       Statement stmt = activeConnection.createStatement();
