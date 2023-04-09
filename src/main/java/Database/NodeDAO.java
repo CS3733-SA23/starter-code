@@ -25,7 +25,7 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
   }
 
   @Override
-  public List<HospitalNode> get() {
+   List<HospitalNode> get() {
     nodeList = new LinkedList<>();
 
     try {
@@ -70,7 +70,7 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
                 + ";";
       }
 
-      int result stmt.executeUpdate(sql);
+      int result = stmt.executeUpdate(sql);
       if (result < 1)
         System.out.println("There was a problem updating that value of the node");
     } catch (SQLException e) {
