@@ -4,6 +4,7 @@ import edu.wpi.teame.map.MoveAttribute;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,11 @@ import java.util.List;
 
 public class MoveDAO<E> extends DAO<MoveAttribute> {
   List<MoveAttribute> moveAttributes;
+
+  public MoveDAO(Connection c) {
+    activeConnection = c;
+    table = "\"Move\"";
+  }
 
   /**
    * Description: Fills a list with moveAttribute objects, with each row being an object and having

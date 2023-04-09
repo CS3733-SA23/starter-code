@@ -17,31 +17,6 @@ import org.json.JSONObject;
 public enum DatabaseController {
   INSTANCE("teame", "teame50");
 
-  public enum Table {
-    LOCATION_NAME,
-    MOVE,
-    NODE,
-    EDGE,
-    SERVICE_REQUESTS;
-
-    public static String tableToString(Table tb) {
-      switch (tb) {
-        case LOCATION_NAME:
-          return "LocationName";
-        case MOVE:
-          return "Move";
-        case NODE:
-          return "Node";
-        case EDGE:
-          return "Edge";
-        case SERVICE_REQUESTS:
-          return "ServiceRequests";
-        default:
-          throw new NoSuchElementException("No such Table found");
-      }
-    }
-  }
-
   private Connection c;
 
   DatabaseController(String username, String password) {

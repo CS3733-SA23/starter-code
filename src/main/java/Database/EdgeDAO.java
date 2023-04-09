@@ -16,14 +16,14 @@ import java.util.List;
 public class EdgeDAO<E> extends DAO<HospitalEdge> {
   List<HospitalEdge> hospitalEdgeList;
 
-  Connection activeConnection;
 
   public EdgeDAO(Connection c) {
     activeConnection = c;
+    table = "\"Edge\"";
   }
 
   @Override
-  public List<HospitalEdge> get() {
+  List<HospitalEdge> get() {
     hospitalEdgeList = new LinkedList<>();
 
     try {
@@ -42,7 +42,7 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   }
 
   @Override
-  public void update(HospitalEdge obj, String attribute, String value) {
+  void update(HospitalEdge obj, String attribute, String value) {
     String startNode = obj.getNodeOneID();
     String endNode = obj.getNodeTwoID();
     String sqlUpdate = "";
@@ -65,7 +65,7 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   }
 
   @Override
-  public void delete(HospitalEdge edge) {
+  void delete(HospitalEdge edge) {
     String startNode = edge.getNodeOneID();
     String endNode = edge.getNodeTwoID();
     String sqlDelete =
@@ -85,7 +85,7 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   }
 
   @Override
-  public void add(HospitalEdge edge) {
+  void add(HospitalEdge edge) {
     String startNode = edge.getNodeOneID();
     String endNode = edge.getNodeTwoID();
     String sqlAdd =
@@ -104,7 +104,7 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   }
 
   @Override
-  public void importFromCSV(String filePath, String tableName) {
+  void importFromCSV(String filePath, String tableName) {
     try {
       BufferedReader reader = new BufferedReader(new FileReader(filePath));
       String line;
