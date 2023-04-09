@@ -24,6 +24,7 @@ public class AStarPathfinder extends AbstractPathfinder {
             new Comparator<HospitalNode>() {
               @Override
               public int compare(HospitalNode o1, HospitalNode o2) {
+                int costBias = 25;
                 // Based on heuristic distance to target
                 return (costMap.get(o1) + heuristicDistance(o1, to))
                     - (costMap.get(o2) + heuristicDistance(o2, to));
@@ -63,11 +64,11 @@ public class AStarPathfinder extends AbstractPathfinder {
 
   int heuristicDistance(HospitalNode from, HospitalNode to) {
     // estimate the distance to the target based on the euclidean distance to the target
-    int floorBias = 5;
+    int floorBias = 150;
     return (int)
         Math.sqrt( Math.pow(from.getXCoord() - to.getXCoord(), 2)
                 + Math.pow(from.getYCoord() - to.getYCoord(), 2))
-            + (int) floorBias*Math.abs(from.getFloor().ordinal() - to.getFloor().ordinal());
+            + (int) floorBias * Math.abs(from.getFloor().ordinal() - to.getFloor().ordinal());
   }
 
   /**
