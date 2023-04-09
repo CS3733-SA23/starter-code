@@ -12,11 +12,10 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
@@ -37,6 +36,11 @@ public class DatabaseViewController {
 
   // Tabs
   @FXML TabPane tableTabs;
+  @FXML Tab moveTab;
+  @FXML Tab edgeTab;
+  @FXML Tab nameTab;
+  @FXML Tab requestTab;
+  @FXML Tab nodeTab;
 
   // fields for Moves
   @FXML HBox movesAddZone;
@@ -240,6 +244,47 @@ public class DatabaseViewController {
           addNode(windowPop, confirmPop);
         });
 
+    // Event handlers for switching tabs changing the current tab variable
+    nameTab.setOnSelectionChanged(
+        new EventHandler<Event>() {
+          @Override
+          public void handle(Event event) {
+            changeTab(nameTab, DatabaseController.Table.LOCATION_NAME);
+          }
+        });
+
+    edgeTab.setOnSelectionChanged(
+        new EventHandler<Event>() {
+          @Override
+          public void handle(Event event) {
+            changeTab(edgeTab, DatabaseController.Table.EDGE);
+          }
+        });
+
+    moveTab.setOnSelectionChanged(
+        new EventHandler<Event>() {
+          @Override
+          public void handle(Event event) {
+            changeTab(moveTab, DatabaseController.Table.MOVE);
+          }
+        });
+
+    nodeTab.setOnSelectionChanged(
+        new EventHandler<Event>() {
+          @Override
+          public void handle(Event event) {
+            changeTab(nodeTab, DatabaseController.Table.NODE);
+          }
+        });
+
+    requestTab.setOnSelectionChanged(
+        new EventHandler<Event>() {
+          @Override
+          public void handle(Event event) {
+            changeTab(requestTab, DatabaseController.Table.SERVICE_REQUESTS);
+          }
+        });
+
     /*
     importButton.setOnMouseClicked(
         event -> {
@@ -411,6 +456,43 @@ public class DatabaseViewController {
     if (selectedItem != null) {
       activeTable.getItems().remove(selectedItem);
       // DatabaseController.INSTANCE.deleteFromTable(databaseChoice.getValue(), selectedItem);
+    }
+  }
+
+  private void changeTab(Tab tb, DatabaseController.Table table) {
+    if (tb.isSelected()) {
+      switch (table) {
+        case EDGE:
+          activeTable = edgeTable;
+          importButton.setDisable(false);
+          exportButton.setDisable(false);
+          deleteButton.setDisable(false);
+          break;
+        case MOVE:
+          activeTable = moveTable;
+          importButton.setDisable(false);
+          exportButton.setDisable(false);
+          deleteButton.setDisable(false);
+          break;
+        case NODE:
+          activeTable = nodeTable;
+          importButton.setDisable(false);
+          exportButton.setDisable(false);
+          deleteButton.setDisable(false);
+          break;
+        case LOCATION_NAME:
+          activeTable = locationTable;
+          importButton.setDisable(false);
+          exportButton.setDisable(false);
+          deleteButton.setDisable(false);
+          break;
+        case SERVICE_REQUESTS:
+          activeTable = requestTable;
+          importButton.setDisable(true);
+          exportButton.setDisable(true);
+          deleteButton.setDisable(true);
+          break;
+      }
     }
   }
 }

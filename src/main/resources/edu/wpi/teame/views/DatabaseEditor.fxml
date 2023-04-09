@@ -34,7 +34,7 @@
             </VBox>
             <TabPane fx:id="tableTabs" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab closable="false" text="Node">
+                <Tab fx:id="nodeTab" closable="false" text="Node">
                   <content>
                     <AnchorPane>
                            <children>
@@ -65,7 +65,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab closable="false" text="Service Requests">
+                  <Tab fx:id="requestTab" closable="false" text="Service Requests">
                     <content>
                       <AnchorPane>
                            <children>
@@ -85,7 +85,7 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab closable="false" text="Edges">
+                  <Tab fx:id="edgeTab" closable="false" text="Edges">
                     <content>
                       <AnchorPane>
                            <children>
@@ -110,7 +110,7 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab closable="false" text="Location Names">
+                  <Tab fx:id="nameTab" closable="false" text="Location Names">
                     <content>
                       <AnchorPane>
                            <children>
@@ -137,7 +137,7 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab closable="false" text="Move">
+                  <Tab fx:id="moveTab" closable="false" text="Move">
                     <content>
                       <AnchorPane>
                            <children>
