@@ -9,6 +9,10 @@ import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +21,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Popup;
@@ -106,6 +112,7 @@ public class DatabaseViewController {
   FileChooser selectChooser = new FileChooser();
 
   TableView activeTable;
+  DatabaseController.Table activeTableEnum;
 
   @FXML
   public void initialize() {
@@ -206,7 +213,7 @@ public class DatabaseViewController {
           removeItem();
         });
 
-    /*
+
     App.getPrimaryStage()
         .addEventHandler(
             KeyEvent.KEY_PRESSED,
@@ -214,15 +221,13 @@ public class DatabaseViewController {
               @Override
               public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.BACK_SPACE
-                    && !databaseChoice
-                        .getValue()
+                    && !activeTableEnum
                         .equals(DatabaseController.Table.SERVICE_REQUESTS)) {
                   removeItem();
                 }
               }
             });
 
-     */
 
     addMoveButton.setOnMouseClicked(
         event -> {
@@ -285,7 +290,7 @@ public class DatabaseViewController {
           }
         });
 
-    /*
+
     importButton.setOnMouseClicked(
         event -> {
           File selectedFile = selectChooser.showOpenDialog(App.getPrimaryStage());
@@ -296,9 +301,9 @@ public class DatabaseViewController {
             try {
               dC.importFromCSV(
                   selectedFile.getAbsolutePath(),
-                  DatabaseController.Table.tableToString(databaseChoice.getValue()));
+                  DatabaseController.Table.tableToString(activeTableEnum));
               // refresh
-              switch (databaseChoice.getValue()) {
+              switch (activeTableEnum) {
                 case MOVE:
                   activeTable.setItems(FXCollections.observableArrayList(dC.getMoveList()));
                   break;
@@ -320,9 +325,8 @@ public class DatabaseViewController {
           }
         });
 
-     */
 
-    /*
+
     exportButton.setOnMouseClicked(
         event -> {
           // File selectedDirectory = directoryChooser.showDialog(App.getPrimaryStage());
@@ -333,7 +337,7 @@ public class DatabaseViewController {
             // export to the given path
             try {
               dC.exportToCSV(
-                  DatabaseController.Table.tableToString(databaseChoice.getValue()),
+                  DatabaseController.Table.tableToString(activeTableEnum),
                   selectedFile.getParentFile().getAbsolutePath(),
                   selectedFile.getName());
             } catch (SQLException | IOException e) {
@@ -342,28 +346,6 @@ public class DatabaseViewController {
             }
           }
         });
-     */
-  }
-
-  private void addRow(Popup windowPop, Popup confirmPop) {
-    Object toAdd;
-    /*
-    switch (databaseChoice.getValue()) {
-      case MOVE:
-
-        break;
-      case LOCATION_NAME:
-
-        break;
-      case NODE:
-
-        break;
-      case EDGE:
-
-        break;
-    }
-
-     */
   }
 
   private void addNode(Popup windowPop, Popup confirmPop) {
@@ -464,30 +446,35 @@ public class DatabaseViewController {
       switch (table) {
         case EDGE:
           activeTable = edgeTable;
+          activeTableEnum = DatabaseController.Table.EDGE;
           importButton.setDisable(false);
           exportButton.setDisable(false);
           deleteButton.setDisable(false);
           break;
         case MOVE:
           activeTable = moveTable;
+          activeTableEnum = DatabaseController.Table.MOVE;
           importButton.setDisable(false);
           exportButton.setDisable(false);
           deleteButton.setDisable(false);
           break;
         case NODE:
           activeTable = nodeTable;
+          activeTableEnum = DatabaseController.Table.NODE;
           importButton.setDisable(false);
           exportButton.setDisable(false);
           deleteButton.setDisable(false);
           break;
         case LOCATION_NAME:
           activeTable = locationTable;
+          activeTableEnum = DatabaseController.Table.LOCATION_NAME;
           importButton.setDisable(false);
           exportButton.setDisable(false);
           deleteButton.setDisable(false);
           break;
         case SERVICE_REQUESTS:
           activeTable = requestTable;
+          activeTableEnum = DatabaseController.Table.SERVICE_REQUESTS;
           importButton.setDisable(true);
           exportButton.setDisable(true);
           deleteButton.setDisable(true);
