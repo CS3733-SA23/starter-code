@@ -47,19 +47,9 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
     String nodeID = moveAttribute.getNodeID();
     String longName = moveAttribute.getLongName();
     String date = moveAttribute.getDate();
-    String sqlUpdate = "";
+    String sqlUpdate = "UPDATE \"Move\" " + "SET \"" + attribute + "\" = '" +  value + "' WHERE \"nodeID\" = '" + nodeID + "';";
 
-    switch (attribute){
-      case "nodeID":
-        sqlUpdate = "UPDATE \"Move\" " + "SET \"" + nodeID + "\" = '" +  value + "' WHERE \"nodeID\" = '" + nodeID + "' AND \"longName\" = '" + longName + "';";
-        break;
-      case "longName":
-        sqlUpdate = "UPDATE \"Move\" " + "SET \"" + longName + "\" = '" + value + "' WHERE \"nodeID\" = '" + nodeID + "' AND \"longName\" = '" + longName + "';";
-        break;
-      case "date":
-        sqlUpdate = "UPDATE \"Move\" " + "SET \"" + date + "\" = '" + value + "' WHERE \"nodeID\" = '" + nodeID + "' AND \"longName\" = '" + longName + "';";
-        break;
-    }
+
     try{
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlUpdate);
