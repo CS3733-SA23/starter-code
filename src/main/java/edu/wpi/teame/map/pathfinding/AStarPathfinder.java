@@ -66,9 +66,10 @@ public class AStarPathfinder extends AbstractPathfinder {
     // estimate the distance to the target based on the euclidean distance to the target
     int floorBias = 150;
     return (int)
-        Math.sqrt( Math.pow(from.getXCoord() - to.getXCoord(), 2)
-                + Math.pow(from.getYCoord() - to.getYCoord(), 2))
-            + (int) floorBias * Math.abs(from.getFloor().ordinal() - to.getFloor().ordinal());
+            Math.sqrt(
+                Math.pow(from.getXCoord() - to.getXCoord(), 2)
+                    + Math.pow(from.getYCoord() - to.getYCoord(), 2))
+        + (int) floorBias * Math.abs(from.getFloor().ordinal() - to.getFloor().ordinal());
   }
 
   /**
