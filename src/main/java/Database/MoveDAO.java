@@ -37,7 +37,32 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
     return moveAttributes;
   }
 
-  public void update(String attribute, String value) {}
+  public void update(MoveAttribute moveAttribute, String attribute, String value) {
+    String nodeID = moveAttribute.getNodeID();
+    String longName = moveAttribute.getLongName();
+    String date = moveAttribute.getDate();
+    String sqlUpdate = "";
+
+    switch (attribute){
+      case "nodeID":
+        sqlUpdate = "UPDATE \"Move\" " + "SET \"" + nodeID + "\" = '" +  value + "' WHERE \"nodeID\" = '" + nodeID + "' AND \"longName\" = '" + longName + "';";
+        break;
+      case "longName":
+        sqlUpdate = "UPDATE \"Move\" " + "SET \"" + longName + "\" = '" + value + "' WHERE \"nodeID\" = '" + nodeID + "' AND \"longName\" = '" + longName + "';";
+        break;
+      case "date":
+        sqlUpdate = "UPDATE \"Move\" " + "SET \"" + date + "\" = '" + value + "' WHERE \"nodeID\" = '" + nodeID + "' AND \"longName\" = '" + longName + "';";
+        break;
+    }
+    try{
+      Statement stmt = activeConnection.createStatement();
+      stmt.executeUpdate(sqlUpdate);
+      stmt.close();
+    } catch (SQLException e){
+      System.out.println("Exception: Cannot duplicate two set of the same edges, start and end nodes have to exist (cannot create more ids)");
+    }
+
+  }
 
   public void delete(MoveAttribute moveAttribute) {
     String nodeId = moveAttribute.getNodeID();

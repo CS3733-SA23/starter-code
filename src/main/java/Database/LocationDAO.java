@@ -2,7 +2,11 @@ package Database;
 
 import static edu.wpi.teame.map.LocationName.NodeType.stringToNodeType;
 
+import edu.wpi.teame.entities.ServiceRequestData;
+import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.LocationName;
+import org.w3c.dom.Node;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -41,7 +45,31 @@ public class LocationDAO<E> extends DAO<LocationName> {
   }
 
   @Override
-  public void update(String attribute, String value) {}
+  public void update(LocationName locationName, String attribute, String value) {
+    String longName = locationName.getLongName();
+    String shortName = locationName.getShortName();
+    LocationName.NodeType nodeType = locationName.getNodeType();
+    String sqlUpdate = "";
+
+    switch (attribute){
+      case "longName":
+        sqlUpdate = "UPDATE \"LocationName\" " + "SET \"" + longName + "\" = '" +  value + "' WHERE \"longName\" = '" + longName + "';";
+        break;
+      case "shortName":
+        sqlUpdate = "UPDATE \"LocationName\" " + "SET \"" + shortName + "\" = '" + value + "' WHERE \"longName\" = '" + longName  + "';";
+        break;
+      case "nodeType":
+        sqlUpdate = "UPDATE \"LocationName\" " + "SET \"" + nodeType + "\" = " + Floor.stringToFloor(value) + " WHERE \"longName\" = '" + longName + "';";
+        break;
+    }
+    try{
+      Statement stmt = activeConnection.createStatement();
+      stmt.executeUpdate(sqlUpdate);
+      stmt.close();
+    } catch (SQLException e){
+      System.out.println("Exception: Cannot duplicate two set of the same locationNames, longName has to exist, shortName can be any, node type has a specific enum");
+    }
+  }
 
   @Override
   public void delete(LocationName locationName) {

@@ -1,5 +1,6 @@
 package Database;
 
+import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.HospitalEdge;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -41,7 +42,27 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   }
 
   @Override
-  public void update(String attribute, String value) {}
+  public void update(HospitalEdge obj, String attribute, String value) {
+    String startNode = obj.getNodeOneID();
+    String endNode = obj.getNodeTwoID();
+    String sqlUpdate = "";
+
+    switch (attribute){
+      case "startNode":
+        sqlUpdate = "UPDATE \"Edge\" " + "SET \"" + startNode + "\" = '" +  value + "' WHERE \"endNode\" = '" + endNode + "' AND \"startNode\" = '" + startNode + "';";
+        break;
+      case "endNode":
+        sqlUpdate = "UPDATE \"Edge\" " + "SET \"" + endNode + "\" = '" + value + "' WHERE \"startNode\" = '" + startNode + "' AND \"endNode\" = '" + startNode + "';";
+        break;
+    }
+    try{
+      Statement stmt = activeConnection.createStatement();
+      stmt.executeUpdate(sqlUpdate);
+      stmt.close();
+    } catch (SQLException e){
+      System.out.println("Exception: Cannot duplicate two set of the same edges, start and end nodes have to exist (cannot create more ids)");
+    }
+  }
 
   @Override
   public void delete(HospitalEdge edge) {
