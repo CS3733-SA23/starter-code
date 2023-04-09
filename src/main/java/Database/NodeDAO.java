@@ -18,14 +18,13 @@ import java.util.List;
 public class NodeDAO<E> extends DAO<HospitalNode> {
   List<HospitalNode> nodeList;
 
-  Connection activeConnection;
-
   public NodeDAO(Connection c) {
     this.activeConnection = c;
+    table = "\"Node\"";
   }
 
   @Override
-  public List<HospitalNode> get() {
+  List<HospitalNode> get() {
     nodeList = new LinkedList<>();
 
     try {
@@ -59,25 +58,33 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
       Statement stmt = activeConnection.createStatement();
 
       if (attribute.equals("nodeID") || attribute.equals("xcoord") || attribute.equals("ycoord")) {
-        sql = "UPDATE \"Node\" " +
-                "SET \"" + attribute + "\" = " + value
-                + " WHERE \"nodeID\" = " + nodeID
+        sql =
+            "UPDATE \"Node\" "
+                + "SET \""
+                + attribute
+                + "\" = "
+                + value
+                + " WHERE \"nodeID\" = "
+                + nodeID
                 + ";";
       } else {
-        sql = "UPDATE \"Node\" " +
-                "SET \"" + attribute + "\" = '" + value
-                + "' WHERE \"nodeID\" = " + nodeID
+        sql =
+            "UPDATE \"Node\" "
+                + "SET \""
+                + attribute
+                + "\" = '"
+                + value
+                + "' WHERE \"nodeID\" = "
+                + nodeID
                 + ";";
       }
 
-      int result stmt.executeUpdate(sql);
-      if (result < 1)
-        System.out.println("There was a problem updating that value of the node");
+      int result = stmt.executeUpdate(sql);
+      if (result < 1) System.out.println("There was a problem updating that value of the node");
     } catch (SQLException e) {
       throw new RuntimeException("There was a problem updating that value of the node");
     }
   }
-
 
   @Override
   public void delete(HospitalNode obj) {
@@ -138,10 +145,6 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
       }
       rows.remove(0);
       reader.close();
-      Statement stmt = activeConnection.createStatement();
-
-      String sqlDelete = "DELETE FROM \"" + tableName + "\";";
-      stmt.execute(sqlDelete);
 
       for (String l1 : rows) {
         String[] splitL1 = l1.split(",");
@@ -151,21 +154,26 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
                 + tableName
                 + "\""
                 + " VALUES ("
-                + Integer.parseInt(splitL1[0])
+                + splitL1[0]
                 + ","
-                + Integer.parseInt(splitL1[1])
+                + splitL1[1]
                 + ","
-                + Integer.parseInt(splitL1[2])
-                + ","
-                + (splitL1[3])
+                + splitL1[2]
                 + ",'"
+                + splitL1[3]
+                + "','"
                 + splitL1[4]
                 + "'); ";
-        System.out.println(sql);
-        stmt.execute(sql);
+        try {
+          Statement stmt = activeConnection.createStatement();
+
+          String sqlDelete = "DELETE FROM \"" + tableName + "\";";
+          stmt.execute(sqlDelete);
+          stmt.execute(sql);
+        } catch (SQLException e) {
+          throw new RuntimeException("Could not import nodeID " + splitL1[0]);
+        }
       }
-    } catch (SQLException e) {
-      throw new RuntimeException("There was a problem inserting the data");
     } catch (FileNotFoundException e) {
       throw new RuntimeException("Sorry File was not found");
     } catch (IOException e) {

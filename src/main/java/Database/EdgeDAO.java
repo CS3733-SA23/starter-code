@@ -15,14 +15,13 @@ import java.util.List;
 public class EdgeDAO<E> extends DAO<HospitalEdge> {
   List<HospitalEdge> hospitalEdgeList;
 
-  Connection activeConnection;
-
   public EdgeDAO(Connection c) {
     activeConnection = c;
+    table = "\"Edge\"";
   }
 
   @Override
-  public List<HospitalEdge> get() {
+  List<HospitalEdge> get() {
     hospitalEdgeList = new LinkedList<>();
 
     try {
@@ -41,39 +40,20 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   }
 
   @Override
-  public void update(HospitalEdge obj, String attribute, String value) {
+  void update(HospitalEdge obj, String attribute, String value) {
     String startNode = obj.getNodeOneID();
     String endNode = obj.getNodeTwoID();
-    String sqlUpdate = "";
-
-    switch (attribute) {
-      case "startNode":
-        sqlUpdate =
-            "UPDATE \"Edge\" "
-                + "SET \""
-                + startNode
-                + "\" = '"
-                + value
-                + "' WHERE \"endNode\" = '"
-                + endNode
-                + "' AND \"startNode\" = '"
-                + startNode
-                + "';";
-        break;
-      case "endNode":
-        sqlUpdate =
-            "UPDATE \"Edge\" "
-                + "SET \""
-                + endNode
-                + "\" = '"
-                + value
-                + "' WHERE \"startNode\" = '"
-                + startNode
-                + "' AND \"endNode\" = '"
-                + startNode
-                + "';";
-        break;
-    }
+    String sqlUpdate =
+        "UPDATE \"Edge\" "
+            + "SET \""
+            + attribute
+            + "\" = "
+            + value
+            + " WHERE \"endNode\" = "
+            + endNode
+            + " AND \"startNode\" = "
+            + startNode
+            + ";";
     try {
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlUpdate);
@@ -85,7 +65,7 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   }
 
   @Override
-  public void delete(HospitalEdge edge) {
+  void delete(HospitalEdge edge) {
     String startNode = edge.getNodeOneID();
     String endNode = edge.getNodeTwoID();
     String sqlDelete =
@@ -105,15 +85,10 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   }
 
   @Override
-  public void add(HospitalEdge edge) {
+  void add(HospitalEdge edge) {
     String startNode = edge.getNodeOneID();
     String endNode = edge.getNodeTwoID();
-    String sqlAdd =
-        "DELETE FROM \"Edge\" WHERE \"startNode\" = "
-            + startNode
-            + " AND \"endNode\" = '"
-            + endNode
-            + "';";
+    String sqlAdd = "INSERT INTO \"Edge\" VALUES('" + startNode + "','" + endNode + "');";
     try {
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlAdd);
@@ -124,7 +99,7 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   }
 
   @Override
-  public void importFromCSV(String filePath, String tableName) {
+  void importFromCSV(String filePath, String tableName) {
     try {
       BufferedReader reader = new BufferedReader(new FileReader(filePath));
       String line;

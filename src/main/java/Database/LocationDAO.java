@@ -2,11 +2,11 @@ package Database;
 
 import static edu.wpi.teame.map.LocationName.NodeType.stringToNodeType;
 
-import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.LocationName;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,8 +17,13 @@ import java.util.List;
 public class LocationDAO<E> extends DAO<LocationName> {
   List<LocationName> locationNames;
 
+  public LocationDAO(Connection c) {
+    activeConnection = c;
+    table = "\"LocationName\"";
+  }
+
   @Override
-  public List<LocationName> get() {
+  List<LocationName> get() {
     locationNames = new LinkedList<>();
 
     try {
@@ -42,47 +47,18 @@ public class LocationDAO<E> extends DAO<LocationName> {
   }
 
   @Override
-  public void update(LocationName locationName, String attribute, String value) {
+  void update(LocationName locationName, String attribute, String value) {
     String longName = locationName.getLongName();
-    String shortName = locationName.getShortName();
-    LocationName.NodeType nodeType = locationName.getNodeType();
-    String sqlUpdate = "";
+    String sqlUpdate =
+        "UPDATE \"LocationName\" "
+            + "SET \""
+            + attribute
+            + "\" = '"
+            + value
+            + "' WHERE \"longName\" = '"
+            + longName
+            + "';";
 
-    switch (attribute) {
-      case "longName":
-        sqlUpdate =
-            "UPDATE \"LocationName\" "
-                + "SET \""
-                + longName
-                + "\" = '"
-                + value
-                + "' WHERE \"longName\" = '"
-                + longName
-                + "';";
-        break;
-      case "shortName":
-        sqlUpdate =
-            "UPDATE \"LocationName\" "
-                + "SET \""
-                + shortName
-                + "\" = '"
-                + value
-                + "' WHERE \"longName\" = '"
-                + longName
-                + "';";
-        break;
-      case "nodeType":
-        sqlUpdate =
-            "UPDATE \"LocationName\" "
-                + "SET \""
-                + nodeType
-                + "\" = "
-                + Floor.stringToFloor(value)
-                + " WHERE \"longName\" = '"
-                + longName
-                + "';";
-        break;
-    }
     try {
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlUpdate);
@@ -94,7 +70,7 @@ public class LocationDAO<E> extends DAO<LocationName> {
   }
 
   @Override
-  public void delete(LocationName locationName) {
+  void delete(LocationName locationName) {
     String lName = locationName.getLongName();
     String sqlDelete = "DELETE FROM \"LocationName\" WHERE \"longName\" = '" + lName + "';";
 
@@ -108,7 +84,7 @@ public class LocationDAO<E> extends DAO<LocationName> {
   }
 
   @Override
-  public void add(LocationName locationName) {
+  void add(LocationName locationName) {
     String lName = locationName.getLongName();
     String shortName = locationName.getShortName();
     String nodeType = LocationName.NodeType.nodeToString(locationName.getNodeType());
@@ -131,7 +107,7 @@ public class LocationDAO<E> extends DAO<LocationName> {
   }
 
   @Override
-  public void importFromCSV(String filePath, String tableName) {
+  void importFromCSV(String filePath, String tableName) {
     try {
       BufferedReader lreader = new BufferedReader(new FileReader(filePath));
       String line;

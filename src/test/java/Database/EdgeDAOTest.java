@@ -1,15 +1,18 @@
 package Database;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import edu.wpi.teame.map.HospitalEdge;
+import java.util.List;
+import org.junit.jupiter.api.Test;
+
 public class EdgeDAOTest {
 
-    public EdgeDAO setUpEdgeDAO(){
-        try {
-      DAO<> DBC1 = DatabaseController.INSTANCE;
-      return new DAO<>;
-    } catch (RuntimeException e) {
-      System.out.println(e.getMessage());
-    }
-   return null;
-    }
+  @Test
+  public void testGetEdgeList() {
+    SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
+    List<HospitalEdge> edgeList = SQLRepo.INSTANCE.getEdgeList();
 
+    assertFalse(edgeList.isEmpty());
+  }
 }

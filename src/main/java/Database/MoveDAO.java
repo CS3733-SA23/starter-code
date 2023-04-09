@@ -4,6 +4,7 @@ import edu.wpi.teame.map.MoveAttribute;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,11 @@ import java.util.List;
 
 public class MoveDAO<E> extends DAO<MoveAttribute> {
   List<MoveAttribute> moveAttributes;
+
+  public MoveDAO(Connection c) {
+    activeConnection = c;
+    table = "\"Move\"";
+  }
 
   /**
    * Description: Fills a list with moveAttribute objects, with each row being an object and having
@@ -39,51 +45,16 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
 
   public void update(MoveAttribute moveAttribute, String attribute, String value) {
     String nodeID = moveAttribute.getNodeID();
-    String longName = moveAttribute.getLongName();
-    String date = moveAttribute.getDate();
-    String sqlUpdate = "";
+    String sqlUpdate =
+        "UPDATE \"Move\" "
+            + "SET \""
+            + attribute
+            + "\" = '"
+            + value
+            + "' WHERE \"nodeID\" = '"
+            + nodeID
+            + "';";
 
-    switch (attribute) {
-      case "nodeID":
-        sqlUpdate =
-            "UPDATE \"Move\" "
-                + "SET \""
-                + nodeID
-                + "\" = '"
-                + value
-                + "' WHERE \"nodeID\" = '"
-                + nodeID
-                + "' AND \"longName\" = '"
-                + longName
-                + "';";
-        break;
-      case "longName":
-        sqlUpdate =
-            "UPDATE \"Move\" "
-                + "SET \""
-                + longName
-                + "\" = '"
-                + value
-                + "' WHERE \"nodeID\" = '"
-                + nodeID
-                + "' AND \"longName\" = '"
-                + longName
-                + "';";
-        break;
-      case "date":
-        sqlUpdate =
-            "UPDATE \"Move\" "
-                + "SET \""
-                + date
-                + "\" = '"
-                + value
-                + "' WHERE \"nodeID\" = '"
-                + nodeID
-                + "' AND \"longName\" = '"
-                + longName
-                + "';";
-        break;
-    }
     try {
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlUpdate);
@@ -113,7 +84,7 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
     String longName = moveAttribute.getLongName();
     String date = moveAttribute.getDate();
     String sqlAdd =
-        "INSERT INTO \"Move\" VALUES(" + nodeId + ",'" + longName + "' , '" + date + "');";
+        "INSERT INTO \"Move\" VALUES(" + nodeId + ",'" + longName + "','" + date + "');";
 
     try {
       Statement stmt = activeConnection.createStatement();
