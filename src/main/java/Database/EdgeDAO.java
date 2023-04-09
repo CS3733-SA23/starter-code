@@ -81,11 +81,11 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
     String startNode = edge.getNodeOneID();
     String endNode = edge.getNodeTwoID();
     String sqlAdd =
-        "DELETE FROM \"Edge\" WHERE \"startNode\" = "
-            + startNode
-            + " AND \"endNode\" = '"
-            + endNode
-            + "';";
+            "INSERT INTO \"Edge\" VALUES('"
+                    + startNode
+                    + "','"
+                    + endNode
+                    + "');";
     try {
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlAdd);
