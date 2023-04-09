@@ -3,8 +3,8 @@ package edu.wpi.teame.controllers;
 import static javafx.scene.paint.Color.BLACK;
 import static javafx.scene.paint.Color.WHITE;
 
-import Database.DatabaseController;
-import Database.DatabaseGraphController;
+import edu.wpi.teame.Database.DatabaseController;
+import edu.wpi.teame.Database.DatabaseGraphController;
 import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.map.pathfinding.AStarPathfinder;

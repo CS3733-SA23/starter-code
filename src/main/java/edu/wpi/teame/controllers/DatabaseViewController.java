@@ -1,8 +1,8 @@
 package edu.wpi.teame.controllers;
 
-import Database.DatabaseController;
-import Database.DatabaseServiceController;
 import edu.wpi.teame.App;
+import edu.wpi.teame.Database.DatabaseController;
+import edu.wpi.teame.Database.DatabaseServiceController;
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.*;
 import edu.wpi.teame.navigation.Navigation;
