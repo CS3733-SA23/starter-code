@@ -45,16 +45,24 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
 
   public void update(MoveAttribute moveAttribute, String attribute, String value) {
     String nodeID = moveAttribute.getNodeID();
-    String sqlUpdate = "UPDATE \"Move\" " + "SET \"" + attribute + "\" = '" +  value + "' WHERE \"nodeID\" = '" + nodeID + "';";
+    String sqlUpdate =
+        "UPDATE \"Move\" "
+            + "SET \""
+            + attribute
+            + "\" = '"
+            + value
+            + "' WHERE \"nodeID\" = '"
+            + nodeID
+            + "';";
 
-    try{
+    try {
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlUpdate);
       stmt.close();
-    } catch (SQLException e){
-      System.out.println("Exception: Cannot duplicate two set of the same edges, start and end nodes have to exist (cannot create more ids)");
+    } catch (SQLException e) {
+      System.out.println(
+          "Exception: Cannot duplicate two set of the same edges, start and end nodes have to exist (cannot create more ids)");
     }
-
   }
 
   public void delete(MoveAttribute moveAttribute) {

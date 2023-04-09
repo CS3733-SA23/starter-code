@@ -1,7 +1,6 @@
 package Database;
 
 import edu.wpi.teame.entities.ServiceRequestData;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -59,14 +58,18 @@ public class ServiceDAO<E> extends DAO<ServiceRequestData> {
     try {
       Statement stmt = activeConnection.createStatement();
 
-              sql = "UPDATE \"ServiceRequest\" " +
-                "SET \"" + attribute + "\" = '" + value
-                + "' WHERE \"HashID\" = " + hashID
-                + ";";
+      sql =
+          "UPDATE \"ServiceRequest\" "
+              + "SET \""
+              + attribute
+              + "\" = '"
+              + value
+              + "' WHERE \"HashID\" = "
+              + hashID
+              + ";";
 
       int result = stmt.executeUpdate(sql);
-      if (result < 1)
-        System.out.println("There was a problem updating that ServiceRequest");
+      if (result < 1) System.out.println("There was a problem updating that ServiceRequest");
     } catch (SQLException e) {
       throw new RuntimeException("There was a problem updating that ServiceRequest");
     }
@@ -134,41 +137,40 @@ public class ServiceDAO<E> extends DAO<ServiceRequestData> {
       rows.remove(0);
       reader.close();
 
-
       for (String l1 : rows) {
         int lastCurly = l1.lastIndexOf("}");
         String Json = l1.substring(0, lastCurly);
-        String notJson = l1.substring(lastCurly+1);
+        String notJson = l1.substring(lastCurly + 1);
 
         String[] splitL1 = notJson.split(",");
         String sql =
-                "INSERT INTO \""
-                        + tableName
-                        + "\""
-                        + "VALUES ('"
-                        + Json
-                        + "', '"
-                        + splitL1[0]
-                        + "', '"
-                        + splitL1[1]
-                        + "', '"
-                        + splitL1[2]
-                        + "', "
-                        + Json.hashCode()
-                        + "); ";
+            "INSERT INTO \""
+                + tableName
+                + "\""
+                + "VALUES ('"
+                + Json
+                + "', '"
+                + splitL1[0]
+                + "', '"
+                + splitL1[1]
+                + "', '"
+                + splitL1[2]
+                + "', "
+                + Json.hashCode()
+                + "); ";
         try {
           Statement stmt = activeConnection.createStatement();
 
           String sqlDelete = "DELETE FROM \"" + tableName + "\";";
           stmt.execute(sqlDelete);
           stmt.execute(sql);
-        } catch(SQLException e) {
+        } catch (SQLException e) {
           throw new RuntimeException("Could not import " + Json);
         }
       }
 
       System.out.println(
-              "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
+          "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
 
     } catch (IOException e) {
       System.err.println("Error importing from " + filePath + " to " + tableName);

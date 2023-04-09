@@ -2,11 +2,7 @@ package Database;
 
 import static edu.wpi.teame.map.LocationName.NodeType.stringToNodeType;
 
-import edu.wpi.teame.entities.ServiceRequestData;
-import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.LocationName;
-import org.w3c.dom.Node;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -53,14 +49,23 @@ public class LocationDAO<E> extends DAO<LocationName> {
   @Override
   void update(LocationName locationName, String attribute, String value) {
     String longName = locationName.getLongName();
-    String sqlUpdate = "UPDATE \"LocationName\" " + "SET \"" +  attribute + "\" = '" +  value + "' WHERE \"longName\" = '" + longName + "';";
+    String sqlUpdate =
+        "UPDATE \"LocationName\" "
+            + "SET \""
+            + attribute
+            + "\" = '"
+            + value
+            + "' WHERE \"longName\" = '"
+            + longName
+            + "';";
 
-    try{
+    try {
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlUpdate);
       stmt.close();
-    } catch (SQLException e){
-      System.out.println("Exception: Cannot duplicate two set of the same locationNames, longName has to exist, shortName can be any, node type has a specific enum");
+    } catch (SQLException e) {
+      System.out.println(
+          "Exception: Cannot duplicate two set of the same locationNames, longName has to exist, shortName can be any, node type has a specific enum");
     }
   }
 

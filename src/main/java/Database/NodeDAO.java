@@ -24,7 +24,7 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
   }
 
   @Override
-   List<HospitalNode> get() {
+  List<HospitalNode> get() {
     nodeList = new LinkedList<>();
 
     try {
@@ -58,25 +58,33 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
       Statement stmt = activeConnection.createStatement();
 
       if (attribute.equals("nodeID") || attribute.equals("xcoord") || attribute.equals("ycoord")) {
-        sql = "UPDATE \"Node\" " +
-                "SET \"" + attribute + "\" = " + value
-                + " WHERE \"nodeID\" = " + nodeID
+        sql =
+            "UPDATE \"Node\" "
+                + "SET \""
+                + attribute
+                + "\" = "
+                + value
+                + " WHERE \"nodeID\" = "
+                + nodeID
                 + ";";
       } else {
-        sql = "UPDATE \"Node\" " +
-                "SET \"" + attribute + "\" = '" + value
-                + "' WHERE \"nodeID\" = " + nodeID
+        sql =
+            "UPDATE \"Node\" "
+                + "SET \""
+                + attribute
+                + "\" = '"
+                + value
+                + "' WHERE \"nodeID\" = "
+                + nodeID
                 + ";";
       }
 
       int result = stmt.executeUpdate(sql);
-      if (result < 1)
-        System.out.println("There was a problem updating that value of the node");
+      if (result < 1) System.out.println("There was a problem updating that value of the node");
     } catch (SQLException e) {
       throw new RuntimeException("There was a problem updating that value of the node");
     }
   }
-
 
   @Override
   public void delete(HospitalNode obj) {
@@ -162,7 +170,7 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
           String sqlDelete = "DELETE FROM \"" + tableName + "\";";
           stmt.execute(sqlDelete);
           stmt.execute(sql);
-        } catch(SQLException e) {
+        } catch (SQLException e) {
           throw new RuntimeException("Could not import nodeID " + splitL1[0]);
         }
       }

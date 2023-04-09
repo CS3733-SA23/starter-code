@@ -17,6 +17,31 @@ import org.json.JSONObject;
 public enum DatabaseController {
   INSTANCE("teame", "teame50");
 
+  public enum Table {
+    LOCATION_NAME,
+    MOVE,
+    NODE,
+    EDGE,
+    SERVICE_REQUESTS;
+
+    public static String tableToString(Table tb) {
+      switch (tb) {
+        case LOCATION_NAME:
+          return "LocationName";
+        case MOVE:
+          return "Move";
+        case NODE:
+          return "Node";
+        case EDGE:
+          return "Edge";
+        case SERVICE_REQUESTS:
+          return "ServiceRequests";
+        default:
+          throw new NoSuchElementException("No such Table found");
+      }
+    }
+  }
+
   private Connection c;
 
   DatabaseController(String username, String password) {
@@ -189,6 +214,47 @@ public enum DatabaseController {
     }
   }
 
+  /**
+   * Description: Fills a list with moveAttribute objects, with each row being an object and having
+   * a nodeID, longName, date
+   *
+   * @return list of move attribute objects
+   */
+  public List<MoveAttribute> getMoveList() {
+    List<MoveAttribute> moveList = new ArrayList<>();
+    String query = "SELECT * FROM teame.\"Move\" ORDER BY \"nodeID\" ASC;";
+    try (Statement stmt = c.createStatement();
+        ResultSet rs = stmt.executeQuery(query)) {
+      while (rs.next()) {
+        moveList.add(extractMoveFromResultSet(rs));
+      }
+      System.out.println("Move table retrieved successfully");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+    return moveList;
+  }
+
+  public List<HospitalEdge> getEdges() {
+    List<HospitalEdge> hospitalEdges = new LinkedList<>();
+
+    try {
+      Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
+
+      String sql = "SELECT \"startNode\", \"endNode\" FROM teame.\"Edge\" ;";
+      ResultSet rs = stmt.executeQuery(sql);
+
+      while (rs.next()) {
+
+        hospitalEdges.add(new HospitalEdge(rs.getString("startNode"), rs.getString("endNode")));
+      }
+
+      return hospitalEdges;
+    } catch (SQLException e) {
+      throw new RuntimeException("Something went wrong");
+    }
+  }
+
   public List<HospitalNode> getNodes() {
     List<HospitalNode> hospitalNodes = new LinkedList<>();
 
@@ -212,6 +278,41 @@ public enum DatabaseController {
     } catch (SQLException e) {
       throw new RuntimeException("Something went wrong");
     }
+  }
+
+  public List<LocationName> getLocationName() {
+    List<LocationName> locationNames = new LinkedList<>();
+
+    try {
+      Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
+
+      String sql = "SELECT \"longName\", \"shortName\", \"nodeType\" FROM teame.\"LocationName\";";
+      ResultSet rs = stmt.executeQuery(sql);
+
+      while (rs.next()) {
+        locationNames.add(
+            new LocationName(
+                rs.getString("longName"),
+                rs.getString("shortName"),
+                stringToNodeType(rs.getString("nodeType"))));
+      }
+
+      return locationNames;
+    } catch (SQLException e) {
+      throw new RuntimeException("Something went wrong");
+    }
+  }
+
+  /**
+   * Extracts a MoveTable object from the given ResultSet
+   *
+   * @param rs The ResultSet to extract the node, long name, and date from.
+   * @return A MoveTable object extracted from the given ResultSet.
+   * @throws SQLException if an error occurs while accessing the ResultSet.
+   */
+  private MoveAttribute extractMoveFromResultSet(ResultSet rs) throws SQLException {
+    return new MoveAttribute(
+        rs.getString("nodeID"), rs.getString("longName"), rs.getString("date"));
   }
 
   /**

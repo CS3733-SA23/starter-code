@@ -2,8 +2,6 @@ package Database;
 
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.*;
-
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -50,8 +48,8 @@ public enum SQLRepo {
     try {
       Class.forName("org.postgresql.Driver");
       activeConnection =
-              DriverManager.getConnection(
-                      "jdbc:postgresql://database.cs.wpi.edu:5432/teamedb", username, password);
+          DriverManager.getConnection(
+              "jdbc:postgresql://database.cs.wpi.edu:5432/teamedb", username, password);
 
       nodeDAO = new NodeDAO(activeConnection);
       edgeDAO = new EdgeDAO(activeConnection);
@@ -93,7 +91,6 @@ public enum SQLRepo {
     return this.dbUtility.getLongNamesFromMove(mv);
   }
 
-
   public void importFromCSV(Table table, String filepath) {
     try {
       switch (table) {
@@ -117,6 +114,7 @@ public enum SQLRepo {
       System.out.println(e.getMessage());
     }
   }
+
   public void exportToCSV(Table table, String filepath, String tableName) {
     try {
       switch (table) {
@@ -143,20 +141,23 @@ public enum SQLRepo {
 
   public List<ServiceRequestData> getServiceRequestList() {
 
-      return this.serviceDAO.get();
+    return this.serviceDAO.get();
   }
+
   public List<HospitalNode> getNodeList() {
-      return this.nodeDAO.get();
+    return this.nodeDAO.get();
   }
+
   public List<HospitalEdge> getEdgeList() {
 
     return this.edgeDAO.get();
   }
+
   public List<LocationName> getLocationList() {
 
-     return this.locationDAO.get();
-
+    return this.locationDAO.get();
   }
+
   public List<MoveAttribute> getMoveList() {
     return this.moveDAO.get();
   }
@@ -164,15 +165,19 @@ public enum SQLRepo {
   public void updateServiceRequest(ServiceRequestData obj, String attribute, String value) {
     this.serviceDAO.update(obj, attribute, value);
   }
+
   public void updateNode(HospitalNode obj, String attribute, String value) {
     this.nodeDAO.update(obj, attribute, value);
   }
+
   public void updateEdge(HospitalEdge obj, String attribute, String value) {
     this.edgeDAO.update(obj, attribute, value);
   }
+
   public void updateMove(MoveAttribute obj, String attribute, String value) {
     this.moveDAO.update(obj, attribute, value);
   }
+
   public void updateLocation(LocationName obj, String attribute, String value) {
     this.locationDAO.update(obj, attribute, value);
   }
@@ -180,15 +185,19 @@ public enum SQLRepo {
   public void deleteServiceRequest(ServiceRequestData obj) {
     this.serviceDAO.delete(obj);
   }
+
   public void deletenode(HospitalNode obj) {
     this.nodeDAO.delete(obj);
   }
+
   public void deleteEdge(HospitalEdge obj) {
     this.edgeDAO.delete(obj);
   }
+
   public void deleteLocation(LocationName obj) {
     this.locationDAO.delete(obj);
   }
+
   public void deleteMove(MoveAttribute obj) {
     this.moveDAO.delete(obj);
   }
@@ -196,17 +205,20 @@ public enum SQLRepo {
   public void addServiceRequest(ServiceRequestData obj) {
     this.serviceDAO.add(obj);
   }
+
   public void addNode(HospitalNode obj) {
     this.nodeDAO.add(obj);
   }
+
   public void addEdge(HospitalEdge obj) {
     this.edgeDAO.add(obj);
   }
+
   public void addLocation(LocationName obj) {
     this.locationDAO.add(obj);
   }
+
   public void addMove(MoveAttribute obj) {
     this.moveDAO.add(obj);
   }
-
 }

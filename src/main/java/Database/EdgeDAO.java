@@ -1,6 +1,5 @@
 package Database;
 
-import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.HospitalEdge;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -15,7 +14,6 @@ import java.util.List;
 
 public class EdgeDAO<E> extends DAO<HospitalEdge> {
   List<HospitalEdge> hospitalEdgeList;
-
 
   public EdgeDAO(Connection c) {
     activeConnection = c;
@@ -45,14 +43,25 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   void update(HospitalEdge obj, String attribute, String value) {
     String startNode = obj.getNodeOneID();
     String endNode = obj.getNodeTwoID();
-    String sqlUpdate = "UPDATE \"Edge\" " + "SET \"" + attribute + "\" = " +  value + " WHERE \"endNode\" = " + endNode + " AND \"startNode\" = " + startNode + ";";
+    String sqlUpdate =
+        "UPDATE \"Edge\" "
+            + "SET \""
+            + attribute
+            + "\" = "
+            + value
+            + " WHERE \"endNode\" = "
+            + endNode
+            + " AND \"startNode\" = "
+            + startNode
+            + ";";
 
-    try{
+    try {
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlUpdate);
       stmt.close();
-    } catch (SQLException e){
-      System.out.println("Exception: Cannot duplicate two set of the same edges, start and end nodes have to exist (cannot create more ids)");
+    } catch (SQLException e) {
+      System.out.println(
+          "Exception: Cannot duplicate two set of the same edges, start and end nodes have to exist (cannot create more ids)");
     }
   }
 
@@ -80,12 +89,7 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   void add(HospitalEdge edge) {
     String startNode = edge.getNodeOneID();
     String endNode = edge.getNodeTwoID();
-    String sqlAdd =
-            "INSERT INTO \"Edge\" VALUES('"
-                    + startNode
-                    + "','"
-                    + endNode
-                    + "');";
+    String sqlAdd = "INSERT INTO \"Edge\" VALUES('" + startNode + "','" + endNode + "');";
     try {
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlAdd);
