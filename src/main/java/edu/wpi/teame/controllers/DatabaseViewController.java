@@ -337,22 +337,29 @@ public class DatabaseViewController {
   private void addNode(Popup windowPop, Popup confirmPop) {
     Object toAdd;
     String nodeI = (IDFieldLoc.getText());
-    int nodeX = Integer.parseInt(xField.getText());
-    int nodeY = Integer.parseInt(yField.getText());
+    int nodeX;
+    int nodeY;
     String flr = floorField.getText();
     String building = buildingField.getText();
     try {
-      toAdd = new HospitalNode(new NodeInitializer(nodeI, nodeX, nodeY, flr, building));
-      DatabaseController.INSTANCE.addToTable(DatabaseController.Table.NODE, toAdd);
-      confirmPop.show(App.getPrimaryStage());
-      nodeTable.getItems().add((HospitalNode) toAdd);
-      IDFieldLoc.clear();
-      xField.clear();
-      yField.clear();
-      floorField.clear();
-      buildingField.clear();
-    } catch (RuntimeException e) {
-      // have an error pop up
+      nodeX = Integer.parseInt(xField.getText());
+      nodeY = Integer.parseInt(yField.getText());
+      try {
+        toAdd = new HospitalNode(new NodeInitializer(nodeI, nodeX, nodeY, flr, building));
+        DatabaseController.INSTANCE.addToTable(DatabaseController.Table.NODE, toAdd);
+        confirmPop.show(App.getPrimaryStage());
+        nodeTable.getItems().add((HospitalNode) toAdd);
+        IDFieldLoc.clear();
+        xField.clear();
+        yField.clear();
+        floorField.clear();
+        buildingField.clear();
+      } catch (RuntimeException e) {
+        // have an error pop up
+        System.out.println(e.getMessage());
+        windowPop.show(App.getPrimaryStage());
+      }
+    } catch (NumberFormatException e) {
       System.out.println(e.getMessage());
       windowPop.show(App.getPrimaryStage());
     }
