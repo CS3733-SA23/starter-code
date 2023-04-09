@@ -423,7 +423,7 @@ public class DatabaseViewController {
     Object selectedItem = activeTable.getSelectionModel().getSelectedItem();
     if (selectedItem != null) {
       activeTable.getItems().remove(selectedItem);
-      // DatabaseController.INSTANCE.deleteFromTable(databaseChoice.getValue(), selectedItem);
+      DatabaseController.INSTANCE.deleteFromTable(activeTableEnum, selectedItem);
     }
   }
 
