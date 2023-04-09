@@ -15,7 +15,7 @@ public abstract class DAO<E> {
 
   abstract List<E> get();
 
-  abstract void update();
+  abstract void update(E obj, String attribute, String value);
 
   abstract void delete(E obj);
 
@@ -31,8 +31,7 @@ public abstract class DAO<E> {
    * @throws SQLException if there is an error accessing the database.
    * @throws IOException if there is an error creating or writing to the CSV file.
    */
-  public void exportToCSV(String filePath, String fileName)
-          throws SQLException, IOException {
+  public void exportToCSV(String filePath, String fileName) throws SQLException, IOException {
 
     // Initialization
     Statement stmt = null;

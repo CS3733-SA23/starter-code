@@ -1,7 +1,7 @@
 package Database;
 
+import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.HospitalEdge;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -24,15 +24,15 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
 
   @Override
   public List<HospitalEdge> get() {
-    hospitalEdgeList =  new LinkedList<>();
+    hospitalEdgeList = new LinkedList<>();
 
-    try{
-      Statement stmt =  DatabaseController.INSTANCE.getC().createStatement();
+    try {
+      Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
 
       String sql = "SELECT \"startNode\", \"endNode\" FROM teame.\"Edge\" ;";
       ResultSet rs = stmt.executeQuery(sql);
 
-      while(rs.next()){
+      while (rs.next()) {
         hospitalEdgeList.add(new HospitalEdge(rs.getString("startNode"), rs.getString("endNode")));
       }
       return hospitalEdgeList;
@@ -42,18 +42,38 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   }
 
   @Override
-  public void update() {}
+  public void update(HospitalEdge obj, String attribute, String value) {
+    String startNode = obj.getNodeOneID();
+    String endNode = obj.getNodeTwoID();
+    String sqlUpdate = "";
+
+    switch (attribute){
+      case "startNode":
+        sqlUpdate = "UPDATE \"Edge\" " + "SET \"" + startNode + "\" = '" +  value + "' WHERE \"endNode\" = '" + endNode + "' AND \"startNode\" = '" + startNode + "';";
+        break;
+      case "endNode":
+        sqlUpdate = "UPDATE \"Edge\" " + "SET \"" + endNode + "\" = '" + value + "' WHERE \"startNode\" = '" + startNode + "' AND \"endNode\" = '" + startNode + "';";
+        break;
+    }
+    try{
+      Statement stmt = activeConnection.createStatement();
+      stmt.executeUpdate(sqlUpdate);
+      stmt.close();
+    } catch (SQLException e){
+      System.out.println("Exception: Cannot duplicate two set of the same edges, start and end nodes have to exist (cannot create more ids)");
+    }
+  }
 
   @Override
   public void delete(HospitalEdge edge) {
     String startNode = edge.getNodeOneID();
     String endNode = edge.getNodeTwoID();
     String sqlDelete =
-            "DELETE FROM \"Edge\" WHERE \"startNode\" = "
-                    + startNode
-                    + " AND \"endNode\" = '"
-                    + endNode
-                    + "';";
+        "DELETE FROM \"Edge\" WHERE \"startNode\" = "
+            + startNode
+            + " AND \"endNode\" = '"
+            + endNode
+            + "';";
 
     try {
       Statement stmt = activeConnection.createStatement();
@@ -68,7 +88,8 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
   public void add(HospitalEdge edge) {
     String startNode = edge.getNodeOneID();
     String endNode = edge.getNodeTwoID();
-    String sqlAdd = "DELETE FROM \"Edge\" WHERE \"startNode\" = "
+    String sqlAdd =
+        "DELETE FROM \"Edge\" WHERE \"startNode\" = "
             + startNode
             + " AND \"endNode\" = '"
             + endNode
@@ -77,7 +98,7 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlAdd);
       stmt.close();
-    } catch (SQLException e){
+    } catch (SQLException e) {
       System.out.println("error adding");
     }
   }
@@ -101,24 +122,24 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
       for (String l1 : rows) {
         String[] splitL1 = l1.split(",");
         String sql =
-                "INSERT INTO \""
-                        + tableName
-                        + "\""
-                        + "VALUES ("
-                        + splitL1[0]
-                        + ","
-                        + splitL1[1]
-                        + "); ";
+            "INSERT INTO \""
+                + tableName
+                + "\""
+                + "VALUES ("
+                + splitL1[0]
+                + ","
+                + splitL1[1]
+                + "); ";
         stmt.execute(sql);
         System.out.println(sql);
       }
 
-      System.out.println("Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
+      System.out.println(
+          "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
 
     } catch (IOException | SQLException e) {
       System.err.println("Error importing from " + filePath + " to " + tableName);
       e.printStackTrace();
     }
-
   }
 }
