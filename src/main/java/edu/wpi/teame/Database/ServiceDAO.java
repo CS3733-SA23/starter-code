@@ -18,7 +18,7 @@ public class ServiceDAO<E> extends DAO<ServiceRequestData> {
 
   public ServiceDAO(Connection c) {
     activeConnection = c;
-    table = "\"ServiceRequest\"";
+    table = "\"ServiceRequests\"";
   }
 
   @Override
@@ -151,16 +151,20 @@ public class ServiceDAO<E> extends DAO<ServiceRequestData> {
       rows.remove(0);
       reader.close();
 
+      String sqlDelete = "DELETE FROM \"" + tableName + "\";";
+      Statement stmt = activeConnection.createStatement();
+      stmt.execute(sqlDelete);
+
       for (String l1 : rows) {
         int lastCurly = l1.lastIndexOf("}");
-        String Json = l1.substring(0, lastCurly);
-        String notJson = l1.substring(lastCurly + 1);
+        JSONObject Json = new JSONObject(l1.substring(0, lastCurly + 1));
+        String notJson = l1.substring(lastCurly + 2);
 
         String[] splitL1 = notJson.split(",");
         String sql =
             "INSERT INTO \""
                 + tableName
-                + "\""
+                + "\" "
                 + "VALUES ('"
                 + Json
                 + "', '"
@@ -173,22 +177,16 @@ public class ServiceDAO<E> extends DAO<ServiceRequestData> {
                 + Json.toString().hashCode()
                 + "); ";
         try {
-          Statement stmt = activeConnection.createStatement();
-
-          String sqlDelete = "DELETE FROM \"" + tableName + "\";";
-          stmt.execute(sqlDelete);
           stmt.execute(sql);
         } catch (SQLException e) {
-          throw new RuntimeException("Could not import " + Json);
+          System.out.println("Could not import " + Json);
         }
       }
-
-      System.out.println(
-          "Imported " + (rows.size()) + " rows from " + filePath + " to " + tableName);
-
     } catch (IOException e) {
       System.err.println("Error importing from " + filePath + " to " + tableName);
       e.printStackTrace();
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
     }
   }
 }

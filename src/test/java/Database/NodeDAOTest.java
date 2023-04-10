@@ -36,4 +36,27 @@ public class NodeDAOTest {
 
     SQLRepo.INSTANCE.exitDatabaseProgram();
   }
+
+  @Test
+  public void testImportExport() {
+    SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
+
+    SQLRepo.INSTANCE.exportToCSV(
+        SQLRepo.Table.NODE,
+        "C:\\Users\\jamie\\OneDrive - Worcester Polytechnic Institute (wpi.edu)\\Desktop",
+        "Node");
+    SQLRepo.INSTANCE.importFromCSV(
+        SQLRepo.Table.NODE,
+        "C:\\Users\\jamie\\OneDrive - Worcester Polytechnic Institute (wpi.edu)\\Desktop\\CS 3733\\Iteration-One\\Data\\NewData\\Node.csv");
+
+    // Import back Edge and Move Table
+    SQLRepo.INSTANCE.importFromCSV(
+        SQLRepo.Table.MOVE,
+        "C:\\Users\\jamie\\OneDrive - Worcester Polytechnic Institute (wpi.edu)\\Desktop\\CS 3733\\Iteration-One\\Data\\NewData\\Move.csv");
+    SQLRepo.INSTANCE.importFromCSV(
+        SQLRepo.Table.EDGE,
+        "C:\\Users\\jamie\\OneDrive - Worcester Polytechnic Institute (wpi.edu)\\Desktop\\CS 3733\\Iteration-One\\Data\\NewData\\Edge.csv");
+
+    SQLRepo.INSTANCE.exitDatabaseProgram();
+  }
 }

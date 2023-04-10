@@ -107,7 +107,7 @@ public enum SQLRepo {
           this.locationDAO.importFromCSV(filepath, "LocationName");
           break;
         case SERVICE_REQUESTS:
-          this.serviceDAO.importFromCSV(filepath, "ServiceRequest");
+          this.serviceDAO.importFromCSV(filepath, "ServiceRequests");
           break;
       }
     } catch (Exception e) {
