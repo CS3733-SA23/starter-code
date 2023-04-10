@@ -9,6 +9,8 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
 public class MapUtilities {
+  private final int MAP_X = 5000;
+  private final int MAP_Y = 3400;
 
   ArrayList<Shape> currentShapes = new ArrayList<>();
 
@@ -76,11 +78,11 @@ public class MapUtilities {
   }
 
   public double convertY(int yCoord, Pane pane) {
-    return convertCoord(yCoord, 3400, pane);
+    return convertCoord(yCoord, MAP_Y, pane);
   }
 
   public double convertX(int xCoord, Pane pane) {
-    return convertCoord(xCoord, 5000, pane);
+    return convertCoord(xCoord, MAP_X, pane);
   }
 
   /**
@@ -89,7 +91,7 @@ public class MapUtilities {
    * @param pane
    * @return
    */
-  private double convertCoord(int coord, double mapWidth, Pane pane) {
+  private double convertCoord(int coord, int mapWidth, Pane pane) {
     double paneWidth = pane.getWidth();
     return coord * (paneWidth / mapWidth);
   }
