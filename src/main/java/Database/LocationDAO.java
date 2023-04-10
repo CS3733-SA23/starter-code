@@ -97,12 +97,12 @@ public class LocationDAO<E> extends DAO<LocationName> {
             + nodeType
             + "');";
 
+    Statement stmt;
     try {
-      Statement stmt = activeConnection.createStatement();
+      stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlAdd);
-      stmt.close();
     } catch (SQLException e) {
-      System.out.println("error adding");
+      throw new RuntimeException(e);
     }
   }
 
@@ -124,7 +124,6 @@ public class LocationDAO<E> extends DAO<LocationName> {
 
       for (String l1 : rows) {
         String[] splitL1 = l1.split(",");
-        System.out.println(l1);
         String sql =
             "INSERT INTO \""
                 + tableName
@@ -136,7 +135,6 @@ public class LocationDAO<E> extends DAO<LocationName> {
                 + "','"
                 + splitL1[2]
                 + "'); ";
-        System.out.println(sql);
         stmt.execute(sql);
       }
 
