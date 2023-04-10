@@ -57,7 +57,7 @@ public class HomePageController {
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
-    menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate((Screen.DATABASE_VIEW)));
+    menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate((Screen.MAP_DATA_EDITOR)));
     menuBarExit.setOnMouseClicked(event -> Platform.exit()); // Uncomment when we
     // know where exit goes
 
