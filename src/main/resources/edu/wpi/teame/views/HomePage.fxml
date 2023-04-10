@@ -112,6 +112,58 @@
                   <Insets bottom="10.0" right="10.0" />
                </StackPane.margin>
             </MFXButton>
+            <VBox maxWidth="-Infinity" prefHeight="571.0" prefWidth="245.0" style="-fx-background-color: #192d5a;">
+               <children>
+                  <MFXButton alignment="BOTTOM_LEFT" graphicTextGap="10.0" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-color: ffffff; -fx-border-width: 3;" text=" Home">
+                     <graphic>
+                        <ImageView fitHeight="64.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/house-blank.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton alignment="BOTTOM_LEFT" graphicTextGap="10.0" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-color: ffffff; -fx-border-width: 3;" text="Services">
+                     <graphic>
+                        <ImageView fitHeight="64.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/hand-holding-medical.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton alignment="BOTTOM_LEFT" graphicTextGap="10.0" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-width: 3; -fx-border-color: ffffff;" text="Maps">
+                     <graphic>
+                        <ImageView fitHeight="64.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/route.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton alignment="BOTTOM_LEFT" graphicTextGap="10.0" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-width: 3; -fx-border-color: ffffff;" text="Database">
+                     <graphic>
+                        <ImageView fitHeight="64.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/folder-tree.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton alignment="TOP_LEFT" graphicTextGap="10.0" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-color: ffffff; -fx-border-width: 3;" text="Exit">
+                     <graphic>
+                        <ImageView fitHeight="64.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/sign-out-alt.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+               </children>
+               <StackPane.margin>
+                  <Insets bottom="570.0" top="160.0" />
+               </StackPane.margin>
+            </VBox>
          </children>
       </StackPane>
    </children>
