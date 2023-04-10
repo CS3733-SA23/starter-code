@@ -150,6 +150,15 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
+                  <MFXButton alignment="BOTTOM_LEFT" disable="true" graphicTextGap="10.0" opacity="0.0" prefHeight="570.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-width: 3; -fx-border-color: ffffff;" text="BlankSpace">
+                     <graphic>
+                        <ImageView fitHeight="64.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/folder-tree.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
                   <MFXButton alignment="TOP_LEFT" graphicTextGap="10.0" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-color: ffffff; -fx-border-width: 3;" text="Exit">
                      <graphic>
                         <ImageView fitHeight="64.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
@@ -161,7 +170,7 @@
                   </MFXButton>
                </children>
                <StackPane.margin>
-                  <Insets bottom="570.0" top="160.0" />
+                  <Insets top="160.0" />
                </StackPane.margin>
             </VBox>
          </children>
