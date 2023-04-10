@@ -1,182 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.MotionBlur?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane style="-fx-background-color: #3b63a5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.HomePageController">
-    <center>
-        <AnchorPane>
-            <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="534.0" layoutX="14.0" layoutY="14.0" strokeType="INSIDE" width="800.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-                    <effect>
-                        <DropShadow height="28.02" radius="15.265" width="35.04">
-                            <color>
-                                <Color red="0.8700000047683716" green="0.7006400227546692" blue="0.23489999771118164" opacity="0.8571428656578064" />
-                            </color>
-                        </DropShadow>
-                    </effect>
-                </Rectangle>
-                <ImageView fitHeight="600.0" fitWidth="797.0" layoutX="6.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="5.0">
-                    <image>
-                        <Image url="@../images/BWH_BridgeInside_JK.jpg" />
-                    </image>
-                    <effect>
-                        <MotionBlur radius="4.7" />
-                    </effect>
-                </ImageView>
-                <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#7e7e7e" height="462.0" layoutX="137.0" layoutY="41.0" opacity="0.64" stroke="TRANSPARENT" strokeType="INSIDE" width="537.0" />
-                <MFXButton fx:id="menuButton" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="1.0" layoutX="5.0" layoutY="65.0" prefHeight="50.0" prefWidth="50.0" rippleColor="#e1e1e1" style="-fx-background-color: #192d5a; -fx-background-radius: 0; -fx-background-size: 50;" />
-                <VBox alignment="TOP_CENTER" layoutX="256.0" layoutY="202.0" prefHeight="238.0" prefWidth="300.0" spacing="20.0">
-                    <children>
-                        <MFXButton fx:id="serviceRequestButton" alignment="CENTER" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Service Requests  " textAlignment="RIGHT" textFill="WHITE">
-                            <font>
-                                <Font size="19.0" />
-                            </font>
-                        </MFXButton>
-                        <MFXButton fx:id="signageButton" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Signage  " textFill="WHITE">
-                            <font>
-                                <Font size="19.0" />
-                            </font>
-                        </MFXButton>
-                  <MFXButton fx:id="mapsButton" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="10.0" layoutY="90.0" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Maps" textFill="WHITE">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                  </MFXButton>
-                  <MFXButton fx:id="databaseViewButton" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="10.0" layoutY="170.0" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Databases" textFill="WHITE">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                  </MFXButton>
-                    </children>
-                </VBox>
-
-            <VBox layoutX="55.0" layoutY="65.0" prefHeight="383.0" prefWidth="80.0">
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane alignment="TOP_LEFT" prefHeight="1080.0" prefWidth="1920.0">
+         <children>
+            <ImageView fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/BWH_BridgeInside_JK.jpg" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DIMGRAY" height="1080.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" width="1920.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#192d5a" height="160.0" stroke="BLACK" strokeType="INSIDE" width="1920.0" />
+            <Rectangle arcHeight="30.0" arcWidth="30.0" fill="WHITE" height="800.0" stroke="#192d5a" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="10.0" width="1000.0">
+               <StackPane.margin>
+                  <Insets left="460.0" top="220.0" />
+               </StackPane.margin>
+            </Rectangle>
+            <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="1900.0" spacing="1650.0" StackPane.alignment="TOP_LEFT">
                <children>
-                  <MFXButton fx:id="menuBarHome" contentDisplay="GRAPHIC_ONLY" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Home" textFill="WHITE">
+                  <MFXButton alignment="CENTER" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" rippleColor="WHITE" style="-fx-background-color: #192d5a;" text="Menu" HBox.hgrow="NEVER">
                      <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../images/home.png" />
+                              <Image url="@../images/menu-burger.png" />
                            </image>
-                           <effect>
-                              <DropShadow>
-                                 <color>
-                                    <Color red="0.9490196108818054" green="1.0" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </ImageView>
-                     </graphic></MFXButton>
-                  <MFXButton fx:id="menuBarServices" contentDisplay="GRAPHIC_ONLY" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Services" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/services.png" />
-                           </image>
-                           <effect>
-                              <DropShadow>
-                                 <color>
-                                    <Color red="0.9490196108818054" green="1.0" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </ImageView>
-                     </graphic></MFXButton>
-                  <MFXButton fx:id="menuBarSignage" contentDisplay="GRAPHIC_ONLY" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/signage.png" />
-                           </image>
-                           <effect>
-                              <DropShadow>
-                                 <color>
-                                    <Color red="0.949999988079071" green="1.0" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </ImageView>
-                     </graphic></MFXButton>
-                  <MFXButton fx:id="menuBarMap" contentDisplay="GRAPHIC_ONLY" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Map" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/map_pathfinding.png" />
-                           </image>
-                           <effect>
-                              <DropShadow>
-                                 <color>
-                                    <Color red="0.9490196108818054" green="1.0" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </ImageView>
-                     </graphic></MFXButton>
-                  <MFXButton fx:id="menuBarDatabase" contentDisplay="GRAPHIC_ONLY" defaultButton="true" prefHeight="51.0" prefWidth="61.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/database.png" />
-                           </image>
-                           <effect>
-                              <DropShadow>
-                                 <color>
-                                    <Color red="0.9490196108818054" green="1.0" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </ImageView>
-                     </graphic></MFXButton>
-                  <MFXButton fx:id="menuBarExit" contentDisplay="GRAPHIC_ONLY" defaultButton="true" prefHeight="58.0" prefWidth="59.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/exit.png" />
-                           </image>
-                           <effect>
-                              <DropShadow>
-                                 <color>
-                                    <Color red="0.9490196108818054" green="1.0" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
                         </ImageView>
                      </graphic>
                   </MFXButton>
+                  <MFXButton contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" rippleColor="WHITE" style="-fx-background-color: #192d5a;" text="User">
+                     <graphic>
+                        <StackPane prefHeight="100.0" prefWidth="100.0">
+                           <children>
+                              <Circle fill="#1f93ff00" radius="50.0" stroke="#e5bc3b" strokeType="INSIDE" strokeWidth="3.0" StackPane.alignment="CENTER" />
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../images/user.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                     </graphic>
+                  </MFXButton>
                </children>
-            </VBox>
-
-            <Text fontSmoothingType="LCD" layoutX="315.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome!" underline="true">
-               <font>
-                  <Font name="Poor Richard" size="48.0" />
-               </font>
-            </Text>
-            <HBox alignment="CENTER" layoutX="450.0" layoutY="491.0" prefHeight="50.0" prefWidth="345.0" spacing="2.0" AnchorPane.bottomAnchor="2.7142857142857153" AnchorPane.rightAnchor="15.142857142857167">
+               <StackPane.margin>
+                  <Insets left="20.0" top="30.0" />
+               </StackPane.margin>
+            </HBox>
+            <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" spacing="20.0" StackPane.alignment="TOP_CENTER">
+               <StackPane.margin>
+                  <Insets top="420.0" />
+               </StackPane.margin>
                <children>
-                  <TextField fx:id="username" promptText="Username:" />
-                  <TextField fx:id="password" promptText="Password:" />
-                  <MFXButton fx:id="loginButton" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Login">
+                  <MFXButton maxHeight="130.0" maxWidth="600.0" prefHeight="130.0" prefWidth="600.0" rippleColor="WHITE" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Service Requests" textFill="WHITE">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Open Sans Regular" size="48.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton layoutX="10.0" layoutY="10.0" maxHeight="130.0" maxWidth="600.0" prefHeight="130.0" prefWidth="600.0" rippleColor="WHITE" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Signage Page" textFill="WHITE">
+                     <font>
+                        <Font name="Open Sans Regular" size="48.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton layoutX="10.0" layoutY="140.0" maxHeight="130.0" maxWidth="600.0" prefHeight="130.0" prefWidth="600.0" rippleColor="WHITE" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Maps" textFill="WHITE">
+                     <font>
+                        <Font name="Open Sans Regular" size="48.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton layoutX="10.0" layoutY="271.0" maxHeight="130.0" maxWidth="600.0" prefHeight="130.0" prefWidth="600.0" rippleColor="WHITE" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Databases" textFill="WHITE">
+                     <font>
+                        <Font name="Open Sans Regular" size="48.0" />
                      </font>
                   </MFXButton>
                </children>
-            </HBox>
-
-            </children>
-        </AnchorPane>
-    </center>
-</BorderPane>
+            </VBox>
+            <Line endX="100.0" startX="-160.0" strokeWidth="3.0" StackPane.alignment="TOP_CENTER">
+               <StackPane.margin>
+                  <Insets top="385.0" />
+               </StackPane.margin>
+            </Line>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome!" StackPane.alignment="TOP_CENTER">
+               <font>
+                  <Font name="Palatino Linotype" size="96.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets top="300.0" />
+               </StackPane.margin>
+            </Text>
+            <MFXButton contentDisplay="GRAPHIC_ONLY" maxWidth="100.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #192D5a;" StackPane.alignment="BOTTOM_RIGHT">
+               <graphic>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/sign-out-alt.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <StackPane.margin>
+                  <Insets bottom="10.0" right="10.0" />
+               </StackPane.margin>
+            </MFXButton>
+         </children>
+      </StackPane>
+   </children>
+</FlowPane>
