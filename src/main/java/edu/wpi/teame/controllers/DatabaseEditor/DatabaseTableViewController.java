@@ -1,12 +1,12 @@
-package edu.wpi.teame.controllers;
+package edu.wpi.teame.controllers.DatabaseEditor;
 
 import edu.wpi.teame.App;
 import edu.wpi.teame.Database.DatabaseController;
 import edu.wpi.teame.Database.DatabaseServiceController;
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.*;
-import edu.wpi.teame.navigation.Navigation;
-import edu.wpi.teame.navigation.Screen;
+import edu.wpi.teame.utilities.Navigation;
+import edu.wpi.teame.utilities.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.File;
@@ -26,7 +26,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Popup;
 import org.json.JSONObject;
 
-public class DatabaseViewController {
+public class DatabaseTableViewController {
 
   // common buttons:
   @FXML MFXButton importButton;
