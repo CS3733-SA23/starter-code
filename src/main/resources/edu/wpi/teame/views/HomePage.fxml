@@ -34,7 +34,7 @@
                <children>
                   <MFXButton alignment="CENTER" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" rippleColor="WHITE" style="-fx-background-color: #192d5a;" text="Menu" HBox.hgrow="NEVER">
                      <graphic>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
+                        <ImageView fx:id="menuButton" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
                            <image>
                               <Image url="@../images/menu-burger.png" />
                            </image>
@@ -112,9 +112,9 @@
                   <Insets bottom="10.0" right="10.0" />
                </StackPane.margin>
             </MFXButton>
-            <VBox maxWidth="-Infinity" prefHeight="571.0" prefWidth="245.0" style="-fx-background-color: #192d5a;">
+            <VBox fx:id="menuBar" maxWidth="-Infinity" prefHeight="571.0" prefWidth="245.0" style="-fx-background-color: #192d5a;">
                <children>
-                  <MFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-color: ffffff; -fx-border-width: 3;" text=" Home">
+                  <MFXButton fx:id="menuBarHome" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-color: ffffff; -fx-border-width: 3;" text=" Home">
                      <graphic>
                         <ImageView fitHeight="64.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -123,7 +123,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-color: ffffff; -fx-border-width: 3;" text="Services">
+                  <MFXButton fx:id="menuBarServices" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-color: ffffff; -fx-border-width: 3;" text="Services">
                      <graphic>
                         <ImageView fitHeight="64.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -132,7 +132,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-width: 3; -fx-border-color: ffffff;" text="Maps">
+                  <MFXButton fx:id="menuBarMaps" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-width: 3; -fx-border-color: ffffff;" text="Maps">
                      <graphic>
                         <ImageView fitHeight="64.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -141,7 +141,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-width: 3; -fx-border-color: ffffff;" text="Database">
+                  <MFXButton fx:id="menuBarDatabase" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-width: 3; -fx-border-color: ffffff;" text="Database">
                      <graphic>
                         <ImageView fitHeight="64.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -159,7 +159,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton alignment="BOTTOM_CENTER" graphicTextGap="10.0" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff;" text="Exit">
+                  <MFXButton fx:id="menuBarExit" alignment="BOTTOM_CENTER" graphicTextGap="10.0" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff;" text="Exit">
                      <graphic>
                         <ImageView fitHeight="64.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
