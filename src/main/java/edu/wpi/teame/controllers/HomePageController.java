@@ -3,16 +3,12 @@ package edu.wpi.teame.controllers;
 import static javafx.scene.paint.Color.WHITE;
 
 import edu.wpi.teame.entities.LoginData;
-import edu.wpi.teame.navigation.Navigation;
-import edu.wpi.teame.navigation.Screen;
+import edu.wpi.teame.utilities.Navigation;
+import edu.wpi.teame.utilities.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import java.awt.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.geometry.*;
-import javafx.scene.control.*;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 public class HomePageController {
@@ -50,7 +46,7 @@ public class HomePageController {
     mouseSetup(databaseViewButton);
     serviceRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
-    databaseViewButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
+    databaseViewButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_DATA_EDITOR));
     mapsButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
 
     menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));

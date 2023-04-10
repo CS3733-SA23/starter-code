@@ -1,11 +1,11 @@
-package edu.wpi.teame.controllers;
+package edu.wpi.teame.controllers.DatabaseEditor;
 
-import edu.wpi.teame.navigation.Navigation;
-import edu.wpi.teame.navigation.Screen;
+import edu.wpi.teame.utilities.Navigation;
+import edu.wpi.teame.utilities.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 
-public class MapDataEditorController {
+public class DatabaseEditorController {
   @FXML MFXButton backButton;
 
   @FXML

@@ -1,25 +1,9 @@
-package edu.wpi.teame.navigation;
+package edu.wpi.teame.utilities;
 
-import edu.wpi.teame.App;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import java.io.IOException;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.paint.Color;
 
-public class Utilities {
-  public static void navigate(final Screen screen) {
-    final String filename = screen.getFilename();
-
-    try {
-      final var resource = App.class.getResource(filename);
-      final FXMLLoader loader = new FXMLLoader(resource);
-
-      App.getRootPane().setCenter(loader.load());
-    } catch (IOException | NullPointerException e) {
-      e.printStackTrace();
-    }
-  }
-
+public class ButtonUtilities {
   /**
    * adds listeners for entering and exiting a given MFXButton that allow color change on hover (ie
    * the button and text switch colors)

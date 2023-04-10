@@ -1,8 +1,9 @@
 package edu.wpi.teame.controllers;
 
-import edu.wpi.teame.navigation.ColorPalette;
-import edu.wpi.teame.navigation.Screen;
-import edu.wpi.teame.navigation.Utilities;
+import edu.wpi.teame.utilities.ButtonUtilities;
+import edu.wpi.teame.utilities.ColorPalette;
+import edu.wpi.teame.utilities.Navigation;
+import edu.wpi.teame.utilities.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -29,18 +30,19 @@ public class HomeController {
           // change to teamlogo.jpg
         });
 
-    Utilities.addButtonHover(exitButton);
+    ButtonUtilities.addButtonHover(exitButton);
     exitButton.setOnMouseClicked(event -> Platform.exit());
 
-    Utilities.addButtonHover(flowersButton);
-    flowersButton.setOnMouseClicked(event -> Utilities.navigate(Screen.FLOWER_REQUEST));
+    ButtonUtilities.addButtonHover(flowersButton);
+    flowersButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWER_REQUEST));
 
-    Utilities.addButtonHover(signageButton, ColorPalette.DARK_BLUE, ColorPalette.WHITE, true);
-    signageButton.setOnMouseClicked(event -> Utilities.navigate(Screen.SIGNAGE_TEXT));
+    ButtonUtilities.addButtonHover(signageButton, ColorPalette.DARK_BLUE, ColorPalette.WHITE, true);
+    signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
 
-    databaseViewButton.setOnMouseClicked(event -> Utilities.navigate(Screen.DATABASE_VIEW));
+    databaseViewButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
 
-    Utilities.addButtonHover(mealRequestButton, ColorPalette.DARK_BLUE, ColorPalette.WHITE, true);
-    mealRequestButton.setOnMouseClicked(event -> Utilities.navigate(Screen.MEAL_REQUEST));
+    ButtonUtilities.addButtonHover(
+        mealRequestButton, ColorPalette.DARK_BLUE, ColorPalette.WHITE, true);
+    mealRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
   }
 }

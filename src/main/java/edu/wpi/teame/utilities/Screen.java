@@ -1,4 +1,4 @@
-package edu.wpi.teame.navigation;
+package edu.wpi.teame.utilities;
 
 public enum Screen {
   ROOT("views/Root.fxml"),
