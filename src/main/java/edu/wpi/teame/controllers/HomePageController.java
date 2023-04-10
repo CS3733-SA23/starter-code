@@ -35,14 +35,11 @@ public class HomePageController {
 
   public void initialize() {
 
-    menuVBox.setVisible(false);
-
-   
-
     mouseSetup(serviceRequestButton);
     mouseSetup(signageButton);
     mouseSetup(mapsButton);
     mouseSetup(databaseViewButton);
+
     serviceRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     databaseViewButton.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
