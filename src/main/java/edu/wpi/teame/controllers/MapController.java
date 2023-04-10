@@ -97,11 +97,11 @@ public class MapController {
     destinationList.setValue("");
     pathLabel.setText("");
     switch (floor){
-      case ONE -> mapPan.setId("mapPane1");
       case TWO -> mapPan.setId("mapPane11");
       case THREE -> mapPan.setId("mapPane111");
       case LOWER_TWO -> mapPan.setId("mapPane1111");
       case LOWER_ONE -> mapPan.setId("mapPane11111");
+      default -> mapPan.setId("mapPane1");
     }
     refreshPath();
   }
