@@ -52,22 +52,36 @@ public class ServiceDAO<E> extends DAO<ServiceRequestData> {
 
   @Override
   void update(ServiceRequestData obj, String attribute, String value) {
-    int hashID = obj.getRequestData().hashCode();
+    int hashID = obj.getRequestData().toString().hashCode();
     String sql = "";
 
     try {
       Statement stmt = activeConnection.createStatement();
 
-      sql =
-          "UPDATE \"ServiceRequest\" "
-              + "SET \""
-              + attribute
-              + "\" = '"
-              + value
-              + "' WHERE \"HashID\" = "
-              + hashID
-              + ";";
-
+      if (attribute.equals("requestdata")) {
+        JSONObject json = new JSONObject(value);
+        sql =
+            "UPDATE \"ServiceRequests\" "
+                + "SET \""
+                + attribute
+                + "\" = '"
+                + value
+                + "', \"HashID\" = "
+                + value.hashCode()
+                + " WHERE \"HashID\" = "
+                + hashID
+                + ";";
+      } else {
+        sql =
+            "UPDATE \"ServiceRequests\" "
+                + "SET \""
+                + attribute
+                + "\" = '"
+                + value
+                + "' WHERE \"HashID\" = "
+                + hashID
+                + ";";
+      }
       int result = stmt.executeUpdate(sql);
       if (result < 1) System.out.println("There was a problem updating that ServiceRequest");
     } catch (SQLException e) {
@@ -79,7 +93,7 @@ public class ServiceDAO<E> extends DAO<ServiceRequestData> {
   void delete(ServiceRequestData obj) {
     try {
       Statement stmt = activeConnection.createStatement();
-      int deletionHash = obj.getRequestData().hashCode();
+      int deletionHash = obj.getRequestData().toString().hashCode();
 
       String sql = "DELETE FROM \"ServiceRequests\" WHERE \"HashID\" = " + deletionHash + ";";
 
@@ -99,7 +113,7 @@ public class ServiceDAO<E> extends DAO<ServiceRequestData> {
       JSONObject requestData = obj.getRequestData();
       String status = ServiceRequestData.Status.statusToString(obj.getRequestStatus());
       String requestType = ServiceRequestData.RequestType.requestTypeToString(obj.getRequestType());
-      int hashID = requestData.hashCode();
+      int hashID = requestData.toString().hashCode();
 
       String sql =
           "INSERT INTO teame.\"ServiceRequests\" "
@@ -156,7 +170,7 @@ public class ServiceDAO<E> extends DAO<ServiceRequestData> {
                 + "', '"
                 + splitL1[2]
                 + "', "
-                + Json.hashCode()
+                + Json.toString().hashCode()
                 + "); ";
         try {
           Statement stmt = activeConnection.createStatement();
