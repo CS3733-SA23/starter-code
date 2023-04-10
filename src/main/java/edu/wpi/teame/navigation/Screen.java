@@ -9,6 +9,7 @@ public enum Screen {
   SIGNAGE_TEXT("views/SignagePage.fxml"),
   MEAL_REQUEST("views/MealRequest.fxml"),
   FLOWER_REQUEST("views/FlowerRequest.fxml"),
+  OFFICE_SUPPLIES_REQUEST("views/OfficeSuppliesRequest.fxml"),
   MAP("views/Map.fxml"),
   DATABASE_VIEW("views/DatabaseEditor.fxml");
 

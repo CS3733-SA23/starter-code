@@ -79,6 +79,11 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
+                  <MFXButton fx:id="officeSuppliesRequest" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="90.0" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Office Supplies Request" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </MFXButton>
                </children>
             </VBox>
             <MFXButton fx:id="returnButtonService" contentDisplay="GRAPHIC_ONLY" layoutX="154.0" layoutY="65.0" style="-fx-background-color: #192d5a;">
