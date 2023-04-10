@@ -31,7 +31,6 @@ import javafx.scene.shape.Line;
 // public List<String> getLongNamesFromMove(List<MoveAttribute> mv)
 
 public class MapController {
-  @FXML private Label mapLabel;
   @FXML AnchorPane mapPan;
   @FXML private MFXButton backButton;
   @FXML Tab floorOneTab;
@@ -97,7 +96,6 @@ public class MapController {
     currentLocationList.setValue("");
     destinationList.setValue("");
     pathLabel.setText("");
-    mapLabel.setText(Floor.floorToString(currentFloor));
     switch (floor){
       case ONE -> mapPan.setId("mapPane1");
       case TWO -> mapPan.setId("mapPane11");
