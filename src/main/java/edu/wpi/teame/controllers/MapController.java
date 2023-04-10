@@ -14,15 +14,11 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -60,9 +56,7 @@ public class MapController {
   public void initialize() {
     mouseSetup(backButton);
     backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    lowerLevelOneTab.setOnSelectionChanged(event ->
-            refreshPage(Floor.LOWER_ONE)
-            );
+    lowerLevelOneTab.setOnSelectionChanged(event -> refreshPage(Floor.LOWER_ONE));
     lowerLevelTwoTab.setOnSelectionChanged(event -> refreshPage(Floor.LOWER_TWO));
     floorOneTab.setOnSelectionChanged(event -> refreshPage(Floor.ONE));
     floorTwoTab.setOnSelectionChanged(event -> refreshPage(Floor.TWO));
@@ -96,12 +90,17 @@ public class MapController {
     currentLocationList.setValue("");
     destinationList.setValue("");
     pathLabel.setText("");
-    switch (floor){
-      case TWO -> mapPan.setId("mapPane11");
-      case THREE -> mapPan.setId("mapPane111");
-      case LOWER_TWO -> mapPan.setId("mapPane1111");
-      case LOWER_ONE -> mapPan.setId("mapPane11111");
-      default -> mapPan.setId("mapPane1");
+    switch (floor) {
+      case TWO:
+        mapPan.setId("mapPane11");
+      case THREE:
+        mapPan.setId("mapPane111");
+      case LOWER_TWO:
+        mapPan.setId("mapPane1111");
+      case LOWER_ONE:
+        mapPan.setId("mapPane11111");
+      default:
+        mapPan.setId("mapPane1");
     }
     refreshPath();
   }
