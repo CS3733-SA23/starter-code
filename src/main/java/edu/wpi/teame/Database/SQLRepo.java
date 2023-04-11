@@ -87,6 +87,10 @@ public enum SQLRepo {
     return this.dbUtility.getNodeTypeFromNodeID(nodeID);
   }
 
+  public List<HospitalNode> getNodesFromFloor(Floor fl) {
+    return this.dbUtility.getNodesFromFloor(fl);
+  }
+
   public List<MoveAttribute> getMoveAttributeFromFloor(Floor fl) {
     return this.dbUtility.getMoveAttributeFromFloor(fl);
   }
