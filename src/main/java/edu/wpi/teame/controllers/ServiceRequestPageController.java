@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 
 public class ServiceRequestPageController {
 
-  @FXML MFXButton returnButtonService;
+  @FXML MFXButton returnButton;
   @FXML MFXButton flowerRequest;
   @FXML MFXButton mealRequest;
   @FXML MFXButton officeSuppliesRequest;
@@ -28,12 +28,12 @@ public class ServiceRequestPageController {
     menuDropDownVisibility(false);
     mouseSetup(flowerRequest);
     mouseSetup(mealRequest);
-    mouseSetup(returnButtonService);
+    mouseSetup(returnButton);
     flowerRequest.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWER_REQUEST));
     mealRequest.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
     officeSuppliesRequest.setOnMouseClicked(
         event -> Navigation.navigate(Screen.OFFICE_SUPPLIES_REQUEST));
-    returnButtonService.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    returnButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
 
     showMenuButtonsWhenHovered(menuButton);
     showMenuButtonsWhenHovered(menuBarSignage);
