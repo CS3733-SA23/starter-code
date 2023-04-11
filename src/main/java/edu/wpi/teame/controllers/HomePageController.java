@@ -28,6 +28,8 @@ public class HomePageController {
   @FXML MFXButton menuBarServices;
   @FXML MFXButton menuBarMaps;
   @FXML MFXButton menuBarDatabase;
+  @FXML MFXButton menuBarSignage;
+  @FXML MFXButton menuBarBlank;
   @FXML MFXButton menuBarExit;
 
   Boolean loggedIn;
@@ -35,11 +37,6 @@ public class HomePageController {
   boolean menuVisibilty = false;
 
   public void initialize() {
-
-    //        mouseSetup(serviceRequestButton);
-    //        mouseSetup(signageButton);
-    //        mouseSetup(mapsButton);
-    //        mouseSetup(databaseViewButton);
 
     serviceRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
@@ -77,6 +74,11 @@ public class HomePageController {
     mouseSetup(menuBarMaps);
     mouseSetup(menuBarDatabase);
     mouseSetup(menuBarExit);
+    mouseSetup(serviceRequestButton);
+    mouseSetup(menuBarSignage);
+    mouseSetup(signageButton);
+    mouseSetup(mapsButton);
+    mouseSetup(databaseViewButton);
   }
 
   //    private void mouseSetup(MFXButton btn) {
@@ -131,8 +133,10 @@ public class HomePageController {
   public void menuBarVisible(boolean bool) {
     menuBarHome.setVisible(bool);
     menuBarServices.setVisible(bool);
+    menuBarSignage.setVisible(bool);
     menuBarMaps.setVisible(bool);
     menuBarDatabase.setVisible(bool);
     menuBarExit.setVisible(bool);
+    menuBarBlank.setVisible(bool);
   }
 }

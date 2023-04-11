@@ -105,10 +105,10 @@
                </StackPane.margin>
             </Text>
 
-            <VBox fx:id="menuBar" maxHeight="600.0" maxWidth="-Infinity" prefHeight="600.0" prefWidth="150.0" style="-fx-background-color: #192d5a;">
+            <VBox fx:id="menuBar" maxHeight="600.0" maxWidth="-Infinity" prefHeight="600.0" prefWidth="150.0">
 
                <children>
-                  <MFXButton fx:id="menuBarHome" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 18; -fx-text-fill: ffffff; -fx-border-color: ffffff; -fx-border-width: 3;" text=" Home">
+                  <MFXButton fx:id="menuBarHome" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 18; -fx-text-fill: ffffff;" text=" Home">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
                            <image>
@@ -117,7 +117,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="menuBarServices" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 18; -fx-text-fill: ffffff; -fx-border-color: ffffff; -fx-border-width: 3;" text="Services">
+                  <MFXButton fx:id="menuBarServices" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 18; -fx-text-fill: ffffff;" text="Services">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
                            <image>
@@ -126,7 +126,16 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="menuBarMaps" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 18; -fx-text-fill: ffffff; -fx-border-width: 3; -fx-border-color: ffffff;" text="Maps">
+                  <MFXButton fx:id="menuBarSignage" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 18; -fx-text-fill: ffffff;" text="Signage">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/diamond-turn-right.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="menuBarMaps" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 18; -fx-text-fill: ffffff;" text="Maps">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
                            <image>
@@ -135,7 +144,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="menuBarDatabase" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 16; -fx-text-fill: ffffff; -fx-border-width: 3; -fx-border-color: ffffff;" text="Database">
+                  <MFXButton fx:id="menuBarDatabase" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 16; -fx-text-fill: ffffff;" text="Database">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
                            <image>
@@ -144,15 +153,7 @@
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton alignment="BOTTOM_LEFT" disable="true" graphicTextGap="10.0" opacity="0.0" prefHeight="123.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-width: 3; -fx-border-color: ffffff;" text="BlankSpace">
-                     <graphic>
-                        <ImageView fitHeight="64.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/folder-tree.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
+                  <MFXButton fx:id="menuBarBlank" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="289.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 16; -fx-text-fill: ffffff;" text=" " />
                   <MFXButton fx:id="menuBarExit" alignment="BOTTOM_CENTER" graphicTextGap="10.0" prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 18; -fx-text-fill: ffffff;" text="Exit">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
@@ -167,18 +168,6 @@
                   <Insets top="120.0" />
                </StackPane.margin>
             </VBox>
-            <MFXButton contentDisplay="GRAPHIC_ONLY" maxWidth="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #192D5a;" StackPane.alignment="BOTTOM_RIGHT">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@../images/sign-out-alt.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <StackPane.margin>
-                  <Insets bottom="10.0" right="30.0" />
-               </StackPane.margin>
-            </MFXButton>
          </children>
       </StackPane>
    </children>
