@@ -14,7 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+
 <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.HomePageController">
+
    <children>
       <StackPane alignment="TOP_LEFT" maxHeight="720.0" maxWidth="1280.0" prefHeight="720.0" prefWidth="1280.0">
          <children>
@@ -103,7 +105,22 @@
                   <Insets left="60.0" top="200.0" />
                </StackPane.margin>
             </Text>
+
+            <MFXButton contentDisplay="GRAPHIC_ONLY" maxWidth="100.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #192D5a;" StackPane.alignment="BOTTOM_RIGHT">
+               <graphic>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/sign-out-alt.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <StackPane.margin>
+                  <Insets bottom="10.0" right="10.0" />
+               </StackPane.margin>
+            </MFXButton>
+
             <VBox fx:id="menuBar" maxHeight="600.0" maxWidth="-Infinity" prefHeight="600.0" prefWidth="150.0" style="-fx-background-color: #192d5a;">
+
                <children>
                   <MFXButton fx:id="menuBarHome" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 18; -fx-text-fill: ffffff; -fx-border-color: ffffff; -fx-border-width: 3;" text=" Home">
                      <graphic>
