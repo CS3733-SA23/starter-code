@@ -145,10 +145,13 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
       }
       rows.remove(0);
       reader.close();
+      Statement stmt = activeConnection.createStatement();
+
+      String sqlDelete = "DELETE FROM \"" + tableName + "\";";
+      stmt.execute(sqlDelete);
 
       for (String l1 : rows) {
         String[] splitL1 = l1.split(",");
-        System.out.println(l1);
         String sql =
             "INSERT INTO \""
                 + tableName
@@ -165,19 +168,17 @@ public class NodeDAO<E> extends DAO<HospitalNode> {
                 + splitL1[4]
                 + "'); ";
         try {
-          Statement stmt = activeConnection.createStatement();
-
-          String sqlDelete = "DELETE FROM \"" + tableName + "\";";
-          stmt.execute(sqlDelete);
           stmt.execute(sql);
         } catch (SQLException e) {
-          throw new RuntimeException("Could not import nodeID " + splitL1[0]);
+          System.out.println("Could not import nodeID " + splitL1[0]);
         }
       }
     } catch (FileNotFoundException e) {
-      throw new RuntimeException("Sorry File was not found");
+      System.out.println(e.getMessage());
     } catch (IOException e) {
-      throw new RuntimeException("Sorry Something went wrong");
+      System.out.println(e.getMessage());
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
     }
   }
 }

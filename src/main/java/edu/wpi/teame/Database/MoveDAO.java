@@ -67,7 +67,13 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
 
   public void delete(MoveAttribute moveAttribute) {
     String nodeId = moveAttribute.getNodeID();
-    String sqlDelete = "DELETE FROM \"Move\" WHERE \"nodeID\" = '" + nodeId + "';";
+    String longName = moveAttribute.getLongName();
+    String sqlDelete =
+        "DELETE FROM \"Move\" WHERE \"nodeID\" = '"
+            + nodeId
+            + "' AND \"longName\" = '"
+            + longName
+            + "';";
 
     Statement stmt;
     try {
@@ -75,7 +81,7 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
       stmt.executeUpdate(sqlDelete);
       stmt.close();
     } catch (SQLException e) {
-      System.out.println();
+      System.out.println("error deleting");
     }
   }
 
@@ -84,12 +90,12 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
     String longName = moveAttribute.getLongName();
     String date = moveAttribute.getDate();
     String sqlAdd =
-        "INSERT INTO \"Move\" VALUES(" + nodeId + ",'" + longName + "','" + date + "');";
+        "INSERT INTO \"Move\" VALUES(" + nodeId + ",'" + longName + "' , '" + date + "');";
 
+    Statement stmt;
     try {
-      Statement stmt = activeConnection.createStatement();
+      stmt = activeConnection.createStatement();
       stmt.executeUpdate(sqlAdd);
-      stmt.close();
     } catch (SQLException e) {
       System.out.println("error adding");
     }
@@ -112,7 +118,6 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
 
       for (String l1 : rows) {
         String[] splitL1 = l1.split(",");
-        System.out.println(l1);
         String sql =
             "INSERT INTO "
                 + "\""
@@ -125,7 +130,6 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
                 + "','"
                 + splitL1[2]
                 + "'); ";
-        System.out.println(sql);
         stmt.execute(sql);
       }
 
