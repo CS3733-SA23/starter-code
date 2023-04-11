@@ -26,6 +26,7 @@ public class DatabaseMapViewController {
   @FXML TextField yField;
   @FXML MFXButton confirmButton;
   @FXML MFXButton cancelButton; // clicking will revert changes and close the sidebar
+  @FXML MFXButton refreshButton;
 
   MapUtilities util = new MapUtilities();
   // SQLRepo dB = SQLRepo.INSTANCE;
@@ -34,7 +35,11 @@ public class DatabaseMapViewController {
   public void initialize() {
     // editableNode(new HospitalNode());
     SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
-    loadFloorNodes(Floor.LOWER_ONE);
+    //    mapPane.setMinWidth(600);
+    //    mapPane.setMaxWidth(400);
+    //    System.out.println("mapPane" + mapPane.getWidth());
+    //    loadFloorNodes(Floor.LOWER_ONE);
+    refreshButton.setOnMouseClicked(event -> loadFloorNodes(Floor.LOWER_ONE));
     sidebar.setVisible(false);
 
     // Sidebar functions
