@@ -8,6 +8,7 @@ import edu.wpi.teame.Database.DatabaseGraphController;
 import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.map.pathfinding.AStarPathfinder;
+import edu.wpi.teame.utilities.MapUtilities;
 import edu.wpi.teame.utilities.Navigation;
 import edu.wpi.teame.utilities.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -47,6 +48,7 @@ public class MapController {
   Floor currentFloor = Floor.ONE;
   String curLocFromComboBox;
   String destFromComboBox;
+  MapUtilities mapUtil = new MapUtilities();
 
   ArrayList<Line> currentLines = new ArrayList<>();
   ArrayList<Circle> currentCircles = new ArrayList<>();
@@ -155,11 +157,11 @@ public class MapController {
     // create circle to symbolize start
     int x1 = path.get(0).getXCoord();
     int y1 = path.get(0).getYCoord();
-    Circle startCircleOutside = new Circle(convertXCoord(x1), convertYCoord(y1), 4);
-    startCircleOutside.setFill(BLACK);
+    //Circle startCircleOutside = new Circle(convertXCoord(x1), convertYCoord(y1), 4);
+    mapUtil.drawCircle(x1,y1,4,mapPane).setFill(BLACK);
     Circle startCircleInside = new Circle(convertXCoord(x1), convertYCoord(y1), 3);
     startCircleInside.setFill(WHITE);
-    mapPane.getChildren().add(startCircleOutside);
+    mapPane.getChildren().add(mapUtil.drawCircle(x1,y1,4,mapPane).setFill(BLACK););
     mapPane.getChildren().add(startCircleInside);
     currentCircles.add(startCircleInside);
     currentCircles.add(startCircleOutside);
