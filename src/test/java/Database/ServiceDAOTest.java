@@ -69,7 +69,7 @@ public class ServiceDAOTest {
     SQLRepo.INSTANCE.addServiceRequest(srd3);
     SQLRepo.INSTANCE.updateServiceRequest(srd3, "staffassigned", "Jamie Rapal");
 
-    // SQLRepo.INSTANCE.deleteServiceRequest(srd);
+    //SQLRepo.INSTANCE.deleteServiceRequest(srd);
     SQLRepo.INSTANCE.exitDatabaseProgram();
   }
 
