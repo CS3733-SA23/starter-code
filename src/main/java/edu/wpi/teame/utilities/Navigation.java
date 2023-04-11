@@ -1,4 +1,4 @@
-package edu.wpi.teame.navigation;
+package edu.wpi.teame.utilities;
 
 import edu.wpi.teame.App;
 import java.io.IOException;
