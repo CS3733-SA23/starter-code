@@ -4,7 +4,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,13 +17,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.MealRequestController">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="900.0" style="-fx-background-color: FFEFd7;">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="900.0" style="-fx-background-color: #696969;">
          <children>
             <ScrollPane layoutX="142.0" layoutY="115.0" pannable="true" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #192d5a;">
                <content>
                   <AnchorPane prefWidth="450.0">
                      <children>
-                        <VBox prefHeight="627.0" prefWidth="600.0" spacing="15.0">
+                        <VBox prefHeight="627.0" prefWidth="600.0" spacing="30.0">
                            <children>
                               <VBox alignment="TOP_CENTER" prefWidth="450.0" spacing="5.0">
                                  <children>
@@ -116,7 +115,7 @@
                   </DropShadow>
                </effect>
             </ScrollPane>
-            <Text layoutX="249.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Delivery">
+            <Text fill="WHITE" layoutX="249.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Delivery">
                <font>
                   <Font name="Times New Roman Bold" size="64.0" />
                </font>
@@ -126,17 +125,11 @@
                <image>
                   <Image url="@../images/restaurant.png" />
                </image>
-               <effect>
-                  <Blend mode="DIFFERENCE" />
-               </effect>
             </ImageView>
             <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="692.0" layoutY="48.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/restaurant.png" />
                </image>
-               <effect>
-                  <Blend mode="DIFFERENCE" />
-               </effect>
             </ImageView>
          </children>
       </AnchorPane>
