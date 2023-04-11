@@ -104,7 +104,7 @@ public class MapController {
     AStarPathfinder pf = new AStarPathfinder();
 
     String toNodeID = graphController.getNodeIDFromName(to) + "";
-    String fromNodeID = graphController.getNodeIDFromName(from) + "";
+    String fromNodeID = graphController.getNodeIDFromName(from) + ""; 
 
     List<HospitalNode> path =
         pf.findPath(HospitalNode.allNodes.get(fromNodeID), HospitalNode.allNodes.get(toNodeID));
