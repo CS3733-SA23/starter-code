@@ -1,5 +1,6 @@
 package edu.wpi.teame.controllers.DatabaseEditor;
 
+import edu.wpi.teame.Database.SQLRepo;
 import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.utilities.MapUtilities;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -25,6 +26,7 @@ public class DatabaseMapViewController {
   @FXML MFXButton cancelButton; // clicking will revert changes and close the sidebar
 
   MapUtilities util = new MapUtilities();
+  SQLRepo dB = SQLRepo.INSTANCE;
 
   @FXML
   public void initialize() {
@@ -47,16 +49,38 @@ public class DatabaseMapViewController {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
-            displayMetadata(node);
+            displayMetadata(node, nodePoint);
           }
         });
   }
 
-  private void displayMetadata(HospitalNode node) {
+  private void displayMetadata(HospitalNode node, Circle nodePoint) {
     // activate side panel with correct data
     sidebar.setVisible(true);
+    locationField.setText(node.getNodeID());
+    xField.setText(node.getXCoord() + "");
+    yField.setText(node.getYCoord() + "");
+
+    confirmButton.setOnAction(new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            updateNode(node, locationField.getText(), Integer.parseInt(xField.getText()), Integer.parseInt(yField.getText()));
+        }
+    });
+    
+
     System.out.println(node);
   }
 
-  private void loadFloorNodes() {}
+  private void loadFloorNodes() {
+    // ArrayList<HospitalNode> nodes =
+  }
+
+  private void updateNode(HospitalNode node, String name, int x, int y){
+
+  }
+
+  private void updateImage(Circle nodePoint, String name, int x, int y){
+
+  }
 }
