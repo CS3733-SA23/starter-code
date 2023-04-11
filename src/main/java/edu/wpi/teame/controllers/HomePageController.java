@@ -5,7 +5,6 @@ import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.awt.*;
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.*;
@@ -49,24 +48,25 @@ public class HomePageController {
     loggedIn = false;
     loginButton.setOnMouseClicked(event -> attemptLogin());
 
-
-    //Initially set the menuVBox to invisible
+    // Initially set the menuVBox to invisible
     menuVBox.setVisible(false);
 
-    //When the menu button is clicked, invert the value of menuVisibility and set the menuVBox to that value
-    //(so each time the menu button is clicked it changes the visibility of menuVBox back and forth)
-    menuButton.setOnMouseClicked(event ->
-    {
-      menuVisibilty = !menuVisibilty;
-      menuVBox.setVisible(menuVisibilty);
-    });
+    // When the menu button is clicked, invert the value of menuVisibility and set the menuVBox to
+    // that value
+    // (so each time the menu button is clicked it changes the visibility of menuVBox back and
+    // forth)
+    menuButton.setOnMouseClicked(
+        event -> {
+          menuVisibilty = !menuVisibilty;
+          menuVBox.setVisible(menuVisibilty);
+        });
 
-    //Navigation controls for the button in the menuVBox
-    menuBarHome.setOnMouseClicked(event ->
-    {
-      Navigation.navigate(Screen.HOME);
-      menuVisibilty = !menuVisibilty;
-    });
+    // Navigation controls for the button in the menuVBox
+    menuBarHome.setOnMouseClicked(
+        event -> {
+          Navigation.navigate(Screen.HOME);
+          menuVisibilty = !menuVisibilty;
+        });
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     menuBarMaps.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
     menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
