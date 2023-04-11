@@ -8,8 +8,6 @@ import Database.DatabaseGraphController;
 import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.map.pathfinding.AStarPathfinder;
-import edu.wpi.teame.navigation.Navigation;
-import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import java.util.ArrayList;
@@ -22,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -29,25 +28,13 @@ import javafx.scene.shape.Line;
 // public List<String> getLongNamesFromMove(List<MoveAttribute> mv)
 
 public class MapController {
-  @FXML private Label mapLabel;
-  @FXML private MFXButton firstFloorButton;
-
-  @FXML private MFXButton secondFloorButton;
-
-  @FXML private MFXButton thirdFloorButton;
-
-  @FXML private MFXButton backButton;
-
-  @FXML private MFXButton lowerLevelOneButton;
-
-  @FXML private MFXButton lowerLevelTwoButton;
-
   @FXML private AnchorPane mapPane;
-
+  @FXML private StackPane imagePane;
   @FXML private ImageView mapImage;
   @FXML MFXComboBox<String> currentLocationList;
   @FXML MFXComboBox<String> destinationList;
   @FXML private Label pathLabel;
+  @FXML private Label mapLabel;
   Floor currentFloor = Floor.ONE;
   String curLocFromComboBox;
   String destFromComboBox;
@@ -64,18 +51,6 @@ public class MapController {
 
   @FXML
   public void initialize() {
-    mouseSetup(lowerLevelOneButton);
-    mouseSetup(lowerLevelTwoButton);
-    mouseSetup(secondFloorButton);
-    mouseSetup(firstFloorButton);
-    mouseSetup(thirdFloorButton);
-    mouseSetup(backButton);
-    backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    lowerLevelOneButton.setOnMouseClicked(event -> refreshPage(Floor.LOWER_ONE));
-    lowerLevelTwoButton.setOnMouseClicked(event -> refreshPage(Floor.LOWER_TWO));
-    firstFloorButton.setOnMouseClicked(event -> refreshPage(Floor.ONE));
-    secondFloorButton.setOnMouseClicked(event -> refreshPage(Floor.TWO));
-    thirdFloorButton.setOnMouseClicked(event -> refreshPage(Floor.THREE));
 
     currentLocationList.setOnAction(
         event -> {
@@ -90,6 +65,14 @@ public class MapController {
           destFromComboBox = destinationList.getValue();
           displayPath(curLocFromComboBox, destFromComboBox);
         });
+    // When the image pane is resized, resize the map and lines
+    mapPane
+        .widthProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              mapImage.setFitWidth(newValue.doubleValue());
+              System.out.println("Image Pane Width: " + imagePane.widthProperty());
+            });
     refreshPage(currentFloor);
   }
 
