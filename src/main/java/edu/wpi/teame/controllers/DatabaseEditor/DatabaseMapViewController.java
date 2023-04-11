@@ -1,9 +1,11 @@
 package edu.wpi.teame.controllers.DatabaseEditor;
 
 import edu.wpi.teame.Database.SQLRepo;
+import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.utilities.MapUtilities;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -26,11 +28,13 @@ public class DatabaseMapViewController {
   @FXML MFXButton cancelButton; // clicking will revert changes and close the sidebar
 
   MapUtilities util = new MapUtilities();
-  SQLRepo dB = SQLRepo.INSTANCE;
+  // SQLRepo dB = SQLRepo.INSTANCE;
 
   @FXML
   public void initialize() {
-    editableNode(new HospitalNode());
+    // editableNode(new HospitalNode());
+    SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
+    loadFloorNodes(Floor.LOWER_ONE);
     sidebar.setVisible(false);
 
     // Sidebar functions
@@ -76,8 +80,11 @@ public class DatabaseMapViewController {
     System.out.println(node);
   }
 
-  private void loadFloorNodes() {
-    // ArrayList<HospitalNode> nodes =
+  private void loadFloorNodes(Floor floor) {
+    List<HospitalNode> nodes = SQLRepo.INSTANCE.getNodesFromFloor(floor);
+    for (HospitalNode node : nodes) {
+      editableNode(node);
+    }
   }
 
   private void updateNode(HospitalNode node, String name, int x, int y) {}
