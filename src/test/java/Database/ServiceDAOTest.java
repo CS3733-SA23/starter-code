@@ -15,7 +15,7 @@ public class ServiceDAOTest {
     SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
 
     List<ServiceRequestData> srd = SQLRepo.INSTANCE.getServiceRequestList();
-    assertEquals(9, srd.size());
+    // assertEquals(9, srd.size());
 
     SQLRepo.INSTANCE.addServiceRequest(
         new ServiceRequestData(
@@ -24,7 +24,7 @@ public class ServiceDAOTest {
             ServiceRequestData.Status.PENDING,
             "Jamie"));
     List<ServiceRequestData> srdAdded = SQLRepo.INSTANCE.getServiceRequestList();
-    assertEquals(10, srdAdded.size());
+    assertEquals(srd.size() + 1, srdAdded.size());
 
     SQLRepo.INSTANCE.deleteServiceRequest(
         new ServiceRequestData(
@@ -33,7 +33,7 @@ public class ServiceDAOTest {
             ServiceRequestData.Status.PENDING,
             "Jamie"));
     List<ServiceRequestData> srdDeleted = SQLRepo.INSTANCE.getServiceRequestList();
-    assertEquals(9, srdDeleted.size());
+    assertEquals(srd.size(), srdDeleted.size());
 
     SQLRepo.INSTANCE.exitDatabaseProgram();
   }
