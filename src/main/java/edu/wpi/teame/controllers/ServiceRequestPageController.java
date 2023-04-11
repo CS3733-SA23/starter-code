@@ -7,6 +7,7 @@ import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Tab;
 import javafx.scene.paint.Color;
 
 public class ServiceRequestPageController {
@@ -19,6 +20,7 @@ public class ServiceRequestPageController {
   @FXML MFXButton menuBarDatabase;
   @FXML MFXButton menuBarBlank;
   @FXML MFXButton menuBarExit;
+
 
   boolean menuVisibilty = false;
 
@@ -55,6 +57,7 @@ public class ServiceRequestPageController {
     mouseSetup(menuBarMaps);
     mouseSetup(menuBarDatabase);
     mouseSetup(menuBarExit);
+    mouseSetup(flowerTab);
   }
 
   public void menuBarVisible(boolean bool) {
@@ -80,4 +83,6 @@ public class ServiceRequestPageController {
           btn.setTextFill(WHITE);
         });
   }
+
+
 }
