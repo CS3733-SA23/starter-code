@@ -36,7 +36,8 @@ public abstract class DAO<E> {
     // Initialization
     Statement stmt = null;
     stmt = activeConnection.createStatement();
-    ResultSet rs = stmt.executeQuery("SELECT * FROM " + "\"" + table + "\"" + ";");
+    String sql = "SELECT * FROM " + table + ";";
+    ResultSet rs = stmt.executeQuery(sql);
 
     // Makes new file or finds existing one
     File file = new File(filePath + File.separator + fileName);

@@ -83,6 +83,14 @@ public enum SQLRepo {
     return this.dbUtility.getNameFromNodeID(nodeID);
   }
 
+  public String getNodeTypeFromNodeID(int nodeID) {
+    return this.dbUtility.getNodeTypeFromNodeID(nodeID);
+  }
+
+  public List<HospitalNode> getNodesFromFloor(Floor fl) {
+    return this.dbUtility.getNodesFromFloor(fl);
+  }
+
   public List<MoveAttribute> getMoveAttributeFromFloor(Floor fl) {
     return this.dbUtility.getMoveAttributeFromFloor(fl);
   }
@@ -107,7 +115,7 @@ public enum SQLRepo {
           this.locationDAO.importFromCSV(filepath, "LocationName");
           break;
         case SERVICE_REQUESTS:
-          this.serviceDAO.importFromCSV(filepath, "ServiceRequest");
+          this.serviceDAO.importFromCSV(filepath, "ServiceRequests");
           break;
       }
     } catch (Exception e) {
