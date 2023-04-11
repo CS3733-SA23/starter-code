@@ -5,7 +5,6 @@ import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.layout.VBox;
 
 public class ServiceRequestPageController {
 
@@ -16,14 +15,14 @@ public class ServiceRequestPageController {
   @FXML MFXButton menuBarMaps;
   @FXML MFXButton menuBarDatabase;
   @FXML MFXButton menuBarExit;
-  @FXML VBox menuBar;
+
   boolean menuVisibilty = false;
 
   @FXML
   public void initialize() {
 
     // Initially set the menuVBox to invisible
-    menuBar.setVisible(false);
+    menuBarVisible(false);
 
     returnButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
 
@@ -34,19 +33,27 @@ public class ServiceRequestPageController {
     menuButton.setOnMouseClicked(
         event -> {
           menuVisibilty = !menuVisibilty;
-          menuBar.setVisible(menuVisibilty);
+          menuBarVisible(menuVisibilty);
         });
 
     // Navigation controls for the button in the menuVBox
-    menuBarHome.setOnMouseClicked(
+    menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    menuBarServices.setOnMouseClicked(
         event -> {
-          Navigation.navigate(Screen.HOME);
+          Navigation.navigate(Screen.SERVICE_REQUESTS);
           menuVisibilty = !menuVisibilty;
         });
-    menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     menuBarMaps.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
     menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
     menuBarExit.setOnMouseClicked((event -> Platform.exit()));
+  }
+
+  public void menuBarVisible(boolean bool) {
+    menuBarHome.setVisible(bool);
+    menuBarServices.setVisible(bool);
+    menuBarMaps.setVisible(bool);
+    menuBarDatabase.setVisible(bool);
+    menuBarExit.setVisible(bool);
   }
 }
 
