@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -37,6 +38,13 @@ public class MapController {
   @FXML MFXComboBox<String> currentLocationList;
   @FXML MFXComboBox<String> destinationList;
   @FXML private Label pathLabel ;
+  @FXML private AnchorPane mapPane;
+  @FXML private StackPane imagePane;
+  @FXML private ImageView mapImage;
+  @FXML MFXComboBox<String> currentLocationList;
+  @FXML MFXComboBox<String> destinationList;
+  @FXML private Label pathLabel;
+  @FXML private Label mapLabel;
   Floor currentFloor = Floor.ONE;
   String curLocFromComboBox;
   String destFromComboBox;
@@ -75,7 +83,8 @@ public class MapController {
           destFromComboBox = destinationList.getValue();
           displayPath(curLocFromComboBox, destFromComboBox);
         });
-    refreshTab(currentFloor);
+    mapImage.fitWidthProperty().bind(imagePane.widthProperty());
+    refreshPage(currentFloor);
   }
 
   @FXML
