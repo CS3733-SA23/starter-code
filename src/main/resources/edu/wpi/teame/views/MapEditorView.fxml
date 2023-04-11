@@ -8,29 +8,28 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane fx:id="mapPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.DatabaseEditor.DatabaseMapViewController">
+<AnchorPane fx:id="mapPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.DatabaseEditor.DatabaseMapViewController">
    <children>
       <HBox>
          <children>
             <VBox prefHeight="720.0" prefWidth="1080.0" />
-            <VBox spacing="10.0">
+            <VBox fx:id="sidebar" spacing="10.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location Name:" />
-                  <TextField />
+                  <TextField fx:id="locationField" />
                   <HBox spacing="10.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="x:" />
-                        <TextField />
+                        <TextField fx:id="xField" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="y:" />
-                        <TextField />
+                        <TextField fx:id="yField" />
                      </children>
                   </HBox>
-                  <MFXButton text="Drag node" />
+                  <MFXButton fx:id="dragButton" text="Drag node" />
                   <HBox spacing="10.0">
                      <children>
-                        <MFXButton text="Confirm changes" />
-                        <MFXButton text="Cancel" />
+                        <MFXButton fx:id="confirmButton" text="Confirm changes" />
+                        <MFXButton fx:id="cancelButton" text="Cancel" />
                      </children>
                      <VBox.margin>
                         <Insets />
