@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.wpi.teame.controllers.DatabaseEditor.DatabaseMapViewController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.DatabaseEditor.DatabaseMapViewController">
+   <children>
+      <HBox>
+         <children>
+            <AnchorPane fx:id="mapPane" prefHeight="400.0" prefWidth="600.0">
+               <children>
+                  <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+                  <MFXButton fx:id="refreshButton" layoutX="342.0" layoutY="188.0" />
+               </children></AnchorPane>
+            <VBox fx:id="sidebar" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location Name:" />
+                  <TextField fx:id="locationField" />
+                  <HBox spacing="10.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="x:" />
+                        <TextField fx:id="xField" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="y:" />
+                        <TextField fx:id="yField" />
+                     </children>
+                  </HBox>
+                  <MFXButton fx:id="dragButton" text="Drag node" />
+                  <HBox spacing="10.0">
+                     <children>
+                        <MFXButton fx:id="confirmButton" text="Confirm changes" />
+                        <MFXButton fx:id="cancelButton" text="Cancel" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
 </AnchorPane>

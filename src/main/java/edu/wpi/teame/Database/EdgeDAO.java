@@ -127,7 +127,6 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
                 + splitL1[1]
                 + "); ";
         stmt.execute(sql);
-        System.out.println(sql);
       }
 
       System.out.println(
