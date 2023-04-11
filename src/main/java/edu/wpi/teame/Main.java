@@ -1,7 +1,7 @@
 package edu.wpi.teame;
 
-import Database.DatabaseController;
-import Database.DatabaseGraphController;
+import edu.wpi.teame.Database.DatabaseController;
+import edu.wpi.teame.Database.DatabaseGraphController;
 import edu.wpi.teame.map.HospitalNode;
 
 public class Main {

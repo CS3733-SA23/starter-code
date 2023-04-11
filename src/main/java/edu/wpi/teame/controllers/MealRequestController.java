@@ -1,10 +1,10 @@
 package edu.wpi.teame.controllers;
 
-import Database.DatabaseController;
-import Database.DatabaseServiceController;
+import edu.wpi.teame.Database.DatabaseController;
+import edu.wpi.teame.Database.DatabaseServiceController;
 import edu.wpi.teame.entities.ServiceRequestData;
-import edu.wpi.teame.navigation.Navigation;
-import edu.wpi.teame.navigation.Screen;
+import edu.wpi.teame.utilities.Navigation;
+import edu.wpi.teame.utilities.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;

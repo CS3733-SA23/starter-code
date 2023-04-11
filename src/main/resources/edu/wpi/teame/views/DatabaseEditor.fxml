@@ -2,119 +2,171 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.DatabaseViewController">
+<FlowPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.DatabaseEditor.DatabaseTableViewController">
    <children>
       <HBox>
          <children>
             <VBox>
                <children>
                   <MFXButton fx:id="backButton" text="Back" />
-                  <VBox prefHeight="334.0" prefWidth="333.0">
+                  <VBox>
                      <children>
+                        <MFXButton fx:id="deleteButton" text="Delete Selected Row" />
                         <HBox>
                            <children>
                               <MFXButton fx:id="importButton" text="Import" />
                               <MFXButton fx:id="exportButton" text="Export" />
                            </children>
                         </HBox>
-                        <MFXButton fx:id="deleteButton" text="Delete Selected Row" />
-                        <HBox spacing="10.0">
-                           <children>
-                              <StackPane>
-                                 <children>
-                                    <HBox fx:id="edgeAddZone" visible="false">
-                                       <children>
-                                          <MFXTextField fx:id="edge1Field" promptText="Edge 1" />
-                                          <MFXTextField fx:id="edge2Field" promptText="Edge 2" />
-                                       </children>
-                                    </HBox>
-                                    <HBox fx:id="locationAddZone" visible="false">
-                                       <children>
-                                          <MFXTextField fx:id="longNameField" promptText="Long Name" />
-                                          <MFXTextField fx:id="shortNameField" promptText="Short Name" />
-                                          <MFXTextField fx:id="locationTypeField" promptText="Location Type" />
-                                       </children>
-                                    </HBox>
-                                    <HBox fx:id="nodeAddZone" visible="false">
-                                       <children>
-                                          <MFXTextField fx:id="IDFieldLoc" promptText="Node ID" />
-                                          <MFXTextField promptText="X Coord" fx:id="xField" />
-                                          <MFXTextField fx:id="yField" promptText="Y Coord" />
-                                          <MFXTextField fx:id="floorField" promptText="Floor" />
-                                          <MFXTextField fx:id="buildingField" promptText="Building" />
-                                       </children>
-                                    </HBox>
-                                    <HBox fx:id="movesAddZone" visible="false">
-                                       <children>
-                                          <MFXTextField fx:id="IDField" promptText="Node ID" />
-                                          <MFXTextField fx:id="locationField" promptText="Location Name" />
-                                          <MFXTextField fx:id="dateField" promptText="Date" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </StackPane>
-                              <MFXButton fx:id="addButton" minWidth="75.0" text="Add Row" visible="false" />
-                           </children>
-                        </HBox>
+                        <HBox spacing="10.0" />
                      </children>
                   </VBox>
                </children>
             </VBox>
-            <VBox>
-               <children>
-                  <ComboBox fx:id="databaseChoice" prefWidth="150.0" promptText="Select database" />
-                  <StackPane>
-                     <children>
-                        <TableView fx:id="edgeTable" visible="false">
-                           <columns>
-                              <TableColumn fx:id="edge1Col" prefWidth="75.0" text="Start Node" />
-                              <TableColumn fx:id="edge2Col" prefWidth="75.0" text="End Node" />
-                           </columns>
-                        </TableView>
-                        <TableView fx:id="locationTable" visible="false">
-                           <columns>
-                              <TableColumn fx:id="longNameCol" prefWidth="75.0" text="Long Name" />
-                              <TableColumn fx:id="shortNameCol" prefWidth="75.0" text="Short Name" />
-                              <TableColumn fx:id="nodeTypeCol" prefWidth="75.0" text="Node Type" />
-                           </columns>
-                        </TableView>
-                        <TableView fx:id="nodeTable" visible="false">
-                           <columns>
-                              <TableColumn fx:id="nodeIDCoordCol" prefWidth="75.0" text="NodeID" />
-                              <TableColumn fx:id="nodeXCol" prefWidth="75.0" text="X" />
-                              <TableColumn fx:id="nodeYCol" prefWidth="75.0" text="Y" />
-                              <TableColumn fx:id="floorCol" prefWidth="75.0" text="Floor" />
-                              <TableColumn fx:id="buildingCol" prefWidth="75.0" text="Building" />
-                           </columns>
-                        </TableView>
-                        <TableView fx:id="moveTable" visible="false">
-                          <columns>
-                            <TableColumn fx:id="nodeIDCol" prefWidth="75.0" text="NodeID" />
-                            <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name" />
-                              <TableColumn fx:id="dateCol" prefWidth="75.0" text="Date" />
-                          </columns>
-                        </TableView>
-                        <TableView fx:id="requestTable" visible="false">
-                           <columns>
-                              <TableColumn fx:id="dataCol" prefWidth="75.0" text="data" />
-                              <TableColumn fx:id="typeCol" prefWidth="75.0" text="type" />
-                              <TableColumn fx:id="statusCol" prefWidth="75.0" text="status" />
-                              <TableColumn fx:id="staffCol" prefWidth="75.0" text="staff" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </StackPane>
-               </children>
-            </VBox>
+            <TabPane fx:id="tableTabs" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="nodeTab" closable="false" text="Node">
+                  <content>
+                    <AnchorPane>
+                           <children>
+                              <VBox>
+                                 <children>
+                                    <TableView fx:id="nodeTable">
+                                       <columns>
+                                          <TableColumn fx:id="nodeIDCoordCol" prefWidth="75.0" text="NodeID" />
+                                          <TableColumn fx:id="nodeXCol" prefWidth="75.0" text="X" />
+                                          <TableColumn fx:id="nodeYCol" prefWidth="75.0" text="Y" />
+                                          <TableColumn fx:id="floorCol" prefWidth="75.0" text="Floor" />
+                                          <TableColumn fx:id="buildingCol" prefWidth="75.0" text="Building" />
+                                       </columns>
+                                    </TableView>
+                                    <HBox fx:id="nodeAddZone">
+                                       <children>
+                                          <MFXTextField fx:id="IDFieldLoc" prefHeight="30.0" promptText="Node ID" />
+                                          <MFXTextField prefHeight="30.0" promptText="X Coord" fx:id="xField" />
+                                          <MFXTextField fx:id="yField" prefHeight="30.0" promptText="Y Coord" />
+                                          <MFXTextField fx:id="floorField" prefHeight="30.0" promptText="Floor" />
+                                          <MFXTextField fx:id="buildingField" prefHeight="30.0" promptText="Building" />
+                                          <MFXButton fx:id="addNodeButton" minWidth="75.0" text="Add Node" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab fx:id="requestTab" closable="false" text="Service Requests">
+                    <content>
+                      <AnchorPane>
+                           <children>
+                              <VBox>
+                                 <children>
+                                    <TableView fx:id="requestTable">
+                                       <columns>
+                                          <TableColumn fx:id="dataCol" prefWidth="200.0" text="data" />
+                                          <TableColumn fx:id="typeCol" prefWidth="75.0" text="type" />
+                                          <TableColumn fx:id="statusCol" prefWidth="75.0" text="status" />
+                                          <TableColumn fx:id="staffCol" prefWidth="75.0" text="staff" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab fx:id="edgeTab" closable="false" text="Edges">
+                    <content>
+                      <AnchorPane>
+                           <children>
+                              <VBox>
+                                 <children>
+                                    <TableView fx:id="edgeTable">
+                                       <columns>
+                                          <TableColumn fx:id="edge1Col" prefWidth="75.0" text="Start Node" />
+                                          <TableColumn fx:id="edge2Col" prefWidth="75.0" text="End Node" />
+                                       </columns>
+                                    </TableView>
+                                    <HBox fx:id="edgeAddZone">
+                                       <children>
+                                          <MFXTextField fx:id="edge1Field" promptText="Edge 1" />
+                                          <MFXTextField fx:id="edge2Field" promptText="Edge 2" />
+                                          <MFXButton fx:id="addEdgeButton" minWidth="75.0" text="Add Edge" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab fx:id="nameTab" closable="false" text="Location Names">
+                    <content>
+                      <AnchorPane>
+                           <children>
+                              <VBox>
+                                 <children>
+                                    <TableView fx:id="locationTable">
+                                       <columns>
+                                          <TableColumn fx:id="longNameCol" prefWidth="75.0" text="Long Name" />
+                                          <TableColumn fx:id="shortNameCol" prefWidth="75.0" text="Short Name" />
+                                          <TableColumn fx:id="nodeTypeCol" prefWidth="75.0" text="Node Type" />
+                                       </columns>
+                                    </TableView>
+                                    <HBox fx:id="locationAddZone">
+                                       <children>
+                                          <MFXTextField fx:id="longNameField" promptText="Long Name" />
+                                          <MFXTextField fx:id="shortNameField" promptText="Short Name" />
+                                          <MFXTextField fx:id="locationTypeField" promptText="Location Type" />
+                                          <MFXButton fx:id="addLocationButton" minWidth="75.0" text="Add Location" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab fx:id="moveTab" closable="false" text="Move">
+                    <content>
+                      <AnchorPane>
+                           <children>
+                              <VBox>
+                                 <children>
+                                    <TableView fx:id="moveTable">
+                                      <columns>
+                                        <TableColumn fx:id="nodeIDCol" prefWidth="75.0" text="NodeID" />
+                                        <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name" />
+                                          <TableColumn fx:id="dateCol" prefWidth="75.0" text="Date" />
+                                      </columns>
+                                    </TableView>
+                                    <HBox fx:id="movesAddZone">
+                                       <children>
+                                          <MFXTextField fx:id="IDField" promptText="Node ID" />
+                                          <MFXTextField fx:id="locationField" promptText="Location Name" />
+                                          <MFXTextField fx:id="dateField" promptText="Date" />
+                                          <MFXButton fx:id="addMoveButton" minWidth="75.0" prefHeight="30.0" text="Add Move" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
          </children>
       </HBox>
    </children>
-</AnchorPane>
+</FlowPane>
