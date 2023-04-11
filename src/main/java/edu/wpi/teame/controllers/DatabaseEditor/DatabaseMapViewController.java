@@ -61,13 +61,17 @@ public class DatabaseMapViewController {
     xField.setText(node.getXCoord() + "");
     yField.setText(node.getYCoord() + "");
 
-    confirmButton.setOnAction(new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent event) {
-            updateNode(node, locationField.getText(), Integer.parseInt(xField.getText()), Integer.parseInt(yField.getText()));
-        }
-    });
-    
+    confirmButton.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            updateNode(
+                node,
+                locationField.getText(),
+                Integer.parseInt(xField.getText()),
+                Integer.parseInt(yField.getText()));
+          }
+        });
 
     System.out.println(node);
   }
@@ -76,11 +80,7 @@ public class DatabaseMapViewController {
     // ArrayList<HospitalNode> nodes =
   }
 
-  private void updateNode(HospitalNode node, String name, int x, int y){
+  private void updateNode(HospitalNode node, String name, int x, int y) {}
 
-  }
-
-  private void updateImage(Circle nodePoint, String name, int x, int y){
-
-  }
+  private void updateImage(Circle nodePoint, String name, int x, int y) {}
 }
