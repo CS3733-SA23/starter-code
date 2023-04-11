@@ -57,7 +57,6 @@ public class ServiceRequestPageController {
     mouseSetup(menuBarMaps);
     mouseSetup(menuBarDatabase);
     mouseSetup(menuBarExit);
-    mouseSetup(flowerTab);
   }
 
   public void menuBarVisible(boolean bool) {
