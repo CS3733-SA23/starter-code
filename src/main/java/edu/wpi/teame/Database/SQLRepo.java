@@ -83,6 +83,10 @@ public enum SQLRepo {
     return this.dbUtility.getNameFromNodeID(nodeID);
   }
 
+  public String getNodeTypeFromNodeID(int nodeID) {
+    return this.dbUtility.getNodeTypeFromNodeID(nodeID);
+  }
+
   public List<MoveAttribute> getMoveAttributeFromFloor(Floor fl) {
     return this.dbUtility.getMoveAttributeFromFloor(fl);
   }

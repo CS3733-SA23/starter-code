@@ -86,4 +86,25 @@ public class DatabaseUtility {
     }
     return longNames;
   }
+
+  public String getNodeTypeFromNodeID(int nodeID) {
+    String sql = "";
+
+    try {
+      Statement stmt = activeConnection.createStatement();
+
+      sql =
+          "SELECT L.\"nodeType\" FROM \"Node\" N, \"Move\" M, \"LocationName\" L "
+              + "WHERE N.\"nodeID\" = M.\"nodeID\" AND M.\"longName\" = L.\"longName\""
+              + "AND N.\"nodeID\" = "
+              + nodeID
+              + ";";
+      ResultSet rs = stmt.executeQuery(sql);
+
+      if (rs.next()) return rs.getString("nodetype");
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
+    }
+    return "";
+  }
 }
