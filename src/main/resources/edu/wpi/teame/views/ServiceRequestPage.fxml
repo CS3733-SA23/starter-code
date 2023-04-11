@@ -1,204 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.MotionBlur?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane style="-fx-background-color: #3b63a5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.ServiceRequestPageController">
-   <center>
-      <AnchorPane prefHeight="500.0" prefWidth="810.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane alignment="TOP_LEFT" maxHeight="720.0" maxWidth="1280.0" prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="534.0" layoutX="14.0" layoutY="14.0" strokeType="INSIDE" width="800.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-               <effect>
-                  <DropShadow height="28.02" radius="15.265" width="35.04">
-                     <color>
-                        <Color red="0.8700000047683716" green="0.7006400227546692" blue="0.23489999771118164" opacity="0.8571428656578064" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Rectangle>
-            <ImageView fitHeight="600.0" fitWidth="797.0" layoutX="6.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="5.0">
+            <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/BWH_BridgeInside_JK.jpg" />
                </image>
-               <effect>
-                  <MotionBlur />
-               </effect>
             </ImageView>
-            <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#7e7e7e" height="462.0" layoutX="137.0" layoutY="41.0" opacity="0.64" stroke="TRANSPARENT" strokeType="INSIDE" width="537.0" />
-            <VBox alignment="TOP_CENTER" layoutX="255.0" layoutY="153.0" prefHeight="238.0" prefWidth="300.0" spacing="20.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DIMGRAY" height="720.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#192d5a" height="120.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <HBox alignment="CENTER_LEFT" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="1259.0" spacing="400.0" StackPane.alignment="TOP_LEFT">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="60.0" stroke="TRANSPARENT" strokeType="INSIDE" width="299.0" />
-                  <MFXButton fx:id="flowerRequest" alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Flower Delivery Request" textAlignment="RIGHT" textFill="WHITE">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
+                  <MFXButton alignment="BOTTOM_CENTER" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" rippleColor="WHITE" style="-fx-background-color: #192d5a;" text="Menu" HBox.hgrow="ALWAYS">
                      <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="menuButton" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../images/flowers.png" />
+                              <Image url="@../images/menu-burger.png" />
                            </image>
-                           <effect>
-                              <DropShadow blurType="GAUSSIAN" height="22.17" radius="10.877500000000001" spread="0.6" width="23.34">
-                                 <color>
-                                    <Color red="0.8980392217636108" green="0.7372549176216125" blue="0.23137255012989044" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
                         </ImageView>
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="mealRequest" alignment="CENTER_RIGHT" graphicTextGap="15.0" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Meal Delivery Request" textAlignment="RIGHT" textFill="WHITE">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="SERVICES">
                      <font>
-                        <Font size="19.0" />
+                        <Font name="Open Sans Regular" size="64.0" />
                      </font>
+                  </Text>
+                  <MFXButton contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" rippleColor="WHITE" style="-fx-background-color: #192d5a;" text="User">
                      <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                        <StackPane prefHeight="50.0" prefWidth="50.0">
+                           <children>
+                              <Circle fill="#1f93ff00" radius="25.0" stroke="#e5bc3b" strokeType="INSIDE" strokeWidth="3.0" StackPane.alignment="CENTER" />
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../images/user.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                     </graphic>
+                  </MFXButton>
+               </children>
+               <StackPane.margin>
+                  <Insets left="20.0" />
+               </StackPane.margin>
+            </HBox>
+            <VBox fx:id="menuBar" maxHeight="600.0" maxWidth="-Infinity" prefHeight="600.0" prefWidth="150.0" style="-fx-background-color: #192d5a;">
+               <children>
+                  <MFXButton fx:id="menuBarHome" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 18; -fx-text-fill: ffffff; -fx-border-color: ffffff; -fx-border-width: 3;" text=" Home">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../images/food.png" />
+                              <Image url="@../images/house-blank.png" />
                            </image>
-                           <effect>
-                              <DropShadow blurType="GAUSSIAN" height="22.17" radius="10.877500000000001" spread="0.6" width="23.34">
-                                 <color>
-                                    <Color red="0.8980392217636108" green="0.7372549176216125" blue="0.23137255012989044" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="menuBarServices" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 18; -fx-text-fill: ffffff; -fx-border-color: ffffff; -fx-border-width: 3;" text="Services">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/hand-holding-medical.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="menuBarMaps" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 18; -fx-text-fill: ffffff; -fx-border-width: 3; -fx-border-color: ffffff;" text="Maps">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/route.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="menuBarDatabase" alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="100.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 16; -fx-text-fill: ffffff; -fx-border-width: 3; -fx-border-color: ffffff;" text="Database">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/folder-tree.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton alignment="BOTTOM_LEFT" disable="true" graphicTextGap="10.0" opacity="0.0" prefHeight="123.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 30; -fx-text-fill: ffffff; -fx-border-width: 3; -fx-border-color: ffffff;" text="BlankSpace">
+                     <graphic>
+                        <ImageView fitHeight="64.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/folder-tree.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="menuBarExit" alignment="BOTTOM_CENTER" graphicTextGap="10.0" prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #192d5a; -fx-font-size: 18; -fx-text-fill: ffffff;" text="Exit">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/sign-out-alt.png" />
+                           </image>
                         </ImageView>
                      </graphic>
                   </MFXButton>
                </children>
+               <StackPane.margin>
+                  <Insets top="120.0" />
+               </StackPane.margin>
             </VBox>
-            <MFXButton fx:id="returnButtonService" contentDisplay="GRAPHIC_ONLY" layoutX="154.0" layoutY="65.0" style="-fx-background-color: #192d5a;">
-               <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="50.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Back%20Arrow.png" />
-                     </image>
-                     <effect>
-                        <DropShadow spread="0.61">
-                           <color>
-                              <Color red="0.8980392217636108" green="0.7372549176216125" blue="0.23137255012989044" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </ImageView>
-               </graphic>
-            </MFXButton>
-            <MFXButton fx:id="menuButton" alignment="TOP_LEFT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="1.0" layoutX="5.0" layoutY="65.0" prefHeight="50.0" prefWidth="50.0" rippleColor="#e1e1e1" style="-fx-background-color: #192d5a; -fx-background-radius: 0; -fx-background-size: 50;" />
-            <VBox layoutX="55.0" layoutY="65.0" prefHeight="383.0" prefWidth="80.0">
-               <children>
-                  <MFXButton fx:id="menuBarHome" contentDisplay="GRAPHIC_ONLY" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Home" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/home.png" />
-                           </image>
-                           <effect>
-                              <DropShadow>
-                                 <color>
-                                    <Color red="0.9490196108818054" green="1.0" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
-                  <MFXButton fx:id="menuBarServices" contentDisplay="GRAPHIC_ONLY" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Services" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/services.png" />
-                           </image>
-                           <effect>
-                              <DropShadow>
-                                 <color>
-                                    <Color red="0.9490196108818054" green="1.0" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
-                  <MFXButton fx:id="menuBarSignage" contentDisplay="GRAPHIC_ONLY" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/signage.png" />
-                           </image>
-                           <effect>
-                              <DropShadow>
-                                 <color>
-                                    <Color red="0.949999988079071" green="1.0" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
-                  <MFXButton fx:id="menuBarMap" contentDisplay="GRAPHIC_ONLY" prefHeight="93.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Map" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/map_pathfinding.png" />
-                           </image>
-                           <effect>
-                              <DropShadow>
-                                 <color>
-                                    <Color red="0.9490196108818054" green="1.0" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
-                  <MFXButton fx:id="menuBarDatabase" contentDisplay="GRAPHIC_ONLY" defaultButton="true" prefHeight="51.0" prefWidth="61.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/database.png" />
-                           </image>
-                           <effect>
-                              <DropShadow>
-                                 <color>
-                                    <Color red="0.9490196108818054" green="1.0" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
-                  <MFXButton fx:id="menuBarExit" contentDisplay="GRAPHIC_ONLY" defaultButton="true" prefHeight="58.0" prefWidth="56.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff; -fx-background-radius: 0;" text="Exit" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/exit.png" />
-                           </image>
-                           <effect>
-                              <DropShadow>
-                                 <color>
-                                    <Color red="0.9490196108818054" green="1.0" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
-               </children>
-            </VBox>
+            <Rectangle arcHeight="30.0" arcWidth="30.0" fill="WHITE" height="580.0" stroke="#192d5a" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="10.0" width="900.0" StackPane.alignment="TOP_CENTER">
+               <StackPane.margin>
+                  <Insets left="50.0" top="120.0" />
+               </StackPane.margin>
+            </Rectangle>
+            <TabPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="580.0" prefWidth="900.0" style="-fx-region-background: #192d5a; -fx-border-radius: 30;" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="200.0" StackPane.alignment="TOP_CENTER">
+              <tabs>
+                <Tab text="Flower Delivery">
+                     <content>
+                        <fx:include source="FlowerRequest.fxml" />
+                     </content></Tab>
+                <Tab text="Meal Delivery">
+                     <content>
+                        <fx:include source="MealRequest.fxml" />
+                     </content></Tab>
+                  <Tab text="Office Supplies Delivery" />
+                  <Tab text="Furniture Deliver" />
+                  <Tab text="Conference Room Bookings" />
+              </tabs>
+               <StackPane.margin>
+                  <Insets left="50.0" top="130.0" />
+               </StackPane.margin>
+            </TabPane>
          </children>
-      </AnchorPane>
-   </center>
-</BorderPane>
+      </StackPane>
+   </children>
+</AnchorPane>
