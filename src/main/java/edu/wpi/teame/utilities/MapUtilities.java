@@ -105,12 +105,20 @@ public class MapUtilities {
     currentShapes.add(shape);
   }
 
-  //    public ArrayList<Shape> filterShapes(Class s) {
-  //        ArrayList<Shape> result;
-  //        for(Shape shape:currentShapes){
-  //            if(shape.getClass()){
-  //                result.add(shape);
-  //            }
-  //        }
-  //    }
+  public ArrayList<Shape> filterShapes(Class obj) {
+    ArrayList<Shape> result;
+
+    result = currentShapes;
+
+//    result = new ArrayList<Shape>();
+//    Shape line = new Line();
+//    Shape circle = new Circle();
+//    result.add(line);
+//    result.add(circle);
+//    System.out.println(result);
+
+    result.removeIf(s -> (s.getClass() != obj));
+
+    return result;
+  }
 }
