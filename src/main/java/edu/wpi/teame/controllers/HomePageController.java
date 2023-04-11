@@ -1,7 +1,5 @@
 package edu.wpi.teame.controllers;
 
-import static javafx.scene.paint.Color.WHITE;
-
 import edu.wpi.teame.entities.LoginData;
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
@@ -14,7 +12,6 @@ import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 
 public class HomePageController {
   @FXML MFXButton serviceRequestButton;
@@ -39,10 +36,10 @@ public class HomePageController {
 
   public void initialize() {
 
-    mouseSetup(serviceRequestButton);
-    mouseSetup(signageButton);
-    mouseSetup(mapsButton);
-    mouseSetup(databaseViewButton);
+    //        mouseSetup(serviceRequestButton);
+    //        mouseSetup(signageButton);
+    //        mouseSetup(mapsButton);
+    //        mouseSetup(databaseViewButton);
 
     serviceRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
@@ -76,19 +73,20 @@ public class HomePageController {
     menuBarExit.setOnMouseClicked((event -> Platform.exit()));
   }
 
-  private void mouseSetup(MFXButton btn) {
-    btn.setOnMouseEntered(
-        event -> {
-          btn.setStyle(
-              "-fx-background-color: #ffffff; -fx-alignment: center; -fx-border-color: #192d5a; -fx-border-width: 2;");
-          btn.setTextFill(Color.web("#192d5aff", 1.0));
-        });
-    btn.setOnMouseExited(
-        event -> {
-          btn.setStyle("-fx-background-color: #192d5aff; -fx-alignment: center;");
-          btn.setTextFill(WHITE);
-        });
-  }
+  //    private void mouseSetup(MFXButton btn) {
+  //      btn.setOnMouseEntered(
+  //          event -> {
+  //            btn.setStyle(
+  //                "-fx-background-color: #ffffff; -fx-alignment: center; -fx-border-color:
+  // #192d5a; -fx-border-width: 2;");
+  //            btn.setTextFill(Color.web("#192d5aff", 1.0));
+  //          });
+  //      btn.setOnMouseExited(
+  //          event -> {
+  //            btn.setStyle("-fx-background-color: #192d5aff; -fx-alignment: center;");
+  //            btn.setTextFill(WHITE);
+  //          });
+  //    }
 
   public void attemptLogin() {
     // Get the input login info

@@ -14,6 +14,7 @@ public class ServiceRequestPageController {
   @FXML MFXButton returnButtonService;
   @FXML MFXButton flowerRequest;
   @FXML MFXButton mealRequest;
+  @FXML MFXButton officeSuppliesRequest;
   @FXML MFXButton menuButton;
   @FXML MFXButton menuBarSignage;
   @FXML MFXButton menuBarServices;
@@ -30,6 +31,8 @@ public class ServiceRequestPageController {
     mouseSetup(returnButtonService);
     flowerRequest.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWER_REQUEST));
     mealRequest.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
+    officeSuppliesRequest.setOnMouseClicked(
+        event -> Navigation.navigate(Screen.OFFICE_SUPPLIES_REQUEST));
     returnButtonService.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
 
     showMenuButtonsWhenHovered(menuButton);
