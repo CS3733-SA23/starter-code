@@ -3,14 +3,11 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.MotionBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -18,143 +15,119 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane style="-fx-background-color: #3b63a5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.FlowerRequestController">
-   <center>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3b63a5;">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="534.0" strokeType="INSIDE" width="800.0">
-               <effect>
-                  <DropShadow height="28.02" radius="15.265" width="35.04">
-                     <color>
-                        <Color red="0.8700000047683716" green="0.7006400227546692" blue="0.23489999771118164" opacity="0.8571428656578064" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Rectangle>
-            <ImageView fitHeight="600.0" fitWidth="797.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/BWH_BridgeInside_JK.jpg" />
-               </image>
-               <effect>
-                  <MotionBlur radius="4.7" />
-               </effect>
-            </ImageView>
-            <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#7e7e7e" height="462.0" layoutX="130.0" layoutY="36.0" opacity="0.64" stroke="TRANSPARENT" strokeType="INSIDE" width="537.0" />
-            <Text fontSmoothingType="LCD" layoutX="256.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flower Delivery" underline="true">
-               <font>
-                  <Font name="Poor Richard" size="48.0" />
-               </font>
-            </Text>
-            <ScrollPane layoutX="174.0" layoutY="125.0" prefHeight="350.0" prefWidth="450.0">
-              <content>
-                <AnchorPane prefWidth="450.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="900.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane layoutX="142.0" layoutY="114.0" pannable="true" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #192d5a;">
+         <content>
+            <AnchorPane prefWidth="450.0">
+               <children>
+                  <VBox prefHeight="627.0" prefWidth="600.0" spacing="15.0">
                      <children>
-                        <VBox prefHeight="500.0" prefWidth="450.0" spacing="15.0">
+                        <VBox alignment="TOP_CENTER" prefWidth="450.0" spacing="5.0">
                            <children>
-                              <VBox alignment="TOP_CENTER" prefWidth="450.0" spacing="5.0">
-                                 <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="19.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Recipient Name">
-                                       <font>
-                                          <Font name="Times New Roman" size="16.0" />
-                                       </font>
-                                    </Text>
-                                    <MFXTextField fx:id="recipientName" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefWidth="450.0" spacing="5.0">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room Number">
-                                       <font>
-                                          <Font name="Times New Roman" size="16.0" />
-                                       </font>
-                                    </Text>
-                                    <MFXTextField fx:id="roomNumber" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="122.0" prefWidth="450.0" spacing="5.0">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Time">
-                                       <font>
-                                          <Font name="Times New Roman" size="16.0" />
-                                       </font>
-                                    </Text>
-                                    <MFXComboBox fx:id="deliveryTime" alignment="CENTER" prefWidth="250.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="212.0" prefWidth="450.0" spacing="5.0">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Flower Type">
-                                       <font>
-                                          <Font name="Times New Roman" size="16.0" />
-                                       </font>
-                                    </Text>
-                                    <MFXComboBox fx:id="flowerChoice" alignment="CENTER" prefWidth="250.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="290.0" prefWidth="450.0" spacing="5.0">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number Of Flowers">
-                                       <font>
-                                          <Font name="Times New Roman" size="16.0" />
-                                       </font>
-                                    </Text>
-                                    <MFXComboBox fx:id="numOfFlowers" prefWidth="250.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="123.0" prefWidth="450.0" spacing="5.0">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Notes">
-                                       <font>
-                                          <Font name="Times New Roman" size="16.0" />
-                                       </font>
-                                    </Text>
-                                    <MFXTextField fx:id="notes" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
-                                    <VBox alignment="TOP_CENTER" prefWidth="450.0" spacing="5.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assign Staff">
-                                             <font>
-                                                <Font name="Times New Roman" size="16.0" />
-                                             </font>
-                                          </Text>
-                                          <MFXTextField fx:id="assignedStaff" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </VBox>
-                              <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
-                                 <children>
-                                    <MFXButton fx:id="cancelButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" layoutX="208.0" layoutY="12.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Cancel" />
-                                    <MFXButton fx:id="flowerRequestSubmit" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Submit" />
-                                 </children>
-                              </HBox>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="19.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Recipient Name">
+                                 <font>
+                                    <Font name="Times New Roman" size="16.0" />
+                                 </font>
+                              </Text>
+                              <MFXTextField fx:id="recipientName" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" style="-fx-border-color: #192d5a; -fx-border-width: 2;" />
                            </children>
                         </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefWidth="450.0" spacing="5.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room Number">
+                                 <font>
+                                    <Font name="Times New Roman" size="16.0" />
+                                 </font>
+                              </Text>
+                              <MFXTextField fx:id="roomNumber" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" style="-fx-border-color: #192d5a; -fx-border-width: 2;" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="122.0" prefWidth="450.0" spacing="5.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Time">
+                                 <font>
+                                    <Font name="Times New Roman" size="16.0" />
+                                 </font>
+                              </Text>
+                              <MFXComboBox fx:id="deliveryTime" alignment="CENTER" prefWidth="250.0" style="-fx-border-color: #192d5a; -fx-border-width: 2;" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="212.0" prefWidth="450.0" spacing="5.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Flower Type">
+                                 <font>
+                                    <Font name="Times New Roman" size="16.0" />
+                                 </font>
+                              </Text>
+                              <MFXComboBox fx:id="flowerChoice" alignment="CENTER" prefWidth="250.0" style="-fx-border-color: #192d5a; -fx-border-width: 2;" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="290.0" prefWidth="450.0" spacing="5.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number Of Flowers">
+                                 <font>
+                                    <Font name="Times New Roman" size="16.0" />
+                                 </font>
+                              </Text>
+                              <MFXComboBox fx:id="numOfFlowers" prefWidth="250.0" style="-fx-border-color: #192d5a; -fx-border-width: 2;" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="123.0" prefWidth="450.0" spacing="5.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Notes">
+                                 <font>
+                                    <Font name="Times New Roman" size="16.0" />
+                                 </font>
+                              </Text>
+                              <MFXTextField fx:id="notes" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" style="-fx-border-color: #192d5a; -fx-border-width: 2;" />
+                              <VBox alignment="TOP_CENTER" prefWidth="450.0" spacing="5.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assign Staff">
+                                       <font>
+                                          <Font name="Times New Roman" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <MFXTextField fx:id="assignedStaff" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" style="-fx-border-color: #192d5a; -fx-border-width: 2;" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
+                           <children>
+                              <MFXButton fx:id="cancelButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" layoutX="208.0" layoutY="12.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Cancel" />
+                              <MFXButton fx:id="flowerRequestSubmit" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Submit" />
+                           </children>
+                        </HBox>
                      </children>
-                  </AnchorPane>
-              </content>
-            </ScrollPane>
-            <MFXButton fx:id="returnButtonFlowerRequest" contentDisplay="GRAPHIC_ONLY" layoutX="174.0" layoutY="66.0" style="-fx-background-color: #192d5a;">
-               <graphic>
-                  <ImageView fx:id="returnButtonService" fitHeight="100.0" fitWidth="50.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Back%20Arrow.png" />
-                     </image>
-                     <effect>
-                        <DropShadow spread="0.61">
-                           <color>
-                              <Color red="0.8980392217636108" green="0.7372549176216125" blue="0.23137255012989044" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </ImageView>
-               </graphic>
-            </MFXButton>
-            <MFXButton fx:id="clearForm" contentDisplay="TEXT_ONLY" layoutX="558.0" layoutY="66.0" prefHeight="45.0" prefWidth="65.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Clear" textFill="WHITE" />
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </BorderPane.margin>
-      </AnchorPane>
-   </center>
-</BorderPane>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </content>
+         <effect>
+            <DropShadow spread="0.63">
+               <color>
+                  <Color red="0.09803921729326248" green="0.1764705926179886" blue="0.3529411852359772" />
+               </color>
+            </DropShadow>
+         </effect>
+      </ScrollPane>
+      <Text layoutX="183.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flower Delivery">
+         <font>
+            <Font name="Palatino Linotype" size="72.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="105.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
+         <image>
+            <Image url="@../images/flower-tulip.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="700.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: DIFFERENCE;">
+         <image>
+            <Image url="@../images/flower-tulip.png" />
+         </image>
+      </ImageView>
+      <MFXButton layoutX="808.0" layoutY="525.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Clear Form" />
+   </children>
+</AnchorPane>
