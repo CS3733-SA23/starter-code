@@ -1,8 +1,7 @@
-package Database;
+package edu.wpi.teame.Database;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import edu.wpi.teame.Database.SQLRepo;
 import edu.wpi.teame.map.LocationName;
 import java.util.List;
 import org.junit.jupiter.api.Test;

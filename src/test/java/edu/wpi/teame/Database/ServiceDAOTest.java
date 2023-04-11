@@ -1,8 +1,7 @@
-package Database;
+package edu.wpi.teame.Database;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import edu.wpi.teame.Database.SQLRepo;
 import edu.wpi.teame.entities.ServiceRequestData;
 import java.util.List;
 import org.json.JSONObject;
@@ -50,6 +49,7 @@ public class ServiceDAOTest {
             "Diyar");
     SQLRepo.INSTANCE.addServiceRequest(srd1);
     SQLRepo.INSTANCE.updateServiceRequest(srd1, "status", "DONE");
+    SQLRepo.INSTANCE.deleteServiceRequest(srd1);
 
     ServiceRequestData srd2 =
         new ServiceRequestData(
@@ -58,7 +58,14 @@ public class ServiceDAOTest {
             ServiceRequestData.Status.PENDING,
             "Diyar");
     SQLRepo.INSTANCE.addServiceRequest(srd2);
+    ServiceRequestData srdDelete =
+        new ServiceRequestData(
+            ServiceRequestData.RequestType.FLOWERDELIVERY,
+            new JSONObject("{\"Hello\":\"Testing2\"}"),
+            ServiceRequestData.Status.PENDING,
+            "Diyar");
     SQLRepo.INSTANCE.updateServiceRequest(srd2, "requestdata", "{\"Hello\":\"Testing2\"}");
+    SQLRepo.INSTANCE.deleteServiceRequest(srdDelete);
 
     ServiceRequestData srd3 =
         new ServiceRequestData(
@@ -68,8 +75,8 @@ public class ServiceDAOTest {
             "Diyar");
     SQLRepo.INSTANCE.addServiceRequest(srd3);
     SQLRepo.INSTANCE.updateServiceRequest(srd3, "staffassigned", "Jamie Rapal");
+    SQLRepo.INSTANCE.deleteServiceRequest(srd3);
 
-    // SQLRepo.INSTANCE.deleteServiceRequest(srd);
     SQLRepo.INSTANCE.exitDatabaseProgram();
   }
 
