@@ -14,9 +14,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.MapController">
+<AnchorPane fx:id="theBigPane" style="-fx-border-color: #000000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.MapController">
    <children>
-      <VBox alignment="CENTER" minWidth="-Infinity" prefWidth="300.0" spacing="50.0" style="-fx-background-color: #223b95;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="theBoxOfV" alignment="CENTER" minWidth="-Infinity" prefWidth="300.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="mapLabel">
                <VBox.margin>
@@ -28,11 +28,12 @@
             </Label>
             <VBox alignment="CENTER">
                <children>
-                  <MFXComboBox fx:id="currentLocationList" prefColumnCount="15" prefHeight="50.0" prefWidth="200.0" />
-                  <Line endY="-25.0" stroke="WHITE" />
-                  <MFXComboBox fx:id="destinationList" prefColumnCount="15" prefHeight="50.0" prefWidth="200.0" />
+                  <MFXComboBox fx:id="currentLocationList" prefColumnCount="15" prefHeight="50.0" prefWidth="200.0" promptText="Location" />
+                  <Line endY="-50.0" stroke="WHITE" />
+                  <MFXComboBox fx:id="destinationList" prefColumnCount="15" prefHeight="50.0" prefWidth="200.0" promptText="Destination" />
                </children>
             </VBox>
+            <Line endX="300.0" strokeWidth="2.0" />
             <Label fx:id="pathLabel" minHeight="200.0" prefWidth="250.0" style="-fx-background-color: #FFFFFF;" wrapText="true" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" />
@@ -68,5 +69,6 @@
             </Tab>
          </tabs>
       </TabPane>
+      <Line fx:id="theLine" endY="540.0" strokeWidth="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

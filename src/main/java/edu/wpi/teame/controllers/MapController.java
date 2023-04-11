@@ -65,14 +65,7 @@ public class MapController {
           destFromComboBox = destinationList.getValue();
           displayPath(curLocFromComboBox, destFromComboBox);
         });
-    // When the image pane is resized, resize the map and lines
-    mapPane
-        .widthProperty()
-        .addListener(
-            (observable, oldValue, newValue) -> {
-              mapImage.setFitWidth(newValue.doubleValue());
-              System.out.println("Image Pane Width: " + imagePane.widthProperty());
-            });
+    mapImage.fitWidthProperty().bind(imagePane.widthProperty());
     refreshPage(currentFloor);
   }
 
