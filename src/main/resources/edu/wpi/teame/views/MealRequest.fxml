@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.MealRequestController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="900.0" style="-fx-background-color: FFEFd7;">
          <children>
@@ -64,7 +64,7 @@
                                           <Font name="Times New Roman" size="16.0" />
                                        </font>
                                     </Text>
-                                    <MFXComboBox fx:id="flowerChoice" alignment="CENTER" prefWidth="250.0" />
+                                    <MFXComboBox fx:id="mainCourseChoice" alignment="CENTER" prefWidth="250.0" />
                                  </children>
                               </VBox>
                               <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="290.0" prefWidth="450.0" spacing="5.0">
@@ -74,7 +74,7 @@
                                           <Font name="Times New Roman" size="16.0" />
                                        </font>
                                     </Text>
-                                    <MFXComboBox fx:id="numOfFlowers" prefWidth="250.0" />
+                                    <MFXComboBox fx:id="sideCourseChoice" prefWidth="250.0" />
                                  </children>
                               </VBox>
                               <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="123.0" prefWidth="450.0" spacing="5.0">
@@ -100,7 +100,7 @@
                               <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
                                  <children>
                                     <MFXButton fx:id="cancelButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" layoutX="208.0" layoutY="12.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Cancel" />
-                                    <MFXButton fx:id="flowerRequestSubmit" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Submit" />
+                                    <MFXButton fx:id="submitButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Submit" />
                                  </children>
                               </HBox>
                            </children>
@@ -121,7 +121,7 @@
                   <Font name="Times New Roman Bold" size="64.0" />
                </font>
             </Text>
-            <MFXButton layoutX="808.0" layoutY="525.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Clear Form" />
+            <MFXButton fx:id="clearForm" layoutX="808.0" layoutY="525.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Clear Form" />
             <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="142.0" layoutY="48.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/restaurant.png" />

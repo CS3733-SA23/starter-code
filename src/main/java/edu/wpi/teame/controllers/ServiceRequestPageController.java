@@ -1,87 +1,71 @@
 package edu.wpi.teame.controllers;
 
-import static javafx.scene.paint.Color.WHITE;
-
 import edu.wpi.teame.navigation.Navigation;
 import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.VBox;
 
 public class ServiceRequestPageController {
 
   @FXML MFXButton returnButton;
-  @FXML MFXButton flowerRequest;
-  @FXML MFXButton mealRequest;
-  @FXML MFXButton officeSuppliesRequest;
   @FXML MFXButton menuButton;
-  @FXML MFXButton menuBarSignage;
-  @FXML MFXButton menuBarServices;
   @FXML MFXButton menuBarHome;
-  @FXML MFXButton menuBarMap;
-  @FXML MFXButton menuBarExit;
+  @FXML MFXButton menuBarServices;
+  @FXML MFXButton menuBarMaps;
   @FXML MFXButton menuBarDatabase;
+  @FXML MFXButton menuBarExit;
+  @FXML VBox menuBar;
+  boolean menuVisibilty = false;
 
   @FXML
   public void initialize() {
-    menuDropDownVisibility(false);
-    mouseSetup(flowerRequest);
-    mouseSetup(mealRequest);
-    mouseSetup(returnButton);
-    flowerRequest.setOnMouseClicked(event -> Navigation.navigate(Screen.FLOWER_REQUEST));
-    mealRequest.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
-    officeSuppliesRequest.setOnMouseClicked(
-        event -> Navigation.navigate(Screen.OFFICE_SUPPLIES_REQUEST));
+
+    // Initially set the menuVBox to invisible
+    menuBar.setVisible(false);
+
     returnButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
 
-    showMenuButtonsWhenHovered(menuButton);
-    showMenuButtonsWhenHovered(menuBarSignage);
-    showMenuButtonsWhenHovered(menuBarServices);
-    showMenuButtonsWhenHovered(menuBarHome);
-    showMenuButtonsWhenHovered(menuBarMap);
-    showMenuButtonsWhenHovered(menuBarDatabase);
-    showMenuButtonsWhenHovered(menuBarExit);
+    // When the menu button is clicked, invert the value of menuVisibility and set the menuVBox to
+    // that value
+    // (so each time the menu button is clicked it changes the visibility of menuVBox back and
+    // forth)
+    menuButton.setOnMouseClicked(
+        event -> {
+          menuVisibilty = !menuVisibilty;
+          menuBar.setVisible(menuVisibilty);
+        });
 
-    menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
+    // Navigation controls for the button in the menuVBox
+    menuBarHome.setOnMouseClicked(
+        event -> {
+          Navigation.navigate(Screen.HOME);
+          menuVisibilty = !menuVisibilty;
+        });
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
-    menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
-    // menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate((Screen.Database)));
-    menuBarExit.setOnMouseClicked(event -> Platform.exit());
-  }
-
-  public void menuDropDownVisibility(boolean bool) {
-    menuBarSignage.setVisible(bool);
-    menuBarServices.setVisible(bool);
-    menuBarHome.setVisible(bool);
-    menuBarMap.setVisible(bool);
-    menuBarDatabase.setVisible(bool);
-    menuBarExit.setVisible(bool);
-  }
-
-  public void showMenuButtonsWhenHovered(MFXButton button) {
-    button.setOnMouseEntered(
-        event -> {
-          menuDropDownVisibility(true);
-        });
-    button.setOnMouseExited(
-        event -> {
-          menuDropDownVisibility(false);
-        });
-  }
-
-  private void mouseSetup(MFXButton btn) {
-    btn.setOnMouseEntered(
-        event -> {
-          btn.setStyle(
-              "-fx-background-color: #ffffff; -fx-alignment: center; -fx-border-color: #192d5a; -fx-border-width: 2;");
-          btn.setTextFill(Color.web("#192d5aff", 1.0));
-        });
-    btn.setOnMouseExited(
-        event -> {
-          btn.setStyle("-fx-background-color: #192d5aff; -fx-alignment: center;");
-          btn.setTextFill(WHITE);
-        });
+    menuBarMaps.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
+    menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
+    menuBarExit.setOnMouseClicked((event -> Platform.exit()));
   }
 }
+
+  //  public void menuDropDownVisibility(boolean bool) {
+  //    menuBarSignage.setVisible(bool);
+  //    menuBarServices.setVisible(bool);
+  //    menuBarHome.setVisible(bool);
+  //    menuBarMap.setVisible(bool);
+  //    menuBarDatabase.setVisible(bool);
+  //    menuBarExit.setVisible(bool);
+  //  }
+  //
+  //  public void showMenuButtonsWhenHovered(MFXButton button) {
+  //    button.setOnMouseEntered(
+  //        event -> {
+  //          menuDropDownVisibility(true);
+  //        });
+  //    button.setOnMouseExited(
+  //        event -> {
+  //          menuDropDownVisibility(false);
+  //        });
+  //  }

@@ -16,34 +16,29 @@ import org.json.JSONObject;
 public class OfficeSuppliesController implements IRequestController {
 
   @FXML MFXButton returnButtonOfficeSuppliesRequest;
-  @FXML MFXButton officeSuppliesRequestSubmit;
+  @FXML MFXButton submitButton;
   @FXML MFXButton cancelButton;
   @FXML MFXButton clearForm;
   @FXML MFXTextField staffName;
   @FXML MFXTextField officeNumber;
   @FXML MFXTextField notes;
   @FXML MFXComboBox<String> deliveryTime;
-  @FXML MFXComboBox<String> blank1Choice;
-  @FXML MFXComboBox<String> blank2Choice;
+  @FXML MFXComboBox<String> officeSupplyType;
+  @FXML MFXTextField quantityOfSupplies;
   @FXML MFXTextField assignedStaff;
 
   ObservableList<String> deliveryTimes =
       FXCollections.observableArrayList(
           "10am - 11am", "11am - 12pm", "12pm - 1pm", "1pm - 2pm", "2pm - 3pm", "3pm - 4pm");
-  ObservableList<String> blank1Choices =
-      FXCollections.observableArrayList("stuff, more stuff, some more stuff");
-
-  ObservableList<String> blank2Choices =
-      FXCollections.observableArrayList("things, more things, some more things");
+  ObservableList<String> officeSupplies =
+      FXCollections.observableArrayList(
+          "pencils", "pens", "white-out", "tape", "ruler", "hole puncher", "sharpener", "charger");
 
   @FXML
   public void initialize() {
     deliveryTime.setItems(deliveryTimes);
-    blank1Choice.setItems(blank1Choices);
-    blank2Choice.setItems(blank2Choices);
-    returnButtonOfficeSuppliesRequest.setOnMouseClicked(
-        event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
-    officeSuppliesRequestSubmit.setOnMouseClicked(event -> sendRequest());
+    officeSupplyType.setItems(officeSupplies);
+    submitButton.setOnMouseClicked(event -> sendRequest());
     cancelButton.setOnMouseClicked(event -> cancelRequest());
     clearForm.setOnMouseClicked(event -> clearForm());
   }
@@ -53,8 +48,8 @@ public class OfficeSuppliesController implements IRequestController {
     officeNumber.clear();
     notes.clear();
     deliveryTime.clear();
-    blank1Choice.clear();
-    blank2Choice.clear();
+    officeSupplyType.clear();
+    quantityOfSupplies.clear();
     assignedStaff.clear();
   }
 
@@ -64,8 +59,8 @@ public class OfficeSuppliesController implements IRequestController {
     requestData.put("staffName", staffName.getText());
     requestData.put("officeNumber", officeNumber.getText());
     requestData.put("deliveryTime", deliveryTime.getText());
-    requestData.put("blank1Choice", blank1Choice.getText());
-    requestData.put("blank2Choice", blank2Choice.getText());
+    requestData.put("supplyType", officeSupplyType.getText());
+    requestData.put("numOfSupplies", quantityOfSupplies.getText());
     requestData.put("notes", notes.getText());
 
     ServiceRequestData officeSuppliesRequestData =

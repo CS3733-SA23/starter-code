@@ -27,7 +27,7 @@ public class HomePageController {
   @FXML MFXButton menuBarDatabase;
   @FXML MFXButton menuBarExit;
 
-  @FXML VBox menuVBox;
+  @FXML VBox menuBar;
 
   Boolean loggedIn;
 
@@ -49,7 +49,7 @@ public class HomePageController {
     loginButton.setOnMouseClicked(event -> attemptLogin());
 
     // Initially set the menuVBox to invisible
-    menuVBox.setVisible(false);
+    menuBar.setVisible(false);
 
     // When the menu button is clicked, invert the value of menuVisibility and set the menuVBox to
     // that value
@@ -58,7 +58,7 @@ public class HomePageController {
     menuButton.setOnMouseClicked(
         event -> {
           menuVisibilty = !menuVisibilty;
-          menuVBox.setVisible(menuVisibilty);
+          menuBar.setVisible(menuVisibilty);
         });
 
     // Navigation controls for the button in the menuVBox

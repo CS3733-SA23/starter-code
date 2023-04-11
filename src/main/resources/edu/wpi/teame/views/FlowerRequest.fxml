@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="900.0" style="-fx-background-color: FFEFD7;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="900.0" style="-fx-background-color: FFEFD7;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.FlowerRequestController">
    <children>
       <ScrollPane layoutX="142.0" layoutY="114.0" pannable="true" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #192d5a;">
          <content>
@@ -98,7 +98,7 @@
                         <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
                            <children>
                               <MFXButton fx:id="cancelButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" layoutX="208.0" layoutY="12.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Cancel" />
-                              <MFXButton fx:id="flowerRequestSubmit" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Submit" />
+                              <MFXButton fx:id="submitButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Submit" />
                            </children>
                         </HBox>
                      </children>
@@ -119,7 +119,7 @@
             <Font name="Times New Roman Bold" size="64.0" />
          </font>
       </Text>
-      <MFXButton layoutX="808.0" layoutY="525.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Clear Form" />
+      <MFXButton fx:id="clearForm" layoutX="808.0" layoutY="525.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Clear Form" />
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="142.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/flower-tulip.png" />
