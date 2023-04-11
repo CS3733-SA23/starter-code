@@ -8,8 +8,6 @@ import Database.DatabaseGraphController;
 import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.map.pathfinding.AStarPathfinder;
-import edu.wpi.teame.navigation.Navigation;
-import edu.wpi.teame.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import java.util.ArrayList;
@@ -27,8 +25,9 @@ import javafx.scene.shape.Line;
 // public List<String> getLongNamesFromMove(List<MoveAttribute> mv)
 
 public class MapController {
-  @FXML AnchorPane mapPan;
-  @FXML private MFXButton backButton;
+  @FXML AnchorPane mapPane;
+  // @FXML private MFXButton backButton;
+  // @FXML MFXButton backButton1;
   @FXML Tab floorOneTab;
   @FXML Tab floorTwoTab;
   @FXML Tab floorThreeTab;
@@ -37,7 +36,7 @@ public class MapController {
 
   @FXML MFXComboBox<String> currentLocationList;
   @FXML MFXComboBox<String> destinationList;
-  @FXML private Label pathLabel;
+  @FXML private Label pathLabel ;
   Floor currentFloor = Floor.ONE;
   String curLocFromComboBox;
   String destFromComboBox;
@@ -54,13 +53,14 @@ public class MapController {
 
   @FXML
   public void initialize() {
-    mouseSetup(backButton);
-    backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    lowerLevelOneTab.setOnSelectionChanged(event -> refreshPage(Floor.LOWER_ONE));
-    lowerLevelTwoTab.setOnSelectionChanged(event -> refreshPage(Floor.LOWER_TWO));
-    floorOneTab.setOnSelectionChanged(event -> refreshPage(Floor.ONE));
-    floorTwoTab.setOnSelectionChanged(event -> refreshPage(Floor.TWO));
-    floorThreeTab.setOnSelectionChanged(event -> refreshPage(Floor.THREE));
+    // mouseSetup(backButton1);
+    // backButton1.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    // refreshPage(currentFloor);
+    lowerLevelOneTab.setOnSelectionChanged(event -> refreshTab(Floor.LOWER_ONE));
+    lowerLevelTwoTab.setOnSelectionChanged(event -> refreshTab(Floor.LOWER_TWO));
+    floorOneTab.setOnSelectionChanged(event -> refreshTab(Floor.ONE));
+    floorTwoTab.setOnSelectionChanged(event -> refreshTab(Floor.TWO));
+    floorThreeTab.setOnSelectionChanged(event -> refreshTab(Floor.THREE));
 
     currentLocationList.setOnAction(
         event -> {
@@ -75,33 +75,22 @@ public class MapController {
           destFromComboBox = destinationList.getValue();
           displayPath(curLocFromComboBox, destFromComboBox);
         });
-    refreshPage(currentFloor);
+    refreshTab(currentFloor);
   }
 
   @FXML
-  public void refreshPage(Floor floor) {
+  public void refreshTab(Floor floor) {
     currentFloor = floor;
     floorLocations =
         FXCollections.observableArrayList(
             graphController.getLongNamesFromMove(
                 graphController.getMoveAttributeFromFloor(currentFloor)));
+    System.out.println(floorLocations);
     currentLocationList.setItems(floorLocations);
     destinationList.setItems(floorLocations);
     currentLocationList.setValue("");
     destinationList.setValue("");
     pathLabel.setText("");
-    switch (floor) {
-      case TWO:
-        mapPan.setId("mapPane11");
-      case THREE:
-        mapPan.setId("mapPane111");
-      case LOWER_TWO:
-        mapPan.setId("mapPane1111");
-      case LOWER_ONE:
-        mapPan.setId("mapPane11111");
-      default:
-        mapPan.setId("mapPane1");
-    }
     refreshPath();
   }
 
@@ -135,14 +124,14 @@ public class MapController {
   }
 
   private double convertYCoord(int yCoord) {
-    double paneHeight = mapPan.getHeight();
+    double paneHeight = mapPane.getHeight();
     double mapHeight = 3400;
 
     return yCoord * (paneHeight / mapHeight);
   }
 
   private double convertXCoord(int xCoord) {
-    double paneWidth = mapPan.getWidth();
+    double paneWidth = mapPane.getWidth();
     double mapWidth = 5000;
 
     return xCoord * (paneWidth / mapWidth);
@@ -162,8 +151,8 @@ public class MapController {
     startCircleOutside.setFill(BLACK);
     Circle startCircleInside = new Circle(convertXCoord(x1), convertYCoord(y1), 3);
     startCircleInside.setFill(WHITE);
-    mapPan.getChildren().add(startCircleOutside);
-    mapPan.getChildren().add(startCircleInside);
+    mapPane.getChildren().add(startCircleOutside);
+    mapPane.getChildren().add(startCircleInside);
     currentCircles.add(startCircleInside);
     currentCircles.add(startCircleOutside);
 
@@ -183,7 +172,7 @@ public class MapController {
     // create circle to symbolize end
     Circle endCircle = new Circle(convertXCoord(x1), convertYCoord(y1), 4);
     endCircle.setFill(BLACK);
-    mapPan.getChildren().add(endCircle);
+    mapPane.getChildren().add(endCircle);
     currentCircles.add(endCircle);
   }
 
@@ -198,14 +187,14 @@ public class MapController {
     y2 = (int) this.convertYCoord(y2);
 
     Line line = new Line(x1, y1, x2, y2);
-    mapPan.getChildren().add(line);
+    mapPane.getChildren().add(line);
     currentLines.add(line);
   }
 
   /** removes all the lines in the currentLines list */
   public void refreshPath() {
-    mapPan.getChildren().removeAll(currentCircles);
-    mapPan.getChildren().removeAll(currentLines);
+    mapPane.getChildren().removeAll(currentCircles);
+    mapPane.getChildren().removeAll(currentLines);
   }
 
   private void mouseSetup(MFXButton btn) {

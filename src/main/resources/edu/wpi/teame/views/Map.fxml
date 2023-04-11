@@ -27,7 +27,7 @@
                <children>
                   <BorderPane layoutX="6.0" layoutY="7.0" prefHeight="887.0" prefWidth="1489.0" style="-fx-background-color: #e1e1e1;" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0">
                      <center>
-                        <AnchorPane fx:id="mapPane1" prefHeight="830.0" prefWidth="1186.0">
+                        <AnchorPane fx:id="mapPane" prefHeight="830.0" prefWidth="1186.0">
                            <children>
                               <ImageView fx:id="mapImage1" fitHeight="830.0" fitWidth="1186.0" layoutX="15.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                                  <image>
@@ -52,8 +52,8 @@
                      <right>
                         <VBox alignment="CENTER_LEFT" prefHeight="890.0" prefWidth="154.0" spacing="300.0" BorderPane.alignment="CENTER">
                            <children>
-                              <MFXComboBox fx:id="currentLocationList1" prefWidth="150.0" promptText="Current Location" style="-fx-border-color: black;" />
-                              <MFXComboBox fx:id="destinationList1" prefWidth="150.0" promptText="Destination" style="-fx-border-color: black;" />
+                              <MFXComboBox fx:id="currentLocationList" prefWidth="150.0" promptText="Current Location" style="-fx-border-color: black;" />
+                              <MFXComboBox fx:id="destinationList" prefWidth="150.0" promptText="Destination" style="-fx-border-color: black;" />
                            </children>
                            <padding>
                               <Insets bottom="100.0" />
