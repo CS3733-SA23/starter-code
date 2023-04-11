@@ -128,19 +128,19 @@
                </StackPane.margin>
             </Rectangle>
             <TabPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="580.0" prefWidth="900.0" style="-fx-region-background: #192d5a; -fx-border-radius: 30;" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="200.0" StackPane.alignment="TOP_CENTER">
-              <tabs>
-                <Tab text="Flower Delivery">
+               <tabs>
+                  <Tab text="Flower Delivery">
                      <content>
                         <fx:include source="FlowerRequest.fxml" />
                      </content></Tab>
-                <Tab text="Meal Delivery">
+                  <Tab text="Meal Delivery">
                      <content>
                         <fx:include source="MealRequest.fxml" />
                      </content></Tab>
                   <Tab text="Office Supplies Delivery" />
                   <Tab text="Furniture Deliver" />
                   <Tab text="Conference Room Bookings" />
-              </tabs>
+               </tabs>
                <StackPane.margin>
                   <Insets left="50.0" top="130.0" />
                </StackPane.margin>
