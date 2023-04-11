@@ -31,23 +31,17 @@ import javafx.scene.shape.Line;
 public class MapController {
   @FXML private Label mapLabel;
   @FXML private MFXButton firstFloorButton;
-
   @FXML private MFXButton secondFloorButton;
-
   @FXML private MFXButton thirdFloorButton;
-
   @FXML private MFXButton backButton;
-
   @FXML private MFXButton lowerLevelOneButton;
-
   @FXML private MFXButton lowerLevelTwoButton;
-
   @FXML private AnchorPane mapPane;
-
   @FXML private ImageView mapImage;
   @FXML MFXComboBox<String> currentLocationList;
   @FXML MFXComboBox<String> destinationList;
   @FXML private Label pathLabel;
+
   Floor currentFloor = Floor.ONE;
   String curLocFromComboBox;
   String destFromComboBox;
