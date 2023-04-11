@@ -32,7 +32,7 @@
                                     <Font name="Times New Roman" size="16.0" />
                                  </font>
                               </Text>
-                              <MFXTextField fx:id="recipientName" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" style="-fx-border-color: #192d5a; -fx-border-width: 2;" />
+                              <MFXTextField fx:id="recipientName" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefWidth="450.0" spacing="5.0">
@@ -42,7 +42,7 @@
                                     <Font name="Times New Roman" size="16.0" />
                                  </font>
                               </Text>
-                              <MFXTextField fx:id="roomNumber" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" style="-fx-border-color: #192d5a; -fx-border-width: 2;" />
+                              <MFXTextField fx:id="roomNumber" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="122.0" prefWidth="450.0" spacing="5.0">
@@ -52,7 +52,7 @@
                                     <Font name="Times New Roman" size="16.0" />
                                  </font>
                               </Text>
-                              <MFXComboBox fx:id="deliveryTime" alignment="CENTER" prefWidth="250.0" style="-fx-border-color: #192d5a; -fx-border-width: 2;" />
+                              <MFXComboBox fx:id="deliveryTime" alignment="CENTER" prefWidth="250.0" />
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="212.0" prefWidth="450.0" spacing="5.0">
@@ -62,7 +62,7 @@
                                     <Font name="Times New Roman" size="16.0" />
                                  </font>
                               </Text>
-                              <MFXComboBox fx:id="flowerChoice" alignment="CENTER" prefWidth="250.0" style="-fx-border-color: #192d5a; -fx-border-width: 2;" />
+                              <MFXComboBox fx:id="flowerChoice" alignment="CENTER" prefWidth="250.0" />
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="290.0" prefWidth="450.0" spacing="5.0">
@@ -72,7 +72,7 @@
                                     <Font name="Times New Roman" size="16.0" />
                                  </font>
                               </Text>
-                              <MFXComboBox fx:id="numOfFlowers" prefWidth="250.0" style="-fx-border-color: #192d5a; -fx-border-width: 2;" />
+                              <MFXComboBox fx:id="numOfFlowers" prefWidth="250.0" />
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="123.0" prefWidth="450.0" spacing="5.0">
@@ -82,7 +82,7 @@
                                     <Font name="Times New Roman" size="16.0" />
                                  </font>
                               </Text>
-                              <MFXTextField fx:id="notes" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" style="-fx-border-color: #192d5a; -fx-border-width: 2;" />
+                              <MFXTextField fx:id="notes" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
                               <VBox alignment="TOP_CENTER" prefWidth="450.0" spacing="5.0">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assign Staff">
@@ -90,7 +90,7 @@
                                           <Font name="Times New Roman" size="16.0" />
                                        </font>
                                     </Text>
-                                    <MFXTextField fx:id="assignedStaff" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" style="-fx-border-color: #192d5a; -fx-border-width: 2;" />
+                                    <MFXTextField fx:id="assignedStaff" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
                                  </children>
                               </VBox>
                            </children>

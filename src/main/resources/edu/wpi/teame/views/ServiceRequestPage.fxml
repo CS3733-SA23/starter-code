@@ -124,7 +124,7 @@
             </VBox>
             <Rectangle arcHeight="30.0" arcWidth="30.0" fill="WHITE" height="580.0" stroke="#192d5a" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="10.0" width="900.0" StackPane.alignment="TOP_CENTER">
                <StackPane.margin>
-                  <Insets left="50.0" top="120.0" />
+                  <Insets left="100.0" top="120.0" />
                </StackPane.margin>
             </Rectangle>
             <TabPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="580.0" prefWidth="900.0" style="-fx-region-background: #192d5a; -fx-border-radius: 30;" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="200.0" StackPane.alignment="TOP_CENTER">
@@ -145,9 +145,21 @@
                   <Tab text="Conference Room Bookings" />
                </tabs>
                <StackPane.margin>
-                  <Insets left="50.0" top="130.0" />
+                  <Insets left="100.0" top="130.0" />
                </StackPane.margin>
             </TabPane>
+            <MFXButton fx:id="returnButton" contentDisplay="GRAPHIC_ONLY" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #192d5a;" text="returnButton">
+               <StackPane.margin>
+                  <Insets left="160.0" top="150.0" />
+               </StackPane.margin>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/undo.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MFXButton>
          </children>
       </StackPane>
    </children>
