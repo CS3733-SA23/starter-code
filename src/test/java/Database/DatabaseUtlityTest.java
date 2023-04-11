@@ -29,7 +29,12 @@ public class DatabaseUtlityTest {
     SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
 
     List<HospitalNode> nodelist = SQLRepo.INSTANCE.getNodesFromFloor(Floor.LOWER_ONE);
-
     assertEquals(45, nodelist.size());
+
+    List<HospitalNode> nodeList2 = SQLRepo.INSTANCE.getNodesFromFloor(Floor.ONE);
+    assertEquals(162, nodeList2.size());
+
+    List<HospitalNode> nodeList3 = SQLRepo.INSTANCE.getNodesFromFloor(Floor.THREE);
+    assertEquals(91, nodeList3.size());
   }
 }
