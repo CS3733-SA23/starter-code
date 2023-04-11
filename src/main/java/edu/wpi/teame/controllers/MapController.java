@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -37,13 +38,9 @@ public class MapController {
 
   @FXML MFXComboBox<String> currentLocationList;
   @FXML MFXComboBox<String> destinationList;
-  @FXML private Label pathLabel ;
-  @FXML private AnchorPane mapPane;
+  @FXML private Label pathLabel;
   @FXML private StackPane imagePane;
   @FXML private ImageView mapImage;
-  @FXML MFXComboBox<String> currentLocationList;
-  @FXML MFXComboBox<String> destinationList;
-  @FXML private Label pathLabel;
   @FXML private Label mapLabel;
   Floor currentFloor = Floor.ONE;
   String curLocFromComboBox;
@@ -84,7 +81,7 @@ public class MapController {
           displayPath(curLocFromComboBox, destFromComboBox);
         });
     mapImage.fitWidthProperty().bind(imagePane.widthProperty());
-    refreshPage(currentFloor);
+    refreshTab(currentFloor);
   }
 
   @FXML
@@ -113,7 +110,7 @@ public class MapController {
     AStarPathfinder pf = new AStarPathfinder();
 
     String toNodeID = graphController.getNodeIDFromName(to) + "";
-    String fromNodeID = graphController.getNodeIDFromName(from) + ""; 
+    String fromNodeID = graphController.getNodeIDFromName(from) + "";
 
     List<HospitalNode> path =
         pf.findPath(HospitalNode.allNodes.get(fromNodeID), HospitalNode.allNodes.get(toNodeID));
