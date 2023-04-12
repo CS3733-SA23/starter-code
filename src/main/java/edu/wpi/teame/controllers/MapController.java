@@ -17,18 +17,15 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-
-// public List<String> getLongNamesFromMove(List<MoveAttribute> mv)
 
 public class MapController {
   @FXML AnchorPane mapPane;
-  // @FXML private MFXButton backButton;
-  // @FXML MFXButton backButton1;
+  @FXML AnchorPane mapPane1;
+  @FXML AnchorPane mapPane11;
+  @FXML AnchorPane mapPane111;
+  @FXML AnchorPane mapPane1111;
+
   @FXML Tab floorOneTab;
   @FXML Tab floorTwoTab;
   @FXML Tab floorThreeTab;
@@ -38,15 +35,10 @@ public class MapController {
   @FXML MFXComboBox<String> currentLocationList;
   @FXML MFXComboBox<String> destinationList;
   @FXML private Label pathLabel;
-  @FXML private StackPane imagePane;
-  @FXML private ImageView mapImage;
   Floor currentFloor = Floor.ONE;
   String curLocFromComboBox;
   String destFromComboBox;
   MapUtilities mapUtil = new MapUtilities();
-
-  ArrayList<Line> currentLines = new ArrayList<>();
-  ArrayList<Circle> currentCircles = new ArrayList<>();
 
   DatabaseController db = DatabaseController.INSTANCE;
   DatabaseGraphController graphController = new DatabaseGraphController(db);
@@ -70,14 +62,14 @@ public class MapController {
         event -> {
           curLocFromComboBox = currentLocationList.getValue();
           destFromComboBox = destinationList.getValue();
-          displayPath(curLocFromComboBox, destFromComboBox);
+          displayPath(curLocFromComboBox, destFromComboBox, currentFloor);
         });
 
     destinationList.setOnAction(
         event -> {
           curLocFromComboBox = currentLocationList.getValue();
           destFromComboBox = destinationList.getValue();
-          displayPath(curLocFromComboBox, destFromComboBox);
+          displayPath(curLocFromComboBox, destFromComboBox, currentFloor);
         });
     refreshTab(currentFloor);
   }
@@ -89,21 +81,20 @@ public class MapController {
         FXCollections.observableArrayList(
             graphController.getLongNamesFromMove(
                 graphController.getMoveAttributeFromFloor(currentFloor)));
-    System.out.println(floorLocations);
     currentLocationList.setItems(floorLocations);
     destinationList.setItems(floorLocations);
     currentLocationList.setValue("");
     destinationList.setValue("");
     pathLabel.setText("");
-    refreshPath();
+    refreshPath(whichPane(floor));
   }
 
   @FXML
-  public void displayPath(String from, String to) {
+  public void displayPath(String from, String to, Floor whichFloor) {
     if (from.equals("") || to.equals("")) {
       return;
     }
-    refreshPath();
+    refreshPath(whichPane(whichFloor));
     AStarPathfinder pf = new AStarPathfinder();
 
     String toNodeID = graphController.getNodeIDFromName(to) + "";
@@ -120,7 +111,7 @@ public class MapController {
       pathNames.add(graphController.getNameFromNodeID(node.getNodeID()));
     }
     pathLabel.setText(pathNames.toString());
-    drawPath(path);
+    drawPath(path, whichPane(whichFloor));
   }
 
   /**
@@ -128,12 +119,12 @@ public class MapController {
    *
    * @param path
    */
-  private void drawPath(List<HospitalNode> path) {
+  private void drawPath(List<HospitalNode> path, AnchorPane curPane) {
 
     // create circle to symbolize start
     int x1 = path.get(0).getXCoord();
     int y1 = path.get(0).getYCoord();
-    mapUtil.drawRing(x1, y1, 4, 3, BLACK, WHITE, mapPane);
+    mapUtil.drawRing(x1, y1, 4, 3, BLACK, WHITE, curPane);
 
     // draw the lines between each node
     int x2, y2;
@@ -142,18 +133,34 @@ public class MapController {
       x2 = node.getXCoord();
       y2 = node.getYCoord();
 
-      mapUtil.drawLine(x1, y1, x2, y2, mapPane);
+      mapUtil.drawLine(x1, y1, x2, y2, curPane);
 
       x1 = x2;
       y1 = y2;
     }
 
     // create circle to symbolize end
-    mapUtil.drawCircle(x1, y1, 4, BLACK, mapPane);
+    mapUtil.drawCircle(x1, y1, 4, BLACK, curPane);
   }
 
   /** removes all the lines in the currentLines list */
-  public void refreshPath() {
-    mapPane.getChildren().removeAll(mapUtil.currentShapes);
+  public void refreshPath(AnchorPane curPane) {
+    curPane.getChildren().removeAll(mapUtil.currentShapes);
+  }
+
+  public AnchorPane whichPane(Floor curFloor) {
+    switch (curFloor) {
+      case ONE:
+        return mapPane;
+      case TWO:
+        return mapPane1;
+      case THREE:
+        return mapPane11;
+      case LOWER_ONE:
+        return mapPane111;
+      case LOWER_TWO:
+        return mapPane1111;
+    }
+    return mapPane;
   }
 }
