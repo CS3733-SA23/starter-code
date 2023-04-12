@@ -35,10 +35,11 @@ public class MapController {
   @FXML MFXComboBox<String> currentLocationList;
   @FXML MFXComboBox<String> destinationList;
   @FXML private Label pathLabel;
+
   Floor currentFloor = Floor.ONE;
   String curLocFromComboBox;
   String destFromComboBox;
-  MapUtilities mapUtil = new MapUtilities();
+  MapUtilities mapUtil = new MapUtilities(whichPane(currentFloor));
 
   DatabaseController db = DatabaseController.INSTANCE;
   DatabaseGraphController graphController = new DatabaseGraphController(db);
@@ -124,7 +125,7 @@ public class MapController {
     // create circle to symbolize start
     int x1 = path.get(0).getXCoord();
     int y1 = path.get(0).getYCoord();
-    mapUtil.drawRing(x1, y1, 4, 3, BLACK, WHITE, curPane);
+    mapUtil.drawRing(x1, y1, 4, 3, BLACK, WHITE);
 
     // draw the lines between each node
     int x2, y2;
@@ -133,19 +134,19 @@ public class MapController {
       x2 = node.getXCoord();
       y2 = node.getYCoord();
 
-      mapUtil.drawLine(x1, y1, x2, y2, curPane);
+      mapUtil.drawLine(x1, y1, x2, y2);
 
       x1 = x2;
       y1 = y2;
     }
 
     // create circle to symbolize end
-    mapUtil.drawCircle(x1, y1, 4, BLACK, curPane);
+    mapUtil.drawCircle(x1, y1, 4, BLACK);
   }
 
   /** removes all the lines in the currentLines list */
   public void refreshPath(AnchorPane curPane) {
-    curPane.getChildren().removeAll(mapUtil.currentShapes);
+    curPane.getChildren().removeAll(mapUtil.getCurrentNodes());
   }
 
   public AnchorPane whichPane(Floor curFloor) {
