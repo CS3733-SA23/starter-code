@@ -38,15 +38,17 @@ public class MapUtilities {
     return drawCircle(x, y, 4, pane);
   }
 
-  public void drawRing(
+  public Circle drawRing(
       int x, int y, int radius, int thickness, Color innerColor, Color outerColor, Pane pane) {
     x = (int) convertX(x, pane);
     y = (int) convertY(y, pane);
 
     Circle innerCircle = new Circle(x, y, radius - thickness, innerColor);
     Circle outerCircle = new Circle(x, y, radius, outerColor);
-    addShape(innerCircle, pane);
     addShape(outerCircle, pane);
+    addShape(innerCircle, pane);
+
+    return outerCircle;
   }
 
   public void drawRing(int x, int y, int radius, int thickness, Pane pane) {
@@ -71,6 +73,10 @@ public class MapUtilities {
   public Circle drawCircle(int x, int y, int radius, Pane pane) {
     x = (int) convertX(x, pane);
     y = (int) convertY(y, pane);
+
+    // System.out.println("width" + pane.getWidth());
+    // System.out.println(x);
+    // System.out.println(y);
 
     Circle circle = new Circle(x, y, radius, Color.BLACK);
     addShape(circle, pane);
