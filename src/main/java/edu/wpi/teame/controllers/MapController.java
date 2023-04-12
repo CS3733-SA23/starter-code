@@ -9,6 +9,9 @@ import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.map.pathfinding.AStarPathfinder;
 import edu.wpi.teame.utilities.MapUtilities;
+import edu.wpi.teame.utilities.Navigation;
+import edu.wpi.teame.utilities.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 
 public class MapController {
+  @FXML MFXButton backButton;
   @FXML AnchorPane mapPane;
   @FXML AnchorPane mapPane1;
   @FXML AnchorPane mapPane11;
@@ -50,9 +54,7 @@ public class MapController {
 
   @FXML
   public void initialize() {
-    // mouseSetup(backButton1);
-    // backButton1.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    // refreshPage(currentFloor);
+    backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     lowerLevelOneTab.setOnSelectionChanged(event -> refreshTab(Floor.LOWER_ONE));
     lowerLevelTwoTab.setOnSelectionChanged(event -> refreshTab(Floor.LOWER_TWO));
     floorOneTab.setOnSelectionChanged(event -> refreshTab(Floor.ONE));
