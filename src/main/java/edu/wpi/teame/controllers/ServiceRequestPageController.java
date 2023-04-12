@@ -47,7 +47,7 @@ public class ServiceRequestPageController {
         });
     menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     menuBarMaps.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
-    menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
+    menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_DATA_EDITOR));
     menuBarExit.setOnMouseClicked((event -> Platform.exit()));
 
     // makes the buttons get highlighted when the mouse hovers over them
