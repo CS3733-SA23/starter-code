@@ -30,6 +30,7 @@ public class LocationNameDAOImpl implements LocationNameDAO {
     connection.close();
   }
 
+
   /** @return */
   @Override
   public ArrayList<LocationName> getAll() throws SQLException {

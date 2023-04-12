@@ -10,7 +10,6 @@ import lombok.Setter;
 
 public class HomeController {
 
-  @FXML MFXButton homeButton;
   @FXML MFXButton helpButton;
   @FXML MFXButton mapButton;
   @FXML MFXButton directionsButton;

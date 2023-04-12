@@ -44,6 +44,15 @@ public class MapController {
           clickCount++;
 
           if (clickCount == 1) {
+            if (!map.getPrevPath().isEmpty()) {
+              for (int i = anchor.getChildren().size() - 1; i >= 0; i--) {
+                if (map.getPrevPath().contains(anchor.getChildren().get(i))) {
+                  anchor.getChildren().remove(i);
+                }
+              }
+              map.setPrevPath(null);
+            }
+
             // Capture the first click
             firstClick = new Point2D(event.getX(), event.getY());
             LocationOne.setOnAction(e -> {});
