@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package edu.wpi.teame.controllers.DatabaseEditor;
 
 import edu.wpi.teame.App;

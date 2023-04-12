@@ -133,7 +133,7 @@ public class DatabaseUtility {
   }
 
   List<String> getLongNamesFromLocationName(List<LocationName> ln) {
-    List<String> longNames = new ArrayList<>();
+     List<String> longNames = new ArrayList<>();
     for (LocationName locationName : ln) {
       longNames.add(locationName.getLongName());
     }

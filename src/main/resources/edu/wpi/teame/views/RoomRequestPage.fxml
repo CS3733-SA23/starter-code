@@ -17,6 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import org.controlsfx.control.SearchableComboBox?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.RoomRequestController">
    <children>
       <AnchorPane layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="904.0" style="-fx-background-color: #696969;">
@@ -40,12 +41,12 @@
                               </VBox>
                               <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefWidth="450.0" spacing="5.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room Number">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room Name">
                                        <font>
                                           <Font name="Times New Roman" size="16.0" />
                                        </font>
                                     </Text>
-                                    <MFXTextField fx:id="roomNumber" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
+                                    <SearchableComboBox fx:id="roomName" maxHeight="50.0" maxWidth="250.0" />
                                  </children>
                               </VBox>
                               <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="122.0" prefWidth="450.0" spacing="5.0" />
@@ -65,7 +66,7 @@
                                           <Font name="Times New Roman" size="16.0" />
                                        </font>
                                     </Text>
-                                    <MFXComboBox fx:id="bookingTime" alignment="CENTER" prefWidth="250.0" />
+                                    <SearchableComboBox fx:id="bookingTime" maxWidth="250.0" />
                                  </children>
                               </VBox>
                               <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="123.0" prefWidth="450.0" spacing="5.0">
