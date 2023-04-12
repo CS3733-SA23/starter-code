@@ -22,7 +22,7 @@ public class OfficeSuppliesController implements IRequestController {
   @FXML MFXButton submitButton;
   @FXML MFXButton cancelButton;
   @FXML MFXButton clearForm;
-  @FXML MFXTextField staffName;
+  @FXML MFXTextField recipientName;
   @FXML SearchableComboBox<String> roomName;
   @FXML MFXTextField notes;
   @FXML SearchableComboBox<String> deliveryTime;
@@ -57,7 +57,7 @@ public class OfficeSuppliesController implements IRequestController {
   }
 
   private void clearForm() {
-    staffName.clear();
+    recipientName.clear();
     roomName.setValue(null);
     notes.clear();
     deliveryTime.setValue(null);
@@ -69,7 +69,7 @@ public class OfficeSuppliesController implements IRequestController {
   @Override
   public ServiceRequestData sendRequest() {
     JSONObject requestData = new JSONObject();
-    requestData.put("staffName", staffName.getText());
+    requestData.put("staffName", recipientName.getText());
     requestData.put("officeName", roomName.getValue());
     requestData.put("deliveryTime", deliveryTime.getValue());
     requestData.put("supplyType", officeSupplyType.getValue());

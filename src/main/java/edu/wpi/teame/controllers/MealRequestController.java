@@ -26,7 +26,7 @@ public class MealRequestController implements IRequestController {
   @FXML SearchableComboBox<String> deliveryTime;
   @FXML SearchableComboBox<String> mainCourseChoice;
   @FXML SearchableComboBox<String> sideCourseChoice;
-  @FXML MFXTextField assignStaff;
+  @FXML MFXTextField assignedStaff;
   @FXML MFXButton clearForm;
 
   ObservableList<String> deliveryTimes =
@@ -76,7 +76,7 @@ public class MealRequestController implements IRequestController {
             ServiceRequestData.RequestType.MEALDELIVERY,
             requestData,
             ServiceRequestData.Status.PENDING,
-            assignStaff.getText());
+            assignedStaff.getText());
 
     // Return to home screen
     Navigation.navigate(Screen.HOME);
@@ -100,6 +100,6 @@ public class MealRequestController implements IRequestController {
     mainCourseChoice.setValue(null);
     sideCourseChoice.setValue(null);
     notes.clear();
-    assignStaff.clear();
+    assignedStaff.clear();
   }
 }
