@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -18,6 +19,8 @@ import javafx.scene.shape.Circle;
 public class DatabaseMapViewController {
 
   @FXML AnchorPane mapPane;
+
+  @FXML ImageView imageView;
 
   // Sidebar Elements
   @FXML VBox sidebar;
@@ -28,17 +31,17 @@ public class DatabaseMapViewController {
   @FXML MFXButton cancelButton; // clicking will revert changes and close the sidebar
   @FXML MFXButton refreshButton;
 
-  MapUtilities util = new MapUtilities();
+  MapUtilities util;
   // SQLRepo dB = SQLRepo.INSTANCE;
 
   @FXML
   public void initialize() {
     // editableNode(new HospitalNode());
+    util = new MapUtilities(mapPane);
     SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
     //    mapPane.setMinWidth(600);
     //    mapPane.setMaxWidth(400);
     //    System.out.println("mapPane" + mapPane.getWidth());
-    //    loadFloorNodes(Floor.LOWER_ONE);
     refreshButton.setOnMouseClicked(event -> loadFloorNodes(Floor.LOWER_ONE));
     sidebar.setVisible(false);
 
@@ -50,10 +53,12 @@ public class DatabaseMapViewController {
             sidebar.setVisible(false);
           }
         });
+
+    //    loadFloorNodes(Floor.LOWER_ONE);
   }
 
   private void editableNode(HospitalNode node) {
-    Circle nodePoint = util.drawHospitalNode(node, mapPane);
+    Circle nodePoint = util.drawHospitalNode(node);
     nodePoint.setOnMouseClicked(
         new EventHandler<MouseEvent>() {
           @Override
@@ -85,7 +90,7 @@ public class DatabaseMapViewController {
     System.out.println(node);
   }
 
-  private void loadFloorNodes(Floor floor) {
+  public void loadFloorNodes(Floor floor) {
     List<HospitalNode> nodes = SQLRepo.INSTANCE.getNodesFromFloor(floor);
     for (HospitalNode node : nodes) {
       editableNode(node);
