@@ -6,12 +6,14 @@ import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.map.LocationName;
 import edu.wpi.teame.utilities.MapUtilities;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -69,7 +71,15 @@ public class DatabaseMapViewController {
 
   private void editableNode(HospitalNode node) {
     Circle nodePoint = util.drawHospitalNode(node);
-
+    try {
+      Label nodeLabel =
+          util.createLabel(
+              node.getXCoord(),
+              node.getYCoord(),
+              SQLRepo.INSTANCE.getShortNameFromNodeID(node.getNodeID()));
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
     nodePoint.setOnMouseClicked(
         event -> {
           for (Node nodeCircle : util.filterShapes(Circle.class)) {
