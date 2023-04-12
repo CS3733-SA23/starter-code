@@ -25,12 +25,12 @@ public class ServiceRequestPageController {
   @FXML
   public void initialize() {
 
-    // Initially set the menuVBox to invisible
+    // Initially set the menu bar to invisible
     menuBarVisible(false);
 
     // When the menu button is clicked, invert the value of menuVisibility and set the menuVBox to
     // that value
-    // (so each time the menu button is clicked it changes the visibility of menuVBox back and
+    // (so each time the menu button is clicked it changes the visibility of menu bar back and
     // forth)
     menuButton.setOnMouseClicked(
         event -> {
@@ -38,7 +38,7 @@ public class ServiceRequestPageController {
           menuBarVisible(menuVisibilty);
         });
 
-    // Navigation controls for the button in the menuVBox
+    // Navigation controls for the button in the menu bar
     menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     menuBarServices.setOnMouseClicked(
         event -> {
@@ -49,6 +49,7 @@ public class ServiceRequestPageController {
     menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
     menuBarExit.setOnMouseClicked((event -> Platform.exit()));
 
+    //makes the buttons get highlighted when the mouse hovers over them
     mouseSetup(menuBarHome);
     mouseSetup(menuBarServices);
     mouseSetup(menuBarSignage);
