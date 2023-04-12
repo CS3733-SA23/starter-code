@@ -19,8 +19,10 @@
                   <ImageView fx:id="imageView" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../../../Maps/00_thelowerlevel1.png" />
-                     </image></ImageView>
-               </children></AnchorPane>
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
             <VBox fx:id="sidebar" spacing="10.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location Name:" />

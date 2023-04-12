@@ -43,9 +43,6 @@ public class MapUtilities {
     int x = hospitalNode.getXCoord();
     int y = hospitalNode.getYCoord();
 
-    System.out.println("Hospital Node X: " + x);
-    System.out.println("Hospital Node Y: " + y);
-
     // TODO: change color dependent on NodeType
     return drawCircle(x, y, 4);
   }
@@ -103,11 +100,11 @@ public class MapUtilities {
   }
 
   public double convertY(int yCoord) {
-    return convertCoord(yCoord, MAP_Y);
+    return ImageCoordToPane(yCoord, MAP_Y);
   }
 
   public double convertX(int xCoord) {
-    return convertCoord(xCoord, MAP_X);
+    return ImageCoordToPane(xCoord, MAP_X);
   }
 
   /**
@@ -115,9 +112,19 @@ public class MapUtilities {
    * @param mapWidth
    * @return
    */
-  private double convertCoord(int coord, int mapWidth) {
+  private double ImageCoordToPane(int coord, int mapWidth) {
     double paneWidth = this.pane.getWidth();
     return coord * (paneWidth / mapWidth);
+  }
+
+  public double PaneXToImageX(double coord) {
+    double paneWidth = this.pane.getWidth();
+    return coord * (MAP_Y / paneWidth);
+  }
+
+  public double PaneYToImageY(double coord) {
+    double paneWidth = this.pane.getWidth();
+    return coord * (MAP_X / paneWidth);
   }
 
   /** @param shape */
@@ -131,12 +138,16 @@ public class MapUtilities {
   }
 
   public void removeAll(Class obj) {
-    pane.getChildren().remove(filterShapes(obj));
+    this.pane.getChildren().removeAll(filterShapes(obj));
   }
 
   public ObservableList<Node> filterShapes(Class obj) {
     ObservableList<Node> result = currentNodes;
     result.removeIf(s -> (s.getClass() != obj));
     return result;
+  }
+
+  public ObservableList<Node> getCurrentNodes() {
+    return currentNodes;
   }
 }

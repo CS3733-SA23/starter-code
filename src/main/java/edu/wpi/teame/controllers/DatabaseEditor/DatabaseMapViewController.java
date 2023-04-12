@@ -32,6 +32,7 @@ public class DatabaseMapViewController {
   @FXML MFXButton cancelButton; // clicking will revert changes and close the sidebar
   @FXML MFXButton refreshButton;
 
+  Floor currentFloor;
   MapUtilities util;
   // SQLRepo dB = SQLRepo.INSTANCE;
 
@@ -39,6 +40,7 @@ public class DatabaseMapViewController {
   public void initialize() {
     // editableNode(new HospitalNode());
     util = new MapUtilities(mapPane);
+    currentFloor = Floor.LOWER_ONE;
     SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
     //    mapPane.setMinWidth(600);
     //    mapPane.setMaxWidth(400);
@@ -66,6 +68,13 @@ public class DatabaseMapViewController {
           public void handle(MouseEvent event) {
             displayMetadata(node, nodePoint);
           }
+        });
+
+    nodePoint.setOnMouseDragged(
+        event -> {
+          ((Circle) event.getSource()).setCenterX(event.getX());
+          ((Circle) event.getSource()).setCenterY(event.getY());
+          updateMetadata(node, nodePoint);
         });
   }
 
@@ -144,7 +153,13 @@ public class DatabaseMapViewController {
     System.out.println(node);
   }
 
+  private void updateMetadata(HospitalNode node, Circle nodePoint) {
+    xField.setText(util.PaneXToImageX(nodePoint.getCenterX()) + "");
+    yField.setText(util.PaneYToImageY(nodePoint.getCenterY()) + "");
+  }
+
   public void loadFloorNodes(Floor floor) {
+    util.removeAll(Circle.class);
     List<HospitalNode> nodes = SQLRepo.INSTANCE.getNodesFromFloor(floor);
     for (HospitalNode node : nodes) {
       editableNode(node);
@@ -160,9 +175,11 @@ public class DatabaseMapViewController {
       // update the move name
 
       // get rid of the circle associated with the node
-      mapPane.getChildren().remove(nodePoint);
+      util.removeNode(nodePoint);
+
+
       // re-make the damn circle and node
-      editableNode(node);
+      loadFloorNodes(currentFloor);
 
     } catch (NumberFormatException e) {
       // do nothing or create a popup
