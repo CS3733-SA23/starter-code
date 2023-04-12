@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
-<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
-<?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
@@ -16,35 +15,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="theBigPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-border-color: #000000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.MapController">
+<AnchorPane fx:id="theBigPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.MapController">
    <children>
       <BorderPane prefHeight="720.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <left>
-            <VBox fx:id="theBoxOfV" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="300.0" spacing="25.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label fx:id="mapLabel">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="SansSerif Regular" size="14.0" />
-                     </font>
-                  </Label>
-                  <VBox alignment="CENTER">
-                     <children>
-                        <MFXComboBox fx:id="currentLocationList" prefColumnCount="15" prefHeight="50.0" prefWidth="200.0" promptText="Location" />
-                        <Line endY="-50.0" stroke="WHITE" />
-                        <MFXComboBox fx:id="destinationList" prefColumnCount="15" prefHeight="50.0" prefWidth="200.0" promptText="Destination" />
-                     </children>
-                  </VBox>
-                  <MFXScrollPane maxHeight="-Infinity" prefHeight="200.0" VBox.vgrow="ALWAYS">
-                     <content>
-                        <Label fx:id="pathLabel" minHeight="200.0" prefWidth="250.0" style="-fx-background-color: #FFFFFF;" wrapText="true" />
-                     </content>
-                  </MFXScrollPane>
-               </children>
-            </VBox>
-         </left>
          <center>
             <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="980.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="30.0" tabMaxWidth="100.0" tabMinHeight="30.0" tabMinWidth="100.0" BorderPane.alignment="CENTER">
                <tabs>
@@ -54,12 +27,14 @@
                            <children>
                               <AnchorPane fx:id="mapPane" minWidth="-Infinity" prefWidth="980.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <StackPane fx:id="imagePane" minHeight="-Infinity" minWidth="-Infinity" prefWidth="980.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                    <ImageView fx:id="mapImage" fitWidth="980.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../../../../../Maps/01_thefirstfloor.png" />
-                                       </image>
-                                    </ImageView>
+                                    <StackPane fx:id="imagePane" minHeight="-Infinity" minWidth="-Infinity" prefWidth="980.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <ImageView fx:id="mapImage" fitWidth="980.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../../Maps/01_thefirstfloor.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children></StackPane>
                                  </children>
                               </AnchorPane>
                            </children>
@@ -95,13 +70,10 @@
                                  <children>
                                     <StackPane fx:id="imagePane11" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <ImageView fx:id="mapImage11" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                                          <ImageView fx:id="mapImage11" fitWidth="980.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                                              <image>
                                                 <Image url="@../../../../../../../Maps/03_thethirdfloor.png" />
                                              </image>
-                                             <viewport>
-                                                <Rectangle2D />
-                                             </viewport>
                                           </ImageView>
                                        </children>
                                     </StackPane>
@@ -119,7 +91,7 @@
                                  <children>
                                     <StackPane fx:id="imagePane111" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <ImageView fx:id="mapImage111" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                                          <ImageView fx:id="mapImage111" fitWidth="980.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                                              <image>
                                                 <Image url="@../../../../../../../Maps/00_thelowerlevel1.png" />
                                              </image>
@@ -143,7 +115,7 @@
                                  <children>
                                     <StackPane fx:id="imagePane1111" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <ImageView fx:id="mapImage1111" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                                          <ImageView fx:id="mapImage1111" fitWidth="980.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                                              <image>
                                                 <Image url="@../../../../../../../Maps/00_thelowerlevel2.png" />
                                              </image>
@@ -162,6 +134,33 @@
                </tabs>
             </TabPane>
          </center>
+         <left>
+            <AnchorPane prefHeight="720.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="mapLabel" prefHeight="300.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                     <font>
+                        <Font name="SansSerif Regular" size="14.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" prefHeight="360.0" prefWidth="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <MFXComboBox fx:id="currentLocationList" animated="false" prefColumnCount="15" prefHeight="50.0" prefWidth="200.0" promptText="Location" style="-fx-border-color: #000000;" />
+                        <Line endY="-50.0" strokeWidth="2.0" />
+                        <MFXComboBox fx:id="destinationList" animated="false" prefColumnCount="15" prefHeight="50.0" prefWidth="200.0" promptText="Destination" style="-fx-border-color: #000000;" />
+                     </children>
+                  </VBox>
+                  <ScrollPane prefHeight="360.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                    <content>
+                      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+                           <children>
+                              <Label fx:id="pathLabel" alignment="TOP_LEFT" prefHeight="360.0" prefWidth="284.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </left>
       </BorderPane>
    </children>
 </AnchorPane>
