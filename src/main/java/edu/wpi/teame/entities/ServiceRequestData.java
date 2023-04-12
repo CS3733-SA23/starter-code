@@ -41,7 +41,8 @@ public class ServiceRequestData {
   public enum RequestType {
     MEALDELIVERY,
     FLOWERDELIVERY,
-    OFFICESUPPLIESDELIVERY;
+    OFFICESUPPLIESDELIVERY,
+    CONFERENCEROOM;
 
     public static RequestType stringToRequestType(String rt) {
       switch (rt) {

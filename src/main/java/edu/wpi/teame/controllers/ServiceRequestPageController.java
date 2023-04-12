@@ -49,7 +49,7 @@ public class ServiceRequestPageController {
     menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
     menuBarExit.setOnMouseClicked((event -> Platform.exit()));
 
-    //makes the buttons get highlighted when the mouse hovers over them
+    // makes the buttons get highlighted when the mouse hovers over them
     mouseSetup(menuBarHome);
     mouseSetup(menuBarServices);
     mouseSetup(menuBarSignage);

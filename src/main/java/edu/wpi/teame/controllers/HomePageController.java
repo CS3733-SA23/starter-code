@@ -39,7 +39,6 @@ public class HomePageController {
     databaseViewButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_DATA_EDITOR));
     mapsButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
 
-
     menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
@@ -47,7 +46,6 @@ public class HomePageController {
     menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate((Screen.MAP_DATA_EDITOR)));
     menuBarExit.setOnMouseClicked(event -> Platform.exit()); // Uncomment when we
     // know where exit goes
-
 
     loggedIn = false;
     loginButton.setOnMouseClicked(event -> attemptLogin());
@@ -76,7 +74,7 @@ public class HomePageController {
     menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
     menuBarExit.setOnMouseClicked((event -> Platform.exit()));
 
-    //makes the buttons get highlighted when the mouse hovers over them
+    // makes the buttons get highlighted when the mouse hovers over them
     mouseSetup(menuBarHome);
     mouseSetup(menuBarServices);
     mouseSetup(menuBarMaps);

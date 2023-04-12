@@ -7,6 +7,7 @@ import edu.wpi.teame.utilities.Navigation;
 import edu.wpi.teame.utilities.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,71 +15,72 @@ import javafx.fxml.FXML;
 import org.json.JSONObject;
 
 public class RoomRequestController {
-    ObservableList<String> bookingTimes =
-            FXCollections.observableArrayList(
-                    "10am - 11am", "11am - 12pm", "12pm - 1pm", "1pm - 2pm", "2pm - 3pm", "3pm - 4pm");
+  ObservableList<String> times =
+      FXCollections.observableArrayList(
+          "10am - 11am", "11am - 12pm", "12pm - 1pm", "1pm - 2pm", "2pm - 3pm", "3pm - 4pm");
 
+  @FXML MFXTextField recipientName;
+  @FXML MFXTextField roomNumber;
+  @FXML MFXComboBox<String> bookingTime;
+  @FXML MFXDatePicker date;
+  @FXML MFXTextField notes;
+  @FXML MFXButton cancelButton;
+  @FXML MFXButton clearForm;
+  @FXML MFXTextField assignedStaff;
+  @FXML MFXButton submitButton;
 
+  @FXML
+  public void initialize() {
+    // Add the items to the combo boxes
 
-    @FXML
-    MFXTextField recipientName;
-    @FXML MFXTextField roomNumber;
-    @FXML
-    MFXComboBox<String> bookingTime;
-    @FXML MFXTextField notes;
-    @FXML MFXButton cancelButton;
-    @FXML MFXButton clearForm;
+    bookingTime.setItems(times);
+    // Initialize the buttons
 
-    @FXML MFXButton submitButton;
-    @FXML
-    public void initialize() {
-        // Add the items to the combo boxes
+    submitButton.setOnMouseClicked(event -> sendRequest());
+    cancelButton.setOnMouseClicked(event -> cancelRequest());
+    clearForm.setOnMouseClicked(event -> clearForm());
+  }
 
-        bookingTime.setItems(bookingTimes);
-        // Initialize the buttons
+  public ServiceRequestData sendRequest() {
 
-        submitButton.setOnMouseClicked(event -> sendRequest());
-        cancelButton.setOnMouseClicked(event -> cancelRequest());
-        clearForm.setOnMouseClicked(event -> clearForm());
-    }
+    // Create the json to store the values
+    JSONObject requestData = new JSONObject();
+    requestData.put("deliveryTime", bookingTime.getText());
+    requestData.put("bookingDate", date.getText());
+    requestData.put("recipientName", recipientName.getText());
+    requestData.put("roomNumber", roomNumber.getText());
+    requestData.put("notes", notes.getText());
 
-    public ServiceRequestData sendRequest() {
+    // Create the service request data
+    ServiceRequestData flowerRequestData =
+        new ServiceRequestData(
+            ServiceRequestData.RequestType.CONFERENCEROOM,
+            requestData,
+            ServiceRequestData.Status.PENDING,
+            assignedStaff.getText());
 
-        // Create the json to store the values
-        JSONObject requestData = new JSONObject();
-        requestData.put("deliveryTime", bookingTime.getText());
-        requestData.put("recipientName", recipientName.getText());
-        requestData.put("roomNumber", roomNumber.getText());
-        requestData.put("notes", notes.getText());
+    // Return to the home screen
+    Navigation.navigate(Screen.HOME);
 
-        // Create the service request data
-        ServiceRequestData flowerRequestData =
-                new ServiceRequestData(
-                        ServiceRequestData.RequestType.FLOWERDELIVERY,
-                        requestData,
-                        ServiceRequestData.Status.PENDING,
+    DatabaseController db = DatabaseController.INSTANCE;
+    DatabaseServiceController dbsc = new DatabaseServiceController(db);
 
-        // Return to the home screen
-        Navigation.navigate(Screen.HOME);
+    dbsc.addServiceRequestToDatabase(flowerRequestData);
+    return flowerRequestData;
+  }
 
-        DatabaseController db = DatabaseController.INSTANCE;
-        DatabaseServiceController dbsc = new DatabaseServiceController(db);
+  // Cancels the current service request
+  public void cancelRequest() {
+    Navigation.navigate(Screen.HOME);
+  }
 
-        dbsc.addServiceRequestToDatabase(flowerRequestData);
-        return flowerRequestData;
-    }
-
-    // Cancels the current service request
-    public void cancelRequest() {
-        Navigation.navigate(Screen.HOME);
-    }
-
-    // Clears the current service request fields
-    public void clearForm() {
-        bookingTime.clear();
-        recipientName.clear();
-        roomNumber.clear();
-        notes.clear();
-    }
-
+  // Clears the current service request fields
+  public void clearForm() {
+    bookingTime.clear();
+    recipientName.clear();
+    roomNumber.clear();
+    notes.clear();
+    assignedStaff.clear();
+    date.clear();
+  }
 }

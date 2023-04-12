@@ -142,8 +142,10 @@
                      <content>
                         <fx:include snapToPixel="false" source="OfficeSuppliesRequest.fxml" />
                      </content></Tab>
-                  <Tab text="Furniture Delivery" />
-                  <Tab text="Conference Room Bookings" />
+                  <Tab text="Conference Room Bookings">
+                     <content>
+                        <fx:include source="RoomRequestPage.fxml" />
+                     </content></Tab>
                </tabs>
                <StackPane.margin>
                   <Insets left="100.0" top="130.0" />
