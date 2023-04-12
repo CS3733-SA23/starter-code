@@ -9,9 +9,9 @@
 <FlowPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.DatabaseEditor.DatabaseEditorController">
    <children>
       <MFXButton fx:id="backButton" text="Back" />
-      <TabPane tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Edit Database">
+          <Tab fx:id="editDatabaseTab" text="Edit Database">
             <content>
               <AnchorPane>
                      <children>
@@ -20,11 +20,11 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Edit Map">
+          <Tab fx:id="editMapTab" text="Edit Map">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0">
                      <children>
-                        <fx:include source="MapEditorView.fxml" />
+                        <fx:include source="MapEditorView.fxml"  fx:id="mapView"/>
                      </children></AnchorPane>
             </content>
           </Tab>

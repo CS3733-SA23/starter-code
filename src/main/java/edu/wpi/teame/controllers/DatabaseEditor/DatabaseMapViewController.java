@@ -9,15 +9,20 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class DatabaseMapViewController {
 
   @FXML AnchorPane mapPane;
+
+  @FXML ImageView imageView;
 
   // Sidebar Elements
   @FXML VBox sidebar;
@@ -28,26 +33,44 @@ public class DatabaseMapViewController {
   @FXML MFXButton cancelButton; // clicking will revert changes and close the sidebar
   @FXML MFXButton refreshButton;
 
-  MapUtilities util = new MapUtilities();
+  MapUtilities util;
   // SQLRepo dB = SQLRepo.INSTANCE;
 
   @FXML
   public void initialize() {
     // editableNode(new HospitalNode());
+    util = new MapUtilities(mapPane);
+    SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
     //    mapPane.setMinWidth(600);
     //    mapPane.setMaxWidth(400);
     //    System.out.println("mapPane" + mapPane.getWidth());
-    //    loadFloorNodes(Floor.LOWER_ONE);
     refreshButton.setOnMouseClicked(event -> loadFloorNodes(Floor.LOWER_ONE));
     sidebar.setVisible(false);
+
+    // Sidebar functions
+    cancelButton.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            sidebar.setVisible(false);
+          }
+        });
+
+    //    loadFloorNodes(Floor.LOWER_ONE);
   }
 
   private void editableNode(HospitalNode node) {
-    Circle nodePoint = util.drawHospitalNode(node, mapPane);
+    Circle nodePoint = util.drawHospitalNode(node);
     nodePoint.setOnMouseClicked(
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
+            for (Node nodeCircle : util.filterShapes(Circle.class)) {
+              Circle circle = ((Circle) nodeCircle);
+              circle.setFill(Color.BLACK);
+              circle.setTranslateX(0);
+              circle.setTranslateY(0);
+            }
             displayMetadata(node, nodePoint);
           }
         });
@@ -59,14 +82,16 @@ public class DatabaseMapViewController {
     locationField.setText(SQLRepo.INSTANCE.getNamefromNodeID(Integer.parseInt(node.getNodeID())));
     int originalX = node.getXCoord();
     int originalY = node.getYCoord();
+    String originalName = SQLRepo.INSTANCE.getNamefromNodeID(Integer.parseInt(node.getNodeID()));
     xField.setText(node.getXCoord() + "");
     yField.setText(node.getYCoord() + "");
+    nodePoint.setFill(Color.RED);
 
     confirmButton.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
           public void handle(ActionEvent event) {
-            updateCoords(node, xField.getText(), yField.getText());
+            updateCoords(node, xField.getText(), yField.getText(), nodePoint);
           }
         });
 
@@ -119,6 +144,7 @@ public class DatabaseMapViewController {
           public void handle(ActionEvent event) {
             nodePoint.setTranslateX(0);
             nodePoint.setTranslateY(0);
+            nodePoint.setFill(Color.BLACK);
             sidebar.setVisible(false);
           }
         });
@@ -126,19 +152,26 @@ public class DatabaseMapViewController {
     System.out.println(node);
   }
 
-  private void loadFloorNodes(Floor floor) {
+  public void loadFloorNodes(Floor floor) {
     List<HospitalNode> nodes = SQLRepo.INSTANCE.getNodesFromFloor(floor);
     for (HospitalNode node : nodes) {
       editableNode(node);
     }
   }
 
-  private void updateCoords(HospitalNode node, String x, String y) {
+  private void updateCoords(HospitalNode node, String x, String y, Circle nodePoint) {
     try {
       Integer.parseInt(x);
       Integer.parseInt(y);
       SQLRepo.INSTANCE.updateNode(node, "xcoord", x);
       SQLRepo.INSTANCE.updateNode(node, "ycoord", y);
+      // update the move name
+
+      // get rid of the circle associated with the node
+      mapPane.getChildren().remove(nodePoint);
+      // re-make the damn circle and node
+      editableNode(node);
+
     } catch (NumberFormatException e) {
       // do nothing or create a popup
     }
