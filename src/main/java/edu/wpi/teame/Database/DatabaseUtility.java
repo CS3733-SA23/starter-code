@@ -38,14 +38,26 @@ public class DatabaseUtility {
     }
   }
 
-  public void updateFromNodeID(String nodeID, String attribute, String value){
-    String updateSQL = "UPDATE \"Move\" " + "SET \"" + attribute + "\" = '" + value + "' WHERE \"nodeID\" = '" + nodeID + "';";
+  public void updateMoveWithoutObject(
+      String nodeID, String oldLocationName, String columnName, String value) {
+    String updateSQL =
+        "UPDATE \"Move\" "
+            + "SET \""
+            + columnName
+            + "\" = '"
+            + value
+            + "' WHERE \"nodeID\" = '"
+            + nodeID
+            + "' AND \"longName\" = '"
+            + oldLocationName
+            + "';";
     try {
       Statement stmt = activeConnection.createStatement();
       stmt.executeUpdate(updateSQL);
       stmt.close();
-    } catch (SQLException e){
-      System.out.println("Exception: Cannot duplicate two set of the same edges, start and nodes have to exist (cannot create more ids)");
+    } catch (SQLException e) {
+      System.out.println(
+          "Exception: Cannot duplicate two set of the same edges, start and nodes have to exist (cannot create more ids)");
     }
   }
 
