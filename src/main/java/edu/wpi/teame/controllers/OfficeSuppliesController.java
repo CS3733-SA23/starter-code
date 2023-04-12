@@ -2,15 +2,18 @@ package edu.wpi.teame.controllers;
 
 import edu.wpi.teame.Database.DatabaseController;
 import edu.wpi.teame.Database.DatabaseServiceController;
+import edu.wpi.teame.Database.SQLRepo;
 import edu.wpi.teame.entities.ServiceRequestData;
+import edu.wpi.teame.map.LocationName;
 import edu.wpi.teame.utilities.Navigation;
 import edu.wpi.teame.utilities.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.controlsfx.control.SearchableComboBox;
 import org.json.JSONObject;
 
 public class OfficeSuppliesController implements IRequestController {
@@ -20,10 +23,10 @@ public class OfficeSuppliesController implements IRequestController {
   @FXML MFXButton cancelButton;
   @FXML MFXButton clearForm;
   @FXML MFXTextField staffName;
-  @FXML MFXTextField officeNumber;
+  @FXML SearchableComboBox<String> roomName;
   @FXML MFXTextField notes;
-  @FXML MFXComboBox<String> deliveryTime;
-  @FXML MFXComboBox<String> officeSupplyType;
+  @FXML SearchableComboBox<String> deliveryTime;
+  @FXML SearchableComboBox<String> officeSupplyType;
   @FXML MFXTextField quantityOfSupplies;
   @FXML MFXTextField assignedStaff;
 
@@ -36,6 +39,16 @@ public class OfficeSuppliesController implements IRequestController {
 
   @FXML
   public void initialize() {
+    Stream<LocationName> locationStream = SQLRepo.INSTANCE.getLocationList().stream();
+    ObservableList<String> names =
+        FXCollections.observableArrayList(
+            locationStream
+                .map(
+                    (locationName) -> {
+                      return locationName.getLongName();
+                    })
+                .toList());
+    roomName.setItems(names);
     deliveryTime.setItems(deliveryTimes);
     officeSupplyType.setItems(officeSupplies);
     submitButton.setOnMouseClicked(event -> sendRequest());
@@ -45,10 +58,10 @@ public class OfficeSuppliesController implements IRequestController {
 
   private void clearForm() {
     staffName.clear();
-    officeNumber.clear();
+    roomName.setValue(null);
     notes.clear();
-    deliveryTime.clear();
-    officeSupplyType.clear();
+    deliveryTime.setValue(null);
+    officeSupplyType.setValue(null);
     quantityOfSupplies.clear();
     assignedStaff.clear();
   }
@@ -57,9 +70,9 @@ public class OfficeSuppliesController implements IRequestController {
   public ServiceRequestData sendRequest() {
     JSONObject requestData = new JSONObject();
     requestData.put("staffName", staffName.getText());
-    requestData.put("officeNumber", officeNumber.getText());
-    requestData.put("deliveryTime", deliveryTime.getText());
-    requestData.put("supplyType", officeSupplyType.getText());
+    requestData.put("officeName", roomName.getValue());
+    requestData.put("deliveryTime", deliveryTime.getValue());
+    requestData.put("supplyType", officeSupplyType.getValue());
     requestData.put("numOfSupplies", quantityOfSupplies.getText());
     requestData.put("notes", notes.getText());
 
