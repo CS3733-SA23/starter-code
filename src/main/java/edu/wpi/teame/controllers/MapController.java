@@ -90,6 +90,7 @@ public class MapController {
     destinationList.setValue("");
     pathLabel.setText("");
     refreshPath(whichPane(floor));
+    mapUtil = new MapUtilities(whichPane(currentFloor));
   }
 
   @FXML
@@ -127,7 +128,8 @@ public class MapController {
     // create circle to symbolize start
     int x1 = path.get(0).getXCoord();
     int y1 = path.get(0).getYCoord();
-    mapUtil.drawRing(x1, y1, 4, 3, BLACK, WHITE);
+    mapUtil.drawRing(x1, y1, 8, 2, WHITE, BLACK);
+    mapUtil.createLabel(x1, y1, 5, 5, "Current Location");
 
     // draw the lines between each node
     int x2, y2;
@@ -143,7 +145,8 @@ public class MapController {
     }
 
     // create circle to symbolize end
-    mapUtil.drawCircle(x1, y1, 4, BLACK);
+    mapUtil.drawCircle(x1, y1, 8, BLACK);
+    mapUtil.createLabel(x1, y1, 5, 5, "Destination");
   }
 
   /** removes all the lines in the currentLines list */

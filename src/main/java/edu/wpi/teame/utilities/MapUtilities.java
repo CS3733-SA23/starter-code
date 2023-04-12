@@ -9,7 +9,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Shape;
 
 public class MapUtilities {
   private final int MAP_X = 5000;
@@ -98,16 +97,29 @@ public class MapUtilities {
     label.setLayoutY(convertY(y));
 
     currentNodes.add(label);
+    addShape(label);
+
+    return label;
+  }
+
+  public Label createLabel(int x, int y, int xOffset, int yOffset, String text) {
+
+    Label label = new Label(text);
+    label.setLayoutX(convertX(x + xOffset));
+    label.setLayoutY(convertY(y + yOffset));
+
+    currentNodes.add(label);
+    addShape(label);
 
     return label;
   }
 
   public double convertY(int yCoord) {
-    return convertCoord(yCoord, MAP_Y, pane.getWidth());
+    return convertCoord(yCoord, MAP_Y, pane.getHeight());
   }
 
   public double convertX(int xCoord) {
-    return convertCoord(xCoord, MAP_X, pane.getHeight());
+    return convertCoord(xCoord, MAP_X, pane.getWidth());
   }
 
   /**
@@ -119,10 +131,10 @@ public class MapUtilities {
     return coord * (paneWidth / mapWidth);
   }
 
-  /** @param shape */
-  private void addShape(Shape shape) {
-    pane.getChildren().add(shape);
-    currentNodes.add(shape);
+  /** @param node */
+  private void addShape(Node node) {
+    pane.getChildren().add(node);
+    currentNodes.add(node);
   }
 
   public void removeNode(Node node) {
