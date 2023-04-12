@@ -91,7 +91,8 @@ public class DatabaseMapViewController {
         new EventHandler<ActionEvent>() {
           @Override
           public void handle(ActionEvent event) {
-            updateCoords(node, xField.getText(), yField.getText(), nodePoint);
+            updateCoords(
+                node, xField.getText(), yField.getText(), locationField.getText(), nodePoint);
           }
         });
 
@@ -149,7 +150,7 @@ public class DatabaseMapViewController {
           }
         });
 
-    System.out.println(node);
+    // System.out.println(node);
   }
 
   public void loadFloorNodes(Floor floor) {
@@ -159,14 +160,18 @@ public class DatabaseMapViewController {
     }
   }
 
-  private void updateCoords(HospitalNode node, String x, String y, Circle nodePoint) {
+  private void updateCoords(HospitalNode node, String x, String y, String name, Circle nodePoint) {
     try {
       Integer.parseInt(x);
       Integer.parseInt(y);
       SQLRepo.INSTANCE.updateNode(node, "xcoord", x);
       SQLRepo.INSTANCE.updateNode(node, "ycoord", y);
       // update the move name
-
+      SQLRepo.INSTANCE.updateUsingNodeID(
+          node.getNodeID(),
+          SQLRepo.INSTANCE.getNamefromNodeID(Integer.parseInt(node.getNodeID())),
+          "longName",
+          name);
       // get rid of the circle associated with the node
       mapPane.getChildren().remove(nodePoint);
       // re-make the damn circle and node
