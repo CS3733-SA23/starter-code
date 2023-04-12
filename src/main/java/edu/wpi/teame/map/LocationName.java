@@ -51,7 +51,8 @@ public class LocationName {
         case "EXIT":
           return NodeType.EXIT;
         default:
-          throw new NoSuchElementException("No such NodeType found");
+          throw new NoSuchElementException(
+              "No such NodeType found! you tried to do a " + str + "!");
       }
     }
 

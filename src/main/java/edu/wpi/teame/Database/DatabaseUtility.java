@@ -1,9 +1,6 @@
 package edu.wpi.teame.Database;
 
-import edu.wpi.teame.map.Floor;
-import edu.wpi.teame.map.HospitalNode;
-import edu.wpi.teame.map.MoveAttribute;
-import edu.wpi.teame.map.NodeInitializer;
+import edu.wpi.teame.map.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,15 +35,41 @@ public class DatabaseUtility {
     }
   }
 
-  public void updateFromNodeID(String nodeID, String attribute, String value) {
+  public String getShortNameFromNodeID(String nodeID) throws SQLException {
+    String sqlMove = "SELECT \"longName\" FROM \"Move\" WHERE \"nodeID\" = '" + nodeID + "';";
+    Statement stmt = activeConnection.createStatement();
+    ResultSet rs = stmt.executeQuery(sqlMove);
+    String longName;
+    if (rs.next()) {
+      longName = rs.getString("longName");
+    } else {
+      throw new RuntimeException("Could not find long name for node ID: " + nodeID);
+    }
+
+    String sqlLocationName =
+        "SELECT \"shortName\" FROM \"LocationName\" WHERE \"longName\" = '" + longName + "';";
+    rs = stmt.executeQuery(sqlLocationName);
+    String shortName;
+    if (rs.next()) {
+      shortName = rs.getString("shortName");
+    } else {
+      throw new RuntimeException("Could not find short name for long name: " + longName);
+    }
+    return shortName;
+  }
+
+  public void updateMoveWithoutObject(
+      String nodeID, String oldLocationName, String columnName, String value) {
     String updateSQL =
         "UPDATE \"Move\" "
             + "SET \""
-            + attribute
+            + columnName
             + "\" = '"
             + value
             + "' WHERE \"nodeID\" = '"
             + nodeID
+            + "' AND \"longName\" = '"
+            + oldLocationName
             + "';";
     try {
       Statement stmt = activeConnection.createStatement();
@@ -105,6 +128,14 @@ public class DatabaseUtility {
     List<String> longNames = new ArrayList<>();
     for (MoveAttribute moveAttribute : mv) {
       longNames.add(moveAttribute.getLongName());
+    }
+    return longNames;
+  }
+
+  List<String> getLongNamesFromLocationName(List<LocationName> ln) {
+    List<String> longNames = new ArrayList<>();
+    for (LocationName locationName : ln) {
+      longNames.add(locationName.getLongName());
     }
     return longNames;
   }

@@ -486,9 +486,9 @@ public class DatabaseTableViewController {
         case SERVICE_REQUESTS:
           activeTable = requestTable;
           activeTableEnum = table;
-          importButton.setDisable(true);
-          exportButton.setDisable(true);
-          deleteButton.setDisable(true);
+          importButton.setDisable(false);
+          exportButton.setDisable(false);
+          deleteButton.setDisable(false);
           break;
       }
     }

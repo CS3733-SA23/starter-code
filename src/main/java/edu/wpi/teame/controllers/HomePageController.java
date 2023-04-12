@@ -2,6 +2,7 @@ package edu.wpi.teame.controllers;
 
 import static javafx.scene.paint.Color.WHITE;
 
+import edu.wpi.teame.Database.SQLRepo;
 import edu.wpi.teame.entities.LoginData;
 import edu.wpi.teame.utilities.Navigation;
 import edu.wpi.teame.utilities.Screen;
@@ -33,6 +34,7 @@ public class HomePageController {
   boolean menuVisibilty = false;
 
   public void initialize() {
+    SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
 
     serviceRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));

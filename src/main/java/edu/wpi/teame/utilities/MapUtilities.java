@@ -14,7 +14,7 @@ public class MapUtilities {
   private final int MAP_X = 5000;
   private final int MAP_Y = 3400;
 
-  private Pane pane;
+  private final Pane pane;
 
   ObservableList<Node> currentNodes = FXCollections.observableArrayList();
 
@@ -41,9 +41,6 @@ public class MapUtilities {
 
     int x = hospitalNode.getXCoord();
     int y = hospitalNode.getYCoord();
-
-    System.out.println("Hospital Node X: " + x);
-    System.out.println("Hospital Node Y: " + y);
 
     // TODO: change color dependent on NodeType
     return drawCircle(x, y, 4);
@@ -91,12 +88,11 @@ public class MapUtilities {
   }
 
   public Label createLabel(int x, int y, String text) {
-
     Label label = new Label(text);
     label.setLayoutX(convertX(x));
     label.setLayoutY(convertY(y));
 
-    currentNodes.add(label);
+    // currentNodes.add(label);
     addShape(label);
 
     return label;
@@ -108,18 +104,18 @@ public class MapUtilities {
     label.setLayoutX(convertX(x + xOffset));
     label.setLayoutY(convertY(y + yOffset));
 
-    currentNodes.add(label);
+    // currentNodes.add(label);
     addShape(label);
 
     return label;
   }
 
   public double convertY(int yCoord) {
-    return convertCoord(yCoord, MAP_Y, pane.getHeight());
+    return ImageCoordToPane(yCoord, MAP_Y, pane.getHeight());
   }
 
   public double convertX(int xCoord) {
-    return convertCoord(xCoord, MAP_X, pane.getWidth());
+    return ImageCoordToPane(xCoord, MAP_X, pane.getWidth());
   }
 
   /**
@@ -127,6 +123,20 @@ public class MapUtilities {
    * @param mapWidth
    * @return
    */
+  private double ImageCoordToPane(int coord, int mapWidth, double paneWidth) {
+    return coord * (paneWidth / mapWidth);
+  }
+
+  public double PaneXToImageX(double coord) {
+    double paneWidth = this.pane.getWidth();
+    return coord * (MAP_X / paneWidth);
+  }
+
+  public double PaneYToImageY(double coord) {
+    double paneWidth = this.pane.getHeight();
+    return coord * (MAP_Y / paneWidth);
+  }
+
   private double convertCoord(int coord, int mapWidth, double paneWidth) {
     return coord * (paneWidth / mapWidth);
   }
@@ -141,8 +151,15 @@ public class MapUtilities {
     pane.getChildren().remove(node);
   }
 
-  public void removeAll(Class obj) {
-    pane.getChildren().remove(filterShapes(obj));
+  public void removeAllByType(Class obj) {
+    System.out.println(obj);
+    System.out.println("remove1 :" + pane.getChildren());
+    this.pane.getChildren().removeAll(filterShapes(obj));
+    System.out.println("remove2 :" + pane.getChildren());
+  }
+
+  public void removeAll() {
+    this.pane.getChildren().removeAll(currentNodes);
   }
 
   public ObservableList<Node> filterShapes(Class obj) {
@@ -152,6 +169,6 @@ public class MapUtilities {
   }
 
   public ObservableList<Node> getCurrentNodes() {
-    return this.currentNodes;
+    return currentNodes;
   }
 }

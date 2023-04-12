@@ -83,8 +83,13 @@ public enum SQLRepo {
     return this.dbUtility.getNameFromNodeID(nodeID);
   }
 
-  public void updateUsingNodeID(String nodeID, String attribute, String value) {
-    this.dbUtility.updateFromNodeID(nodeID, attribute, value);
+  public void updateUsingNodeID(
+      String nodeID, String oldLongName, String columnName, String value) {
+    this.dbUtility.updateMoveWithoutObject(nodeID, oldLongName, columnName, value);
+  }
+
+  public String getShortNameFromNodeID(String nodeID) throws SQLException {
+    return this.dbUtility.getShortNameFromNodeID(nodeID);
   }
 
   public String getNodeTypeFromNodeID(int nodeID) {
@@ -101,6 +106,10 @@ public enum SQLRepo {
 
   public List<String> getLongNamesFromMove(List<MoveAttribute> mv) {
     return this.dbUtility.getLongNamesFromMove(mv);
+  }
+
+  public List<String> getLongNamesFromLocationName(List<LocationName> ln) {
+    return this.dbUtility.getLongNamesFromLocationName(ln);
   }
 
   public void importFromCSV(Table table, String filepath) {
