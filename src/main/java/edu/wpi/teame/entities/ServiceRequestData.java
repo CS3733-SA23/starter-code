@@ -50,8 +50,10 @@ public class ServiceRequestData {
           return MEALDELIVERY;
         case "FLOWERDELIVERY":
           return FLOWERDELIVERY;
-        case "OFFICESUPPLIESDELIVERY":
+        case "OFFICESUPPLIES":
           return OFFICESUPPLIESDELIVERY;
+        case "CONFERENCEROOM":
+          return CONFERENCEROOM;
         default:
           throw new NoSuchElementException("No such service request found");
       }
@@ -64,7 +66,9 @@ public class ServiceRequestData {
         case FLOWERDELIVERY:
           return "FLOWERDELIVERY";
         case OFFICESUPPLIESDELIVERY:
-          return "OFFICESUPPLIESDELIVERY";
+          return "OFFICESUPPLIES";
+        case CONFERENCEROOM:
+          return "CONFERENCEROOM";
         default:
           throw new NoSuchElementException("No such service request found");
       }
