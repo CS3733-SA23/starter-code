@@ -163,7 +163,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="234.0">
                            <children>
-                              <Label fx:id="pathLabel" alignment="TOP_LEFT" prefHeight="300.0" prefWidth="250.0" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                              <Label fx:id="pathLabel" alignment="TOP_LEFT" prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: #e1e1e1;" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                            </children>
                         </AnchorPane>
                     </content>
