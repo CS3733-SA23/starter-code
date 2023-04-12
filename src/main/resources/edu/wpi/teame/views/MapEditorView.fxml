@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
@@ -23,29 +24,33 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <VBox fx:id="sidebar" spacing="10.0">
+            <VBox fx:id="sidebar">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location Name:" />
-                  <TextField fx:id="locationField" />
-                  <HBox spacing="10.0">
+                  <StackPane>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="x:" />
-                        <TextField fx:id="xField" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="y:" />
-                        <TextField fx:id="yField" />
+                        <HBox fx:id="coordFields" spacing="10.0" visible="false">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="x:" />
+                              <TextField fx:id="xField" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="y:" />
+                              <TextField fx:id="yField" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="nameFields" spacing="10.0" visible="false">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Longname:" />
+                              <ComboBox fx:id="longNameSelector" prefWidth="150.0" />
+                              <MFXButton fx:id="addLocationButton" text="Add new location" />
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
-                  <MFXButton fx:id="dragButton" text="Drag node" />
+                  </StackPane>
                   <HBox spacing="10.0">
                      <children>
-                        <MFXButton fx:id="confirmButton" text="Confirm changes" />
+                        <MFXButton fx:id="confirmButton" text="Confirm" />
                         <MFXButton fx:id="cancelButton" text="Cancel" />
                      </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
                   </HBox>
-                  <MFXButton fx:id="refreshButton" />
                </children>
             </VBox>
          </children>

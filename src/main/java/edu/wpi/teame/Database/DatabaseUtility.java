@@ -132,6 +132,14 @@ public class DatabaseUtility {
     return longNames;
   }
 
+  List<String> getLongNamesFromLocationName(List<LocationName> ln) {
+    List<String> longNames = new ArrayList<>();
+    for (LocationName locationName : ln) {
+      longNames.add(locationName.getLongName());
+    }
+    return longNames;
+  }
+
   String getNodeTypeFromNodeID(int nodeID) {
     String sql = "";
 

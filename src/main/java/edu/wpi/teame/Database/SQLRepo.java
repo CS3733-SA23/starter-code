@@ -108,6 +108,10 @@ public enum SQLRepo {
     return this.dbUtility.getLongNamesFromMove(mv);
   }
 
+  public List<String> getLongNamesFromLocationName(List<LocationName> ln) {
+    return this.dbUtility.getLongNamesFromLocationName(ln);
+  }
+
   public void importFromCSV(Table table, String filepath) {
     try {
       switch (table) {

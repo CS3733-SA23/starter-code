@@ -15,7 +15,7 @@ public class MapUtilities {
   private final int MAP_X = 5000;
   private final int MAP_Y = 3400;
 
-  private Pane pane;
+  private final Pane pane;
 
   ObservableList<Node> currentNodes = FXCollections.observableArrayList();
 
@@ -89,7 +89,6 @@ public class MapUtilities {
   }
 
   public Label createLabel(int x, int y, String text) {
-
     Label label = new Label(text);
     label.setLayoutX(convertX(x));
     label.setLayoutY(convertY(y));
@@ -100,11 +99,11 @@ public class MapUtilities {
   }
 
   public double convertY(int yCoord) {
-    return ImageCoordToPane(yCoord, MAP_Y);
+    return ImageCoordToPane(yCoord, MAP_Y, pane.getHeight());
   }
 
   public double convertX(int xCoord) {
-    return ImageCoordToPane(xCoord, MAP_X);
+    return ImageCoordToPane(xCoord, MAP_X, pane.getWidth());
   }
 
   /**
@@ -112,19 +111,18 @@ public class MapUtilities {
    * @param mapWidth
    * @return
    */
-  private double ImageCoordToPane(int coord, int mapWidth) {
-    double paneWidth = this.pane.getWidth();
+  private double ImageCoordToPane(int coord, int mapWidth, double paneWidth) {
     return coord * (paneWidth / mapWidth);
   }
 
   public double PaneXToImageX(double coord) {
     double paneWidth = this.pane.getWidth();
-    return coord * (MAP_Y / paneWidth);
+    return coord * (MAP_X / paneWidth);
   }
 
   public double PaneYToImageY(double coord) {
-    double paneWidth = this.pane.getWidth();
-    return coord * (MAP_X / paneWidth);
+    double paneWidth = this.pane.getHeight();
+    return coord * (MAP_Y / paneWidth);
   }
 
   /** @param shape */
