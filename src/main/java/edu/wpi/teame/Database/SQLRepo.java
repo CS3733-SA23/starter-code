@@ -83,7 +83,9 @@ public enum SQLRepo {
     return this.dbUtility.getNameFromNodeID(nodeID);
   }
 
-  public void updateUsingNodeID(String nodeID, String attribute, String value){this.dbUtility.updateFromNodeID(nodeID, attribute, value);}
+  public void updateUsingNodeID(String nodeID, String attribute, String value) {
+    this.dbUtility.updateFromNodeID(nodeID, attribute, value);
+  }
 
   public String getNodeTypeFromNodeID(int nodeID) {
     return this.dbUtility.getNodeTypeFromNodeID(nodeID);

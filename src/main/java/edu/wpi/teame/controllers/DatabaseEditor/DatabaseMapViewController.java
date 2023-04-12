@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class DatabaseMapViewController {
@@ -38,7 +39,7 @@ public class DatabaseMapViewController {
     //    mapPane.setMaxWidth(400);
     //    System.out.println("mapPane" + mapPane.getWidth());
     //    loadFloorNodes(Floor.LOWER_ONE);
-    refreshButton.setOnMouseClicked(event -> loadFloorNodes(Floor.LOWER_ONE));
+    refreshButton.setOnMouseClicked(event -> loadFloorNodes(Floor.ONE));
     sidebar.setVisible(false);
   }
 
@@ -61,12 +62,13 @@ public class DatabaseMapViewController {
     int originalY = node.getYCoord();
     xField.setText(node.getXCoord() + "");
     yField.setText(node.getYCoord() + "");
+    nodePoint.setFill(Color.RED);
 
     confirmButton.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
           public void handle(ActionEvent event) {
-            updateCoords(node, xField.getText(), yField.getText());
+            updateCoords(node, xField.getText(), yField.getText(), nodePoint);
           }
         });
 
@@ -119,6 +121,7 @@ public class DatabaseMapViewController {
           public void handle(ActionEvent event) {
             nodePoint.setTranslateX(0);
             nodePoint.setTranslateY(0);
+            nodePoint.setFill(Color.BLACK);
             sidebar.setVisible(false);
           }
         });
@@ -133,12 +136,19 @@ public class DatabaseMapViewController {
     }
   }
 
-  private void updateCoords(HospitalNode node, String x, String y) {
+  private void updateCoords(HospitalNode node, String x, String y, Circle nodePoint) {
     try {
       Integer.parseInt(x);
       Integer.parseInt(y);
       SQLRepo.INSTANCE.updateNode(node, "xcoord", x);
       SQLRepo.INSTANCE.updateNode(node, "ycoord", y);
+      // update the move name
+
+      // get rid of the circle associated with the node
+      mapPane.getChildren().remove(nodePoint);
+      // re-make the damn circle and node
+      editableNode(node);
+
     } catch (NumberFormatException e) {
       // do nothing or create a popup
     }

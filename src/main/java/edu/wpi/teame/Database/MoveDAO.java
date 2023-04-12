@@ -65,7 +65,6 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
     }
   }
 
-
   public void delete(MoveAttribute moveAttribute) {
     String nodeId = moveAttribute.getNodeID();
     String longName = moveAttribute.getLongName();
