@@ -9,8 +9,6 @@ import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.map.pathfinding.AStarPathfinder;
 import edu.wpi.teame.utilities.MapUtilities;
-import edu.wpi.teame.utilities.Navigation;
-import edu.wpi.teame.utilities.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import java.util.ArrayList;
@@ -157,14 +155,7 @@ public class MapController {
     // create circle to symbolize start
     int x1 = path.get(0).getXCoord();
     int y1 = path.get(0).getYCoord();
-    //Circle startCircleOutside = new Circle(convertXCoord(x1), convertYCoord(y1), 4);
-    mapUtil.drawCircle(x1,y1,4,mapPane).setFill(BLACK);
-    Circle startCircleInside = new Circle(convertXCoord(x1), convertYCoord(y1), 3);
-    startCircleInside.setFill(WHITE);
-    mapPane.getChildren().add(mapUtil.drawCircle(x1,y1,4,mapPane).setFill(BLACK););
-    mapPane.getChildren().add(startCircleInside);
-    currentCircles.add(startCircleInside);
-    currentCircles.add(startCircleOutside);
+    mapUtil.drawRing(x1, y1, 4, 3, BLACK, WHITE, mapPane);
 
     // draw the lines between each node
     int x2, y2;
