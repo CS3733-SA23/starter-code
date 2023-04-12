@@ -16,35 +16,25 @@ public class HomePageController {
   @FXML MFXButton serviceRequestButton;
   @FXML MFXButton signageButton;
   @FXML MFXButton databaseViewButton;
-  @FXML MFXButton menuButton;
-  @FXML MFXButton menuBarSignage;
-  @FXML MFXButton menuBarServices;
-  @FXML MFXButton menuBarHome;
-  @FXML MFXButton menuBarMap;
-  @FXML MFXButton menuBarExit;
   @FXML MFXButton mapsButton;
   @FXML MFXButton loginButton;
   @FXML TextField username;
   @FXML TextField password;
+  @FXML MFXButton menuButton;
+  @FXML MFXButton menuBarHome;
+  @FXML MFXButton menuBarServices;
+  @FXML MFXButton menuBarMaps;
   @FXML MFXButton menuBarDatabase;
+  @FXML MFXButton menuBarSignage;
+  @FXML MFXButton menuBarBlank;
+  @FXML MFXButton menuBarExit;
 
   Boolean loggedIn;
 
+  boolean menuVisibilty = false;
+
   public void initialize() {
-    menuDropDownVisibility(false);
 
-    showMenuButtonsWhenHovered(menuButton);
-    showMenuButtonsWhenHovered(menuBarSignage);
-    showMenuButtonsWhenHovered(menuBarServices);
-    showMenuButtonsWhenHovered(menuBarHome);
-    showMenuButtonsWhenHovered(menuBarMap);
-    showMenuButtonsWhenHovered(menuBarDatabase);
-    showMenuButtonsWhenHovered(menuBarExit);
-
-    mouseSetup(serviceRequestButton);
-    mouseSetup(signageButton);
-    mouseSetup(mapsButton);
-    mouseSetup(databaseViewButton);
     serviceRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     databaseViewButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP_DATA_EDITOR));
@@ -53,7 +43,7 @@ public class HomePageController {
     menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
+    menuBarMaps.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
     menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate((Screen.MAP_DATA_EDITOR)));
     menuBarExit.setOnMouseClicked(event -> Platform.exit()); // Uncomment when we
     // know where exit goes
@@ -61,41 +51,42 @@ public class HomePageController {
     loggedIn = false;
     loginButton.setOnMouseClicked(event -> attemptLogin());
 
-    SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
-  }
+    // Initially set the menu bar to invisible
+    menuBarVisible(false);
 
-  public void menuDropDownVisibility(boolean bool) {
-    menuBarSignage.setVisible(bool);
-    menuBarServices.setVisible(bool);
-    menuBarHome.setVisible(bool);
-    menuBarMap.setVisible(bool);
-    menuBarDatabase.setVisible(bool);
-    menuBarExit.setVisible(bool);
-  }
+    // When the menu button is clicked, invert the value of menuVisibility and set the menu bar to
+    // that value
+    // (so each time the menu button is clicked it changes the visibility of menu bar back and
+    // forth)
+    menuButton.setOnMouseClicked(
+        event -> {
+          menuVisibilty = !menuVisibilty;
+          menuBarVisible(menuVisibilty);
+        });
 
-  public void showMenuButtonsWhenHovered(MFXButton button) {
-    button.setOnMouseEntered(
+    // Navigation controls for the button in the menu bar
+    menuBarHome.setOnMouseClicked(
         event -> {
-          menuDropDownVisibility(true);
+          Navigation.navigate(Screen.HOME);
+          menuVisibilty = !menuVisibilty;
         });
-    button.setOnMouseExited(
-        event -> {
-          menuDropDownVisibility(false);
-        });
-  }
+    menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
+    menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
+    menuBarMaps.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
+    menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
+    menuBarExit.setOnMouseClicked((event -> Platform.exit()));
 
-  private void mouseSetup(MFXButton btn) {
-    btn.setOnMouseEntered(
-        event -> {
-          btn.setStyle(
-              "-fx-background-color: #ffffff; -fx-alignment: center; -fx-border-color: #192d5a; -fx-border-width: 2;");
-          btn.setTextFill(Color.web("#192d5aff", 1.0));
-        });
-    btn.setOnMouseExited(
-        event -> {
-          btn.setStyle("-fx-background-color: #192d5aff; -fx-alignment: center;");
-          btn.setTextFill(WHITE);
-        });
+    // makes the buttons get highlighted when the mouse hovers over them
+    mouseSetup(menuBarHome);
+    mouseSetup(menuBarServices);
+    mouseSetup(menuBarMaps);
+    mouseSetup(menuBarDatabase);
+    mouseSetup(menuBarExit);
+    mouseSetup(serviceRequestButton);
+    mouseSetup(menuBarSignage);
+    mouseSetup(signageButton);
+    mouseSetup(mapsButton);
+    mouseSetup(databaseViewButton);
   }
 
   public void attemptLogin() {
@@ -116,5 +107,29 @@ public class HomePageController {
       password.clear();
       username.clear();
     }
+  }
+
+  private void mouseSetup(MFXButton btn) {
+    btn.setOnMouseEntered(
+        event -> {
+          btn.setStyle(
+              "-fx-background-color: #ffffff; -fx-alignment: center; -fx-border-color: #192d5a; -fx-border-width: 2;");
+          btn.setTextFill(Color.web("#192d5aff", 1.0));
+        });
+    btn.setOnMouseExited(
+        event -> {
+          btn.setStyle("-fx-background-color: #192d5aff; -fx-alignment: center;");
+          btn.setTextFill(WHITE);
+        });
+  }
+
+  public void menuBarVisible(boolean bool) {
+    menuBarHome.setVisible(bool);
+    menuBarServices.setVisible(bool);
+    menuBarSignage.setVisible(bool);
+    menuBarMaps.setVisible(bool);
+    menuBarDatabase.setVisible(bool);
+    menuBarExit.setVisible(bool);
+    menuBarBlank.setVisible(bool);
   }
 }

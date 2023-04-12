@@ -40,7 +40,9 @@ public class ServiceRequestData {
 
   public enum RequestType {
     MEALDELIVERY,
-    FLOWERDELIVERY;
+    FLOWERDELIVERY,
+    OFFICESUPPLIESDELIVERY,
+    CONFERENCEROOM;
 
     public static RequestType stringToRequestType(String rt) {
       switch (rt) {
@@ -48,6 +50,8 @@ public class ServiceRequestData {
           return MEALDELIVERY;
         case "FLOWERDELIVERY":
           return FLOWERDELIVERY;
+        case "OFFICESUPPLIESDELIVERY":
+          return OFFICESUPPLIESDELIVERY;
         default:
           throw new NoSuchElementException("No such service request found");
       }
@@ -59,6 +63,8 @@ public class ServiceRequestData {
           return "MEALDELIVERY";
         case FLOWERDELIVERY:
           return "FLOWERDELIVERY";
+        case OFFICESUPPLIESDELIVERY:
+          return "OFFICESUPPLIESDELIVERY";
         default:
           throw new NoSuchElementException("No such service request found");
       }

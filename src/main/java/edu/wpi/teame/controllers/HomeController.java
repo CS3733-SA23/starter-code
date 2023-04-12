@@ -21,6 +21,7 @@ public class HomeController {
 
   @FXML
   public void initialize() {
+
     logoImage.setOnMouseEntered(
         event -> {
           // change to wong.jpg
