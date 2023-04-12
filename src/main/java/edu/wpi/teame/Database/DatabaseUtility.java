@@ -38,15 +38,18 @@ public class DatabaseUtility {
     }
   }
 
-  public void updateFromNodeID(String nodeID, String attribute, String value) {
+  public void updateMoveWithoutObject(
+      String nodeID, String oldLocationName, String columnName, String value) {
     String updateSQL =
         "UPDATE \"Move\" "
             + "SET \""
-            + attribute
+            + columnName
             + "\" = '"
             + value
             + "' WHERE \"nodeID\" = '"
             + nodeID
+            + "' AND \"longName\" = '"
+            + oldLocationName
             + "';";
     try {
       Statement stmt = activeConnection.createStatement();

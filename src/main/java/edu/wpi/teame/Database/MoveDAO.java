@@ -45,6 +45,7 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
 
   public void update(MoveAttribute moveAttribute, String attribute, String value) {
     String nodeID = moveAttribute.getNodeID();
+    String longName = moveAttribute.getLongName();
     String sqlUpdate =
         "UPDATE \"Move\" "
             + "SET \""
@@ -53,6 +54,8 @@ public class MoveDAO<E> extends DAO<MoveAttribute> {
             + value
             + "' WHERE \"nodeID\" = '"
             + nodeID
+            + "' AND \"longName\" = '"
+            + longName
             + "';";
 
     try {
