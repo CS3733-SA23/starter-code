@@ -2,6 +2,7 @@ package edu.wpi.teame.controllers;
 
 import static javafx.scene.paint.Color.WHITE;
 
+import edu.wpi.teame.Database.SQLRepo;
 import edu.wpi.teame.entities.LoginData;
 import edu.wpi.teame.utilities.Navigation;
 import edu.wpi.teame.utilities.Screen;
@@ -59,6 +60,8 @@ public class HomePageController {
 
     loggedIn = false;
     loginButton.setOnMouseClicked(event -> attemptLogin());
+
+    SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
   }
 
   public void menuDropDownVisibility(boolean bool) {

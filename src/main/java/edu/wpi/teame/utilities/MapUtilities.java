@@ -1,7 +1,10 @@
 package edu.wpi.teame.utilities;
 
 import edu.wpi.teame.map.HospitalNode;
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -12,105 +15,128 @@ public class MapUtilities {
   private final int MAP_X = 5000;
   private final int MAP_Y = 3400;
 
-  ArrayList<Shape> currentShapes = new ArrayList<>();
+  private Pane pane;
+
+  ObservableList<Node> currentNodes = FXCollections.observableArrayList();
+
+  public MapUtilities(Pane pane) {
+    this.pane = pane;
+  }
 
   /**
    * draws a line given the starting and ending (x,y) coordinates and saves the line to a global
    * list of lines
    */
-  public Line drawLine(int x1, int y1, int x2, int y2, Pane pane) {
-    x1 = (int) convertX(x1, pane);
-    y1 = (int) convertY(y1, pane);
-    x2 = (int) convertX(x2, pane);
-    y2 = (int) convertY(y2, pane);
+  public Line drawLine(int x1, int y1, int x2, int y2) {
+    x1 = (int) convertX(x1);
+    y1 = (int) convertY(y1);
+    x2 = (int) convertX(x2);
+    y2 = (int) convertY(y2);
 
     Line line = new Line(x1, y1, x2, y2);
-    addShape(line, pane);
+    addShape(line);
     return line;
   }
 
-  public Circle drawHospitalNode(HospitalNode hospitalNode, Pane pane) {
+  public Circle drawHospitalNode(HospitalNode hospitalNode) {
 
     int x = hospitalNode.getXCoord();
     int y = hospitalNode.getYCoord();
 
+    System.out.println("Hospital Node X: " + x);
+    System.out.println("Hospital Node Y: " + y);
+
     // TODO: change color dependent on NodeType
-    return drawCircle(x, y, 4, pane);
+    return drawCircle(x, y, 4);
   }
 
-  public void drawRing(
-      int x, int y, int radius, int thickness, Color innerColor, Color outerColor, Pane pane) {
-    x = (int) convertX(x, pane);
-    y = (int) convertY(y, pane);
+  public Circle drawRing(
+      int x, int y, int radius, int thickness, Color innerColor, Color outerColor) {
+    x = (int) convertX(x);
+    y = (int) convertY(y);
 
     Circle innerCircle = new Circle(x, y, radius - thickness, innerColor);
     Circle outerCircle = new Circle(x, y, radius, outerColor);
-    addShape(innerCircle, pane);
-    addShape(outerCircle, pane);
+    addShape(outerCircle);
+    addShape(innerCircle);
+
+    return outerCircle;
   }
 
-  public void drawRing(int x, int y, int radius, int thickness, Pane pane) {
-    x = (int) convertX(x, pane);
-    y = (int) convertY(y, pane);
+  public void drawRing(int x, int y, int radius, int thickness) {
+    x = (int) convertX(x);
+    y = (int) convertY(y);
 
     Circle innerCircle = new Circle(x, y, radius - thickness, Color.WHITE);
     Circle outerCircle = new Circle(x, y, radius, Color.BLACK);
-    addShape(innerCircle, pane);
-    addShape(outerCircle, pane);
+    addShape(innerCircle);
+    addShape(outerCircle);
   }
 
-  public Circle drawCircle(int x, int y, int radius, Color color, Pane pane) {
-    x = (int) convertX(x, pane);
-    y = (int) convertY(y, pane);
+  public Circle drawCircle(int x, int y, int radius, Color color) {
+    x = (int) convertX(x);
+    y = (int) convertY(y);
 
     Circle circle = new Circle(x, y, radius, color);
-    addShape(circle, pane);
+    addShape(circle);
     return circle;
   }
 
-  public Circle drawCircle(int x, int y, int radius, Pane pane) {
-    x = (int) convertX(x, pane);
-    y = (int) convertY(y, pane);
+  public Circle drawCircle(int x, int y, int radius) {
+    x = (int) convertX(x);
+    y = (int) convertY(y);
 
     Circle circle = new Circle(x, y, radius, Color.BLACK);
-    addShape(circle, pane);
+    addShape(circle);
     return circle;
   }
 
-  public double convertY(int yCoord, Pane pane) {
-    return convertCoord(yCoord, MAP_Y, pane);
+  public Label createLabel(int x, int y, String text) {
+
+    Label label = new Label(text);
+    label.setLayoutX(convertX(x));
+    label.setLayoutY(convertY(y));
+
+    currentNodes.add(label);
+
+    return label;
   }
 
-  public double convertX(int xCoord, Pane pane) {
-    return convertCoord(xCoord, MAP_X, pane);
+  public double convertY(int yCoord) {
+    return convertCoord(yCoord, MAP_Y);
+  }
+
+  public double convertX(int xCoord) {
+    return convertCoord(xCoord, MAP_X);
   }
 
   /**
    * @param coord
    * @param mapWidth
-   * @param pane
    * @return
    */
-  private double convertCoord(int coord, int mapWidth, Pane pane) {
-    double paneWidth = pane.getWidth();
+  private double convertCoord(int coord, int mapWidth) {
+    double paneWidth = this.pane.getWidth();
     return coord * (paneWidth / mapWidth);
   }
 
-  /**
-   * @param shape
-   * @param pane
-   */
-  private void addShape(Shape shape, Pane pane) {
+  /** @param shape */
+  private void addShape(Shape shape) {
     pane.getChildren().add(shape);
-    currentShapes.add(shape);
+    currentNodes.add(shape);
   }
 
-  //    public ArrayList<Shape> filterShapes(Class s) {
-  //        ArrayList<Shape> result;
-  //        for(Shape shape:currentShapes){
-  //            if(shape.getClass()){
-  //                result.add(shape);
-  //            }
-  //        }
-  //    }
+  public void removeNode(Node node) {
+    pane.getChildren().remove(node);
+  }
+
+  public void removeAll(Class obj) {
+    pane.getChildren().remove(filterShapes(obj));
+  }
+
+  public ObservableList<Node> filterShapes(Class obj) {
+    ObservableList<Node> result = currentNodes;
+    result.removeIf(s -> (s.getClass() != obj));
+    return result;
+  }
 }
