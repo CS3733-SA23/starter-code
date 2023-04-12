@@ -92,7 +92,6 @@ public class MapUtilities {
     label.setLayoutX(convertX(x));
     label.setLayoutY(convertY(y));
 
-    // currentNodes.add(label);
     addShape(label);
 
     return label;
@@ -104,7 +103,6 @@ public class MapUtilities {
     label.setLayoutX(convertX(x + xOffset));
     label.setLayoutY(convertY(y + yOffset));
 
-    // currentNodes.add(label);
     addShape(label);
 
     return label;

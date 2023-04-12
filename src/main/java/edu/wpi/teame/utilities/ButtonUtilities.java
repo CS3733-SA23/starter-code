@@ -87,8 +87,6 @@ public class ButtonUtilities {
     String style = button.getStyle();
     int loc = style.indexOf("-fx-background-color: ");
     loc += "-fx-background-color: ".length();
-    // System.out.println("location: " + loc);
-    // System.out.println("style length: " + style.length());
     return style.substring(loc, loc + 7) + "ff";
   }
 
