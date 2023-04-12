@@ -74,9 +74,9 @@ public class MapUtilities {
     x = (int) convertX(x, pane);
     y = (int) convertY(y, pane);
 
-    System.out.println("width" + pane.getWidth());
-    System.out.println(x);
-    System.out.println(y);
+    // System.out.println("width" + pane.getWidth());
+    // System.out.println(x);
+    // System.out.println(y);
 
     Circle circle = new Circle(x, y, radius, Color.BLACK);
     addShape(circle, pane);
