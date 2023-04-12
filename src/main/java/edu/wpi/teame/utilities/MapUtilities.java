@@ -86,9 +86,6 @@ public class MapUtilities {
     x = (int) convertX(x);
     y = (int) convertY(y);
 
-    System.out.println("CircleX: " + x);
-    System.out.println("CircleY: " + y);
-
     Circle circle = new Circle(x, y, radius, Color.BLACK);
     addShape(circle);
     return circle;

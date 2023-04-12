@@ -127,7 +127,7 @@ public class DatabaseTableViewController {
     selectChooser.setTitle("Select file to import");
 
     SQLRepo dC = SQLRepo.INSTANCE;
-    dC.connectToDatabase("teame", "teame50");
+    // dC.connectToDatabase("teame", "teame50");
 
     // load the database into the table
     nodeIDCol.setCellValueFactory(new PropertyValueFactory<MoveAttribute, String>("nodeID"));
