@@ -37,6 +37,7 @@ public class App extends Application {
     primaryStage.setScene(scene);
     primaryStage.setMinWidth(640);
     primaryStage.setMinHeight(480);
+    primaryStage.setResizable(false);
     primaryStage.show();
     Navigation.navigate(Screen.HOME);
   }

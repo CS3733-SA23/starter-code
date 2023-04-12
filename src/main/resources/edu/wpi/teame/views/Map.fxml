@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
@@ -9,160 +10,158 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="theBigPane" style="-fx-border-color: #000000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.MapController">
+<AnchorPane fx:id="theBigPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-border-color: #000000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.MapController">
    <children>
-      <VBox fx:id="theBoxOfV" alignment="CENTER" minWidth="-Infinity" prefWidth="300.0" spacing="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label fx:id="mapLabel">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="SansSerif Regular" size="14.0" />
-               </font>
-            </Label>
-            <VBox alignment="CENTER">
+      <BorderPane prefHeight="720.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox fx:id="theBoxOfV" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="300.0" spacing="25.0" BorderPane.alignment="CENTER">
                <children>
-                  <MFXComboBox fx:id="currentLocationList" prefColumnCount="15" prefHeight="50.0" prefWidth="200.0" promptText="Location" />
-                  <Line endY="-50.0" stroke="WHITE" />
-                  <MFXComboBox fx:id="destinationList" prefColumnCount="15" prefHeight="50.0" prefWidth="200.0" promptText="Destination" />
+                  <Label fx:id="mapLabel">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="SansSerif Regular" size="14.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <MFXComboBox fx:id="currentLocationList" prefColumnCount="15" prefHeight="50.0" prefWidth="200.0" promptText="Location" />
+                        <Line endY="-50.0" stroke="WHITE" />
+                        <MFXComboBox fx:id="destinationList" prefColumnCount="15" prefHeight="50.0" prefWidth="200.0" promptText="Destination" />
+                     </children>
+                  </VBox>
+                  <MFXScrollPane maxHeight="-Infinity" prefHeight="200.0" VBox.vgrow="ALWAYS">
+                     <content>
+                        <Label fx:id="pathLabel" minHeight="200.0" prefWidth="250.0" style="-fx-background-color: #FFFFFF;" wrapText="true" />
+                     </content>
+                  </MFXScrollPane>
                </children>
             </VBox>
-            <Label fx:id="pathLabel" minHeight="200.0" prefWidth="250.0" style="-fx-background-color: #FFFFFF;" wrapText="true" VBox.vgrow="ALWAYS">
-               <VBox.margin>
-                  <Insets bottom="50.0" left="10.0" right="10.0" top="25.0" />
-               </VBox.margin>
-            </Label>
-         </children>
-      </VBox>
-      <TabPane tabClosingPolicy="UNAVAILABLE" tabMaxHeight="30.0" tabMaxWidth="100.0" tabMinHeight="30.0" tabMinWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <tabs>
-            <Tab fx:id="floorOneTab" text="Floor 1">
-               <content>
-                  <AnchorPane>
-                     <children>
-                        <AnchorPane fx:id="mapPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         </left>
+         <center>
+            <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="980.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="30.0" tabMaxWidth="100.0" tabMinHeight="30.0" tabMinWidth="100.0" BorderPane.alignment="CENTER">
+               <tabs>
+                  <Tab fx:id="floorOneTab" text="Floor 1">
+                     <content>
+                        <AnchorPane minWidth="-Infinity" prefWidth="980.0">
                            <children>
-                              <StackPane fx:id="imagePane" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="mapPane" minWidth="-Infinity" prefWidth="980.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <ImageView fx:id="mapImage" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                                    <StackPane fx:id="imagePane" minHeight="-Infinity" minWidth="-Infinity" prefWidth="980.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <ImageView fx:id="mapImage" fitWidth="980.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../../../../Maps/01_thefirstfloor.png" />
                                        </image>
-                                       <viewport>
-                                          <Rectangle2D />
-                                       </viewport>
                                     </ImageView>
                                  </children>
-                              </StackPane>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab fx:id="floorTwoTab" text="Floor 2">
-               <content>
-                  <AnchorPane>
-                     <children>
-                        <AnchorPane fx:id="mapPane1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     </content>
+                  </Tab>
+                  <Tab fx:id="floorTwoTab" text="Floor 2">
+                     <content>
+                        <AnchorPane>
                            <children>
-                              <StackPane fx:id="imagePane1" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="mapPane1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <ImageView fx:id="mapImage1" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
-                                       <image>
-                                          <Image url="@../../../../../../../Maps/02_thesecondfloor.png" />
-                                       </image>
-                                       <viewport>
-                                          <Rectangle2D />
-                                       </viewport>
-                                    </ImageView>
+                                    <StackPane fx:id="imagePane1" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <ImageView fx:id="mapImage1" fitWidth="980.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                                             <image>
+                                                <Image url="@../../../../../../../Maps/02_thesecondfloor.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </StackPane>
                                  </children>
-                              </StackPane>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab fx:id="floorThreeTab" text="Floor 3">
-               <content>
-                  <AnchorPane>
-                     <children>
-                        <AnchorPane fx:id="mapPane11" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     </content>
+                  </Tab>
+                  <Tab fx:id="floorThreeTab" text="Floor 3">
+                     <content>
+                        <AnchorPane>
                            <children>
-                              <StackPane fx:id="imagePane11" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="mapPane11" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <ImageView fx:id="mapImage11" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
-                                       <image>
-                                          <Image url="@../../../../../../../Maps/03_thethirdfloor.png" />
-                                       </image>
-                                       <viewport>
-                                          <Rectangle2D />
-                                       </viewport>
-                                    </ImageView>
+                                    <StackPane fx:id="imagePane11" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <ImageView fx:id="mapImage11" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                                             <image>
+                                                <Image url="@../../../../../../../Maps/03_thethirdfloor.png" />
+                                             </image>
+                                             <viewport>
+                                                <Rectangle2D />
+                                             </viewport>
+                                          </ImageView>
+                                       </children>
+                                    </StackPane>
                                  </children>
-                              </StackPane>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab fx:id="lowerLevelOneTab" text="Lower Level 1">
-               <content>
-                  <AnchorPane>
-                     <children>
-                        <AnchorPane fx:id="mapPane111" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     </content>
+                  </Tab>
+                  <Tab fx:id="lowerLevelOneTab" text="Lower Level 1">
+                     <content>
+                        <AnchorPane>
                            <children>
-                              <StackPane fx:id="imagePane111" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="mapPane111" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <ImageView fx:id="mapImage111" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
-                                       <image>
-                                          <Image url="@../../../../../../../Maps/00_thelowerlevel1.png" />
-                                       </image>
-                                       <viewport>
-                                          <Rectangle2D />
-                                       </viewport>
-                                    </ImageView>
+                                    <StackPane fx:id="imagePane111" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <ImageView fx:id="mapImage111" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                                             <image>
+                                                <Image url="@../../../../../../../Maps/00_thelowerlevel1.png" />
+                                             </image>
+                                             <viewport>
+                                                <Rectangle2D />
+                                             </viewport>
+                                          </ImageView>
+                                       </children>
+                                    </StackPane>
                                  </children>
-                              </StackPane>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab fx:id="lowerLevelTwoTab" text="Lower Level 2">
-               <content>
-                  <AnchorPane>
-                     <children>
-                        <AnchorPane fx:id="mapPane1111" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     </content>
+                  </Tab>
+                  <Tab fx:id="lowerLevelTwoTab" text="Lower Level 2">
+                     <content>
+                        <AnchorPane>
                            <children>
-                              <StackPane fx:id="imagePane1111" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="mapPane1111" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <ImageView fx:id="mapImage1111" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
-                                       <image>
-                                          <Image url="@../../../../../../../Maps/00_thelowerlevel2.png" />
-                                       </image>
-                                       <viewport>
-                                          <Rectangle2D />
-                                       </viewport>
-                                    </ImageView>
+                                    <StackPane fx:id="imagePane1111" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <ImageView fx:id="mapImage1111" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                                             <image>
+                                                <Image url="@../../../../../../../Maps/00_thelowerlevel2.png" />
+                                             </image>
+                                             <viewport>
+                                                <Rectangle2D />
+                                             </viewport>
+                                          </ImageView>
+                                       </children>
+                                    </StackPane>
                                  </children>
-                              </StackPane>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-         </tabs>
-      </TabPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>
