@@ -12,7 +12,7 @@ public class MapUtilities {
   private final int MAP_X = 5000;
   private final int MAP_Y = 3400;
 
-  ArrayList<Shape> currentShapes = new ArrayList<>();
+  public ArrayList<Shape> currentShapes = new ArrayList<>();
 
   /**
    * draws a line given the starting and ending (x,y) coordinates and saves the line to a global

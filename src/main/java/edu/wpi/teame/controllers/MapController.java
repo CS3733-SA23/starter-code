@@ -42,7 +42,6 @@ public class MapController {
   @FXML private Label pathLabel;
   @FXML private StackPane imagePane;
   @FXML private ImageView mapImage;
-  @FXML private Label mapLabel;
   Floor currentFloor = Floor.ONE;
   String curLocFromComboBox;
   String destFromComboBox;
@@ -82,7 +81,6 @@ public class MapController {
           destFromComboBox = destinationList.getValue();
           displayPath(curLocFromComboBox, destFromComboBox);
         });
-    mapImage.fitWidthProperty().bind(imagePane.widthProperty());
     refreshTab(currentFloor);
   }
 
@@ -125,24 +123,8 @@ public class MapController {
     for (HospitalNode node : path) {
       pathNames.add(graphController.getNameFromNodeID(node.getNodeID()));
     }
-
     pathLabel.setText(pathNames.toString());
-
     drawPath(path);
-  }
-
-  private double convertYCoord(int yCoord) {
-    double paneHeight = mapPane.getHeight();
-    double mapHeight = 3400;
-
-    return yCoord * (paneHeight / mapHeight);
-  }
-
-  private double convertXCoord(int xCoord) {
-    double paneWidth = mapPane.getWidth();
-    double mapWidth = 5000;
-
-    return xCoord * (paneWidth / mapWidth);
   }
 
   /**
@@ -164,38 +146,19 @@ public class MapController {
       x2 = node.getXCoord();
       y2 = node.getYCoord();
 
-      drawLine(x1, y1, x2, y2);
+      mapUtil.drawLine(x1, y1, x2, y2, mapPane);
 
       x1 = x2;
       y1 = y2;
     }
 
     // create circle to symbolize end
-    Circle endCircle = new Circle(convertXCoord(x1), convertYCoord(y1), 4);
-    endCircle.setFill(BLACK);
-    mapPane.getChildren().add(endCircle);
-    currentCircles.add(endCircle);
-  }
-
-  /**
-   * draws a line given the starting and ending (x,y) coordinates and saves the line to a global
-   * list of lines
-   */
-  private void drawLine(int x1, int y1, int x2, int y2) {
-    x1 = (int) this.convertXCoord(x1);
-    y1 = (int) this.convertYCoord(y1);
-    x2 = (int) this.convertXCoord(x2);
-    y2 = (int) this.convertYCoord(y2);
-
-    Line line = new Line(x1, y1, x2, y2);
-    mapPane.getChildren().add(line);
-    currentLines.add(line);
+    mapUtil.drawCircle(x1, y1, 4, BLACK, mapPane);
   }
 
   /** removes all the lines in the currentLines list */
   public void refreshPath() {
-    mapPane.getChildren().removeAll(currentCircles);
-    mapPane.getChildren().removeAll(currentLines);
+    mapPane.getChildren().removeAll(mapUtil.currentShapes);
   }
 
   private void mouseSetup(MFXButton btn) {
