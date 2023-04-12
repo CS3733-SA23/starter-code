@@ -9,7 +9,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Shape;
 
 public class MapUtilities {
   private final int MAP_X = 5000;
@@ -94,6 +93,19 @@ public class MapUtilities {
     label.setLayoutY(convertY(y));
 
     currentNodes.add(label);
+    addShape(label);
+
+    return label;
+  }
+
+  public Label createLabel(int x, int y, int xOffset, int yOffset, String text) {
+
+    Label label = new Label(text);
+    label.setLayoutX(convertX(x + xOffset));
+    label.setLayoutY(convertY(y + yOffset));
+
+    currentNodes.add(label);
+    addShape(label);
 
     return label;
   }
@@ -125,10 +137,14 @@ public class MapUtilities {
     return coord * (MAP_Y / paneWidth);
   }
 
-  /** @param shape */
-  private void addShape(Shape shape) {
-    pane.getChildren().add(shape);
-    currentNodes.add(shape);
+  private double convertCoord(int coord, int mapWidth, double paneWidth) {
+    return coord * (paneWidth / mapWidth);
+  }
+
+  /** @param node */
+  private void addShape(Node node) {
+    pane.getChildren().add(node);
+    currentNodes.add(node);
   }
 
   public void removeNode(Node node) {

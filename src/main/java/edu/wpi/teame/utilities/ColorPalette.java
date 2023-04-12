@@ -3,7 +3,7 @@ package edu.wpi.teame.utilities;
 public enum ColorPalette {
   DARK_BLUE("#192d5a"),
   BLUE("#223b95"),
-  LIGHT_BLUE("#3b63a5"),
+  //  LIGHT_BLUE("#3b63a5"),
   CYAN("#5c9ca6"),
   YELLOW("#e5bc3b"),
   WHITE("#ffffff"),
