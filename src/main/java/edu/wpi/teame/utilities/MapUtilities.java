@@ -92,7 +92,7 @@ public class MapUtilities {
     label.setLayoutX(convertX(x));
     label.setLayoutY(convertY(y));
 
-    currentNodes.add(label);
+    // currentNodes.add(label);
     addShape(label);
 
     return label;
@@ -104,7 +104,7 @@ public class MapUtilities {
     label.setLayoutX(convertX(x + xOffset));
     label.setLayoutY(convertY(y + yOffset));
 
-    currentNodes.add(label);
+    // currentNodes.add(label);
     addShape(label);
 
     return label;
@@ -151,8 +151,15 @@ public class MapUtilities {
     pane.getChildren().remove(node);
   }
 
-  public void removeAll(Class obj) {
+  public void removeAllByType(Class obj) {
+    System.out.println(obj);
+    System.out.println("remove1 :" + pane.getChildren());
     this.pane.getChildren().removeAll(filterShapes(obj));
+    System.out.println("remove2 :" + pane.getChildren());
+  }
+
+  public void removeAll() {
+    this.pane.getChildren().removeAll(currentNodes);
   }
 
   public ObservableList<Node> filterShapes(Class obj) {
