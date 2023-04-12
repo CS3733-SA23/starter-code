@@ -49,7 +49,7 @@ public class HomePageController {
     // Initially set the menu bar to invisible
     menuBarVisible(false);
 
-    // When the menu button is clicked, invert the value of menuVisibility and set the menuVBox to
+    // When the menu button is clicked, invert the value of menuVisibility and set the menu bar to
     // that value
     // (so each time the menu button is clicked it changes the visibility of menu bar back and
     // forth)
@@ -66,11 +66,12 @@ public class HomePageController {
           menuVisibilty = !menuVisibilty;
         });
     menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
+    menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
     menuBarMaps.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
     menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
     menuBarExit.setOnMouseClicked((event -> Platform.exit()));
 
-    //makes the buttons get highlighted when the mouse hovers over them
+    // makes the buttons get highlighted when the mouse hovers over them
     mouseSetup(menuBarHome);
     mouseSetup(menuBarServices);
     mouseSetup(menuBarMaps);

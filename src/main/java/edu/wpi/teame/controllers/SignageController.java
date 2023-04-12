@@ -12,53 +12,58 @@ import javafx.scene.paint.Color;
 public class SignageController {
   @FXML MFXButton returnButtonSignage;
   @FXML MFXButton menuButton;
-  @FXML MFXButton menuBarSignage;
-  @FXML MFXButton menuBarServices;
   @FXML MFXButton menuBarHome;
-  @FXML MFXButton menuBarMap;
-  @FXML MFXButton menuBarExit;
+  @FXML MFXButton menuBarServices;
+  @FXML MFXButton menuBarMaps;
   @FXML MFXButton menuBarDatabase;
+  @FXML MFXButton menuBarSignage;
+  @FXML MFXButton menuBarBlank;
+  @FXML MFXButton menuBarExit;
+  boolean menuVisibilty = false;
 
-  @FXML
   public void initialize() {
-    menuDropDownVisibility(false);
+    // Initially set the menu bar to invisible
+    menuBarVisible(false);
 
-    showMenuButtonsWhenHovered(menuButton);
-    showMenuButtonsWhenHovered(menuBarSignage);
-    showMenuButtonsWhenHovered(menuBarServices);
-    showMenuButtonsWhenHovered(menuBarHome);
-    showMenuButtonsWhenHovered(menuBarMap);
-    showMenuButtonsWhenHovered(menuBarDatabase);
-    showMenuButtonsWhenHovered(menuBarExit);
+    // makes the buttons get highlighted when the mouse hovers over them
+    mouseSetup(menuBarHome);
+    mouseSetup(menuBarServices);
+    mouseSetup(menuBarMaps);
+    mouseSetup(menuBarDatabase);
+    mouseSetup(menuBarExit);
+    mouseSetup(menuBarSignage);
 
-    menuBarSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
-    menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
+    // When the menu button is clicked, invert the value of menuVisibility and set the menu bar to
+    // that value
+    // (so each time the menu button is clicked it changes the visibility of menu bar back and
+    // forth)
+    menuButton.setOnMouseClicked(
+        event -> {
+          menuVisibilty = !menuVisibilty;
+          menuBarVisible(menuVisibilty);
+        });
+
+    // Navigation controls for the button in the menu bar
     menuBarHome.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    menuBarMap.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
-    // menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate((Screen.Database)));
-    menuBarExit.setOnMouseClicked(event -> Platform.exit());
-    mouseSetup(returnButtonSignage);
-    returnButtonSignage.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    menuBarServices.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
+    menuBarSignage.setOnMouseClicked(
+        event -> {
+          Navigation.navigate(Screen.SIGNAGE_TEXT);
+          menuVisibilty = !menuVisibilty;
+        });
+    menuBarMaps.setOnMouseClicked(event -> Navigation.navigate(Screen.MAP));
+    menuBarDatabase.setOnMouseClicked(event -> Navigation.navigate(Screen.DATABASE_VIEW));
+    menuBarExit.setOnMouseClicked((event -> Platform.exit()));
   }
 
-  public void menuDropDownVisibility(boolean bool) {
-    menuBarSignage.setVisible(bool);
-    menuBarServices.setVisible(bool);
+  public void menuBarVisible(boolean bool) {
     menuBarHome.setVisible(bool);
-    menuBarMap.setVisible(bool);
+    menuBarServices.setVisible(bool);
+    menuBarSignage.setVisible(bool);
+    menuBarMaps.setVisible(bool);
     menuBarDatabase.setVisible(bool);
     menuBarExit.setVisible(bool);
-  }
-
-  public void showMenuButtonsWhenHovered(MFXButton button) {
-    button.setOnMouseEntered(
-        event -> {
-          menuDropDownVisibility(true);
-        });
-    button.setOnMouseExited(
-        event -> {
-          menuDropDownVisibility(false);
-        });
+    menuBarBlank.setVisible(bool);
   }
 
   private void mouseSetup(MFXButton btn) {
