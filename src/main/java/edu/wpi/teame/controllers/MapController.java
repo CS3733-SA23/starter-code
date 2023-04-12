@@ -9,7 +9,6 @@ import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.map.pathfinding.AStarPathfinder;
 import edu.wpi.teame.utilities.MapUtilities;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
@@ -105,7 +103,6 @@ public class MapController {
     if (from.equals("") || to.equals("")) {
       return;
     }
-
     refreshPath();
     AStarPathfinder pf = new AStarPathfinder();
 
@@ -114,7 +111,6 @@ public class MapController {
 
     List<HospitalNode> path =
         pf.findPath(HospitalNode.allNodes.get(fromNodeID), HospitalNode.allNodes.get(toNodeID));
-
     if (path == null) {
       System.out.println("Path does not exist");
       return;
@@ -159,19 +155,5 @@ public class MapController {
   /** removes all the lines in the currentLines list */
   public void refreshPath() {
     mapPane.getChildren().removeAll(mapUtil.currentShapes);
-  }
-
-  private void mouseSetup(MFXButton btn) {
-    btn.setOnMouseEntered(
-        event -> {
-          btn.setStyle(
-              "-fx-background-color: #ffffff; -fx-alignment: center; -fx-border-color: #192d5a; -fx-border-width: 2;");
-          btn.setTextFill(Color.web("#192d5aff", 1.0));
-        });
-    btn.setOnMouseExited(
-        event -> {
-          btn.setStyle("-fx-background-color: #192d5aff; -fx-alignment: center;");
-          btn.setTextFill(WHITE);
-        });
   }
 }
