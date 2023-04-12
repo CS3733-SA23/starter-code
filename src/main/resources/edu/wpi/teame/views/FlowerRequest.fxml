@@ -37,7 +37,7 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefWidth="450.0" spacing="5.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room Number">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room Name">
                                  <font>
                                     <Font name="Times New Roman" size="16.0" />
                                  </font>
