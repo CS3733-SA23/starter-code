@@ -1,9 +1,6 @@
 package edu.wpi.teame.Database;
 
-import edu.wpi.teame.map.Floor;
-import edu.wpi.teame.map.HospitalNode;
-import edu.wpi.teame.map.MoveAttribute;
-import edu.wpi.teame.map.NodeInitializer;
+import edu.wpi.teame.map.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,6 +33,29 @@ public class DatabaseUtility {
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  public String getShortNameFromNodeID(String nodeID) throws SQLException {
+    String sqlMove = "SELECT \"longName\" FROM \"Move\" WHERE \"nodeID\" = '" + nodeID + "';";
+    Statement stmt = activeConnection.createStatement();
+    ResultSet rs = stmt.executeQuery(sqlMove);
+    String longName;
+    if (rs.next()) {
+      longName = rs.getString("longName");
+    } else {
+      throw new RuntimeException("Could not find long name for node ID: " + nodeID);
+    }
+
+    String sqlLocationName =
+        "SELECT \"shortName\" FROM \"LocationName\" WHERE \"longName\" = '" + longName + "';";
+    rs = stmt.executeQuery(sqlLocationName);
+    String shortName;
+    if (rs.next()) {
+      shortName = rs.getString("shortName");
+    } else {
+      throw new RuntimeException("Could not find short name for long name: " + longName);
+    }
+    return shortName;
   }
 
   public void updateMoveWithoutObject(

@@ -88,6 +88,10 @@ public enum SQLRepo {
     this.dbUtility.updateMoveWithoutObject(nodeID, oldLongName, columnName, value);
   }
 
+  public String getShortNameFromNodeID(String nodeID) throws SQLException {
+    return this.dbUtility.getShortNameFromNodeID(nodeID);
+  }
+
   public String getNodeTypeFromNodeID(int nodeID) {
     return this.dbUtility.getNodeTypeFromNodeID(nodeID);
   }
