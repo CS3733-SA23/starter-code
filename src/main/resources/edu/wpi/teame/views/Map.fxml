@@ -155,9 +155,12 @@
                <children>
                   <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="283.0" prefWidth="250.0">
                      <children>
-                        <SearchableComboBox prefHeight="40.0" promptText="Location" style="-fx-border-color: #192d5a; -fx-border-width: 3; -fx-border-radius: 5;" />
+                        <Label layoutX="105.0" layoutY="235.0" text="Start" />
+                        <SearchableComboBox fx:id="currentLocationList" prefHeight="40.0" promptText="Location" style="-fx-border-color: #192d5a; -fx-border-width: 3; -fx-border-radius: 5;" />
                         <Line endY="-50.0" strokeWidth="2.0" />
-                        <SearchableComboBox layoutX="25.0" layoutY="86.0" prefHeight="40.0" promptText="Destination" style="-fx-border-color: #192d5a; -fx-border-width: 3; -fx-border-radius: 5;" />
+                        <Line endY="-50.0" layoutX="135.0" layoutY="177.0" strokeWidth="2.0" />
+                        <SearchableComboBox fx:id="destinationList" layoutX="25.0" layoutY="86.0" prefHeight="40.0" promptText="Destination" style="-fx-border-color: #192d5a; -fx-border-width: 3; -fx-border-radius: 5;" />
+                        <Label text="Destination" />
                      </children>
                      <VBox.margin>
                         <Insets />
