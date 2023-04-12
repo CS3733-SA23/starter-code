@@ -34,6 +34,7 @@ public class HomePageController {
   boolean menuVisibilty = false;
 
   public void initialize() {
+    SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
 
     serviceRequestButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     signageButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE_TEXT));
