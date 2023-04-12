@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -17,6 +17,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
 <AnchorPane fx:id="theBigPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.MapController">
    <children>
@@ -154,10 +155,16 @@
                <children>
                   <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="283.0" prefWidth="250.0">
                      <children>
-                        <MFXComboBox fx:id="currentLocationList" animated="false" prefColumnCount="15" prefHeight="50.0" prefWidth="200.0" promptText="Location" style="-fx-border-color: #000000;" />
+                        <SearchableComboBox prefHeight="40.0" promptText="Location" style="-fx-border-color: #192d5a; -fx-border-width: 3; -fx-border-radius: 5;" />
                         <Line endY="-50.0" strokeWidth="2.0" />
-                        <MFXComboBox fx:id="destinationList" animated="false" prefColumnCount="15" prefHeight="50.0" prefWidth="200.0" promptText="Destination" style="-fx-border-color: #000000;" />
+                        <SearchableComboBox layoutX="25.0" layoutY="86.0" prefHeight="40.0" promptText="Destination" style="-fx-border-color: #192d5a; -fx-border-width: 3; -fx-border-radius: 5;" />
                      </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
                   </VBox>
                   <ScrollPane prefHeight="390.0">
                     <content>
