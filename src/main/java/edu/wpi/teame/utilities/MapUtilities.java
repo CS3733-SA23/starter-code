@@ -78,21 +78,19 @@ public class MapUtilities {
   }
 
   public double convertY(int yCoord, Pane pane) {
-    return convertCoord(yCoord, MAP_Y, pane);
+    return convertCoord(yCoord, MAP_Y, pane.getHeight());
   }
 
   public double convertX(int xCoord, Pane pane) {
-    return convertCoord(xCoord, MAP_X, pane);
+    return convertCoord(xCoord, MAP_X, pane.getWidth());
   }
 
   /**
    * @param coord
    * @param mapWidth
-   * @param pane
    * @return
    */
-  private double convertCoord(int coord, int mapWidth, Pane pane) {
-    double paneWidth = pane.getWidth();
+  private double convertCoord(int coord, int mapWidth, double paneWidth) {
     return coord * (paneWidth / mapWidth);
   }
 
