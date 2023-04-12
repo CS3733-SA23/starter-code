@@ -2,15 +2,18 @@ package edu.wpi.teame.controllers;
 
 import edu.wpi.teame.Database.DatabaseController;
 import edu.wpi.teame.Database.DatabaseServiceController;
+import edu.wpi.teame.Database.SQLRepo;
 import edu.wpi.teame.entities.ServiceRequestData;
+import edu.wpi.teame.map.LocationName;
 import edu.wpi.teame.utilities.Navigation;
 import edu.wpi.teame.utilities.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.controlsfx.control.SearchableComboBox;
 import org.json.JSONObject;
 
 public class FlowerRequestController implements IRequestController {
@@ -29,10 +32,10 @@ public class FlowerRequestController implements IRequestController {
   @FXML MFXButton returnButton;
   @FXML MFXButton submitButton;
   @FXML MFXTextField recipientName;
-  @FXML MFXTextField roomNumber;
-  @FXML MFXComboBox<String> deliveryTime;
-  @FXML MFXComboBox<String> flowerChoice;
-  @FXML MFXComboBox<String> numOfFlowers;
+  @FXML SearchableComboBox roomName;
+  @FXML SearchableComboBox<String> deliveryTime;
+  @FXML SearchableComboBox<String> flowerChoice;
+  @FXML SearchableComboBox<String> numOfFlowers;
   @FXML MFXTextField notes;
   @FXML MFXTextField assignedStaff;
   @FXML MFXButton cancelButton;
@@ -40,6 +43,17 @@ public class FlowerRequestController implements IRequestController {
 
   @FXML
   public void initialize() {
+    SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
+    Stream<LocationName> locationStream = SQLRepo.INSTANCE.getLocationList().stream();
+    ObservableList<String> names =
+        FXCollections.observableArrayList(
+            locationStream
+                .map(
+                    (locationName) -> {
+                      return locationName.getLongName();
+                    })
+                .toList());
+    roomName.setItems(names);
     // Add the items to the combo boxes
     flowerChoice.setItems(flowerChoices);
     numOfFlowers.setItems(flowerNum);
@@ -54,11 +68,11 @@ public class FlowerRequestController implements IRequestController {
 
     // Create the json to store the values
     JSONObject requestData = new JSONObject();
-    requestData.put("flowerChoice", flowerChoice.getText());
-    requestData.put("numOfFlowers", numOfFlowers.getText());
-    requestData.put("deliveryTime", deliveryTime.getText());
+    requestData.put("flowerChoice", flowerChoice.getValue());
+    requestData.put("numOfFlowers", numOfFlowers.getValue());
+    requestData.put("deliveryTime", deliveryTime.getValue());
     requestData.put("recipientName", recipientName.getText());
-    requestData.put("roomNumber", roomNumber.getText());
+    requestData.put("roomName", roomName.getValue());
     requestData.put("notes", notes.getText());
 
     // Create the service request data
@@ -86,11 +100,11 @@ public class FlowerRequestController implements IRequestController {
 
   // Clears the current service request fields
   public void clearForm() {
-    flowerChoice.clear();
-    numOfFlowers.clear();
-    deliveryTime.clear();
+    flowerChoice.setValue(null);
+    numOfFlowers.setValue(null);
+    deliveryTime.setValue(null);
+    roomName.setValue(null);
     recipientName.clear();
-    roomNumber.clear();
     notes.clear();
     assignedStaff.clear();
   }
