@@ -88,7 +88,6 @@ public class DatabaseMapViewController {
         });
 
     currentFloor = Floor.LOWER_TWO;
-    SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
     // refreshButton.setOnMouseClicked(event -> loadFloorNodes(Floor.LOWER_ONE));
     sidebar.setVisible(false);
 
