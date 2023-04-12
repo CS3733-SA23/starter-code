@@ -10,7 +10,6 @@ import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.map.pathfinding.AStarPathfinder;
 import edu.wpi.teame.utilities.*;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Platform;
@@ -22,6 +21,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import org.controlsfx.control.SearchableComboBox;
 
 public class MapController {
   @FXML AnchorPane mapPane;
@@ -35,8 +35,8 @@ public class MapController {
   @FXML Tab floorThreeTab;
   @FXML Tab lowerLevelTwoTab;
   @FXML Tab lowerLevelOneTab;
-  @FXML MFXComboBox<String> currentLocationList;
-  @FXML MFXComboBox<String> destinationList;
+  @FXML SearchableComboBox<String> currentLocationList;
+  @FXML SearchableComboBox<String> destinationList;
   @FXML private Label pathLabel;
   @FXML MFXButton menuButton;
   @FXML MFXButton menuBarHome;
