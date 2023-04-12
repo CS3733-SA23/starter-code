@@ -1,7 +1,5 @@
 package edu.wpi.teame.controllers;
 
-import edu.wpi.teame.Database.DatabaseController;
-import edu.wpi.teame.Database.DatabaseServiceController;
 import edu.wpi.teame.Database.SQLRepo;
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.LocationName;
@@ -43,7 +41,6 @@ public class FlowerRequestController implements IRequestController {
 
   @FXML
   public void initialize() {
-    SQLRepo.INSTANCE.connectToDatabase("teame", "teame50");
     Stream<LocationName> locationStream = SQLRepo.INSTANCE.getLocationList().stream();
     ObservableList<String> names =
         FXCollections.observableArrayList(
@@ -86,10 +83,7 @@ public class FlowerRequestController implements IRequestController {
     // Return to the home screen
     Navigation.navigate(Screen.HOME);
 
-    DatabaseController db = DatabaseController.INSTANCE;
-    DatabaseServiceController dbsc = new DatabaseServiceController(db);
-
-    dbsc.addServiceRequestToDatabase(flowerRequestData);
+    SQLRepo.INSTANCE.addServiceRequest(flowerRequestData);
     return flowerRequestData;
   }
 

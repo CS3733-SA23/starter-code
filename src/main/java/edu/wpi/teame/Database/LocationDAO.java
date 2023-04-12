@@ -27,7 +27,7 @@ public class LocationDAO<E> extends DAO<LocationName> {
     locationNames = new LinkedList<>();
 
     try {
-      Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
+      Statement stmt = activeConnection.createStatement();
 
       String sql = "SELECT \"longName\", \"shortName\", \"nodeType\" FROM teame.\"LocationName\";";
       ResultSet rs = stmt.executeQuery(sql);

@@ -1,7 +1,5 @@
 package edu.wpi.teame.controllers;
 
-import edu.wpi.teame.Database.DatabaseController;
-import edu.wpi.teame.Database.DatabaseServiceController;
 import edu.wpi.teame.Database.SQLRepo;
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.LocationName;
@@ -85,10 +83,7 @@ public class OfficeSuppliesController implements IRequestController {
 
     Navigation.navigate(Screen.HOME);
 
-    DatabaseController db = DatabaseController.INSTANCE;
-    DatabaseServiceController dbsc = new DatabaseServiceController(db);
-
-    dbsc.addServiceRequestToDatabase(officeSuppliesRequestData);
+    SQLRepo.INSTANCE.addServiceRequest(officeSuppliesRequestData);
     return officeSuppliesRequestData;
   }
 
