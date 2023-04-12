@@ -64,7 +64,7 @@ public class AStarPathfinder extends AbstractPathfinder {
 
   int heuristicDistance(HospitalNode from, HospitalNode to) {
     // estimate the distance to the target based on the euclidean distance to the target
-    int floorBias = 300;
+    int floorBias = 1000;
     return (int)
             Math.sqrt(
                 Math.pow(from.getXCoord() - to.getXCoord(), 2)
