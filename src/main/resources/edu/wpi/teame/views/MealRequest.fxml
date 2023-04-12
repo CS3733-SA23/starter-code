@@ -5,11 +5,9 @@
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.MotionBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -17,38 +15,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane style="-fx-background-color: #3b63a5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.MealRequestController">
-   <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.MealRequestController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="900.0" style="-fx-background-color: #696969;">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="490.0" layoutX="5.0" layoutY="5.0" strokeType="INSIDE" width="790.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-               <effect>
-                  <DropShadow height="31.53" radius="16.1425" spread="0.48" width="35.04">
-                     <color>
-                        <Color red="0.8700000047683716" green="0.7006400227546692" blue="0.23489999771118164" opacity="0.8571428656578064" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Rectangle>
-            <ImageView fitHeight="490.0" fitWidth="790.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" AnchorPane.bottomAnchor="-38.6824951171875" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="5.0">
-               <image>
-                  <Image url="@../images/BWH_BridgeInside_JK.jpg" />
-               </image>
-               <effect>
-                  <MotionBlur radius="4.7" />
-               </effect>
-            </ImageView>
-            <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#7e7e7e" height="462.0" layoutX="131.0" layoutY="19.0" opacity="0.64" stroke="TRANSPARENT" strokeType="INSIDE" width="537.0" />
-            <Text fontSmoothingType="LCD" layoutX="270.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Delivery" underline="true">
-               <font>
-                  <Font name="Poor Richard" size="48.0" />
-               </font>
-            </Text>
-            <ScrollPane layoutX="175.0" layoutY="109.0" prefHeight="350.0" prefWidth="450.0">
+            <ScrollPane layoutX="142.0" layoutY="115.0" pannable="true" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #192d5a;">
                <content>
                   <AnchorPane prefWidth="450.0">
                      <children>
-                        <VBox prefHeight="500.0" prefWidth="450.0" spacing="15.0">
+                        <VBox prefHeight="627.0" prefWidth="600.0" spacing="30.0">
                            <children>
                               <VBox alignment="TOP_CENTER" prefWidth="450.0" spacing="5.0">
                                  <children>
@@ -83,7 +58,7 @@
                               </VBox>
                               <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="212.0" prefWidth="450.0" spacing="5.0">
                                  <children>
-                                    <Text fx:id="mainCourse" strokeType="OUTSIDE" strokeWidth="0.0" text="Main Course">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Main Course">
                                        <font>
                                           <Font name="Times New Roman" size="16.0" />
                                        </font>
@@ -93,7 +68,7 @@
                               </VBox>
                               <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="290.0" prefWidth="450.0" spacing="5.0">
                                  <children>
-                                    <Text fx:id="sideCourse" strokeType="OUTSIDE" strokeWidth="0.0" text="Side Course">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Side Course">
                                        <font>
                                           <Font name="Times New Roman" size="16.0" />
                                        </font>
@@ -116,14 +91,14 @@
                                                 <Font name="Times New Roman" size="16.0" />
                                              </font>
                                           </Text>
-                                          <MFXTextField fx:id="assignStaff" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
+                                          <MFXTextField fx:id="assignedStaff" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" />
                                        </children>
                                     </VBox>
                                  </children>
                               </VBox>
                               <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
                                  <children>
-                                    <MFXButton fx:id="cancelButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" layoutX="284.0" layoutY="12.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Cancel" />
+                                    <MFXButton fx:id="cancelButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" layoutX="208.0" layoutY="12.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Cancel" />
                                     <MFXButton fx:id="submitButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Submit" />
                                  </children>
                               </HBox>
@@ -132,25 +107,31 @@
                      </children>
                   </AnchorPane>
                </content>
+               <effect>
+                  <DropShadow spread="0.63">
+                     <color>
+                        <Color red="0.09803921729326248" green="0.1764705926179886" blue="0.3529411852359772" />
+                     </color>
+                  </DropShadow>
+               </effect>
             </ScrollPane>
-            <MFXButton fx:id="returnButtonMealRequest" contentDisplay="GRAPHIC_ONLY" layoutX="175.0" layoutY="53.0" style="-fx-background-color: #192d5a;">
-               <graphic>
-                  <ImageView fx:id="returnButtonService" fitHeight="100.0" fitWidth="50.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Back%20Arrow.png" />
-                     </image>
-                     <effect>
-                        <DropShadow spread="0.61">
-                           <color>
-                              <Color red="0.8980392217636108" green="0.7372549176216125" blue="0.23137255012989044" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </ImageView>
-               </graphic>
-            </MFXButton>
-            <MFXButton fx:id="clearForm" contentDisplay="TEXT_ONLY" layoutX="559.0" layoutY="49.0" prefHeight="45.0" prefWidth="65.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Clear" textFill="WHITE" />
+            <Text fill="WHITE" layoutX="249.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Delivery">
+               <font>
+                  <Font name="Times New Roman Bold" size="64.0" />
+               </font>
+            </Text>
+            <MFXButton fx:id="clearForm" layoutX="808.0" layoutY="525.0" style="-fx-background-color: #192d5a; -fx-text-fill: #ffffff;" text="Clear Form" />
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="142.0" layoutY="48.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/restaurant.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="692.0" layoutY="48.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/restaurant.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-   </center>
-</BorderPane>
+   </children>
+</AnchorPane>

@@ -41,8 +41,6 @@ public class MealRequestController implements IRequestController {
     mainCourseChoice.setItems(mainCourses);
     sideCourseChoice.setItems(sideCourses);
     deliveryTime.setItems(deliveryTimes);
-    returnButtonMealRequest.setOnMouseClicked(
-        event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
     cancelButton.setOnMouseClicked(event -> cancelRequest());
     submitButton.setOnMouseClicked(event -> sendRequest());
     clearForm.setOnMouseClicked(event -> clearForm());

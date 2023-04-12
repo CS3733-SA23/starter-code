@@ -26,8 +26,8 @@ public class FlowerRequestController implements IRequestController {
       FXCollections.observableArrayList(
           "10am - 11am", "11am - 12pm", "12pm - 1pm", "1pm - 2pm", "2pm - 3pm", "3pm - 4pm");
 
-  @FXML MFXButton returnButtonFlowerRequest;
-  @FXML MFXButton flowerRequestSubmit;
+  @FXML MFXButton returnButton;
+  @FXML MFXButton submitButton;
   @FXML MFXTextField recipientName;
   @FXML MFXTextField roomNumber;
   @FXML MFXComboBox<String> deliveryTime;
@@ -45,9 +45,7 @@ public class FlowerRequestController implements IRequestController {
     numOfFlowers.setItems(flowerNum);
     deliveryTime.setItems(deliveryTimes);
     // Initialize the buttons
-    returnButtonFlowerRequest.setOnMouseClicked(
-        event -> Navigation.navigate(Screen.SERVICE_REQUESTS));
-    flowerRequestSubmit.setOnMouseClicked(event -> sendRequest());
+    submitButton.setOnMouseClicked(event -> sendRequest());
     cancelButton.setOnMouseClicked(event -> cancelRequest());
     clearForm.setOnMouseClicked(event -> clearForm());
   }
