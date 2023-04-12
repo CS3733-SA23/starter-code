@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -64,6 +65,12 @@ public class DatabaseMapViewController {
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent event) {
+            for (Node nodeCircle : util.filterShapes(Circle.class)) {
+              Circle circle = ((Circle) nodeCircle);
+              circle.setFill(Color.BLACK);
+              circle.setTranslateX(0);
+              circle.setTranslateY(0);
+            }
             displayMetadata(node, nodePoint);
           }
         });
@@ -75,6 +82,7 @@ public class DatabaseMapViewController {
     locationField.setText(SQLRepo.INSTANCE.getNamefromNodeID(Integer.parseInt(node.getNodeID())));
     int originalX = node.getXCoord();
     int originalY = node.getYCoord();
+    String originalName = SQLRepo.INSTANCE.getNamefromNodeID(Integer.parseInt(node.getNodeID()));
     xField.setText(node.getXCoord() + "");
     yField.setText(node.getYCoord() + "");
     nodePoint.setFill(Color.RED);
