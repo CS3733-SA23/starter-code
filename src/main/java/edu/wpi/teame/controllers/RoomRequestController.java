@@ -1,7 +1,5 @@
 package edu.wpi.teame.controllers;
 
-import edu.wpi.teame.Database.DatabaseController;
-import edu.wpi.teame.Database.DatabaseServiceController;
 import edu.wpi.teame.Database.SQLRepo;
 import edu.wpi.teame.entities.ServiceRequestData;
 import edu.wpi.teame.map.LocationName;
@@ -74,10 +72,8 @@ public class RoomRequestController {
     // Return to the home screen
     Navigation.navigate(Screen.HOME);
 
-    DatabaseController db = DatabaseController.INSTANCE;
-    DatabaseServiceController dbsc = new DatabaseServiceController(db);
+    SQLRepo.INSTANCE.addServiceRequest(flowerRequestData);
 
-    dbsc.addServiceRequestToDatabase(flowerRequestData);
     return flowerRequestData;
   }
 

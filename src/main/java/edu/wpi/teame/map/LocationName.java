@@ -1,4 +1,3 @@
-
 package edu.wpi.teame.map;
 
 import static java.util.Objects.hash;

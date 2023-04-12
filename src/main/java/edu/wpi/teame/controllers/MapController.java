@@ -3,8 +3,7 @@ package edu.wpi.teame.controllers;
 import static javafx.scene.paint.Color.BLACK;
 import static javafx.scene.paint.Color.WHITE;
 
-import edu.wpi.teame.Database.DatabaseController;
-import edu.wpi.teame.Database.DatabaseGraphController;
+import edu.wpi.teame.Database.SQLRepo;
 import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.map.pathfinding.AStarPathfinder;
@@ -53,12 +52,10 @@ public class MapController {
   String destFromComboBox;
   MapUtilities mapUtil = new MapUtilities(whichPane(currentFloor));
 
-  DatabaseController db = DatabaseController.INSTANCE;
-  DatabaseGraphController graphController = new DatabaseGraphController(db);
   ObservableList<String> floorLocations =
       FXCollections.observableArrayList(
-          graphController.getLongNamesFromMove(
-              graphController.getMoveAttributeFromFloor(currentFloor)));
+          SQLRepo.INSTANCE.getLongNamesFromMove(
+              SQLRepo.INSTANCE.getMoveAttributeFromFloor(currentFloor)));
 
   @FXML
   public void initialize() {
@@ -122,8 +119,8 @@ public class MapController {
     currentFloor = floor;
     floorLocations =
         FXCollections.observableArrayList(
-            graphController.getLongNamesFromMove(
-                graphController.getMoveAttributeFromFloor(currentFloor)));
+            SQLRepo.INSTANCE.getLongNamesFromMove(
+                SQLRepo.INSTANCE.getMoveAttributeFromFloor(currentFloor)));
     currentLocationList.setItems(floorLocations);
     destinationList.setItems(floorLocations);
     currentLocationList.setValue("");
@@ -141,8 +138,8 @@ public class MapController {
     refreshPath(whichPane(whichFloor));
     AStarPathfinder pf = new AStarPathfinder();
 
-    String toNodeID = graphController.getNodeIDFromName(to) + "";
-    String fromNodeID = graphController.getNodeIDFromName(from) + "";
+    String toNodeID = SQLRepo.INSTANCE.getNodeIDFromName(to) + "";
+    String fromNodeID = SQLRepo.INSTANCE.getNodeIDFromName(from) + "";
 
     List<HospitalNode> path =
         pf.findPath(HospitalNode.allNodes.get(fromNodeID), HospitalNode.allNodes.get(toNodeID));
@@ -152,7 +149,7 @@ public class MapController {
     }
     ArrayList<String> pathNames = new ArrayList<>();
     for (HospitalNode node : path) {
-      pathNames.add(graphController.getNameFromNodeID(node.getNodeID()));
+      pathNames.add(SQLRepo.INSTANCE.getNamefromNodeID(Integer.parseInt(node.getNodeID())));
     }
     pathLabel.setText(pathNames.toString());
     drawPath(path, whichPane(whichFloor));

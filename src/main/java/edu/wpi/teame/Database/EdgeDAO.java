@@ -25,7 +25,7 @@ public class EdgeDAO<E> extends DAO<HospitalEdge> {
     hospitalEdgeList = new LinkedList<>();
 
     try {
-      Statement stmt = DatabaseController.INSTANCE.getC().createStatement();
+      Statement stmt = activeConnection.createStatement();
 
       String sql = "SELECT \"startNode\", \"endNode\" FROM teame.\"Edge\" ;";
       ResultSet rs = stmt.executeQuery(sql);
