@@ -4,12 +4,11 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
 
-<FlowPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.DatabaseEditor.DatabaseEditorController">
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teame.controllers.DatabaseEditor.DatabaseEditorController">
    <children>
-      <MFXButton fx:id="backButton" text="Back" />
-      <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
+      <MFXButton fx:id="backButton" text="Back" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <TabPane fx:id="tabPane" layoutY="25.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <tabs>
           <Tab fx:id="editDatabaseTab" text="Edit Database">
             <content>
@@ -24,11 +23,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0">
                      <children>
-                        <fx:include source="MapEditorView.fxml"  fx:id="mapView"/>
-                     </children></AnchorPane>
+                        <fx:include fx:id="mapView" source="MapEditorView.fxml" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
             </content>
           </Tab>
         </tabs>
       </TabPane>
    </children>
-</FlowPane>
+</AnchorPane>
