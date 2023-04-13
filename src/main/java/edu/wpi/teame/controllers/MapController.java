@@ -4,6 +4,7 @@ import static javafx.scene.paint.Color.BLACK;
 import static javafx.scene.paint.Color.WHITE;
 
 import edu.wpi.teame.Database.SQLRepo;
+import edu.wpi.teame.Main;
 import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.map.pathfinding.AStarPathfinder;
@@ -17,6 +18,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -46,6 +49,12 @@ public class MapController {
   @FXML MFXButton menuBarBlank;
   @FXML MFXButton menuBarExit;
   @FXML VBox menuBar;
+
+  @FXML ImageView mapImage; // Floor 1
+  @FXML ImageView mapImage1; // Floor 2
+  @FXML ImageView mapImage11; // Floor 3
+  @FXML ImageView mapImage111; // Floor L1
+  @FXML ImageView mapImage1111; // Floor L2
 
   Floor currentFloor = Floor.LOWER_TWO;
   String curLocFromComboBox;
@@ -78,6 +87,17 @@ public class MapController {
           destFromComboBox = destinationList.getValue();
           displayPath(curLocFromComboBox, destFromComboBox, currentFloor);
         });
+
+    mapImage.setImage(
+        new Image(String.valueOf(Main.class.getResource("maps/01_thefirstfloor.png"))));
+    mapImage1.setImage(
+        new Image(String.valueOf(Main.class.getResource("maps/02_thesecondfloor.png"))));
+    mapImage11.setImage(
+        new Image(String.valueOf(Main.class.getResource("maps/03_thethirdfloor.png"))));
+    mapImage111.setImage(
+        new Image(String.valueOf(Main.class.getResource("maps/00_thelowerlevel1.png"))));
+    mapImage1111.setImage(
+        new Image(String.valueOf(Main.class.getResource("maps/00_thelowerlevel2.png"))));
 
     // Initially set the menu bar to invisible
     menuBar.setVisible(false);

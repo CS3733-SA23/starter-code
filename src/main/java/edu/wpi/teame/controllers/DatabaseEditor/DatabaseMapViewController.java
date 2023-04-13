@@ -1,6 +1,7 @@
 package edu.wpi.teame.controllers.DatabaseEditor;
 
 import edu.wpi.teame.Database.SQLRepo;
+import edu.wpi.teame.Main;
 import edu.wpi.teame.map.Floor;
 import edu.wpi.teame.map.HospitalNode;
 import edu.wpi.teame.map.LocationName;
@@ -13,6 +14,8 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -55,6 +58,12 @@ public class DatabaseMapViewController {
   @FXML TextField newLongNameField;
   @FXML TextField newShortNameField;
   @FXML ComboBox<LocationName.NodeType> nodeTypeChoice;
+
+  @FXML ImageView mapImage; // Floor 1
+  @FXML ImageView mapImage1; // Floor 2
+  @FXML ImageView mapImage11; // Floor 3
+  @FXML ImageView mapImage111; // Floor L1
+  @FXML ImageView mapImage1111; // Floor L2
 
   Floor currentFloor;
   MapUtilities mapUtil;
@@ -113,6 +122,18 @@ public class DatabaseMapViewController {
           // SQLRepo.INSTANCE.addMove(new MoveAttribute("7000", "Test", "New node"));
           // TODO: HELLLLLLPPPPPPPPPP
         });
+
+    // We love fixing bugs in the eleventh hour :)
+    mapImage.setImage(
+        new Image(String.valueOf(Main.class.getResource("maps/01_thefirstfloor.png"))));
+    mapImage1.setImage(
+        new Image(String.valueOf(Main.class.getResource("maps/02_thesecondfloor.png"))));
+    mapImage11.setImage(
+        new Image(String.valueOf(Main.class.getResource("maps/03_thethirdfloor.png"))));
+    mapImage111.setImage(
+        new Image(String.valueOf(Main.class.getResource("maps/00_thelowerlevel1.png"))));
+    mapImage1111.setImage(
+        new Image(String.valueOf(Main.class.getResource("maps/00_thelowerlevel2.png"))));
   }
 
   public void refreshTab(Floor newFloor) {
